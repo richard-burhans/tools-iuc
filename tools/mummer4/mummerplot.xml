@@ -7,10 +7,10 @@
     <expand macro="requirements">
         <expand macro="gnuplot_requirement"/>
     </expand>
-    <command detect_errors="exit_code">
-        <![CDATA[
-        ln -s $reference_sequence reference.fa &&
-        ln -s $query_sequence query.fa &&
+    <command detect_errors="exit_code"><![CDATA[
+        
+        ln -s '$reference_sequence' reference.fa &&
+        ln -s '$query_sequence' query.fa &&
         mummerplot
             -b '$breaklen'
             $color
@@ -36,56 +36,56 @@
             #end if
             '$delta'
             @MUMMER_GNUPLOT_MANUAL@
-        ]]>
-    </command>
+        
+    ]]></command>
     <inputs>
-        <param name="delta" type="data" format="tabular" label="Match File" />
-        <param name="reference_sequence" type="data" format="fasta" label="Reference Sequence" />
-        <param name="query_sequence" type="data" format="fasta" label="Query Sequence(s)" />
-        <expand macro="mumplot_input" >
-            <conditional name="sequences" >
-                <param name="seq_input" type="select" label="Plot an ordered set of reference/query sequences?" >
+        <param name="delta" type="data" format="tabular" label="Match File"/>
+        <param name="reference_sequence" type="data" format="fasta" label="Reference Sequence"/>
+        <param name="query_sequence" type="data" format="fasta" label="Query Sequence(s)"/>
+        <expand macro="mumplot_input">
+            <conditional name="sequences">
+                <param name="seq_input" type="select" label="Plot an ordered set of reference/query sequences?">
                     <option value="no">NO</option>
                     <option value="yes">YES</option>
                 </param>
                 <when value="yes">
-                    <param  type="boolean" argument="--layout" truevalue="--layout" falsevalue="" label="Layout" help="Layout a .delta multiplot in an intelligible fashion. (--layout)" />
+                    <param type="boolean" argument="--layout" truevalue="--layout" falsevalue="" label="Layout" help="Layout a .delta multiplot in an intelligible fashion. (--layout)"/>
                 </when>
-                <when value="no" />
+                <when value="no"/>
             </conditional>
         </expand>
-        <param name="extra_outs" type="select" label="Output files used to create the plot or just the plot?" >
+        <param name="extra_outs" type="select" label="Output files used to create the plot or just the plot?">
             <option value="plot">Just the plot</option>
             <option value="all">All outputs</option>
         </param>
     </inputs>
     <outputs>
-        <data name="gnuplot" format="txt" from_work_dir="out.gp" label="${tool.name} on ${on_string}: gnuplot" >
+        <data name="gnuplot" format="txt" from_work_dir="out.gp" label="${tool.name} on ${on_string}: gnuplot">
             <filter> extra_outs == 'all' </filter>
         </data>
-        <data name="fplot" format="txt" from_work_dir="out.fplot" label="${tool.name} on ${on_string}: fplot" >
+        <data name="fplot" format="txt" from_work_dir="out.fplot" label="${tool.name} on ${on_string}: fplot">
             <filter> extra_outs == 'all' </filter>
         </data>
-        <data name="rplot" format="txt" from_work_dir="out.rplot" label="${tool.name} on ${on_string}: rplot" >
+        <data name="rplot" format="txt" from_work_dir="out.rplot" label="${tool.name} on ${on_string}: rplot">
             <filter> extra_outs == 'all' </filter>
         </data>
-        <data name="hplot" format="txt" from_work_dir="out.hplot" label="${tool.name} on ${on_string}: hplot" >
+        <data name="hplot" format="txt" from_work_dir="out.hplot" label="${tool.name} on ${on_string}: hplot">
             <filter> extra_outs == 'all' </filter>
         </data>
-        <data name="output_png" format="png" from_work_dir="out.png" label="${tool.name} on ${on_string}: plot" />
+        <data name="output_png" format="png" from_work_dir="out.png" label="${tool.name} on ${on_string}: plot"/>
     </outputs>
     <tests>
-        <test  expect_num_outputs="5">
-            <param name="delta" value="nucmer.txt" ftype="tabular" />
-            <param name="reference_sequence" ftype="fasta" value="human_aqp3.fasta" />
-            <param name="query_sequence" ftype="fasta" value="mouse_aqp3.fasta" />
-            <param name="seq_input" value="no" />
-            <param name="extra_outs" value="all" />
-            <output name="gnuplot" ftype="txt" compare="diff" value="gnuplot.txt" />
-            <output name="fplot" ftype="txt" compare="diff" value="fplot.txt" />
-            <output name="rplot" ftype="txt" compare="diff" value="rplot.txt" />
-            <output name="hplot" ftype="txt" compare="diff" value="hplot.txt" />
-            <output name="output_png" ftype="png" compare="sim_size" value="plot.png" />
+        <test expect_num_outputs="5">
+            <param name="delta" value="nucmer.txt" ftype="tabular"/>
+            <param name="reference_sequence" ftype="fasta" value="human_aqp3.fasta"/>
+            <param name="query_sequence" ftype="fasta" value="mouse_aqp3.fasta"/>
+            <param name="seq_input" value="no"/>
+            <param name="extra_outs" value="all"/>
+            <output name="gnuplot" ftype="txt" compare="diff" value="gnuplot.txt"/>
+            <output name="fplot" ftype="txt" compare="diff" value="fplot.txt"/>
+            <output name="rplot" ftype="txt" compare="diff" value="rplot.txt"/>
+            <output name="hplot" ftype="txt" compare="diff" value="hplot.txt"/>
+            <output name="output_png" ftype="png" compare="sim_size" value="plot.png"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -134,8 +134,5 @@ Mummerplot is a perl script that generates gnuplot scripts and data collections 
     --layout       Layout a .delta multiplot in an intelligible fashion, this option requires the -R -Q options
 
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>
-
-
-

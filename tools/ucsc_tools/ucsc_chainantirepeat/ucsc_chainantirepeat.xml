@@ -26,21 +26,21 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="in_chain" format="chain" type="data" label="Chain dataset" />
-        <param name="in_target" format="twobit" type="data" label="Dataset with target sequence" />
-        <param name="in_query" format="twobit" type="data" label="Dataset with query sequence" />
-        <param argument="-minScore" type="integer" optional="true" label="minimum score (after repeat stuff) to pass" help="Default 5000" />
-        <param argument="-noCheckScore" type="integer" optional="true" label="score that will pass without checks (speed tweak)" help="Default 200000" />
+        <param name="in_chain" format="chain" type="data" label="Chain dataset"/>
+        <param name="in_target" format="twobit" type="data" label="Dataset with target sequence"/>
+        <param name="in_query" format="twobit" type="data" label="Dataset with query sequence"/>
+        <param argument="-minScore" type="integer" optional="true" label="minimum score (after repeat stuff) to pass" help="Default 5000"/>
+        <param argument="-noCheckScore" type="integer" optional="true" label="score that will pass without checks (speed tweak)" help="Default 200000"/>
     </inputs>
     <outputs>
-        <data name="out" format="chain" />
+        <data name="out" format="chain"/>
     </outputs>
     <tests>
         <test>
-            <param name="in_chain" value="hg38.chrM.mm39.chrM.chain" />
-            <param name="in_target" value="hg38.chrM.twobit" />
-            <param name="in_query" value="mm39.chrM.twobit" />
-            <output name="out" file="result.chain" />
+            <param name="in_chain" value="hg38.chrM.mm39.chrM.chain"/>
+            <param name="in_target" value="hg38.chrM.twobit"/>
+            <param name="in_query" value="mm39.chrM.twobit"/>
+            <output name="out" file="result.chain"/>
         </test>
     </tests>
     <help><![CDATA[

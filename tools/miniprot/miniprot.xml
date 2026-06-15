@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="miniprot" name="Miniprot align" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="21.05">
     <description>align a protein sequence against a genome with affine gap penalty, splicing and frameshift</description>
     <macros>
@@ -68,7 +67,6 @@
 
         '$protein_fasta' > '$output_alignment'
     ]]></command>
-
     <inputs>
         <conditional name="db">
             <param name="dbtype" type="select" label="Database type" help="Build an index from FASTA or use a pre-indexed database">
@@ -93,19 +91,17 @@
             <option value="paf">PAF</option>
             <option value="gtf">GTF</option>
         </param>
-
         <section name="splice" title="Splice sites">
             <param name="spsc_file" type="data" format="tsv,txt" optional="true" label="Splice score file" help="format: 'ctg offset +|- D|A score'"/>
             <param name="spsc0" type="integer" value="-7" optional="true" label="Splice score" help="Score to assign to splice sites not listed in the splice score file"/>
         </section>
-
         <conditional name="adv">
             <param name="options" type="select" label="Advanced options">
                 <option value="yes">Show</option>
                 <option value="no" selected="true">Hide</option>
             </param>
-            <when value="yes"> 
-                <section name="mapping" title="Mapping">               
+            <when value="yes">
+                <section name="mapping" title="Mapping">
                     <param argument="-S" name="no_splicing" type="boolean" truevalue="-S" falsevalue="" checked="false" label="No splicing" help="No splicing (apply -G1000 -J1000 -e1000)"/>
                     <param argument="-c" name="max_kmer" type="integer" min="1" value="20000" label="Max k-mer occurences"/>
                     <param argument="-w" name="log_gap_penalty_weight" type="float" min="0" max="1" value="0.75" label="Log gap penalty weight"/>
@@ -122,7 +118,7 @@
                         </param>
                         <when value="manual">
                             <param argument="-G" name="max_intron" type="integer" min="0" value="200000" label="Maximum intron size"/>
-                        </when> 
+                        </when>
                         <when value="auto"/>
                     </conditional>
                 </section>
@@ -134,7 +130,7 @@
                     <param argument="-F" name="frameshift" type="integer" min="0" value="23" label="Frameshift penalty"/>
                     <param argument="-B" name="end_bonus" type="integer" min="0" value="5" label="Bonus score for alignment reaching query ends"/>
                     <param argument="-j" name="splice_model" type="select" label="Splicing model for the target genome" help="2=mammal, 1=general, 0=none">
-                        <option value="O" >None: No splicing model (0)</option>
+                        <option value="O">None: No splicing model (0)</option>
                         <option value="1" selected="true">General: Optimal splicing sequence: '|GTR...YAG|' (1)</option>
                         <option value="2">Mammal: Optimal splicing sequence: 'G|GTR...YYYNYAG|' (2)</option>
                     </param>
@@ -143,20 +139,19 @@
                     <param argument="-P" name="prefix" type="text" label="Prefix for IDs in GFF3 output" value="MP">
                         <sanitizer invalid_char="">
                             <valid initial="string.ascii_letters,string.digits">
-                                <add value="_" />
-                                <add value="-" />
+                                <add value="_"/>
+                                <add value="-"/>
                             </valid>
                         </sanitizer>
                     </param>
                     <param argument="-u" name="print_unmapped_proteins" type="boolean" truevalue="-u" falsevalue="" label="Print unmapped proteins" checked="false"/>
                     <param argument="--outn" name="outputs_per_query" type="integer" min="0" value="100" label="Outputs per query" help="The number of outputs will be the minimum of this and the max secondary alignments option"/>
-                    <param argument="--aln" name="output_residue_alignment" type="boolean" truevalue="--aln" falsevalue="" checked="false" label="Output residue alignment" help="Only for GFF output" />
+                    <param argument="--aln" name="output_residue_alignment" type="boolean" truevalue="--aln" falsevalue="" checked="false" label="Output residue alignment" help="Only for GFF output"/>
                     <param argument="--outs" name="output_score_least" type="float" min="0" max="1" value="0.99" label="For each protein, only output alignments with a score higher than 'best_score' multiplied by this value"/>
                     <param argument="--outc" name="output_fraction_query" type="float" value="0.1" label="Output if at least this fraction of query is aligned"/>
                     <param argument="--trans" name="output_translated_protein" type="boolean" truevalue="--trans" falsevalue="" checked="false" label="Output translated protein sequences" help="Skipping frameshift"/>
                     <param argument="--no-cs" name="output_no_cs" type="boolean" truevalue="--no-cs" falsevalue="" checked="false" label="Disable the cs tag"/>
                 </section>
-
                 <param argument="-K" name="query_batch_size" type="integer" min="1" value="2000000" label="Query batch size"/>
                 <param argument="-T" name="ncbi_table" type="select" optional="true" label="Enter NCBI translation table">
                     <option value="1">1 Standard code</option>
@@ -186,10 +181,8 @@
                     <option value="33">33 Cephalodiscidae mitochondrial</option>
                 </param>
             </when>
-            <when value="no">
-            </when>
+            <when value="no"/>
         </conditional>
-
     </inputs>
     <outputs>
         <data name="output_alignment" format="gff3" label="Miniprot on ${on_string}">
@@ -202,7 +195,7 @@
     <tests>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta" />
+                <param name="dbtype" value="fasta"/>
                 <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
             <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
@@ -221,53 +214,53 @@
             <param name="output_format" value="paf"/>
             <output name="output_alignment" ftype="paf">
                 <assert_contents>
-                    <has_text text="tr|O06302|O06302_MYCTU" />
+                    <has_text text="tr|O06302|O06302_MYCTU"/>
                     <has_text text="cs:Z::29*agcG:3*gtgA:5*ccgA:9*accS:1*gccV:4*cagL:1*gtcS:3*gtcA*gtcI*accA*gccG:8*gccS:2*ggtA:5*gccI*agcG:1*ctgA:4*gccV:5*gggL:1*gtgS:2"/>
                 </assert_contents>
             </output>
-        </test>     
+        </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta" />
+                <param name="dbtype" value="fasta"/>
                 <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
             <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
-            <param name="output_format" value="gff" />
+            <param name="output_format" value="gff"/>
             <conditional name="adv">
-                <param name="options" value="yes" />
+                <param name="options" value="yes"/>
                 <param name="second_round_kmer_size" value="32"/>
             </conditional>
             <output name="output_alignment" ftype="gff3">
                 <assert_contents>
-                    <has_text text="##gff-version 3" />
+                    <has_text text="##gff-version 3"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="gtf"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="gtf"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
-                <param name="second_round_kmer_size" value="32"></param>
+                <param name="options" value="yes"/>
+                <param name="second_round_kmer_size" value="32"/>
             </conditional>
             <output name="output_alignment" ftype="gtf">
                 <assert_contents>
-                    <has_text text="NC_000962.3" />
-                    <has_text text='transcript_id "MPT000004"; gene_id "MPG000004"'/>
+                    <has_text text="NC_000962.3"/>
+                    <has_text text="transcript_id &quot;MPT000004&quot;; gene_id &quot;MPG000004&quot;"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="gff"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="gff"/>
             <conditional name="adv">
                 <param name="options" value="yes"/>
                 <section name="output">
@@ -276,7 +269,7 @@
             </conditional>
             <output name="output_alignment" ftype="gff3">
                 <assert_contents>
-                    <has_text text="tr|I6YGH7|I6YGH7_MYCTU" />
+                    <has_text text="tr|I6YGH7|I6YGH7_MYCTU"/>
                     <has_text text="VDIDLDPSTEKLRAQIRAEVAALKAMPREPRTVAIAEGGWVLPYLPKPWGRAASPVEQIIIAQEFTAGRVKRPQIAIATWIVPSIVAFGTDNQKQRLLPPTFRGDIFWCQLFSEPGAGSDLASLATKATRVDGGWRITGQKIWTTGAQYSQWGALLARTDPSAPKHNGITYFLLDMKSEGVQVKPLRELTGKEFFNTVYLDDVFVPDELVLGEVNRGWEVSRNTLTAERVSIGGSDSTFLPTLGEFVDFVRDYRFEGQFDQVARHRAGQLIAEGHATKLLNLRSTLLTLAGGDPMAPAAISKLLSMRTGQGYAEFAVSSFGTDAVIGDTERLPGKWGEYLLASRATTIYGGTSEVQLNIIAERLLGLPRDP"/>
                     <has_n_lines n="1623"/>
                 </assert_contents>
@@ -284,13 +277,13 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="gtf"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="gtf"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
+                <param name="options" value="yes"/>
                 <section name="output">
                     <param name="output_translated_protein" value="true"/>
                 </section>
@@ -304,13 +297,13 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="paf"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="paf"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
+                <param name="options" value="yes"/>
                 <section name="output">
                     <param name="output_translated_protein" value="true"/>
                 </section>
@@ -326,13 +319,13 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="paf"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="paf"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
+                <param name="options" value="yes"/>
                 <section name="output">
                     <param name="output_no_cs" value="true"/>
                 </section>
@@ -347,13 +340,13 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="gff"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="gff"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
+                <param name="options" value="yes"/>
                 <section name="output">
                     <param name="output_no_cs" value="true"/>
                 </section>
@@ -368,14 +361,14 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="output_format" value="gtf"></param>
-            <param name="ncbi_table" value="1"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="output_format" value="gtf"/>
+            <param name="ncbi_table" value="1"/>
             <conditional name="adv">
-                <param name="options" value="yes"></param>
+                <param name="options" value="yes"/>
                 <section name="output">
                     <param name="output_no_cs" value="true"/>
                 </section>
@@ -383,18 +376,18 @@
             <output name="output_alignment" ftype="gtf">
                 <assert_contents>
                     <has_text text="NC_000962.3"/>
-                    <has_text text='gene_id "MPG000001"'/>
+                    <has_text text="gene_id &quot;MPG000001&quot;"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="db">
-                <param name="dbtype" value="fasta"></param>
-                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"></param>
+                <param name="dbtype" value="fasta"/>
+                <param name="genomic_fasta" value="input_genome.fasta.gz" ftype="fasta"/>
             </conditional>
-            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"></param>
-            <param name="spsc_file" value="spsc.tsv" ftype="tsv"></param>
-            <param name="output_format" value="gff"></param>
+            <param name="protein_fasta" value="input_query.fasta.gz" ftype="fasta"/>
+            <param name="spsc_file" value="spsc.tsv" ftype="tsv"/>
+            <param name="output_format" value="gff"/>
             <conditional name="adv">
                 <param name="options" value="yes"/>
                 <section name="output">
@@ -410,7 +403,6 @@
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
         miniprot_  rapidly aligns a protein sequence against a genome with affine gap penalty, splicing and frameshift.
         It is primarily intended for annotating protein-coding genes in a new species using known genes from other species.
@@ -422,6 +414,6 @@
 
         .. _miniprot: https://github.com/lh3/miniprot
         .. _overview: https://github.com/lh3/miniprot#algorithm-overview
-    ]]></help> 
-    <expand macro="citation"></expand>
+    ]]></help>
+    <expand macro="citation"/>
 </tool>

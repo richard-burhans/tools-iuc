@@ -68,8 +68,7 @@ echo 'collect.single(
             <option value="nseqs">nseqs - Utility the number of sequences in a sample</option>
         </param>
         <param name="abund" type="integer" value="10" min="0" label="abund - ACE Estimator threshold for abundant versus rare OTUs (default 10)"/>
-        <param name="freq" type="float" value="100" min="0" label="freq - frequency for output (default is every 100 sequences)"
-            help="Use a decimal between 0 and 1 to set the frequency as a percentage of the number of sequences"/>
+        <param name="freq" type="float" value="100" min="0" label="freq - frequency for output (default is every 100 sequences)" help="Use a decimal between 0 and 1 to set the frequency as a percentage of the number of sequences"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -79,7 +78,8 @@ echo 'collect.single(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test default settings -->
+        <test>
+            <!-- test default settings -->
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <output_collection name="calcfiles" count="7">
                 <element name="shannon" md5="0a9c8a52f89898c3b7b7b2dfa24a4521" ftype="tabular"/>
@@ -87,7 +87,8 @@ echo 'collect.single(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with label select and all calculators -->
+        <test>
+            <!-- test with label select and all calculators -->
             <param name="otu" value="amazon.an.sabund" ftype="mothur.sabund"/>
             <param name="label" value="0.36,0.38,0.41"/>
             <param name="calc" value="ace,bootstrap,chao,jack,sobs,simpsoneven,shannoneven,heip,smithwilson,bergerparker,coverage,goodscoverage,simpson,invsimpson,qstat,shannon,npshannon,boneh,efron,shen,solow,logseries,geometric,bstick,nseqs"/>

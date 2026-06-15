@@ -5,7 +5,7 @@
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 ## Run parseGTF.pl
-parseGTF.pl $gtf_file ann
+parseGTF.pl '$gtf_file' ann
 ## Different options
 $type
 $id
@@ -21,7 +21,7 @@ $removeEnsemblVer
 #end if
 > annotations.txt &&
 ## Prioritize and add intergenic annotation
-assignGenomeAnnotation annotations.txt annotations.txt -prioritize $output > $output_stats
+assignGenomeAnnotation annotations.txt annotations.txt -prioritize '$output' > '$output_stats'
         ]]></command>
     <inputs>
         <param name="gtf_file" type="data" format="gtf,gff,gff3" label="GTF file" help="Must be of datatype &quot;gtf&quot; or &quot;gff&quot; or &quot;gff3&quot;"/>

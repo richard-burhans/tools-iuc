@@ -5,9 +5,9 @@
         <token name="@PLUGIN_ID@">fill_tags</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $section = $sec_restrict
@@ -38,12 +38,12 @@ bcftools plugin @EXECUTABLE@
 ]]>
     </command>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_target_restrict" />
-            <expand macro="macro_include" />
-            <expand macro="macro_exclude" />
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_target_restrict"/>
+            <expand macro="macro_include"/>
+            <expand macro="macro_exclude"/>
         </section>
         <section name="sec_plugin" expanded="true" title="Plugin Options">
             <param name="tags" type="select" multiple="true" label="TAGs to set">
@@ -55,43 +55,42 @@ bcftools plugin @EXECUTABLE@
                 <option value="AC_Hemi">AC_Hemi</option>
                 <option value="HWE">HWE</option>
             </param>
-            <expand macro="macro_samples" />
+            <expand macro="macro_samples"/>
         </section>
-        <expand macro="macro_select_output_type" />
+        <expand macro="macro_select_output_type"/>
     </inputs>
     <outputs>
-        <expand macro="macro_vcf_output" />
+        <expand macro="macro_vcf_output"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_file" ftype="vcf" value="plugin1.vcf" />
-            <param name="output_type" value="v" />
+            <param name="input_file" ftype="vcf" value="plugin1.vcf"/>
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="AN=0" />
-                    <has_text text="AC=0" />
-                    <has_text text="AC_Het=0" />
-                    <has_text text="AC_Hom=0" />
-                    <has_text text="AC_Hemi=0" />
+                    <has_text text="AN=0"/>
+                    <has_text text="AC=0"/>
+                    <has_text text="AC_Het=0"/>
+                    <has_text text="AC_Hom=0"/>
+                    <has_text text="AC_Hemi=0"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="plugin1.vcf" />
-            <param name="output_type" value="v" />
+            <param name="input_file" ftype="vcf" value="plugin1.vcf"/>
+            <param name="output_type" value="v"/>
             <section name="sec_plugin">
-                <param name="tags" value="AC_Het,AC_Hom" />
+                <param name="tags" value="AC_Het,AC_Hom"/>
             </section>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="AC_Het=0" />
-                    <has_text text="AC_Hom=0" />
-                    <not_has_text text="AC_Hemi=0" />
+                    <has_text text="AC_Het=0"/>
+                    <has_text text="AC_Hom=0"/>
+                    <not_has_text text="AC_Hemi=0"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 =====================================
  bcftools @EXECUTABLE@ plugin
@@ -102,5 +101,5 @@ bcftools plugin @EXECUTABLE@
 @EXPRESSIONS_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

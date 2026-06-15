@@ -43,9 +43,9 @@
         cp datatable_cache.json '${output_file}'
     ]]></command>
     <inputs>
-        <expand macro="download_conditional" dt_name="pangolin_data" database_name="pangolin-data" software_name="pangolin" />
-        <expand macro="download_conditional" dt_name="pangolin_constellations" database_name="constellations" software_name="scorpio" />
-        <expand macro="download_conditional" dt_name="pangolin_assignment" database_name="pangolin-assignment" software_name="pangolin" />
+        <expand macro="download_conditional" dt_name="pangolin_data" database_name="pangolin-data" software_name="pangolin"/>
+        <expand macro="download_conditional" dt_name="pangolin_constellations" database_name="constellations" software_name="scorpio"/>
+        <expand macro="download_conditional" dt_name="pangolin_assignment" database_name="pangolin-assignment" software_name="pangolin"/>
     </inputs>
     <outputs>
         <data name="output_file" format="data_manager_json"/>
@@ -53,59 +53,59 @@
     <tests>
         <test expect_num_outputs="1">
             <conditional name="pangolin_data">
-                <param name="enable" value="versions" />
-                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv" />
-                <param name="versions" value="1.12" />
+                <param name="enable" value="versions"/>
+                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv"/>
+                <param name="versions" value="1.12"/>
             </conditional>
             <conditional name="pangolin_constellations">
-                <param name="enable" value="versions" />
-                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv" />
-                <param name="versions" value="0.1.10" />
+                <param name="enable" value="versions"/>
+                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv"/>
+                <param name="versions" value="0.1.10"/>
             </conditional>
             <conditional name="pangolin_assignment">
-                <param name="enable" value="no" />
+                <param name="enable" value="no"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="pangolin-data v1.12" />
-                    <has_text text='"description": "constellations release v0.1.10"' />
-                    <has_text text='"min_scorpio_version": "0.3.17"' />
-                    <not_has_text text='"description": "pangolin-assignment' />
+                    <has_text text="pangolin-data v1.12"/>
+                    <has_text text="&quot;description&quot;: &quot;constellations release v0.1.10&quot;"/>
+                    <has_text text="&quot;min_scorpio_version&quot;: &quot;0.3.17&quot;"/>
+                    <not_has_text text="&quot;description&quot;: &quot;pangolin-assignment"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="pangolin_data">
-                <param name="enable" value="no" />
+                <param name="enable" value="no"/>
             </conditional>
             <conditional name="pangolin_constellations">
-                <param name="enable" value="no" />
+                <param name="enable" value="no"/>
             </conditional>
             <conditional name="pangolin_assignment">
-                <param name="enable" value="versions" />
-                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv" />
-                <param name="versions" value="1.12" />
+                <param name="enable" value="versions"/>
+                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv"/>
+                <param name="versions" value="1.12"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text='"value": "v1.12"' />
-                    <has_text text='"min_pangolin_version": "4"' />
-                    <not_has_text text='"description": "constellations' />
-                    <not_has_text text='"description": "pangolin-data' />
+                    <has_text text="&quot;value&quot;: &quot;v1.12&quot;"/>
+                    <has_text text="&quot;min_pangolin_version&quot;: &quot;4&quot;"/>
+                    <not_has_text text="&quot;description&quot;: &quot;constellations"/>
+                    <not_has_text text="&quot;description&quot;: &quot;pangolin-data"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_failure="true">
             <conditional name="pangolin_data">
-                <param name="enable" value="no" />
+                <param name="enable" value="no"/>
             </conditional>
             <conditional name="pangolin_constellations">
-                <param name="enable" value="no" />
-                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv" />
-                <param name="versions" value="0.0.40" />
+                <param name="enable" value="no"/>
+                <param name="compatibility_file" ftype="csv" value="data_compatibility.csv"/>
+                <param name="versions" value="0.0.40"/>
             </conditional>
             <conditional name="pangolin_assignment">
-                <param name="enable" value="no" />
+                <param name="enable" value="no"/>
             </conditional>
         </test>
     </tests>

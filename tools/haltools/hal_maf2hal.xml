@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -39,7 +39,7 @@
         <param argument="--refGenome" type="text" value="" optional="true" label="Reference genome" help="Name of the reference genome in the MAF file (first found if empty)">
             <expand macro="sanitizer_default"/>
             <expand macro="validator_trim"/>
-        </param> 
+        </param>
         <expand macro="params_targetGenomes_optional"/>
         <conditional name="mode">
             <param name="append" type="select" label="Output options">
@@ -47,7 +47,7 @@
                 <option value="true">Append MAF as subtree to an existing HAL file (--append)</option>
             </param>
             <when value="false">
-                <expand macro="hal_backend_format"/>   
+                <expand macro="hal_backend_format"/>
             </when>
             <when value="true">
                 <expand macro="input_hal"/>

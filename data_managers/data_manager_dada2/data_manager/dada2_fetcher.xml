@@ -151,13 +151,10 @@ cd '${out_file.extra_files_path}' &&
         <param name="taxonomy_databases" multiple="true" type="select" label="Taxonomic database" help="for assignTaxonomy">
             <option value="silva_138.2_toGenus">Silva 138.2 to Genus (for short reads)</option>
             <option value="silva_138.2_toSpecies">Silva 138.2 to Species (for long reads)</option>
-
             <option value="silva_138.2_fungi_18S_toGenus">Silva 138.2 for Fungi 18S to Genus (for short reads)</option>
             <option value="silva_138.2_fungi_18S_toSpecies">Silva 138.2 for Fungi 18S to Species (for long read)</option>
-
             <option value="silva_138.2_fungi_26S_toGenus">Silva 138.2 for Fungi 26S to Genus (for short reads)</option>
             <option value="silva_138.2_fungi_26S_toSpecies">Silva 138.2 for Fungi 26S to Species (for long reads)</option>
-
             <option value="silva_138">Silva 138</option>
             <option value="silva_132">Silva 132</option>
             <option value="silva_128">Silva 128</option>
@@ -195,7 +192,7 @@ cd '${out_file.extra_files_path}' &&
         </param>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
@@ -212,7 +209,6 @@ cd '${out_file.extra_files_path}' &&
                 <has_text text="wget" n="3"/>
             </assert_command>
         </test>
-
         <test>
             <param name="taxonomy_databases" value="silva_138.2_fungi_18S_toGenus,silva_138.2_fungi_18S_toSpecies"/>
             <param name="species_databases" value="silva_138.2_fungi_18S"/>
@@ -241,7 +237,6 @@ cd '${out_file.extra_files_path}' &&
                 <has_text text="wget" n="3"/>
             </assert_command>
         </test>
-
         <test>
             <param name="taxonomy_databases" value="silva_138"/>
             <param name="species_databases" value="silva_138"/>
@@ -301,7 +296,7 @@ cd '${out_file.extra_files_path}' &&
             <param name="taxonomy_databases" value="unite_10.0_eukaryotes-2025-02-19"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"value": "unite_10.0_eukaryotes-2025-02-19"'/>
+                    <has_text text="&quot;value&quot;: &quot;unite_10.0_eukaryotes-2025-02-19&quot;"/>
                 </assert_contents>
             </output>
             <assert_command>
@@ -313,14 +308,13 @@ cd '${out_file.extra_files_path}' &&
             <param name="taxonomy_databases" value="unite_10.0_eukaryotes_singletons-2025-02-19"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"value": "unite_10.0_eukaryotes_singletons-2025-02-19"'/>
+                    <has_text text="&quot;value&quot;: &quot;unite_10.0_eukaryotes_singletons-2025-02-19&quot;"/>
                 </assert_contents>
             </output>
             <assert_command>
                 <has_text text="wget" n="1"/>
             </assert_command>
         </test>
-
         <test>
             <param name="taxonomy_databases" value="unite_8.0_fungi"/>
             <output name="out_file" file="unite8fungi_json"/>
@@ -342,7 +336,6 @@ cd '${out_file.extra_files_path}' &&
                 <has_text text="wget" n="1"/>
             </assert_command>
         </test>
-
         <test>
             <param name="taxonomy_databases" value="gtdb_202_toGenus,gtdb_202_toSpecies"/>
             <param name="species_databases" value="gtdb_202"/>
@@ -357,7 +350,6 @@ cd '${out_file.extra_files_path}' &&
                 <has_text text="wget" n="3"/>
             </assert_command>
         </test>
-
         <test>
             <param name="taxonomy_databases" value="gtdb_2018_11"/>
             <param name="species_databases" value="gtdb_2018_11"/>
@@ -426,7 +418,7 @@ More detailed informations in the reference data bases can be found on the DADA2
     ]]></help>
     <citations>
         <!-- silva -->
-         <citation type="doi">10.1093/nar/gks1219</citation>
+        <citation type="doi">10.1093/nar/gks1219</citation>
         <!-- rdp -->
         <citation type="doi">10.1093/nar/gkt1244</citation>
         <!-- greengenes2 -->
@@ -442,4 +434,3 @@ More detailed informations in the reference data bases can be found on the DADA2
         <citation type="doi">10.1093/nar/gks1160</citation>
     </citations>
 </tool>
-

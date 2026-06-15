@@ -1,6 +1,6 @@
 <tool id="ivar_filtervariants" name="ivar filtervariants" version="@TOOL_VERSION@+galaxy0" profile="@PROFILE@">
     <description>Filter variants across replicates or multiple samples aligned using the same reference</description>
-        <macros>
+    <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
@@ -42,5 +42,5 @@
         
         Documentation can be found at `<https://andersen-lab.github.io/ivar/html/manualpage.html>`_.
     ]]></help>
-<expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -47,8 +47,7 @@
                 </param>
             </when>
             <when value="history">
-                <param name="taxdump" type="data" format="tgz" label="Input the taxdump.tar.gz file"
-                    help="You can find the taxdum.tar.gz at ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz"/>
+                <param name="taxdump" type="data" format="tgz" label="Input the taxdump.tar.gz file" help="You can find the taxdum.tar.gz at ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz"/>
             </when>
         </conditional>
     </inputs>
@@ -82,7 +81,7 @@
             <conditional name="data">
                 <param name="is_select" value="history"/>
                 <param name="taxdump" ftype="tgz" value="test.tar.gz"/>
-             </conditional>
+            </conditional>
             <output name="output" file="name2taxid_result3.tsv"/>
         </test>
     </tests>

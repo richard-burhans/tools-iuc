@@ -9,32 +9,19 @@
         <requirement type="package" version="1.1.5">r-rlang</requirement>
     </expand>
     <required_files>
-        <include path="utils.r" />
+        <include path="utils.r"/>
     </required_files>
     <creator>
-        <person
-            givenName="Kristina"
-            familyName="Gomoryova"
-            url="https://github.com/KristinaGomoryova"
-            identifier="0000-0003-4407-3917" />
-        <person
-            givenName="Helge"
-            familyName="Hecht"
-            url="https://github.com/hechth"
-            identifier="0000-0001-6744-996X" />
-        <organization
-            url="https://www.recetox.muni.cz/"
-            email="GalaxyToolsDevelopmentandDeployment@space.muni.cz"
-            name="RECETOX MUNI" />
+        <person givenName="Kristina" familyName="Gomoryova" url="https://github.com/KristinaGomoryova" identifier="0000-0003-4407-3917"/>
+        <person givenName="Helge" familyName="Hecht" url="https://github.com/hechth" identifier="0000-0001-6744-996X"/>
+        <organization url="https://www.recetox.muni.cz/" email="GalaxyToolsDevelopmentandDeployment@space.muni.cz" name="RECETOX MUNI"/>
     </creator>
-
     <command detect_errors="exit_code"><![CDATA[
         Rscript -e 'source("${__tool_directory__}/utils.r")' -e 'source("${run_script}")'
         #if $export_R_script
-        && cat ${run_script} >> $script
+        && cat ${run_script} >> '$script'
         #end if
     ]]></command>
-
     <configfiles>
         <configfile name="run_script"><![CDATA[
         file_name <- "$input_data"
@@ -77,24 +64,21 @@
 
         ]]></configfile>
     </configfiles>
-
     <inputs>
-        <param name="input_data" type="data" format="csv,tsv,txt,tabular,parquet" label="Input table in a long format" help= "Input file in a tabular/tsv/csv/parquet format"/>
-        <param name="quant_col" type="data_column" data_ref="input_data" use_header_names="true" label="Which column contains the quantitative information?"  help="Select the column containing quantitative information."/>
+        <param name="input_data" type="data" format="csv,tsv,txt,tabular,parquet" label="Input table in a long format" help="Input file in a tabular/tsv/csv/parquet format"/>
+        <param name="quant_col" type="data_column" data_ref="input_data" use_header_names="true" label="Which column contains the quantitative information?" help="Select the column containing quantitative information."/>
         <param name="grouping_col" type="data_column" data_ref="input_data" use_header_names="true" label="Which column contains the categories?" help="Select the column which contains the categories."/>
         <param name="color_col" type="data_column" data_ref="input_data" use_header_names="true" optional="true" label="Which column to color according to?" help="Select the column which contains levels for color."/>
-        <param name="position" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Use position dodge?" help="If a column for color is specified, should be the categories placed side-by-side or stacked (default)?"/>   
+        <param name="position" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Use position dodge?" help="If a column for color is specified, should be the categories placed side-by-side or stacked (default)?"/>
         <expand macro="axes_labels"/>
         <expand macro="export_data"/>
     </inputs>
-
     <outputs>
-        <data name="barplot" format="png" label="Barplot on ${on_string}" from_work_dir="barplot.png"/>        
+        <data name="barplot" format="png" label="Barplot on ${on_string}" from_work_dir="barplot.png"/>
         <data name="script" format="txt" label="R script">
             <filter>export_R_script</filter>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
             <param name="input_data" value="barplot_test_data.txt"/>
@@ -104,13 +88,12 @@
                 <assert_contents>
                     <has_image_channels channels="1"/>
                     <has_image_height height="2100"/>
-                    <has_image_width width="2100" />
-                    <has_image_center_of_mass center_of_mass="1030.12, 1008.25" eps="0.1"/> 
+                    <has_image_width width="2100"/>
+                    <has_image_center_of_mass center_of_mass="1030.12, 1008.25" eps="0.1"/>
                 </assert_contents>
-            </output>          
+            </output>
         </test>
     </tests>
-
     <help><![CDATA[
 recetox-barplot help
 =====================
@@ -137,6 +120,5 @@ Example barplot input
 | ...                  | ...               |    ...                | ...                |
 +----------------------+-------------------+-----------------------+--------------------+
     ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

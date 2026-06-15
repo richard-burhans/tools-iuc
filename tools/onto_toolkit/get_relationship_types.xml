@@ -3,18 +3,18 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     get_relationship_types.pl
         -f '$input' | sort > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="Relationship types of ${on_string}">
             <actions>
-                <action name="column_names" type="metadata" default="relationship type" />
+                <action name="column_names" type="metadata" default="relationship type"/>
             </actions>
         </data>
     </outputs>
@@ -24,7 +24,7 @@
             <output name="output" file="relationship_types.tab" sort="true"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -42,7 +42,6 @@ If you ask for the relationships of the Gene Ontology, you will get::
   negatively_regulates
   positively_regulates
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

@@ -112,7 +112,7 @@
             <param argument="--break" type="boolean" checked="false" truevalue="--break T" falsevalue="" label="Break chimeric fragments" help="Detect and break chimeric contigs at conflict breakpoints"/>
             <param argument="--map" type="select" label="Mapping preset" help="Ignored if .bam provided">
                 <option value="map-hifi" selected="true">PacBio HiFi</option>
-                <option value="map-pb" >PacBio CLR</option>
+                <option value="map-pb">PacBio CLR</option>
                 <option value="map-ont">Nanopore</option>
             </param>
             <param argument="--mapq" type="integer" min="0" max="60" value="20" label="Minimum mapping quality" help="Minimum read mapping quality threshold"/>

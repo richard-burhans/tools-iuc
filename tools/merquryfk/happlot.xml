@@ -13,7 +13,7 @@
             #set ASSEMBLY2="assembly2."+$assembly_2.ext
             ln -s '$assembly_2' $ASSEMBLY2 &&
         #end if
-        ln -s $hapmaker_ktab_file ktab_files.tar.gz &&
+        ln -s '$hapmaker_ktab_file' ktab_files.tar.gz &&
         tar --strip-components=1 -xf ktab_files.tar.gz hapmaker_ktabs/ &&
         HAPplot 
         @PLOTS@

@@ -94,7 +94,7 @@
         --show-ins $output_options.show_insertions
         $output_options.ambig
         $output_options.mark_insertions
-        > $output_file
+        > '$output_file'
     ]]></command>
     <!-- Parameters -->
     <inputs>
@@ -147,14 +147,14 @@
                 <param name="end" type="integer" optional="true" label="End"/>
             </repeat>
             <!-- use contional ref macro -->
-             <expand macro="optional_reference" token_argument="--reference" token_help="Select a reference genome to guide consensus generation."/>
+            <expand macro="optional_reference" token_argument="--reference" token_help="Select a reference genome to guide consensus generation."/>
         </section>
         <!-- Output Options -->
         <section name="output_options" title="Output Options" expanded="no">
             <param name="line_len" argument="-l" type="integer" value="70" label="Maximum line lenght" help="The maximum line length of line-wrapped fasta and fastq formats. Set to -1 for no line wrapping."/>
             <param name="all" argument="-a" type="boolean" truevalue="-a" falsevalue="" checked="false" label="Output all positions" help="Output absolutely all positions, including references with no data aligned against them"/>
             <param name="show_deletions" argument="--show-del" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Show deletions" help="Whether to show deletions as '*' (if checked) or to omit from the output (if left unchecked)"/>
-            <param name="show_insertions" argument="--show-ins" label="Show insertions" type="boolean" truevalue="yes" falsevalue="no" checked="true"  help="Whether to show insertions in the consensus"/>
+            <param name="show_insertions" argument="--show-ins" label="Show insertions" type="boolean" truevalue="yes" falsevalue="no" checked="true" help="Whether to show insertions in the consensus"/>
             <param argument="--ambig" type="boolean" truevalue="--ambig" falsevalue="" checked="false" label="IUPAC ambiguity codes" help="Enables IUPAC ambiguity codes in the consensus output. Without this the output will be limited to A, C, G, T, N and *"/>
             <param name="mark_insertions" argument="--mark-ins" type="boolean" truevalue="--mark-ins" falsevalue="" checked="false" label="Mark insertions" help="Mark insertions by adding an underscore before every inserted base, plus a corresponding character in the quality for fastq format. When used in conjunction with '-a' and '--show-del', this permits an easy derivation of the consensus to reference coordinate mapping"/>
         </section>
@@ -163,9 +163,9 @@
     <outputs>
         <data name="output_file" format="fasta">
             <change_format>
-                <when input="format" value="fasta" format="fasta" />
-                <when input="format" value="fastq" format="fastq" />
-                <when input="format" value="pileup" format="pileup" />
+                <when input="format" value="fasta" format="fasta"/>
+                <when input="format" value="fastq" format="fastq"/>
+                <when input="format" value="pileup" format="pileup"/>
             </change_format>
         </data>
     </outputs>
@@ -173,14 +173,14 @@
     <tests>
         <!-- 1) test format-->
         <test expect_num_outputs="1">
-            <param name="input" value="example.bam" ftype="bam" />
+            <param name="input" value="example.bam" ftype="bam"/>
             <param name="format" value="fasta"/>
             <section name="output_options">
                 <param name="line_len" value="70"/>
             </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
-                    <has_line_matching expression=">LR743429.1"/>
+                    <has_line_matching expression="&gt;LR743429.1"/>
                     <has_n_lines n="156"/>
                 </assert_contents>
             </output>
@@ -188,7 +188,7 @@
         <!-- test pre-processing Options -->
         <!-- 2) test min BQ and min MQ -->
         <test expect_num_outputs="1">
-            <param name="input" value="toy.sam" ftype="sam" />
+            <param name="input" value="toy.sam" ftype="sam"/>
             <section name="preprocessing_options">
                 <param name="minimum_BQ" value="1"/>
                 <param name="minimum_MQ" value="21"/>
@@ -202,7 +202,7 @@
         </test>
         <!-- 3) test include flags -rf -->
         <test expect_num_outputs="1">
-            <param name="input" value="ex1.bam" ftype="bam" />
+            <param name="input" value="ex1.bam" ftype="bam"/>
             <section name="preprocessing_options">
                 <param name="inclusive_filter" value="2"/>
             </section>
@@ -257,7 +257,7 @@
             </conditional>
             <section name="output_options">
                 <param name="ambig" value="true"/>
-            </section>   
+            </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
                     <has_line_matching expression="MACGTACGTA"/>
@@ -268,15 +268,15 @@
         <!-- 7) test cutoff -->
         <test expect_num_outputs="1">
             <param name="input" value="toy.sam" ftype="sam"/>
-                <conditional name="consensus_options">
-                    <param name="mode" value="bayesian"/>
-                    <section name="settings">
-                        <conditional name="config_cond">
-                            <param name="config_param" value="manual"/>
-                            <param name="C" value="5"/>
-                        </conditional>
-                    </section>
-                </conditional>
+            <conditional name="consensus_options">
+                <param name="mode" value="bayesian"/>
+                <section name="settings">
+                    <conditional name="config_cond">
+                        <param name="config_param" value="manual"/>
+                        <param name="C" value="5"/>
+                    </conditional>
+                </section>
+            </conditional>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
                     <has_line_matching expression="TTAGATAAAGAGGATAGCTGTAGGCTCAGCGCCAT"/>
@@ -450,9 +450,9 @@
                 <section name="settings">
                     <conditional name="config_cond">
                         <param name="config_param" value="manual"/>
-                            <conditional name="calibration_cond">
-                                <param name="calibration_param" value=":hifi"/>
-                            </conditional>
+                        <conditional name="calibration_cond">
+                            <param name="calibration_param" value=":hifi"/>
+                        </conditional>
                     </conditional>
                 </section>
             </conditional>
@@ -498,8 +498,8 @@
             <param name="input" value="consen1c.sam" ftype="sam"/>
             <section name="global_settings">
                 <conditional name="addref_cond">
-                    <param name="addref_select" value="history" />
-                    <param name="ref" value="consen1c.fa" />
+                    <param name="addref_select" value="history"/>
+                    <param name="ref" value="consen1c.fa"/>
                 </conditional>
             </section>
             <output name="output_file" ftype="fasta">
@@ -512,10 +512,10 @@
         <!-- Output Options 
         test show deletions -->
         <test expect_num_outputs="1">
-            <param name="input" value="toy.sam" ftype="sam" />
+            <param name="input" value="toy.sam" ftype="sam"/>
             <section name="output_options">
                 <param name="show_deletions" value="true"/>
-            </section>            
+            </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
                     <has_text text="NNAGATAAAGAGGATAGCNN******NNNNN**NCAGCNNNNN"/>
@@ -525,10 +525,10 @@
         </test>
         <!-- test show insertions-->
         <test expect_num_outputs="1">
-            <param name="input" value="toy.sam" ftype="sam" />
+            <param name="input" value="toy.sam" ftype="sam"/>
             <section name="output_options">
                 <param name="show_insertions" value="false"/>
-            </section>            
+            </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
                     <has_line_matching expression="NNAGATAAGATAGCNNNNNNNNCAGCNNNNN"/>
@@ -538,25 +538,25 @@
         </test>
         <!-- test all parameter-->
         <test expect_num_outputs="1">
-            <param name="input" value="example.bam" ftype="bam" />
+            <param name="input" value="example.bam" ftype="bam"/>
             <param name="format" value="fasta"/>
             <section name="output_options">
                 <param name="line_len" value="70"/>
                 <param name="all" value="true"/>
-            </section>            
+            </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
-                    <has_line_matching expression=">LR743429.1"/>
+                    <has_line_matching expression="&gt;LR743429.1"/>
                     <has_n_lines n="157"/>
                 </assert_contents>
             </output>
         </test>
         <!-- test ambiguity-->
         <test expect_num_outputs="1">
-            <param name="input" value="toy.sam" ftype="sam" />
+            <param name="input" value="toy.sam" ftype="sam"/>
             <section name="output_options">
                 <param name="ambig" value="true"/>
-            </section>            
+            </section>
             <output name="output_file" ftype="fasta">
                 <assert_contents>
                     <has_text text="Y"/>
@@ -567,11 +567,11 @@
         </test>
         <!-- test mark insertions-->
         <test expect_num_outputs="1">
-            <param name="input" value="toy.sam" ftype="sam" />
+            <param name="input" value="toy.sam" ftype="sam"/>
             <param name="format" value="fastq"/>
             <section name="output_options">
                 <param name="mark_insertions" value="true"/>
-            </section>            
+            </section>
             <output name="output_file" ftype="fastq">
                 <assert_contents>
                     <has_text text="!!BB.BBB_$_5_$_55BBB$5!!!!!!!!5555!!!!!"/>

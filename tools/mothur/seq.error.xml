@@ -118,7 +118,8 @@ echo 'seq.error(
         </data>
     </outputs>
     <tests>
-        <test><!--test with all outputs and no qual file-->
+        <test>
+            <!--test with all outputs and no qual file-->
             <param name="fasta_in" value="amazon.align_head" ftype="mothur.align"/>
             <param name="template" value="HMP_MOCK.v35.align" ftype="mothur.align"/>
             <param name="source" value="history"/>
@@ -134,7 +135,8 @@ echo 'seq.error(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!--test with qual file and all outputs -->
+        <test>
+            <!--test with qual file and all outputs -->
             <param name="fasta_in" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head" ftype="mothur.align"/>
             <param name="template" value="HMP_MOCK.v35.align" ftype="mothur.align"/>
             <param name="source" value="history"/>

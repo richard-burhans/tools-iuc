@@ -50,9 +50,9 @@ nextalign run
                 <param argument="--genes" type="text" label="Comma separated list of genes to translate.">
                     <sanitizer invalid_char="">
                         <valid initial="string.ascii_letters,string.digits">
-                            <add value="-" />
-                            <add value="." />
-                            <add value="," />
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                 </param>
@@ -60,41 +60,18 @@ nextalign run
             </when>
             <when value="no"/>
         </conditional>
-        <param argument="--min-length" type="integer" value="100" min="0"
-            label="Minimum length of nucleotide sequence to consider for alignment"
-            help=" If a sequence is shorter than that, alignment will not be attempted and a warning will be emitted. When adjusting this parameter, note that alignment of short sequences can be unreliable." />
-        <param argument="--penalty-gap-extend" type="integer" value="0"
-            label="Penalty for extending a gap."
-            help="If zero, all gaps regardless of length incur the same penalty." />
-        <param argument="--penalty-gap-open" type="integer" value="6"
-            label="Penalty for opening of a gap."
-            help="A higher penalty results in fewer gaps and more mismatches. Should be less than the penalty value of opening a gap in frame to avoid gaps in genes." />
-        <param argument="--penalty-gap-open-in-frame" type="integer" value="7" min="1" 
-            label="Penalty for opening gaps at the beginning of a codon." 
-            help="Should be greater than the penalty of opening a and less than penalty of opening a gap out of frame, to avoid gaps in genes, but favor gaps that align with codons." />
-        <param argument="--penalty-gap-open-out-of-frame" type="integer" value="8" min="1"
-            label="Penalty for opening gaps in the body of a codon." 
-            help="Should be greater than the penalty for opening gaps in-frame to favor gaps that align with codons." />
-        <param argument="--penalty-mismatch" type="integer" value="1" min="1"
-            label="Penalty for aligned nucleotides or aminoacids that differ in state during alignment"
-            help="Note that this is redundantly parameterized with score match." />
-        <param argument="--score-match" type="integer" value="3" min="1"
-            label="Score for encouraging aligned nucelotides or aminoacids with matching state."
-            help="Note that this is redundantly parameterized with mismatch penalty." />
-        <param argument="--max-indel" type="integer" value="400" min="0"
-            label="Maximum length of insertions or deletions allowed to proceed with alignment."
-            help="Alignments with long indels are slow to compute and require substantial memory in the current implementation. Alignment of sequences with indels that are longer than this value will not be attempted and a warning will be emitted." />
-        <param argument="--seed-length" type="integer" value="21" min="1"
-            label="Seed length for nucleotide alignment."
-            help="Seeds should be long enough to be unique, but short enough to match with high probability." />
-        <param argument="--min-seeds" type="integer" value="10" min="1"
-            label="Minimum number of seeds to search for during nucleotide alignment."
-            help="Relevant for short sequences. In long sequences, the number of seeds is determined by nucleotide seed spacing. This should be a positive integer." />
-        <param argument="--seed-spacing" type="integer" value="100" min="0"
-            label="Spacing between seeds during nucleotide alignment." />
-        <param argument="--mismatches-allowed" type="integer" value="3" min="0"
-            label="Maximum number of mismatching nucleotides."
-            help="Maximum number of mismatching nucleotides allowed for a seed to be considered a match." />
+        <param argument="--min-length" type="integer" value="100" min="0" label="Minimum length of nucleotide sequence to consider for alignment" help=" If a sequence is shorter than that, alignment will not be attempted and a warning will be emitted. When adjusting this parameter, note that alignment of short sequences can be unreliable."/>
+        <param argument="--penalty-gap-extend" type="integer" value="0" label="Penalty for extending a gap." help="If zero, all gaps regardless of length incur the same penalty."/>
+        <param argument="--penalty-gap-open" type="integer" value="6" label="Penalty for opening of a gap." help="A higher penalty results in fewer gaps and more mismatches. Should be less than the penalty value of opening a gap in frame to avoid gaps in genes."/>
+        <param argument="--penalty-gap-open-in-frame" type="integer" value="7" min="1" label="Penalty for opening gaps at the beginning of a codon." help="Should be greater than the penalty of opening a and less than penalty of opening a gap out of frame, to avoid gaps in genes, but favor gaps that align with codons."/>
+        <param argument="--penalty-gap-open-out-of-frame" type="integer" value="8" min="1" label="Penalty for opening gaps in the body of a codon." help="Should be greater than the penalty for opening gaps in-frame to favor gaps that align with codons."/>
+        <param argument="--penalty-mismatch" type="integer" value="1" min="1" label="Penalty for aligned nucleotides or aminoacids that differ in state during alignment" help="Note that this is redundantly parameterized with score match."/>
+        <param argument="--score-match" type="integer" value="3" min="1" label="Score for encouraging aligned nucelotides or aminoacids with matching state." help="Note that this is redundantly parameterized with mismatch penalty."/>
+        <param argument="--max-indel" type="integer" value="400" min="0" label="Maximum length of insertions or deletions allowed to proceed with alignment." help="Alignments with long indels are slow to compute and require substantial memory in the current implementation. Alignment of sequences with indels that are longer than this value will not be attempted and a warning will be emitted."/>
+        <param argument="--seed-length" type="integer" value="21" min="1" label="Seed length for nucleotide alignment." help="Seeds should be long enough to be unique, but short enough to match with high probability."/>
+        <param argument="--min-seeds" type="integer" value="10" min="1" label="Minimum number of seeds to search for during nucleotide alignment." help="Relevant for short sequences. In long sequences, the number of seeds is determined by nucleotide seed spacing. This should be a positive integer."/>
+        <param argument="--seed-spacing" type="integer" value="100" min="0" label="Spacing between seeds during nucleotide alignment."/>
+        <param argument="--mismatches-allowed" type="integer" value="3" min="0" label="Maximum number of mismatching nucleotides." help="Maximum number of mismatching nucleotides allowed for a seed to be considered a match."/>
     </inputs>
     <outputs>
         <data name="output_fasta" format="fasta" label="${tool.name} on ${on_string} (FASTA)"/>
@@ -116,7 +93,7 @@ nextalign run
                 <param name="ref_file" value="reference.fasta"/>
             </conditional>
             <param name="output_insertions" value="true"/>
-            <param name="input_fasta" value="subsampled.fasta" ftype="fasta" />
+            <param name="input_fasta" value="subsampled.fasta" ftype="fasta"/>
             <conditional name="translation">
                 <param name="translation_select" value="yes"/>
                 <param name="genes" value="E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,ORF10,S"/>
@@ -148,7 +125,7 @@ nextalign run
                 <param name="ref_file" value="reference.fasta"/>
             </conditional>
             <param name="output_insertions" value="false"/>
-            <param name="input_fasta" value="subsampled.fasta" ftype="fasta" />
+            <param name="input_fasta" value="subsampled.fasta" ftype="fasta"/>
             <conditional name="translation">
                 <param name="translation_select" value="no"/>
             </conditional>
@@ -187,5 +164,5 @@ Currently Nextalign primarily focuses on SARS-CoV-2 genome, but it can be used o
 reference sequence (less than a 5% divergence).
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

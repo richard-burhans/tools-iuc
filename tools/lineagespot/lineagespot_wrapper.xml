@@ -58,26 +58,24 @@ echo "Gathered $num_lineages custom lineage definitions for the analysis."
 #end if]]></configfile>
     </configfiles>
     <inputs>
-        <param type="data" name="in_vcf" format="vcf" multiple="true" label="Per-sample variant calling data" />
+        <param type="data" name="in_vcf" format="vcf" multiple="true" label="Per-sample variant calling data"/>
         <conditional name="voc_source">
-            <param name="choice" type="select"
-                   label="Source of lineage definitions"
-                   help="Lineagespot detects lineage evidence based on lineage mutation patterns defined in tool-specific definition files. The Galaxy tool also has experimental support for reading lineage definitions from cached constellations data (see tool help below).">
+            <param name="choice" type="select" label="Source of lineage definitions" help="Lineagespot detects lineage evidence based on lineage mutation patterns defined in tool-specific definition files. The Galaxy tool also has experimental support for reading lineage definitions from cached constellations data (see tool help below).">
                 <option value="custom">Collection of lineagespot-specific definitions in history</option>
                 <option value="cached">Lineage definitions from cached constellations data</option>
             </param>
             <when value="custom">
-                <param name="collection" type="data_collection" collection_type="list" format="tabular" label="Collection of lineage definitions" />
+                <param name="collection" type="data_collection" collection_type="list" format="tabular" label="Collection of lineage definitions"/>
             </when>
             <when value="cached">
                 <param name="constellations" label="Cached constellations release" type="select">
                     <options from_data_table="pangolin_constellations">
-                        <column name="value" index="0" />
-                        <column name="description" index="1" />
-                        <column name="date" index="3" />
-                        <column name="path" index="4" />
-                        <filter type="sort_by" column="3" />
-                        <validator type="no_options" message="No cached constellations release available" />
+                        <column name="value" index="0"/>
+                        <column name="description" index="1"/>
+                        <column name="date" index="3"/>
+                        <column name="path" index="4"/>
+                        <filter type="sort_by" column="3"/>
+                        <validator type="no_options" message="No cached constellations release available"/>
                     </options>
                 </param>
             </when>
@@ -87,9 +85,9 @@ echo "Gathered $num_lineages custom lineage definitions for the analysis."
                 <option value="standard">Use built-in genome file</option>
                 <option value="custom">Provide custom genome file</option>
             </param>
-            <when value="standard" />
+            <when value="standard"/>
             <when value="custom">
-                <param name="in_gff3" type="data" format="gff3" label="Genes GFF" help="GFF3 input listing gene positions on the reference sequence" />
+                <param name="in_gff3" type="data" format="gff3" label="Genes GFF" help="GFF3 input listing gene positions on the reference sequence"/>
             </when>
         </conditional>
         <param type="float" name="in_threshold" value="0.8" label="AF threshold for identifying variants per sample" help="Variants in the input VCFs with an allele frequency less than the threshold will be ignored as noise in the lineage analysis."/>

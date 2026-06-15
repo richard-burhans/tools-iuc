@@ -3,18 +3,18 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
         datamash reverse 
         @FIELD_SEPARATOR@ 
         < $in_file > $out_file
     ]]></command>
-    <expand macro="inputs_outputs" />
+    <expand macro="inputs_outputs"/>
     <tests>
         <test>
-            <param name="in_file" value="datamash_reverse_input.txt" />
-            <output file="datamash_reverse_output.txt" name="out_file" />
+            <param name="in_file" value="datamash_reverse_input.txt"/>
+            <output file="datamash_reverse_output.txt" name="out_file"/>
         </test>
     </tests>
     <help>

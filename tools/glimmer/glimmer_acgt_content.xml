@@ -25,8 +25,8 @@
     </outputs>
     <tests>
         <test>
-            <param name="infile" value="streptomyces_Tu6071_genomic.fasta" />
-            <output name="output" file="streptomyces_Tu6071_genomic.acgt" />
+            <param name="infile" value="streptomyces_Tu6071_genomic.fasta"/>
+            <output name="output" file="streptomyces_Tu6071_genomic.acgt"/>
         </test>
     </tests>
     <help>
@@ -47,5 +47,5 @@ Output is in the format:
 Note the last window in the sequence can be shorter than *window-len* if the sequence ends prematurely
 ]]>
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

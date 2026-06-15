@@ -80,17 +80,14 @@ $filter
             </when>
             <when value="null"/>
         </conditional>
-
         <param name="filter" type="text" area="true" value="." label="jq filter" help="The filter expression to run. Multiline jq programs are supported.">
             <expand macro="printable_text_sanitizer"/>
             <validator type="regex" negate="true" message="jq module loading is disabled in Galaxy. Remove import/include directives from the filter.">(?ims)(^|;)\s*(import|include)\s+"</validator>
         </param>
-
         <section name="input_options" title="Input options" expanded="false">
             <param argument="--raw-input" type="boolean" truevalue="--raw-input" falsevalue="" checked="false" label="Read input as plain text" help="Read each input line as a string instead of parsing JSON."/>
             <param argument="--slurp" type="boolean" truevalue="--slurp" falsevalue="" checked="false" label="Slurp all inputs" help="Read all input values and pass them to the filter as a single array or string."/>
         </section>
-
         <section name="output_options" title="Output options" expanded="true">
             <param argument="--raw-output" type="boolean" truevalue="--raw-output" falsevalue="" checked="false" label="Emit plain-text output" help="Write strings without JSON quotes or escaping. The output dataset datatype switches to txt."/>
             <param argument="--compact-output" type="boolean" truevalue="--compact-output" falsevalue="" checked="false" label="Compact JSON output" help="Emit one JSON value per line without pretty-print indentation."/>
@@ -111,7 +108,6 @@ $filter
             <param argument="--exit-status" type="boolean" truevalue="--exit-status" falsevalue="" checked="false" label="Fail when the last result is false or null" help="Propagate jq's exit-status semantics to the Galaxy job."/>
             <param name="tsv_output" type="boolean" truevalue="true" falsevalue="" checked="false" label="Append @tsv and mark the output as tabular" help="Adds '| @tsv' to the supplied filter and automatically enables raw output so the resulting dataset is tabular rather than quoted JSON strings."/>
         </section>
-
         <section name="arguments" title="Arguments" expanded="false">
             <repeat name="named_args" title="Named string argument">
                 <param name="name" type="text" label="Argument name" help="Accessible inside jq as $name.">
@@ -178,7 +174,7 @@ $filter
                 <assert_contents>
                     <has_n_lines n="4"/>
                     <has_json_property_with_value property="foo" value="42"/>
-                    <has_json_property_with_value property="bar" value='"less interesting data"'/>
+                    <has_json_property_with_value property="bar" value="&quot;less interesting data&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -193,9 +189,9 @@ $filter
             </section>
             <output name="output" file="table.tsv" ftype="tabular">
                 <assert_contents>
-                    <has_line line="1123&#009;a"/>
-                    <has_line line="6536&#009;b"/>
-                    <has_line line="5321&#009;c"/>
+                    <has_line line="1123&#9;a"/>
+                    <has_line line="6536&#9;b"/>
+                    <has_line line="5321&#9;c"/>
                     <has_n_lines n="3"/>
                 </assert_contents>
             </output>
@@ -217,7 +213,7 @@ $filter
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text='env -i "`command -v jq`"'/>
+                <has_text text="env -i &quot;`command -v jq`&quot;"/>
             </assert_command>
         </test>
         <test expect_num_outputs="1">
@@ -233,7 +229,7 @@ $filter
             </section>
             <output name="output" file="dangerous_string_arg.json" ftype="json">
                 <assert_contents>
-                    <has_json_property_with_value property="sample" value='"alpha;$(uname)|$HOME&amp;&lt;&gt;"'/>
+                    <has_json_property_with_value property="sample" value="&quot;alpha;$(uname)|$HOME&amp;&lt;&gt;&quot;"/>
                 </assert_contents>
             </output>
             <assert_command>
@@ -272,7 +268,7 @@ $filter
             </section>
             <output name="output" file="compact_sorted.json" ftype="json">
                 <assert_contents>
-                    <has_json_property_with_value property="bar" value='"less interesting data"'/>
+                    <has_json_property_with_value property="bar" value="&quot;less interesting data&quot;"/>
                     <has_json_property_with_value property="foo" value="42"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
@@ -296,8 +292,8 @@ $filter
             </section>
             <output name="output" file="indent4.json" ftype="json">
                 <assert_contents>
-                    <has_text text='    "foo": 42,'/>
-                    <has_text text='    "bar": "less interesting data"'/>
+                    <has_text text="    &quot;foo&quot;: 42,"/>
+                    <has_text text="    &quot;bar&quot;: &quot;less interesting data&quot;"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -316,7 +312,7 @@ $filter
             </section>
             <output name="output" file="ascii.json" ftype="json">
                 <assert_contents>
-                    <has_json_property_with_value property="greeting" value='"Gr\u00fc\u00dfe \ud83d\udc4b"'/>
+                    <has_json_property_with_value property="greeting" value="&quot;Gr\u00fc\u00dfe \ud83d\udc4b&quot;"/>
                 </assert_contents>
             </output>
             <assert_command>
@@ -354,8 +350,8 @@ $filter
             </section>
             <output name="output" file="raw_lines.json" ftype="json">
                 <assert_contents>
-                    <has_line line='"ALPHA"'/>
-                    <has_line line='"BETA"'/>
+                    <has_line line="&quot;ALPHA&quot;"/>
+                    <has_line line="&quot;BETA&quot;"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>
@@ -367,11 +363,11 @@ $filter
             <conditional name="input_source">
                 <param name="mode" value="null"/>
             </conditional>
-            <param name="filter" value='{"tool":"jq","status":"ok"}'/>
+            <param name="filter" value="{&quot;tool&quot;:&quot;jq&quot;,&quot;status&quot;:&quot;ok&quot;}"/>
             <output name="output" file="generated.json" ftype="json">
                 <assert_contents>
-                    <has_json_property_with_value property="tool" value='"jq"'/>
-                    <has_json_property_with_value property="status" value='"ok"'/>
+                    <has_json_property_with_value property="tool" value="&quot;jq&quot;"/>
+                    <has_json_property_with_value property="status" value="&quot;ok&quot;"/>
                 </assert_contents>
             </output>
             <assert_command>
@@ -390,19 +386,19 @@ $filter
                 </repeat>
                 <repeat name="named_json_args">
                     <param name="name" value="config"/>
-                    <param name="value" value='{"limit": 3}'/>
+                    <param name="value" value="{&quot;limit&quot;: 3}"/>
                 </repeat>
             </section>
             <output name="output" file="named_args.json" ftype="json">
                 <assert_contents>
-                    <has_json_property_with_value property="sample" value='"dataset-1"'/>
+                    <has_json_property_with_value property="sample" value="&quot;dataset-1&quot;"/>
                     <has_json_property_with_value property="limit" value="3"/>
                 </assert_contents>
             </output>
             <assert_command>
                 <has_text text="--arg 'sample' 'dataset-1'"/>
                 <has_text text="--argjson"/>
-                <has_text text='{"limit": 3}'/>
+                <has_text text="{&quot;limit&quot;: 3}"/>
             </assert_command>
         </test>
         <test expect_num_outputs="1">
@@ -424,8 +420,8 @@ $filter
             </section>
             <output name="output" file="positional_strings.json" ftype="json">
                 <assert_contents>
-                    <has_text text='"alpha"'/>
-                    <has_text text='"beta"'/>
+                    <has_text text="&quot;alpha&quot;"/>
+                    <has_text text="&quot;beta&quot;"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -442,10 +438,10 @@ $filter
                 <conditional name="positional_arguments">
                     <param name="mode" value="json"/>
                     <repeat name="json_values">
-                        <param name="value" value='{"value": 1}'/>
+                        <param name="value" value="{&quot;value&quot;: 1}"/>
                     </repeat>
                     <repeat name="json_values">
-                        <param name="value" value='{"value": 2}'/>
+                        <param name="value" value="{&quot;value&quot;: 2}"/>
                     </repeat>
                 </conditional>
             </section>

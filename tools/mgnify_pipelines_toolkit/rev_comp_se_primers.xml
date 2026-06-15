@@ -12,13 +12,13 @@
     ]]></command>
     <inputs>
         <param name="input" type="data" label="Primer sequences" format="fasta"/>
-    </inputs>    
+    </inputs>
     <outputs>
         <data name="output" label="${tool.name} on ${on_string}: Reverse-complemented primers" format="fasta"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="f_and_r_primers.fasta" ftype="fasta" />
+            <param name="input" value="f_and_r_primers.fasta" ftype="fasta"/>
             <output name="output" file="sample_rev_comp_se_primers.fasta" ftype="fasta"/>
         </test>
     </tests>
@@ -49,5 +49,5 @@ Output FASTA file::
 
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

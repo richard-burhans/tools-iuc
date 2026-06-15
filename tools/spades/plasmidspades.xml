@@ -75,7 +75,7 @@ plasmidspades.py
         <expand macro="out_sc"/>
         <expand macro="out_sp"/>
         <expand macro="out_ss"/>
-   </outputs>
+    </outputs>
     <tests>
         <!--
         used in a test:
@@ -88,9 +88,8 @@ plasmidspades.py
             multiple libraries: pe#-m, pe#-s, mp#-12, mp#-1, mp#-2, mp#-<or>, mp#-s, hqmp#-12, hqmp#-1, hqmp#-2, hqmp#-s, hqmp#-<or>, nxmate#-1, nxmate-#2
             pacbio, nanopore, sanger, trusted-contigs, untrusted-contigs, tslr
         -->
-
         <!-- #1 single, separate, fastq.gz, default parameters -->
-         <test expect_num_outputs="4">
+        <test expect_num_outputs="4">
             <conditional name="singlePaired">
                 <param name="sPaired" value="paired_collection"/>
                 <param name="input">
@@ -107,7 +106,7 @@ plasmidspades.py
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="326"/>
-                    <has_text_matching expression=">EDGE\_[0-9]+\_length\_[0-9]+\_cov\_[0-9]+\.[0-9]+"/>
+                    <has_text_matching expression="&gt;EDGE\_[0-9]+\_length\_[0-9]+\_cov\_[0-9]+\.[0-9]+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -122,13 +121,13 @@ plasmidspades.py
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="163"/>
-                    <has_text_matching expression=">NODE\_1\_length\_9689\_cov\_.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_9689\_cov\_.+"/>
                 </assert_contents>
             </output>
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="163"/>
-                    <has_text_matching expression=">NODE\_1\_length\_9689.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_9689.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -155,7 +154,7 @@ plasmidspades.py
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="326"/>
-                    <has_text_matching expression=">EDGE_.+"/>
+                    <has_text_matching expression="&gt;EDGE_.+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -170,7 +169,7 @@ plasmidspades.py
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="163"/>
-                    <has_text_matching expression=">NODE.+"/>
+                    <has_text_matching expression="&gt;NODE.+"/>
                 </assert_contents>
             </output>
             <output name="out_cp">
@@ -181,8 +180,8 @@ plasmidspades.py
             <output name="out_cs">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_text_matching expression="#name&#009;length&#009;coverage"/>
-                    <has_text_matching expression="NODE_1&#009;9689&#009;4.668331_component_0"/>
+                    <has_text_matching expression="#name&#9;length&#9;coverage"/>
+                    <has_text_matching expression="NODE_1&#9;9689&#9;4.668331_component_0"/>
                 </assert_contents>
             </output>
             <output_collection name="out_cr" type="list" count="3">
@@ -220,8 +219,8 @@ plasmidspades.py
             <output name="out_ss">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_text_matching expression="#name&#009;length&#009;coverage"/>
-                    <has_text_matching expression="NODE_1&#009;9689&#009;4.668331_component_0"/>
+                    <has_text_matching expression="#name&#9;length&#9;coverage"/>
+                    <has_text_matching expression="NODE_1&#9;9689&#9;4.668331_component_0"/>
                 </assert_contents>
             </output>
         </test>

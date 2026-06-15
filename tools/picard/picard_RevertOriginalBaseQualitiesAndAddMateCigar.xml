@@ -39,7 +39,7 @@
             <output name="outFile" file="picard_RevertOriginalBaseQualitiesAndAddMateCigar_test1.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -59,6 +59,6 @@ Reverts the original base qualities and adds the mate cigar tag to SAM or BAMs.
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

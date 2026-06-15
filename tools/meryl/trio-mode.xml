@@ -120,15 +120,15 @@
             <output name="mat_db_hist" file="output_23.mat.hist"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
 **Purpose**
 
 Meryl is the k-mer counter. This tool builds hap-mer databases  for trios, in accordance
-with `merqury's recommended guidelines. &lt;https://github.com/marbl/merqury/wiki/1.-Prepare-meryl-dbs#3-build-hap-mer-dbs-for-trios&gt;`_
+with `merqury's recommended guidelines. <https://github.com/marbl/merqury/wiki/1.-Prepare-meryl-dbs#3-build-hap-mer-dbs-for-trios>`_
 
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>

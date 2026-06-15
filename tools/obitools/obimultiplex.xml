@@ -37,22 +37,22 @@
         </data>
     </outputs>
     <tests>
-       <test expect_num_outputs="1">
-           <param name="inputextrafile" value="input_ngsfilter_extrafile.txt" />
-           <param name="input" value="output_obipairing.fastqsanger" ftype="fastqsanger"/>
-           <param name="mismatch" value="2" />
-           <param name="undentified_bool" value="False" />
-           <output name="output" file="output_obimultiplex.fastqsanger" ftype="fastqsanger"/>
-       </test>
-       <test expect_num_outputs="2">
-           <param name="inputextrafile" value="input_ngsfilter_extrafile.txt"/>
-           <param name="input" value="output_obipairing_compress.fastqsolexa.gz" ftype="fastqsolexa.gz"/>
-           <param name="mismatch" value="3"/>
-           <param name="undentified_bool" value="True"/>
-           <output name="output" file="output_obimultiplex_error_3.fastqsolexa.gz" ftype="fastqsolexa.gz" decompress="True" />
-           <output name="unident" file="output_obimultiplex_unidentified.fastqsolexa.gz" ftype="fastqsolexa.gz" decompress="True" />
-       </test>
-   </tests>
+        <test expect_num_outputs="1">
+            <param name="inputextrafile" value="input_ngsfilter_extrafile.txt"/>
+            <param name="input" value="output_obipairing.fastqsanger" ftype="fastqsanger"/>
+            <param name="mismatch" value="2"/>
+            <param name="undentified_bool" value="False"/>
+            <output name="output" file="output_obimultiplex.fastqsanger" ftype="fastqsanger"/>
+        </test>
+        <test expect_num_outputs="2">
+            <param name="inputextrafile" value="input_ngsfilter_extrafile.txt"/>
+            <param name="input" value="output_obipairing_compress.fastqsolexa.gz" ftype="fastqsolexa.gz"/>
+            <param name="mismatch" value="3"/>
+            <param name="undentified_bool" value="True"/>
+            <output name="output" file="output_obimultiplex_error_3.fastqsolexa.gz" ftype="fastqsolexa.gz" decompress="True"/>
+            <output name="unident" file="output_obimultiplex_unidentified.fastqsolexa.gz" ftype="fastqsolexa.gz" decompress="True"/>
+        </test>
+    </tests>
     <help><![CDATA[
 
 .. class:: infomark
@@ -111,6 +111,5 @@ a tab delimited tabular file with 8 columns.
 ]]>
 
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

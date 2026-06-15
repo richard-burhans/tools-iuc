@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         set -o pipefail; ## Sets the pipeline’s exit code to halStats’s on failure.
@@ -243,8 +243,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="FromGenome&#009;ToGenome&#009;sitesCovered1Times&#009;sitesCovered2Times&#009;sitesCovered3Times&#009;sitesCovered4Times&#009;sitesCovered5Times"/>
-                    <has_line line="Genome_1&#009;Genome_1&#009;5472&#009;4688&#009;3516&#009;2637&#009;1465"/>
+                    <has_line line="FromGenome&#9;ToGenome&#9;sitesCovered1Times&#9;sitesCovered2Times&#9;sitesCovered3Times&#9;sitesCovered4Times&#9;sitesCovered5Times"/>
+                    <has_line line="Genome_1&#9;Genome_1&#9;5472&#9;4688&#9;3516&#9;2637&#9;1465"/>
                     <has_n_lines n="10"/>
                 </assert_contents>
             </output>
@@ -257,8 +257,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;sitesCovered1Times&#009;sitesCovered2Times&#009;sitesCovered3Times&#009;sitesCovered4Times&#009;sitesCovered5Times"/>
-                    <has_line line="Genome_1&#009;5472&#009;4688&#009;3516&#009;2637&#009;1465"/>
+                    <has_line line="Genome&#9;sitesCovered1Times&#9;sitesCovered2Times&#9;sitesCovered3Times&#9;sitesCovered4Times&#9;sitesCovered5Times"/>
+                    <has_line line="Genome_1&#9;5472&#9;4688&#9;3516&#9;2637&#9;1465"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -271,7 +271,7 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="Genome_0_seq&#009;0&#009;1758"/>
+                    <has_line line="Genome_0_seq&#9;0&#9;1758"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
             </output>
@@ -284,9 +284,9 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="Genome_1_seq&#009;0&#009;293"/>
-                    <has_line line="Genome_1_seq&#009;3223&#009;3399"/>
-                    <has_line line="Genome_1_seq&#009;5274&#009;5472"/>
+                    <has_line line="Genome_1_seq&#9;0&#9;293"/>
+                    <has_line line="Genome_1_seq&#9;3223&#9;3399"/>
+                    <has_line line="Genome_1_seq&#9;5274&#9;5472"/>
                     <has_n_lines n="28"/>
                 </assert_contents>
             </output>
@@ -299,9 +299,9 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="Genome_0_seq&#009;0&#009;293"/>
-                    <has_line line="Genome_0_seq&#009;1033&#009;1172"/>
-                    <has_line line="Genome_0_seq&#009;1465&#009;1758"/>
+                    <has_line line="Genome_0_seq&#9;0&#9;293"/>
+                    <has_line line="Genome_0_seq&#9;1033&#9;1172"/>
+                    <has_line line="Genome_0_seq&#9;1465&#9;1758"/>
                     <has_n_lines n="8"/>
                 </assert_contents>
             </output>
@@ -351,9 +351,9 @@
                 <param name="sequenceStats" value="Genome_0"/>
             </conditional>
             <output name="out_file" ftype="tabular">
-                  <assert_contents>
-                    <has_line line="SequenceName&#009;Length&#009;NumTopSegments&#009;NumBottomSegments"/>
-                    <has_line line="Genome_0_seq&#009;1758&#009;0&#009;8"/>
+                <assert_contents>
+                    <has_line line="SequenceName&#9;Length&#9;NumTopSegments&#9;NumBottomSegments"/>
+                    <has_line line="Genome_0_seq&#9;1758&#9;0&#9;8"/>
                     <has_n_lines n="3"/>
                 </assert_contents>
             </output>
@@ -391,8 +391,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;% ID&#009;numID&#009;numSites"/>
-                    <has_line line="Genome_0&#009;1&#009;1758&#009;1758"/>
+                    <has_line line="Genome&#9;% ID&#9;numID&#9;numSites"/>
+                    <has_line line="Genome_0&#9;1&#9;1758&#9;1758"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>
@@ -405,8 +405,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="numTopSegments&#009;numBottomSegments"/>
-                    <has_line line="28&#009;0"/>
+                    <has_line line="numTopSegments&#9;numBottomSegments"/>
+                    <has_line line="28&#9;0"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>
@@ -431,7 +431,7 @@
             </conditional>
             <output name="out_file" ftype="txt">
                 <assert_contents>
-                    <has_line line="Genome_1 Genome_2 Genome_3"/>    
+                    <has_line line="Genome_1 Genome_2 Genome_3"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
             </output>
@@ -444,7 +444,7 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome_1_seq&#009;5472"/>    
+                    <has_line line="Genome_1_seq&#9;5472"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
             </output>
@@ -456,7 +456,7 @@
             </conditional>
             <output name="out_file" ftype="txt">
                 <assert_contents>
-                    <has_line line="Genome_1 Genome_2 Genome_3"/>     
+                    <has_line line="Genome_1 Genome_2 Genome_3"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
             </output>
@@ -469,7 +469,7 @@
             </conditional>
             <output name="out_file" ftype="txt">
                 <assert_contents>
-                    <has_line line="1"/>     
+                    <has_line line="1"/>
                     <has_n_lines n="1"/>
                 </assert_contents>
             </output>
@@ -482,8 +482,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="fraction_of_As&#009;fraction_of_Gs&#009;fraction_of_Cs&#009;fraction_of_Ts"/>    
-                    <has_line line="0.5&#009;0&#009;0.5&#009;0"/>     
+                    <has_line line="fraction_of_As&#9;fraction_of_Gs&#9;fraction_of_Cs&#9;fraction_of_Ts"/>
+                    <has_line line="0.5&#9;0&#9;0.5&#9;0"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>
@@ -508,8 +508,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;TotalLength&#009;NumContigs&#009;MinContigLength&#009;MaxContigLength&#009;MeanContigLength&#009;MedianContigLength&#009;N50&#009;L50"/>
-                    <has_line line="Genome_1&#009;5472&#009;1&#009;5472&#009;5472&#009;5472&#009;0&#009;5472&#009;1"/>
+                    <has_line line="Genome&#9;TotalLength&#9;NumContigs&#9;MinContigLength&#9;MaxContigLength&#9;MeanContigLength&#9;MedianContigLength&#9;N50&#9;L50"/>
+                    <has_line line="Genome_1&#9;5472&#9;1&#9;5472&#9;5472&#9;5472&#9;0&#9;5472&#9;1"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>

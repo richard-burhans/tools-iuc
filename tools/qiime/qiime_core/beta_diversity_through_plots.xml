@@ -76,8 +76,8 @@ beta_diversity_through_plots.py
             </output_collection>
             <output name="beta_diversity_pcoa">
                 <assert_contents>
-                    <has_text text="unweighted_unifrac" />
-                    <has_text text="weighted_unifrac" />
+                    <has_text text="unweighted_unifrac"/>
+                    <has_text text="weighted_unifrac"/>
                 </assert_contents>
             </output>
         </test>

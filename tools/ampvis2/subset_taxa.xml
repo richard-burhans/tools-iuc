@@ -43,17 +43,14 @@
                 <option value="option_input_file">Select taxa from taxonomy list file</option>
                 <option value="option_input_selected_file">Provide a file with selected taxa</option>
             </param>
-
             <when value="option_input_selected_file">
                 <param name="selected_taxonomy_list" type="data" optional="false" format="tabular" label="Selected taxonomy list" help="A file containing the taxa to subsample. One taxa per line."/>
             </when>
-        
             <when value="option_input_file">
                 <param name="taxonomy_list" type="data" optional="false" format="tabular" label="Taxonomy list" help="Generated with ampvis2: load"/>
                 <expand macro="taxonomy_select_macro" argument="tax_vector" label="Taxa to keep"/>
             </when>
         </conditional>
-        
         <expand macro="normalise_macro"/>
         <param argument="remove" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Remove" help="Selected taxa will be removed instead of being the only ones kept in the data."/>
     </inputs>
@@ -65,10 +62,10 @@
     <tests>
         <!-- Test case for using comma-separated taxonomy list -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <conditional name="taxonomy_select_type">
                 <param name="select_param" value="option_input_file"/>
-                <param name="taxonomy_list" value="AalborgWWTPs-taxonomy.list"/> 
+                <param name="taxonomy_list" value="AalborgWWTPs-taxonomy.list"/>
                 <param name="tax_vector" value="f__Caldilineaceae,p__Elusimicrobia"/>
             </conditional>
             <output name="ampvis" value="AalborgWWTPs-subset_taxa.rds" ftype="ampvis2" compare="sim_size"/>
@@ -79,10 +76,9 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test case for using comma-separated taxonomy list and remove=true -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <conditional name="taxonomy_select_type">
                 <param name="select_param" value="option_input_file"/>
                 <param name="taxonomy_list" value="AalborgWWTPs-taxonomy.list"/>
@@ -97,13 +93,12 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test case for using selected taxonomy list from a file -->
         <test expect_num_outputs="2">
             <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <conditional name="taxonomy_select_type">
                 <param name="select_param" value="option_input_selected_file"/>
-                <param name="selected_taxonomy_list" value="AalborgWWTPs-selected.taxonomy.list"/> 
+                <param name="selected_taxonomy_list" value="AalborgWWTPs-selected.taxonomy.list"/>
             </conditional>
             <param name="remove" value="true"/>
             <output name="ampvis" value="AalborgWWTPs-subset_taxa.rds" ftype="ampvis2" compare="sim_size"/>

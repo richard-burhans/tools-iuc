@@ -4,8 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
     #import re
     #set $bin_dir = None
@@ -40,16 +40,16 @@
     ]]></command>
     <inputs>
         <param name="mags" type="data" format="fasta" multiple="true" label="metagenome assembled genomes (MAGs/bins)"/>
-        <expand macro="cat_db" />
-        <expand macro="use_intermediates" />
-        <expand macro="custom_settings_bins" />
-        <expand macro="diamond_options" />
-        <expand macro="add_names" />
-        <expand macro="summarise" />
-        <expand macro="select_bat_outputs" />
+        <expand macro="cat_db"/>
+        <expand macro="use_intermediates"/>
+        <expand macro="custom_settings_bins"/>
+        <expand macro="diamond_options"/>
+        <expand macro="add_names"/>
+        <expand macro="summarise"/>
+        <expand macro="select_bat_outputs"/>
     </inputs>
     <outputs>
-        <expand macro="outputs" />
+        <expand macro="outputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -58,7 +58,7 @@
             <param name="select_outputs" value="bin2classification"/>
             <output name="bin2classification">
                 <assert_contents>
-                    <has_text text="666" />
+                    <has_text text="666"/>
                 </assert_contents>
             </output>
         </test>
@@ -68,7 +68,7 @@
             <param name="select_outputs" value="bin2classification"/>
             <output name="bin2classification">
                 <assert_contents>
-                    <has_text text="1639" />
+                    <has_text text="1639"/>
                 </assert_contents>
             </output>
         </test>
@@ -78,8 +78,8 @@
             <param name="select_outputs" value="bin2classification"/>
             <output name="bin2classification">
                 <assert_contents>
-                    <has_text text="666" />
-                    <has_text text="1639" />
+                    <has_text text="666"/>
+                    <has_text text="1639"/>
                 </assert_contents>
             </output>
         </test>
@@ -95,23 +95,22 @@
             <param name="summarise" value="classification"/>
             <output name="predicted_proteins_faa">
                 <assert_contents>
-                    <has_text text="contig_11394" />
-                    <has_text text="contig_4403" />
+                    <has_text text="contig_11394"/>
+                    <has_text text="contig_4403"/>
                 </assert_contents>
             </output>
             <output name="orf2lca_names">
                 <assert_contents>
-                    <has_text text="Vibrionaceae" />
-                    <has_text text="Vibrio" />
+                    <has_text text="Vibrionaceae"/>
+                    <has_text text="Vibrio"/>
                 </assert_contents>
             </output>
             <output name="classification_summary">
                 <assert_contents>
-                    <has_text text="Gammaproteobacteria" />
+                    <has_text text="Gammaproteobacteria"/>
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
 **CAT bin** or **CAT bins**
@@ -139,5 +138,5 @@ Required arguments:
 @OPTIONS_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

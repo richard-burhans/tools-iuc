@@ -1,5 +1,5 @@
 <tool id="malt_run" name="MALT analyzer" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -249,7 +249,7 @@ $advanced_options_lca.magnitudes
             <output name="unaligned_output" file="unaligned_output2.fasta" ftype="fasta" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Align one or more files of input sequences (DNA or proteins) against an index representing a collection of reference DNA
@@ -263,9 +263,8 @@ or BLASTX mode.
   **Alignment mode** - run the program in BlastN mode, BlastP mode or BlastX mode.  that is, to align DNA and DNA, protein and protein, or DNA reads against protein references, respectively.  BlastN mode can only be used if the employed index contains DNA sequences, whereas the BlastP and BlastX modes are only applicable to an index based on protein reference sequences.
   **Alignmentment type - specify the type of alignments to be performed. By default, this is set to Local and the program performs local alignment just like BLAST programs do.  Alternatively, this can be set to SemiGlobal and the program will perform semi global alignment in which reads are aligned end-to-end. 
   **Include unaligned queries in RMA output file** - ensure that all unaligned queries are placed into the output RMA file. By default, only queries that have an alignment are included.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">https://doi.org/10.1101/050559</citation>
     </citations>
 </tool>
-

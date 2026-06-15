@@ -26,25 +26,24 @@
         $noSplit
     ]]></command>
     <inputs>
-        <param name="in_net" format="ucsc.net" type="data" label="Net dataset" />
-        <param name="in_chain" format="chain" type="data" label="Chain dataset" />
-        <param name="in_target" format="twobit" type="data" label="Dataset with target sequence" />
-        <param name="in_query" format="twobit" type="data" label="Dataset with query sequence" />
-        <param argument="-qChain" type="boolean" optional="true" truevalue="-qChain" falsevalue="" label="Is the net with respect to the query side of chains?" />
-        <param argument="-maxGap" type="integer" optional="true" min="0" label="Maximum size of gap before breaking" help="default 100" />
-        <param argument="-noSplit" type="boolean" optional="true" truevalue="-noSplit" falsevalue="" label="Don't split chain when there is an insertion of another chain" />
-
+        <param name="in_net" format="ucsc.net" type="data" label="Net dataset"/>
+        <param name="in_chain" format="chain" type="data" label="Chain dataset"/>
+        <param name="in_target" format="twobit" type="data" label="Dataset with target sequence"/>
+        <param name="in_query" format="twobit" type="data" label="Dataset with query sequence"/>
+        <param argument="-qChain" type="boolean" optional="true" truevalue="-qChain" falsevalue="" label="Is the net with respect to the query side of chains?"/>
+        <param argument="-maxGap" type="integer" optional="true" min="0" label="Maximum size of gap before breaking" help="default 100"/>
+        <param argument="-noSplit" type="boolean" optional="true" truevalue="-noSplit" falsevalue="" label="Don't split chain when there is an insertion of another chain"/>
     </inputs>
     <outputs>
-        <data name="out" format="axt" />
+        <data name="out" format="axt"/>
     </outputs>
     <tests>
         <test>
-            <param name="in_net" value="hg38.chrM.mm39.chrM.ucsc.net" />
-            <param name="in_chain" value="hg38.chrM.mm39.chrM.chain" />
-            <param name="in_target" value="hg38.chrM.twobit" />
-            <param name="in_query" value="mm39.chrM.twobit" />
-            <output name="out" file="out.axt" />
+            <param name="in_net" value="hg38.chrM.mm39.chrM.ucsc.net"/>
+            <param name="in_chain" value="hg38.chrM.mm39.chrM.chain"/>
+            <param name="in_target" value="hg38.chrM.twobit"/>
+            <param name="in_query" value="mm39.chrM.twobit"/>
+            <output name="out" file="out.axt"/>
         </test>
     </tests>
     <help><![CDATA[

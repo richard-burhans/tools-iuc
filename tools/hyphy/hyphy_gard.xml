@@ -8,7 +8,7 @@
     <command detect_errors="exit_code"><![CDATA[
         @SYMLINK_FILES_NO_TREE@
        @HYPHYMPI@ gard
-            --alignment $input_file
+            --alignment '$input_file'
             --type '$datatype.value'
             #if str($datatype.value) == 'codon':
                 --code '$datatype.gencodeid'
@@ -32,7 +32,7 @@
         @ERRORS@
     ]]></command>
     <inputs>
-        <param name="input_file" type="data" format="fasta,fasta.gz,nex" label="Input FASTA or NEXUS file" help="Input FASTA or NEXUS file." />
+        <param name="input_file" type="data" format="fasta,fasta.gz,nex" label="Input FASTA or NEXUS file" help="Input FASTA or NEXUS file."/>
         <conditional name="datatype">
             <param argument="--type" name="value" type="select" label="Alignment kind" help="Select the type of data to perform screening on.">
                 <option value="nucleotide">Nucleotide</option>
@@ -41,10 +41,10 @@
             </param>
             <when value="nucleotide"/>
             <when value="amino-acid">
-                <expand macro="substitution" argument="--model" />
+                <expand macro="substitution" argument="--model"/>
             </when>
             <when value="codon">
-                <expand macro="gencode" />
+                <expand macro="gencode"/>
             </when>
         </conditional>
         <conditional name="rate_cond">
@@ -55,10 +55,10 @@
             </param>
             <when value=""/>
             <when value="GDD">
-                <param argument="--rate-classes" type="integer" value="2" min="2" max="6" label="Rate classes" help="The number of discrete rate classes to use for modeling site-to-site rate variation." />
+                <param argument="--rate-classes" type="integer" value="2" min="2" max="6" label="Rate classes" help="The number of discrete rate classes to use for modeling site-to-site rate variation."/>
             </when>
             <when value="Gamma">
-                <param argument="--rate-classes" type="integer" value="2" min="2" max="6" label="Rate classes" help="The number of discrete rate classes to use for modeling site-to-site rate variation." />
+                <param argument="--rate-classes" type="integer" value="2" min="2" max="6" label="Rate classes" help="The number of discrete rate classes to use for modeling site-to-site rate variation."/>
             </when>
         </conditional>
         <section name="advanced_options" title="Advanced Options" expanded="false">
@@ -70,17 +70,17 @@
         </section>
     </inputs>
     <outputs>
-        <data name="gard_output" format="nex" />
-        <data name="gard_output_json" format="hyphy_results.json" label="${tool.name} on ${on_string}: gard_output_json" />
-        <data name="gard_md_report" format="markdown" from_work_dir="gard_stdout.md" label="GARD Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="gard_output" format="nex"/>
+        <data name="gard_output_json" format="hyphy_results.json" label="${tool.name} on ${on_string}: gard_output_json"/>
+        <data name="gard_md_report" format="markdown" from_work_dir="gard_stdout.md" label="GARD Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="3">
             <param name="input_file" ftype="fasta" value="gard-in1.fa"/>
             <output name="gard_output" file="gard-out1.nex" compare="sim_size"/>
             <output name="gard_output_json">
-                 <assert_contents>
-                    <has_text text='"potentialBreakpoints":21'/>
+                <assert_contents>
+                    <has_text text="&quot;potentialBreakpoints&quot;:21"/>
                 </assert_contents>
             </output>
             <output name="gard_md_report">

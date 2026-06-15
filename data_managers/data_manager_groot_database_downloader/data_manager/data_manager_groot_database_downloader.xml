@@ -41,10 +41,10 @@
             <option value="card">CARD</option>
             <option value="groot-db">Groot-db (combine sequences in ARG-annot, Resfinder and CARD)</option>
             <option value="groot-core-db">Groot-core-db (same as groot-db but one copy of each sequence is kept and then this collection is clustered at given percentage identity)</option>
-         </param>
-         <param name="identity" type="select" label="Percent Identity">
+        </param>
+        <param name="identity" type="select" label="Percent Identity">
             <option value="90" selected="true">90% identity</option>
-         </param>
+        </param>
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json" label="${tool.name}"/>
@@ -55,11 +55,11 @@
             <param name="identity" value="90"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"groot_database":'/>
-                    <has_text text='"version": "1.1.2"'/>
-                    <has_text_matching expression='"value": "arg-annot.90-1.1.2-[0-9]{8}"'/>
-                    <has_text text='"name": "arg-annot (90 percent identity)"'/>
-                    <has_text text='"path": "arg-annot.90"'/>
+                    <has_text text="&quot;groot_database&quot;:"/>
+                    <has_text text="&quot;version&quot;: &quot;1.1.2&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;arg-annot.90-1.1.2-[0-9]{8}&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;arg-annot (90 percent identity)&quot;"/>
+                    <has_text text="&quot;path&quot;: &quot;arg-annot.90&quot;"/>
                 </assert_contents>
             </output>
         </test>

@@ -1,5 +1,5 @@
 <tool id="ampvis2_load" name="ampvis2 load" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -106,7 +106,7 @@
     </configfiles>
     <inputs>
         <param argument="otutable" type="data" format="phyloseq,dada2_sequencetable,tabular,biom1,biom2" label="OTU table"/>
-        <param name="asv_sequences" type="boolean" checked="false" label="ASV identifiers are the ASV sequences" help="By checking this the identifiers will be renamed to ASV1, ASV2, etc and the sequences will be stored in the ampvis2 object." />
+        <param name="asv_sequences" type="boolean" checked="false" label="ASV identifiers are the ASV sequences" help="By checking this the identifiers will be renamed to ASV1, ASV2, etc and the sequences will be stored in the ampvis2 object."/>
         <param argument="metadata" type="data" format="tabular,tsv" optional="true" label="Sample metadata" help="Will overwrite metadata that may be given in the OTU table">
             <validator type="expression" message="Table must have at least 1 column"><![CDATA[value.metadata.columns > 0]]></validator>
         </param>
@@ -254,11 +254,12 @@
                 <assert_contents>
                     <has_n_lines n="370"/>
                     <has_n_columns n="2"/>
-                    <has_line line="Bacteria&#009;Kingdom"/>
+                    <has_line line="Bacteria&#9;Kingdom"/>
                 </assert_contents>
             </output>
             <assert_stdout>
-                <has_text text="ampvis2 object with 4 elements."/> <!-- this also has fasta, i.e. 4 -->
+                <has_text text="ampvis2 object with 4 elements."/>
+                <!-- this also has fasta, i.e. 4 -->
                 <has_text text="6212.45"/>
                 <has_text text="Sample, time"/>
                 <has_text text="232(100%)   232(100%)   232(100%) 231(99.57%) 209(90.09%) 127(54.74%)"/>
@@ -288,11 +289,12 @@
                 <assert_contents>
                     <has_n_lines n="370"/>
                     <has_n_columns n="2"/>
-                    <has_line line="Bacteria&#009;Kingdom"/>
+                    <has_line line="Bacteria&#9;Kingdom"/>
                 </assert_contents>
             </output>
             <assert_stdout>
-                <has_text text="ampvis2 object with 4 elements."/> <!-- this also has fasta, i.e. 4 -->
+                <has_text text="ampvis2 object with 4 elements."/>
+                <!-- this also has fasta, i.e. 4 -->
                 <has_text text="6212.45"/>
                 <has_text text="Sample, time"/>
                 <has_text text="232(100%)   232(100%)   232(100%) 231(99.57%) 209(90.09%) 127(54.74%)"/>
@@ -317,11 +319,12 @@
                 <assert_contents>
                     <has_n_lines n="147"/>
                     <has_n_columns n="2"/>
-                    <has_line line="Bacteria&#009;Kingdom"/>
+                    <has_line line="Bacteria&#9;Kingdom"/>
                 </assert_contents>
             </output>
             <assert_stdout>
-                <has_text text="ampvis2 object with 4 elements."/> <!-- this also has fasta, i.e. 4 -->
+                <has_text text="ampvis2 object with 4 elements."/>
+                <!-- this also has fasta, i.e. 4 -->
                 <has_text text="SampleID, Property, Number"/>
                 <has_text text="64(100%)   64(100%)   64(100%)   64(100%) 62(96.88%)  56(87.5%)      0(0%)"/>
             </assert_stdout>

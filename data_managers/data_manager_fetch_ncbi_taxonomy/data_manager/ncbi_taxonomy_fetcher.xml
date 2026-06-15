@@ -25,7 +25,7 @@
         cp '$dmjson' '$out_file'
     ]]>
     </command>
-        <configfiles>
+    <configfiles>
         <configfile name="dmjson"><![CDATA[#slurp
 #if $database_name == ""
     #import datetime
@@ -60,13 +60,13 @@
 }]]></configfile>
     </configfiles>
     <inputs>
-        <param name="database_name" type="text" label="Name for this database" help="Enter a unique identifier, or leave blank for today's date" />
-        <param name="taxonomy_url" type="text" value='ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz' label="Enter URL for taxonomy files" />
-        <param name="name_maps" type="boolean" label="Also download accession2taxid data" checked="false" />
+        <param name="database_name" type="text" label="Name for this database" help="Enter a unique identifier, or leave blank for today's date"/>
+        <param name="taxonomy_url" type="text" value="ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz" label="Enter URL for taxonomy files"/>
+        <param name="name_maps" type="boolean" label="Also download accession2taxid data" checked="false"/>
         <param name="partial_data" type="hidden" value="" help="Used for testing"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
@@ -76,8 +76,8 @@
         <test>
             <output name="out_file">
                 <assert_contents>
-                    <has_text_matching expression='"value": "taxdump_\d\d\d\d-\d\d-\d\d-\d\d\d\d\d\d"'/>
-                    <has_text_matching expression='"name": "taxdump \d\d\d\d-\d\d-\d\d-\d\d\d\d\d\d"'/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;taxdump_\d\d\d\d-\d\d-\d\d-\d\d\d\d\d\d&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;taxdump \d\d\d\d-\d\d-\d\d-\d\d\d\d\d\d&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -88,9 +88,9 @@
             <output name="out_file" value="taxonomy_with_accession2taxid.json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
         Download a taxonomy dump from a provided URL.
         The default URL is the latest dump from NCBI taxonomy.
         The accession2taxid data comes from ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/ and can be used by the Diamond data_manager (uses ~20Gb as of 2021).
-    </help>
+    ]]></help>
 </tool>

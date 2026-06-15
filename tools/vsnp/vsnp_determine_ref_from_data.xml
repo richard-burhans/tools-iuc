@@ -51,8 +51,8 @@ python '$__tool_directory__/vsnp_determine_ref_from_data.py'
         <conditional name="input_type_cond">
             <param name="input_type" type="select" label="Choose the category of the files to be analyzed">
                 <option value="single" selected="true">Single files</option>
-		<option value="paired">Paired reads</option>
-		<option value="pair">Paired reads in separate data sets</option>
+                <option value="paired">Paired reads</option>
+                <option value="pair">Paired reads in separate data sets</option>
             </param>
             <when value="single">
                 <param name="read1" type="data" format="fastqsanger.gz,fastqsanger" label="Read1 fastq file"/>
@@ -99,7 +99,7 @@ python '$__tool_directory__/vsnp_determine_ref_from_data.py'
             <output name="output_metrics" file="paired_collection_metrics.txt" ftype="txt"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts a single fastqsanger read, a set of paired reads, or a collection of single or paired reads (bacterial samples) and
@@ -148,7 +148,6 @@ and discovering the primary species is critical.  DNA print matching is currentl
 **Required Options**
 
  * **Choose the category of the files to be analyzed** - select "Single files" or "Collection of files", then select the appropriate history items (single or paired fastqsanger reads or a collection of fastqsanger reads) based on the selected option.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

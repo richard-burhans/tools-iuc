@@ -8,8 +8,8 @@
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">ucsc-mafgene</requirement>
     </requirements>
-    <command detect_errors="exit_code">
-        <![CDATA[
+    <command detect_errors="exit_code"><![CDATA[
+        
         cp '$ucsc_db_connection' "\${HOME}/.hg.conf" &&
         chmod 600 "\${HOME}/.hg.conf" &&
         #if $twobit_source.twobit_selector == "cached"
@@ -24,7 +24,7 @@
         '$db_name'
         "${maf_file.element_identifier}"
         "${genepred_file.element_identifier}"
-        $species_list
+        '$species_list'
         '$output'
         #if $gene_selection.selection_type == "single"
             -geneName='${gene_selection.gene_name}'
@@ -40,9 +40,9 @@
         $uniqAA
         $includeUtr
         $noDash
-        ]]>
-    </command>
-        <configfiles>
+        
+    ]]></command>
+    <configfiles>
         <configfile name="ucsc_db_connection"><![CDATA[
 #European MariaDB server
 db.host=genome-euro-mysql.soe.ucsc.edu
@@ -129,7 +129,6 @@ forceTwoBit=on
             <output name="output" location="https://zenodo.org/records/17962560/files/output.fasta"/>
         </test>
     </tests>
-
     <help><![CDATA[
 **What it does**
 
@@ -169,8 +168,8 @@ The tool produces a FASTA file containing the extracted alignments, by default t
 - The 2bit file is used to fill in gaps in the alignment
 - When using "Include UTRs", make sure "Don't translate" is also enabled
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{mafGene,
                 author = {Kent UCSC},
                 title = {mafGene: A tool for output protein alignments using maf and genePred},

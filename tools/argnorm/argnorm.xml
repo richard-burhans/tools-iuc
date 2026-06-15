@@ -5,7 +5,7 @@
         <token name="@VERSION_SUFFIX@">0</token>
     </macros>
     <xrefs>
-       <xref type="bio.tools">argnorm</xref>
+        <xref type="bio.tools">argnorm</xref>
     </xrefs>
     <requirements>
         <requirement type="package" version="@VERSION@">argnorm</requirement>
@@ -23,9 +23,9 @@
         #end if
     ]]></command>
     <inputs>
-        <param type="data" name="input" format="tsv,txt" label="Specify input file" help="-i" />
+        <param type="data" name="input" format="tsv,txt" label="Specify input file" help="-i"/>
         <conditional name="choose_tool">
-            <param type="select" name="tool" label="The tool used to do ARG annotation" help="" >
+            <param type="select" name="tool" label="The tool used to do ARG annotation" help="">
                 <option value="deeparg" selected="true">DeepARG</option>
                 <option value="argsoap">ARGs-OAP</option>
                 <option value="abricate">ABRicate</option>
@@ -34,10 +34,8 @@
                 <option value="groot">Groot</option>
                 <option value="hamronization">hAMRonization</option>
             </param>
-            <when value="deeparg">
-            </when>
-            <when value="argsoap">
-            </when>
+            <when value="deeparg"/>
+            <when value="argsoap"/>
             <when value="abricate">
                 <param type="select" argument="--db" label="The database you used to do ARG annotation">
                     <option value="sarg" selected="true">SARG</option>
@@ -49,10 +47,8 @@
                     <option value="argannot">ARG-ANNOT</option>
                 </param>
             </when>
-            <when value="resfinder">
-            </when>
-            <when value="amrfinderplus">
-            </when>
+            <when value="resfinder"/>
+            <when value="amrfinderplus"/>
             <when value="groot">
                 <param type="select" argument="--db" label="The database you used to do ARG annotation">
                     <option value="groot-resfinder">Groot ResFinder database </option>
@@ -68,7 +64,7 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="output" format="tsv" label="${tool.name} on ${on_string} : ARG normalized table" />
+        <data name="output" format="tsv" label="${tool.name} on ${on_string} : ARG normalized table"/>
     </outputs>
     <tests>
         <!-- Test 1 : input : tsv, output : tsv, tool : groot -->
@@ -91,7 +87,7 @@
         <!-- Test 3 : input : tsv, output : tsv, tool : deeparg, hamronize -->
         <test>
             <param name="input" value="deeparg_hamronize.tsv"/>
-            <conditional name="choose_tool">                
+            <conditional name="choose_tool">
                 <param name="tool" value="hamronization"/>
                 <param name="hamronized" value="true"/>
             </conditional>

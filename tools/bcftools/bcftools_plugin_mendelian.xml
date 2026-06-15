@@ -5,9 +5,9 @@
         <token name="@PLUGIN_ID@">mendelian</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $section = $sec_restrict
@@ -43,12 +43,12 @@ bcftools plugin @EXECUTABLE@
 ]]>
 </command>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_target_restrict" />
-            <expand macro="macro_include" />
-            <expand macro="macro_exclude" />
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_target_restrict"/>
+            <expand macro="macro_include"/>
+            <expand macro="macro_exclude"/>
         </section>
         <section name="sec_plugin" expanded="true" title="Plugin Options">
             <!-- trios -->
@@ -58,17 +58,17 @@ bcftools plugin @EXECUTABLE@
                     <option value="trio_file">trios file - specify 1 or more trios in PED format (--ped)</option>
                 </param>
                 <when value="trio">
-                   <param name="mother" type="text" value="" label="Mother sample name (as it appears in the input)"/>
-                   <param name="father" type="text" value="" label="Father sample name (as it appears in the input)"/>
-                   <param name="child" type="text" value="" label="Child sample name (as it appears in the input)"/>
-                   <param name="num_x" type="boolean" truevalue="1X" falsevalue="2X" label="Male child?" help="This information is used to judge inheritance patterns of X-chromosomal mutations correctly."/>
+                    <param name="mother" type="text" value="" label="Mother sample name (as it appears in the input)"/>
+                    <param name="father" type="text" value="" label="Father sample name (as it appears in the input)"/>
+                    <param name="child" type="text" value="" label="Child sample name (as it appears in the input)"/>
+                    <param name="num_x" type="boolean" truevalue="1X" falsevalue="2X" label="Male child?" help="This information is used to judge inheritance patterns of X-chromosomal mutations correctly."/>
                 </when>
                 <when value="trio_file">
-                    <param name="trio_file" type="data" format="tabular" label="Sample information in PED format" help="This input dataset can describe one or several family trios. See the tool help below for more information on PED format." />
+                    <param name="trio_file" type="data" format="tabular" label="Sample information in PED format" help="This input dataset can describe one or several family trios. See the tool help below for more information on PED format."/>
                 </when>
             </conditional>
             <param name="mode" type="select" multiple="true" optional="false" label="Output mode" help="Output mode. Multiple modes can be combined and the drop modes take precedence.">
-                <option value="a" selected="true">add INFO -> MERR annotation with the number of inconsistent trios (a)</option>
+                <option value="a" selected="true">add INFO -&gt; MERR annotation with the number of inconsistent trios (a)</option>
                 <option value="d">delete (i.e., set to "./.") genotypes in inconsistent trios (d)</option>
                 <option value="e">output sites with at least one erroneous trio (e)</option>
                 <option value="E">drop sites with at least one erroneous trio (E)</option>
@@ -78,25 +78,25 @@ bcftools plugin @EXECUTABLE@
                 <option value="S">drop sites skipped for various reasons when collecting stats (S)</option>
             </param>
         </section>
-        <expand macro="macro_select_output_type" />
+        <expand macro="macro_select_output_type"/>
     </inputs>
     <outputs>
-        <expand macro="macro_vcf_output" />
+        <expand macro="macro_vcf_output"/>
     </outputs>
     <tests>
         <test>
             <!-- This is just a test on a random file, should have a real test case -->
-            <param name="input_file" ftype="vcf" value="convert.vcf" />
+            <param name="input_file" ftype="vcf" value="convert.vcf"/>
             <section name="sec_plugin">
                 <conditional name="trios">
-                    <param name="trios_src" value="trio" />
-                    <param name="mother" value="NA00001" />
-                    <param name="father" value="NA00002" />
-                    <param name="child" value="NA00006" />
+                    <param name="trios_src" value="trio"/>
+                    <param name="mother" value="NA00001"/>
+                    <param name="father" value="NA00002"/>
+                    <param name="child" value="NA00006"/>
                 </conditional>
-                <param name="mode" value="d" />
+                <param name="mode" value="d"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
                     <has_text_matching expression="X\t2698769\t.\tAAG\tA\t999\t.\t.\tGT:PL:GP\t./."/>
@@ -105,26 +105,25 @@ bcftools plugin @EXECUTABLE@
         </test>
         <test>
             <!-- This is just a test on a random file, should have a real test case -->
-            <param name="input_file" ftype="vcf" value="convert.vcf" />
+            <param name="input_file" ftype="vcf" value="convert.vcf"/>
             <section name="sec_plugin">
                 <conditional name="trios">
-                    <param name="trios_src" value="trio" />
-                    <param name="mother" value="NA00001" />
-                    <param name="father" value="NA00002" />
-                    <param name="child" value="NA00006" />
+                    <param name="trios_src" value="trio"/>
+                    <param name="mother" value="NA00001"/>
+                    <param name="father" value="NA00002"/>
+                    <param name="child" value="NA00006"/>
                 </conditional>
-                <param name="mode" value="e" />
+                <param name="mode" value="e"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <not_has_text text="2698758" />
-                    <has_text text="2698769" />
+                    <not_has_text text="2698758"/>
+                    <has_text text="2698769"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 =====================================
  bcftools @EXECUTABLE@ plugin
@@ -172,5 +171,5 @@ where 0 is used as a placeholder for the paternal_id/maternal_id values in the r
 @EXPRESSIONS_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

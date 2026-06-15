@@ -17,9 +17,9 @@ python '$__tool_directory__/add_input_name_as_column.py'
 $prepend 
     ]]></command>
     <inputs>
-        <param format="txt" name="input" type="data" label="to Dataset" help="Dataset missing? See TIP below" />
+        <param format="txt" name="input" type="data" label="to Dataset" help="Dataset missing? See TIP below"/>
         <conditional name="header">
-            <param name="contains_header" type="select" label="input contains a header line?" >
+            <param name="contains_header" type="select" label="input contains a header line?">
                 <option value="yes" selected="true">Yes</option>
                 <option value="no">No</option>
             </param>
@@ -30,26 +30,26 @@ $prepend
             </when>
             <when value="no"/>
         </conditional>
-        <param name="prepend" type="boolean" truevalue="--prepend" falsevalue="" checked="false" label="Prepend the colum" />
+        <param name="prepend" type="boolean" truevalue="--prepend" falsevalue="" checked="false" label="Prepend the colum"/>
     </inputs>
     <outputs>
-        <data name="output" format="tabular" />
+        <data name="output" format="tabular"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="signature.tab" ftype="tabular" />
+            <param name="input" value="signature.tab" ftype="tabular"/>
             <conditional name="header">
-                <param name="contains_header" value="yes" />
-                <param name="colname" value="sample" />
+                <param name="contains_header" value="yes"/>
+                <param name="colname" value="sample"/>
             </conditional>
             <output name="output" file="signature_with_header.tab" ftype="tabular"/>
         </test>
         <test>
-            <param name="input" value="signature.tab" ftype="tabular" />
+            <param name="input" value="signature.tab" ftype="tabular"/>
             <conditional name="header">
-                <param name="contains_header" value="no" />
+                <param name="contains_header" value="no"/>
             </conditional>
-            <param name="prepend" value="true" />
+            <param name="prepend" value="true"/>
             <output name="output" file="signature_without_header.tab" ftype="tabular"/>
         </test>
     </tests>

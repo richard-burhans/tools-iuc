@@ -21,7 +21,7 @@
             <param name="primer_cutoffs" value="test_cutoffs.tsv"/>
             <output name="output">
                 <assert_contents>
-                    <has_line line=">F_auto"/>
+                    <has_line line="&gt;F_auto"/>
                     <has_line line="CCTACGGGDGGCWGCAGT"/>
                     <has_n_lines n="4"/>
                 </assert_contents>

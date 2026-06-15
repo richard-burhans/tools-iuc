@@ -51,11 +51,11 @@ echo 'make.sra(
         <param name="oligos" type="data" format="mothur.oligos" label="oligos - provide an oligos file to parse your sff or fastq file by. It is required and must contain barcodes and primers"/>
         <param name="mimark" type="data" format="txt" label="mimarks file - you can create the template for this file using the get.mimarkspackage command"/>
         <param name="fastq" type="data" optional="true" format="fastq" label="fastq - provide the original fastq file"/>
-        <param name="bdiffs" type="integer" value="0" min="0" label="bdiffs - number of differences to allow in the barcode (must be > 0; default 0)"/>
-        <param name="pdiffs" type="integer" value="0" min="0" label="pdiffs - number of differences to allow in the primer (must be > 0; default 0)"/>
-        <param name="tdiffs" type="integer" value="0" min="0" label="tdiffs - total number of differences to allow in primer and barcode (must be > 0; default 0)"/>
-        <param name="ldiffs" type="integer" value="0" min="0" label="ldiffs - total number of differences to allow in linker sequence (must be > 0; default 0)"/>
-        <param name="sdiffs" type="integer" value="0" min="0" label="sdiffs - total number of differences to allow in spacer sequence (must be > 0; default 0)"/>
+        <param name="bdiffs" type="integer" value="0" min="0" label="bdiffs - number of differences to allow in the barcode (must be &gt; 0; default 0)"/>
+        <param name="pdiffs" type="integer" value="0" min="0" label="pdiffs - number of differences to allow in the primer (must be &gt; 0; default 0)"/>
+        <param name="tdiffs" type="integer" value="0" min="0" label="tdiffs - total number of differences to allow in primer and barcode (must be &gt; 0; default 0)"/>
+        <param name="ldiffs" type="integer" value="0" min="0" label="ldiffs - total number of differences to allow in linker sequence (must be &gt; 0; default 0)"/>
+        <param name="sdiffs" type="integer" value="0" min="0" label="sdiffs - total number of differences to allow in spacer sequence (must be &gt; 0; default 0)"/>
         <param name="checkorient" type="boolean" truevalue="true" falsevalue="false" checked="false" label="checkorient - will check for the reverse compliment of the barcode or primer in the sequence. The default is false."/>
         <param name="orientation" type="select" label="orientation - specify the sequence orientation">
             <option value="forward" selected="true">forward</option>
@@ -174,7 +174,8 @@ echo 'make.sra(
         <data name="submission_xml" format="xml" from_work_dir="submission.xml" label="${tool.name} on ${on_string}: submission.xml"/>
     </outputs>
     <tests>
-        <test><!-- test with defauts -->
+        <test>
+            <!-- test with defauts -->
             <param name="project" value="makesra.project" ftype="tabular"/>
             <param name="sff" value="Fasting_Example1.sff" ftype="sff"/>
             <param name="oligos" value="GQY1XT001.oligos" ftype="mothur.oligos"/>

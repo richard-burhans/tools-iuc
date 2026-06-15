@@ -42,19 +42,19 @@ input.bam
     <tests>
         <test expect_num_outputs="1">
             <param name="input_bam" ftype="unsorted.bam" value="sample.bam"/>
-            <param name="output_format" value="fastq.gz" />
+            <param name="output_format" value="fastq.gz"/>
             <output name="output_fastq_gz" decompress="true">
                 <assert_contents>
-                    <has_text text="AATGCCTTATTAAGTTAAGAAATGGTTTTTTTTAAACTTACAGATGGAA" />
+                    <has_text text="AATGCCTTATTAAGTTAAGAAATGGTTTTTTTTAAACTTACAGATGGAA"/>
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1" >
+        <test expect_num_outputs="1">
             <param name="input_bam" ftype="bam" value="sample.bam"/>
-            <param name="output_format" value="fasta.gz" />
+            <param name="output_format" value="fasta.gz"/>
             <output name="output_fasta_gz" decompress="true">
                 <assert_contents>
-                    <has_text text="AATGCCTTATTAAGTTAAGAAATGGTTTTTTTTAAACTTACAGATGGAA" />
+                    <has_text text="AATGCCTTATTAAGTTAAGAAATGGTTTTTTTTAAACTTACAGATGGAA"/>
                 </assert_contents>
             </output>
         </test>
@@ -62,8 +62,8 @@ input.bam
     <help><![CDATA[
 Convert a PacBio BAM file to Fastq or Fasta file.
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{githubpbtk,
                 author = {},
                 year = {2024},
@@ -73,5 +73,5 @@ Convert a PacBio BAM file to Fastq or Fasta file.
                 url = {https://github.com/PacificBiosciences/pbtk},
                 }
             </citation>
-        </citations>
- </tool>
+    </citations>
+</tool>

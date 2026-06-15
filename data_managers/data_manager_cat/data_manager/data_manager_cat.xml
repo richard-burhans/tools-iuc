@@ -20,12 +20,9 @@ python '${__tool_directory__}/data_manager_cat.py'
                 <option value="build">build</option>
             </param>
             <when value="download">
-                <param name="db_url" type="text" label="DB URL at https://tbb.bio.uu.nl/bastiaan/CAT_prepare/"
-                     help="example: https://tbb.bio.uu.nl/bastiaan/CAT_prepare/CAT_prepare_20190719.tar.gz">
-                </param>
+                <param name="db_url" type="text" label="DB URL at https://tbb.bio.uu.nl/bastiaan/CAT_prepare/" help="example: https://tbb.bio.uu.nl/bastiaan/CAT_prepare/CAT_prepare_20190719.tar.gz"/>
             </when>
-            <when value="build">
-            </when>
+            <when value="build"/>
         </conditional>
     </inputs>
     <outputs>
@@ -39,7 +36,7 @@ python '${__tool_directory__}/data_manager_cat.py'
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="CAT_prepare_test/taxonomy" />
+                    <has_text text="CAT_prepare_test/taxonomy"/>
                 </assert_contents>
             </output>
         </test>

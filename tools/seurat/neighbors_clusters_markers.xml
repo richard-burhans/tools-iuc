@@ -301,7 +301,7 @@ seurat_obj<-FindConservedMarkers(
                                 <when value="FALSE">
                                     <param name="return_neighbor" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Return result as neighbor object" help="(return.neighbor)"/>
                                 </when>
-                                <when value="TRUE"></when>
+                                <when value="TRUE"/>
                             </conditional>
                         </when>
                         <when value="TRUE">
@@ -358,12 +358,9 @@ seurat_obj<-FindConservedMarkers(
                             <option value="igraph">igraph</option>
                         </param>
                     </when>
-                    <when value="1">
-                    </when>
-                    <when value="2">
-                    </when>
-                    <when value="3">
-                    </when>
+                    <when value="1"/>
+                    <when value="2"/>
+                    <when value="3"/>
                 </conditional>
                 <param name="n_start" type="integer" value="10" label="Number of random starts" help="(n.start)"/>
                 <param name="n_iter" type="integer" value="10" label="Maximal number of iterations per random start" help="(n.iter)"/>
@@ -386,8 +383,7 @@ seurat_obj<-FindConservedMarkers(
                     <when value="true">
                         <expand macro="set_topN"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <section name="adv" title="Advanced Options">
                     <param argument="base" type="integer" value="2" label="Base with respect to which logarithms are computed"/>
@@ -404,8 +400,7 @@ seurat_obj<-FindConservedMarkers(
                         <param name="cells_1" type="data" format="txt,tabular" label="List of cell names for group 1" help="text file with one cell on each line (cells.1)"/>
                         <param name="cells_2" type="data" format="txt,tabular" label="List of cell names for group 2" help="text file with one cell on each line (cells.2)"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <conditional name="regroup">
                     <param name="regroup" type="select" label="Change cell identities before finding markers">
@@ -416,8 +411,7 @@ seurat_obj<-FindConservedMarkers(
                         <param name="group_by" type="text" value="group" label="Name of identity class to regroup cells into" help="a group from the cell metadata to find markers for (group.by)"/>
                         <param name="subset_ident" type="text" optional="true" value="" label="Identity class to subset before regrouping" help="only include cells from this cluster/identity in each new group (subset.ident)"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <conditional name="ident">
                     <param name="ident" type="select" label="Compare markers between clusters of cells">
@@ -430,8 +424,7 @@ seurat_obj<-FindConservedMarkers(
                             <expand macro="valid_list"/>
                         </param>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <expand macro="markers_inputs"/>
                 <section name="adv" title="Advanced Options">
@@ -660,7 +653,7 @@ seurat_obj<-FindConservedMarkers(
                 </assert_contents>
             </output>
             <output name="rds_out" ftype="rds">
-            <assert_contents>
+                <assert_contents>
                     <has_size size="23600" delta="2360"/>
                 </assert_contents>
             </output>

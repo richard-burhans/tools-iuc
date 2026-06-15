@@ -36,22 +36,19 @@
     ]]>
     </command>
     <inputs>
-        <param name="biobox_file" type="data" format="tabular" label="Input biobox file"
-            help="This file can be generated with the utility tool from CAMI AMBER named convert to biobox"/>
+        <param name="biobox_file" type="data" format="tabular" label="Input biobox file" help="This file can be generated with the utility tool from CAMI AMBER named convert to biobox"/>
         <conditional name="input">
             <param name="is_select" type="select" label="Select typ of input">
                 <option value="contig">ContigID2TaxID</option>
                 <option value="bin">BinID2TaxID</option>
             </param>
             <when value="contig">
-                <param argument="--contig2taxid" type="data" format="tabular" label="Input ConitgID2TaxID file"
-                    help="This input comes from Kraken2"/>
+                <param argument="--contig2taxid" type="data" format="tabular" label="Input ConitgID2TaxID file" help="This input comes from Kraken2"/>
                 <param argument="--key_col" type="data_column" data_ref="contig2taxid" label="Select the column where the ContigID are stated"/>
                 <param argument="--taxid_col" type="data_column" data_ref="contig2taxid" label="Select the column where the TaxID are stated"/>
             </when>
             <when value="bin">
-                <param argument="--binid2taxid" type="data" format="tabular" label="Input BinID2TaxID file"
-                    help="This input comes from Kraken2"/>
+                <param argument="--binid2taxid" type="data" format="tabular" label="Input BinID2TaxID file" help="This input comes from Kraken2"/>
                 <param argument="--key_col" type="data_column" data_ref="binid2taxid" label="Select the column where the BinID are stated"/>
                 <param argument="--taxid_col" type="data_column" data_ref="binid2taxid" label="Select the column where the TaxID are stated"/>
             </when>

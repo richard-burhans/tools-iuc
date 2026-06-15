@@ -14,7 +14,6 @@
         &&
         mv *_table.tsv '$output'
     ]]></command>
-    
     <inputs>
         <param name="input_physeq" type="data" format="rds" label="Phyloseq object"/>
         <param name="tax_rank" type="text" label="Taxonomic rank for agglomeration" help="Specify the rank to merge OTUs at"/>

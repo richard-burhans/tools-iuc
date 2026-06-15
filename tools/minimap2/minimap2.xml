@@ -9,8 +9,8 @@
     </xrefs>
     <expand macro="requirements"/>
     <stdio>
-        <exit_code range="1:" level="fatal" />
-        <regex match="\[ERROR\]" source="stderr" level="fatal" />
+        <exit_code range="1:" level="fatal"/>
+        <regex match="\[ERROR\]" source="stderr" level="fatal"/>
     </stdio>
     <version_command>minimap2 --version</version_command>
     <command>
@@ -241,14 +241,14 @@
             <when value="cached">
                 <param name="ref_file" type="select" label="Using reference genome" help="Select genome from the list">
                     <options from_data_table="all_fasta">
-                        <filter type="sort_by" column="2" />
-                        <validator type="no_options" message="No reference genomes are available" />
+                        <filter type="sort_by" column="2"/>
+                        <validator type="no_options" message="No reference genomes are available"/>
                     </options>
                     <validator type="no_options" message="A built-in reference genome is not available for the build associated with the selected input file"/>
                 </param>
             </when>
             <when value="history">
-                <param name="ref_file" type="data" format="fasta,fastq" label="Use the following dataset as the reference sequence" help="You can upload a FASTA or FASTQ sequence to the history and use it as reference" />
+                <param name="ref_file" type="data" format="fasta,fastq" label="Use the following dataset as the reference sequence" help="You can upload a FASTA or FASTQ sequence to the history and use it as reference"/>
             </when>
         </conditional>
         <!-- start unchanged copy from bwa-mem -->
@@ -262,9 +262,7 @@
             (see https://github.com/lh3/minimap2/issues/190) -->
             <when value="single">
                 <param name="fastq_input1" type="data" format="fastqsanger,fastqsanger.gz,fasta" label="Select fastq dataset" help="Specify dataset with single reads"/>
-                <param name="analysis_type_selector" type="select" optional="true"
-                label="Select a profile of preset options"
-                help="Each profile comes with the preconfigured settings mentioned in parentheses. You can customize each profile further in the indexing, mapping and alignment options sections below. If you do not select a profile here, the tool will use the per-parameter defaults listed in the below sections unless you customize them." >
+                <param name="analysis_type_selector" type="select" optional="true" label="Select a profile of preset options" help="Each profile comes with the preconfigured settings mentioned in parentheses. You can customize each profile further in the indexing, mapping and alignment options sections below. If you do not select a profile here, the tool will use the per-parameter defaults listed in the below sections unless you customize them.">
                     <option value="map-pb">Legacy PacBio CLR/Oxford Nanopore read to reference mapping (-Hk19) (map-pb)</option>
                     <option value="map-ont">Oxford Nanopore read to reference mapping using standard minimizers (-k15) (map-ont)</option>
                     <option value="lr:hq">Accurate long reads (~99% Nanopore or PacBio HiFi) vs reference (-xlr:hq -A1 -B4 -O6,26 -E2,1) (lr:hq)</option>
@@ -284,20 +282,18 @@
             </when>
             <when value="paired_collection">
                 <param name="fastq_input1" format="fastqsanger,fastqsanger.gz,fasta" type="data_collection" collection_type="paired" label="Select a paired collection" help="See help section for an explanation of dataset collections"/>
-                <expand macro="pe_anaylsis_fixed_selector" />
+                <expand macro="pe_anaylsis_fixed_selector"/>
             </when>
         </conditional>
         <section name="indexing_options" title="Indexing options">
             <param argument="-H" type="boolean" optional="true" truevalue="-H" falsevalue="" label="Use homopolymer-compressed k-mer ?"/>
-            <param argument="-k" type="integer" min="4" max="28" optional="true"  label="K-mer size" help=""/>
-            <param argument="-w" type="integer" min="1" optional="true"  label="Minimizer window size" help=""/>
-            <param argument="-I" type="integer" min="1" optional="true"  label="Split index for every N input gigabases" help=""/>
+            <param argument="-k" type="integer" min="4" max="28" optional="true" label="K-mer size" help=""/>
+            <param argument="-w" type="integer" min="1" optional="true" label="Minimizer window size" help=""/>
+            <param argument="-I" type="integer" min="1" optional="true" label="Split index for every N input gigabases" help=""/>
         </section>
         <section name="mapping_options" title="Mapping options" help="Sets -f, -g, -F, -r, -n, -m, -X, -p, -N, --min-occ-floor, --q-occ-frac, --rmq-inner, --pairing and related options." expanded="False">
             <param argument="-N" type="integer" min="0" optional="true" label="Retain at most INT secondary alignments" help="default=5"/>
-            <param argument="-F" type="integer" min="0" value="" optional="true"
-            label="Max fragment length for PE alignment"
-            help="The maximum apparent fragment length up to which paired-end reads are aligned together; at higher fragment lengths the mates will be aligned independent of each other; effective only for paired-end data and when spliced alignment mode is turned off; default=800" />
+            <param argument="-F" type="integer" min="0" value="" optional="true" label="Max fragment length for PE alignment" help="The maximum apparent fragment length up to which paired-end reads are aligned together; at higher fragment lengths the mates will be aligned independent of each other; effective only for paired-end data and when spliced alignment mode is turned off; default=800"/>
             <param argument="-f" type="float" value="" optional="true" label="Filter out top FLOAT fraction of repetitive minimizers" help="default=0.0002"/>
             <conditional name="kmer_ocurrence_interval">
                 <param name="interval" argument="-U" type="select" label="Specify an interval of k-mer occurrences" help="Allows to specify an interval of k-mer occurrences with -U. For repeat-rich genomes, the automatic k-mer occurrence threshold determined by -f may be too large and makes alignment impractically slow. The new option protects against such cases. Enabled for asm* and map-hifi.">
@@ -308,33 +304,23 @@
                     <param name="lower_limit" type="integer" min="0" max="10000" value="" label="K-mer ocurrence lower limit"/>
                     <param name="upper_limit" type="integer" min="0" max="10000" value="" label="K-mer ocurrence upper limit"/>
                 </when>
-                <when value="">
-                </when>
+                <when value=""/>
             </conditional>
-            <param argument="--min-occ-floor" type="integer" label="Force minimap2 to always use k-mers occuring this many times or fewer" help="Maximum occurence is the number of repetitive minimizers determined by '-f' or this value, whichever is higher." optional="true" />
-            <param argument="--q-occ-frac" type="float" value="0.01" label="Discard a query minimizer"
-                help="Discard a query minimizer if its occurrence is higher than this fraction of query minimizers and than the reference occurrence threshold. It allows to avoid extremely long mapping time for pathologic reads with highly repeated k-mers not in the reference. Set to 0 to disable the new heuristic." />
-
+            <param argument="--min-occ-floor" type="integer" label="Force minimap2 to always use k-mers occuring this many times or fewer" help="Maximum occurence is the number of repetitive minimizers determined by '-f' or this value, whichever is higher." optional="true"/>
+            <param argument="--q-occ-frac" type="float" value="0.01" label="Discard a query minimizer" help="Discard a query minimizer if its occurrence is higher than this fraction of query minimizers and than the reference occurrence threshold. It allows to avoid extremely long mapping time for pathologic reads with highly repeated k-mers not in the reference. Set to 0 to disable the new heuristic."/>
             <param argument="-g" type="integer" value="" optional="true" label="Stop chain enlongation if there are no minimizers in INT-bp" help="default=5000"/>
-            <param argument="-r" type="text" value="" optional="true" label="Bandwidth used in chaining and DP-based alignment"
-            help="Allows INT or INT,INT for chaining/alignment bandwidth and long-join bandwidth. default=500,20000" >
+            <param argument="-r" type="text" value="" optional="true" label="Bandwidth used in chaining and DP-based alignment" help="Allows INT or INT,INT for chaining/alignment bandwidth and long-join bandwidth. default=500,20000">
                 <validator type="regex" message="Enter INT or INT,INT values.">^\s*(\d+(,\d+)?\s*)?$</validator>
             </param>
             <param argument="-n" type="integer" value="" optional="true" label="Minimal number of minimizers on a chain" help="default=3"/>
             <param argument="-m" type="integer" value="" optional="true" label="Minimal chaining score (matching bases minus log gap penalty)" help="default=40"/>
-            <param argument="--max-chain-skip" type="integer" value="" optional="true"
-            label="Maximum seed skips during chaining"
-            help="A heuristics that stops chaining early. Minimap2 uses dynamic programming for chaining. The time complexity is quadratic in the number of seeds. This option makes minimap2 exit the inner loop if it repeatedly sees seeds already on chains. Set to a large number to switch off this heurstics effectively. default=25" />
-            <param argument="--max-chain-iter" type="integer" value="" optional="true"
-            label="Maximum number of partial chains checked during chaining"
-            help="A heuristics to avoid quadratic time complexity in the worst case. default=5000" />
+            <param argument="--max-chain-skip" type="integer" value="" optional="true" label="Maximum seed skips during chaining" help="A heuristics that stops chaining early. Minimap2 uses dynamic programming for chaining. The time complexity is quadratic in the number of seeds. This option makes minimap2 exit the inner loop if it repeatedly sees seeds already on chains. Set to a large number to switch off this heurstics effectively. default=25"/>
+            <param argument="--max-chain-iter" type="integer" value="" optional="true" label="Maximum number of partial chains checked during chaining" help="A heuristics to avoid quadratic time complexity in the worst case. default=5000"/>
             <param argument="-X" type="boolean" truevalue="-X" falsevalue="" optional="true" label="Skip self and dual mappings (for the all-vs-all mode)"/>
             <param argument="-p" type="float" value="" max="1" optional="true" label="Min secondary-to-primary score ratio" help="default=0.8"/>
             <param argument="--mask-len" type="integer" min="0" max="10000" value="" optional="true" label="Fine control the removal of redundant hits" help="Keep an alignment if dropping it leaves an unaligned region on query longer than INT"/>
-            <param argument="--rmq-inner" type="integer" min="0" optional="true" value="1000"
-            label="Run full DP for anchors within this distance" help="Applies the minigraph RMQ algorithm to anchors within NUM bases." />
-            <param argument="--no-hash-name" type="boolean" truevalue="--no-hash-name" falsevalue="" optional="true"
-            label="Ignore sequence names when randomising equally best hits?" help="Ensures identical sequences get identical alignments regardless of their names." />
+            <param argument="--rmq-inner" type="integer" min="0" optional="true" value="1000" label="Run full DP for anchors within this distance" help="Applies the minigraph RMQ algorithm to anchors within NUM bases."/>
+            <param argument="--no-hash-name" type="boolean" truevalue="--no-hash-name" falsevalue="" optional="true" label="Ignore sequence names when randomising equally best hits?" help="Ensures identical sequences get identical alignments regardless of their names."/>
             <param argument="--pairing" type="select" optional="true" label="Paired-end alignment strategy" help="Controls how paired-end reads are paired when using presets that support short reads.">
                 <option value="">Use minimap2 default (strong)</option>
                 <option value="strong">strong</option>
@@ -344,106 +330,62 @@
         </section>
         <section name="alignment_options" title="Alignment options" help="Sets scoring parameters (-A, -B, -b, -O, -E, -z, -s) and spliced alignment options." expanded="False">
             <conditional name="splicing">
-                <param name="splice_mode" type="select"
-                label="Customize spliced alignment mode?"
-                help="Warning: Minimap2 cannot currently perform spliced alignments of read pairs. If you enable spliced alignment for paired-end data it will be treated as single-end!" >
+                <param name="splice_mode" type="select" label="Customize spliced alignment mode?" help="Warning: Minimap2 cannot currently perform spliced alignments of read pairs. If you enable spliced alignment for paired-end data it will be treated as single-end!">
                     <option value="preset">No, use profile setting or leave turned off</option>
                     <option value="">Disable spliced alignments (overwrite profile setting if necessary)</option>
                     <option value="--splice">Yes, enable spliced alignments (--splice)</option>
                 </param>
-                <when value="preset" />
-                <when value="" />
+                <when value="preset"/>
+                <when value=""/>
                 <when value="--splice">
-                    <param argument="-G" type="integer" value="" optional="true"
-                    label="Maximum allowed gap on the reference"
-                    help="Higher values cause slower spliced alignment. When in use, this option causes -r (in mapping options) to be set to the same value. default=200k" />
-                    <param argument="-C" type="integer" min="0" optional="true"
-                    label="Cost of non-canonical (non-GT-AG) splicing"
-                    help="default=0" />
-                    <param name="splice_model" argument="-J" type="select" optional="true"
-                    label="Splice scoring model">
+                    <param argument="-G" type="integer" value="" optional="true" label="Maximum allowed gap on the reference" help="Higher values cause slower spliced alignment. When in use, this option causes -r (in mapping options) to be set to the same value. default=200k"/>
+                    <param argument="-C" type="integer" min="0" optional="true" label="Cost of non-canonical (non-GT-AG) splicing" help="default=0"/>
+                    <param name="splice_model" argument="-J" type="select" optional="true" label="Splice scoring model">
                         <option value="">Use minimap2 default (1)</option>
                         <option value="0">0 - original minimap2 splice model (penalise non-GT-AG)</option>
                         <option value="1">1 - miniprot splice model (consider non-GT-AG)</option>
                     </param>
-                    <param argument="-u" type="select" optional="true"
-                    label="How to find GT-AG"
-                    help="default=n (don't match GT-AG)">
+                    <param argument="-u" type="select" optional="true" label="How to find GT-AG" help="default=n (don't match GT-AG)">
                         <option value="n">Don't match GT-AG (-un)</option>
                         <option value="f">Transcript strand (-uf)</option>
                         <option value="b">Both strands (-ub)</option>
                     </param>
-                    <param argument="--splice-flank" type="boolean" truevalue="--splice-flank=yes" falsevalue="--splice-flank=no" checked="true"
-                    label="Assume conserved flanking region of splice sites?"
-                    help="Assume the next base to a GT donor site tends to be A/G (91% in human and 92% in mouse) and the preceding base to a AG acceptor tends to be C/T. This trend is evolutionarily conserved, all the way to S. cerevisiae (PMID:18688272). Specifying this option generally leads to higher junction accuracy by several percents, so it is applied by default with --splice. However, the SIRV control does not honor this trend (only ~60%) so this option reduces accuracy. If you are benchmarking minimap2 on SIRV data, please disable this option." />
+                    <param argument="--splice-flank" type="boolean" truevalue="--splice-flank=yes" falsevalue="--splice-flank=no" checked="true" label="Assume conserved flanking region of splice sites?" help="Assume the next base to a GT donor site tends to be A/G (91% in human and 92% in mouse) and the preceding base to a AG acceptor tends to be C/T. This trend is evolutionarily conserved, all the way to S. cerevisiae (PMID:18688272). Specifying this option generally leads to higher junction accuracy by several percents, so it is applied by default with --splice. However, the SIRV control does not honor this trend (only ~60%) so this option reduces accuracy. If you are benchmarking minimap2 on SIRV data, please disable this option."/>
                     <conditional name="splice_site_annotations">
-                        <param name="use_annotations" type="select"
-                        label="Use previously annotated splice sites to guide the alignment?"
-                        help="">
+                        <param name="use_annotations" type="select" label="Use previously annotated splice sites to guide the alignment?" help="">
                             <option value="no">No, perform unbiased alignment</option>
                             <option value="yes">Yes, favor annotated splice sites</option>
                         </param>
-                        <when value="no" />
+                        <when value="no"/>
                         <when value="yes">
-                            <param argument="--junc-bed" type="data" format="bed"
-                            label="Dataset with annotated genes or introns"
-                            help="Gene annotations should be provided in BED12 (aka 12-column BED), intron positions in 5-column BED format." />
-                            <param argument="--junc-bonus" type="integer" min="1" value="1"
-                            label="Annotated splice site bonus"
-                            help="Score bonus for a splice donor or acceptor found in annotation." />
+                            <param argument="--junc-bed" type="data" format="bed" label="Dataset with annotated genes or introns" help="Gene annotations should be provided in BED12 (aka 12-column BED), intron positions in 5-column BED format."/>
+                            <param argument="--junc-bonus" type="integer" min="1" value="1" label="Annotated splice site bonus" help="Score bonus for a splice donor or acceptor found in annotation."/>
                         </when>
                     </conditional>
-                    <param name="junction_file" argument="-j" type="data" format="bed" optional="true"
-                    label="Junctions to extend short RNA alignments (-j)" help="BED12 or 5-column BED describing introns used to extend alignments towards read ends." />
-                    <param name="pass1_junctions" argument="--pass1" type="data" format="bed" optional="true"
-                    label="Junctions discovered in a first pass alignment (--pass1)"
-                    help="Typically produced by minimap2 --write-junc; entries with scores &lt;5 are ignored automatically." />
-                    <param name="spsc_table" argument="--spsc" type="data" format="tabular,bed" optional="true"
-                    label="Splice score table (--spsc)" help="Tabular file with contig, offset, strand (+/-), D/A, score columns to prioritise splice junctions." />
-                    <param argument="--spsc0" type="integer" min="0" optional="true" value="5"
-                    label="Penalty for junctions not listed in splice score table (--spsc0)" />
-                    <param argument="--spsc-scale" type="float" optional="true" value="0.7"
-                    label="Scale splice scores (--spsc-scale)" help="Multiply scores from --spsc by FLOAT." />
+                    <param name="junction_file" argument="-j" type="data" format="bed" optional="true" label="Junctions to extend short RNA alignments (-j)" help="BED12 or 5-column BED describing introns used to extend alignments towards read ends."/>
+                    <param name="pass1_junctions" argument="--pass1" type="data" format="bed" optional="true" label="Junctions discovered in a first pass alignment (--pass1)" help="Typically produced by minimap2 --write-junc; entries with scores &lt;5 are ignored automatically."/>
+                    <param name="spsc_table" argument="--spsc" type="data" format="tabular,bed" optional="true" label="Splice score table (--spsc)" help="Tabular file with contig, offset, strand (+/-), D/A, score columns to prioritise splice junctions."/>
+                    <param argument="--spsc0" type="integer" min="0" optional="true" value="5" label="Penalty for junctions not listed in splice score table (--spsc0)"/>
+                    <param argument="--spsc-scale" type="float" optional="true" value="0.7" label="Scale splice scores (--spsc-scale)" help="Multiply scores from --spsc by FLOAT."/>
                 </when>
             </conditional>
-            <param argument="-A" type="integer" min="0" optional="true"
-            label="Score for a sequence match" help="default=2"/>
-            <param argument="-B" type="integer" min="0" optional="true"
-            label="Penalty for a mismatch" help="-B; default=4" />
-            <param argument="-b" type="integer" min="0" optional="true"
-            label="Penalty for a transition mismatch" help="If unset, transitions use the mismatch penalty set by -B." />
-            <param argument="-O" type="integer" min="1" optional="true"
-            label="Gap open penalties for deletions" help="-O; default=4"/>
-            <param name="O2" type="integer" min="0" optional="true"
-            label="Gap open penalties for insertions" help="-O; default=24"/>
-            <param argument="-E" type="integer" min="1" optional="true"
-            label="Gap extension penalties; a gap of size k cost &#39;-O + -E*k&#39;. If two numbers are specified, the first is the penalty of extending a deletion and the second for extending an insertion"
-            help="-E; default=2"/>
-            <param name="E2" type="integer" min="0" optional="true"
-            label="Gap extension penalty for extending an insertion; if left empty uses the value specified for Gap extension penalties above"
-            help="-E; default=1"/>
-            <param argument="-z" type="integer" min="0" optional="true"
-            label="Z-drop threshold for truncating an alignment"
-            help="Increase to improve the contiguity of alignments at the cost of poorer alignments in the middle. default=400" />
-            <param name="z2" type="integer" min="0" optional="true"
-            label="Z-drop threshold for reverse-complementing the query"
-            help="Decrease to find small inversions at the cost of performance and false positives. default=200" />
-            <param argument="-s" type="integer" min="0" optional="true"
-            label="Minimal peak DP alignment score" help="default=40"/>
-            <param argument="--end-bonus" type="integer" min="0" optional="true" value="0"
-            label="Score bonus when alignment extends to the end of the read"/>
-            <param argument="--score-N" type="integer" min="0" optional="true" value="1"
-            label="Penalty for mismatches involving ambiguous bases (N)"/>
-            <param name="no_end_flt" type="boolean" falsevalue="--no-end-flt" truevalue="" checked="true"
-            label="Filter seeds towards the ends of chains before performing base-level alignment?" />
-            <param argument="--jump-min-match" type="integer" min="0" optional="true" value="3"
-            label="Minimum matching length to create a splice jump"/>
-            <param argument="--end-seed-pen" type="integer" min="0" optional="true" value="6"
-            label="Penalty threshold for dropping terminal anchors"/>
-            <param argument="--cap-sw-mem" type="text" optional="true" value="100m"
-            label="Skip alignment if the DP matrix exceeds this size" help="Provide NUM optionally suffixed by k/m/g."/>
-            <param argument="--cap-kalloc" type="text" optional="true" value="500m"
-            label="Free thread-local kalloc reservoir above this size" help="Provide NUM optionally suffixed by k/m/g."/>
+            <param argument="-A" type="integer" min="0" optional="true" label="Score for a sequence match" help="default=2"/>
+            <param argument="-B" type="integer" min="0" optional="true" label="Penalty for a mismatch" help="-B; default=4"/>
+            <param argument="-b" type="integer" min="0" optional="true" label="Penalty for a transition mismatch" help="If unset, transitions use the mismatch penalty set by -B."/>
+            <param argument="-O" type="integer" min="1" optional="true" label="Gap open penalties for deletions" help="-O; default=4"/>
+            <param name="O2" type="integer" min="0" optional="true" label="Gap open penalties for insertions" help="-O; default=24"/>
+            <param argument="-E" type="integer" min="1" optional="true" label="Gap extension penalties; a gap of size k cost '-O + -E*k'. If two numbers are specified, the first is the penalty of extending a deletion and the second for extending an insertion" help="-E; default=2"/>
+            <param name="E2" type="integer" min="0" optional="true" label="Gap extension penalty for extending an insertion; if left empty uses the value specified for Gap extension penalties above" help="-E; default=1"/>
+            <param argument="-z" type="integer" min="0" optional="true" label="Z-drop threshold for truncating an alignment" help="Increase to improve the contiguity of alignments at the cost of poorer alignments in the middle. default=400"/>
+            <param name="z2" type="integer" min="0" optional="true" label="Z-drop threshold for reverse-complementing the query" help="Decrease to find small inversions at the cost of performance and false positives. default=200"/>
+            <param argument="-s" type="integer" min="0" optional="true" label="Minimal peak DP alignment score" help="default=40"/>
+            <param argument="--end-bonus" type="integer" min="0" optional="true" value="0" label="Score bonus when alignment extends to the end of the read"/>
+            <param argument="--score-N" type="integer" min="0" optional="true" value="1" label="Penalty for mismatches involving ambiguous bases (N)"/>
+            <param name="no_end_flt" type="boolean" falsevalue="--no-end-flt" truevalue="" checked="true" label="Filter seeds towards the ends of chains before performing base-level alignment?"/>
+            <param argument="--jump-min-match" type="integer" min="0" optional="true" value="3" label="Minimum matching length to create a splice jump"/>
+            <param argument="--end-seed-pen" type="integer" min="0" optional="true" value="6" label="Penalty threshold for dropping terminal anchors"/>
+            <param argument="--cap-sw-mem" type="text" optional="true" value="100m" label="Skip alignment if the DP matrix exceeds this size" help="Provide NUM optionally suffixed by k/m/g."/>
+            <param argument="--cap-kalloc" type="text" optional="true" value="500m" label="Free thread-local kalloc reservoir above this size" help="Provide NUM optionally suffixed by k/m/g."/>
         </section>
         <section name="io_options" title="Set advanced output options" help="Sets -Q, -L, -R, -c, --cs, -K and other reporting toggles." expanded="False">
             <param name="output_format" type="select" label="Select an output format">
@@ -452,16 +394,14 @@
                 <option value="paf">PAF</option>
             </param>
             <param argument="-Q" type="boolean" truevalue="-Q" falsevalue="" label="Don't output base quality"/>
-            <param argument="-L" type="boolean" truevalue="-L" falsevalue="" label="Write CIGAR with >65535 ops to the CG tag" help="Useful for very long reads in SAM/BAM format"/>
+            <param argument="-L" type="boolean" truevalue="-L" falsevalue="" label="Write CIGAR with &gt;65535 ops to the CG tag" help="Useful for very long reads in SAM/BAM format"/>
             <param argument="-K" type="integer" optional="true" label="Minibatch size for mapping (in megabyte)" help="default=500M"/>
             <param argument="--cs" type="select" optional="true" label="Output cs tag?" help="The cs tag is a more compact standalone representation of the MD tag, see help below.">
                 <option value="none">no</option>
                 <option value="short">short</option>
                 <option value="long">long</option>
             </param>
-            <param argument="-c" type="boolean" truevalue="-c" falsevalue="" label="Generate CIGAR"
-                help="In PAF, the CIGAR is written to the ‘cg’ custom tag." />
-
+            <param argument="-c" type="boolean" truevalue="-c" falsevalue="" label="Generate CIGAR" help="In PAF, the CIGAR is written to the ‘cg’ custom tag."/>
             <param argument="--eqx" type="boolean" truevalue="--eqx" falsevalue="" label="Write =/X CIGAR operators"/>
             <param argument="-Y" type="boolean" truevalue="-Y" falsevalue="" label="Use soft clipping for supplementary alignments ?"/>
             <param name="copy_comments" argument="-y" type="boolean" truevalue="-y" falsevalue="" label="Copy FASTA/Q comments to SAM records?"/>
@@ -485,14 +425,14 @@
                     </when>
                     <when value="history">
                         <action type="metadata" name="dbkey">
-                            <option type="from_param" name="reference_source.ref_file" param_attribute="dbkey" />
+                            <option type="from_param" name="reference_source.ref_file" param_attribute="dbkey"/>
                         </action>
                     </when>
                 </conditional>
             </actions>
             <change_format>
-                <when input="io_options.output_format" value="paf" format="paf" />
-                <when input="io_options.output_format" value="CRAM" format="cram" />
+                <when input="io_options.output_format" value="paf" format="paf"/>
+                <when input="io_options.output_format" value="CRAM" format="cram"/>
             </change_format>
         </data>
     </outputs>
@@ -500,7 +440,7 @@
         <test expect_num_outputs="1">
             <!-- test single input -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
@@ -508,12 +448,12 @@
                 <param name="fastq_input1" ftype="fastqsanger" value="bwa-mem-fasta1.fa"/>
                 <param name="analysis_type_selector" value="sr"/>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test cram output -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
@@ -524,46 +464,46 @@
             <section name="io_options">
                 <param name="output_format" value="CRAM"/>
             </section>
-            <output name="alignment_output" ftype="cram" file="minimap2-test1-fasta.cram" compare="sim_size" />
+            <output name="alignment_output" ftype="cram" file="minimap2-test1-fasta.cram" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test paired input -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
                 <param name="fastq_input_selector" value="paired_collection"/>
                 <param name="fastq_input1">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" />
+                        <element name="forward" value="bwa-mem-fastq1.fq"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq"/>
                     </collection>
                 </param>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test1.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test1.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test paired input with one pair compressed -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
                 <param name="fastq_input_selector" value="paired_collection"/>
                 <param name="fastq_input1">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq.gz" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" />
+                        <element name="forward" value="bwa-mem-fastq1.fq.gz"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq"/>
                     </collection>
                 </param>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test1.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test1.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test data table reference -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="cached" />
+                <param name="reference_source_selector" value="cached"/>
                 <param name="ref_file" value="bwa-mem-mt-genome"/>
             </conditional>
             <conditional name="fastq_input">
@@ -571,12 +511,12 @@
                 <param name="fastq_input1" ftype="fastqsanger" value="bwa-mem-fasta1.fa"/>
                 <param name="analysis_type_selector" value="sr"/>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test alignment options -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="cached" />
+                <param name="reference_source_selector" value="cached"/>
                 <param name="ref_file" value="bwa-mem-mt-genome"/>
             </conditional>
             <section name="mapping_options">
@@ -591,55 +531,55 @@
                 <!-- the folowing settings correspond to the defaults for "sr"
                 mode. The purpose is to check that all alignment params get
                 parsed correctly. -->
-                <param name="A" value="2" />
-                <param name="B" value="8" />
-                <param name="O" value="12" />
-                <param name="O2" value="32" />
-                <param name="E" value="2" />
-                <param name="E2" value="1" />
-                <param name="z" value="400" />
-                <param name="s" value="40" />
+                <param name="A" value="2"/>
+                <param name="B" value="8"/>
+                <param name="O" value="12"/>
+                <param name="O2" value="32"/>
+                <param name="E" value="2"/>
+                <param name="E2" value="1"/>
+                <param name="z" value="400"/>
+                <param name="s" value="40"/>
             </section>
             <section name="io_options">
                 <!-- the next setting is a noop for bam output, but tests that
                 a valid command line is formed for the cs option -->
-                <param name="cs" value="none" />
+                <param name="cs" value="none"/>
             </section>
-            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4" />
-        </test>        
+            <output name="alignment_output" ftype="bam" file="minimap2-test1-fasta.bam" lines_diff="4"/>
+        </test>
         <test expect_num_outputs="1">
             <!-- test paf output -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="ref_file" ftype="fastqsanger"  value="mini_reads.fq" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="ref_file" ftype="fastqsanger" value="mini_reads.fq"/>
             </conditional>
             <conditional name="fastq_input">
                 <param name="fastq_input_selector" value="single"/>
-                <param name="fastq_input1" ftype="fastqsanger"  value="mini_reads.fq" />
+                <param name="fastq_input1" ftype="fastqsanger" value="mini_reads.fq"/>
                 <param name="analysis_type_selector" value="ava-ont"/>
             </conditional>
             <section name="io_options">
                 <param name="output_format" value="paf"/>
             </section>
-            <output name="alignment_output" ftype="paf" file="mini_reads.paf" />
+            <output name="alignment_output" ftype="paf" file="mini_reads.paf"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test self-homology mode -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="ref_file" ftype="fasta" value="minimap2-self-homology.fasta" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="ref_file" ftype="fasta" value="minimap2-self-homology.fasta"/>
             </conditional>
             <conditional name="fastq_input">
-                <param name="fastq_input_selector" value="single" />
-                <param name="fastq_input1" ftype="fasta" value="minimap2-self-homology.fasta" />
-                <param name="analysis_type_selector" value="self-homology" />
+                <param name="fastq_input_selector" value="single"/>
+                <param name="fastq_input1" ftype="fasta" value="minimap2-self-homology.fasta"/>
+                <param name="analysis_type_selector" value="self-homology"/>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-self-homology.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-self-homology.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test mask-len option -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
@@ -650,12 +590,12 @@
             <section name="mapping_options">
                 <param name="mask_len" value="100"/>
             </section>
-            <output name="alignment_output" ftype="bam" file="minimap2-test-mask_len.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test-mask_len.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test map-hifi -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="pacbio_hifi_assembly.fa.gz"/>
             </conditional>
             <conditional name="fastq_input">
@@ -663,12 +603,12 @@
                 <param name="fastq_input1" ftype="fastqsanger" value="pacbio_hifi_reads.fasta.gz"/>
                 <param name="analysis_type_selector" value="map-hifi"/>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test_hifi-fasta.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test_hifi-fasta.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test map-hifi uncompressed reference-->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="pacbio_hifi_assembly.fa"/>
             </conditional>
             <conditional name="fastq_input">
@@ -676,12 +616,12 @@
                 <param name="fastq_input1" ftype="fastqsanger" value="pacbio_hifi_reads.fasta.gz"/>
                 <param name="analysis_type_selector" value="map-hifi"/>
             </conditional>
-            <output name="alignment_output" ftype="bam" file="minimap2-test_hifi-2-fasta.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test_hifi-2-fasta.bam" lines_diff="4"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test kmer ocurrence interval option -->
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             </conditional>
             <conditional name="fastq_input">
@@ -696,10 +636,10 @@
                     <param name="upper_limit" value="30"/>
                 </conditional>
             </section>
-            <output name="alignment_output" ftype="bam" file="minimap2-test-kmer_ocurrence.bam" lines_diff="4" />
+            <output name="alignment_output" ftype="bam" file="minimap2-test-kmer_ocurrence.bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 Users' Guide
 ------------
@@ -926,6 +866,6 @@ Limitations
    low-complexity regions where seed positions may be suboptimal. This
    should not be a big concern because even the optimal alignment may be
    wrong in such regions.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

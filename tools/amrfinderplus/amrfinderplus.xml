@@ -95,17 +95,17 @@
                 </param>
                 <when value="nucleotide">
                     <expand macro="nucl_input" option="false"/>
-                    <param argument="--nucleotide_flank5_size" optional="true" type="integer" min="0" value="0" label="5' flanking sequence size added with sequence match"/> 
+                    <param argument="--nucleotide_flank5_size" optional="true" type="integer" min="0" value="0" label="5' flanking sequence size added with sequence match"/>
                 </when>
                 <when value="protein">
                     <expand macro="prot_input" option="false"/>
-                    <expand macro="annotation_type" option="true"/>   
+                    <expand macro="annotation_type" option="true"/>
                 </when>
                 <when value="nucl_prot">
                     <expand macro="nucl_input" option="false"/>
                     <expand macro="prot_input" option="false"/>
                     <expand macro="annotation_type" option="false"/>
-                    <param argument="--nucleotide_flank5_size" optional="true" type="integer" min="0" value="0" label="5' flanking sequence size added with sequence match"/> 
+                    <param argument="--nucleotide_flank5_size" optional="true" type="integer" min="0" value="0" label="5' flanking sequence size added with sequence match"/>
                 </when>
             </conditional>
         </section>
@@ -144,19 +144,16 @@
                         <option value="Vibrio_cholerae">Vibrio_cholerae</option>
                     </param>
                     <param argument="--mutation_all" type="boolean" truevalue="--mutation_all" falsevalue="" label="Report genotypes at all locations screened for point mutations"/>
-                    <param argument="--report_common"  type="boolean" truevalue="--report_common" falsevalue=""
-                    label="Report proteins common to a taxonomy group (need the plus and organism options)"/> 
+                    <param argument="--report_common" type="boolean" truevalue="--report_common" falsevalue="" label="Report proteins common to a taxonomy group (need the plus and organism options)"/>
                 </when>
                 <when value=""/>
             </conditional>
         </section>
-            <!-- OPTIONS -->
+        <!-- OPTIONS -->
         <section name="options" title="Options">
-            <param argument="--ident_min" type="float" min="-1" max="1" value="-1" label="Minimum identity" 
-            help="Minimum proportion of identical amino acids in alignment. -1 means use a curated threshold if it exists and 0.9 otherwise (default: -1)"/>
-            <param argument="--coverage_min" type="float" min="0" max="1" value="0.5" label="Minimum coverage" 
-            help="Minimum coverage of the reference protein (0 to 1, default: 0.5)"/>
-            <param argument="--translation_table"  type="select" optional="true" label="Translation table" help="NCBI genetic code for translated BLAST (default: bacterial table 11)">
+            <param argument="--ident_min" type="float" min="-1" max="1" value="-1" label="Minimum identity" help="Minimum proportion of identical amino acids in alignment. -1 means use a curated threshold if it exists and 0.9 otherwise (default: -1)"/>
+            <param argument="--coverage_min" type="float" min="0" max="1" value="0.5" label="Minimum coverage" help="Minimum coverage of the reference protein (0 to 1, default: 0.5)"/>
+            <param argument="--translation_table" type="select" optional="true" label="Translation table" help="NCBI genetic code for translated BLAST (default: bacterial table 11)">
                 <option value="1">1 Standard code</option>
                 <option value="2">2 Vertebrate mitochondrial</option>
                 <option value="3">3 Yeast mitochondrial</option>
@@ -183,10 +180,10 @@
                 <option value="31">31 Blastocrithidia nuclear</option>
                 <option value="33">33 Cephalodiscidae mitochondrial</option>
             </param>
-            <param argument="--plus"  type="boolean" truevalue="--plus" falsevalue="" label="Add the plus genes to the report"/>
-            <param argument="--report_all_equal" type="boolean" truevalue="--report_all_equal" falsevalue="" label="Report all equally-scoring BLAST and HMM matches"/> 
-            <param argument="--print_node" type="boolean" truevalue="--print_node" falsevalue="" label="print hierarchy node (family)"/> 
-            <param argument="--name" type="text" label="First column name" help="Text to be added as the first column 'name' to all rows of the report"/> 
+            <param argument="--plus" type="boolean" truevalue="--plus" falsevalue="" label="Add the plus genes to the report"/>
+            <param argument="--report_all_equal" type="boolean" truevalue="--report_all_equal" falsevalue="" label="Report all equally-scoring BLAST and HMM matches"/>
+            <param argument="--print_node" type="boolean" truevalue="--print_node" falsevalue="" label="print hierarchy node (family)"/>
+            <param argument="--name" type="text" label="First column name" help="Text to be added as the first column 'name' to all rows of the report"/>
         </section>
     </inputs>
     <outputs>
@@ -200,13 +197,13 @@
         <data name="nucleotide_output" format="fasta" from_work_dir="amrfinderplus_nucleotide_output.fasta" label="${tool.name} on ${on_string}: Nucleotide identified sequences">
             <filter> input_option['input_mode']['input_select'] in ['nucleotide', 'nucl_prot'] </filter>
         </data>
-        <data name="nucleotide_flank5_output" format="fasta" from_work_dir="amrfinderplus_flanking_sequence_output.fasta" 
-        label="${tool.name} on ${on_string}: Nucleotide sequences with 5' flanking regions">
+        <data name="nucleotide_flank5_output" format="fasta" from_work_dir="amrfinderplus_flanking_sequence_output.fasta" label="${tool.name} on ${on_string}: Nucleotide sequences with 5' flanking regions">
             <filter> input_option['input_mode']['input_select'] in ['nucleotide', 'nucl_prot'] and  input_option['input_mode']['nucleotide_flank5_size'] != 0 </filter>
         </data>
     </outputs>
-    <tests>  
-        <test expect_num_outputs="2"> <!-- TEST_1 simple nucleotide input   -->
+    <tests>
+        <test expect_num_outputs="2">
+            <!-- TEST_1 simple nucleotide input   -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -226,12 +223,13 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="142"/>
-                    <has_text text=">contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
+                    <has_text text="&gt;contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
                     <has_text text="TTGTCCAAAGCC"/>
                 </assert_contents>
             </output>
-        </test>    
-        <test expect_num_outputs="3"> <!-- TEST_2 nucleotide input and full options  -->
+        </test>
+        <test expect_num_outputs="3">
+            <!-- TEST_2 nucleotide input and full options  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -250,7 +248,7 @@
             <section name="options">
                 <param name="ident_min" value="0.1"/>
                 <param name="coverage_min" value="0.1"/>
-                <param name="translation_table"  value="11"/>
+                <param name="translation_table" value="11"/>
                 <param name="plus" value="true"/>
                 <param name="report_all_equal" value="true"/>
                 <param name="print_node" value="true"/>
@@ -267,19 +265,20 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="267"/>
-                    <has_text text=">contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
+                    <has_text text="&gt;contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
                     <has_text text="TTGTCCAAAGCC"/>
                 </assert_contents>
             </output>
             <output name="nucleotide_flank5_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="298"/>
-                    <has_text text=">contig_2:54987-57395 strand:- mupB mupirocin-resistant isoleucine--tRNA ligase MupB"/>
+                    <has_text text="&gt;contig_2:54987-57395 strand:- mupB mupirocin-resistant isoleucine--tRNA ligase MupB"/>
                     <has_text text="TTGTCCAAAGCC"/>
                 </assert_contents>
             </output>
-        </test>    
-        <test expect_num_outputs="2"> <!-- TEST_3 nucleotide input and several options  -->
+        </test>
+        <test expect_num_outputs="2">
+            <!-- TEST_3 nucleotide input and several options  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -309,12 +308,13 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="142"/>
-                    <has_text text=">contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
+                    <has_text text="&gt;contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
                     <has_text text="TTGTCCAAAGCC"/>
                 </assert_contents>
             </output>
-        </test>    
-        <test expect_num_outputs="2"> <!-- TEST_4 simple protein input  -->
+        </test>
+        <test expect_num_outputs="2">
+            <!-- TEST_4 simple protein input  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -334,12 +334,13 @@
             <output name="protein_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="49"/>
-                    <has_text text=">IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
+                    <has_text text="&gt;IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
                     <has_text text="SDYIVLTEIQKSIDDVKRCQGNYF"/>
                 </assert_contents>
             </output>
-        </test>    
-        <test expect_num_outputs="2"> <!-- TEST_5 protein input and full options to gff3 and bakta  -->
+        </test>
+        <test expect_num_outputs="2">
+            <!-- TEST_5 protein input and full options to gff3 and bakta  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -361,9 +362,9 @@
                 <param name="coverage_min" value="0.4"/>
                 <param name="translation_table" value="11"/>
                 <param name="plus" value="true"/>
-                <param name="report_all_equal" value="true"/> 
-                <param name="print_node" value="true"/> 
-                <param name="name" value="test_5"/> 
+                <param name="report_all_equal" value="true"/>
+                <param name="print_node" value="true"/>
+                <param name="name" value="test_5"/>
             </section>
             <output name="amrfinderplus_report" ftype="tabular">
                 <assert_contents>
@@ -377,12 +378,13 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="49"/>
-                    <has_text text=">IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
+                    <has_text text="&gt;IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
                     <has_text text="SDYIVLTEIQKSIDDVKRCQGNYF"/>
                 </assert_contents>
             </output>
-        </test>    
-        <test expect_num_outputs="2"> <!-- TEST_6 protein input and prokka annotation  -->
+        </test>
+        <test expect_num_outputs="2">
+            <!-- TEST_6 protein input and prokka annotation  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -403,12 +405,13 @@
             <output name="protein_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="49"/>
-                    <has_text text=">FODBOAIN_02586 optrA ABC-F type ribosomal protection protein OptrA"/>
+                    <has_text text="&gt;FODBOAIN_02586 optrA ABC-F type ribosomal protection protein OptrA"/>
                     <has_text text="YSNLLLLFSGIIVISWLVTLNVYKHSQRDF"/>
                 </assert_contents>
             </output>
-        </test>   
-        <test expect_num_outputs="2"> <!-- TEST_7 protein input and genbank default annotation  -->
+        </test>
+        <test expect_num_outputs="2">
+            <!-- TEST_7 protein input and genbank default annotation  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -428,12 +431,13 @@
             <output name="protein_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="17"/>
-                    <has_text text=">blaOXA-436_partial blaOXA OXA-48 family class D beta-lactamase"/>
+                    <has_text text="&gt;blaOXA-436_partial blaOXA OXA-48 family class D beta-lactamase"/>
                     <has_text text="SSNPDAAPVSS"/>
                 </assert_contents>
             </output>
-        </test>   
-        <test expect_num_outputs="3"> <!-- TEST_8 both protein and nucleotide input  -->
+        </test>
+        <test expect_num_outputs="3">
+            <!-- TEST_8 both protein and nucleotide input  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -461,19 +465,20 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="143"/>
-                    <has_text text=">contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
+                    <has_text text="&gt;contig_26:6581-8545 strand:+ optrA ABC-F type ribosomal protection protein OptrA"/>
                     <has_text text="CTTATCTGTATAG"/>
                 </assert_contents>
             </output>
             <output name="protein_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="37"/>
-                    <has_text text=">IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
+                    <has_text text="&gt;IDOBJL_14770 aph(3')-IIIa aminoglycoside O-phosphotransferase APH(3')-IIIa"/>
                     <has_text text="QEAGAGMSLLNFT"/>
                 </assert_contents>
             </output>
-        </test>   
-        <test expect_num_outputs="4"> <!-- TEST_9 rast annotation and mutation all results  -->
+        </test>
+        <test expect_num_outputs="4">
+            <!-- TEST_9 rast annotation and mutation all results  -->
             <section name="input_option">
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
                 <conditional name="input_mode">
@@ -488,15 +493,15 @@
                 <conditional name="organism_conditionnal">
                     <param name="organism_select" value="add_organism"/>
                     <param name="organism" value="Enterococcus_faecalis"/>
-                    <param name="mutation_all" value="true"/> 
+                    <param name="mutation_all" value="true"/>
                 </conditional>
             </section>
             <section name="options">
                 <param name="ident_min" value="0.1"/>
                 <param name="coverage_min" value="0.1"/>
                 <param name="plus" value="true"/>
-                <param name="print_node" value="true"/> 
-                <param name="name" value="test_5"/> 
+                <param name="print_node" value="true"/>
+                <param name="name" value="test_5"/>
             </section>
             <output name="amrfinderplus_report" ftype="tabular">
                 <assert_contents>
@@ -509,7 +514,7 @@
             <output name="nucleotide_output" ftype="fasta">
                 <assert_contents>
                     <has_n_lines n="40"/>
-                    <has_text text=">contig00019:27227-29524 strand:+ mupB mupirocin-resistant isoleucine--tRNA ligase MupB"/>
+                    <has_text text="&gt;contig00019:27227-29524 strand:+ mupB mupirocin-resistant isoleucine--tRNA ligase MupB"/>
                     <has_text text="ATCAGTCGTGAAATAGAA"/>
                 </assert_contents>
             </output>
@@ -526,7 +531,7 @@
                     <has_text text="NZ_CP04"/>
                 </assert_contents>
             </output>
-        </test>   
+        </test>
     </tests>
     <help><![CDATA[
         **What it does**

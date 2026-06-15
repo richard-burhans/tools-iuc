@@ -12,7 +12,7 @@
     <command detect_errors="exit_code"><![CDATA[
     export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-8192}/1024)) &&
     mkdir  -p ./temp_db/ &&
-    tar -xmf $input_meryldb_02 --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
+    tar -xmf '$input_meryldb_02' --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
     mv ./temp_db/* tmp.meryl &&
     meryl
     $arithmetic_operations
@@ -104,7 +104,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -118,6 +118,6 @@ Meryl is the k-mer counter. This tool applies arithmetic operations on k-mer cou
 - Divide: divide the count of each k-mer by x
 - Divide-round: divide the count of each k-mer by x and round th results
 - Modulo: set the count of each k-mer to the remainder of the count divided by x
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>

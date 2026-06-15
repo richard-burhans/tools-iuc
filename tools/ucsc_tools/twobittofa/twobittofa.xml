@@ -33,25 +33,21 @@ twoBitToFa
 
 $noMask
     ]]></command>
-
     <inputs>
-        <param name="twobit_input" type="data" format="twobit" label="Input TwoBit file" />
-        <param argument="-seq" type="text" optional="true" label="Restrict this to just one sequence" help="Optional" />
+        <param name="twobit_input" type="data" format="twobit" label="Input TwoBit file"/>
+        <param argument="-seq" type="text" optional="true" label="Restrict this to just one sequence" help="Optional"/>
         <param argument="-start" type="integer" optional="true" label="Start at given position in sequence" help="Zero-based, optional"/>
-        <param argument="-end" type="integer" optional="true" label="End at given position in sequence" help="Non-inclusive, optional" />
-        <param argument="-seqList" type="data" format="txt" optional="true"
-          label="File containing list of the desired sequence names (Optional)"
-          help="It must be in the format seqSpec[:start-end], e.g. chr1 or chr1:0-189
-          where coordinates are half-open zero-based, i.e. [start,end)" />
-        <param argument="-noMask" type="boolean" truevalue="-noMask" falsevalue="" checked="false" label="Convert sequence to all upper case?" />
+        <param argument="-end" type="integer" optional="true" label="End at given position in sequence" help="Non-inclusive, optional"/>
+        <param argument="-seqList" type="data" format="txt" optional="true" label="File containing list of the desired sequence names (Optional)" help="It must be in the format seqSpec[:start-end], e.g. chr1 or chr1:0-189           where coordinates are half-open zero-based, i.e. [start,end)"/>
+        <param argument="-noMask" type="boolean" truevalue="-noMask" falsevalue="" checked="false" label="Convert sequence to all upper case?"/>
     </inputs>
     <outputs>
-        <data name="fasta_output" format="fasta" />
+        <data name="fasta_output" format="fasta"/>
     </outputs>
     <tests>
         <test>
             <param name="twobit_input" value="input.2bit"/>
-            <output name="fasta_output" file="output.fasta" />
+            <output name="fasta_output" file="output.fasta"/>
         </test>
     </tests>
     <help><![CDATA[

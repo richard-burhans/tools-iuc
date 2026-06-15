@@ -1,8 +1,7 @@
 <tool id="query_tabular" name="Query Tabular" version="3.3.2">
     <description>using sqlite sql</description>
-
     <macros>
-         <import>macros.xml</import>
+        <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
@@ -73,10 +72,10 @@ $sqlquery
       #silent $idx_non.append(str($idx.index_columns))
     #end if
   #end for
-  #if len($idx_unique) > 0:
+  #if len($idx_unique) &gt; 0:
     #set $jtbl['unique'] = $idx_unique
   #end if
-  #if len($idx_non) > 0:
+  #if len($idx_non) &gt; 0:
     #set $jtbl['index'] = $idx_non
   #end if
   #set $dataset_name = $tbl.table.element_identifier
@@ -91,7 +90,7 @@ $sqlquery
 #for $i,$stmt in enumerate($modify_database.sql_stmts):
     #set $jstmts += [str($stmt.sqlstmt)]
 #end for
-#if len($jstmts) > 0:
+#if len($jstmts) &gt; 0:
    #set $jtbldef['sql_stmts'] = $jstmts
 #end if
 #set $jqueries = []
@@ -108,7 +107,7 @@ $sqlquery
     #end if
     #set $jqueries += [$jquery]
 #end for
-#if len($jqueries) > 0:
+#if len($jqueries) &gt; 0:
    #set $jtbldef['queries'] = $jqueries
 #end if
 #echo $json.dumps($jtbldef)
@@ -117,38 +116,34 @@ $sqlquery
     <inputs>
         <param name="workdb" type="hidden" value="workdb.sqlite" label=""/>
         <section name="add_to_database" expanded="false" title="Add tables to an existing database">
-            <param name="withdb" type="data" format="sqlite" optional="true" label="Add tables to this Database" 
-               help="Make sure your added table names are not already in this database"/>
+            <param name="withdb" type="data" format="sqlite" optional="true" label="Add tables to this Database" help="Make sure your added table names are not already in this database"/>
         </section>
         <repeat name="tables" title="Database Table" min="0">
             <param name="table" type="data" format="tabular" label="Tabular Dataset for Table"/>
             <section name="input_opts" expanded="false" title="Filter Dataset Input">
-                <expand macro="macro_line_filters" />
+                <expand macro="macro_line_filters"/>
             </section>
             <section name="tbl_opts" expanded="false" title="Table Options">
                 <param name="table_name" type="text" value="" optional="true" label="Specify Name for Table">
-                    <help>By default, tables will be named: t1,t2,...,tn (table names must be unique)</help>
+                    <help><![CDATA[By default, tables will be named: t1,t2,...,tn (table names must be unique)]]></help>
                     <validator type="regex" message="Table name should start with a letter and may contain additional letters, digits, and underscores">^[A-Za-z]\w*$</validator>
                 </param>
-                <param name="column_names_from_first_line" type="boolean" truevalue="True" falsevalue="False" checked="false" 
-                    label="Use first line as column names"
-                    help="The names will be quoted if they are not valid SQLite column names."/>
+                <param name="column_names_from_first_line" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Use first line as column names" help="The names will be quoted if they are not valid SQLite column names."/>
                 <param name="col_names" type="text" value="" optional="true" label="Specify Column Names (comma-separated list)">
-                    <help>By default, table columns will be named: c1,c2,c3,...,cn  (column names for a table must be unique)
+                    <help><![CDATA[By default, table columns will be named: c1,c2,c3,...,cn  (column names for a table must be unique)
                           You can override the default names by entering a comma -separated list of names, e.g. ',name1,,,name2' would rename the second and fifth columns.
-                    </help>
+                    ]]></help>
                     <sanitizer sanitize="False"/>
                     <validator type="regex" message="A List of names separated by commas: Column names should start with a letter and may contain additional letters, digits, and underscores. Otherwise, the name must be eclosed in: double quotes, back quotes, or square brackets.">^([A-Za-z]\w*|"\S+[^,"]*"|`\S+[^,`]*`|\[\S+[^,"]*\])?(,([A-Za-z]\w*|"\S+[^,"]*"|`\S+[^,`]*`|\[\S+[^,"]*\])?)*$</validator>
                 </param>
                 <param name="load_named_columns" type="boolean" truevalue="load_named_columns" falsevalue="" checked="false" label="Only load the columns you have named into database"/>
-                <param name="pkey_autoincr" type="text" value="" optional="true" label="Add an auto increment primary key column with this name"
-                       help="Only creates this additional column when a name is entered. (This can not be the same name as any of the other columns in this table.)">
-                        <validator type="regex" message="Column name">^([A-Za-z]\w*)?$</validator>
+                <param name="pkey_autoincr" type="text" value="" optional="true" label="Add an auto increment primary key column with this name" help="Only creates this additional column when a name is entered. (This can not be the same name as any of the other columns in this table.)">
+                    <validator type="regex" message="Column name">^([A-Za-z]\w*)?$</validator>
                 </param>
                 <repeat name="indexes" title="Table Index">
                     <param name="unique" type="boolean" truevalue="yes" falsevalue="no" checked="False" label="This is a unique index"/>
                     <param name="index_columns" type="text" value="" label="Index on Columns">
-                        <help>Create an index on the column names: e.g. for default column names:  c1  or c2,c4 ( use the names you gave for columns)</help>
+                        <help><![CDATA[Create an index on the column names: e.g. for default column names:  c1  or c2,c4 ( use the names you gave for columns)]]></help>
                         <validator type="regex" message="Column name, separated by commes if more than one">^([A-Za-z]\w*|"\S+[^,"]*"|`\S+[^,`]*`|\[\S+[^,"]*\])(,([A-Za-z]\w*|"\S+[^,"]"|`\S+[^,`]*`|\[\S+[^,"]*\])?)*$</validator>
                         <sanitizer sanitize="False"/>
                     </param>
@@ -158,19 +153,18 @@ $sqlquery
         <section name="modify_database" expanded="false" title="Modify the database">
             <repeat name="sql_stmts" title="Database Manipulation SQL Statements" min="0">
                 <param name="sqlstmt" type="text" area="true" size="20x80" value="" optional="true" label="SQL Query to modify the database">
-                    <help>These modify the SQLite database</help>
+                    <help><![CDATA[These modify the SQLite database]]></help>
                     <sanitizer sanitize="False"/>
                 </param>
             </repeat>
         </section>
-        <param name="save_db" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Save the sqlite database in your history"
-            help="SQLite to tabular tool can run additional queries on this database"/>
+        <param name="save_db" type="boolean" truevalue="yes" falsevalue="no" checked="false" label="Save the sqlite database in your history" help="SQLite to tabular tool can run additional queries on this database"/>
         <expand macro="sql_query_input"/>
-        <expand macro="result_results_header_line" />
+        <expand macro="result_results_header_line"/>
         <section name="addqueries" expanded="false" title="Additional Queries">
             <repeat name="queries" title="SQL Query" min="0" max="3">
                 <expand macro="sql_query_input"/>
-                <expand macro="result_results_header_line" />
+                <expand macro="result_results_header_line"/>
             </repeat>
         </section>
     </inputs>
@@ -179,16 +173,16 @@ $sqlquery
             <filter>save_db</filter>
         </data>
         <data format="tabular" name="output" label="query results on ${on_string}">
-            <filter>not save_db or (sqlquery and len(sqlquery.strip()) > 0)</filter>
+            <filter>not save_db or (sqlquery and len(sqlquery.strip()) &gt; 0)</filter>
         </data>
         <data format="tabular" name="output1" label="query 1 results on ${on_string}" from_work_dir="results0.tsv">
-            <filter>len(addqueries['queries']) > 0</filter>
+            <filter>len(addqueries['queries']) &gt; 0</filter>
         </data>
         <data format="tabular" name="output2" label="query 2 results on ${on_string}" from_work_dir="results1.tsv">
-            <filter>len(addqueries['queries']) > 1</filter>
+            <filter>len(addqueries['queries']) &gt; 1</filter>
         </data>
         <data format="tabular" name="output3" label="query 3 results on ${on_string}" from_work_dir="results2.tsv">
-            <filter>len(addqueries['queries']) > 2</filter>
+            <filter>len(addqueries['queries']) &gt; 2</filter>
         </data>
     </outputs>
     <tests>
@@ -227,7 +221,6 @@ $sqlquery
             <param name="sqlquery" value="SELECT FirstName,LastName,sum(SaleAmount) as &quot;TotalSales&quot; FROM customers join sales on customers.CustomerID = sales.CustomerID GROUP BY customers.CustomerID ORDER BY TotalSales DESC"/>
             <output name="output" file="sales_results.tsv"/>
         </test>
-
         <!-- Test 2 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -258,7 +251,6 @@ $sqlquery
             <param name="sqlquery" value="SELECT FirstName,LastName,sum(t2.c3) as &quot;TotalSales&quot; FROM t1 join t2 on t1.c1 = t2.c1 GROUP BY t1.c1 ORDER BY TotalSales DESC;"/>
             <output name="output" file="sales_results.tsv"/>
         </test>
-
         <!-- Test 3 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -278,7 +270,6 @@ $sqlquery
             <param name="sqlquery" value="select FirstName,LastName,re_sub('^\d{2}(\d{2})-(\d\d)-(\d\d)','\3/\2/\1',BirthDate) as &quot;DOB&quot; from t1 WHERE re_search('[hp]er',c4)"/>
             <output name="output" file="regex_results.tsv"/>
         </test>
-
         <!-- Test 4 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -314,7 +305,6 @@ $sqlquery
             <param name="sqlquery" value="select iedb.ID,iedb.peptide,iedb.start,iedb.end,iedb.percentile_rank,mhc_summary.logscore,mhc_summary.affinity,mhc_summary.Bind_Level from iedb left outer join mhc_summary on iedb.peptide = mhc_summary.peptide order by affinity,Bind_Level,percentile_rank"/>
             <output name="output" file="query_results.tsv"/>
         </test>
-
         <!-- Test 5 -->
         <test expect_num_outputs="1">
             <section name="add_to_database">
@@ -364,7 +354,6 @@ $sqlquery
             <param name="sqlquery" value="SELECT people.id,first,last,pets,quote FROM people JOIN contacts ON people.first = contacts.first_name"/>
             <output name="output" file="add_to_db_results.tsv"/>
         </test>
-
         <!-- Test 6 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -445,7 +434,6 @@ $sqlquery
             <param name="sqlquery" value="SELECT people.id,first,last,dob,name,animal,pets FROM people JOIN pet ON people.id = pet.id WHERE animal = 'cat'"/>
             <output name="output" file="pet_normalized_query_results.tsv"/>
         </test>
-
         <!-- Test 7 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -471,7 +459,6 @@ $sqlquery
             </conditional>
             <output name="output" file="psm_report_out1.tsv" compare="re_match"/>
         </test>
-
         <!-- Test 8 column_names_from_first_line -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -497,7 +484,6 @@ $sqlquery
             </conditional>
             <output name="output" file="psm_report_out2.tsv" compare="re_match"/>
         </test>
-
         <!-- Test 9  modify database -->
         <test expect_num_outputs="2">
             <repeat name="tables">
@@ -528,7 +514,7 @@ $sqlquery
             </conditional>
             <section name="addqueries">
                 <repeat name="queries">
-                    <param name="sqlquery" value="SELECT * FROM psms WHERE confidence > 97.0"/>
+                    <param name="sqlquery" value="SELECT * FROM psms WHERE confidence &gt; 97.0"/>
                     <conditional name="query_result">
                         <param name="header" value="yes"/>
                         <param name="header_prefix" value=""/>
@@ -538,7 +524,6 @@ $sqlquery
             <output name="output" file="psm_dbmod_output.tsv" compare="re_match"/>
             <output name="output1" file="psm_dbmod_output1.tsv" compare="re_match"/>
         </test>
-
         <!-- Test 10 column_names_from_first_line -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -564,7 +549,6 @@ $sqlquery
             </conditional>
             <output name="output" file="netMHC_summary_out1.tsv" ftype="tabular"/>
         </test>
-
         <!-- Test 11 -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -591,7 +575,6 @@ $sqlquery
             </conditional>
             <output name="output" file="netMHC_summary_out2.tsv" ftype="tabular"/>
         </test>
-
         <!-- Test 12 math functions -->
         <test expect_num_outputs="1">
             <repeat name="tables">
@@ -600,20 +583,18 @@ $sqlquery
             <param name="sqlquery" value="SELECT c1, c2, trunc(c2), floor(c2), ceil(c2), abs(c1), fabs(c2), mod(c1,2), fmod(c2, 1.5), sqrt(c1), sqrt(c2), degrees(c1), radians(c1), log(c1), log10(c1), pow(c1,2),  exp(c2), exp(c1), cos(c1), sin(c1), tan(c1), cosh(c1), sinh(c1), tanh(c1), acos(c1), asin(c1),acosh(c1), asinh(c1) FROM t1"/>
             <output name="output">
                 <assert_contents>
-                    <has_text_matching expression="-2\t-2.222\t-2\t-3\t-2\t2\t2.222\t0\t-0.722\t\t\t-114.59155\d*\t-0.03490\d*\t\t\t4.0\t0.10839\d*\t0.13533\d*\t-0.41614\d*\t-0.90929\d*\t2.18503\d*\t3.76219\d*\t-3.62686\d*\t-0.96402\d*\t\t\t\t-1.44363\d*" />
-                    <has_text_matching expression="-1\t-1.999\t-1\t-2\t-1\t1\t1.999\t1\t-0.49900\d*\t\t\t-57.29577\d*\t-0.01745\d*\t\t\t1.0\t0.13547\d*\t0.36787\d*\t0.54030\d*\t-0.84147\d*\t-1.55740\d*\t1.54308\d*\t-1.17520\d*\t-0.76159\d*\t3.14159\d*\t-1.57079\d*\t\t-0.88137\d*" />
-                    <has_text_matching expression="0\t0.0\t0\t0\t0\t0\t0.0\t0\t0.0\t0.0\t0.0\t0.0\t0.0\t\t\t0.0\t1.0\t1.0\t1.0\t0.0\t0.0\t1.0\t0.0\t0.0\t1.57079\d*\t0.0\t\t0.0" />
-                    <has_text_matching expression="1\t1.0\t1\t1\t1\t1\t1.0\t1\t1.0\t1.0\t1.0\t57.29577\d*\t0.01745\d*\t0.0\t0.0\t1.0\t2.71828\d*\t2.71828\d*\t0.54030\d*\t0.84147\d*\t1.55740\d*\t1.54308\d*\t1.17520\d*\t0.76159\d*\t0.0\t1.57079\d*\t0.0\t0.88137\d*" />
-                    <has_text_matching expression="2\t2.22\t2\t2\t3\t2\t2.22\t0\t0.72000\d*\t1.41421\d*\t1.48996\d*\t114.59155\d*\t0.03490\d*\t0.69314\d*\t0.30102\d*\t4.0\t9.20733\d*\t7.38905\d*\t-0.41614\d*\t0.90929\d*\t-2.18503\d*\t3.76219\d*\t3.62686\d*\t0.96402\d*\t\t\t1.31695\d*\t1.44363\d*" />
-                    <has_text_matching expression="3\t3.33333\d*\t3\t3\t4\t3\t3.33333\d*\t1\t0.33333\d*\t1.73205\d*\t1.82574\d*\t171.88733\d*\t0.05235\d*\t1.09861\d*\t0.47712\d*\t9.0\t28.03153\d*\t20.08553\d*\t-0.98999\d*\t0.14112\d*\t-0.14254\d*\t10.06766\d*\t10.01787\d*\t0.99505\d*\t\t\t1.76274\d*\t1.81844\d*" />
-                    <has_text_matching expression="4\t4.00444\d*\t4\t4\t5\t4\t4.00444\d*\t0\t1.00443\d*\t2.0\t2.00110\d*\t229.18311\d*\t0.06981\d*\t1.38629\d*\t0.60205\d*\t16.0\t54.84110\d*\t54.59815\d*\t-0.65364\d*\t-0.75680\d*\t1.15782\d*\t27.30823\d*\t27.28991\d*\t0.99932\d*\t\t\t2.06343\d*\t2.09471\d*" />
-                    <has_text_matching expression="5\t5.555\t5\t5\t6\t5\t5.555\t1\t1.05499\d*\t2.23606\d*\t2.35690\d*\t286.47889\d*\t0.08726\d*\t1.60943\d*\t0.69897\d*\t25.0\t258.52696\d*\t148.41315\d*\t0.28366\d*\t-0.95892\d*\t-3.38051\d*\t74.20994\d*\t74.20321\d*\t0.99990\d*\t\t\t2.29243\d*\t2.31243\d*" />
+                    <has_text_matching expression="-2\t-2.222\t-2\t-3\t-2\t2\t2.222\t0\t-0.722\t\t\t-114.59155\d*\t-0.03490\d*\t\t\t4.0\t0.10839\d*\t0.13533\d*\t-0.41614\d*\t-0.90929\d*\t2.18503\d*\t3.76219\d*\t-3.62686\d*\t-0.96402\d*\t\t\t\t-1.44363\d*"/>
+                    <has_text_matching expression="-1\t-1.999\t-1\t-2\t-1\t1\t1.999\t1\t-0.49900\d*\t\t\t-57.29577\d*\t-0.01745\d*\t\t\t1.0\t0.13547\d*\t0.36787\d*\t0.54030\d*\t-0.84147\d*\t-1.55740\d*\t1.54308\d*\t-1.17520\d*\t-0.76159\d*\t3.14159\d*\t-1.57079\d*\t\t-0.88137\d*"/>
+                    <has_text_matching expression="0\t0.0\t0\t0\t0\t0\t0.0\t0\t0.0\t0.0\t0.0\t0.0\t0.0\t\t\t0.0\t1.0\t1.0\t1.0\t0.0\t0.0\t1.0\t0.0\t0.0\t1.57079\d*\t0.0\t\t0.0"/>
+                    <has_text_matching expression="1\t1.0\t1\t1\t1\t1\t1.0\t1\t1.0\t1.0\t1.0\t57.29577\d*\t0.01745\d*\t0.0\t0.0\t1.0\t2.71828\d*\t2.71828\d*\t0.54030\d*\t0.84147\d*\t1.55740\d*\t1.54308\d*\t1.17520\d*\t0.76159\d*\t0.0\t1.57079\d*\t0.0\t0.88137\d*"/>
+                    <has_text_matching expression="2\t2.22\t2\t2\t3\t2\t2.22\t0\t0.72000\d*\t1.41421\d*\t1.48996\d*\t114.59155\d*\t0.03490\d*\t0.69314\d*\t0.30102\d*\t4.0\t9.20733\d*\t7.38905\d*\t-0.41614\d*\t0.90929\d*\t-2.18503\d*\t3.76219\d*\t3.62686\d*\t0.96402\d*\t\t\t1.31695\d*\t1.44363\d*"/>
+                    <has_text_matching expression="3\t3.33333\d*\t3\t3\t4\t3\t3.33333\d*\t1\t0.33333\d*\t1.73205\d*\t1.82574\d*\t171.88733\d*\t0.05235\d*\t1.09861\d*\t0.47712\d*\t9.0\t28.03153\d*\t20.08553\d*\t-0.98999\d*\t0.14112\d*\t-0.14254\d*\t10.06766\d*\t10.01787\d*\t0.99505\d*\t\t\t1.76274\d*\t1.81844\d*"/>
+                    <has_text_matching expression="4\t4.00444\d*\t4\t4\t5\t4\t4.00444\d*\t0\t1.00443\d*\t2.0\t2.00110\d*\t229.18311\d*\t0.06981\d*\t1.38629\d*\t0.60205\d*\t16.0\t54.84110\d*\t54.59815\d*\t-0.65364\d*\t-0.75680\d*\t1.15782\d*\t27.30823\d*\t27.28991\d*\t0.99932\d*\t\t\t2.06343\d*\t2.09471\d*"/>
+                    <has_text_matching expression="5\t5.555\t5\t5\t6\t5\t5.555\t1\t1.05499\d*\t2.23606\d*\t2.35690\d*\t286.47889\d*\t0.08726\d*\t1.60943\d*\t0.69897\d*\t25.0\t258.52696\d*\t148.41315\d*\t0.28366\d*\t-0.95892\d*\t-3.38051\d*\t74.20994\d*\t74.20321\d*\t0.99990\d*\t\t\t2.29243\d*\t2.31243\d*"/>
                 </assert_contents>
             </output>
         </test>
-
     </tests>
-
     <help><![CDATA[
 =============
 Query Tabular
@@ -775,5 +756,5 @@ https://en.wikipedia.org/wiki/First_normal_form
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

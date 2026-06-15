@@ -14,12 +14,12 @@
         @ERRORS@
         ]]></command>
     <inputs>
-        <param  argument="--alignment" type="data" format="fasta" label="Input alignment" help="An in-frame codon alignment in FASTA format."/>
+        <param argument="--alignment" type="data" format="fasta" label="Input alignment" help="An in-frame codon alignment in FASTA format."/>
         <expand macro="gencode"/>
     </inputs>
     <outputs>
-        <data name="output" format="fasta" label="Ambiguous codons replaced alignment on ${on_string}" />
-        <data name="strike_ambigs_md_report" format="markdown" from_work_dir="strike_ambigs_stdout.md" label="Strike Ambigs Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="output" format="fasta" label="Ambiguous codons replaced alignment on ${on_string}"/>
+        <data name="strike_ambigs_md_report" format="markdown" from_work_dir="strike_ambigs_stdout.md" label="Strike Ambigs Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">

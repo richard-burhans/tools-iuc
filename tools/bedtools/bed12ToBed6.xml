@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bed12ToBed6
 -i '$input'
@@ -19,8 +19,8 @@ bed12ToBed6
     </outputs>
     <tests>
         <test>
-            <param name="input" value="bed12.bed" ftype="bed" />
-            <output name="output" file="bed12ToBed6_result1.bed" ftype="bed" />
+            <param name="input" value="bed12.bed" ftype="bed"/>
+            <output name="output" file="bed12ToBed6_result1.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -30,5 +30,5 @@ bed12ToBed6 is a convenience tool that converts BED features in BED12 (a.k.a. â€
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

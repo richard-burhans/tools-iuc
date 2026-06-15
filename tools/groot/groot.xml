@@ -51,27 +51,26 @@ groot align
                     <validator message="No groot database is available" type="no_options"/>
                 </options>
             </param>
-            <param argument="--windowSize" type="integer" min="0" value="100" label="Size of window to sketch graph traversals" />
-            <param argument="--kmerSize" type="integer" min="0" value="31" label="Size of k-mer" />
-            <param argument="--maxK" type="integer" min="0" value="40" label="maxK in the LSH Ensemble" />
-            <param argument="--maxSketchSpan" type="integer" min="0" value="4" label="Maximum number of identical neighbouring sketches permitted in any graph traversal" />
-            <param argument="--numPart" type="integer" min="0" value="8" label="Number of partitions in the LSH Ensemble" />
-            <param argument="--sketchSize" type="integer" min="0" value="21" label="Size of MinHash sketch" />
+            <param argument="--windowSize" type="integer" min="0" value="100" label="Size of window to sketch graph traversals"/>
+            <param argument="--kmerSize" type="integer" min="0" value="31" label="Size of k-mer"/>
+            <param argument="--maxK" type="integer" min="0" value="40" label="maxK in the LSH Ensemble"/>
+            <param argument="--maxSketchSpan" type="integer" min="0" value="4" label="Maximum number of identical neighbouring sketches permitted in any graph traversal"/>
+            <param argument="--numPart" type="integer" min="0" value="8" label="Number of partitions in the LSH Ensemble"/>
+            <param argument="--sketchSize" type="integer" min="0" value="21" label="Size of MinHash sketch"/>
         </section>
         <section name="align" title="Align">
-            <param argument="--contThresh" type="float" min="0" max="1.0" value="0.99" label="Containment threshold for the LSH ensemble" />
-            <param argument="--minKmerCov" type="integer" min="0" value="1" label="Minimum number of k-mers covering each base of a graph segment" />
-            <param argument="--noAlign" type="boolean" checked="true" truevalue="" falsevalue="--noAlign" label="Perform exact alignment?" 
-                help="If 'No', --noAlign will be set, no exact alignment will be performed and graphs will still be weighted using approximate read mappings"/>
+            <param argument="--contThresh" type="float" min="0" max="1.0" value="0.99" label="Containment threshold for the LSH ensemble"/>
+            <param argument="--minKmerCov" type="integer" min="0" value="1" label="Minimum number of k-mers covering each base of a graph segment"/>
+            <param argument="--noAlign" type="boolean" checked="true" truevalue="" falsevalue="--noAlign" label="Perform exact alignment?" help="If 'No', --noAlign will be set, no exact alignment will be performed and graphs will still be weighted using approximate read mappings"/>
         </section>
         <section name="report" title="Report">
             <conditional name="coverage">
-                <param name="mode" type="select" label="Choose your coverage mode" help="" >
+                <param name="mode" type="select" label="Choose your coverage mode" help="">
                     <option value="cutoff" selected="true">Choose your coverage cutoff</option>
                     <option value="lowcov">Low coverage (will report ARGs which may not be covered at the 5’/3’ ends)</option>
                 </param>
                 <when value="cutoff">
-                    <param argument="--covCutoff" type="float" min="0" max="1.0" value="0.97" label="Coverage cutoff for reporting ARGs" />
+                    <param argument="--covCutoff" type="float" min="0" max="1.0" value="0.97" label="Coverage cutoff for reporting ARGs"/>
                 </when>
                 <when value="lowcov"/>
             </conditional>
@@ -84,7 +83,7 @@ groot align
         <test expect_num_outputs="1">
             <param name="fastq" value="bla-b7-150bp-5x.fq" ftype="fastq"/>
             <section name="index">
-                <param name="groot_db_select" value="resfinder.90-1.1.2-15112024" />
+                <param name="groot_db_select" value="resfinder.90-1.1.2-15112024"/>
                 <param name="windowSize" value="150"/>
                 <param name="kmerSize" value="31"/>
                 <param name="maxK" value="20"/>
@@ -94,12 +93,12 @@ groot align
             </section>
             <section name="align">
                 <param name="contThresh" value="0.99"/>
-                <param name="minKmerCov" value="1" />
+                <param name="minKmerCov" value="1"/>
             </section>
             <section name="report">
                 <conditional name="coverage">
                     <param name="mode" value="cutoff"/>
-                    <param name="covCutoff" value="0.97" />
+                    <param name="covCutoff" value="0.97"/>
                 </conditional>
             </section>
             <output name="report_out" ftype="tabular">
@@ -113,7 +112,7 @@ groot align
         <test expect_num_outputs="1">
             <param name="fastq" value="argannot_light-150bp-10000-reads.fq.gz" ftype="fastq.gz"/>
             <section name="index">
-                <param name="groot_db_select" value="arg-annot.90-1.1.2-15112024" />
+                <param name="groot_db_select" value="arg-annot.90-1.1.2-15112024"/>
                 <param name="windowSize" value="150"/>
                 <param name="kmerSize" value="41"/>
                 <param name="maxK" value="4"/>
@@ -123,7 +122,7 @@ groot align
             </section>
             <section name="align">
                 <param name="contThresh" value="0.99"/>
-                <param name="minKmerCov" value="1" />
+                <param name="minKmerCov" value="1"/>
                 <param name="noAlign" value="true"/>
             </section>
             <section name="report">

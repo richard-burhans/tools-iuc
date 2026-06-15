@@ -5,7 +5,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         @BINARY@
 
@@ -41,32 +41,28 @@
 
     ]]></command>
     <inputs>
-
         <expand macro="matrix_scooler_macro"/>
         <param name="clusterMethod_selector" type="select" label="Cluster method:">
-                <option value="kmeans" selected="True">K-means</option>
-                <option value="spectral" >Spectral clustering</option>
+            <option value="kmeans" selected="True">K-means</option>
+            <option value="spectral">Spectral clustering</option>
         </param>
-        <param name="numberOfClusters" type="integer" value="7"  label="Number of clusters" help='How many clusters should be computed by kmeans or spectral clustering' />
-
-        <param name='norm' type='boolean' truevalue='--norm' label='Use different expected value computation'/>
-        <param name='binarization' type='boolean' truevalue='--binarization' label='Convert positive values to 1 and all negative to -1.'/>
-
-
-        <param name='chromosomes' type='text' label='List of chromosomes to consider' help='Please separate the chromosomes by space'/>
+        <param name="numberOfClusters" type="integer" value="7" label="Number of clusters" help="How many clusters should be computed by kmeans or spectral clustering"/>
+        <param name="norm" type="boolean" truevalue="--norm" label="Use different expected value computation"/>
+        <param name="binarization" type="boolean" truevalue="--binarization" label="Convert positive values to 1 and all negative to -1."/>
+        <param name="chromosomes" type="text" label="List of chromosomes to consider" help="Please separate the chromosomes by space"/>
         <conditional name="extra_track_conditional">
-            <param name='extra_track_selection' label='Extra track type' type='select'>
-                <option value='' selected='true'>No track</option>
-                <option value='gene_density'>Gene density</option>
-                <option value='histon_mark'>Histone mark coverage</option>
+            <param name="extra_track_selection" label="Extra track type" type="select">
+                <option value="" selected="true">No track</option>
+                <option value="gene_density">Gene density</option>
+                <option value="histon_mark">Histone mark coverage</option>
             </param>
-            <when value='gene_density' >
-                <param name='extraTrack' type='data' format='bed' label='Correlate PCA with e.g. gene density or histone marks to flip sign'/>
+            <when value="gene_density">
+                <param name="extraTrack" type="data" format="bed" label="Correlate PCA with e.g. gene density or histone marks to flip sign"/>
             </when>
-            <when value='histon_mark'>
-                <param name='histonMarkType' type='data' format='bed' label='Correlate PCA with e.g. gene density or histone marks to flip sign'/>
+            <when value="histon_mark">
+                <param name="histonMarkType" type="data" format="bed" label="Correlate PCA with e.g. gene density or histone marks to flip sign"/>
             </when>
-            <when value='' />
+            <when value=""/>
         </conditional>
     </inputs>
     <outputs>
@@ -74,38 +70,38 @@
     </outputs>
     <tests>
         <test>
-            <param name='matrix_scooler' value='test_matrix.scool' />
-            <param name='clusterMethod_selector' value='kmeans' />
-            <param name='numberOfClusters' value='3' />
+            <param name="matrix_scooler" value="test_matrix.scool"/>
+            <param name="clusterMethod_selector" value="kmeans"/>
+            <param name="numberOfClusters" value="3"/>
             <output name="outFileName" file="scHicClusterCompartments/cluster_kmeans.txt" ftype="txt" compare="sim_size" delta="4000"/>
         </test>
         <test>
-            <param name='matrix_scooler' value='test_matrix.scool' />
-            <param name='clusterMethod_selector' value='spectral' />
-            <param name='numberOfClusters' value='3' />
+            <param name="matrix_scooler" value="test_matrix.scool"/>
+            <param name="clusterMethod_selector" value="spectral"/>
+            <param name="numberOfClusters" value="3"/>
             <output name="outFileName" file="scHicClusterCompartments/cluster_spectral.txt" ftype="txt" compare="sim_size" delta="4000"/>
         </test>
         <test>
-            <param name='matrix_scooler' value='test_matrix.scool' />
-            <param name='clusterMethod_selector' value='kmeans' />
-            <param name='numberOfClusters' value='3' />
-            <param name='binarization' value='True'/>
-            <param name='norm' value='True'/>
+            <param name="matrix_scooler" value="test_matrix.scool"/>
+            <param name="clusterMethod_selector" value="kmeans"/>
+            <param name="numberOfClusters" value="3"/>
+            <param name="binarization" value="True"/>
+            <param name="norm" value="True"/>
             <conditional name="extra_track_conditional">
                 <param name="extra_track_selection" value="histon_mark"/>
-                <param name="histonMarkType" value="scHicClusterCompartments/mm9_H3K36me3.bed.gz" />
+                <param name="histonMarkType" value="scHicClusterCompartments/mm9_H3K36me3.bed.gz"/>
             </conditional>
             <output name="outFileName" file="scHicClusterCompartments/cluster_kmeans_binarization_norm_histone_track.txt" ftype="txt" compare="sim_size" delta="4000"/>
         </test>
-       <test>
-            <param name='matrix_scooler' value='test_matrix.scool' />
-            <param name='clusterMethod_selector' value='kmeans' />
-            <param name='numberOfClusters' value='3' />
-            <param name='binarization' value='True'/>
-            <param name='norm' value='True'/>
+        <test>
+            <param name="matrix_scooler" value="test_matrix.scool"/>
+            <param name="clusterMethod_selector" value="kmeans"/>
+            <param name="numberOfClusters" value="3"/>
+            <param name="binarization" value="True"/>
+            <param name="norm" value="True"/>
             <conditional name="extra_track_conditional">
                 <param name="extra_track_selection" value="gene_density"/>
-                <param name="extraTrack" value="scHicClusterCompartments/mm9_gene.bed.gz" />
+                <param name="extraTrack" value="scHicClusterCompartments/mm9_gene.bed.gz"/>
             </conditional>
             <output name="outFileName" file="scHicClusterCompartments/cluster_spectral_binarization_norm_gene_track.txt" ftype="txt" compare="sim_size" delta="4000"/>
         </test>
@@ -124,6 +120,5 @@ For more information about scHiCExplorer please consider our documentation on re
 
 .. _readthedocs.io: http://schicexplorer.readthedocs.io/
 ]]></help>
-    <expand macro="citations" />
-
+    <expand macro="citations"/>
 </tool>

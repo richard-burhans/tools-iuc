@@ -51,8 +51,7 @@ sniffles
     <inputs>
         <param type="data" name="input" format="bam" label="Input BAM file"/>
         <conditional name="reference_genome">
-            <param name="genome_type_select" type="select" label="Reference genome source is required for deletion SV sequence reporting" 
-              help="Optional: Select None, a built-in or history reference genome fasta">
+            <param name="genome_type_select" type="select" label="Reference genome source is required for deletion SV sequence reporting" help="Optional: Select None, a built-in or history reference genome fasta">
                 <option value="None" selected="True">No reference fasta - do not report DEL SV sequence</option>
                 <option value="indexed">Use a Galaxy server built-in genome</option>
                 <option value="history">Use a genome fasta file from the current history</option>
@@ -61,8 +60,7 @@ sniffles
                 <param name="genome" type="hidden" value="None"/>
             </when>
             <when value="indexed">
-                <param name="genome" type="select" optional="false" label="Select a built in reference genome or custom genome" 
-                  help="If not listed, add a custom genome or use a reference genome from the history">
+                <param name="genome" type="select" optional="false" label="Select a built in reference genome or custom genome" help="If not listed, add a custom genome or use a reference genome from the history">
                     <options from_data_table="all_fasta">
                         <validator message="No genomes are available " type="no_options"/>
                     </options>
@@ -73,52 +71,57 @@ sniffles
             </when>
         </conditional>
         <section name="general_options" title="Set general options" expanded="False">
-            <param argument="--minsupport" type="text" value="auto" label="Minimum Support" help="Minimum number of reads that support a SV. [auto]. Smaller support values -> more SV reported"/>
-            <param argument="--maxsplitskb" type="float" value="0.1" min="0" label="Maximum Number of Splits per KB" help="Additional number of splits per kilobase read sequence allowed before reads are ignored [0.1]" />
+            <param argument="--minsupport" type="text" value="auto" label="Minimum Support" help="Minimum number of reads that support a SV. [auto]. Smaller support values -&gt; more SV reported"/>
+            <param argument="--maxsplitskb" type="float" value="0.1" min="0" label="Maximum Number of Splits per KB" help="Additional number of splits per kilobase read sequence allowed before reads are ignored [0.1]"/>
             <param argument="--minsvlen" type="integer" value="50" min="2" label="Minimum Length" help="Minimum length of SV to be reported. [50]"/>
             <param argument="--mapq" type="integer" value="20" min="0" label="Minimum Mapping Quality" help="Minimum Mapping Quality to consider. [20]"/>
             <param argument="--minalignmentlength" type="integer" value="100" min="0" label="Minimum alignment length" help="Reads with alignments shorter than this length (in bp) will be ignored"/>
-            <param name="detectlargeins" type="boolean" truevalue="1" falsevalue="0" display="radio" checked="true" label="Detect very large insertions spanning multiple reads" 
-               help="This sometimes shows enormous features."/>
+            <param name="detectlargeins" type="boolean" truevalue="1" falsevalue="0" display="radio" checked="true" label="Detect very large insertions spanning multiple reads" help="This sometimes shows enormous features."/>
         </section>
         <section name="clustering_options" title="Clustering/phasing and genotyping options" expanded="False">
             <param argument="--clusterbinsize" value="100" type="integer" min="0" label="Cluster bin size" help="Initial screening bin size [100]"/>
             <param argument="--clusterr" type="float" value="2.5" min="0.0" label="Cluster Multiplier" help="Multiplier for SV start position standard deviation criterion in cluster merging [2.5]"/>
         </section>
         <section name="advanced_options" title="Advanced options" expanded="False">
-            <param argument="--mosaic" type="boolean" display="radio" checked="false"  truevalue="--mosaic" falsevalue="" label="Mosaic mode" help="Set Sniffles run mode to detect rare, somatic and mosaic SVs (default: False)" />
+            <param argument="--mosaic" type="boolean" display="radio" checked="false" truevalue="--mosaic" falsevalue="" label="Mosaic mode" help="Set Sniffles run mode to detect rare, somatic and mosaic SVs (default: False)"/>
         </section>
     </inputs>
     <outputs>
         <data name="output" format="vcf" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
-        <test> <!-- test 1 - standard run -->
+        <test>
+            <!-- test 1 - standard run -->
             <param name="input" value="reads_region.bam"/>
             <param name="detectlargeins" value="0"/>
             <output name="output" file="expected_output.vcf" lines_diff="4"/>
         </test>
-        <test> <!-- test 2 - filter on mapq -->
+        <test>
+            <!-- test 2 - filter on mapq -->
             <param name="input" value="reads_region.bam"/>
             <param name="mapq" value="0"/>
             <output name="output" file="expected_output2.vcf" lines_diff="4"/>
         </test>
-        <test> <!-- test 3 min support test -->
+        <test>
+            <!-- test 3 min support test -->
             <param name="input" value="reads_region.bam"/>
             <param name="minsupport" value="1"/>
             <output name="output" file="expected_outcome3.vcf" lines_diff="4"/>
         </test>
-        <test> <!-- test 4 - clustering -->
+        <test>
+            <!-- test 4 - clustering -->
             <param name="input" value="reads_region.bam"/>
             <param name="clusterbinsize" value="5"/>
             <output name="output" file="expected_outcome4.vcf" lines_diff="4"/>
         </test>
-        <test> <!-- test 5 - Advanced - mosaic -->
+        <test>
+            <!-- test 5 - Advanced - mosaic -->
             <param name="input" value="reads_region.bam"/>
             <param name="mosaic" value="--mosaic"/>
             <output name="output" file="expected_outcome5.vcf" lines_diff="4"/>
         </test>
-       <test> <!-- test 6 - reference -->
+        <test>
+            <!-- test 6 - reference -->
             <param name="input" value="reads_region.bam"/>
             <conditional name="reference_genome">
                 <param name="genome_type_select" value="history"/>

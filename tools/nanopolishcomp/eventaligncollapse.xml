@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="nanopolishcomp_eventaligncollapse" name="NanopolishComp: EventalignCollapse" version="@TOOL_VERSION@+@WRAPPER_VERSION@">
     <description>by kmers rather than by event</description>
     <macros>
@@ -63,15 +62,15 @@
             <output name="out_eventalign_collapse">
                 <assert_contents>
                     <has_n_lines n="236"/>
-                    <has_text_matching expression="ref_pos&#009;ref_kmer"/>
-                    <has_text_matching expression="22102&#009;GGAAA"/>
+                    <has_text_matching expression="ref_pos&#9;ref_kmer"/>
+                    <has_text_matching expression="22102&#9;GGAAA"/>
                 </assert_contents>
             </output>
             <output name="out_index">
                 <assert_contents>
                     <has_n_lines n="60"/>
-                    <has_text_matching expression="ref_id&#009;ref_start"/>
-                    <has_text_matching expression="chr&#009;22102"/>
+                    <has_text_matching expression="ref_id&#9;ref_start"/>
+                    <has_text_matching expression="chr&#9;22102"/>
                 </assert_contents>
             </output>
             <output name="out_log">
@@ -91,15 +90,15 @@
             <output name="out_eventalign_collapse">
                 <assert_contents>
                     <has_n_lines n="236"/>
-                    <has_text_matching expression="ref_pos&#009;ref_kmer"/>
-                    <has_text_matching expression="22102&#009;GGAAA"/>
+                    <has_text_matching expression="ref_pos&#9;ref_kmer"/>
+                    <has_text_matching expression="22102&#9;GGAAA"/>
                 </assert_contents>
             </output>
             <output name="out_index">
                 <assert_contents>
                     <has_n_lines n="60"/>
-                    <has_text_matching expression="ref_id&#009;ref_start"/>
-                    <has_text_matching expression="chr&#009;22102"/>
+                    <has_text_matching expression="ref_id&#9;ref_start"/>
+                    <has_text_matching expression="chr&#9;22102"/>
                 </assert_contents>
             </output>
         </test>

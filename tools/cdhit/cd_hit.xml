@@ -82,26 +82,26 @@ $advanced.sort_fasta
             <when value="">
                 <param name="similarity" argument="-c" type="float" min="0.4" max="1.0" value="0.9" label="Sequence identity threshold" help="Global sequence identity: number of identical alignment positions divided by the full length of the shorter sequence"/>
                 <param name="wordsize" argument="-n" type="integer" min="2" max="5" value="5" label="Word size">
-                    <help>Suggested word size:
+                    <help><![CDATA[Suggested word size:
             5 for thresholds 0.7 ~ 1.0
             4 for thresholds 0.6 ~ 0.7
             3 for thresholds 0.5 ~ 0.6
             2 for thresholds 0.4 ~ 0.5 (-n)
-                    </help>
+                    ]]></help>
                 </param>
                 <param name="redtol" argument="-t" type="integer" value="2" label="Tolerance for redundance"/>
             </when>
             <when value="-est">
                 <param name="similarity" argument="-c" type="float" min="0.8" max="1.0" value="0.9" label="Sequence identity threshold" help="Global sequence identity: number of identical alignment positions divided by the full length of the shorter sequence"/>
                 <param name="wordsize" argument="-n" type="integer" min="4" max="11" value="10" label="Word size">
-                    <help>Suggested word size:
+                    <help><![CDATA[Suggested word size:
             10,11 for threshold in 0.95 ~ 1.0
             8,9   for threshold in 0.9  ~ 0,95
             7     for threshold in 0.88 ~ 0.9
             6     for threshold in 0.85 ~ 0.88
             5     for threshold in 0.80 ~ 0.85
             4     for threshold in 0.75 ~ 0.8 (-n)
-                    </help>
+                    ]]></help>
                 </param>
                 <param name="strand" argument="-r" type="boolean" truevalue="-r 1" falsevalue="-r 0" checked="false" label="Compare both strands?"/>
                 <section name="estadvalign" title="Advanced EST alignment options">

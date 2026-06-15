@@ -49,7 +49,7 @@
             <token name="optional_taxo_option">
                 <option value="no_database" selected="True">No taxonomic database selected</option>
             </token>
-            <when value="no_database"></when>
+            <when value="no_database"/>
         </expand>
         <expand macro="input_format_options_macro"/>
         <expand macro="out_format_macro"/>
@@ -95,6 +95,5 @@
 
     ]]>
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

@@ -63,7 +63,7 @@
     </inputs>
     <outputs>
         <data name="prime_output" format="hyphy_results.json" label="PRIME results on ${on_string}"/>
-        <data name="prime_md_report" format="markdown" from_work_dir="prime_stdout.md" label="PRIME Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="prime_md_report" format="markdown" from_work_dir="prime_stdout.md" label="PRIME Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -84,8 +84,8 @@
             </section>
             <output name="prime_output">
                 <assert_contents>
-                    <has_text text='p-value for non-zero effect of Factor III volume'/>
-                    <has_text text='substitutions'/>
+                    <has_text text="p-value for non-zero effect of Factor III volume"/>
+                    <has_text text="substitutions"/>
                 </assert_contents>
             </output>
             <output name="prime_md_report">
@@ -112,8 +112,8 @@
             </section>
             <output name="prime_output">
                 <assert_contents>
-                    <has_text text='Log likelihood when there is no effect of Isoelectric_Point_pI'/>
-                    <has_text text='substitutions'/>
+                    <has_text text="Log likelihood when there is no effect of Isoelectric_Point_pI"/>
+                    <has_text text="substitutions"/>
                 </assert_contents>
             </output>
             <output name="prime_md_report">
@@ -140,8 +140,8 @@
             </section>
             <output name="prime_output">
                 <assert_contents>
-                    <has_text text='"tested"'/>
-                    <has_text text='p-value for non-zero effect of Factor III volume'/>
+                    <has_text text="&quot;tested&quot;"/>
+                    <has_text text="p-value for non-zero effect of Factor III volume"/>
                 </assert_contents>
             </output>
             <output name="prime_md_report">
@@ -168,13 +168,13 @@
             </section>
             <output name="prime_output">
                 <assert_contents>
-                     <has_text text='"Imputed States"'/>
-                     <has_text text='p-value for non-zero effect of Random Factor 2'/>
+                    <has_text text="&quot;Imputed States&quot;"/>
+                    <has_text text="p-value for non-zero effect of Random Factor 2"/>
                 </assert_contents>
             </output>
             <output name="prime_md_report">
                 <assert_contents>
-                    <has_text text="impute-states => Yes"/>
+                    <has_text text="impute-states =&gt; Yes"/>
                 </assert_contents>
             </output>
         </test>
@@ -245,5 +245,5 @@ For each site in the alignment, PRIME performs a likelihood ratio test (LRT) to 
 - http://hyphy.org/methods/selection-methods/#PRIME
 - http://hyphy.org/resources/json-fields.pdf
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

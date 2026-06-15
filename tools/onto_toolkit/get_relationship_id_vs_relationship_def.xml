@@ -3,18 +3,18 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     get_relationship_id_vs_relationship_def.pl
         -f '$input' | sort > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="Relationship IDs and definitions of ${on_string}">
             <actions>
-                <action name="column_names" type="metadata" default="releationship ID,releationship definition" />
+                <action name="column_names" type="metadata" default="releationship ID,releationship definition"/>
             </actions>
         </data>
     </outputs>
@@ -24,13 +24,12 @@
             <output name="output" file="relationship_id_vs_relationship_def.tab" sort="true"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
 Generates a flat file with two columns (TAB separated) with the relationship_id and relationship_definition from the elements of the given OBO ontology.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

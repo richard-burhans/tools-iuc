@@ -28,9 +28,9 @@ echo 'mantel(
         <param name="dist" type="data" format="mothur.dist,mothur.lower.dist,mothur.square.dist" label="phylip - Distance Matrix"/>
         <param name="dist2" type="data" format="mothur.dist,mothur.lower.dist,mothur.square.dist" label="phylip2 - Distance Matrix"/>
         <param name="method" type="select" optional="true" label="method - pearson, spearman, or kendall. Default: pearson">
-                <option value="pearson" selected="true">pearson</option>
-                <option value="spearman">spearman</option>
-                <option value="kendall">kendall</option>
+            <option value="pearson" selected="true">pearson</option>
+            <option value="spearman">spearman</option>
+            <option value="kendall">kendall</option>
         </param>
         <param name="iters" type="integer" value="1000" label="iters - Number of random configuration to try (default 1000)"/>
         <expand macro="param-savelog"/>

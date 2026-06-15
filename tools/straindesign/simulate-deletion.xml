@@ -35,7 +35,7 @@
         <conditional name="input_strategy">
             <param name="strategy" type="select" label="Strategy" help="Genes or Reactions to delete">
                 <option value="ko" selected="True">Gene knockouts</option>
-                <option value="ou" >Reaction knockouts</option>
+                <option value="ou">Reaction knockouts</option>
             </param>
             <when value="ko">
                 <param name="substrate_rxn_id" type="text" value="" label="Substrate reaction ID" help="Reaction ID contains no special characters">
@@ -44,14 +44,13 @@
                 </param>
                 <param name="annotate" type="boolean" label="Annotate the genes" checked="false" help="Please agree to use your email for query the NCBI website to annotate the genes"/>
             </when>
-            <when value="ou">
-            </when>
+            <when value="ou"/>
         </conditional>
         <param name="max_knockouts" type="integer" min="1" max="10" value="3" label="Number of items deleted to consider"/>
         <conditional name="max_time_cond">
             <param name="max_time_param" type="select" label="Time out" help="Limit scan time">
                 <option value="no" selected="True">no</option>
-                <option value="yes" >yes</option>
+                <option value="yes">yes</option>
             </param>
             <when value="yes">
                 <param name="max_time" type="integer" min="5" max="120" value="10" label="minutes"/>
@@ -60,17 +59,17 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="output_tsv" format="tabular" label="${tool.name}(${input_strategy.strategy})" />
+        <data name="output_tsv" format="tabular" label="${tool.name}(${input_strategy.strategy})"/>
     </outputs>
     <tests>
         <test>
             <!--   test 1   -->
-            <param name="model" ftype="sbml" value="iAF1260.xml.gz" />
-            <param name="pathway" ftype="sbml" value="butanol.xml" />
-            <param name="medium" ftype="tabular" value="butanol.tsv" />
-            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M" />
-            <param name="target_rxn_id" value="EX_1btol_e" />
-            <param name="substrate_rxn_id" value="EX_glc__D_e" />
+            <param name="model" ftype="sbml" value="iAF1260.xml.gz"/>
+            <param name="pathway" ftype="sbml" value="butanol.xml"/>
+            <param name="medium" ftype="tabular" value="butanol.tsv"/>
+            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M"/>
+            <param name="target_rxn_id" value="EX_1btol_e"/>
+            <param name="substrate_rxn_id" value="EX_glc__D_e"/>
             <param name="max_time_param" value="yes"/>
             <param name="max_time" value="5"/>
             <output name="output_tsv" ftype="tabular">

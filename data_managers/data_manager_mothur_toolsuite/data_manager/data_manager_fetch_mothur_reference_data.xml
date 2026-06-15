@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="data_manager_fetch_mothur_reference_data" name="Fetch Mothur toolsuite reference data" version="0.2.2" tool_type="manage_data" profile="19.05">
     <description>Fetch and install reference data for Mothur</description>
     <requirements>
@@ -20,14 +19,12 @@
     ]]></command>
     <inputs>
         <conditional name="data_source">
-            <param name="data_source_selector" type="select"
-                   label="Choose the source for the reference data">
+            <param name="data_source_selector" type="select" label="Choose the source for the reference data">
                 <option value="mothur_website">Mothur website</option>
                 <option value="filesystem_paths">Filesystem paths</option>
             </param>
             <when value="mothur_website">
-                <param name="ref_data" type="select" display="checkboxes" multiple="true"
-                       label="Reference dataset to install">
+                <param name="ref_data" type="select" display="checkboxes" multiple="true" label="Reference dataset to install">
                     <option value="lookup_titanium">GS FLX Titanium lookup files</option>
                     <option value="lookup_gsflx">GSFLX lookup files</option>
                     <option value="lookup_gs20">GS20 lookup files</option>
@@ -52,27 +49,22 @@
                 </param>
             </when>
             <when value="filesystem_paths">
-                <param name="description" type="text" value="" size="50"
-                       label="Description of the data" optional="False" />
-                <param name="paths" type="text" value="" area="True" size="10x50"
-                       label="Paths to upload" optional="False"
-                       help="Upload all files pasted in the box. The (recursive) contents of any pasted directories will be added as well." />
-                <param type="boolean" name="create_symlink" truevalue="create_symlink"
-                       falsevalue="copy_file"
-                       label="Create symlinks to data instead of copying into Galaxy" checked="true" />
+                <param name="description" type="text" value="" size="50" label="Description of the data" optional="False"/>
+                <param name="paths" type="text" value="" area="True" size="10x50" label="Paths to upload" optional="False" help="Upload all files pasted in the box. The (recursive) contents of any pasted directories will be added as well."/>
+                <param type="boolean" name="create_symlink" truevalue="create_symlink" falsevalue="copy_file" label="Create symlinks to data instead of copying into Galaxy" checked="true"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
             <param name="data_source|ref_data" value="lookup_titanium"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="GS FLX Titanium" />
-                    <has_text text="LookUp_Titanium.pat" />
+                    <has_text text="GS FLX Titanium"/>
+                    <has_text text="LookUp_Titanium.pat"/>
                 </assert_contents>
             </output>
         </test>
@@ -80,8 +72,8 @@
             <param name="data_source|ref_data" value="lookup_gsflx"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="GSFLX" />
-                    <has_text text="LookUp_GSFLX.pat" />
+                    <has_text text="GSFLX"/>
+                    <has_text text="LookUp_GSFLX.pat"/>
                 </assert_contents>
             </output>
         </test>
@@ -89,8 +81,8 @@
             <param name="data_source|ref_data" value="lookup_gs20"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="GS20" />
-                    <has_text text="LookUp_GS20.pat" />
+                    <has_text text="GS20"/>
+                    <has_text text="LookUp_GS20.pat"/>
                 </assert_contents>
             </output>
         </test>
@@ -98,11 +90,11 @@
             <param name="data_source|ref_data" value="RDP_v18"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA RDP training set 18" />
-                    <has_text text="trainset18_062020.rdp.fasta" />
-                    <has_text text="trainset18_062020.rdp.tax" />
-                    <has_text text="trainset18_062020.pds.fasta" />
-                    <has_text text="trainset18_062020.pds.tax" />
+                    <has_text text="16S rRNA RDP training set 18"/>
+                    <has_text text="trainset18_062020.rdp.fasta"/>
+                    <has_text text="trainset18_062020.rdp.tax"/>
+                    <has_text text="trainset18_062020.pds.fasta"/>
+                    <has_text text="trainset18_062020.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -110,11 +102,11 @@
             <param name="data_source|ref_data" value="RDP_v16"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA RDP training set 16" />
-                    <has_text text="trainset16_022016.rdp.fasta" />
-                    <has_text text="trainset16_022016.rdp.tax" />
-                    <has_text text="trainset16_022016.pds.fasta" />
-                    <has_text text="trainset16_022016.pds.tax" />
+                    <has_text text="16S rRNA RDP training set 16"/>
+                    <has_text text="trainset16_022016.rdp.fasta"/>
+                    <has_text text="trainset16_022016.rdp.tax"/>
+                    <has_text text="trainset16_022016.pds.fasta"/>
+                    <has_text text="trainset16_022016.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -122,11 +114,11 @@
             <param name="data_source|ref_data" value="RDP_v14"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA RDP training set 14" />
-                    <has_text text="trainset14_032015.rdp.fasta" />
-                    <has_text text="trainset14_032015.rdp.tax" />
-                    <has_text text="trainset14_032015.pds.fasta" />
-                    <has_text text="trainset14_032015.pds.tax" />
+                    <has_text text="16S rRNA RDP training set 14"/>
+                    <has_text text="trainset14_032015.rdp.fasta"/>
+                    <has_text text="trainset14_032015.rdp.tax"/>
+                    <has_text text="trainset14_032015.pds.fasta"/>
+                    <has_text text="trainset14_032015.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -134,11 +126,11 @@
             <param name="data_source|ref_data" value="RDP_v10"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA RDP training set 10" />
-                    <has_text text="trainset10_082014.rdp.fasta" />
-                    <has_text text="trainset10_082014.rdp.tax" />
-                    <has_text text="trainset10_082014.pds.fasta" />
-                    <has_text text="trainset10_082014.pds.tax" />
+                    <has_text text="16S rRNA RDP training set 10"/>
+                    <has_text text="trainset10_082014.rdp.fasta"/>
+                    <has_text text="trainset10_082014.rdp.tax"/>
+                    <has_text text="trainset10_082014.pds.fasta"/>
+                    <has_text text="trainset10_082014.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -146,11 +138,11 @@
             <param name="data_source|ref_data" value="RDP_v9"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA PDS training set 9" />
-                    <has_text text="trainset9_032012.rdp.fasta" />
-                    <has_text text="trainset9_032012.rdp.tax" />
-                    <has_text text="trainset9_032012.pds.fasta" />
-                    <has_text text="trainset9_032012.pds.tax" />
+                    <has_text text="16S rRNA PDS training set 9"/>
+                    <has_text text="trainset9_032012.rdp.fasta"/>
+                    <has_text text="trainset9_032012.rdp.tax"/>
+                    <has_text text="trainset9_032012.pds.fasta"/>
+                    <has_text text="trainset9_032012.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -158,13 +150,13 @@
             <param name="data_source|ref_data" value="RDP_v7"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="16S rRNA RDP training set 7" />
-                    <has_text text="FungiLSU_train_1400bp_8506_mod.fasta" />
-                    <has_text text="FungiLSU_train_1400bp_8506_mod.tax" />
-                    <has_text text="trainset7_112011.rdp.fasta" />
-                    <has_text text="trainset7_112011.rdp.tax" />
-                    <has_text text="trainset7_112011.pds.fasta" />
-                    <has_text text="trainset7_112011.pds.tax" />
+                    <has_text text="16S rRNA RDP training set 7"/>
+                    <has_text text="FungiLSU_train_1400bp_8506_mod.fasta"/>
+                    <has_text text="FungiLSU_train_1400bp_8506_mod.tax"/>
+                    <has_text text="trainset7_112011.rdp.fasta"/>
+                    <has_text text="trainset7_112011.rdp.tax"/>
+                    <has_text text="trainset7_112011.pds.fasta"/>
+                    <has_text text="trainset7_112011.pds.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -172,9 +164,9 @@
             <param name="data_source|ref_data" value="RDP_v6"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="RDP training set 6" />
-                    <has_text text="trainset6_032010.rdp.fasta" />
-                    <has_text text="trainset6_032010.rdp.tax" />
+                    <has_text text="RDP training set 6"/>
+                    <has_text text="trainset6_032010.rdp.fasta"/>
+                    <has_text text="trainset6_032010.rdp.tax"/>
                 </assert_contents>
             </output>
         </test>
@@ -241,7 +233,6 @@
                 </assert_contents>
             </output>
         </test>-->
-
         <!-- also greengenes is large (400MB-1.5GB) so only tests for older
              (smaller) releases are executed -->
         <!--<test>
@@ -270,10 +261,10 @@
             <param name="data_source|ref_data" value="greengenes_old"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="Greengenes pre-May 2013" />
-                    <has_text text="gg_99.pds.tax" />
-                    <has_text text="core_set_aligned.imputed.fasta" />
-                    <has_text text="gg_99.pds.ng.fasta" />
+                    <has_text text="Greengenes pre-May 2013"/>
+                    <has_text text="gg_99.pds.tax"/>
+                    <has_text text="core_set_aligned.imputed.fasta"/>
+                    <has_text text="gg_99.pds.ng.fasta"/>
                 </assert_contents>
             </output>
         </test>
@@ -281,18 +272,17 @@
             <param name="data_source|ref_data" value="greengenes_gold_alignment"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="Greengenes gold alignment" />
-                    <has_text text="rRNA16S.gold.NAST_ALIGNED.fasta" />
+                    <has_text text="Greengenes gold alignment"/>
+                    <has_text text="rRNA16S.gold.NAST_ALIGNED.fasta"/>
                 </assert_contents>
             </output>
         </test>
-
         <test>
             <param name="data_source|ref_data" value="secondary_structure_maps_silva"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="SILVA" />
-                    <has_text text="silva.ss.map" />
+                    <has_text text="SILVA"/>
+                    <has_text text="silva.ss.map"/>
                 </assert_contents>
             </output>
         </test>
@@ -300,13 +290,13 @@
             <param name="data_source|ref_data" value="secondary_structure_maps_greengenes"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="Greengenes" />
-                    <has_text text="gg.ss.map" />
+                    <has_text text="Greengenes"/>
+                    <has_text text="gg.ss.map"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **What it does**
@@ -359,5 +349,5 @@ Lane mask data is also available via the Mothur website (files ending in ".filte
 but as these data are not currently used in the toolsuite, they cannot be imported
 using this data manager.
 
-    </help>
+    ]]></help>
 </tool>

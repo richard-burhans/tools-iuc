@@ -39,7 +39,6 @@
             </options>
             <validator type="no_options" message="No databases are available for this version of Checkm2. Please contact the Galaxy adminstrators to request one be installed."/>
         </param>
-
         <param argument="genes" type="boolean" truevalue="--genes" falsevalue="" label="Treat input files as protein files"/>
         <param name="model" type="select" label="Model options">
             <option value="">None</option>
@@ -171,7 +170,7 @@
     determine the appropriate completeness model for each input genome, but you can also force the use of a particular completeness model, or get the prediction outputs for both. There is only one contamination 
     model (based on gradient boost) which is applied regardless of taxonomic novelty and works well across all cases.
     ]]></help>
-        <citations>
-            <citation type="doi">10.1038/s41592-023-01940-w</citation>
-        </citations>
+    <citations>
+        <citation type="doi">10.1038/s41592-023-01940-w</citation>
+    </citations>
 </tool>

@@ -1,14 +1,10 @@
-<?xml version="1.0"?>
 <tool id="shasta" name="Shasta" version="@TOOL_VERSION@+galaxy0" profile="@PROFILE@">
     <description>De novo assembly of long read sequencing data</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    
     <expand macro="requirements"/>
-
     <expand macro="version_command"/>
-
     <command detect_errors="exit_code"><![CDATA[
 ### Initialize input reads (either unzip or symlink to have the right file extensions for shasta)
 
@@ -358,8 +354,7 @@ ${assembly.write_reads_by_assembled_segment}
             <when value="file">
                 <param name="in_config" type="data" format="txt" label="Config file"/>
             </when>
-            <when value="no">
-            </when>
+            <when value="no"/>
         </conditional>
         <section name="outputs" expanded="true" title="Output options">
             <param name="report_graphical_fragment_assembly" type="boolean" label="Report graphical fragment assembly?" checked="true" help="The graphical fragment assembly file describes the assembly and how contigs in the assembly relate to one another in the assembly graph"/>
@@ -373,7 +368,6 @@ ${assembly.write_reads_by_assembled_segment}
             </param>
             <!-- Decided not to expose the below parameter, can revisit this later if we change our minds on this-->
             <!-- <param name="no_cache" optional="true" type="boolean" /> -->
-
             <section name="palindromic_reads" expanded="true" title="Palindromic reads options">
                 <param argument="--Reads.palindromicReads.skipFlagging" name="skip_flagging" optional="true" type="select" label="Skip flagging palindromic reads?" help="Oxford Nanopore reads should be flagged for better results.">
                     <option value="">Do not skip flagging palindromic reads unless otherwise specified in provided config file</option>
@@ -386,7 +380,6 @@ ${assembly.write_reads_by_assembled_segment}
                 <param argument="--Reads.palindromicReads.nearDiagonalFractionThreshold" name="near_diagonal_fraction_threshold" optional="true" type="float" label="nearDiagonalFractionThreshold for palindromic read detection"/>
                 <param argument="--Reads.palindromicReads.deltaThreshold" name="delta_threshold" optional="true" type="integer" label="deltaThreshold for palindromic read detection"/>
             </section>
-
         </section>
         <section name="kmers" expanded="true" title="Kmers options">
             <param argument="--Kmers.generationMethod" name="generation_method" optional="true" type="select" label="Method to generate marker k-mers">
@@ -434,13 +427,11 @@ ${assembly.write_reads_by_assembled_segment}
             <param argument="--Align.gapScore" name="gap_score" optional="true" type="integer" label="Gap score for marker alignments" help="Only used for 'SeqAn' and 'Banded SeqAn' alignment methods"/>
             <param argument="--Align.downsamplingFactor" name="downsampling_factor" optional="true" type="float" label="Downsampling factor" help="Only used for 'Banded SeqAn' alignment method"/>
             <param argument="--Align.bandExtend" name="band_extend" optional="true" type="integer" label="Amount to extend the downsampled band" help="Only used for 'Banded SeqAn' alignment method"/>
-            <param argument="--Align.maxBand" name="max_band" optional="true" type="integer" label="Maximum alignment band"  help="Only used for 'Banded SeqAn' alignment method"/>
-            
+            <param argument="--Align.maxBand" name="max_band" optional="true" type="integer" label="Maximum alignment band" help="Only used for 'Banded SeqAn' alignment method"/>
             <param argument="--Align.suppressContainments" name="suppress_containments" optional="true" type="select" label="Suppress containment alignments?" help="Containment alignments are alignments in which one read is entirely contained in another read, except possibly for up to maxTrim markers at the beggining and end">
                 <option value="">Do not suppress containment alignments, unless otherwise specified in provided config file</option>
                 <option value="--Align.suppressContainments">Suppress containment alignments</option>
             </param>
-
             <section name="same_channel_read_alignment" expanded="true" title="Same channel read alignment options">
                 <param argument="--Align.sameChannelReadAlignment.suppressDeltaThreshold" name="suppress_delta_threshold" optional="true" type="integer" label="Supress delta threshold" help="If not zero, alignments between reads from the same nanopore channel and close in time are suppressed. The 'read' meta data fields from the FASTA or FASTQ header are checked. If their difference, in absolute value, is less than the value of this option, the alignment is suppressed. This can help avoid assembly artifact. This check is only done if the two reads have identical meta data fields 'runid', 'sampleid', and 'ch'. If any of these metadata fields are missing this check is suppressed and this option has no effect."/>
             </section>
@@ -461,7 +452,7 @@ ${assembly.write_reads_by_assembled_segment}
             <!--The below parameter is currently experimental and advised not to be used, dont bother exposing it-->
             <!-- <param argument="ReadGraph.removeConflicts" name="remove_conflicts" optional="true" type="select"/> -->
             <param argument="--ReadGraph.markerCountPercentile" name="marker_count_percentile" optional="true" type="float" label="Percentile for marker Count" help="Only used when creation method for the read graph is Experimental version 2"/>
-            <param argument="--ReadGraph.alignedFractionPercentile" name="aligned_fraction_percentile" optional="true"  type="float" label="Percentile for alignedFraction" help="Only used when creation method for the read graph is Experimental version 2"/>
+            <param argument="--ReadGraph.alignedFractionPercentile" name="aligned_fraction_percentile" optional="true" type="float" label="Percentile for alignedFraction" help="Only used when creation method for the read graph is Experimental version 2"/>
             <param argument="--ReadGraph.maxSkipPercentile" name="max_skip_percentile" optional="true" type="float" label="Percentile for maxSkip" help="Only used when creation method for the read graph is Experimental version 2"/>
             <param argument="--ReadGraph.maxDriftPercentile" name="max_drift_percentile" optional="true" type="float" label="Percentile for maxDrift" help="Only used when creation method for the read graph is Experimental version 2"/>
             <param argument="--ReadGraph.maxTrimPercentile" name="max_trim_percentile" optional="true" type="float" label="Percentile for maxTrim" help="Only used when creation method for the read graph is Experimental version 2"/>
@@ -484,12 +475,10 @@ ${assembly.write_reads_by_assembled_segment}
                 <option value="">Don't perform appproximate reverse transitive reduction of the marker graph unless otherwise specified in provided config file</option>
                 <option value="--MarkerGraph.reverseTransitiveReduction">Perform appproximate reverse transitive reduction of the marker graph</option>
             </param>
-            
             <section name="peak_finder" expanded="true" title="Peak Finder options">
                 <param argument="--MarkerGraph.peakFinder.minAreaFraction" name="min_area_fraction" optional="true" type="float" label="Peak finding min area fraction" help="Used in the automatic selection of --MarkerGraph.minCoverage when --MarkerGraph.minCoverage is set to 0"/>
-                <param argument="--MarkerGraph.peakFinder.areaStartIndex" name="area_start_index" optional="true" type="integer" label="Peak finding area start index"  help="Used in the automatic selection of --MarkerGraph.minCoverage when --MarkerGraph.minCoverage is set to 0"/>
+                <param argument="--MarkerGraph.peakFinder.areaStartIndex" name="area_start_index" optional="true" type="integer" label="Peak finding area start index" help="Used in the automatic selection of --MarkerGraph.minCoverage when --MarkerGraph.minCoverage is set to 0"/>
             </section>
-
         </section>
         <section name="assembly" expanded="true" title="Assembly options">
             <param argument="--Assembly.crossEdgeCoverageThreshold" name="cross_edge_coverage_threshold" optional="true" type="integer" label="Maximum average edge coverage for a cross edge of the assembly graph to be removed"/>
@@ -525,7 +514,6 @@ ${assembly.write_reads_by_assembled_segment}
             <!-- The below option only can be meaningfully set with memoryMode set to filesystem, which requires root access. Therefore, removing this param-->
             <!-- <param argument="Assembly.storeCoverageDataCsvLengthThreshold" name="store_coverage_data_csv_length_threshold" optional="true" type="integer" label="CSV coverage data length threshold" help="Used to specify the minimum length of an assembled segment for which coverage data in csv format shold be stored. If 0, no coverage data in csv format is stored"/> -->
             <param argument="--Assembly.writeReadsByAssembledSegment" name="write_reads_by_assembled_segment" optional="true" type="boolean" label="Write the reads that contributed to assembling each segment?" checked="false" truevalue="--Assembly.writeReadsByAssembledSegment" falsevalue=""/>
-            
             <section name="detangle" expanded="true" title="Detangle options">
                 <param argument="--Assembly.detangleMethod" name="detangle_method" optional="true" type="select" label="Method used to detangle the assembly graph" help="Controlled by Assembly.detangle.* options (experimental)">
                     <option value="0">No detangling</option>
@@ -536,7 +524,6 @@ ${assembly.write_reads_by_assembled_segment}
                 <param argument="--Assembly.detangle.offDiagonalReadCountMax" name="off_diagonal_read_count_max" optional="true" type="integer" label="Maximum number of reads on detangle matrix off-diagonal elements allowed for detangling"/>
                 <param argument="--Assembly.detangle.offDiagonalRatio" name="off_diagonal_ratio" optional="true" type="float" label="Maximum ratio of total off-diagonal elements over diagonal element allowed for detangling"/>
             </section>
-
             <section name="iterative" expanded="false" title="Iterative assembly options (experimental)">
                 <param argument="--Assembly.iterative" name="iterative" optional="true" type="select" label="Request iterative assembly? (experimental)">
                     <option value="">Do not perform iterative assembly unless otherwise specified in provided config file</option>
@@ -552,7 +539,6 @@ ${assembly.write_reads_by_assembled_segment}
                 <param argument="--Assembly.iterative.bridgeRemovalIterationCount" name="bridge_removal_iteration_count" optional="true" type="integer" label="Number of read graph bridge removal iterations for iterative assembly (experimental)"/>
                 <param argument="--Assembly.iterative.bridgeRemovalMaxDistance" name="bridge_removal_max_distance" optional="true" type="integer" label="Maximum distance for reag graph bridge removal for iterative assembly (experimental)"/>
             </section>
-
         </section>
     </inputs>
     <outputs>
@@ -600,7 +586,8 @@ ${assembly.write_reads_by_assembled_segment}
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>
-            <output name="out_log"> <!--Log file has timestamps and mac specific outputs. Can't compare vs known file.-->
+            <output name="out_log">
+                <!--Log file has timestamps and mac specific outputs. Can't compare vs known file.-->
                 <assert_contents>
                     <has_line line="Input files: ./input_0.fasta "/>
                     <has_line line="assemblyDirectory = shasta_out"/>

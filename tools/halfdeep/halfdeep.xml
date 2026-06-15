@@ -46,7 +46,7 @@
     <inputs>
         <param name="ref" type="data" format="fasta,fasta.gz" label="Genome Assembly" help="A Genome Assembly in FASTA format."/>
         <param name="reads" type="data" format="fastqsanger,fastqsanger.gz" label="Sequencing Reads" help="Sequencing Reads for the Genome Assembly in FASTQ format."/>
-         <param name="mapped_reads" type="data" format="bam" value="" optional="true" label="Aligned Reads" help="Alignments of the Sequencing Reads to the Genome Assembly in BAM format."/>
+        <param name="mapped_reads" type="data" format="bam" value="" optional="true" label="Aligned Reads" help="Alignments of the Sequencing Reads to the Genome Assembly in BAM format."/>
     </inputs>
     <outputs>
         <data name="halfdeep_dat" format="bed" from_work_dir="halfdeep/ref/halfdeep.dat" label="HalfDeep on ${on_string}"/>

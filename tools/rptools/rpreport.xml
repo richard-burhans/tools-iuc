@@ -40,10 +40,10 @@
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical html output is produced (tar input) --> 
+            <!-- test 1: check if identical html output is produced (tar input) -->
             <conditional name="input_type_conditional">
                 <param name="input_type" value="tar"/>
-                <param name="input_tar" value="input_rpSBML.tar" />
+                <param name="input_tar" value="input_rpSBML.tar"/>
             </conditional>
             <output name="html_file" file="rpreport_output.html" compare="diff"/>
         </test>
@@ -86,6 +86,6 @@ Licence
 `MIT <https://github.com/brsynth/rptools/blob/master/LICENSE>`_
     ]]></help>
     <creator>
-        <person givenName="Olivier" familyName="Telle" email="olivier.telle@inrae.fr" />
+        <person givenName="Olivier" familyName="Telle" email="olivier.telle@inrae.fr"/>
     </creator>
 </tool>

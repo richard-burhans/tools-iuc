@@ -70,12 +70,12 @@
     <inputs>
         <param format="gtf,gff3" name="gffinputs" type="data" label="GTF inputs for comparison" multiple="true"/>
         <conditional name="conditional_annotation">
-            <param  name="selector" type="select" label="Use reference annotation">
+            <param name="selector" type="select" label="Use reference annotation">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </param>
             <when value="yes">
-                 <conditional name="ref_source">
+                <conditional name="ref_source">
                     <param label="Choose the source for the reference annotation" name="selector" type="select">
                         <option value="cached">Locally cached</option>
                         <option value="history" selected="true">History</option>
@@ -89,19 +89,13 @@
                         </param>
                     </when>
                     <when value="history">
-                        <param argument="-r" name="reference_annotation" type="data" format="gff3,gtf" label="Reference annotation" 
-                            help="Requires an annotation file in GFF3 or GTF format"/>                    
+                        <param argument="-r" name="reference_annotation" type="data" format="gff3,gtf" label="Reference annotation" help="Requires an annotation file in GFF3 or GTF format"/>
                     </when>
                 </conditional>
-                <param argument="-R" falsevalue="" truevalue="-R" type="boolean" label="Sn correction" help="Consider only the reference transcripts that
-                    overlap any of the input transfrags"/>
-                <param argument="-Q" falsevalue="" truevalue="-Q" type="boolean" label="Sp correction"  help="Consider only the input transcripts that overlap 
-                    any of the reference transcripts. Warning: this will discard all 'novel' loci!"/>
+                <param argument="-R" falsevalue="" truevalue="-R" type="boolean" label="Sn correction" help="Consider only the reference transcripts that                     overlap any of the input transfrags"/>
+                <param argument="-Q" falsevalue="" truevalue="-Q" type="boolean" label="Sp correction" help="Consider only the input transcripts that overlap                      any of the reference transcripts. Warning: this will discard all 'novel' loci!"/>
                 <conditional name="conditional_strict">
-                    <param name="selector" argument="--strict-match" type="select" label="Strict match" help="Make the accuracy estimation 
-                        at transcript level much more stringtent by only allowing a limited variation of the outer coordinates of the terminal exons. Transcript 
-                        matching takes into account the -e range for terminal exons; code '=' is only assigned if transcript ends are within that range, otherwiscode 
-                        '~' is assigned for intron chain match or single-exon">
+                    <param name="selector" argument="--strict-match" type="select" label="Strict match" help="Make the accuracy estimation                          at transcript level much more stringtent by only allowing a limited variation of the outer coordinates of the terminal exons. Transcript                          matching takes into account the -e range for terminal exons; code '=' is only assigned if transcript ends are within that range, otherwiscode                          '~' is assigned for intron chain match or single-exon">
                         <option value="">No</option>
                         <option value="--strict-match">Yes</option>
                     </param>
@@ -110,33 +104,27 @@
                         <param argument="-e" label="Maximum range of variation for the free ends of terminal exons" type="integer" value="100"/>
                     </when>
                 </conditional>
-                <param name="discard_single_exon" argument="-M/-N" type="select" label="Discard single-exon transcripts" help="If -S and also --strict-match is given, 
-                    exact matching of all exon boundaries is required">
+                <param name="discard_single_exon" argument="-M/-N" type="select" label="Discard single-exon transcripts" help="If -S and also --strict-match is given,                      exact matching of all exon boundaries is required">
                     <option value="" selected="true">No</option>
                     <option value="-M">Discard single-exon transfrags and reference transcripts</option>
                     <option value="-N">Discard single-exon reference transcripts</option>
                 </param>
                 <conditional name="conditional_duplication">
-                    <param name="selector" argument="-D" type="select" label="Discart duplicate query transfrags" help="Discard duplicate query transfrags (i.e. same 
-                        intron chain) within a single sample (disable annotation mode for a single file); this option is automatically enabled when multiple query files are provided">
+                    <param name="selector" argument="-D" type="select" label="Discart duplicate query transfrags" help="Discard duplicate query transfrags (i.e. same                          intron chain) within a single sample (disable annotation mode for a single file); this option is automatically enabled when multiple query files are provided">
                         <option value="">No</option>
                         <option value="-D">Yes</option>
                     </param>
                     <when value=""/>
                     <when value="-D">
-                        <param argument="-S" type="boolean" truevalue="-S" falsevalue="" checked="false" label="Strict duplicate checking" help="When -D is enabled (or
-                            multiple query files are provided), perform a more strict duplicate checking: only discard matching (same intron chain) query  transcripts from 
-                            the same sample if their boundaries are fully contained within (or same with) matching transcripts if --strict-match is also given, exact match 
-                            of all exons is required"/>
+                        <param argument="-S" type="boolean" truevalue="-S" falsevalue="" checked="false" label="Strict duplicate checking" help="When -D is enabled (or                             multiple query files are provided), perform a more strict duplicate checking: only discard matching (same intron chain) query  transcripts from                              the same sample if their boundaries are fully contained within (or same with) matching transcripts if --strict-match is also given, exact match                              of all exons is required"/>
                     </when>
                 </conditional>
-                <param  argument="--no-merge" type="boolean" checked="false" truevalue="--no-merge" falsevalue=""  label="Disable close-exon merging" 
-                    help="Default: merge exons separated by 'introns' shorter than 5 bases"/>
+                <param argument="--no-merge" type="boolean" checked="false" truevalue="--no-merge" falsevalue="" label="Disable close-exon merging" help="Default: merge exons separated by 'introns' shorter than 5 bases"/>
             </when>
             <when value="no"/>
         </conditional>
         <conditional name="seq_data">
-            <param name="selector" type="select" label="Use sequence data" help="Use sequence data for some optional classification functions, including the addition of the p_id attribute required by Cuffdiff." >
+            <param name="selector" type="select" label="Use sequence data" help="Use sequence data for some optional classification functions, including the addition of the p_id attribute required by Cuffdiff.">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </param>
@@ -156,16 +144,14 @@
                         </param>
                     </when>
                     <when value="history">
-                        <param argument="-s" name="ref_genome" type="data" format="fasta" label="Reference genome" help="Optional. Repeats must be soft-masked (lower case) in order to be able to classify
-                            transfrags as repeats"/>
+                        <param argument="-s" name="ref_genome" type="data" format="fasta" label="Reference genome" help="Optional. Repeats must be soft-masked (lower case) in order to be able to classify                             transfrags as repeats"/>
                     </when>
                 </conditional>
             </when>
         </conditional>
         <param argument="-d" name="max_dist_group" type="integer" value="100" min="0" help="Maximum distance (range) for grouping transcript start sites. Default: 100" label="Max distance for transcript grouping"/>
         <param argument="--chr-stats" type="boolean" checked="false" truevalue="--chr-stats" falsevalue="" label="Stats per reference contig/chromosome" help="Show summary and accuracy data separately for each reference sequence in the transcript accuracy data set"/>
-        <param argument="-T" name="refmap_tmap" type="boolean" truevalue="" falsevalue="-T" checked="true" label="Generate TMAP and RefMap files for each input" help="TMAP are tabular files that store the information regarding the best match for each prediction in the reference.
-            RefMap files are tabular files which store the information regarding the best match for each reference transcript, among all possible prediction models. More information in the help section"/>
+        <param argument="-T" name="refmap_tmap" type="boolean" truevalue="" falsevalue="-T" checked="true" label="Generate TMAP and RefMap files for each input" help="TMAP are tabular files that store the information regarding the best match for each prediction in the reference.             RefMap files are tabular files which store the information regarding the best match for each reference transcript, among all possible prediction models. More information in the help section"/>
         <section name="adv_output" title="Combined GTF output parameters">
             <param argument="-p" type="text" value="TCONS" label="Name prefix for consensus transcripts">
                 <sanitizer invalid_char="">
@@ -187,16 +173,16 @@
             <filter>conditional_annotation['selector'] == "yes"</filter>
             <filter>len(gffinputs) == 1</filter>
         </data>
-        <data name="transcripts_combined" format="gtf" from_work_dir="gffcmp.combined.gtf" label="${tool.name} on ${on_string}: combined transcripts" >
-            <filter>len(gffinputs) > 1</filter>
+        <data name="transcripts_combined" format="gtf" from_work_dir="gffcmp.combined.gtf" label="${tool.name} on ${on_string}: combined transcripts">
+            <filter>len(gffinputs) &gt; 1</filter>
         </data>
         <collection name="refmap_output_collection" type="list" label="${tool.name} on ${on_string}: RefMap Collection">
             <discover_datasets pattern="gffcmp\.(?P&lt;designation&gt;.+)\.refmap" ext="tabular"/>
             <filter>conditional_annotation['selector'] == 'yes'</filter>
-            <filter>len(gffinputs) > 1</filter>
+            <filter>len(gffinputs) &gt; 1</filter>
             <filter>refmap_tmap</filter>
         </collection>
-        <data name="refmap_output" format="tabular" from_work_dir="output.refmap"  label="${tool.name} on ${on_string}: RefMap">
+        <data name="refmap_output" format="tabular" from_work_dir="output.refmap" label="${tool.name} on ${on_string}: RefMap">
             <filter>conditional_annotation['selector'] == 'yes'</filter>
             <filter>len(gffinputs) == 1</filter>
             <filter>refmap_tmap</filter>
@@ -204,7 +190,7 @@
         <collection name="tmap_output_collection" type="list" label="${tool.name} on ${on_string}: TMAP Collection">
             <discover_datasets pattern="gffcmp\.(?P&lt;designation&gt;.+)\.tmap" ext="tabular"/>
             <filter>refmap_tmap</filter>
-            <filter>len(gffinputs) > 1</filter>
+            <filter>len(gffinputs) &gt; 1</filter>
         </collection>
         <data name="tmap_output" format="tabular" from_work_dir="output.tmap" label="${tool.name} on ${on_string}: TMAP">
             <filter>refmap_tmap</filter>
@@ -229,7 +215,8 @@
                 <not_has_text text="-Q "/>
                 <not_has_text text="--strict-match "/>
                 <not_has_text text="-T "/>
-                <has_text_matching expression="^.*gffcompare((?!-s).)*$"/> <!-- since ln also has -s a more complicated regexp is needed here to check if -s is not set -->
+                <has_text_matching expression="^.*gffcompare((?!-s).)*$"/>
+                <!-- since ln also has -s a more complicated regexp is needed here to check if -s is not set -->
                 <not_has_text text="-M "/>
                 <not_has_text text="-N "/>
                 <has_text text="-d 100 "/>
@@ -283,7 +270,8 @@
                 <not_has_text text="-R "/>
                 <not_has_text text="-Q "/>
                 <has_text text="-T "/>
-                <has_text_matching expression="gffcompare.*-s "/> <!-- since ln also has -s a more complicated regexp is needed here to check if -s is set -->
+                <has_text_matching expression="gffcompare.*-s "/>
+                <!-- since ln also has -s a more complicated regexp is needed here to check if -s is set -->
                 <not_has_text text="-M "/>
                 <not_has_text text="-N "/>
                 <has_text text="-d 100 "/>
@@ -492,7 +480,7 @@
             <output_collection name="refmap_output_collection" type="list" count="2"/>
             <output_collection name="tmap_output_collection" type="list" count="2"/>
         </test>
-         <!-- Test 06: 2 inputs and reference, non default advanced options -->
+        <!-- Test 06: 2 inputs and reference, non default advanced options -->
         <test expect_num_outputs="6">
             <param ftype="gtf" name="gffinputs" value="gffcompare_in1.gtf,gffcompare_in2.gtf"/>
             <conditional name="conditional_annotation">

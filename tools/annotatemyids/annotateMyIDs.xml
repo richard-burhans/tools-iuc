@@ -83,8 +83,8 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
     ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="id_file" type="data" format="tabular" label="File with IDs" help="A tabular file with the first column containing one of the supported types of identifier, see Help below." />
-        <param name="file_has_header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="File has header?" help="If this option is set to Yes, the tool will assume that the input file has a column header in the first row and the identifers commence on the second line. Default: No" />
+        <param name="id_file" type="data" format="tabular" label="File with IDs" help="A tabular file with the first column containing one of the supported types of identifier, see Help below."/>
+        <param name="file_has_header" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="File has header?" help="If this option is set to Yes, the tool will assume that the input file has a column header in the first row and the identifers commence on the second line. Default: No"/>
         <param name="organism" type="select" label="Organism" help="Select the organism the identifiers are from">
             <option value="Hs" selected="true">Human</option>
             <option value="Mm">Mouse</option>
@@ -120,11 +120,11 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <option value="ONTOLOGY">ONTOLOGY</option>
             <option value="PATH">KEGG</option>
         </param>
-        <param name="remove_dups" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="Remove duplicates?" help="If this option is set to Yes, only the first occurrence of each input Gene ID will be kept. Default: No" />
-        <param name="rscriptOpt" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="Output Rscript?" help="If this option is set to Yes, the Rscript used to annotate the IDs will be provided as a text file in the output. Default: No" />
+        <param name="remove_dups" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="Remove duplicates?" help="If this option is set to Yes, only the first occurrence of each input Gene ID will be kept. Default: No"/>
+        <param name="rscriptOpt" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="False" label="Output Rscript?" help="If this option is set to Yes, the Rscript used to annotate the IDs will be provided as a text file in the output. Default: No"/>
     </inputs>
     <outputs>
-        <data name="out_tab" format="tabular" label="${tool.name} on ${on_string}: Annotated IDs" />
+        <data name="out_tab" format="tabular" label="${tool.name} on ${on_string}: Annotated IDs"/>
         <data name="out_rscript" format="txt" label="${tool.name} on ${on_string}: Rscript">
             <filter>rscriptOpt is True</filter>
         </data>
@@ -135,23 +135,23 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <param name="id_file" value="genelist.txt" ftype="tabular"/>
             <param name="id_type" value="SYMBOL"/>
             <param name="organism" value="Hs"/>
-            <output name="out_tab" file="out.tab" />
+            <output name="out_tab" file="out.tab"/>
         </test>
         <!-- Ensure Ensembl IDs input and Rscript output work -->
         <test expect_num_outputs="2">
             <param name="id_file" value="ensembl_ids.tab" ftype="tabular"/>
             <param name="id_type" value="ENSEMBL"/>
             <param name="organism" value="Hs"/>
-            <param name="rscriptOpt" value="True" />
-            <output name="out_tab" file="out_ensembl.tab" />
-            <output name="out_rscript" file="out_rscript.txt" compare="sim_size" />
+            <param name="rscriptOpt" value="True"/>
+            <output name="out_tab" file="out_ensembl.tab"/>
+            <output name="out_rscript" file="out_rscript.txt" compare="sim_size"/>
         </test>
         <!-- Ensure GO and KEGG output work -->
         <test expect_num_outputs="1">
             <param name="id_file" value="ensembl_ids.tab" ftype="tabular"/>
             <param name="id_type" value="ENSEMBL"/>
             <param name="organism" value="Hs"/>
-            <param name="output_cols" value="ENSEMBL,GO,ONTOLOGY,EVIDENCE" />
+            <param name="output_cols" value="ENSEMBL,GO,ONTOLOGY,EVIDENCE"/>
             <output name="out_tab">
                 <assert_contents>
                     <has_n_columns n="4"/>
@@ -165,8 +165,8 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <param name="id_file" value="ensembl_ids.tab" ftype="tabular"/>
             <param name="id_type" value="ENSEMBL"/>
             <param name="organism" value="Hs"/>
-            <param name="output_cols" value="ENSEMBL,GO,ONTOLOGY,EVIDENCE" />
-            <param name="remove_dups" value="True" />
+            <param name="output_cols" value="ENSEMBL,GO,ONTOLOGY,EVIDENCE"/>
+            <param name="remove_dups" value="True"/>
             <output name="out_tab">
                 <assert_contents>
                     <has_n_columns n="4"/>
@@ -180,7 +180,7 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <param name="id_file" value="genelist_arabidopsis.txt" ftype="tabular"/>
             <param name="id_type" value="SYMBOL"/>
             <param name="organism" value="At"/>
-            <param name="output_cols" value="GO,ENTREZID" />
+            <param name="output_cols" value="GO,ENTREZID"/>
             <output name="out_tab">
                 <assert_contents>
                     <has_n_columns n="5"/>
@@ -194,7 +194,7 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <param name="id_file" value="genelist_gallus.txt" ftype="tabular"/>
             <param name="id_type" value="SYMBOL"/>
             <param name="organism" value="Gg"/>
-            <param name="output_cols" value="GO,ENTREZID" />
+            <param name="output_cols" value="GO,ENTREZID"/>
             <output name="out_tab">
                 <assert_contents>
                     <has_n_columns n="5"/>
@@ -208,7 +208,7 @@ write.table(result, file='$out_tab', sep="\t", row.names=FALSE, quote=FALSE)
             <param name="id_file" value="genelist.txt" ftype="tabular"/>
             <param name="id_type" value="SYMBOL"/>
             <param name="organism" value="Bt"/>
-            <param name="output_cols" value="ENSEMBL" />
+            <param name="output_cols" value="ENSEMBL"/>
             <output name="out_tab">
                 <assert_contents>
                     <has_n_columns n="2"/>
@@ -306,8 +306,8 @@ Example:
     * **ONTOLOGY**: For GO Identifiers, which Gene Ontology (BP, CC, or MF)
 
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @unpublished{None,
                 author = {Mark Dunning},
                 title = {annotateMyIDs},

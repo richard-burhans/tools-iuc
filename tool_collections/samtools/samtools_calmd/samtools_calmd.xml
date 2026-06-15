@@ -22,23 +22,20 @@ samtools calmd
     > '$calmd_output'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="bam" label="BAM file to recalculate" />
+        <param name="input" type="data" format="bam" label="BAM file to recalculate"/>
         <expand macro="mandatory_reference"/>
         <conditional name="baq_settings">
-            <param name="use_baq" argument="-r" type="select"
-            label="Do you also want BAQ (Base Alignment Quality) scores to be calculated?">
+            <param name="use_baq" argument="-r" type="select" label="Do you also want BAQ (Base Alignment Quality) scores to be calculated?">
                 <option value="">No</option>
                 <option value="-r">Yes, run BAQ calculation</option>
             </param>
             <when value="">
-                <param name="modify_quality" type="hidden" value="" />
-                <param name="extended_baq" type="hidden" value="" />
+                <param name="modify_quality" type="hidden" value=""/>
+                <param name="extended_baq" type="hidden" value=""/>
             </when>
             <when value="-r">
-                <param name="modify_quality" argument="-A" type="boolean" truevalue="-A" falsevalue="" checked="false"
-                label="Use BAQ to cap read base qualities"
-                help="By default, BAQ scores are stored in a separate BQ tag, and the read base quality string is left untouched. When you enable this option, the BAQ scores will be used directly to modify the quality string instead." />
-                <param name="extended_baq" argument="-E" type="boolean" truevalue="-E" falsevalue="" checked="false" label="Extended BAQ for better sensitivity" />
+                <param name="modify_quality" argument="-A" type="boolean" truevalue="-A" falsevalue="" checked="false" label="Use BAQ to cap read base qualities" help="By default, BAQ scores are stored in a separate BQ tag, and the read base quality string is left untouched. When you enable this option, the BAQ scores will be used directly to modify the quality string instead."/>
+                <param name="extended_baq" argument="-E" type="boolean" truevalue="-E" falsevalue="" checked="false" label="Extended BAQ for better sensitivity"/>
             </when>
         </conditional>
         <conditional name="option_set">
@@ -46,51 +43,47 @@ samtools calmd
                 <option value="default">Use defaults</option>
                 <option value="advanced">Advanced options</option>
             </param>
-            <when value="default" />
+            <when value="default"/>
             <when value="advanced">
-                <param name="change_identical" argument="-e" type="boolean" truevalue="-e" falsevalue="" checked="False"
-                label="Change identical bases to '='"
-                help="Replace bases in read sequences that match the reference base at that position with an equal sign" />
-                <param name="adjust_mq" argument="-C" type="integer" min="0" max="255" value="0"
-                label="Coefficient to cap mapping quality of poorly mapped reads"
-                help="Higher values for this setting mean a stronger downgrade of the mapping quality of reads with excessive mismatches (50: recommended setting for reads aligned with BWA, 0: do not downgrade mapping qualities)" />
+                <param name="change_identical" argument="-e" type="boolean" truevalue="-e" falsevalue="" checked="False" label="Change identical bases to '='" help="Replace bases in read sequences that match the reference base at that position with an equal sign"/>
+                <param name="adjust_mq" argument="-C" type="integer" min="0" max="255" value="0" label="Coefficient to cap mapping quality of poorly mapped reads" help="Higher values for this setting mean a stronger downgrade of the mapping quality of reads with excessive mismatches (50: recommended setting for reads aligned with BWA, 0: do not downgrade mapping qualities)"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="calmd_output" format="bam" label="${tool.name} on ${on_string}" />
+        <data name="calmd_output" format="bam" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
             <conditional name="baq_settings">
-                <param name="use_baq" value="" />
+                <param name="use_baq" value=""/>
             </conditional>
             <conditional name="option_set">
-                <param name="option_sets" value="default" />
+                <param name="option_sets" value="default"/>
             </conditional>
             <param name="input" value="phiX.bam"/>
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" value="phiX.fasta" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" value="phiX.fasta"/>
             </conditional>
-            <output name="calmd_output" file="samtools_calmd_out_1.bam" ftype="bam" lines_diff="4" />
+            <output name="calmd_output" file="samtools_calmd_out_1.bam" ftype="bam" lines_diff="4"/>
         </test>
         <test>
             <conditional name="baq_settings">
-                <param name="use_baq" value="-r" />
-                <param name="extended_baq" value="true" />
+                <param name="use_baq" value="-r"/>
+                <param name="extended_baq" value="true"/>
             </conditional>
             <conditional name="option_set">
-                <param name="option_sets" value="advanced" />
-                <param name="change_identical" value="true" />
-                <param name="adjust_mq" value="50" />
+                <param name="option_sets" value="advanced"/>
+                <param name="change_identical" value="true"/>
+                <param name="adjust_mq" value="50"/>
             </conditional>
             <param name="input" value="phiX.bam"/>
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" value="phiX.fasta" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" value="phiX.fasta"/>
             </conditional>
-            <output name="calmd_output" file="samtools_calmd_out_2.bam" ftype="bam" lines_diff="4" />
+            <output name="calmd_output" file="samtools_calmd_out_2.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
     <help><![CDATA[

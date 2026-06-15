@@ -69,7 +69,7 @@
             <output name="outFile" file="picard_RevertSam_test1.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -121,6 +121,6 @@ Reverts SAM or BAM files to a previous state by removing certain types of inform
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -1,17 +1,17 @@
 <tool id="velveth" name="velveth" version="@WRAPPER_VERSION@.4" profile="@PROFILE@">
-  <description>Prepare a dataset for the Velvet velvetg Assembler</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <xrefs>
-      <xref type="bio.tools">velvet</xref>
-  </xrefs>
-  <expand macro="requirements"/>
-  <expand macro="stdio"/>
-  <version_command><![CDATA[
+    <description>Prepare a dataset for the Velvet velvetg Assembler</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <xrefs>
+        <xref type="bio.tools">velvet</xref>
+    </xrefs>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <version_command><![CDATA[
     velveth 2>&1 | grep "Version" | sed -e 's/Version //'
   ]]></version_command>
-  <command><![CDATA[
+    <command><![CDATA[
     export OMP_NUM_THREADS="\${GALAXY_SLOTS:-1}" &&
     mkdir -p '${outfile.extra_files_path}' &&
     velveth
@@ -30,125 +30,125 @@
       #end for
       $strand_specific
   ]]></command>
-  <inputs>
-    <param label="Hash Length" name="hash_length" type="integer" value="21" min="11" max="191" help="k-mer length in base pairs of the words being hashed."/>
-    <param name="strand_specific" type="boolean" checked="false" truevalue="-strand_specific" falsevalue="" label="Use strand specific transcriptome sequencing" help="If you are using a strand specific transcriptome sequencing protocol, you may wish to use this option for better results."/>
-    <repeat name="inputs" title="Input Files">
-      <conditional name="input_type">
-          <param name="input_type_selector" type="select" label="Choose the input type">
-              <option value="single" selected="true">Single ended</option>
-              <option value="paireds">separate paired end</option>
-              <option value="pairedi">interleaved paired end</option>
-          </param>
-          <when value="single">
-            <param label="read type" name="read_type" type="select">
-              <option value="-short" selected="true">short reads</option>
-              <option value="-short2">short2 reads</option>
-              <option value="-short3">short3 reads</option>
-              <option value="-short4">short4 reads</option>
-              <option value="-long">long reads</option>
-            </param>
-            <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
-          </when>
-          <when value="paireds">
-            <param label="read type" name="read_type" type="select" >
-              <option value="-shortPaired" selected="true">shortPaired reads</option>
-              <option value="-shortPaired2">shortPaired2 reads</option>
-              <option value="-shortPaired3">shortPaired3 reads</option>
-              <option value="-shortPaired4">shortPaired4 reads</option>
-              <option value="-longPaired">longPaired reads</option>
-            </param>
-            <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
-            <param name="input2" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
-          </when>
-          <when value="pairedi">
-            <param label="read type" name="read_type" type="select">
-              <option value="-shortPaired" selected="true">shortPaired reads</option>
-              <option value="-shortPaired2">shortPaired2 reads</option>
-              <option value="-shortPaired3">shortPaired3 reads</option>
-              <option value="-shortPaired4">shortPaired4 reads</option>
-              <option value="-longPaired">longPaired reads</option>
-            </param>
-            <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
-          </when>
-      </conditional>
-    </repeat>
-  </inputs>
-  <outputs>
-    <data format="velvet" name="outfile" />
-  </outputs>
-  <tests>
-    <test>
-      <param name="hash_length" value="21" />
-      <repeat name="inputs">
-        <conditional name="input_type">
-          <param name="input_type_selector" value="paireds" />
-          <param name="read_type" value="-shortPaired" />
-          <param name="input" value="R1.fastq" ftype="fastqsanger" />
-          <param name="input2" value="R2.fastq" ftype="fastqsanger" />
-        </conditional>
-      </repeat>
-      <param name="strand_specific" value="false" />
-      <output name="outfile" file="velveth_paireds.out">
-        <extra_files type="file" name='Sequences' value="velveth_paireds/Sequences" compare="sim_size">
-          <assert_contents>
-            <has_line_matching expression="^>mutant-no_snps.gff.*"/>
-          </assert_contents>
-        </extra_files>
-        <extra_files type="file" name='Roadmaps' value="velveth_paireds/Roadmaps" compare="sim_size">
-          <assert_contents>
-            <has_text text="ROADMAP"/>
-          </assert_contents>
-        </extra_files>
-      </output>
-    </test>
-    <test>
-      <param name="hash_length" value="21" />
-      <repeat name="inputs">
-        <conditional name="input_type">
-          <param name="input_type_selector" value="single" />
-          <param name="read_type" value="-short" />
-          <param name="input" value="R1.fastq" ftype="fastqillumina" />
-        </conditional>
-      </repeat>
-      <param name="strand_specific" value="false" />
-      <output name="outfile" file="velveth_single.out">
-        <extra_files type="file" name='Sequences' value="velveth_single/Sequences" compare="diff" />
-        <extra_files type="file" name='Roadmaps' value="velveth_single/Roadmaps" compare="sim_size">
-          <assert_contents>
-            <has_text text="ROADMAP"/>
-          </assert_contents>
-        </extra_files>
-      </output>
-    </test>
-    <test>
-      <param name="hash_length" value="21" />
-      <repeat name="inputs">
-        <conditional name="input_type">
-          <param name="input_type_selector" value="single" />
-          <param name="read_type" value="-short" />
-          <param name="input" value="R1.fastq" ftype="fastq" />
-        </conditional>
-      </repeat>
-      <repeat name="inputs">
-        <conditional name="input_type">
-          <param name="input_type_selector" value="single" />
-          <param name="read_type" value="-short2" />
-          <param name="input" value="R2.fastq" ftype="fastq" />
-        </conditional>
-      </repeat>
-      <param name="strand_specific" value="false" />
-      <output name="outfile" file="velveth_single.out">
-        <extra_files type="file" name='Sequences' value="velveth_single2/Sequences" compare="diff" />
-        <extra_files type="file" name='Roadmaps' value="velveth_single2/Roadmaps" compare="sim_size">
-          <assert_contents>
-            <has_text text="ROADMAP"/>
-          </assert_contents>
-        </extra_files>
-      </output>
-    </test>
-  </tests>
-  <help><![CDATA[
+    <inputs>
+        <param label="Hash Length" name="hash_length" type="integer" value="21" min="11" max="191" help="k-mer length in base pairs of the words being hashed."/>
+        <param name="strand_specific" type="boolean" checked="false" truevalue="-strand_specific" falsevalue="" label="Use strand specific transcriptome sequencing" help="If you are using a strand specific transcriptome sequencing protocol, you may wish to use this option for better results."/>
+        <repeat name="inputs" title="Input Files">
+            <conditional name="input_type">
+                <param name="input_type_selector" type="select" label="Choose the input type">
+                    <option value="single" selected="true">Single ended</option>
+                    <option value="paireds">separate paired end</option>
+                    <option value="pairedi">interleaved paired end</option>
+                </param>
+                <when value="single">
+                    <param label="read type" name="read_type" type="select">
+                        <option value="-short" selected="true">short reads</option>
+                        <option value="-short2">short2 reads</option>
+                        <option value="-short3">short3 reads</option>
+                        <option value="-short4">short4 reads</option>
+                        <option value="-long">long reads</option>
+                    </param>
+                    <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
+                </when>
+                <when value="paireds">
+                    <param label="read type" name="read_type" type="select">
+                        <option value="-shortPaired" selected="true">shortPaired reads</option>
+                        <option value="-shortPaired2">shortPaired2 reads</option>
+                        <option value="-shortPaired3">shortPaired3 reads</option>
+                        <option value="-shortPaired4">shortPaired4 reads</option>
+                        <option value="-longPaired">longPaired reads</option>
+                    </param>
+                    <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
+                    <param name="input2" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
+                </when>
+                <when value="pairedi">
+                    <param label="read type" name="read_type" type="select">
+                        <option value="-shortPaired" selected="true">shortPaired reads</option>
+                        <option value="-shortPaired2">shortPaired2 reads</option>
+                        <option value="-shortPaired3">shortPaired3 reads</option>
+                        <option value="-shortPaired4">shortPaired4 reads</option>
+                        <option value="-longPaired">longPaired reads</option>
+                    </param>
+                    <param name="input" type="data" format="fasta,fastq,fasta.gz,fastq.gz" label="Dataset"/>
+                </when>
+            </conditional>
+        </repeat>
+    </inputs>
+    <outputs>
+        <data format="velvet" name="outfile"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="hash_length" value="21"/>
+            <repeat name="inputs">
+                <conditional name="input_type">
+                    <param name="input_type_selector" value="paireds"/>
+                    <param name="read_type" value="-shortPaired"/>
+                    <param name="input" value="R1.fastq" ftype="fastqsanger"/>
+                    <param name="input2" value="R2.fastq" ftype="fastqsanger"/>
+                </conditional>
+            </repeat>
+            <param name="strand_specific" value="false"/>
+            <output name="outfile" file="velveth_paireds.out">
+                <extra_files type="file" name="Sequences" value="velveth_paireds/Sequences" compare="sim_size">
+                    <assert_contents>
+                        <has_line_matching expression="^&gt;mutant-no_snps.gff.*"/>
+                    </assert_contents>
+                </extra_files>
+                <extra_files type="file" name="Roadmaps" value="velveth_paireds/Roadmaps" compare="sim_size">
+                    <assert_contents>
+                        <has_text text="ROADMAP"/>
+                    </assert_contents>
+                </extra_files>
+            </output>
+        </test>
+        <test>
+            <param name="hash_length" value="21"/>
+            <repeat name="inputs">
+                <conditional name="input_type">
+                    <param name="input_type_selector" value="single"/>
+                    <param name="read_type" value="-short"/>
+                    <param name="input" value="R1.fastq" ftype="fastqillumina"/>
+                </conditional>
+            </repeat>
+            <param name="strand_specific" value="false"/>
+            <output name="outfile" file="velveth_single.out">
+                <extra_files type="file" name="Sequences" value="velveth_single/Sequences" compare="diff"/>
+                <extra_files type="file" name="Roadmaps" value="velveth_single/Roadmaps" compare="sim_size">
+                    <assert_contents>
+                        <has_text text="ROADMAP"/>
+                    </assert_contents>
+                </extra_files>
+            </output>
+        </test>
+        <test>
+            <param name="hash_length" value="21"/>
+            <repeat name="inputs">
+                <conditional name="input_type">
+                    <param name="input_type_selector" value="single"/>
+                    <param name="read_type" value="-short"/>
+                    <param name="input" value="R1.fastq" ftype="fastq"/>
+                </conditional>
+            </repeat>
+            <repeat name="inputs">
+                <conditional name="input_type">
+                    <param name="input_type_selector" value="single"/>
+                    <param name="read_type" value="-short2"/>
+                    <param name="input" value="R2.fastq" ftype="fastq"/>
+                </conditional>
+            </repeat>
+            <param name="strand_specific" value="false"/>
+            <output name="outfile" file="velveth_single.out">
+                <extra_files type="file" name="Sequences" value="velveth_single2/Sequences" compare="diff"/>
+                <extra_files type="file" name="Roadmaps" value="velveth_single2/Roadmaps" compare="sim_size">
+                    <assert_contents>
+                        <has_text text="ROADMAP"/>
+                    </assert_contents>
+                </extra_files>
+            </output>
+        </test>
+    </tests>
+    <help><![CDATA[
 @WHATITDOES@
 
 ------
@@ -196,5 +196,5 @@ Read categories are::
   long (for Sanger, 454 or even reference sequences)
   longPaired
   ]]></help>
-  <expand macro="citation"/>
+    <expand macro="citation"/>
 </tool>

@@ -64,16 +64,10 @@
             </options>
         </param>
         <param argument="--deeparg_identity" type="integer" min="0" value="80" label="Minimum identity for ARG alignments" help="default value is 80"/>
-        <param argument="--deeparg_probability" type="float" min="0" max="1" value="0.8"
-            label="Minimum probability for considering a reads as ARG-like"
-            help="default value is 0.8"/>
-        <param argument="--deeparg_evalue" type="float" min="0" value="1e-10"
-            label="Minimum e-value for ARG alignments"
-            help="default value is 1e-10"/>
-        <param argument="--gene_coverage" type="integer" min="0" max="100" value="1" label="Minimum coverage required for considering a full gene in percentage" 
-            help="This parameter looks at the full gene and all hits that align to the gene. If the overlap of all hits is below the threshold the gene is discarded. Use with caution, default value is 1"/>
-        <param argument="--bowtie_16s_identity" type="float" min="0" max="1" value="0.8" label="minimum identity a read as a 16s rRNA gene"
-            help="default value is 0.8"/>
+        <param argument="--deeparg_probability" type="float" min="0" max="1" value="0.8" label="Minimum probability for considering a reads as ARG-like" help="default value is 0.8"/>
+        <param argument="--deeparg_evalue" type="float" min="0" value="1e-10" label="Minimum e-value for ARG alignments" help="default value is 1e-10"/>
+        <param argument="--gene_coverage" type="integer" min="0" max="100" value="1" label="Minimum coverage required for considering a full gene in percentage" help="This parameter looks at the full gene and all hits that align to the gene. If the overlap of all hits is below the threshold the gene is discarded. Use with caution, default value is 1"/>
+        <param argument="--bowtie_16s_identity" type="float" min="0" max="1" value="0.8" label="minimum identity a read as a 16s rRNA gene" help="default value is 0.8"/>
         <section name="output_files" title="Selection of the output files">
             <param name="output_selection" type="select" label="Output files selection" display="checkboxes" multiple="true">
                 <option value="file_ARG_tsv" selected="true">ARG detected with prob higher or equal to --prob in TSV</option>
@@ -166,7 +160,7 @@
                         <element name="reverse" value="light_R.fq.gz" ftype="fastqsanger.gz"/>
                     </collection>
                 </param>
-            </conditional>            
+            </conditional>
             <param name="deeparg_db" value="deeparg_1.0.4-19122024"/>
             <section name="output_files">
                 <param name="output_selection" value="file_ARG_tsv,file_merged_ARG_tsv,file_ARG_subtype_tsv,file_ARG_type_tsv,file_potential_ARG_tsv,file_all_hits_tsv"/>
@@ -207,14 +201,14 @@
                     <has_text text="CP001918.1.gene2931.p01|FEATURES|major_facilitator_superfamily_transporter|multidrug|major_facilitator_superfamily_transporter"/>
                 </assert_contents>
             </output>
-        </test>        
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 The DeepARG Short Reads Pipeline is a specialized tool for detecting antibiotic resistance genes (ARGs) directly from **paired-end short read sequencing data**
 
 It provides detailed output files summarizing ARG detection, merged results, subtype and type classifications, potential ARGs, and all detected hits
 
 If you want to annotate ARGs from assembled contigs, use the DeepARG Predict tool
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

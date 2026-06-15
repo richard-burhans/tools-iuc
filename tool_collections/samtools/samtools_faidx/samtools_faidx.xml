@@ -38,93 +38,90 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="input"
-        type="data"
-        format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz"
-        label="Dataset with sequences (FASTA or FASTQ; auto-detected)" />
+        <param name="input" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" label="Dataset with sequences (FASTA or FASTQ; auto-detected)"/>
     </inputs>
     <outputs>
         <data name="output" format="tabular"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fasta" />
-            <output name="output" file="out_fasta.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fasta"/>
+            <output name="output" file="out_fasta.tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fasta.gz" />
-            <output name="output" file="out_fasta.tabular" />
-            <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip"/>
-            </assert_stderr>
-        </test>
-        <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fasta.bgz" />
-            <output name="output" file="out_fasta.tabular" />
-            <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true" />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true"/>
-            </assert_stderr>
-        </test>
-        <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq" />
-            <output name="output" file="out_fastq.tabular" />
-        </test>
-        <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq.gz" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fasta.gz"/>
+            <output name="output" file="out_fasta.tabular"/>
             <assert_stderr>
                 <has_line line="Failed to index compressed reference. Trying decompressed ..."/>
                 <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip"/>
             </assert_stderr>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq.bgz" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fasta.bgz"/>
+            <output name="output" file="out_fasta.tabular"/>
             <assert_stderr>
                 <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true"/>
                 <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true"/>
             </assert_stderr>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq" ftype="fastqsanger" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fastq"/>
+            <output name="output" file="out_fastq.tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq.gz" ftype="fastqsanger.gz" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fastq.gz"/>
+            <output name="output" file="out_fastq.tabular"/>
             <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" />
+                <has_line line="Failed to index compressed reference. Trying decompressed ..."/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip"/>
             </assert_stderr>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq.bgz" ftype="fastqsanger.gz" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fastq.bgz"/>
+            <output name="output" file="out_fastq.tabular"/>
             <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true" />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true" />
+                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true"/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true"/>
             </assert_stderr>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq" ftype="fastqillumina" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fastq" ftype="fastqsanger"/>
+            <output name="output" file="out_fastq.tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="samtools_fastx-out1-2.fastq.gz" ftype="fastqillumina.gz" />
-            <output name="output" file="out_fastq.tabular" />
+            <param name="input" value="samtools_fastx-out1-2.fastq.gz" ftype="fastqsanger.gz"/>
+            <output name="output" file="out_fastq.tabular"/>
             <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" />
+                <has_line line="Failed to index compressed reference. Trying decompressed ..."/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip"/>
             </assert_stderr>
         </test>
-        <test>  
-            <param name="input" value="samtools_fastx-out1-2.fastq.bgz" ftype="fastqillumina.gz" />
-            <output name="output" file="out_fastq.tabular" />
+        <test expect_num_outputs="1">
+            <param name="input" value="samtools_fastx-out1-2.fastq.bgz" ftype="fastqsanger.gz"/>
+            <output name="output" file="out_fastq.tabular"/>
             <assert_stderr>
-                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true" />
-                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true" />
+                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true"/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true"/>
+            </assert_stderr>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="samtools_fastx-out1-2.fastq" ftype="fastqillumina"/>
+            <output name="output" file="out_fastq.tabular"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input" value="samtools_fastx-out1-2.fastq.gz" ftype="fastqillumina.gz"/>
+            <output name="output" file="out_fastq.tabular"/>
+            <assert_stderr>
+                <has_line line="Failed to index compressed reference. Trying decompressed ..."/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip"/>
+            </assert_stderr>
+        </test>
+        <test>
+            <param name="input" value="samtools_fastx-out1-2.fastq.bgz" ftype="fastqillumina.gz"/>
+            <output name="output" file="out_fastq.tabular"/>
+            <assert_stderr>
+                <has_line line="Failed to index compressed reference. Trying decompressed ..." negate="true"/>
+                <has_line line="[E::fai_build3_core] Cannot index files compressed with gzip, please use bgzip" negate="true"/>
             </assert_stderr>
         </test>
     </tests>

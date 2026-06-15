@@ -36,7 +36,7 @@
             <output name="outFile" file="picard_DownsampleSam_test1.bam" ftype="bam" lines_diff="2"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -64,6 +64,6 @@ Randomly down-sample a SAM or BAM file to retain a random subset of the reads. M
 
 
 @more_info@
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         #if $mode.append == 'true':
@@ -34,7 +34,7 @@
                 <param name="tgtWig" type="data" format="wig" label="Target WIG file"/>
             </when>
         </conditional>
-   </inputs>
+    </inputs>
     <outputs>
         <data name="output_file" format="wig" label="${tool.name} on ${on_string}" from_work_dir="writable_tgtWig.wig"/>
     </outputs>
@@ -46,8 +46,8 @@
             <param name="tgtGenome" value="Genome_1"/>
             <output name="output_file" ftype="wig">
                 <assert_contents>
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=294&#009;step=1"/>   
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=2345&#009;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=294&#9;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=2345&#9;step=1"/>
                     <has_n_lines n="22"/>
                 </assert_contents>
             </output>
@@ -60,8 +60,8 @@
             <param name="noDupes" value="true"/>
             <output name="output_file" ftype="wig">
                 <assert_contents>
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=294&#009;step=1"/>   
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=2931&#009;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=294&#9;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=2931&#9;step=1"/>
                     <has_n_lines n="8"/>
                 </assert_contents>
             </output>
@@ -77,8 +77,8 @@
             </conditional>
             <output name="output_file" ftype="wig">
                 <assert_contents>
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=294&#009;step=1"/>   
-                    <has_line line="fixedStep&#009;chrom=Genome_1_seq&#009;start=3810&#009;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=294&#9;step=1"/>
+                    <has_line line="fixedStep&#9;chrom=Genome_1_seq&#9;start=3810&#9;step=1"/>
                     <has_n_lines n="22"/>
                 </assert_contents>
             </output>

@@ -1,13 +1,12 @@
-<?xml version='1.0' encoding='utf-8'?>
 <tool name="bcftools @EXECUTABLE@" id="bcftools_@EXECUTABLE@" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Annotate and edit VCF/BCF files</description>
     <macros>
         <token name="@EXECUTABLE@">annotate</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $annotation_file = None
@@ -103,9 +102,9 @@ $sec_annofile.annofile.header_lines.__str__.strip()#slurp
 #end if]]></configfile>
     </configfiles>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_annofile" expanded="false" title="Add Annotations">
-            <expand macro="macro_columns" />
+            <expand macro="macro_columns"/>
             <conditional name="annofile">
                 <param name="anno_fmt" type="select" label="Annotations File">
                     <option value="none">None</option>
@@ -124,8 +123,8 @@ $sec_annofile.annofile.header_lines.__str__.strip()#slurp
                         Note that in case of tab-delimited file, the coordinates POS, FROM and TO are one-based and inclusive.
                         ]]></help>
                     </param>
-                    <param name="header_file" type="data" format="txt" label="Header Lines File" optional="true" help="lines which should be appended to the VCF header" />
-                    <param name="header_lines" type="text" area="true" label="Header Lines" optional="true" help="lines which should be appended to the VCF header" >
+                    <param name="header_file" type="data" format="txt" label="Header Lines File" optional="true" help="lines which should be appended to the VCF header"/>
+                    <param name="header_lines" type="text" area="true" label="Header Lines" optional="true" help="lines which should be appended to the VCF header">
                         <help><![CDATA[
                         ##INFO=<ID=NUMERIC_TAG,Number=1,Type=Integer,Description="Example header line">
                         ##INFO=<ID=STRING_TAG,Number=1,Type=String,Description="Yet another header line">
@@ -134,23 +133,22 @@ $sec_annofile.annofile.header_lines.__str__.strip()#slurp
                     </param>
                 </when>
             </conditional>
-            <param argument="--mark-sites" type="text" value="" label="Mark Sites TAG"
-                help="add INFO/TAG flag to sites which are (&quot;+&quot;) or are not (&quot;-&quot;) listed in the annotations file" />
+            <param argument="--mark-sites" type="text" value="" label="Mark Sites TAG" help="add INFO/TAG flag to sites which are (&quot;+&quot;) or are not (&quot;-&quot;) listed in the annotations file"/>
             <param argument="--min-overlap" type="text" value="" label="Minimum required overlap of intersecting regions" optional="true" help="Minimum overlap required as a fraction of the variant in the annotation -a file (ANN), in the target VCF file (:VCF), or both for reciprocal overlap (ANN:VCF). By default overlaps of arbitrary length are sufficient.">
                 <sanitizer invalid_char="">
                     <valid initial="string.digits">
-                        <add value=":" />
-                        <add value="." />
+                        <add value=":"/>
+                        <add value="."/>
                     </valid>
                 </sanitizer>
                 <validator type="regex">[0-9.:]+</validator>
             </param>
             <param argument="--set-id" type="text" value="" optional="true" label="Set Id">
-                <help>Assign ID on the fly using the given format.
+                <help><![CDATA[Assign ID on the fly using the given format.
                 By default all existing IDs are replaced.
                 If the format string is preceded by "+", only missing IDs will be set.
                 For example: '%CHROM\_%POS\_%REF\_%FIRST_ALT'
-                </help>
+                ]]></help>
                 <sanitizer sanitize="False"/>
                 <validator type="regex" message="">^([+]?(%[A-Z_]+)(\\_%[A-Z_]+)*)?$</validator>
             </param>
@@ -166,213 +164,212 @@ $sec_annofile.annofile.header_lines.__str__.strip()#slurp
                 ]]></help>
                 <validator type="regex" message="">^(\^?[A-Z]+(/\w+)?(,\^?[A-Z]+(/\w+)?)*)?$</validator>
             </param>
-            <param argument="--rename-chrs" type="data" format="tabular" label="Rename CHROM" optional="true"
-                   help="rename chromosomes according to the map in file, with old_name new_name pairs separated by whitespaces, each on a separate line." />
-            <param argument="--rename-annots" type="data" format="tabular" optional="true" label="Rename annotations" help="TYPE/old\tnew, where TYPE is one of FILTER,INFO,FORMAT" />
+            <param argument="--rename-chrs" type="data" format="tabular" label="Rename CHROM" optional="true" help="rename chromosomes according to the map in file, with old_name new_name pairs separated by whitespaces, each on a separate line."/>
+            <param argument="--rename-annots" type="data" format="tabular" optional="true" label="Rename annotations" help="TYPE/old\tnew, where TYPE is one of FILTER,INFO,FORMAT"/>
         </section>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_include" />
-            <expand macro="macro_exclude" />
-            <expand macro="macro_collapse" />
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_samples" />
+            <expand macro="macro_include"/>
+            <expand macro="macro_exclude"/>
+            <expand macro="macro_collapse"/>
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_samples"/>
         </section>
-        <expand macro="macro_select_output_type" />
+        <expand macro="macro_select_output_type"/>
     </inputs>
     <outputs>
         <expand macro="macro_vcf_output"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="tab" />
-                    <param name="annotations" value="annotate.tab" />
-                    <param name="header_file" value="annotate.hdr" />
+                    <param name="anno_fmt" value="tab"/>
+                    <param name="annotations" value="annotate.tab"/>
+                    <param name="header_file" value="annotate.hdr"/>
                 </conditional>
-                <param name="columns" value="CHROM,POS,REF,ALT,ID,QUAL,INFO/T_INT,INFO/T_FLOAT,INDEL" />
+                <param name="columns" value="CHROM,POS,REF,ALT,ID,QUAL,INFO/T_INT,INFO/T_FLOAT,INDEL"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="snp_3000150" />
+                    <has_text text="snp_3000150"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate.vcf"/>
             <section name="sec_annofile">
-                <param name="columns" value="CHROM,FROM,TO,T_STR" />
+                <param name="columns" value="CHROM,FROM,TO,T_STR"/>
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="tab" />
-                    <param name="annotations" value="annotate2.tab" />
-                    <param name="header_file" value="annotate.hdr" />
+                    <param name="anno_fmt" value="tab"/>
+                    <param name="annotations" value="annotate2.tab"/>
+                    <param name="header_file" value="annotate.hdr"/>
                 </conditional>
-                <param name="set_id" value="%CHROM\_%POS\_%REF\_%FIRST_ALT" />
+                <param name="set_id" value="%CHROM\_%POS\_%REF\_%FIRST_ALT"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="T_STR=region_3000150_3106154" />
-                    <has_text text="1_3062915_GTTT_G" />
+                    <has_text text="T_STR=region_3000150_3106154"/>
+                    <has_text text="1_3062915_GTTT_G"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="vcf" />
-                    <param name="annotations" value="annots.vcf" />
+                    <param name="anno_fmt" value="vcf"/>
+                    <param name="annotations" value="annots.vcf"/>
                 </conditional>
-                <param name="columns" value="STR,ID,QUAL,FILTER" />
+                <param name="columns" value="STR,ID,QUAL,FILTER"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="idIndel" />
-                    <has_text text="STR=testSNP" />
+                    <has_text text="idIndel"/>
+                    <has_text text="STR=testSNP"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="vcf" />
-                    <param name="annotations" value="annots.bcf" />
+                    <param name="anno_fmt" value="vcf"/>
+                    <param name="annotations" value="annots.bcf"/>
                 </conditional>
-                <param name="columns" value="STR,ID,QUAL,FILTER" />
+                <param name="columns" value="STR,ID,QUAL,FILTER"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="idIndel" />
-                    <has_text text="STR=testSNP" />
+                    <has_text text="idIndel"/>
+                    <has_text text="STR=testSNP"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate2.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate2.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="vcf" />
-                    <param name="annotations" value="annots2.vcf" />
+                    <param name="anno_fmt" value="vcf"/>
+                    <param name="annotations" value="annots2.vcf"/>
                 </conditional>
-                <param name="columns" value="ID,QUAL,FILTER,INFO,FMT" />
+                <param name="columns" value="ID,QUAL,FILTER,INFO,FMT"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="q99" />
-                    <has_text text="FLAG;IINT=88,99;IFLT=8.8,9.9;ISTR=888,999" />
+                    <has_text text="q99"/>
+                    <has_text text="FLAG;IINT=88,99;IFLT=8.8,9.9;ISTR=888,999"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate2.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate2.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="vcf" />
-                    <param name="annotations" value="annots2.vcf" />
+                    <param name="anno_fmt" value="vcf"/>
+                    <param name="annotations" value="annots2.vcf"/>
                 </conditional>
-                <param name="columns" value="ID,QUAL,FILTER,INFO,FMT" />
+                <param name="columns" value="ID,QUAL,FILTER,INFO,FMT"/>
             </section>
             <section name="sec_restrict">
-                <param name="samples" value="A" />
+                <param name="samples" value="A"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="q11" />
-                    <has_text text="FLAG;IINT=88,99;IFLT=8.8,9.9;ISTR=888,999" />
+                    <has_text text="q11"/>
+                    <has_text text="FLAG;IINT=88,99;IFLT=8.8,9.9;ISTR=888,999"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate3.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate3.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="none" />
+                    <param name="anno_fmt" value="none"/>
                 </conditional>
             </section>
             <section name="sec_annotate">
-                <param name="remove" value="ID,QUAL,^FILTER/fltA,FILTER/fltB,^INFO/AA,INFO/BB,^FMT/GT,FMT/PL" />
+                <param name="remove" value="ID,QUAL,^FILTER/fltA,FILTER/fltB,^INFO/AA,INFO/BB,^FMT/GT,FMT/PL"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <not_has_text text="fltY" />
+                    <not_has_text text="fltY"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="annotate3.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate3.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="none" />
+                    <param name="anno_fmt" value="none"/>
                 </conditional>
             </section>
             <section name="sec_annotate">
-                <param name="remove" value="FORMAT" />
+                <param name="remove" value="FORMAT"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <not_has_text text="GT:X:PL:Y:AA" />
+                    <not_has_text text="GT:X:PL:Y:AA"/>
                 </assert_contents>
             </output>
         </test>
         <!-- Test region overlap option -->
         <test>
-            <param name="input_file" ftype="vcf" value="annotate3.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate3.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="none" />
+                    <param name="anno_fmt" value="none"/>
                 </conditional>
             </section>
             <section name="sec_annotate">
-                <param name="remove" value="FORMAT" />
+                <param name="remove" value="FORMAT"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="1" />
+                        <param name="chrom" value="1"/>
                     </repeat>
                 </conditional>
             </section>
             <output name="output_file">
                 <assert_contents>
-                    <not_has_text text="GT:X:PL:Y:AA" />
+                    <not_has_text text="GT:X:PL:Y:AA"/>
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--regions-overlap" />
+                <has_text text="--regions-overlap"/>
             </assert_command>
         </test>
         <!-- Test min overlap option -->
         <test>
-            <param name="input_file" ftype="vcf" value="annotate3.vcf" />
+            <param name="input_file" ftype="vcf" value="annotate3.vcf"/>
             <section name="sec_annofile">
                 <conditional name="annofile">
-                    <param name="anno_fmt" value="none" />
+                    <param name="anno_fmt" value="none"/>
                 </conditional>
                 <param name="min_overlap" value="0.5"/>
             </section>
             <section name="sec_annotate">
-                <param name="remove" value="FORMAT" />
+                <param name="remove" value="FORMAT"/>
             </section>
-            <param name="output_type" value="v" />
+            <param name="output_type" value="v"/>
             <output name="output_file">
                 <assert_contents>
-                    <not_has_text text="GT:X:PL:Y:AA" />
+                    <not_has_text text="GT:X:PL:Y:AA"/>
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--min-overlap" />
+                <has_text text="--min-overlap"/>
             </assert_command>
         </test>
     </tests>
@@ -417,5 +414,5 @@ Examples:
 @BCFTOOLS_HOWTOS@
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

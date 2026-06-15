@@ -1,5 +1,5 @@
 <tool id="kaiju_mergeoutputs" name="kaiju-mergeOutputs" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -39,7 +39,7 @@
                     <expand macro="reference"/>
                 </when>
             </conditional>
-            <param argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Use score" help="Use 4th column with classification score to give precedence to taxon with better score" />
+            <param argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Use score" help="Use 4th column with classification score to give precedence to taxon with better score"/>
         </section>
     </inputs>
     <outputs>

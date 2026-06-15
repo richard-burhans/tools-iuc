@@ -171,7 +171,7 @@ $advanced_options.id_ncbi
             <output name="output" file="locate_output1.tabular" ftype="tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **Purpose**
@@ -198,6 +198,6 @@ Locate subsequences/motifs, mismatch allowed.
      you can increase the value of "-j/--threads" to accelerate processing.
   5. When using flag --circular, end position of matched subsequence that 
      crossing genome sequence end would be greater than sequence length.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -6,7 +6,7 @@
         <requirement type="package" version="377">ucsc-fatotwobit</requirement>
     </requirements>
     <required_files>
-        <include path="extract_genomic_dna_utils.py" />
+        <include path="extract_genomic_dna_utils.py"/>
     </required_files>
     <command detect_errors="exit_code"><![CDATA[
 #set genome = $input.metadata.dbkey
@@ -41,7 +41,7 @@ python '$__tool_directory__/extract_genomic_dna.py'
     </command>
     <inputs>
         <param name="input" type="data" format="gff,interval" label="Fetch sequences for intervals in">
-            <validator type="unspecified_build" />
+            <validator type="unspecified_build"/>
         </param>
         <param name="interpret_features" type="select" label="Interpret features when possible" help="Applicable only when input dataset format is in the gff family">
             <option value="yes">Yes</option>
@@ -98,52 +98,52 @@ python '$__tool_directory__/extract_genomic_dna.py'
     <outputs>
         <data format_source="input" name="output" metadata_source="input">
             <change_format>
-                <when input="output_format_cond.output_format" value="fasta" format="fasta" />
+                <when input="output_format_cond.output_format" value="fasta" format="fasta"/>
             </change_format>
         </data>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff" />
+            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff"/>
             <param name="interpret_features" value="no"/>
             <param name="reference_genome_source" value="history"/>
             <param name="reference_genome" value="mm9.fasta" dbkey="mm9" ftype="fasta"/>
             <param name="output_format" value="fasta"/>
             <param name="fasta_header_type" value="char_delimited"/>
             <param name="fasta_header_delimiter" value="tilde"/>
-            <output name="output" file="extract_genomic_dna_out1.fasta" compare="contains" />
+            <output name="output" file="extract_genomic_dna_out1.fasta" compare="contains"/>
         </test>
         <test>
-            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff" />
+            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff"/>
             <param name="interpret_features" value="yes"/>
             <param name="reference_genome_source" value="history"/>
             <param name="reference_genome" value="mm9.fasta" dbkey="mm9"/>
             <param name="output_format" value="fasta"/>
             <param name="fasta_header_type" value="bedtools_getfasta_default"/>
-            <output name="output" file="extract_genomic_dna_out2.fasta" compare="contains" />
+            <output name="output" file="extract_genomic_dna_out2.fasta" compare="contains"/>
         </test>
         <test>
-            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff" />
+            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff"/>
             <param name="interpret_features" value="no"/>
             <param name="reference_genome_source" value="history"/>
             <param name="reference_genome" value="mm9.fasta" dbkey="mm9"/>
             <param name="output_format" value="interval"/>
-            <output name="output" file="extract_genomic_dna_out3.gff" compare="contains" />
+            <output name="output" file="extract_genomic_dna_out3.gff" compare="contains"/>
         </test>
         <test>
-            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff" />
+            <param name="input" value="mm9_input1.gff" dbkey="mm9" ftype="gff"/>
             <param name="interpret_features" value="yes"/>
             <param name="reference_genome_source" value="history"/>
             <param name="reference_genome" value="mm9.fasta" dbkey="mm9"/>
             <param name="output_format" value="interval"/>
-            <output name="output" file="extract_genomic_dna_out4.gff" compare="contains" />
+            <output name="output" file="extract_genomic_dna_out4.gff" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: warningmark
 
-This tool requires interval or gff (special tabular formatted data).  If your data is not TAB delimited, first use *Text Manipulation-&gt;Convert*.
+This tool requires interval or gff (special tabular formatted data).  If your data is not TAB delimited, first use *Text Manipulation->Convert*.
 
 .. class:: warningmark
 
@@ -172,17 +172,17 @@ in the header.
 
 An example FASTA header produced by selecting this option is:
 
-    &gt;chr7:127475281-127475310(+)
+    >chr7:127475281-127475310(+)
 
 Selecing the **character delimited field values** option allows selection of a character delimiter that is used
 when generating the FASTA header with fields genome, chrom, start, end, strand (name) delimited by the
 selected character.  For example, selecting an underscore will produce a FASTA header like this:
 
-    &gt;mm9_53_550_+ test_chromosome
+    >mm9_53_550_+ test_chromosome
 
 while selecting a vertical bar will produce a FASTA header like this:
 
-    &gt;mm9|53|550|+ test_chromosome
+    >mm9|53|550|+ test_chromosome
 
 If strand is not defined, the default value is "+".
 
@@ -198,14 +198,14 @@ If the input dataset is::
 
 Extracting sequences with **FASTA** output data type, **character delimited field values** as header format and **header field delimiter** set to the underscore character returns::
 
-    &gt;hg17_chr7_127475281_127475310_+ NM_000230
+    >hg17_chr7_127475281_127475310_+ NM_000230
     GTAGGAATCGCAGCGCCAGCGGTTGCAAG
-    &gt;hg17_chr7_127485994_127486166_+ NM_000230
+    >hg17_chr7_127485994_127486166_+ NM_000230
     GCCCAAGAAGCCCATCCTGGGAAGGAAAATGCATTGGGGAACCCTGTGCG
     GATTCTTGTGGCTTTGGCCCTATCTTTTCTATGTCCAAGCTGTGCCCATC
     CAAAAAGTCCAAGATGACACCAAAACCCTCATCAAGACAATTGTCACCAG
     GATCAATGACATTTCACACACG
-    &gt;hg17_chr7_127486011_127486166_+ D49487
+    >hg17_chr7_127486011_127486166_+ D49487
     TGGGAAGGAAAATGCATTGGGGAACCCTGTGCGGATTCTTGTGGCTTTGG
     CCCTATCTTTTCTATGTCCAAGCTGTGCCCATCCAAAAAGTCCAAGATGA
     CACCAAAACCCTCATCAAGACAATTGTCACCAGGATCAATGACATTTCAC
@@ -217,7 +217,7 @@ Extracting sequences with **Interval** output data type returns::
     chr7    127485994       127486166       NM_000230       0       +       GCCCAAGAAGCCCATCCTGGGAAGGAAAATGCATTGGGGAACCCTGTGCGGATTCTTGTGGCTTTGGCCCTATCTTTTCTATGTCCAAGCTGTGCCCATCCAAAAAGTCCAAGATGACACCAAAACCCTCATCAAGACAATTGTCACCAGGATCAATGACATTTCACACACG
     chr7    127486011       127486166       D49487  0       +       TGGGAAGGAAAATGCATTGGGGAACCCTGTGCGGATTCTTGTGGCTTTGGCCCTATCTTTTCTATGTCCAAGCTGTGCCCATCCAAAAAGTCCAAGATGACACCAAAACCCTCATCAAGACAATTGTCACCAGGATCAATGACATTTCACACACG
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
             @unpublished{None,

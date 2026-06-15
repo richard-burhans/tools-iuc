@@ -10,7 +10,6 @@
             <secret name="ncbi_api_key" inject_as_env="NCBI_API_KEY" optional="true" label="NCBI API key"/>
         </credentials>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
     #if str($test_false_api) == "true"
         export NCBI_API_KEY="test_false_api_key" &&
@@ -23,24 +22,20 @@
       $abstract
       ]]>
     </command>
-
     <configfiles>
         <configfile name="credentials"><![CDATA[
         $__user__.extra_preferences.get('ncbi_account|apikey', "")
         ]]></configfile>
     </configfiles>
-
     <inputs>
-        <param argument="--input" type="data" format="tabular" label="Input file with query terms" />
+        <param argument="--input" type="data" format="tabular" label="Input file with query terms"/>
         <param argument="--abstract" type="boolean" truevalue="--abstract" falsevalue="" checked="false" label="Save abstracts instead of PMIDs"/>
-        <param argument="--number" type="integer" value="5" min="1" label="Number of PMIDs (or abstracts) to save per ID" />
-        <param name="test_false_api" type="hidden" value="false" />
+        <param argument="--number" type="integer" value="5" min="1" label="Number of PMIDs (or abstracts) to save per ID"/>
+        <param name="test_false_api" type="hidden" value="false"/>
     </inputs>
-    
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
-    
     <tests>
         <test>
             <param name="input" value="test_data" ftype="tabular"/>
@@ -57,7 +52,7 @@
             <param name="input" value="test_data_false_api" ftype="tabular"/>
             <param name="number" value="5"/>
             <param name="abstract" value="false"/>
-            <param name="test_false_api" value="true" />
+            <param name="test_false_api" value="true"/>
             <assert_stderr>
                 <has_text text="Killing the request! Something is not working."/>
             </assert_stderr>

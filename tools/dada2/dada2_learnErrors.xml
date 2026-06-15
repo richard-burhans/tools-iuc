@@ -48,9 +48,7 @@ ggsave('plot.pdf', plot, width = 20,height = 15,units = c("cm"))
             <expand macro="errorEstimationFunction"/>
             <param argument="randomize" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Randomize samples" help="Pick samples at random, otherwise samples are read in the provided order until enough reads are obtained (default)."/>
             <param name="maxconsist" argument="MAX_CONSIST" type="integer" value="10" min="0" label="Maximum number of times to step through the selfconsistency loop" help="If convergence was not reached in MAX_CONSIST steps, the estimated error rates in the last step are returned."/>
-            <param name="omegac" argument="OMEGA_C" type="float" value="0" min="0" label="Threshold at which unique sequences inferred to contain errors are corrected" help="For reasons of convergence, and because it is
-more conservative, it is recommended to set this value to 0, which means that
-all reads are counted and contribute to estimating the error rates."/>
+            <param name="omegac" argument="OMEGA_C" type="float" value="0" min="0" label="Threshold at which unique sequences inferred to contain errors are corrected" help="For reasons of convergence, and because it is more conservative, it is recommended to set this value to 0, which means that all reads are counted and contribute to estimating the error rates."/>
         </section>
         <section name="plotopt" title="Plotting Option">
             <param argument="obs" type="boolean" checked="true" truevalue="TRUE" falsevalue="FALSE" label="Plot observed error rates"/>
@@ -77,14 +75,14 @@ all reads are counted and contribute to estimating the error rates."/>
         <!-- test w non-default parameters -->
         <test>
             <param name="fls" value="filterAndTrim_F3D0_R1.fq.gz,filterAndTrim_F3D141_R1.fq.gz" ftype="fastqsanger.gz"/>
-            <param name="nbases" value="6" />
-            <param name="advanced|errfoo" value="noqualErrfun" />
-            <param name="advanced|randomize" value="TRUE" />
-            <param name="advanced|maxconsist" value="5" />
-            <param name="advanced|omegac" value="1e-10" />
-            <param name="plotopt|obs" value="FALSE" />
-            <param name="plotopt|err_out" value="FALSE" />
-            <param name="plotopt|err_in" value="TRUE" />
+            <param name="nbases" value="6"/>
+            <param name="advanced|errfoo" value="noqualErrfun"/>
+            <param name="advanced|randomize" value="TRUE"/>
+            <param name="advanced|maxconsist" value="5"/>
+            <param name="advanced|omegac" value="1e-10"/>
+            <param name="plotopt|obs" value="FALSE"/>
+            <param name="plotopt|err_out" value="FALSE"/>
+            <param name="plotopt|err_in" value="TRUE"/>
             <param name="plotopt|nominalQ" value="FALSE"/>
             <output name="errors" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" compare="sim_size" delta="13000"/>
             <output name="plot" ftype="pdf">
@@ -97,9 +95,9 @@ all reads are counted and contribute to estimating the error rates."/>
         <!-- test binned error foo -->
         <test>
             <param name="fls" value="filterAndTrim_F3D0_R1.fq.gz,filterAndTrim_F3D141_R1.fq.gz" ftype="fastqsanger.gz"/>
-            <param name="nbases" value="6" />
-            <param name="advanced|errfoo" value="BinnedQualErrfun" />
-            <param name="advanced|quality_bins" value="1,11,21,31,41" />
+            <param name="nbases" value="6"/>
+            <param name="advanced|errfoo" value="BinnedQualErrfun"/>
+            <param name="advanced|quality_bins" value="1,11,21,31,41"/>
             <output name="errors" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" compare="sim_size" delta="13000">
                 <assert_contents>
                     <has_size min="1k"/>
@@ -112,7 +110,6 @@ all reads are counted and contribute to estimating the error rates."/>
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
 Description

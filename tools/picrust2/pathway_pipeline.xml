@@ -1,5 +1,5 @@
 <tool id="picrust2_pathway_pipeline" name="PICRUSt2 Pathway abundance inference" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>

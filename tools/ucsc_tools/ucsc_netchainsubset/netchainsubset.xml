@@ -22,20 +22,20 @@
         $skipMissing
     ]]></command>
     <inputs>
-        <param name="in_net" format="ucsc.net" type="data" label="net dataset" help="" />
-        <param name="in_chain" format="chain" type="data" label="chain dataset" help="" />
-        <param argument="-splitOnInsert" type="boolean" optional="true" truevalue="-splitOnInsert" falsevalue="" label="Split on insert" help="Split chain when get an insertion of another chain." />
-        <param argument="-wholeChains" type="boolean" optional="true" truevalue="-wholeChains" falsevalue="" label="Whole chains" help="Write entire chain references by net, don't split when a high-level net is encoundered.  This is useful when nets have been filtered." />
-        <param argument="-skipMissing" type="boolean" optional="true" truevalue="-skipMissing" falsevalue="" label="Skip missing chains" help="Skip chains that are not found instead of generating an error. Useful if chains have been filtered." />
+        <param name="in_net" format="ucsc.net" type="data" label="net dataset" help=""/>
+        <param name="in_chain" format="chain" type="data" label="chain dataset" help=""/>
+        <param argument="-splitOnInsert" type="boolean" optional="true" truevalue="-splitOnInsert" falsevalue="" label="Split on insert" help="Split chain when get an insertion of another chain."/>
+        <param argument="-wholeChains" type="boolean" optional="true" truevalue="-wholeChains" falsevalue="" label="Whole chains" help="Write entire chain references by net, don't split when a high-level net is encoundered.  This is useful when nets have been filtered."/>
+        <param argument="-skipMissing" type="boolean" optional="true" truevalue="-skipMissing" falsevalue="" label="Skip missing chains" help="Skip chains that are not found instead of generating an error. Useful if chains have been filtered."/>
     </inputs>
     <outputs>
-        <data name="out" format="chain" />
+        <data name="out" format="chain"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="in_net" value="target.net" />
-            <param name="in_chain" value="in.chain" />
-            <output name="out" file="out.chain" />
+            <param name="in_net" value="target.net"/>
+            <param name="in_chain" value="in.chain"/>
+            <output name="out" file="out.chain"/>
         </test>
     </tests>
     <help><![CDATA[

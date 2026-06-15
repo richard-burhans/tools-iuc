@@ -3,10 +3,10 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
-    <command detect_errors="aggressive">
-        <![CDATA[        
+    <command detect_errors="aggressive"><![CDATA[
+                
         ## Set variables
         @SET_UNCOMPRESS_NAMES@
 
@@ -37,7 +37,7 @@
                 --showOnlyReferenceDifferences
             #else if $onlyDifferences.show == 'lineage':
                 --showOnlyLineageDifferences
-                --phylogeny $onlyDifferences.phylogeny
+                --phylogeny '$onlyDifferences.phylogeny'
             #end if 
             #if $output.format == 'maf':
                 --maf
@@ -103,10 +103,10 @@
             </param>
             <when value="taf">
                 <expand macro="params_repeatCoordinatesEveryNColumns"/>
-                <param argument="--runLengthEncodeBases" type="boolean" truevalue="--runLengthEncodeBases" falsevalue="" checked="false" label="Run-length encode bases" help="Compresses the sequence data using run-length encoding"/>  
-                 <section name="visual" title="Visualization options" expanded="true" help="These options are for visualization only. They produce an invalid formatted output file, which cannot be used by most downstream tools">
+                <param argument="--runLengthEncodeBases" type="boolean" truevalue="--runLengthEncodeBases" falsevalue="" checked="false" label="Run-length encode bases" help="Compresses the sequence data using run-length encoding"/>
+                <section name="visual" title="Visualization options" expanded="true" help="These options are for visualization only. They produce an invalid formatted output file, which cannot be used by most downstream tools">
                     <expand macro="params_colorBases"/>
-                    <param argument="--omitCoordinates" type="boolean" truevalue="--omitCoordinates" falsevalue="" checked="false" label="Omit coordinates" help="Only outputs the alignment columns, omitting sequence coordinates"/>  
+                    <param argument="--omitCoordinates" type="boolean" truevalue="--omitCoordinates" falsevalue="" checked="false" label="Omit coordinates" help="Only outputs the alignment columns, omitting sequence coordinates"/>
                 </section>
                 <expand macro="params_conditional_compression_taf"/>
             </when>
@@ -165,9 +165,9 @@
                 <assert_contents>
                     <has_text text="#taf" negate="true"/>
                     <has_text text="##maf" negate="true"/>
-                    <has_line line="Anc1.Anc1refChr1&#009;296994&#009;292714&#009;292764&#009;+&#009;Anc0.Anc0refChr0&#009;4151&#009;0&#009;50&#009;50&#009;50&#009;255&#009;cg:Z:50M"/>
+                    <has_line line="Anc1.Anc1refChr1&#9;296994&#9;292714&#9;292764&#9;+&#9;Anc0.Anc0refChr0&#9;4151&#9;0&#9;50&#9;50&#9;50&#9;255&#9;cg:Z:50M"/>
                     <has_text text="cs:Z:=ACA*TA*CA*TA*GA" negate="true"/>
-                    <has_text text="+&#009;mr.mrrefChr1&#009;" negate="true"/>
+                    <has_text text="+&#9;mr.mrrefChr1&#9;" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -194,9 +194,9 @@
                 <assert_contents>
                     <has_text text="#taf" negate="true"/>
                     <has_text text="##maf" negate="true"/>
-                    <has_line line="Anc1.Anc1refChr1&#009;296994&#009;292714&#009;292764&#009;+&#009;Anc0.Anc0refChr0&#009;4151&#009;0&#009;50&#009;50&#009;50&#009;255&#009;cg:Z:50M"/>
+                    <has_line line="Anc1.Anc1refChr1&#9;296994&#9;292714&#9;292764&#9;+&#9;Anc0.Anc0refChr0&#9;4151&#9;0&#9;50&#9;50&#9;50&#9;255&#9;cg:Z:50M"/>
                     <has_text text="cs:Z:=ACA*TA*CA*TA*GA" negate="true"/>
-                    <has_text text="+&#009;mr.mrrefChr1&#009;" negate="true"/>
+                    <has_text text="+&#9;mr.mrrefChr1&#9;" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -221,9 +221,9 @@
                 <assert_contents>
                     <has_text text="#taf" negate="true"/>
                     <has_text text="##maf" negate="true"/>
-                    <has_line line="Anc1.Anc1refChr1&#009;296994&#009;292714&#009;292764&#009;+&#009;Anc0.Anc0refChr0&#009;4151&#009;0&#009;50&#009;50&#009;50&#009;255&#009;cg:Z:50M"/>
+                    <has_line line="Anc1.Anc1refChr1&#9;296994&#9;292714&#9;292764&#9;+&#9;Anc0.Anc0refChr0&#9;4151&#9;0&#9;50&#9;50&#9;50&#9;255&#9;cg:Z:50M"/>
                     <has_text text="cs:Z:=ACA*TA*CA*TA*GA" negate="true"/>
-                    <has_text text="+&#009;mr.mrrefChr1&#009;"/>
+                    <has_text text="+&#9;mr.mrrefChr1&#9;"/>
                 </assert_contents>
             </output>
         </test>
@@ -238,9 +238,9 @@
                 <assert_contents>
                     <has_text text="#taf" negate="true"/>
                     <has_text text="##maf" negate="true"/>
-                    <has_line line="Anc1.Anc1refChr1&#009;296994&#009;292714&#009;292764&#009;+&#009;Anc0.Anc0refChr0&#009;4151&#009;0&#009;50&#009;50&#009;50&#009;255&#009;cg:Z:50M" negate="true"/>
+                    <has_line line="Anc1.Anc1refChr1&#9;296994&#9;292714&#9;292764&#9;+&#9;Anc0.Anc0refChr0&#9;4151&#9;0&#9;50&#9;50&#9;50&#9;255&#9;cg:Z:50M" negate="true"/>
                     <has_text text="cs:Z:=ACA*TA*CA*TA*GA"/>
-                    <has_text text="+&#009;mr.mrrefChr1&#009;" negate="true"/>
+                    <has_text text="+&#9;mr.mrrefChr1&#9;" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -257,7 +257,7 @@
                 <assert_contents>
                     <has_text text="##maf" n="1"/>
                     <has_line line="a" n="6"/>
-                    <has_line line="s&#009;Anc0.Anc0refChr0&#009;51&#009;7&#009;+&#009;4151&#009;ACATCTG" negate="true"/>
+                    <has_line line="s&#9;Anc0.Anc0refChr0&#9;51&#9;7&#9;+&#9;4151&#9;ACATCTG" negate="true"/>
                     <has_line_matching expression="s\tAnc0\.Anc0refChr0\t50\t1\t\+\t4151\t\x1b\[41mA\x1b\[0m"/>
                 </assert_contents>
             </output>

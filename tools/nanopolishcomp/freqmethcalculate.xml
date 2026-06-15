@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="nanopolishcomp_freqmethcalculate" name="NanopolishComp: FreqMethCalculate" version="@TOOL_VERSION@+@WRAPPER_VERSION@">
     <description>calculates methylation frequency at genomic CpG sites</description>
     <macros>
@@ -53,14 +52,14 @@
                 <assert_contents>
                     <has_n_lines n="56"/>
                     <has_line line="track name=Methylation_ itemRgb=On"/>
-                    <has_text_matching expression="tig00000001&#009;201961.+"/>
+                    <has_text_matching expression="tig00000001&#9;201961.+"/>
                 </assert_contents>
             </output>
             <output name="out_tsv">
                 <assert_contents>
                     <has_n_lines n="56"/>
-                    <has_text_matching expression="chromosome&#009;start.+"/>
-                    <has_text_matching expression="tig00000001&#009;201961.+"/>
+                    <has_text_matching expression="chromosome&#9;start.+"/>
+                    <has_text_matching expression="tig00000001&#9;201961.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -76,14 +75,14 @@
                 <assert_contents>
                     <has_n_lines n="111"/>
                     <has_line line="track name=Methylation_test itemRgb=On"/>
-                    <has_text_matching expression="tig00000001&#009;200009.+"/>
+                    <has_text_matching expression="tig00000001&#9;200009.+"/>
                 </assert_contents>
             </output>
             <output name="out_tsv">
                 <assert_contents>
                     <has_n_lines n="111"/>
-                    <has_text_matching expression="chromosome&#009;start.+"/>
-                    <has_text_matching expression="tig00000001&#009;201961.+"/>
+                    <has_text_matching expression="chromosome&#9;start.+"/>
+                    <has_text_matching expression="tig00000001&#9;201961.+"/>
                 </assert_contents>
             </output>
         </test>

@@ -5,11 +5,11 @@
         <token name="@PLUGIN_ID@">counts</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
+    <expand macro="bio_tools"/>
     <expand macro="requirements">
         <requirement type="package" version="3.7">python</requirement>
     </expand>
-    <expand macro="version_command" />
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $section = $sec_restrict
@@ -46,12 +46,12 @@ print( '%s' % '\t'.join(value) )
         </configfile>
     </configfiles>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_target_restrict" />
-            <expand macro="macro_include" />
-            <expand macro="macro_exclude" />
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_target_restrict"/>
+            <expand macro="macro_include"/>
+            <expand macro="macro_exclude"/>
         </section>
     </inputs>
     <outputs>
@@ -59,7 +59,7 @@ print( '%s' % '\t'.join(value) )
     </outputs>
     <tests>
         <test>
-            <param name="input_file" ftype="vcf" value="view.vcf" />
+            <param name="input_file" ftype="vcf" value="view.vcf"/>
             <output name="output_file">
                 <assert_contents>
                     <has_text text="SNPs"/>
@@ -82,5 +82,5 @@ Counts number of samples, SNPs, INDELs, MNPs and total number of sites.
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

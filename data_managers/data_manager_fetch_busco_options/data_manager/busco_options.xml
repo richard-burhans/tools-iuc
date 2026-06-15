@@ -1,6 +1,6 @@
 <tool id="busco_fetcher_options" name="Busco options" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="23.1">
-    <description></description>
-        <macros>
+    <description/>
+    <macros>
         <token name="@TOOL_VERSION@">5.8.0</token>
         <token name="@VERSION_SUFFIX@">0</token>
     </macros>
@@ -40,7 +40,7 @@
             </output>
         </test>
     </tests>
-    <help>This tool determines the possible choices of BUSCO lineages in a given BUSCO DB.</help>
+    <help><![CDATA[This tool determines the possible choices of BUSCO lineages in a given BUSCO DB.]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btv351</citation>
     </citations>

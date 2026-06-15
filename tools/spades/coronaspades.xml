@@ -86,13 +86,13 @@ coronaspades.py
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE_1_length_1009_cluster_1_candidate_1_domains_2"/>
+                    <has_text_matching expression="&gt;NODE_1_length_1009_cluster_1_candidate_1_domains_2"/>
                 </assert_contents>
             </output>
             <output name="out_rs">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE_1_length_1009_cov_429.12"/>
+                    <has_text_matching expression="&gt;NODE_1_length_1009_cov_429.12"/>
                 </assert_contents>
             </output>
             <output name="out_dg">
@@ -122,13 +122,13 @@ coronaspades.py
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE_1_length_1009_cluster_1_candidate_1_domains_2"/>
+                    <has_text_matching expression="&gt;NODE_1_length_1009_cluster_1_candidate_1_domains_2"/>
                 </assert_contents>
             </output>
             <output name="out_rs">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE_1_length_1009_cov_429.12"/>
+                    <has_text_matching expression="&gt;NODE_1_length_1009_cov_429.12"/>
                 </assert_contents>
             </output>
             <output name="out_dg">

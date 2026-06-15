@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="vsnp_genbank_fetcher" name="vSNP Genbank data manager" tool_type="manage_data" profile="18.09" version="0.0.8">
     <description>Download vSNP Genbank files</description>
     <requirements>
@@ -16,10 +15,10 @@
         <param name="all_fasta_source" type="select" label="FASTA reference">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="url" type="text" value="" label="URL to download the Genbank file associated with the selected FASTA reference" optional="False" />
+        <param name="url" type="text" value="" label="URL to download the Genbank file associated with the selected FASTA reference" optional="False"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
@@ -98,6 +97,5 @@ at https://github.com/USDA-VS/vSNP_reference_options.
    * **Genbank file**  https://github.com/USDA-VS/vSNP_reference_options/raw/master/Brucella_suis3/NZ_CP007719-NZ_CP007718.gbk
 
     ]]></help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

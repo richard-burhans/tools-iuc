@@ -220,15 +220,13 @@ snap.pl.regions(
                 <param argument="broad_cutoff" type="float" value="0.1" label="qvalue cutoff used in MACS3 for calling broad peaks"/>
                 <param argument="replicate" type="text" value="" optional="true" label="Replicate information based on key in `.obs`"/>
                 <param argument="replicate_qvalue" type="float" value="" optional="true" label="qvalue cutoff used in MACS3 for calling peaks in replicates"/>
-                <param argument="max_frag_size" type="integer" value="" optional="true" label="Maximum fragment size"
-                    help="This is used to remove fragments that are not from nucleosome-free regions."/>
+                <param argument="max_frag_size" type="integer" value="" optional="true" label="Maximum fragment size" help="This is used to remove fragments that are not from nucleosome-free regions."/>
                 <param argument="nolambda" type="boolean" checked="false" truevalue="True" falsevalue="False" label="If True, macs3 will use the background lambda as local lambda"/>
                 <param argument="shift" type="integer" value="-100" label="The shift size in MACS"/>
                 <param argument="extsize" type="integer" value="200" label="The extension size in MACS"/>
                 <param argument="min_len" type="integer" optional="true" value="" label="The minimum length of a called peak" help="If not set, it is set to the extension size."/>
-                <param argument="blacklist" type="data" format="bed" optional="true" label="Blacklist file in BED format"
-                    help="If provided, regions in the blacklist will be removed."/>
-                <param argument="key_added" type="text" value="macs3"  label="`.uns` key under which to add peak information"/>
+                <param argument="blacklist" type="data" format="bed" optional="true" label="Blacklist file in BED format" help="If provided, regions in the blacklist will be removed."/>
+                <param argument="key_added" type="text" value="macs3" label="`.uns` key under which to add peak information"/>
             </when>
             <when value="tl.merge_peaks">
                 <expand macro="param_inputs_anndata"/>
@@ -282,8 +280,7 @@ snap.pl.regions(
                         <param argument="--max_fdr" type="float" min="0.0" value="0.01" label="Retain motifs with FDR less than max_fdr"/>
                         <expand macro="param_render_plot"/>
                     </when>
-                    <when value="no">
-                    </when>
+                    <when value="no"/>
                 </conditional>
             </when>
             <when value="tl.diff_test">
@@ -322,7 +319,7 @@ snap.pl.regions(
         <data name="anndata_out" format="h5ad" from_work_dir="anndata.h5ad.gz" label="${tool.name} (${method.method}) on ${on_string}: Annotated data matrix">
             <filter>method['method'] != 'tl.marker_regions' and method['method'] != 'tl.diff_test'</filter>
         </data>
-        <data name="hidden_output" format="txt" label="Log file" >
+        <data name="hidden_output" format="txt" label="Log file">
             <filter>advanced_common['show_log']</filter>
         </data>
         <data name="merged_peaks" format="tabular" from_work_dir="merged_peaks.tabular" label="${tool.name} (${method.method}) on ${on_string}: Merged peaks">
@@ -352,7 +349,7 @@ snap.pl.regions(
         <data name="out_html_motifs" format="html" from_work_dir="plot_enrichment.html" label="HTML plot from ${tool.name} (${method.method}) on ${on_string} - motif_enrichment">
             <filter>(method['method'] == 'tl.marker_regions' and method['enrichment_condi']['motif_enrichment'] == 'yes') and method['enrichment_condi']['out_file'] == 'html'</filter>
         </data>
-        <data name="diff_peaks" format="tabular" from_work_dir="diff_peaks.tabular" label="${tool.name} on ${on_string}: Differential peaks" >
+        <data name="diff_peaks" format="tabular" from_work_dir="diff_peaks.tabular" label="${tool.name} on ${on_string}: Differential peaks">
             <filter>method['method'] == 'tl.diff_test'</filter>
         </data>
     </outputs>
@@ -368,7 +365,7 @@ snap.pl.regions(
                 <param name="extsize" value="200"/>
                 <param name="min_len" value="50"/>
                 <param name="key_added" value="macs3"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
                 <param name="show_log" value="true"/>
             </section>
@@ -396,9 +393,9 @@ snap.pl.regions(
                 <param name="adata" location="https://zenodo.org/records/17512085/files/tl.macs3.pbmc_500_chr21.h5ad"/>
                 <param name="chrom_sizes" location="https://zenodo.org/records/17512085/files/chrom_size.tabular"/>
                 <param name="half_width" value="250"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -411,7 +408,7 @@ snap.pl.regions(
                     <has_h5_keys keys="uns/macs3_merged"/>
                 </assert_contents>
             </output>
-            <output name="merged_peaks" >
+            <output name="merged_peaks">
                 <assert_contents>
                     <has_text_matching expression="chr21:5063027-5063528"/>
                     <has_text_matching expression="chr21:19782380-19782881"/>
@@ -432,7 +429,7 @@ snap.pl.regions(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="500 × 1154611"/>
@@ -461,7 +458,7 @@ snap.pl.regions(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="500 × 110942"/>
@@ -496,7 +493,7 @@ snap.pl.regions(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -535,7 +532,7 @@ snap.pl.regions(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -582,7 +579,7 @@ snap.pl.regions(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stderr>
                 <has_text text="Using built-in FASTA: 'Human (hg38)'"/>
@@ -606,7 +603,7 @@ snap.pl.regions(
                 <param name="min_pct" value="0.05"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -616,12 +613,12 @@ snap.pl.regions(
                     <has_text_matching expression="group2 = '2'"/>
                 </assert_contents>
             </output>
-            <output name="diff_peaks" >
-                    <assert_contents>
-                        <has_text_matching expression="chr21:17512734-17513235\t-4.0297.*\t4.3826.*\t0.0016.*"/>
-                        <has_text_matching expression="chr21:33384757-33385258\t0.278.*\t0.1502.*\t0.2644.*"/>
-                        <has_text_matching expression="chr21:42683799-42684300\t-0.438.*\t0.99.*\t0.99.*"/>
-                    </assert_contents>
+            <output name="diff_peaks">
+                <assert_contents>
+                    <has_text_matching expression="chr21:17512734-17513235\t-4.0297.*\t4.3826.*\t0.0016.*"/>
+                    <has_text_matching expression="chr21:33384757-33385258\t0.278.*\t0.1502.*\t0.2644.*"/>
+                    <has_text_matching expression="chr21:42683799-42684300\t-0.438.*\t0.99.*\t0.99.*"/>
+                </assert_contents>
             </output>
             <output name="out_png">
                 <assert_contents>
@@ -651,7 +648,7 @@ snap.pl.regions(
                 <param name="cutoff_l2fc" value="0.5"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -660,7 +657,7 @@ snap.pl.regions(
                     <has_text_matching expression="group1 = '1'"/>
                 </assert_contents>
             </output>
-            <output name="diff_peaks" >
+            <output name="diff_peaks">
                 <assert_contents>
                     <has_text_matching expression="chr21:5123633-5124134"/>
                     <has_text_matching expression="chr21:32403055-32403556"/>
@@ -724,4 +721,3 @@ More details on the `SnapATAC2 documentation
     ]]></help>
     <expand macro="citations"/>
 </tool>
-

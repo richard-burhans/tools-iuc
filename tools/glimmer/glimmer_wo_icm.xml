@@ -25,17 +25,16 @@
             '$genes_output'
 ]]></command>
     <inputs>
-        <param name="input" type="data" format="fasta" label="Genome sequence" />
-        <param name="overlap" type="integer" value="0" label="Set maximum overlap length. Overlaps this short or shorter are ignored." />
-        <param name="gene_length" type="integer" value="110" label="Set minimum gene length." />
-        <param name="threshold" type="integer" value="30" label="Set threshold score for calling as gene. If the in-frame score >= N, then the region is given a number and considered a potential gene." />
-        <param name="linear" type="boolean" truevalue="true" falsevalue="false" checked="true" label="Assume linear rather than circular genome, i.e., no wraparound" />
-
-        <param name="detailed_report" type="boolean" checked="false" label="Output a detailed gene prediction report as separate file" />
-        <param name="report" type="boolean" checked="false" label="Report the classic glimmer table output" />
+        <param name="input" type="data" format="fasta" label="Genome sequence"/>
+        <param name="overlap" type="integer" value="0" label="Set maximum overlap length. Overlaps this short or shorter are ignored."/>
+        <param name="gene_length" type="integer" value="110" label="Set minimum gene length."/>
+        <param name="threshold" type="integer" value="30" label="Set threshold score for calling as gene. If the in-frame score &gt;= N, then the region is given a number and considered a potential gene."/>
+        <param name="linear" type="boolean" truevalue="true" falsevalue="false" checked="true" label="Assume linear rather than circular genome, i.e., no wraparound"/>
+        <param name="detailed_report" type="boolean" checked="false" label="Output a detailed gene prediction report as separate file"/>
+        <param name="report" type="boolean" checked="false" label="Report the classic glimmer table output"/>
     </inputs>
     <outputs>
-        <data name="genes_output" format="fasta" label="Glimmer3 on ${on_string} (Gene Prediction FASTA)" />
+        <data name="genes_output" format="fasta" label="Glimmer3 on ${on_string} (Gene Prediction FASTA)"/>
         <data name="prediction" format="txt" label="Glimmer3 on ${on_string} (Gene Prediction table)">
             <filter>report</filter>
         </data>
@@ -45,24 +44,24 @@
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="streptomyces_Tue6071_plasmid_genomic.fasta" />
-            <param name="overlap" value="0" />
-            <param name="gene_length" value="110" />
-            <param name="threshold" value="30" />
-            <param name="linear" value="true" />
-            <param name="detailed_report" value="" />
-            <param name="report" value="" />
-            <output name="genes_output" file="glimmer_wo_icm_trans-table-11_plasmid_genomic.fasta" ftype="fasta" />
+            <param name="input" value="streptomyces_Tue6071_plasmid_genomic.fasta"/>
+            <param name="overlap" value="0"/>
+            <param name="gene_length" value="110"/>
+            <param name="threshold" value="30"/>
+            <param name="linear" value="true"/>
+            <param name="detailed_report" value=""/>
+            <param name="report" value=""/>
+            <output name="genes_output" file="glimmer_wo_icm_trans-table-11_plasmid_genomic.fasta" ftype="fasta"/>
         </test>
         <test expect_num_outputs="3">
-            <param name="input" value="streptomyces_Tue6071_plasmid_genomic.fasta" />
-            <param name="overlap" value="0" />
-            <param name="gene_length" value="110" />
-            <param name="threshold" value="30" />
-            <param name="linear" value="true" />
-            <param name="detailed_report" value="true" />
-            <param name="report" value="true" />
-            <output name="genes_output" file="glimmer_wo_icm_trans-table-11_plasmid_genomic.fasta" ftype="fasta" />
+            <param name="input" value="streptomyces_Tue6071_plasmid_genomic.fasta"/>
+            <param name="overlap" value="0"/>
+            <param name="gene_length" value="110"/>
+            <param name="threshold" value="30"/>
+            <param name="linear" value="true"/>
+            <param name="detailed_report" value="true"/>
+            <param name="report" value="true"/>
+            <output name="genes_output" file="glimmer_wo_icm_trans-table-11_plasmid_genomic.fasta" ftype="fasta"/>
         </test>
     </tests>
     <help>
@@ -124,5 +123,5 @@ Running this tool will produce a FASTA file with predicted genes and glimmer out
 
 ]]>
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

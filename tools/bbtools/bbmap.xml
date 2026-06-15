@@ -341,7 +341,7 @@ renamebyinsert='$output_options.renamebyinsert'
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 BBMap is a splice-aware global aligner for DNA and RNA sequencing reads.  It is fast and extremely accurate, particularly
@@ -362,6 +362,6 @@ evaluating new sequencing platforms.
     * Sort by read names - the file is sorted by the reference ID (i.e., the QNAME field).
     * Not sorted (sorted as input) - the file is sorted in the order of the reads in the input file.
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

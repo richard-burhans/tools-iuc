@@ -81,7 +81,7 @@
                     <when value="single">
                         <param name="forward" type="data" format="fastq,fastq.gz" label="Input forward reads"/>
                         <param name="reverse" type="data" format="fastq,fastq.gz" label="Input reverse reads"/>
-                    </when> 
+                    </when>
                 </conditional>
             </when>
             <when value="single">
@@ -94,57 +94,57 @@
         <data name="bam_file" format="bam" label="COMEBin bam file"/>
     </outputs>
     <tests>
-       <test expect_num_outputs="1">
-        <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
-        <conditional name="read_typ">
-            <param name="is_select" value="normal"/>
-            <conditional name="input_typ">
-                <param name="is_select" value="paired"/>
-                <param name="paired_reads">
-                    <collection type="paired">
-                        <element name="forward" value="bowtie2-fq_1.fastq" ftype="fastq"/>
-                        <element name="reverse" value="bowtie2-fq_2.fastq" ftype="fastq"/>
-                    </collection>
-                </param>
+        <test expect_num_outputs="1">
+            <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
+            <conditional name="read_typ">
+                <param name="is_select" value="normal"/>
+                <conditional name="input_typ">
+                    <param name="is_select" value="paired"/>
+                    <param name="paired_reads">
+                        <collection type="paired">
+                            <element name="forward" value="bowtie2-fq_1.fastq" ftype="fastq"/>
+                            <element name="reverse" value="bowtie2-fq_2.fastq" ftype="fastq"/>
+                        </collection>
+                    </param>
+                </conditional>
             </conditional>
-        </conditional>
-        <output name="bam_file">
-            <assert_contents>
-                <has_size size="17000" delta="1000"/>
-            </assert_contents>
-        </output>
-       </test> 
-       <test expect_num_outputs="1">
-        <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
-        <conditional name="read_typ">
-            <param name="is_select" value="normal"/>
-            <conditional name="input_typ">
-                <param name="is_select" value="single"/>
-                <param name="forward" value="bowtie2-fq_1.fastq" ftype="fastq"/>
-                <param name="reverse" value="bowtie2-fq_2.fastq" ftype="fastq"/>
-            </conditional>
-        </conditional>
-        <output name="bam_file">
-            <assert_contents>
-                <has_size size="17000" delta="1000"/>
-            </assert_contents>
-        </output>
+            <output name="bam_file">
+                <assert_contents>
+                    <has_size size="17000" delta="1000"/>
+                </assert_contents>
+            </output>
         </test>
-       <test expect_num_outputs="1">
-        <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
-        <conditional name="read_typ">
-            <param name="is_select" value="normal"/>
-            <conditional name="input_typ">
-                <param name="is_select" value="single"/>
-                <param name="forward" value="bowtie2-fq_1.fastq.gz" ftype="fastq.gz"/>
-                <param name="reverse" value="bowtie2-fq_2.fastq.gz" ftype="fastq.gz"/>
+        <test expect_num_outputs="1">
+            <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
+            <conditional name="read_typ">
+                <param name="is_select" value="normal"/>
+                <conditional name="input_typ">
+                    <param name="is_select" value="single"/>
+                    <param name="forward" value="bowtie2-fq_1.fastq" ftype="fastq"/>
+                    <param name="reverse" value="bowtie2-fq_2.fastq" ftype="fastq"/>
+                </conditional>
             </conditional>
-        </conditional>
-        <output name="bam_file">
-            <assert_contents>
-                <has_size size="17000" delta="1000"/>
-            </assert_contents>
-        </output>
+            <output name="bam_file">
+                <assert_contents>
+                    <has_size size="17000" delta="1000"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="assembly" value="bowtie2-ref.fasta" ftype="fasta"/>
+            <conditional name="read_typ">
+                <param name="is_select" value="normal"/>
+                <conditional name="input_typ">
+                    <param name="is_select" value="single"/>
+                    <param name="forward" value="bowtie2-fq_1.fastq.gz" ftype="fastq.gz"/>
+                    <param name="reverse" value="bowtie2-fq_2.fastq.gz" ftype="fastq.gz"/>
+                </conditional>
+            </conditional>
+            <output name="bam_file">
+                <assert_contents>
+                    <has_size size="17000" delta="1000"/>
+                </assert_contents>
+            </output>
         </test>
     </tests>
     <help>

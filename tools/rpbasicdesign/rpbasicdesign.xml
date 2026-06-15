@@ -29,24 +29,24 @@
         <param argument="--backbone_id" type="text" value="BASIC_SEVA_37_CmR-p15A.1" label="Backbone part ID" help="Part ID to be used as the backbone.">
             <sanitizer invalid_char="">
                 <valid initial="string.letters,string.digits">
-                    <add value=":" />
-                    <add value="." />
-                    <add value="-" />
-                    <add value="_" />
+                    <add value=":"/>
+                    <add value="."/>
+                    <add value="-"/>
+                    <add value="_"/>
                 </valid>
             </sanitizer>
             <validator type="empty_field" message="Backbone ID is required"/>
         </param>
         <param argument="--sample_size" type="integer" value="88" min="1" max="88" label="Sample size" help="Number of construct to generate."/>
         <section name="adv" title="Advanced Options" expanded="false">
-            <param name="parts_files" type="data" format="csv" optional="true" multiple="true" label="Linkers and user parts" help="List of files providing available linkers and user parts (backbone, promoters, ...) for constructs. Default: Standard Biolegio Parts (BBP-18500)" />
-            <param argument="--lms_id" type="text" value="LMS" label="LMS part ID" help="Part ID to be used as the LMS methylated linker." >
+            <param name="parts_files" type="data" format="csv" optional="true" multiple="true" label="Linkers and user parts" help="List of files providing available linkers and user parts (backbone, promoters, ...) for constructs. Default: Standard Biolegio Parts (BBP-18500)"/>
+            <param argument="--lms_id" type="text" value="LMS" label="LMS part ID" help="Part ID to be used as the LMS methylated linker.">
                 <sanitizer invalid_char="">
                     <valid initial="string.letters,string.digits">
-                        <add value=":" />
-                        <add value="-" />
-                        <add value="_" />
-                        <add value="." />
+                        <add value=":"/>
+                        <add value="-"/>
+                        <add value="_"/>
+                        <add value="."/>
                     </valid>
                 </sanitizer>
                 <validator type="empty_field" message="LMS ID is required"/>
@@ -54,34 +54,34 @@
             <param argument="--lmp_id" type="text" value="LMP" label="LMP part ID" help="Part ID to be used as the LMP methylated linker.">
                 <sanitizer invalid_char="">
                     <valid initial="string.letters,string.digits">
-                        <add value=":" />
-                        <add value="-" />
-                        <add value="_" />
-                        <add value="." />
+                        <add value=":"/>
+                        <add value="-"/>
+                        <add value="_"/>
+                        <add value="."/>
                     </valid>
                 </sanitizer>
                 <validator type="empty_field" message="LMP ID is required"/>
             </param>
-            <param argument="--cds_permutation" type="boolean" truevalue="--cds_permutation true" falsevalue="--cds_permutation false" checked="true" label="Perform CDS permutation?" help="Whether all combinations of CDS permutation should be built." />
-            <param argument="--sbol_output" type="boolean" checked="false" truevalue="--o_sbol_dir out/sbol_export" falsevalue="" label="Output SBOL results?" help="Whether SBOL (Synthetic Biology Open Language) depictions of constructs should be outputted" />
+            <param argument="--cds_permutation" type="boolean" truevalue="--cds_permutation true" falsevalue="--cds_permutation false" checked="true" label="Perform CDS permutation?" help="Whether all combinations of CDS permutation should be built."/>
+            <param argument="--sbol_output" type="boolean" checked="false" truevalue="--o_sbol_dir out/sbol_export" falsevalue="" label="Output SBOL results?" help="Whether SBOL (Synthetic Biology Open Language) depictions of constructs should be outputted"/>
             <param argument="--max_enz_per_rxn" type="integer" value="1" min="1" max="99" label="Maximum number of enyzme to consider per reaction." help="Maximum number of enyzme to consider per reaction. If more enzymes are available for a given reaction, then only the last one listed in the MIRIAM annotation section will be kept."/>
             <param argument="--max_gene_per_construct" type="integer" value="3" min="1" max="10" label="Maximum number of genes per construct" help="If more genes are required, i.e. more reactions are described in the input SBML file, then the execution will failed."/>
         </section>
     </inputs>
     <outputs>
-        <data name="Constructs" format="csv" from_work_dir="out/dnabot_in/constructs.csv" label="${tool.name} on ${rpsbml_file.name}: constructs" />
+        <data name="Constructs" format="csv" from_work_dir="out/dnabot_in/constructs.csv" label="${tool.name} on ${rpsbml_file.name}: constructs"/>
         <data name="User_parts_plate" format="csv" from_work_dir="out/dnabot_in/user_parts_plate.csv" label="${tool.name} on ${rpsbml_file.name}: User parts plate"/>
         <data name="Biolegio_plate" format="csv" from_work_dir="out/dnabot_in/biolegio_plate.csv" label="${tool.name} on ${rpsbml_file.name}: Biolegio plate"/>
         <collection name="sbol_dir" type="list" label="${tool.name} on ${rpsbml_file.name}: SBOL constructs">
             <filter> adv['sbol_output'] </filter>
-            <discover_datasets pattern="__designation_and_ext__" format="xml" directory="out/sbol_export" />
+            <discover_datasets pattern="__designation_and_ext__" format="xml" directory="out/sbol_export"/>
         </collection>
     </outputs>
     <tests>
         <test expect_num_outputs="4">
             <!-- test 1: check if identical outputs are produced (Lycopene input)-->
-            <param name="rpsbml_file" value="lycopene_CrtEBI_from_selenzy.xml" />
-            <param name="sample_size" value="3" />
+            <param name="rpsbml_file" value="lycopene_CrtEBI_from_selenzy.xml"/>
+            <param name="sample_size" value="3"/>
             <output name="Constructs" file="constructs_lycopene.csv" ftype="csv" compare="diff">
                 <assert_contents>
                     <has_n_lines n="4"/>
@@ -89,35 +89,35 @@
             </output>
             <output name="User_parts_plate" file="user_parts_plate_lycopene.csv" ftype="csv" compare="diff"/>
             <output name="Biolegio_plate" file="biolegio_plate_lycopene.csv" ftype="csv" compare="diff"/>
-            <param name="sbol_output" value="true" />
+            <param name="sbol_output" value="true"/>
             <output_collection name="sbol_dir" type="list" count="3">
                 <element name="BASIC_construct_A1">
                     <assert_contents>
-                        <is_valid_xml />
-                        <has_text text="BASIC_construct_A1" />
-                        <has_n_lines n="339" />
+                        <is_valid_xml/>
+                        <has_text text="BASIC_construct_A1"/>
+                        <has_n_lines n="339"/>
                     </assert_contents>
                 </element>
                 <element name="BASIC_construct_B1">
                     <assert_contents>
-                        <is_valid_xml />
-                        <has_text text="BASIC_construct_B1" />
-                        <has_n_lines n="339" />
+                        <is_valid_xml/>
+                        <has_text text="BASIC_construct_B1"/>
+                        <has_n_lines n="339"/>
                     </assert_contents>
                 </element>
                 <element name="BASIC_construct_C1">
                     <assert_contents>
-                        <is_valid_xml />
-                        <has_text text="BASIC_construct_C1" />
-                        <has_n_lines n="339" />
+                        <is_valid_xml/>
+                        <has_text text="BASIC_construct_C1"/>
+                        <has_n_lines n="339"/>
                     </assert_contents>
                 </element>
             </output_collection>
         </test>
         <test expect_num_outputs="3">
             <!-- test 2: check if identical outputs are produced (Muconate input)-->
-            <param name="rpsbml_file" value="muconate_example.xml" />
-            <param name="sample_size" value="88" />
+            <param name="rpsbml_file" value="muconate_example.xml"/>
+            <param name="sample_size" value="88"/>
             <output name="Constructs" file="constructs_muconate.csv" ftype="csv" compare="diff">
                 <assert_contents>
                     <has_n_lines n="89"/>

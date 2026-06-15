@@ -7,14 +7,14 @@
     <expand macro="requirements"/>
     <command detect_errors="aggressive"><![CDATA[
     make_asv_count_table -t '$taxa' -f '$map_file' -a '$amp' -hd '$headers' -s sample &&
-    find ./ -maxdepth 1 -type f -name "*_asv_krona_counts.txt" -exec mv {} $asv_krona_counts ';'
+    find ./ -maxdepth 1 -type f -name "*_asv_krona_counts.txt" -exec mv {} '$asv_krona_counts' ';'
     ]]></command>
     <inputs>
         <param name="map_file" type="data" label="DADA2 ASV map file" format="txt" help="Mapping file linking reads to inferred ASV identifiers"/>
         <param name="taxa" type="data" label="ASV taxonomy table" format="tabular" help="Taxonomy table produced by the MAPseq-to-ASV-table tool"/>
         <param name="amp" type="data" label="Amplicon region reads" format="txt" help="List of read identifiers belonging to the extracted amplicon region"/>
         <param name="headers" type="data" label="FASTQ headers" format="txt" help="FASTQ header identifiers corresponding to the input reads"/>
-    </inputs>    
+    </inputs>
     <outputs>
         <data name="asv_krona_counts" label="${tool.name} on ${on_string}: ASV Krona input" format="tabular"/>
         <data name="asv_read_counts" label="${tool.name} on ${on_string}: ASV read counts" format="tabular" from_work_dir="sample_dat_asv_read_counts.tsv"/>
@@ -44,5 +44,5 @@ It combines:
 to produce read count tables suitable for downstream microbiome analysis and visualization.
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

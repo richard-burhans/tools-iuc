@@ -38,12 +38,12 @@
     </command>
     <inputs>
         <conditional name="collection_paired">
-            <param name="selector" type="select" label="Collection or paired reads" >
+            <param name="selector" type="select" label="Collection or paired reads">
                 <option value="collection">Collection</option>
                 <option value="paired" selected="True">Paired</option>
             </param>
             <when value="collection">
-                <param format="fastq,fastq.gz" name="input_pair" type="data_collection" collection_type="paired" label="Collection of paired reads" help="FASTQ datasets" />
+                <param format="fastq,fastq.gz" name="input_pair" type="data_collection" collection_type="paired" label="Collection of paired reads" help="FASTQ datasets"/>
             </when>
             <when value="paired">
                 <param format="fastq,fastq.gz" name="forward_input" type="data" label="Forward strand" help="FASTQ dataset"/>
@@ -51,8 +51,7 @@
             </when>
         </conditional>
         <conditional name="snp_profiles_source">
-            <param name="snp_profiles_source_selector" type="select"
-                   label="Select a SNP profile from your history or use one from a tool data table?">
+            <param name="snp_profiles_source_selector" type="select" label="Select a SNP profile from your history or use one from a tool data table?">
                 <option value="No" selected="true">No SNP profile</option>
                 <option value="tool_data_table">SNP profile from tool data table</option>
                 <option value="history">SNP profile from history</option>
@@ -61,35 +60,30 @@
             <when value="tool_data_table">
                 <param name="snp_profiles" type="select" format="tabular" label="SNP Profile">
                     <options from_data_table="tetyper_snp_profiles">
-                        <validator type="no_options" message="No TETyper SNP profiles are available" />
+                        <validator type="no_options" message="No TETyper SNP profiles are available"/>
                     </options>
                 </param>
             </when>
             <when value="history">
-                <param name="snp_profiles" type="data" format="tabular" label="SNP Profile"
-                       help="A three-column tabular file with SNP profile definitions"/>
+                <param name="snp_profiles" type="data" format="tabular" label="SNP Profile" help="A three-column tabular file with SNP profile definitions"/>
             </when>
         </conditional>
         <conditional name="struct_profiles_source">
-            <param name="struct_profiles_source_selector" type="select"
-                   label="Select a structural variant profile from your history or use one from a tool data table?">
+            <param name="struct_profiles_source_selector" type="select" label="Select a structural variant profile from your history or use one from a tool data table?">
                 <option value="No" selected="true">No structural variant profile</option>
                 <option value="tool_data_table">Structural variant profile from tool data table</option>
                 <option value="history" selected="true">Structural variant profile from history</option>
             </param>
             <when value="No"/>
             <when value="tool_data_table">
-                <param name="struct_profiles" type="select" format="tabular"
-                       label="Structural Variant Profile">
+                <param name="struct_profiles" type="select" format="tabular" label="Structural Variant Profile">
                     <options from_data_table="tetyper_struct_profiles">
-                        <validator type="no_options" message="No TETyper structural variant profiles are available" />
+                        <validator type="no_options" message="No TETyper structural variant profiles are available"/>
                     </options>
                 </param>
             </when>
             <when value="history">
-                <param name="struct_profiles" type="data" format="tabular"
-                       label="Structural Variant Profile"
-                       help="A two-column tabular file with structural variant profile definitions"/>
+                <param name="struct_profiles" type="data" format="tabular" label="Structural Variant Profile" help="A two-column tabular file with structural variant profile definitions"/>
             </when>
         </conditional>
         <param name="reference" type="data" format="fasta" label="Transposable Element Reference"/>
@@ -97,7 +91,7 @@
         <param name="min_reads" type="integer" min="1" value="10" max="100" label="Minimum Reads" help="Minimum read number for including a specific flanking sequence."/>
         <param name="min_each_strand" type="integer" min="1" value="1" max="100" label="Minimum Reads (each strand)" help="Minimum read number for each strand for including a specific flanking sequence."/>
         <param name="min_mapped_len" type="integer" min="8" value="30" max="100" label="Minimum Mapped Length" help="Minimum length of mapping for a read to be used in determining flanking sequences. Higher values are more robust to spurious mapping. Lower values will recover more reads."/>
-        <param name="min_qual" type="integer" min="0" value="10" max="100" label="Minimum quality" help="Minimum quality value across extracted flanking sequence." />
+        <param name="min_qual" type="integer" min="0" value="10" max="100" label="Minimum quality" help="Minimum quality value across extracted flanking sequence."/>
         <param name="include_log" type="boolean" label="Include log in output"/>
     </inputs>
     <outputs>
@@ -111,48 +105,48 @@
     </outputs>
     <tests>
         <test expect_num_outputs="4">
-            <param name="reference" value="Tn4401b-1.fasta" />
+            <param name="reference" value="Tn4401b-1.fasta"/>
             <conditional name="collection_paired">
-                <param name="selector" value="paired" />
-                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq" />
-                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq" />
+                <param name="selector" value="paired"/>
+                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq"/>
+                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq"/>
             </conditional>
-            <output name="summary" file="output_summary_1.txt" />
+            <output name="summary" file="output_summary_1.txt"/>
         </test>
         <test expect_num_outputs="4">
-            <param name="reference" value="Tn4401b-1.fasta" />
+            <param name="reference" value="Tn4401b-1.fasta"/>
             <conditional name="collection_paired">
-                <param name="selector" value="paired" />
-                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq" />
-                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq" />
+                <param name="selector" value="paired"/>
+                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq"/>
+                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq"/>
             </conditional>
             <conditional name="snp_profiles_source">
-                <param name="snp_profiles_source_selector" value="history" />
-                <param name="snp_profiles" value="Tn4401b_snp_profiles.txt" />
+                <param name="snp_profiles_source_selector" value="history"/>
+                <param name="snp_profiles" value="Tn4401b_snp_profiles.txt"/>
             </conditional>
             <conditional name="struct_profiles_source">
-                <param name="struct_profiles_source_selector" value="history" />
-                <param name="struct_profiles" value="Tn4401b_struct_profiles.txt" />
+                <param name="struct_profiles_source_selector" value="history"/>
+                <param name="struct_profiles" value="Tn4401b_struct_profiles.txt"/>
             </conditional>
-            <output name="summary" file="output_summary_2.txt" />
+            <output name="summary" file="output_summary_2.txt"/>
         </test>
         <test expect_num_outputs="5">
-            <param name="reference" value="Tn4401b-1.fasta" />
+            <param name="reference" value="Tn4401b-1.fasta"/>
             <conditional name="collection_paired">
-                <param name="selector" value="paired" />
-                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq" />
-                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq" />
+                <param name="selector" value="paired"/>
+                <param name="forward_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_1.fastq"/>
+                <param name="reverse_input" value="ERR1911133_Tn4401b-1_mapped_subsampled_2.fastq"/>
             </conditional>
             <conditional name="snp_profiles_source">
-                <param name="snp_profiles_source_selector" value="tool_data_table" />
-                <param name="snp_profiles" value="Tn4401b_snp_profiles" />
+                <param name="snp_profiles_source_selector" value="tool_data_table"/>
+                <param name="snp_profiles" value="Tn4401b_snp_profiles"/>
             </conditional>
             <conditional name="struct_profiles_source">
-                <param name="struct_profiles_source_selector" value="tool_data_table" />
-                <param name="struct_profiles" value="Tn4401b_struct_profiles" />
+                <param name="struct_profiles_source_selector" value="tool_data_table"/>
+                <param name="struct_profiles" value="Tn4401b_struct_profiles"/>
             </conditional>
             <param name="include_log" value="true"/>
-            <output name="summary" file="output_summary_2.txt" />
+            <output name="summary" file="output_summary_2.txt"/>
             <output name="snps">
                 <assert_contents>
                     <has_size min="1"/>

@@ -48,14 +48,14 @@
             </output>
         </test>
         <test expect_num_outputs="1">
-        <param name="table_output" value="true"/>
-        <param name="reference" value="ERR024951_seqtk_sample_1000_1.fastq.gz" ftype="fastqsanger.gz"/>
-        <param name="query" value="ERR024951_seqtk_sample_1000_2.fastq.gz" ftype="fastqsanger.gz"/>
-        <output name="output">
-            <assert_contents>
-                <has_text text="0.203604"/>
-            </assert_contents>
-        </output>
+            <param name="table_output" value="true"/>
+            <param name="reference" value="ERR024951_seqtk_sample_1000_1.fastq.gz" ftype="fastqsanger.gz"/>
+            <param name="query" value="ERR024951_seqtk_sample_1000_2.fastq.gz" ftype="fastqsanger.gz"/>
+            <output name="output">
+                <assert_contents>
+                    <has_text text="0.203604"/>
+                </assert_contents>
+            </output>
         </test>
         <test expect_num_outputs="1">
             <param name="table_output" value="true"/>

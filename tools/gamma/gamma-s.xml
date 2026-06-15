@@ -1,18 +1,18 @@
 <tool id="gamma_s" name="GAMMA-S" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="23.2">
-	<description>finds gene matches in microbial genomic data using nucleotide identity</description>
-	<macros>
-		<token name="@TOOL_VERSION@">2.2</token>
-		<token name="@VERSION_SUFFIX@">0</token>
-	</macros>
+    <description>finds gene matches in microbial genomic data using nucleotide identity</description>
+    <macros>
+        <token name="@TOOL_VERSION@">2.2</token>
+        <token name="@VERSION_SUFFIX@">0</token>
+    </macros>
     <creator>
-        <person givenName="Lieven" familyName="Sterck" url="https://github.com/lsterck" />
-        <organization name="Sciensano-BioIT" url="https://github.com/BioinformaticsPlatformWIV-ISP" />
+        <person givenName="Lieven" familyName="Sterck" url="https://github.com/lsterck"/>
+        <organization name="Sciensano-BioIT" url="https://github.com/BioinformaticsPlatformWIV-ISP"/>
     </creator>
-	<requirements>
-		<requirement type="package" version="@TOOL_VERSION@">GAMMA</requirement>
-	</requirements>
-	<version_command>echo @TOOL_VERSION@</version_command>
-	<command detect_errors="exit_code"><![CDATA[
+    <requirements>
+        <requirement type="package" version="@TOOL_VERSION@">GAMMA</requirement>
+    </requirements>
+    <version_command>echo @TOOL_VERSION@</version_command>
+    <command detect_errors="exit_code"><![CDATA[
  GAMMA-S.py
 
  '$input_fasta'
@@ -26,31 +26,31 @@
  -m $minimum
 
 ]]></command>
-	<inputs>
-        <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" help="a genome or assembly in FASTA format" />
-        <param name="input_db" type="data" format="fasta" label="Database to screen against" help="a multifasta database of the coding sequence of genes." />
-        <param argument="--all" type="boolean" truevalue="-a" falsevalue="" checked="false" label="Include all gene matches" help="Returns all (including overlapping) gene matches" />
-        <param argument="--identity" type="integer" min="0" max="100" value="90" label="Nucleotide sequence identity" help="The minimum nucleotide sequence identity % used by the Blat search, input as an integer (i.e., '-i 95' for a 95% threshold), default is 90" />
-        <param argument="--extended" type="boolean" truevalue="-e" falsevalue="" checked="false" label="Return all gene mutations" help="Returns all gene mutations, otherwise if there are more than 10 mutations present the count is given" />
-        <param argument="--protein" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Perform protein-protein comparisons" help="protein-protein comparisons, requires two protein sequence fastas as input" />
-        <param argument="--minimum" type="integer" min="0" max="100" value="20" label="Minimum length percent match" help="The minimum length percent match for output, input as an integer (i.e., '-m 50' for a 50% minimum match length to be reported), not active if the --all option is used" /> 
-	</inputs>
-	<outputs>
-        <data name="gamma_s_out" format="tabular" from_work_dir="gamma-s_out.gamma" label="${tool.name} on $on_string: GAMMA Output" />
-	</outputs>
-	<tests>
+    <inputs>
+        <param name="input_fasta" type="data" format="fasta" label="Input FASTA file" help="a genome or assembly in FASTA format"/>
+        <param name="input_db" type="data" format="fasta" label="Database to screen against" help="a multifasta database of the coding sequence of genes."/>
+        <param argument="--all" type="boolean" truevalue="-a" falsevalue="" checked="false" label="Include all gene matches" help="Returns all (including overlapping) gene matches"/>
+        <param argument="--identity" type="integer" min="0" max="100" value="90" label="Nucleotide sequence identity" help="The minimum nucleotide sequence identity % used by the Blat search, input as an integer (i.e., '-i 95' for a 95% threshold), default is 90"/>
+        <param argument="--extended" type="boolean" truevalue="-e" falsevalue="" checked="false" label="Return all gene mutations" help="Returns all gene mutations, otherwise if there are more than 10 mutations present the count is given"/>
+        <param argument="--protein" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Perform protein-protein comparisons" help="protein-protein comparisons, requires two protein sequence fastas as input"/>
+        <param argument="--minimum" type="integer" min="0" max="100" value="20" label="Minimum length percent match" help="The minimum length percent match for output, input as an integer (i.e., '-m 50' for a 50% minimum match length to be reported), not active if the --all option is used"/>
+    </inputs>
+    <outputs>
+        <data name="gamma_s_out" format="tabular" from_work_dir="gamma-s_out.gamma" label="${tool.name} on $on_string: GAMMA Output"/>
+    </outputs>
+    <tests>
         <test expect_num_outputs="1">
             <param name="input_fasta" value="contig_in.fasta" ftype="fasta"/>
             <param name="input_db" value="lukE_6.fasta" ftype="fasta"/>
             <output name="gamma_s_out" file="gamma-s_out.gamma" ftype="tabular"/>
-        </test>         
+        </test>
         <test expect_num_outputs="1">
             <param name="input_fasta" value="pDHQP1701672_amr_plasmid.fa" ftype="fasta"/>
             <param name="input_db" value="ResFinderDB_subset.fsa" ftype="fasta"/>
             <output name="gamma_s_out" file="gamma-s_amr.gamma" ftype="tabular"/>
-        </test>         
-	</tests>
-	<help><![CDATA[
+        </test>
+    </tests>
+    <help><![CDATA[
 **GAMMA-S (Gene Allele Mutation Microbial Assessment-Sequence)** 
 finds best matches from a gene database without translating them--so it will find the best match by nucleotides, rather by the translated protein sequence. However, it can perform protein-protein sequence matching as well, which requires two protein fastas as the input.
 
@@ -84,8 +84,7 @@ The default output of GAMMA-S is a tab-delimited file with 17 columns:
 .. _GAMMA on GitHub: https://github.com/rastanton/GAMMA
 
 	]]></help>
-	<citations>
-		<citation type="doi">10.1093/bioinformatics/btab607</citation>
-	</citations>
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btab607</citation>
+    </citations>
 </tool>
-

@@ -179,9 +179,9 @@ DRAM.py merge_annotations
                     <has_n_lines n="26" delta="1"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
  
 @WHATITDOESHEADER@
@@ -191,6 +191,6 @@ rRNas, etc) and, except for the genbank files which remain a collection,  merges
 a single file.
 
 @WHATITDOESFOOTER@
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

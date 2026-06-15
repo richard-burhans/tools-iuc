@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="hmmer_hmmemit" name="hmmemit" version="@TOOL_VERSION@+galaxy0" profile="@PROFILE@">
     <description>sample sequence(s) from a profile HMM</description>
     <macros>
@@ -34,83 +33,74 @@ hmmemit
 '$hmmfile'
 > '$output'
   ]]></command>
-  <inputs>
-    <expand macro="input_hmm" />
-
-    <conditional name="oformat">
-        <param name="oformat_select" type="select" label="Output Format">
-            <option value="fasta" selected="true">Fasta</option>
-            <option value="aln">Alignment</option>
-            <option value="mrcs">Majority-Rule Concensus Sequence</option>
-            <option value="mrcsf">Fancier Concensus Sequence</option>
-            <option value="sample">Sample sequences from profile, not core model</option>
-        </param>
-        <when value="fasta">
-            <param name="N_fa" argument="-N" type="integer" min="1" value="1"
-                label="Number of sequences to generate"/>
-        </when>
-        <when value="aln">
-            <param name="N_aln" argument="-N" type="integer" min="1" value="1"
-                label="Number of sequences to generate"/>
-        </when>
-        <when value="mrcs" />
-        <when value="mrcsf">
-            <param argument="--minl" type="float" value="0.7"
-                label="show consensus as 'any' (X/N) unless >= this fraction"/>
-            <param argument="--minu" type="float" value="0.2"
-                label="show consensus as upper case if >= this fraction"/>
-        </when>
-        <when value="sample">
-            <param name="N_smp" argument="-N" type="integer" min="1" value="1"
-                label="Number of sequences to generate"/>
-            <param argument="-L" type="integer" optional="true"
-                label="Expected length of profile"/>
-
-            <param name="emission_profiles" type="select" label="Emission profile options">
-                <option value="--local" selected="true">configure profile in multihit local mode</option>
-                <option value="--unilocal">configure profile in unilocal mode</option>
-                <option value="--glocal">configure profile in multihit glocal mode</option>
-                <option value="--uniglocal">configure profile in unihit glocal mode</option>
+    <inputs>
+        <expand macro="input_hmm"/>
+        <conditional name="oformat">
+            <param name="oformat_select" type="select" label="Output Format">
+                <option value="fasta" selected="true">Fasta</option>
+                <option value="aln">Alignment</option>
+                <option value="mrcs">Majority-Rule Concensus Sequence</option>
+                <option value="mrcsf">Fancier Concensus Sequence</option>
+                <option value="sample">Sample sequences from profile, not core model</option>
             </param>
-        </when>
-    </conditional>
-
-    <expand macro="seed"/>
-  </inputs>
-  <outputs>
-    <data name="output" format="fasta" label="Sequences generated from $hmmfile.name">
-      <change_format>
-        <when input="oformat.oformat_select" value="aln" format="stockholm"/>
-        <!-- the rest are fasta -->
-      </change_format>
-    </data>
-  </outputs>
-  <tests>
-    <test>
-      <param name="hmmfile" value="globins4.hmm"/>
-      <param name="oformat_select" value="aln"/>
-      <param name="N_aln" value="10"/>
-      <expand macro="seed_test" />
-      <output name="output" file="globins4-emit.sto" ftype="stockholm" compare="sim_size">
-          <assert_contents>
-              <has_line_matching expression="# STOCKHOLM.*"/>
-              <has_line_matching expression="//"/>
-          </assert_contents>
-      </output>
-    </test>
-    <test>
-      <param name="hmmfile" value="globins4.hmm"/>
-      <param name="oformat_select" value="fasta"/>
-      <param name="N_aln" value="10"/>
-      <expand macro="seed_test" />
-      <output name="output" file="globins4-emit-1.sto" ftype="fasta" compare="sim_size">
-          <assert_contents>
-              <has_line_matching expression=">.*"/>
-          </assert_contents>
-      </output>
-    </test>
-  </tests>
-  <help><![CDATA[
+            <when value="fasta">
+                <param name="N_fa" argument="-N" type="integer" min="1" value="1" label="Number of sequences to generate"/>
+            </when>
+            <when value="aln">
+                <param name="N_aln" argument="-N" type="integer" min="1" value="1" label="Number of sequences to generate"/>
+            </when>
+            <when value="mrcs"/>
+            <when value="mrcsf">
+                <param argument="--minl" type="float" value="0.7" label="show consensus as 'any' (X/N) unless &gt;= this fraction"/>
+                <param argument="--minu" type="float" value="0.2" label="show consensus as upper case if &gt;= this fraction"/>
+            </when>
+            <when value="sample">
+                <param name="N_smp" argument="-N" type="integer" min="1" value="1" label="Number of sequences to generate"/>
+                <param argument="-L" type="integer" optional="true" label="Expected length of profile"/>
+                <param name="emission_profiles" type="select" label="Emission profile options">
+                    <option value="--local" selected="true">configure profile in multihit local mode</option>
+                    <option value="--unilocal">configure profile in unilocal mode</option>
+                    <option value="--glocal">configure profile in multihit glocal mode</option>
+                    <option value="--uniglocal">configure profile in unihit glocal mode</option>
+                </param>
+            </when>
+        </conditional>
+        <expand macro="seed"/>
+    </inputs>
+    <outputs>
+        <data name="output" format="fasta" label="Sequences generated from $hmmfile.name">
+            <change_format>
+                <when input="oformat.oformat_select" value="aln" format="stockholm"/>
+                <!-- the rest are fasta -->
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="hmmfile" value="globins4.hmm"/>
+            <param name="oformat_select" value="aln"/>
+            <param name="N_aln" value="10"/>
+            <expand macro="seed_test"/>
+            <output name="output" file="globins4-emit.sto" ftype="stockholm" compare="sim_size">
+                <assert_contents>
+                    <has_line_matching expression="# STOCKHOLM.*"/>
+                    <has_line_matching expression="//"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+            <param name="hmmfile" value="globins4.hmm"/>
+            <param name="oformat_select" value="fasta"/>
+            <param name="N_aln" value="10"/>
+            <expand macro="seed_test"/>
+            <output name="output" file="globins4-emit-1.sto" ftype="fasta" compare="sim_size">
+                <assert_contents>
+                    <has_line_matching expression="&gt;.*"/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help><![CDATA[
 @HELP_PRE@
 
 The hmmemit program samples (emits) sequences from the profile HMM(s) in
@@ -177,5 +167,5 @@ mode, and the target sequence length is configured for L=400.
 
 @ATTRIBUTION@
   ]]></help>
-  <expand macro="citation"/>
+    <expand macro="citation"/>
 </tool>

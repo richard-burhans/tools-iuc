@@ -5,7 +5,6 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_cmd"/>
-    
     <command detect_errors="exit_code"><![CDATA[
     ## 1. Link Reference Genome
     @GATK_LINK_REF@
@@ -36,41 +35,34 @@
             -L intervals.interval_list
         #end if
     ]]></command>
-
     <inputs>
-        <expand macro="gatk_ref_source" />
-        
-        <param name="input_bam" argument="-I" type="data" format="bam" label="Input BAM" help="BAM file from RNA-seq alignment (e.g., MarkDuplicates output). Must be coordinate-sorted and indexed." />
-        
-        <expand macro="gatk_param_intervals" />
+        <expand macro="gatk_ref_source"/>
+        <param name="input_bam" argument="-I" type="data" format="bam" label="Input BAM" help="BAM file from RNA-seq alignment (e.g., MarkDuplicates output). Must be coordinate-sorted and indexed."/>
+        <expand macro="gatk_param_intervals"/>
     </inputs>
-
     <outputs>
-        <data name="output_bam" format="bam" from_work_dir="output.bam" label="${tool.name} on ${on_string}: Split BAM" />
+        <data name="output_bam" format="bam" from_work_dir="output.bam" label="${tool.name} on ${on_string}: Split BAM"/>
     </outputs>
-
     <tests>
-        <test expect_num_outputs='1'>
+        <test expect_num_outputs="1">
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="reference_sequence" value="test_ref.fasta" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="reference_sequence" value="test_ref.fasta"/>
             </conditional>
-            <param name="input_bam" value="split_input.bam" />
-            <param name="intervals" value="split_interval.interval_list" />
-            <output name="output_bam" file="split_expected.bam" ftype="bam" lines_diff="4" />
+            <param name="input_bam" value="split_input.bam"/>
+            <param name="intervals" value="split_interval.interval_list"/>
+            <output name="output_bam" file="split_expected.bam" ftype="bam" lines_diff="4"/>
         </test>
-
-        <test expect_num_outputs='1'>
+        <test expect_num_outputs="1">
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="cached" />
-                <param name="reference_sequence" value="test_ref" />
+                <param name="reference_source_selector" value="cached"/>
+                <param name="reference_sequence" value="test_ref"/>
             </conditional>
-            <param name="input_bam" value="split_input.bam" />
-            <param name="intervals" value="split_interval.interval_list" />
-            <output name="output_bam" file="split_expected.bam" ftype="bam" lines_diff="4" />
+            <param name="input_bam" value="split_input.bam"/>
+            <param name="intervals" value="split_interval.interval_list"/>
+            <output name="output_bam" file="split_expected.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-
     <help><![CDATA[
         **SplitNCigarReads**
 
@@ -85,8 +77,7 @@
         * **Input BAM:** Must be aligned and indexed.
         * **Reference:** FASTA format (local or history).
     ]]></help>
-
     <citations>
-        <expand macro="citations" />
+        <expand macro="citations"/>
     </citations>
 </tool>

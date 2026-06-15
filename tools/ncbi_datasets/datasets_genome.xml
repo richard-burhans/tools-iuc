@@ -503,7 +503,6 @@ $filters.exclude_atypical
                     <has_text text="Saccharomyces cerevisiae ZTW1" negate="true"/>
                 </assert_contents>
             </output>
-
         </test>
         <!-- test search filter -->
         <test expect_num_outputs="1">

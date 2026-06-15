@@ -22,14 +22,14 @@
                 </param>
                 <when value="coverage">
                     <param name="genome_size_unit" type="select" label="Specify genome size in">
-                        <expand macro="size_units" />
+                        <expand macro="size_units"/>
                     </param>
                     <param name="genome_size" type="float" min="0" value="" label="Genome size to calculate coverage with respect to"/>
                     <param argument="--coverage" type="float" min="0" value="" label="The desired coverage to subsample the reads to"/>
                 </when>
                 <when value="num_bases">
                     <param name="num_bases_unit" type="select" label="Specify number of bases in">
-                        <expand macro="size_units" />
+                        <expand macro="size_units"/>
                     </param>
                     <param name="bases" type="float" min="0" value="" label="Explicitly set the number of bases required"/>
                 </when>
@@ -58,13 +58,12 @@
     </token>
     </macros>
     <xrefs>
-        <xref type='bio.tools'>rasusa</xref>
+        <xref type="bio.tools">rasusa</xref>
     </xrefs>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">rasusa</requirement>
         <requirement type="package" version="1.23.1">samtools</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
 #if str($input.input_selector) == "aligned":
     #if '$aligned_input.ext' == "bam":
@@ -126,21 +125,20 @@
             <when value="paired">
                 <param name="reads1" type="data" format="@FORMATS@" label="Select first set of reads" help="Specify dataset with forward reads"/>
                 <param name="reads2" type="data" format="@FORMATS@" label="Select second set of reads" help="Specify dataset with reverse reads"/>
-                <expand macro="params_fastq" />
+                <expand macro="params_fastq"/>
             </when>
             <when value="single">
                 <param name="reads" type="data" format="@FORMATS@" label="Select fasta/fastq dataset" help="Specify dataset with single reads"/>
-                <expand macro="params_fastq" />
+                <expand macro="params_fastq"/>
             </when>
             <when value="paired_collection">
                 <param name="collection" format="@FORMATS@" type="data_collection" collection_type="paired" label="Select a paired collection"/>
-                <expand macro="params_fastq" />
+                <expand macro="params_fastq"/>
             </when>
             <when value="aligned">
                 <param name="aligned_input" format="bam" type="data" label="Select BAM file with alignments"/>
                 <param argument="--coverage" type="integer" min="0" optional="true" value="" label="The desired depth of coverage to subsample the alignment to"/>
-                <param type="integer" argument="--step-size" value="100" label="When a region has less than the desired coverage, the step size to move along the chromosome to find more reads."
-                    help="The lowest of the step and the minimum end coordinate of the reads in the region will be used. This parameter can have a significant impact on the runtime of the subsampling process."/>
+                <param type="integer" argument="--step-size" value="100" label="When a region has less than the desired coverage, the step size to move along the chromosome to find more reads." help="The lowest of the step and the minimum end coordinate of the reads in the region will be used. This parameter can have a significant impact on the runtime of the subsampling process."/>
             </when>
         </conditional>
         <param type="integer" argument="--seed" optional="true" label="Random seed to use"/>
@@ -291,7 +289,7 @@
             <!-- test 8: bam input, bam output -->
             <conditional name="input">
                 <param name="input_selector" value="aligned"/>
-                <param name="aligned_input" value="input.bam" />
+                <param name="aligned_input" value="input.bam"/>
                 <param name="coverage" value="1"/>
             </conditional>
             <param name="seed" value="1"/>

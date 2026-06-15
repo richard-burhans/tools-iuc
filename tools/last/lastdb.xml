@@ -49,9 +49,8 @@
         mkdir '$outfile.files_path' &&
         mv lastdb* '$outfile.files_path'
     ]]></command>
-
     <inputs>
-        <param name="input_files" type="data" format="fasta,fasta.gz,fastq,fastq.gz" label="Reference(s) input files" />
+        <param name="input_files" type="data" format="fasta,fasta.gz,fastq,fastq.gz" label="Reference(s) input files"/>
         <section name="lastdb" title="Lastdb arguments" expanded="true">
             <conditional name="sequences_type">
                 <param name="protein" type="select" multiple="false" label="The sequences are :">
@@ -65,7 +64,6 @@
                     <param argument="-a" type="text" value="ACDEFGHIKLMNPQRSTVWY" label="User-defined alphabet."/>
                 </when>
             </conditional>
-
             <section name="repeats" title="Specify lowercase-marking of repeats. (-R)" expanded="false">
                 <param name="uppercase" type="select" multiple="false" label="Convert the input sequences to uppercase while reading them.">
                     <option value="0">Convert the input sequences to uppercase while reading them. (0)</option>
@@ -78,14 +76,12 @@
                 </param>
                 <param name="sm_lower" argument="-c" type="boolean" truevalue="-c" falsevalue="" checked="true" label="Soft-mask lowercase letters." help="This means that, when we compare these sequences to some other sequences using lastal, lowercase letters will be excluded from initial matches. This will apply to lowercase letters in both sets of sequences."/>
             </section>
-
             <section name="lastdb_advanced" title="Advanced options" expanded="false">
                 <param argument="-S" type="select" multiple="false" label="Strand">
                     <option value="0">Reverse</option>
                     <option value="1" selected="true">Forward</option>
                     <option value="2">Both</option>
                 </param>
-
                 <conditional name="seeds">
                     <param argument="-u" type="select" multiple="false" label="Specify a seeding scheme.">
                         <option value="">Do not apply seeding scheme</option>
@@ -121,9 +117,7 @@
                         <expand macro="step_macro" step="1"/>
                     </when>
                 </conditional>
-
                 <param argument="-i" type="integer" value="0" label="Minimum limit on initial matches per query position"/>
-
                 <param argument="-C" type="select" multiple="false" label="Child table type">
                     <option value="0" selected="true">None</option>
                     <option value="1">Byte-size</option>
@@ -133,11 +127,9 @@
             </section>
         </section>
     </inputs>
-
     <outputs>
         <data name="outfile" format="lastdb"/>
     </outputs>
-
     <tests>
         <test>
             <param name="input_files" value="humanMito.fa.gz" ftype="fasta.gz"/>
@@ -162,7 +154,7 @@
             <param name="input_files" value="hedgehog_prot_human.fa" ftype="fasta"/>
             <section name="lastdb">
                 <conditional name="sequences_type">
-                    <param name="protein" value="-p"/> 
+                    <param name="protein" value="-p"/>
                 </conditional>
                 <section name="lastdb_advanced">
                     <conditional name="seeds">
@@ -200,7 +192,8 @@
             </output>
         </test>
     </tests>
-
-    <help>@LAST_HELP@</help>
-    <citations><expand macro="citations"/></citations>
+    <help><![CDATA[@LAST_HELP@]]></help>
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

@@ -131,7 +131,7 @@ esc.tl.find_genes(
                 <option value="pp.variability_features">Computes variability score to rank the most variable features across all cells, using 'pp.variability_features'</option>
                 <option value="tl.find_genes">Embedding: Find genes and add annotations, using 'pp.find_genes'</option>
             </param>
-            <when value="pp.binarize" />
+            <when value="pp.binarize"/>
             <when value="pp.filter_cells">
                 <conditional name="filter">
                     <param argument="filter" type="select" label="Filter" help="Filter mode">
@@ -148,7 +148,7 @@ esc.tl.find_genes(
                     </when>
                     <when value="min_features">
                         <param argument="min_features" type="integer" min="0" value="" label="Minimum  features" help="Minimum number of features expressed required for a cell to pass filtering"/>
-                    </when>    
+                    </when>
                     <when value="max_features">
                         <param argument="max_features" type="integer" min="0" value="" label="Maximum features" help="Maximum number of features expressed required for a cell to pass filtering"/>
                     </when>
@@ -170,25 +170,24 @@ esc.tl.find_genes(
                     </when>
                     <when value="min_cells">
                         <param argument="min_cells" type="integer" min="0" value="" label="Minimum number of cells expressed required for a gene to pass filtering"/>
-                    </when>    
+                    </when>
                     <when value="max_cells">
                         <param argument="max_cells" type="integer" min="0" value="" label="Maximum number of cells expressed required for a gene to pass filtering"/>
                     </when>
                 </conditional>
             </when>
-            <when value="nb_feat_log" />
+            <when value="nb_feat_log"/>
             <when value="pp.coverage_cells">
-                <expand macro="coverage_params" />
+                <expand macro="coverage_params"/>
             </when>
             <when value="pp.coverage_features">
-                <expand macro="coverage_params" />
+                <expand macro="coverage_params"/>
             </when>
             <when value="pp.select_var_feature">
-                <param argument="min_score" type="float" min="0" max="1" value="0.5" label="Min score" help="Minimum threshold variability score to retain features" />
-                <param argument="nb_features" type="integer" min="0" value="" optional="True" label="Number of features" help="Default value is None, if specify it will select a the top most 
-                    variable features. If this parameter is larger than the total number of feature, it filters based on the min_score argument." />
+                <param argument="min_score" type="float" min="0" max="1" value="0.5" label="Min score" help="Minimum threshold variability score to retain features"/>
+                <param argument="nb_features" type="integer" min="0" value="" optional="True" label="Number of features" help="Default value is None, if specify it will select a the top most                      variable features. If this parameter is larger than the total number of feature, it filters based on the min_score argument."/>
             </when>
-            <when value="pp.cal_var" />
+            <when value="pp.cal_var"/>
             <when value="pp.variability_features">
                 <param name="min_score" type="float" min="0" max="1" value="0.5" label="Minimum score value"/>
                 <param name="nb_features" type="integer" min="0" value="" label="Number of features"/>
@@ -202,11 +201,11 @@ esc.tl.find_genes(
                 <param name="find_genes_key_added" value="transcript_annotation" type="text" label="Key added" help="(key_added)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -215,11 +214,11 @@ esc.tl.find_genes(
                 <param name="find_genes_feature_type" value="transcript" type="text" label="Feature type" help="(feature_type)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -227,11 +226,11 @@ esc.tl.find_genes(
                 <param name="find_genes_annotation" value="HAVANA" type="text" label="Annotation" help="(annotation)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -253,7 +252,7 @@ esc.tl.find_genes(
     <tests>
         <test expect_num_outputs="1">
             <!-- pp.binarize -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.binarize"/>
             </conditional>
@@ -261,7 +260,7 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="2">
             <!-- pp.filter_cells -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.filter_cells"/>
                 <conditional name="filter">
@@ -270,7 +269,7 @@ esc.tl.find_genes(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="395 × 11"/>
@@ -285,7 +284,7 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="2">
             <!-- pp.filter_features -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.filter_features"/>
                 <conditional name="filter">
@@ -294,7 +293,7 @@ esc.tl.find_genes(
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="640 × 2"/>
@@ -309,7 +308,7 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="1">
             <!-- nb_feat_log -->
-            <param name="adata" value="krumsiek11.pp.filter_cells.min_features.h5ad" />
+            <param name="adata" value="krumsiek11.pp.filter_cells.min_features.h5ad"/>
             <conditional name="method">
                 <param name="method" value="nb_feat_log"/>
             </conditional>
@@ -318,16 +317,16 @@ esc.tl.find_genes(
                 <has_text_matching expression="nb_features"/>
             </assert_stdout>
         </test>
-        <test  expect_num_outputs="2">
+        <test expect_num_outputs="2">
             <!-- pp.select_var_feature -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.select_var_feature"/>
                 <param name="min_score" value="0.6"/>
                 <param name="nb_features" value="10"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="prop_shared_cells"/>
@@ -345,12 +344,12 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="3">
             <!-- pp.cal_var -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.cal_var"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -364,14 +363,14 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="3">
             <!-- pp.coverage_cells -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.coverage_cells"/>
-                <param name="threshold" value="3.0" />
-                <param name="binary" value="True" />
+                <param name="threshold" value="3.0"/>
+                <param name="binary" value="True"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -385,14 +384,14 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="3">
             <!-- pp.coverage_features -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.coverage_features"/>
-                <param name="threshold" value="100" />
-                <param name="binary" value="True" />
+                <param name="threshold" value="100"/>
+                <param name="binary" value="True"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -406,15 +405,15 @@ esc.tl.find_genes(
         </test>
         <test expect_num_outputs="3">
             <!-- pp.coverage_features -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.variability_features"/>
-                <param name="min_score" value="0.75" />
-                <param name="nb_features" value="8" />
-                <param name="log" value="log10" />
+                <param name="min_score" value="0.75"/>
+                <param name="nb_features" value="8"/>
+                <param name="log" value="log10"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -427,24 +426,24 @@ esc.tl.find_genes(
             <output name="anndata_out" file="krumsiek11.pp.variability_features.h5ad" ftype="h5ad" compare="sim_size"/>
             <output name="out_png" file="krumsiek11.pp.variability_features.png" ftype="png" compare="sim_size"/>
         </test>
-       <test expect_num_outputs="2">
-           <!-- tl.find_genes -->
-           <param name="adata" value="chrY.h5ad" />
-           <conditional name="method">
-               <param name="method" value="tl.find_genes"/>
-               <param name="find_genes_gtf_file" value="chrY.gtf"/>
-               <param name="find_genes_key_added" value="transcript_annotation"/>
-               <param name="find_genes_upstream" value="2000"/>
-               <param name="find_genes_feature_type" value="transcript"/>
-               <param name="find_genes_annotation" value="HAVANA"/>
-               <param name="find_genes_raw" value="False"/>
-           </conditional>
-           <section name="advanced_common">
-               <param name="show_log" value="true" />
-           </section>
-           <output name="anndata_out" file="chrY_with_transcript_annotation.h5ad" ftype="h5ad" compare="sim_size">
+        <test expect_num_outputs="2">
+            <!-- tl.find_genes -->
+            <param name="adata" value="chrY.h5ad"/>
+            <conditional name="method">
+                <param name="method" value="tl.find_genes"/>
+                <param name="find_genes_gtf_file" value="chrY.gtf"/>
+                <param name="find_genes_key_added" value="transcript_annotation"/>
+                <param name="find_genes_upstream" value="2000"/>
+                <param name="find_genes_feature_type" value="transcript"/>
+                <param name="find_genes_annotation" value="HAVANA"/>
+                <param name="find_genes_raw" value="False"/>
+            </conditional>
+            <section name="advanced_common">
+                <param name="show_log" value="true"/>
+            </section>
+            <output name="anndata_out" file="chrY_with_transcript_annotation.h5ad" ftype="h5ad" compare="sim_size">
                 <assert_contents>
-                    <has_h5_keys keys="var" />
+                    <has_h5_keys keys="var"/>
                 </assert_contents>
             </output>
         </test>

@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="kraken_database_builder" name="Kraken" tool_type="manage_data" version="1.1.2" profile="23.0">
     <description>database builder</description>
     <requirements>
@@ -27,7 +26,7 @@
     ]]>
     </command>
     <inputs>
-        <param name="database_name" type="text" label="Name for this database" />
+        <param name="database_name" type="text" label="Name for this database"/>
         <param name="libraries" type="select" multiple="true" label="Select partial library to download">
             <option value="bacteria">Bacteria</option>
             <option value="archaea">Archaea</option>
@@ -35,15 +34,14 @@
             <option value="viral">Viral</option>
             <option value="human">Human</option>
         </param>
-        <param name="input_fasta" type="data" format="fasta" multiple="True" optional="true" label="Select history item" />
-        <param name="kmer_len" type="integer" value="31" label="K-mer length in BP" />
-        <param name="minimizer_len" type="integer" value="15" label="Minimizer length" />
+        <param name="input_fasta" type="data" format="fasta" multiple="True" optional="true" label="Select history item"/>
+        <param name="kmer_len" type="integer" value="31" label="K-mer length in BP"/>
+        <param name="minimizer_len" type="integer" value="15" label="Minimizer length"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
-    <help>
-    </help>
+    <help/>
     <citations>
         <citation type="doi">10.1186/gb-2014-15-3-r46</citation>
     </citations>

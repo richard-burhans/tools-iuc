@@ -200,7 +200,7 @@ $advanced_options.classify
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Generates MEGAN RMA files from BLAST (or similar) files.  Inputs consist of reads in fasta or fasqsanger format (gzip compression
@@ -219,7 +219,6 @@ required by MEGAN.
 
 This tool outputs a RealMedia Audio (RMA) file.  MEGAN uses an update of the original RMA file format known as RMA6.  This update
 requires less disk space for files.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

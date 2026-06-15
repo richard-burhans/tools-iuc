@@ -56,10 +56,10 @@
                 </assert_contents>
             </output>
             <output name="intermediate_ktab" ftype="fastk_ktab_tar">
-                 <assert_contents>
+                <assert_contents>
                     <has_archive_member path="hapmaker_ktabs/.maternal.hap.ktab.1"/>
                     <has_archive_member path="hapmaker_ktabs/.paternal.hap.ktab.1"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
     </tests>

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -34,8 +34,8 @@
                 <option value="false">Trim by fixed fraction</option>
             </param>
             <when value="true">
-                <param argument="--trimIdentity" type="float" min="0" value="0.05" max="1" label="Tolerance fraction" help="Trims alignment ends where the local sequence identity falls below a dynamic threshold. The threshold is based on the overall alignment identity (x) and this tolerance fraction (t), using the formula: x − (x * t). The final length trimmed is capped by the 'Max fraction to trim' value below"/> 
-                <param argument="--trimFraction" type="float" min="0" value="1" max="1" label="Max fraction to trim" help="Max fraction to trim from each end of the alignment. This cap is calculated by multiplying the sum of aligned bases and indels by the this parameter"/>   
+                <param argument="--trimIdentity" type="float" min="0" value="0.05" max="1" label="Tolerance fraction" help="Trims alignment ends where the local sequence identity falls below a dynamic threshold. The threshold is based on the overall alignment identity (x) and this tolerance fraction (t), using the formula: x − (x * t). The final length trimmed is capped by the 'Max fraction to trim' value below"/>
+                <param argument="--trimFraction" type="float" min="0" value="1" max="1" label="Max fraction to trim" help="Max fraction to trim from each end of the alignment. This cap is calculated by multiplying the sum of aligned bases and indels by the this parameter"/>
             </when>
             <when value="false">
                 <expand macro="params_trimFraction"/>
@@ -61,8 +61,8 @@
             </conditional>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;98570&#009;98709&#009;+&#009;simCow.chr6&#009;602619&#009;93324&#009;93477&#009;106&#009;154&#009;255&#009;AS:i:6363&#009;cg:Z:17M11D63M4D42M1I16M" negate="true"/>
-                    <has_text text="simDog.chr6&#009;593897&#009;98587&#009;98709&#009;+&#009;simCow.chr6&#009;602619&#009;93352&#009;93477&#009;106&#009;154&#009;255&#009;AS:i:6363&#009;cg:Z:63M4D42M1I16M"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;98570&#9;98709&#9;+&#9;simCow.chr6&#9;602619&#9;93324&#9;93477&#9;106&#9;154&#9;255&#9;AS:i:6363&#9;cg:Z:17M11D63M4D42M1I16M" negate="true"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;98587&#9;98709&#9;+&#9;simCow.chr6&#9;602619&#9;93352&#9;93477&#9;106&#9;154&#9;255&#9;AS:i:6363&#9;cg:Z:63M4D42M1I16M"/>
                 </assert_contents>
             </output>
         </test>
@@ -76,8 +76,8 @@
             </conditional>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;98570&#009;98709&#009;+&#009;simCow.chr6&#009;602619&#009;93324&#009;93477&#009;106&#009;154&#009;255&#009;AS:i:6363&#009;cg:Z:17M11D63M4D42M1I16M" negate="true"/>
-                    <has_text text="simDog.chr6&#009;593897&#009;98587&#009;98709&#009;+&#009;simCow.chr6&#009;602619&#009;93352&#009;93477&#009;106&#009;154&#009;255&#009;AS:i:6363&#009;cg:Z:63M4D42M1I16M"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;98570&#9;98709&#9;+&#9;simCow.chr6&#9;602619&#9;93324&#9;93477&#9;106&#9;154&#9;255&#9;AS:i:6363&#9;cg:Z:17M11D63M4D42M1I16M" negate="true"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;98587&#9;98709&#9;+&#9;simCow.chr6&#9;602619&#9;93352&#9;93477&#9;106&#9;154&#9;255&#9;AS:i:6363&#9;cg:Z:63M4D42M1I16M"/>
                 </assert_contents>
             </output>
         </test>
@@ -107,8 +107,8 @@
             </conditional>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;526897&#009;527043&#009;+&#009;simCow.chr6&#009;602619&#009;20537&#009;20683&#009;122&#009;146&#009;255&#009;AS:i:10183&#009;cg:Z:146M" negate="true"/>
-                    <has_text text="simDog.chr6&#009;593897&#009;526951&#009;526989&#009;+&#009;simCow.chr6&#009;602619&#009;20591&#009;20629&#009;122&#009;146&#009;255&#009;AS:i:10183&#009;cg:Z:38M"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;526897&#9;527043&#9;+&#9;simCow.chr6&#9;602619&#9;20537&#9;20683&#9;122&#9;146&#9;255&#9;AS:i:10183&#9;cg:Z:146M" negate="true"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;526951&#9;526989&#9;+&#9;simCow.chr6&#9;602619&#9;20591&#9;20629&#9;122&#9;146&#9;255&#9;AS:i:10183&#9;cg:Z:38M"/>
                 </assert_contents>
             </output>
         </test>

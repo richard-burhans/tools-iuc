@@ -1,12 +1,12 @@
 <tool id="bp_genbank2gff3" name="Genbank to GFF3" version="1.1">
-  <description>converter</description>
-  <macros>
-      <import>macros.xml</import>
-  </macros>
-  <expand macro="bio_tools" />
-  <expand macro="requirements" />
-  <expand macro="stdio" />
-  <command><![CDATA[
+    <description>converter</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <command><![CDATA[
 bp_genbank2gff3.pl
 $noinfer
 #if str($sofile.sofile) != "__none__":
@@ -22,50 +22,50 @@ $noinfer
 $model
 --typesource "${typesource}"
 
-$genbank
-> $gff3]]></command>
-  <inputs>
-    <param label="Genbank file" name="genbank" type="data" format="genbank"/>
-    <param name="noinfer" truevalue="" falsevalue="--noinfer" checked="true" type="boolean" label="Infer exon/mRNA subfeatures"/>
-    <conditional name="sofile" label="Sequence Ontology">
-        <param name="sofile" label="Sequence Ontology File" type="select">
-            <option value="__none__" selected="True">None specified</option>
-            <option value="live">Latest Sequence Ontology</option>
-            <option value="url">User Specified</option>
+'$genbank'
+> '$gff3']]></command>
+    <inputs>
+        <param label="Genbank file" name="genbank" type="data" format="genbank"/>
+        <param name="noinfer" truevalue="" falsevalue="--noinfer" checked="true" type="boolean" label="Infer exon/mRNA subfeatures"/>
+        <conditional name="sofile" label="Sequence Ontology">
+            <param name="sofile" label="Sequence Ontology File" type="select">
+                <option value="__none__" selected="True">None specified</option>
+                <option value="live">Latest Sequence Ontology</option>
+                <option value="url">User Specified</option>
+            </param>
+            <when value="__none__"/>
+            <when value="live"/>
+            <when value="url">
+                <param name="so_url" label="Sequence Ontology URL" type="text"/>
+            </when>
+        </conditional>
+        <param name="ethresh" label="Error threshold for unflattener" type="select">
+            <option value="0">Strict</option>
+            <option value="1" selected="True">Medium</option>
+            <option value="2">Loose</option>
+            <option value="3">Ignore Errors</option>
         </param>
-        <when value="__none__" />
-        <when value="live" />
-        <when value="url">
-            <param name="so_url" label="Sequence Ontology URL" type="text"/>
-        </when>
-    </conditional>
-    <param name="ethresh" label="Error threshold for unflattener" type="select">
-        <option value="0">Strict</option>
-        <option value="1" selected="True">Medium</option>
-        <option value="2">Loose</option>
-        <option value="3">Ignore Errors</option>
-    </param>
-    <param name="model" label="Gene Model" type="select">
-        <option value="--CDS" selected="True">Default GFF gene model</option>
-        <option value="--noCDS">Alternate gene-RNA-protein-exon model</option>
-    </param>
-    <param name="typesource" label="Sequence Ontology type for landmark feature" help="E.g. chromosome, region, contig" value="contig" type="text" />
-  </inputs>
-  <outputs>
-    <data format="gff3" name="gff3" label="${genbank.name} as GFF3"/>
-  </outputs>
-  <tests>
-      <test>
-          <param name="genbank" value="seq.gb" />
-          <param name="noinfer" value="True" />
-          <output name="gff3" file="seq.gb.0.gff" ftype="gff3" lines_diff="6"/>
-      </test>
-      <test>
-          <param name="genbank" value="seq.gb" />
-          <output name="gff3" file="seq.gb.1.gff" ftype="gff3" lines_diff="4"/>
-      </test>
-  </tests>
-  <help><![CDATA[
+        <param name="model" label="Gene Model" type="select">
+            <option value="--CDS" selected="True">Default GFF gene model</option>
+            <option value="--noCDS">Alternate gene-RNA-protein-exon model</option>
+        </param>
+        <param name="typesource" label="Sequence Ontology type for landmark feature" help="E.g. chromosome, region, contig" value="contig" type="text"/>
+    </inputs>
+    <outputs>
+        <data format="gff3" name="gff3" label="${genbank.name} as GFF3"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="genbank" value="seq.gb"/>
+            <param name="noinfer" value="True"/>
+            <output name="gff3" file="seq.gb.0.gff" ftype="gff3" lines_diff="6"/>
+        </test>
+        <test>
+            <param name="genbank" value="seq.gb"/>
+            <output name="gff3" file="seq.gb.1.gff" ftype="gff3" lines_diff="4"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 **What it does**:
 
 This tool uses Bio::SeqFeature::Tools::Unflattener and
@@ -118,7 +118,7 @@ Copyright (c) 2004 Cold Spring Harbor Laboratory.
 
 Don Gilbert (gilbertd@indiana.edu)
       ]]></help>
-  <citations>
-    <citation type="doi">10.1101/gr.361602</citation>
-  </citations>
+    <citations>
+        <citation type="doi">10.1101/gr.361602</citation>
+    </citations>
 </tool>

@@ -57,29 +57,23 @@ echo 'get.otus(
         <param argument="accnos" type="data" format="mothur.accnos" label="accnos - Group Names from your history"/>
         <param argument="list" type="data" format="mothur.list" optional="true" label="OTU List"/>
         <param argument="shared" type="data" format="mothur.shared" optional="true" label="OTU List OTU Shared file"/>
-        <param argument="constaxonomy" type="data" format="mothur.cons.taxonomy" optional="true" label="contaxonomy - consensus taxonomy"
-            help="The contaxonomy file is the taxonomy file outputted by classify.otu"/>
-        <param argument="otucorr" type="data" format="mothur.otu.corr" optional="true" label="OTU correlation file"
-            help="otu correlation coefficients are output by the otu.association command"/>
-        <param argument="corraxes" type="data" format="mothur.axes" optional="true" label="Correlation axes file"
-            help="correlation axes file is output by the corr.axes command"/>
-
+        <param argument="constaxonomy" type="data" format="mothur.cons.taxonomy" optional="true" label="contaxonomy - consensus taxonomy" help="The contaxonomy file is the taxonomy file outputted by classify.otu"/>
+        <param argument="otucorr" type="data" format="mothur.otu.corr" optional="true" label="OTU correlation file" help="otu correlation coefficients are output by the otu.association command"/>
+        <param argument="corraxes" type="data" format="mothur.axes" optional="true" label="Correlation axes file" help="correlation axes file is output by the corr.axes command"/>
         <conditional name="labelsource">
             <param name="source" type="select" label="Select a label from">
                 <option value="list"> OTU list file </option>
                 <option value="shared"> OTU shared file </option>
             </param>
             <when value="list">
-                <param argument="label" type="select" optional="true" multiple="false" label="label - OTU Label"
-                    help="select exactly one label. If none selected, the first label in your file will be used">
+                <param argument="label" type="select" optional="true" multiple="false" label="label - OTU Label" help="select exactly one label. If none selected, the first label in your file will be used">
                     <options>
                         <filter type="data_meta" ref="list" key="labels"/>
                     </options>
                 </param>
             </when>
             <when value="shared">
-                <param argument="label" type="select" optional="true" multiple="false" label="label - OTU Label"
-                    help="select exactly one label. If none selected, the first label in your file will be used">
+                <param argument="label" type="select" optional="true" multiple="false" label="label - OTU Label" help="select exactly one label. If none selected, the first label in your file will be used">
                     <options>
                         <filter type="data_meta" ref="shared" key="labels"/>
                     </options>
@@ -107,7 +101,8 @@ echo 'get.otus(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with list file input and default settings -->
+        <test>
+            <!-- test with list file input and default settings -->
             <param name="list" value="amazon.an.list" ftype="mothur.list"/>
             <param name="accnos" value="amazon.otus.accnos" ftype="mothur.accnos"/>
             <output name="list_out" ftype="mothur.list">
@@ -123,7 +118,8 @@ echo 'get.otus(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared and otu.corr file and label select -->
+        <test>
+            <!-- test with shared and otu.corr file and label select -->
             <param name="shared" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="accnos" value="amazon.otus.accnos" ftype="mothur.accnos"/>
             <param name="label" value="0.03"/>

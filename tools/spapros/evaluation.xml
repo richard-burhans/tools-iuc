@@ -4,8 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements">
-    </expand>
+    <expand macro="requirements"/>
     <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
 @CMD@
@@ -251,7 +250,7 @@ save='plot.$format'
                         <param name="per_celltype" type="boolean" truevalue="True" falsevalue="False" label="Wether to return columns with per cell type max correlations" checked="true"/>
                         <param name="per_marker" type="boolean" truevalue="True" falsevalue="False" label="Wether to return columns with per marker max correlations" checked="true"/>
                         <conditional name="select_per_celltype_min_mean">
-                            <param name="use_per_celltype_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression > per_celltype_min_mean">
+                            <param name="use_per_celltype_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression &gt; per_celltype_min_mean">
                                 <option value="False">No</option>
                                 <option value="True">Yes</option>
                             </param>
@@ -261,7 +260,7 @@ save='plot.$format'
                             <when value="False"/>
                         </conditional>
                         <conditional name="select_per_marker_min_mean">
-                            <param name="use_per_marker_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression > per_celltype_min_mean">
+                            <param name="use_per_marker_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression &gt; per_celltype_min_mean">
                                 <option value="False">No</option>
                                 <option value="True">Yes</option>
                             </param>
@@ -301,7 +300,7 @@ save='plot.$format'
                 <param name="per_celltype" type="boolean" truevalue="True" falsevalue="False" label="Wether to return columns with per cell type max correlations" checked="true"/>
                 <param name="per_marker" type="boolean" truevalue="True" falsevalue="False" label="Wether to return columns with per marker max correlations" checked="true"/>
                 <conditional name="select_per_celltype_min_mean">
-                    <param name="use_per_celltype_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression > per_celltype_min_mean">
+                    <param name="use_per_celltype_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression &gt; per_celltype_min_mean">
                         <option value="False">No</option>
                         <option value="True">Yes</option>
                     </param>
@@ -311,7 +310,7 @@ save='plot.$format'
                     <when value="False"/>
                 </conditional>
                 <conditional name="select_per_marker_min_mean">
-                    <param name="use_per_marker_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression > per_celltype_min_mean">
+                    <param name="use_per_marker_min_mean" type="select" label="Add a column for correlation per cell type that only takes into accounts markers with mean expression &gt; per_celltype_min_mean">
                         <option value="False">No</option>
                         <option value="True">Yes</option>
                     </param>
@@ -387,7 +386,7 @@ save='plot.$format'
                     </conditional>
                 </conditional>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>
@@ -419,7 +418,7 @@ save='plot.$format'
                 <param name="method" value="plot_confusion_matrix"/>
                 <param name="set_ids" value="all"/>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>
@@ -449,7 +448,7 @@ save='plot.$format'
                 <param name="method" value="plot_coexpression"/>
                 <param name="set_ids" value="all"/>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>
@@ -488,7 +487,7 @@ save='plot.$format'
                     <param name="auc_borders_end" value="20"/>
                 </repeat>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>
@@ -523,7 +522,7 @@ save='plot.$format'
                     <param name="k" value="11"/>
                 </repeat>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>
@@ -563,7 +562,7 @@ save='plot.$format'
                     <param name="per_marker_min_mean" value="0.025"/>
                 </conditional>
             </conditional>
-            <param name="show_log" value="true" />
+            <param name="show_log" value="true"/>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="'name': 'probeset',"/>

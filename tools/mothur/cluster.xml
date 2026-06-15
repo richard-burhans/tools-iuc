@@ -83,10 +83,8 @@ echo 'cluster(
                 <expand macro="params-opticlust"/>
             </when>
         </conditional>
-        <param argument="cutoff" type="float" value="0.0" label="cutoff - Distance Cutoff threshold - ignored if not > 0.0"
-            help="Ignore pairwise distances larger than this, a common value would be 0.10"/>
-        <param name="precision" type="select" optional="true" label="precision - Precision for rounding distance values"
-            help="Set higher precision for longer genome scale sequence lengths">
+        <param argument="cutoff" type="float" value="0.0" label="cutoff - Distance Cutoff threshold - ignored if not &gt; 0.0" help="Ignore pairwise distances larger than this, a common value would be 0.10"/>
+        <param name="precision" type="select" optional="true" label="precision - Precision for rounding distance values" help="Set higher precision for longer genome scale sequence lengths">
             <option value="10">.1</option>
             <option value="100" selected="true">.01</option>
             <option value="1000">.001</option>
@@ -104,7 +102,8 @@ echo 'cluster(
         <data name="otulist" format="mothur.list" from_work_dir="matrix.dist*.list" label="${tool.name} on ${on_string}: list (OTU List)"/>
     </outputs>
     <tests>
-        <test><!-- test with phylip input -->
+        <test>
+            <!-- test with phylip input -->
             <param name="format" value="phylip"/>
             <param name="dist" value="amazon.dist"/>
             <output name="rabund" ftype="mothur.rabund">
@@ -127,7 +126,8 @@ echo 'cluster(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with column input -->
+        <test>
+            <!-- test with column input -->
             <param name="format" value="column"/>
             <param name="dist" value="amazon.pair.dist"/>
             <param name="name" value="amazon.names"/>
@@ -151,7 +151,8 @@ echo 'cluster(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with column input -->
+        <test>
+            <!-- test with column input -->
             <param name="format" value="column"/>
             <param name="dist" value="amazon.pair.dist"/>
             <param name="name" value="amazon.names"/>

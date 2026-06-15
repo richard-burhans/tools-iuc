@@ -1,12 +1,12 @@
-<tool id='usher_matutils' name='UShER matUtils' version='@TOOL_VERSION@+galaxy@VERSION_SUFFIX@' profile='@PROFILE@'>
+<tool id="usher_matutils" name="UShER matUtils" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>analyze, edit, and manipulate mutation annotated tree files</description>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro='requirements' />
+    <expand macro="requirements"/>
     <expand macro="version"/>
-    <command detect_errors='exit_code'><![CDATA[
+    <command detect_errors="exit_code"><![CDATA[
     ## get correct extension filenames
     ln -sf '$mutation_annotation_file' '$mutation_annotation_file.element_identifier' &&
     
@@ -171,54 +171,54 @@
                         <option value="nearest-k">Select samples by sample and context</option>
                         <option value="max-branch-length">Remove samples by branch length</option>
                     </param>
-                    <when value="samples">       
-                        <param argument="--samples" type="data" format="txt" optional="True" label="Select samples by explicitly naming them, one per line in a plain text file" />
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                    <when value="samples">
+                        <param argument="--samples" type="data" format="txt" optional="True" label="Select samples by explicitly naming them, one per line in a plain text file"/>
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
-                    <when value="clade">   
+                    <when value="clade">
                         <param argument="--clade" type="text" value="" label="Select samples by membership in any of the indicated clade(s), comma delimited- e.g. -c clade1,clade2">
-                            <expand macro="sanitize_string" />
+                            <expand macro="sanitize_string"/>
                         </param>
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
-                    <when value="mutation">    
+                    <when value="mutation">
                         <param argument="--mutation" type="text" value="" label="Select samples by whether they contain any of the indicated mutation(s), comma delimited- e.g. -m mutation1,mutation2">
-                            <expand macro="sanitize_string" />
+                            <expand macro="sanitize_string"/>
                         </param>
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
-                    <when value="max-epps">   
-                        <param argument="--max-epps" type="integer" min="0" max="1000" value="" label="Select samples by whether they have less than or equal to the maximum number of indicated equally parsimonious placements" />
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                    <when value="max-epps">
+                        <param argument="--max-epps" type="integer" min="0" max="1000" value="" label="Select samples by whether they have less than or equal to the maximum number of indicated equally parsimonious placements"/>
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
-                    <when value="max-parsimony">   
-                        <param argument="--max-parsimony" type="integer" min="0" max="1000" value="" label="Select samples by whether they have less than or equal to the indicated maximum parsimony score (terminal branch length)" />
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                    <when value="max-parsimony">
+                        <param argument="--max-parsimony" type="integer" min="0" max="1000" value="" label="Select samples by whether they have less than or equal to the indicated maximum parsimony score (terminal branch length)"/>
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
                     <when value="nearest-k">
                         <param argument="--nearest-k" type="text" value="" label="Select a specific sample and X context samples, formatted as 'sample_name:X'">
-                            <expand macro="sanitize_string" />
+                            <expand macro="sanitize_string"/>
                         </param>
-                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files" />
+                        <param argument="--prune" type="boolean" truevalue="--prune" falsevalue="" label="Remove the selected samples" help="Remove the selected samples instead of keeping them in the output files"/>
                     </when>
-                    <when value="max-branch-length">       
-                        <param argument="--max-branch-length" type="integer" min="0" max="1000" value="" label="Remove samples which have branches of greater than the indicated length in their ancestry" />
+                    <when value="max-branch-length">
+                        <param argument="--max-branch-length" type="integer" min="0" max="1000" value="" label="Remove samples which have branches of greater than the indicated length in their ancestry"/>
                     </when>
                 </conditional>
-                <param argument="--get-representative" type="boolean" truevalue="--get-representative" falsevalue="" label="Select two representative samples per clade" help=" Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps" />
-                <param argument="--resolve-polytomies" type="boolean" truevalue="--resolve-polytomies" falsevalue="" label="Resolve all polytomies" help="Resolve all polytomies by assigning branch length 0 relationships arbitrarily. Applied after selection; prevents recondensing of the MAT" />
+                <param argument="--get-representative" type="boolean" truevalue="--get-representative" falsevalue="" label="Select two representative samples per clade" help=" Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps"/>
+                <param argument="--resolve-polytomies" type="boolean" truevalue="--resolve-polytomies" falsevalue="" label="Resolve all polytomies" help="Resolve all polytomies by assigning branch length 0 relationships arbitrarily. Applied after selection; prevents recondensing of the MAT"/>
                 <param name="outputs_extract" type="select" display="checkboxes" multiple="true" label="Select the desired output">
                     <option value="used-samples">Write a simple text file containing selected sample names (--used-samples)</option>
                     <option value="sample-paths">Write the path of mutations defining each sample in the subtree (--sample-paths)</option>
                     <option value="clade-paths">Write the path of mutations defining each clade in the subtree (--clade-paths)</option>
                     <option value="all-paths">Write mutations assigned to each node in the subtree in depth-first traversal order (--all-paths)</option>
-                    <option value="write-vcf">Output VCF file representing selected subtree (--write-vcf)</option>  
-                    <option value="write-vcf-no-genotypes">Output VCF file representing selected subtree without including genotype column (--write-vcf --no-genotypes) </option>  
-                    <option value="write-mat">Write the selected subtree as a mutation annotated tree (--write-math)</option>  
-                    <option value="write-mat-collapsed">Write the selected subtree as a collapsed mutation annotated tree (--write-mat --collapsed)</option>  
-                    <option value="write-json">Write an Auspice-compatbile json representing the selected subtree (--write-json)</option>  
+                    <option value="write-vcf">Output VCF file representing selected subtree (--write-vcf)</option>
+                    <option value="write-vcf-no-genotypes">Output VCF file representing selected subtree without including genotype column (--write-vcf --no-genotypes) </option>
+                    <option value="write-mat">Write the selected subtree as a mutation annotated tree (--write-math)</option>
+                    <option value="write-mat-collapsed">Write the selected subtree as a collapsed mutation annotated tree (--write-mat --collapsed)</option>
+                    <option value="write-json">Write an Auspice-compatbile json representing the selected subtree (--write-json)</option>
                     <option value="write-tree"> Write a newick string representing the selected subtree (--write-tree)</option>
-                    <option value="write-tree-retain-branch"> Write a newick string representing the selected subtree without recalculating branch lengths (--write-tree --retain-branch)</option>  
+                    <option value="write-tree-retain-branch"> Write a newick string representing the selected subtree without recalculating branch lengths (--write-tree --retain-branch)</option>
                 </param>
             </when>
             <when value="summary">
@@ -236,15 +236,15 @@
             </when>
             <when value="annotate">
                 <param argument="--clade-names" type="data" format="tabular" optional="True" label="File containing clade asssignments of samples" help="An algorithm automatically locates and annotates clade root nodes."/>
-                <param argument="--clade-to-nid" type="data" format="tabular" optional="True" label="File mapping clades to their respective internal node identifiers" help="Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the direct assignment method with caution."/>                
-                <param argument="--set-overlap" type="float" min="0" max="1" value="" optional="True" label="Minimum fraction of the lineage samples" help="Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Used only with --clade-names" />
-                <param argument="--clear-current" type="boolean" truevalue="--clear-current" falsevalue="" label="Remove current annotations" help="Use to remove current annotations before applying new annotations." />
-                <param argument="--allele-frequency" type="float" min="0" max="1" value="" optional="True" label="Minimum allele frequency for finding the best clade root" help="Minimum allele frequency in input samples for finding the best clade root. Used only with 'remove current annotation'. Used only with --clade-names" />
-                <param argument="--mask-frequency" type="float" min="0" max="1" value="" optional="True" label="Minimum allele frequency for being masked" help="Minimum allele frequency in input samples that should be masked for finding the best clade root. Used only with --clade-names" />
-                <param argument="--clip-sample-frequency" type="float" min="0" max="1" value="" optional="True" label="Clip sample frequency" help="Maximum proportion of samples in a branch that are exemplars from --clade-names to consider when sorting candidate clade root nodes." />
+                <param argument="--clade-to-nid" type="data" format="tabular" optional="True" label="File mapping clades to their respective internal node identifiers" help="Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the direct assignment method with caution."/>
+                <param argument="--set-overlap" type="float" min="0" max="1" value="" optional="True" label="Minimum fraction of the lineage samples" help="Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Used only with --clade-names"/>
+                <param argument="--clear-current" type="boolean" truevalue="--clear-current" falsevalue="" label="Remove current annotations" help="Use to remove current annotations before applying new annotations."/>
+                <param argument="--allele-frequency" type="float" min="0" max="1" value="" optional="True" label="Minimum allele frequency for finding the best clade root" help="Minimum allele frequency in input samples for finding the best clade root. Used only with 'remove current annotation'. Used only with --clade-names"/>
+                <param argument="--mask-frequency" type="float" min="0" max="1" value="" optional="True" label="Minimum allele frequency for being masked" help="Minimum allele frequency in input samples that should be masked for finding the best clade root. Used only with --clade-names"/>
+                <param argument="--clip-sample-frequency" type="float" min="0" max="1" value="" optional="True" label="Clip sample frequency" help="Maximum proportion of samples in a branch that are exemplars from --clade-names to consider when sorting candidate clade root nodes."/>
             </when>
             <when value="uncertainty">
-                <param argument="--samples" type="data" format="txt" label="Select samples by explicitly naming them, one per line in a plain text file" />
+                <param argument="--samples" type="data" format="txt" label="Select samples by explicitly naming them, one per line in a plain text file"/>
                 <param name="uncertainty_options" type="select" display="checkboxes" multiple="true" label="Metrics for sample placement certainty">
                     <option value="find-epps">Number of equally parsimonious placements for each sample (--find-epps)</option>
                     <option value="record-placements">Record potential parents for each sample (--record-placements)</option>
@@ -254,82 +254,81 @@
                 <param argument="--restricted-samples" type="data" format="txt" optional="True" label="Select samples by explicitly naming them, one per line in a plain text file" help="Sample names to restrict. Use to perform masking"/>
                 <param argument="--rename-samples" type="data" format="tabular" optional="True" label="TSV file containing names of the samples to be renamed and their new names"/>
                 <param argument="--mask-mutations" type="data" format="tabular" optional="True" label="TSV or CSV containing mutations to be masked in the first column and locations to mask downstream from in the second."/>
-                <param argument="--simplify" type="boolean" truevalue="--simplify" falsevalue="" label="Use to automatically remove identifying information from the tree, including all sample names and private mutations" />
-                <param argument="--condense-tree" type="boolean" truevalue="--condense-tree" falsevalue="" label="Use to recondense the tree before saving." />
+                <param argument="--simplify" type="boolean" truevalue="--simplify" falsevalue="" label="Use to automatically remove identifying information from the tree, including all sample names and private mutations"/>
+                <param argument="--condense-tree" type="boolean" truevalue="--condense-tree" falsevalue="" label="Use to recondense the tree before saving."/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="selected_samples" format="txt" from_work_dir='selected_samples.txt' label="${tool.name} on ${on_string}: selected samples">
+        <data name="selected_samples" format="txt" from_work_dir="selected_samples.txt" label="${tool.name} on ${on_string}: selected samples">
             <filter>matutils_mode['options_mode'] == 'extract' and 'used-samples' in matutils_mode['outputs_extract'] </filter>
-        </data>     
-        <data name="path_mutations" format="tabular" from_work_dir='path_mutations.tabular' label="${tool.name} on ${on_string}: sample mutations">
+        </data>
+        <data name="path_mutations" format="tabular" from_work_dir="path_mutations.tabular" label="${tool.name} on ${on_string}: sample mutations">
             <filter>matutils_mode['options_mode'] == 'extract' and 'sample-paths' in matutils_mode['outputs_extract']</filter>
-        </data>    
-        <data name="path_clades" format="tabular"  from_work_dir='path_clades.tabular' label="${tool.name} on ${on_string}: clade mutations">
+        </data>
+        <data name="path_clades" format="tabular" from_work_dir="path_clades.tabular" label="${tool.name} on ${on_string}: clade mutations">
             <filter>matutils_mode['options_mode'] == 'extract' and 'clade-paths' in matutils_mode['outputs_extract']</filter>
-        </data>    
-        <data name="all_paths" format="txt" from_work_dir='all_paths.txt' label="${tool.name} on ${on_string}: node mutations">
+        </data>
+        <data name="all_paths" format="txt" from_work_dir="all_paths.txt" label="${tool.name} on ${on_string}: node mutations">
             <filter>matutils_mode['options_mode'] == 'extract' and 'all-paths' in matutils_mode['outputs_extract']</filter>
-        </data>    
-        <data name="subtree_vcf" format="vcf" from_work_dir='subtree_vcf.vcf' label="${tool.name} on ${on_string}: subtree">
+        </data>
+        <data name="subtree_vcf" format="vcf" from_work_dir="subtree_vcf.vcf" label="${tool.name} on ${on_string}: subtree">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-vcf' in matutils_mode['outputs_extract']</filter>
-        </data>  
-        <data name="subtree_no_genotype_vcf" format="vcf" from_work_dir='subtree_vcf_no_genotypes.vcf' label="${tool.name} on ${on_string}: subtree without genotype">
+        </data>
+        <data name="subtree_no_genotype_vcf" format="vcf" from_work_dir="subtree_vcf_no_genotypes.vcf" label="${tool.name} on ${on_string}: subtree without genotype">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-vcf-no-genotypes' in matutils_mode['outputs_extract'] and 'write-vcf' not in matutils_mode['outputs_extract']</filter>
-        </data>  
-        <data name="mutation_annotated" format="protobuf3" from_work_dir='mutation_annotated.pb' label="${tool.name} on ${on_string}: mutation annotated tree">
+        </data>
+        <data name="mutation_annotated" format="protobuf3" from_work_dir="mutation_annotated.pb" label="${tool.name} on ${on_string}: mutation annotated tree">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-mat' in matutils_mode['outputs_extract'] </filter>
-        </data>  
-        <data name="mutation_annotated_collapsed" format="protobuf3" from_work_dir='mutation_annotated_collapsed.pb' label="${tool.name} on ${on_string}: mutation annotated tree collapsed">
+        </data>
+        <data name="mutation_annotated_collapsed" format="protobuf3" from_work_dir="mutation_annotated_collapsed.pb" label="${tool.name} on ${on_string}: mutation annotated tree collapsed">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-mat-collapse' in matutils_mode['outputs_extract'] and 'write-mat' not in matutils_mode['outputs_extract']</filter>
-        </data>  
-        <data name="subtree_json" format="json" from_work_dir='subtree_json.json' label="${tool.name} on ${on_string}: subtree (json)">
+        </data>
+        <data name="subtree_json" format="json" from_work_dir="subtree_json.json" label="${tool.name} on ${on_string}: subtree (json)">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-json' in matutils_mode['outputs_extract']</filter>
-        </data>  
-        <data name="tree_newick" format="newick" from_work_dir='tree_newick.nh' label="${tool.name} on ${on_string}: subtree (newick)">
+        </data>
+        <data name="tree_newick" format="newick" from_work_dir="tree_newick.nh" label="${tool.name} on ${on_string}: subtree (newick)">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-tree' in matutils_mode['outputs_extract']</filter>
-        </data>  
-        <data name="tree_newick_retain_branch" format="newick" from_work_dir='tree_newick_retain_branch.nh' label="${tool.name} on ${on_string}: subtree retain branch (newick)">
+        </data>
+        <data name="tree_newick_retain_branch" format="newick" from_work_dir="tree_newick_retain_branch.nh" label="${tool.name} on ${on_string}: subtree retain branch (newick)">
             <filter>matutils_mode['options_mode'] == 'extract' and 'write-tree-retain-branch' in matutils_mode['outputs_extract'] and 'write-tree' not in matutils_mode['outputs_extract']</filter>
-        </data> 
-        <data name="general_stats" format="txt" from_work_dir='output_stdout.txt' label="${tool.name} on ${on_string}: general stats">
+        </data>
+        <data name="general_stats" format="txt" from_work_dir="output_stdout.txt" label="${tool.name} on ${on_string}: general stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'general' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="samples_stats" format="tabular" from_work_dir='samples_stats.tabular' label="${tool.name} on ${on_string}: samples stats">
+        </data>
+        <data name="samples_stats" format="tabular" from_work_dir="samples_stats.tabular" label="${tool.name} on ${on_string}: samples stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'samples' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="clades_stats" format="tabular" from_work_dir='clades_stats.tabular' label="${tool.name} on ${on_string}: clades stats">
+        </data>
+        <data name="clades_stats" format="tabular" from_work_dir="clades_stats.tabular" label="${tool.name} on ${on_string}: clades stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'clades' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="sampleclades_stats" format="tabular" from_work_dir='sampleclades_stats.tabular' label="${tool.name} on ${on_string}: sample - clades stats">
+        </data>
+        <data name="sampleclades_stats" format="tabular" from_work_dir="sampleclades_stats.tabular" label="${tool.name} on ${on_string}: sample - clades stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'sample_clades' in matutils_mode['summary_options']</filter>
-        </data>  
-
-        <data name="mutations_stats" format="tabular" from_work_dir='mutations_stats.tabular' label="${tool.name} on ${on_string}: mutations stats">
+        </data>
+        <data name="mutations_stats" format="tabular" from_work_dir="mutations_stats.tabular" label="${tool.name} on ${on_string}: mutations stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'mutations' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="aberrant_stats" format="tabular" from_work_dir='aberrant_stats.tabular' label="${tool.name} on ${on_string}: aberrant stats">
+        </data>
+        <data name="aberrant_stats" format="tabular" from_work_dir="aberrant_stats.tabular" label="${tool.name} on ${on_string}: aberrant stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'aberrant' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="haplotype_stats" format="tabular" from_work_dir='haplotype_stats.tabular' label="${tool.name} on ${on_string}: haplotype stats">
+        </data>
+        <data name="haplotype_stats" format="tabular" from_work_dir="haplotype_stats.tabular" label="${tool.name} on ${on_string}: haplotype stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'haplotype' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="roho_stats" format="tabular" from_work_dir='roho_stats.tabular' label="${tool.name} on ${on_string}: RoHo stats">
+        </data>
+        <data name="roho_stats" format="tabular" from_work_dir="roho_stats.tabular" label="${tool.name} on ${on_string}: RoHo stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'calculate_roho' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="node_stats" format="tabular" from_work_dir='node_stats.tabular' label="${tool.name} on ${on_string}: node stats">
+        </data>
+        <data name="node_stats" format="tabular" from_work_dir="node_stats.tabular" label="${tool.name} on ${on_string}: node stats">
             <filter>matutils_mode['options_mode'] == 'summary' and 'node_stats' in matutils_mode['summary_options']</filter>
-        </data>  
-        <data name="output_mat" format="protobuf3" from_work_dir='output_mat.pb' label="${tool.name} on ${on_string}: mutation tree">
+        </data>
+        <data name="output_mat" format="protobuf3" from_work_dir="output_mat.pb" label="${tool.name} on ${on_string}: mutation tree">
             <filter>matutils_mode['options_mode'] == 'annotate' or matutils_mode['options_mode'] == 'mask'</filter>
-        </data>  
-        <data name="equally_parsimonious" from_work_dir='equally_parsimonious.tabular' format="tabular" label="${tool.name} on ${on_string}: equally parsimonious placements">
+        </data>
+        <data name="equally_parsimonious" from_work_dir="equally_parsimonious.tabular" format="tabular" label="${tool.name} on ${on_string}: equally parsimonious placements">
             <filter>matutils_mode['options_mode'] == 'uncertainty' and 'find-epps' in matutils_mode['uncertainty_options']</filter>
-        </data>  
-        <data name="parent_placements" format="tabular" from_work_dir='parent_placements.tabular' label="${tool.name} on ${on_string}: Potential parents">
+        </data>
+        <data name="parent_placements" format="tabular" from_work_dir="parent_placements.tabular" label="${tool.name} on ${on_string}: Potential parents">
             <filter>matutils_mode['options_mode'] == 'uncertainty' and 'record-placements' in matutils_mode['uncertainty_options']</filter>
-        </data>  
+        </data>
     </outputs>
     <tests>
         <test expect_num_outputs="3">
@@ -362,12 +361,12 @@
             <output name="path_mutations" file="test_14_path_mutations.tabular" ftype="tabular"/>
             <output name="path_clades" file="test_14_path_clades.tabular" ftype="tabular"/>
             <output name="all_paths" file="test_14_all_paths.txt" ftype="txt"/>
-            <output name="subtree_vcf" ftype="vcf" >
+            <output name="subtree_vcf" ftype="vcf">
                 <assert_contents>
-                    <has_line line="##fileformat=VCFv4.2" />
-                    <has_line_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+" />
-                    <has_n_columns n="1105" comment="#" />
-                    <has_n_lines n="3204" />
+                    <has_line line="##fileformat=VCFv4.2"/>
+                    <has_line_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+"/>
+                    <has_n_columns n="1105" comment="#"/>
+                    <has_n_lines n="3204"/>
                 </assert_contents>
             </output>
         </test>
@@ -398,7 +397,7 @@
             </conditional>
             <output name="selected_samples" file="test_16_sample_names.txt" ftype="txt"/>
             <output name="path_mutations" file="test_16_path_mutations.tabular" ftype="tabular"/>
-            <output name="subtree_vcf" file="test_16_subtree.vcf" ftype="vcf" />
+            <output name="subtree_vcf" file="test_16_subtree.vcf" ftype="vcf"/>
         </test>
         <test expect_num_outputs="5">
             <param name="mutation_annotation_file" value="mutation_annotation.pb" ftype="protobuf3"/>
@@ -414,12 +413,12 @@
             <output name="path_mutations" file="test_17_path_mutations.tabular" ftype="tabular"/>
             <output name="path_clades" file="test_17_path_clades.tabular" ftype="tabular"/>
             <output name="all_paths" file="test_17_all_paths.txt" ftype="txt"/>
-            <output name="subtree_vcf" ftype="vcf" >
+            <output name="subtree_vcf" ftype="vcf">
                 <assert_contents>
-                    <has_line line="##fileformat=VCFv4.2" />
-                    <has_line_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+" />
-                    <has_n_columns n="1243" comment="#" />
-                    <has_n_lines n="3558" />
+                    <has_line line="##fileformat=VCFv4.2"/>
+                    <has_line_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+"/>
+                    <has_n_columns n="1243" comment="#"/>
+                    <has_n_lines n="3558"/>
                 </assert_contents>
             </output>
         </test>
@@ -437,12 +436,12 @@
             <output name="path_mutations" file="test_18_path_mutations.tabular" ftype="tabular"/>
             <output name="path_clades" file="test_18_path_clades.tabular" ftype="tabular"/>
             <output name="all_paths" file="test_18_all_paths.txt" ftype="txt"/>
-            <output name="subtree_vcf" ftype="vcf" >
+            <output name="subtree_vcf" ftype="vcf">
                 <assert_contents>
-                    <has_line line="##fileformat=VCFv4.2" />
-                    <has_text_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+" />
-                    <has_n_columns n="450" comment="#" />
-                    <has_n_lines n="1256" />
+                    <has_line line="##fileformat=VCFv4.2"/>
+                    <has_text_matching expression="#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT.+"/>
+                    <has_n_columns n="450" comment="#"/>
+                    <has_n_lines n="1256"/>
                 </assert_contents>
             </output>
         </test>
@@ -477,11 +476,11 @@
             <output name="samples_stats" file="test_21_sample_stats.tabular" ftype="tabular"/>
             <output name="clades_stats" file="test_21_clades_stats.tabular" ftype="tabular"/>
             <output name="mutations_stats" file="test_21_mutations_stats.tabular" ftype="tabular"/>
-            <output name="aberrant_stats" file="test_21_aberrant_stats.tabular" ftype="tabular"/>       
-            <output name="sampleclades_stats" file="test_21_sampleclades_stats.tabular" ftype="tabular"/>       
-            <output name="haplotype_stats" file="test_21_haplotype_stats.tabular" ftype="tabular"/>       
-            <output name="roho_stats" file="test_21_roho_stats.tabular" ftype="tabular"/>       
-            <output name="node_stats" file="test_21_node_stats.tabular" ftype="tabular"/>       
+            <output name="aberrant_stats" file="test_21_aberrant_stats.tabular" ftype="tabular"/>
+            <output name="sampleclades_stats" file="test_21_sampleclades_stats.tabular" ftype="tabular"/>
+            <output name="haplotype_stats" file="test_21_haplotype_stats.tabular" ftype="tabular"/>
+            <output name="roho_stats" file="test_21_roho_stats.tabular" ftype="tabular"/>
+            <output name="node_stats" file="test_21_node_stats.tabular" ftype="tabular"/>
         </test>
         <test expect_num_outputs="1">
             <param name="mutation_annotation_file" value="mutation_annotation.pb" ftype="protobuf3"/>
@@ -490,11 +489,11 @@
                 <param name="samples" value="sample_names.txt"/>
                 <param name="uncertainty_options" value="record-placements"/>
             </conditional>
-            <output name="parent_placements" ftype="tabular" >
+            <output name="parent_placements" ftype="tabular">
                 <assert_contents>
-                    <has_line_matching expression="placement\tsample" />
-                    <has_n_columns n="2" />
-                    <has_n_lines n="3240" />
+                    <has_line_matching expression="placement\tsample"/>
+                    <has_n_columns n="2"/>
+                    <has_n_lines n="3240"/>
                 </assert_contents>
             </output>
         </test>
@@ -548,5 +547,5 @@ matUtils is a suite of tools used to analyze, edit, and manipulate mutation anno
 You can find more information in the `matUtils official documentation page <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
 
     ]]>    </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

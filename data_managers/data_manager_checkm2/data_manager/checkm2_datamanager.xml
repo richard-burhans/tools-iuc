@@ -41,15 +41,15 @@
         <param name="test" type="hidden"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
             <param name="test" value="true"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"value":"@TOOL_VERSION@"'/>
-                    <has_text text='"name":"CheckM2 diamond DB downloaded with version @TOOL_VERSION@"'/>
+                    <has_text text="&quot;value&quot;:&quot;@TOOL_VERSION@&quot;"/>
+                    <has_text text="&quot;name&quot;:&quot;CheckM2 diamond DB downloaded with version @TOOL_VERSION@&quot;"/>
                 </assert_contents>
             </output>
         </test>

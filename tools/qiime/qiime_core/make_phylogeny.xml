@@ -41,7 +41,7 @@ make_phylogeny.py
         <test expect_num_outputs="1">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="fasttree"/>
-            <param name="root_method" value="tree_method_default" />
+            <param name="root_method" value="tree_method_default"/>
             <output name="result_fp" file="make_phylogeny/fasttree_tree_method_default.tre"/>
             <output name="log_fp">
                 <assert_contents>
@@ -53,8 +53,8 @@ make_phylogeny.py
         <test expect_num_outputs="2">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="raxml_v730"/>
-            <param name="root_method" value="tree_method_default" />
-            <output name="result_fp" ftype="nhx" >
+            <param name="root_method" value="tree_method_default"/>
+            <output name="result_fp" ftype="nhx">
                 <assert_contents>
                     <has_text text="seq_20"/>
                     <has_text text="seq_46"/>
@@ -71,7 +71,7 @@ make_phylogeny.py
         <test expect_num_outputs="1">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="muscle"/>
-            <param name="root_method" value="tree_method_default" />
+            <param name="root_method" value="tree_method_default"/>
             <output name="result_fp" file="make_phylogeny/muscle.tre"/>
             <output name="log_fp">
                 <assert_contents>
@@ -83,7 +83,7 @@ make_phylogeny.py
         <test expect_num_outputs="1">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="clustalw"/>
-            <param name="root_method" value="tree_method_default" />
+            <param name="root_method" value="tree_method_default"/>
             <output name="result_fp" file="make_phylogeny/clustalw.tre"/>
             <output name="log_fp">
                 <assert_contents>
@@ -95,8 +95,8 @@ make_phylogeny.py
         <test expect_num_outputs="2">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="clearcut"/>
-            <param name="root_method" value="tree_method_default" />
-            <output name="result_fp" ftype="nhx" >
+            <param name="root_method" value="tree_method_default"/>
+            <output name="result_fp" ftype="nhx">
                 <assert_contents>
                     <has_text text="seq_20"/>
                     <has_text text="seq_46"/>
@@ -113,7 +113,7 @@ make_phylogeny.py
         <test expect_num_outputs="1">
             <param name="input_fp" value="make_phylogeny/aligned.fasta"/>
             <param name="tree_method" value="fasttree"/>
-            <param name="root_method" value="midpoint" />
+            <param name="root_method" value="midpoint"/>
             <output name="result_fp" file="make_phylogeny/fasttree_midpoint.tre"/>
             <output name="log_fp">
                 <assert_contents>

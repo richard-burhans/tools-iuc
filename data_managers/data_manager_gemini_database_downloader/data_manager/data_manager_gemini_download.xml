@@ -7,14 +7,12 @@
     <requirements>
         <requirement type="package" version="@VERSION@">gemini</requirement>
     </requirements>
-    <command detect_errors="exit_code">
+    <command detect_errors="exit_code"><![CDATA[
         python '$__tool_directory__/data_manager_gemini_download.py' '$out_file'
-    </command>
+    ]]></command>
     <inputs>
-        <param name="cadd" type="boolean" truevalue="cadd" falsevalue="" checked="True"
-            label="Download CADD scores for GEMINI database annotation" help="(--extra cadd_score)"/>
-        <param name="gerp_bp" type="boolean" truevalue="gerp_bp" falsevalue="" checked="True"
-            label="Download GERP for GEMINI database annotation" help="(--extra gerp_bp)"/>
+        <param name="cadd" type="boolean" truevalue="cadd" falsevalue="" checked="True" label="Download CADD scores for GEMINI database annotation" help="(--extra cadd_score)"/>
+        <param name="gerp_bp" type="boolean" truevalue="gerp_bp" falsevalue="" checked="True" label="Download GERP for GEMINI database annotation" help="(--extra gerp_bp)"/>
         <param name="gemini_db_version" type="hidden" value="@DB_VERSION@"/>
         <param name="test_data_manager" type="hidden" value=""/>
     </inputs>
@@ -23,22 +21,22 @@
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="test_data_manager" value="--test" />
-            <param name="cadd" value="false" />
-            <param name="gerp_bp" value="false" />
-            <output name="out_file" file="test.json" compare="re_match" />
+            <param name="test_data_manager" value="--test"/>
+            <param name="cadd" value="false"/>
+            <param name="gerp_bp" value="false"/>
+            <output name="out_file" file="test.json" compare="re_match"/>
         </test>
         <!-- Test 2 with the latest option -->
         <test expect_num_outputs="1">
-            <param name="test_data_manager" value="--test" />
+            <param name="test_data_manager" value="--test"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="&quot;name&quot;: &quot;GEMINI annotations w/ GERP &amp; CADD" />
+                    <has_text text="&quot;name&quot;: &quot;GEMINI annotations w/ GERP &amp; CADD"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This tool downloads the GEMINI annotation files and makes them available to
 corresponding versions of the GEMINI suite of tools. Downloading the (very large) CADD_ scores and GERP_ annotation files is optional.
 
@@ -46,9 +44,8 @@ Please visit http://gemini.readthedocs.io for details about GEMINI.
 
 .. _GERP: http://mendel.stanford.edu/SidowLab/downloads/gerp/index.html
 .. _CADD: https://cadd.gs.washington.edu/
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1371/journal.pcbi.1003153</citation>
     </citations>
 </tool>
-

@@ -42,13 +42,13 @@
         </xml>
         <xml name="merge_opt_sel">
             <param name="merge_options" type="select" display="checkboxes" multiple="true" label="Merge options">
-                <expand macro="cluster_opts" />
-                <expand macro="merge_opts" />
+                <expand macro="cluster_opts"/>
+                <expand macro="merge_opts"/>
             </param>
         </xml>
         <xml name="cluster_opt_sel">
             <param name="merge_options" type="select" display="checkboxes" multiple="true" label="Cluster options">
-                <expand macro="cluster_opts" />
+                <expand macro="cluster_opts"/>
             </param>
         </xml>
     </macros>
@@ -208,13 +208,11 @@
                     </help>
                     <validator type="regex">(([+-])?(\w+:))?\d+\.\.\d+</validator>
                 </param>
-                <param argument="-R" name="discard_partial" type="boolean" truevalue="-R" falsevalue="" checked="false"
-                       label="Discard all transcripts that are not fully contained within the given range" help=""/>
+                <param argument="-R" name="discard_partial" type="boolean" truevalue="-R" falsevalue="" checked="false" label="Discard all transcripts that are not fully contained within the given range" help=""/>
             </when>
         </conditional>
-        <param argument="-i" name="maxintron" type="integer" value="" optional="true" min="0" label="Filter out transcipts with large introns"
-               help="If set, discard transcripts having an intron larger"/>
-        <param argument="-m" name="chr_replace" type="data" format="tabular" optional="true" label="Replace reference sequence names" >
+        <param argument="-i" name="maxintron" type="integer" value="" optional="true" min="0" label="Filter out transcipts with large introns" help="If set, discard transcripts having an intron larger"/>
+        <param argument="-m" name="chr_replace" type="data" format="tabular" optional="true" label="Replace reference sequence names">
             <help><![CDATA[
                 chr_replace is a reference sequence replacement table consisting of 2 columns: "original_ref_ID"  "new_ref_ID"<br>
                 It is useful for switching between Ensembl and UCSC naming conventions <br>
@@ -222,7 +220,6 @@
                 ]]>
             </help>
         </param>
-
         <!-- Although documented, does not appear to be used in the gffread code
         <param name="seq_info" type="data" format="tabular" optional="true" label="Use the description field as the value for a 'descr' attribute to the GFF record">
             <help>
@@ -232,7 +229,6 @@
             </help>
         </param>
         -->
-
         <!-- merging -->
         <conditional name="merging">
             <param name="merge_sel" type="select" label="Transcript merging" help="">
@@ -243,11 +239,11 @@
             <when value="none"/>
             <when value="merge">
                 <param name="merge_cmd" type="hidden" value="--merge"/>
-                <expand macro="merge_opt_sel" />
+                <expand macro="merge_opt_sel"/>
             </when>
             <when value="cluster">
                 <param name="merge_cmd" type="hidden" value="--cluster-only"/>
-                <expand macro="cluster_opt_sel" />
+                <expand macro="cluster_opt_sel"/>
             </when>
         </conditional>
         <!-- reference sequence file -->
@@ -263,16 +259,15 @@
                 <param argument="-g" name="fasta_indexes" type="select" label="Source FASTA Sequence">
                     <options from_data_table="all_fasta"/>
                 </param>
-                <expand macro="ref_filtering_select" />
-                <expand macro="fasta_output_select" />
+                <expand macro="ref_filtering_select"/>
+                <expand macro="fasta_output_select"/>
             </when>
             <when value="history">
                 <param argument="-g" name="genome_fasta" type="data" format="fasta" label="Genome Reference Fasta"/>
-                <expand macro="ref_filtering_select" />
-                <expand macro="fasta_output_select" />
+                <expand macro="ref_filtering_select"/>
+                <expand macro="fasta_output_select"/>
             </when>
         </conditional>
-
         <!-- outputs -->
         <conditional name="gffs">
             <param name="gff_fmt" type="select" label="Feature File Output" help="(-o output.gff3|output.gtf)">
@@ -284,21 +279,16 @@
             <when value="none"/>
             <when value="gff">
                 <param argument="-L" name="ensembl" type="boolean" truevalue="-L" falsevalue="" checked="false" label="Ensembl GTF to GFF3 conversion" help=""/>
-                <expand macro="trackname" />
+                <expand macro="trackname"/>
             </when>
             <when value="gtf">
-                <expand macro="trackname" />
+                <expand macro="trackname"/>
             </when>
             <when value="bed"/>
         </conditional>
-
-        <param argument="-F" name="full_gff_attribute_preservation" type="boolean" truevalue="-F" falsevalue="" checked="false"
-                       label="full GFF attribute preservation (all attributes are shown)" help=""/>
-        <param argument="-D" name="decode_url" type="boolean" truevalue="-D" falsevalue="" checked="false"
-                       label="decode url encoded characters within attributes" help=""/>
-        <param argument="-E" name="expose" type="boolean" truevalue="-E" falsevalue="" checked="false"
-                       label="warn about duplicate transcript IDs and other potential problems with the given GFF/GTF records" help=""/>
-
+        <param argument="-F" name="full_gff_attribute_preservation" type="boolean" truevalue="-F" falsevalue="" checked="false" label="full GFF attribute preservation (all attributes are shown)" help=""/>
+        <param argument="-D" name="decode_url" type="boolean" truevalue="-D" falsevalue="" checked="false" label="decode url encoded characters within attributes" help=""/>
+        <param argument="-E" name="expose" type="boolean" truevalue="-E" falsevalue="" checked="false" label="warn about duplicate transcript IDs and other potential problems with the given GFF/GTF records" help=""/>
     </inputs>
     <outputs>
         <data name="output_gff" format="gff3" metadata_source="input" label="${tool.name} on ${on_string}: gff3" from_work_dir="output.gff">
@@ -312,23 +302,23 @@
             <filter>gffs['gff_fmt'] == 'bed'</filter>
         </data>
         <data name="output_exons" format="fasta" label="${tool.name} on ${on_string}: exons.fa" from_work_dir="exons.fa">
-            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('exons.fa') > 0 </filter>
+            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('exons.fa') &gt; 0 </filter>
         </data>
-        <data name="output_cds" format="fasta"  label="${tool.name} on ${on_string}: cds.fa" from_work_dir="cds.fa">
-            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('cds.fa')  > 0</filter>
+        <data name="output_cds" format="fasta" label="${tool.name} on ${on_string}: cds.fa" from_work_dir="cds.fa">
+            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('cds.fa')  &gt; 0</filter>
         </data>
         <data name="output_pep" format="fasta" label="${tool.name} on ${on_string}: pep.fa" from_work_dir="pep.fa">
-            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('pep.fa')  > 0</filter>
+            <filter>'fa_outputs' in reference_genome and str(reference_genome['fa_outputs']).find('pep.fa')  &gt; 0</filter>
         </data>
         <data name="output_dupinfo" format="txt" label="${tool.name} on ${on_string}: dupinfo" from_work_dir="dupinfo">
-            <filter>'merge_options' in merging and merging['merge_options'].find('dupinfo') > 0</filter>
+            <filter>'merge_options' in merging and merging['merge_options'].find('dupinfo') &gt; 0</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
             <param name="input" ftype="gtf" value="Homo_sapiens.GRCh37_19.71.gtf"/>
             <param name="gff_fmt" value="gff"/>
-            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4" />
+            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4"/>
             <assert_stdout>
                 <has_n_lines n="0"/>
             </assert_stdout>
@@ -352,7 +342,7 @@
         <!-- none output and all .fa outputs deselected .. gff is produced anyway, since we need one output -->
         <test expect_num_outputs="1">
             <param name="input" ftype="gtf" value="Homo_sapiens.GRCh37_19.71.gtf"/>
-            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4" />
+            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4"/>
             <assert_stdout>
                 <has_n_lines n="0"/>
             </assert_stdout>
@@ -365,10 +355,10 @@
                 <param name="ensembl" value="true"/>
                 <param name="tname" value="track name"/>
             </conditional>
-            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71_ensemble.gff3" ftype="gff3" lines_diff="4" />
+            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71_ensemble.gff3" ftype="gff3" lines_diff="4"/>
             <assert_command>
                 <has_text text="-L"/>
-                <has_text text="-t &#39;track name&#39;"/>
+                <has_text text="-t 'track name'"/>
             </assert_command>
             <assert_stdout>
                 <has_n_lines n="0"/>
@@ -377,7 +367,7 @@
         <test expect_num_outputs="1">
             <param name="input" ftype="gtf" value="Homo_sapiens.GRCh37_19.71.gtf"/>
             <param name="gff_fmt" value="gff"/>
-            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4" />
+            <output name="output_gff" file="Homo_sapiens.GRCh37_19.71.gff3" ftype="gff3" lines_diff="4"/>
             <assert_stdout>
                 <has_n_lines n="0"/>
             </assert_stdout>
@@ -386,7 +376,7 @@
             <param name="input" ftype="gtf" value="ecoli-k12.gff3"/>
             <param name="gff_fmt" value="gff"/>
             <param name="full_gff_attribute_preservation" value="-F"/>
-            <output name="output_gff" file="ecoli-k12.processed.gff3" ftype="gff3" lines_diff="4" />
+            <output name="output_gff" file="ecoli-k12.processed.gff3" ftype="gff3" lines_diff="4"/>
             <assert_stdout>
                 <has_n_lines n="0"/>
             </assert_stdout>
@@ -429,8 +419,8 @@
             <param name="gff_fmt" value="gtf"/>
             <output name="output_gtf">
                 <assert_contents>
-                    <has_text text="ENST00000587541" />
-                    <has_text text="ENST00000382683" />
+                    <has_text text="ENST00000587541"/>
+                    <has_text text="ENST00000382683"/>
                 </assert_contents>
             </output>
             <assert_stdout>
@@ -445,8 +435,8 @@
             <param name="gff_fmt" value="gtf"/>
             <output name="output_gtf">
                 <assert_contents>
-                    <not_has_text text="ENST00000587541" />
-                    <has_text text="ENST00000382683" />
+                    <not_has_text text="ENST00000587541"/>
+                    <has_text text="ENST00000382683"/>
                 </assert_contents>
             </output>
             <assert_stdout>
@@ -461,8 +451,8 @@
             <param name="gff_fmt" value="gtf"/>
             <output name="output_gtf">
                 <assert_contents>
-                    <not_has_text text="ENST00000587541" />
-                    <has_text text="ENST00000382683" />
+                    <not_has_text text="ENST00000587541"/>
+                    <has_text text="ENST00000382683"/>
                 </assert_contents>
             </output>
             <assert_stdout>
@@ -479,26 +469,26 @@
             <param name="gff_fmt" value="gtf"/>
             <output name="output_gtf">
                 <assert_contents>
-                    <has_text text="ENST00000587541" />
-                    <has_text text="ENST00000382683" />
+                    <has_text text="ENST00000587541"/>
+                    <has_text text="ENST00000382683"/>
                 </assert_contents>
             </output>
             <output name="output_exons">
                 <assert_contents>
-                    <has_text text="ENST00000346144 CDS=47-934" />
-                    <has_text text="CTATTTAAGCGGCTTCCCCGCGGCCTCGGGACAGAGGGGACTGAGCATGGATTTCGGACTGGCCCTCCTG" />
+                    <has_text text="ENST00000346144 CDS=47-934"/>
+                    <has_text text="CTATTTAAGCGGCTTCCCCGCGGCCTCGGGACAGAGGGGACTGAGCATGGATTTCGGACTGGCCCTCCTG"/>
                 </assert_contents>
             </output>
             <output name="output_cds">
                 <assert_contents>
-                    <has_text text="ENST00000346144" />
-                    <has_text text="ATGGATTTCGGACTGGCCCTCCTGCTGGCGGGGCTTCTGGGGCTCCTCCTCGGCCAGTCCCTCCAGGTGA" />
+                    <has_text text="ENST00000346144"/>
+                    <has_text text="ATGGATTTCGGACTGGCCCTCCTGCTGGCGGGGCTTCTGGGGCTCCTCCTCGGCCAGTCCCTCCAGGTGA"/>
                 </assert_contents>
             </output>
             <output name="output_pep">
                 <assert_contents>
-                    <has_text text="ENST00000346144" />
-                    <has_text text="MDFGLALLLAGLLGLLLGQSLQVKPLQVEPPEPVVAVALGASRQLTCRLACADRGASVQWRGLDTSLGAV" />
+                    <has_text text="ENST00000346144"/>
+                    <has_text text="MDFGLALLLAGLLGLLLGQSLQVKPLQVEPPEPVVAVALGASRQLTCRLACADRGASVQWRGLDTSLGAV"/>
                 </assert_contents>
             </output>
             <assert_stdout>
@@ -512,8 +502,8 @@
             <param name="fa_outputs" value="-y pep.fa,-S"/>
             <output name="output_pep">
                 <assert_contents>
-                    <has_text text="ENST00000269812" />
-                    <has_text text="PLRGLHPRV*LQTPLERCPCWPPAGGTGGCPHCLLHLRLLQSPTPTALSEGGGAGTEAQPVTDVDPGRG*" />
+                    <has_text text="ENST00000269812"/>
+                    <has_text text="PLRGLHPRV*LQTPLERCPCWPPAGGTGGCPHCLLHLRLLQSPTPTALSEGGGAGTEAQPVTDVDPGRG*"/>
                 </assert_contents>
             </output>
             <assert_stdout>

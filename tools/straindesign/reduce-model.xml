@@ -23,7 +23,7 @@
         <conditional name="sd_strategy">
             <param name="sd_cond" type="select" label="Fill with the output of StrainDesign simulate-deletion">
                 <option value="no" selected="True">no</option>
-                <option value="yes" >yes</option>
+                <option value="yes">yes</option>
             </param>
             <when value="yes">
                 <param name="sd_tsv" type="data" format="tabular" label="StrainDesign simulate-deletion output" help="TSV input file"/>
@@ -40,7 +40,7 @@
         </param>
     </inputs>
     <outputs>
-        <data name="output_sbml" format="sbml" label="${tool.name}" />
+        <data name="output_sbml" format="sbml" label="${tool.name}"/>
     </outputs>
     <tests>
         <test>

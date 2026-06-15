@@ -56,8 +56,8 @@ forceTwoBit=on
 mafFetch is a command-line tool from the UCSC Genome Browser suite that extracts MAF records overlapping regions in a BED file (minimum 3 columns: chrom, start, end) from a specified UCSC database table (e.g., multiz46way for hg19). Outputs alignments to a MAF file using an indexed lookup for efficiency.
 
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{mafFetch,
                 author = {Kent UCSC},
                 title = {mafFetch: A tool for get overlapping records from an MAF using an index table},

@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 mergeBed
 -i '${input}'
@@ -19,19 +19,17 @@ $header
 > '${output}'
     ]]></command>
     <inputs>
-        <param  name="input" argument="-i" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="Merge the following BAM/@STD_BEDTOOLS_INPUT_LABEL@ file"/>
+        <param name="input" argument="-i" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="Merge the following BAM/@STD_BEDTOOLS_INPUT_LABEL@ file"/>
         <param name="strand" type="select" label="Calculation based on strandedness?">
             <option value="" selected="true">Overlaps on either strand</option>
             <option value="-s">Force strandedness. That is, only merge features that are the same strand (-s)</option>
             <option value="-S +">Force merge for forward strand only (-S +)</option>
             <option value="-S -">Force merge for reverse strand only (-S -)</option>
         </param>
-        <param name="distance" argument="-d" type="integer" value="0"
-            label="Maximum distance between features allowed for features to be merged"
-            help="Default 0: overlapping and/or book-ended features are merged. Note: negative values enforce the number of b.p. required for overlap."/>
-        <expand macro="print_header" />
+        <param name="distance" argument="-d" type="integer" value="0" label="Maximum distance between features allowed for features to be merged" help="Default 0: overlapping and/or book-ended features are merged. Note: negative values enforce the number of b.p. required for overlap."/>
+        <expand macro="print_header"/>
         <expand macro="c_and_o_argument">
-            <param name="col" argument="-c" type="data_column" data_ref="input" label="Specify the column(s) that should be summarized" />
+            <param name="col" argument="-c" type="data_column" data_ref="input" label="Specify the column(s) that should be summarized"/>
         </expand>
     </inputs>
     <outputs>
@@ -39,8 +37,8 @@ $header
     </outputs>
     <tests>
         <test>
-            <param name="input" value="mergedBed1.bed" ftype="bed" />
-            <output name="output" file="mergedBed_result1.bed" ftype="bed" />
+            <param name="input" value="mergedBed1.bed" ftype="bed"/>
+            <output name="output" file="mergedBed_result1.bed" ftype="bed"/>
             <assert_command>
                 <not_has_text text="-s "/>
                 <not_has_text text="-S "/>
@@ -50,9 +48,9 @@ $header
             </assert_command>
         </test>
         <test>
-            <param name="input" value="mergedBed2.bed" ftype="bed" />
-            <param name="strand" value="-s" />
-            <output name="output" file="mergedBed_result2.bed" ftype="bed" />
+            <param name="input" value="mergedBed2.bed" ftype="bed"/>
+            <param name="strand" value="-s"/>
+            <output name="output" file="mergedBed_result2.bed" ftype="bed"/>
             <assert_command>
                 <has_text text="-s "/>
                 <not_has_text text="-S "/>
@@ -62,8 +60,8 @@ $header
             </assert_command>
         </test>
         <test>
-            <param name="input" value="mergedBed3.bed" ftype="bed" />
-            <output name="output" file="mergedBed_result3.bed" ftype="bed" />
+            <param name="input" value="mergedBed3.bed" ftype="bed"/>
+            <output name="output" file="mergedBed_result3.bed" ftype="bed"/>
             <assert_command>
                 <not_has_text text="-s "/>
                 <not_has_text text="-S "/>
@@ -73,9 +71,9 @@ $header
             </assert_command>
         </test>
         <test>
-            <param name="input" value="mergedBed4.bed" ftype="bed" />
-            <param name="distance" value="1000" />
-            <output name="output" file="mergedBed_result4.bed" ftype="bed" />
+            <param name="input" value="mergedBed4.bed" ftype="bed"/>
+            <param name="distance" value="1000"/>
+            <output name="output" file="mergedBed_result4.bed" ftype="bed"/>
             <assert_command>
                 <not_has_text text="-s "/>
                 <not_has_text text="-S "/>
@@ -85,13 +83,13 @@ $header
             </assert_command>
         </test>
         <test>
-            <param name="input" value="mergedBed4.bed" ftype="bed" />
-            <param name="distance" value="1000" />
+            <param name="input" value="mergedBed4.bed" ftype="bed"/>
+            <param name="distance" value="1000"/>
             <repeat name="c_and_o_argument_repeat">
                 <param name="col" value="1"/>
                 <param name="operation" value="count"/>
             </repeat>
-            <output name="output" file="mergedBed_result5.bed" ftype="bed" />
+            <output name="output" file="mergedBed_result5.bed" ftype="bed"/>
             <assert_command>
                 <not_has_text text="-s "/>
                 <not_has_text text="-S "/>
@@ -179,5 +177,5 @@ combined.
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

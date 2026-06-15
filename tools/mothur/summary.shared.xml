@@ -92,7 +92,7 @@ echo 'summary.shared(
         <data name="summary" format="tabular" from_work_dir="otu*.summary" label="${tool.name} on ${on_string}: shared.summary"/>
         <collection name="distfiles" type="list" label="${tool.name} on ${on_string}: dist">
             <filter>distance</filter>
-            <discover_datasets pattern=".*?\.(?P&lt;designation&gt;.*)\.dist" format="mothur.dist" />
+            <discover_datasets pattern=".*?\.(?P&lt;designation&gt;.*)\.dist" format="mothur.dist"/>
             <!-- doesn't seem to work for collection elements yet
             <change_format>
                 <when input="output" value="lt" format="mothur.lower.dist"/>
@@ -102,13 +102,15 @@ echo 'summary.shared(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="otu" value="amazon.an.shared"/>
             <output name="summary" md5="29384359e341721b3519fba35b9301e4" ftype="tabular"/>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with subsample -->
+        <test>
+            <!-- test with subsample -->
             <param name="otu" value="amazon.mothur.shared"/>
             <param name="use" value="yes"/>
             <param name="subsample" value="10"/>
@@ -122,7 +124,8 @@ echo 'summary.shared(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with label and groups select and all calculators -->
+        <test>
+            <!-- test with label and groups select and all calculators -->
             <param name="otu" value="amazon.an.shared"/>
             <param name="label" value="0.05,0.22,0.32"/>
             <param name="groups" value="forest,pasture"/>
@@ -131,7 +134,8 @@ echo 'summary.shared(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with distance output collection -->
+        <test>
+            <!-- test with distance output collection -->
             <param name="otu" value="amazon.an.shared"/>
             <param name="distance" value="true"/>
             <output name="summary" ftype="tabular">

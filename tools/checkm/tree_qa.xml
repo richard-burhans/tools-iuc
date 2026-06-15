@@ -164,7 +164,7 @@ checkm tree_qa
             </conditional>
             <output name="output_f5" ftype="tabular">
                 <assert_contents>
-                    <has_text text=">637000110"/>
+                    <has_text text="&gt;637000110"/>
                     <has_text text="-TVNQLVR"/>
                 </assert_contents>
             </output>

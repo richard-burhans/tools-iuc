@@ -29,8 +29,8 @@
             && samtools sort --no-PG grouped.bam -@ \${GALAXY_SLOTS:-1} -T "\${TMPDIR:-.}" -o '$output' -O BAM
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="sam,bam" label="Reads to group in SAM or BAM format" />
-        <param name="group_output" argument="--group-out" type="boolean" truevalue="--group-out" falsevalue="" label="Output a flatfile describing the read groups" />
+        <param name="input" type="data" format="sam,bam" label="Reads to group in SAM or BAM format"/>
+        <param name="group_output" argument="--group-out" type="boolean" truevalue="--group-out" falsevalue="" label="Output a flatfile describing the read groups"/>
         <expand macro="groupdedup_options_macro"/>
         <expand macro="barcode_options_macro"/>
         <expand macro="umi_grouping_options_macro"/>
@@ -48,75 +48,75 @@
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="group_in2.sam" ftype="sam" />
+            <param name="input" value="group_in2.sam" ftype="sam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="read_id" />
+                <param name="extract_umi_method" value="read_id"/>
             </conditional>
             <section name="sambam">
-                <param name="paired" value="true" />
+                <param name="paired" value="true"/>
             </section>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <output name="output" file="group_out2.bam" ftype="bam" />
+            <output name="output" file="group_out2.bam" ftype="bam"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="input" value="group_in3.bam" ftype="bam" />
+            <param name="input" value="group_in3.bam" ftype="bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="read_id" />
+                <param name="extract_umi_method" value="read_id"/>
             </conditional>
-            <param name="group_output" value="true" />
+            <param name="group_output" value="true"/>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <output name="group_out" file="group_out3.tab" />
-            <output name="output" file="group_out3.bam" ftype="bam" />
+            <output name="group_out" file="group_out3.tab"/>
+            <output name="output" file="group_out3.bam" ftype="bam"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="input" value="group_in4.bam" ftype="bam" />
+            <param name="input" value="group_in4.bam" ftype="bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="tag" />
-                <param name="umi_tag" value="BX" />
+                <param name="extract_umi_method" value="tag"/>
+                <param name="umi_tag" value="BX"/>
             </conditional>
-            <param name="group_output" value="true" />
+            <param name="group_output" value="true"/>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <output name="group_out" file="group_out4.tab" />
-            <output name="output" file="group_out4.bam" ftype="bam" />
+            <output name="group_out" file="group_out4.tab"/>
+            <output name="output" file="group_out4.bam" ftype="bam"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="group_in5.bam" ftype="bam" />
+            <param name="input" value="group_in5.bam" ftype="bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="read_id" />
+                <param name="extract_umi_method" value="read_id"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="cluster" />
+                <param name="method" value="cluster"/>
             </section>
             <output name="output" file="group_out5.bam" ftype="bam"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="group_in6.bam" ftype="bam" />
+            <param name="input" value="group_in6.bam" ftype="bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="read_id" />
+                <param name="extract_umi_method" value="read_id"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="directional" />
+                <param name="method" value="directional"/>
             </section>
             <output name="output" file="group_out6.bam" ftype="bam"/>
         </test>
@@ -184,5 +184,5 @@ relate to the group.
 
 @UMI_GROUPING_HELP@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

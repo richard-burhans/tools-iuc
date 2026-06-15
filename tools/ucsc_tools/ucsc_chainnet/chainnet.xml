@@ -42,8 +42,7 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="in_chain" format="chain" type="data" label="Chain dataset" help="Select chain dataset" />
-
+        <param name="in_chain" format="chain" type="data" label="Chain dataset" help="Select chain dataset"/>
         <conditional name="target_reference_index_source">
             <param name="target_reference_index_source_selector" type="select" label="Choose the source for the target reference genome index">
                 <option value="cached">Built-in</option>
@@ -51,14 +50,13 @@
             </param>
             <when value="cached">
                 <param name="tar_ref_index_file" type="select" label="Using reference genome index">
-                  <options from_data_table="fasta_indexes" />
+                    <options from_data_table="fasta_indexes"/>
                 </param>
             </when>
             <when value="history">
-                <param name="in_tar_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for target sequence. Typically a '.fai' file." />
+                <param name="in_tar_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for target sequence. Typically a '.fai' file."/>
             </when>
         </conditional>
-
         <conditional name="query_reference_index_source">
             <param name="query_reference_index_source_selector" type="select" label="Choose the source for the query reference genome index">
                 <option value="cached">Built-in</option>
@@ -66,61 +64,59 @@
             </param>
             <when value="cached">
                 <param name="que_ref_index_file" type="select" label="Using reference genome index">
-                  <options from_data_table="fasta_indexes" />
+                    <options from_data_table="fasta_indexes"/>
                 </param>
             </when>
             <when value="history">
-                <param name="in_que_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for query sequence. Typically a '.fai' file." />
+                <param name="in_que_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for query sequence. Typically a '.fai' file."/>
             </when>
         </conditional>
-
-        <param argument="-minSpace" type="integer" optional="true" min="0" label="Minimum gap size to fill" help="default 25" />
-        <param argument="-minFill" type="integer" optional="true" min="0" label="Minimum fill to record" help="default half of minSpace" />
-        <param argument="-minScore" type="integer" optional="true" label="Minimum chain score to consider" help="default 2000" />
-        <param argument="-inclHap" type="boolean" optional="true" truevalue="-inclHap" falsevalue="" label="Include query sequences name in the form *_hap*|*_alt*. Normally these are excluded from nets as being haplotype pseudochromosomes." />
-        <param argument="-verbose" type="integer" optional="true" label="Verbosity" help="default 1" />
-
+        <param argument="-minSpace" type="integer" optional="true" min="0" label="Minimum gap size to fill" help="default 25"/>
+        <param argument="-minFill" type="integer" optional="true" min="0" label="Minimum fill to record" help="default half of minSpace"/>
+        <param argument="-minScore" type="integer" optional="true" label="Minimum chain score to consider" help="default 2000"/>
+        <param argument="-inclHap" type="boolean" optional="true" truevalue="-inclHap" falsevalue="" label="Include query sequences name in the form *_hap*|*_alt*. Normally these are excluded from nets as being haplotype pseudochromosomes."/>
+        <param argument="-verbose" type="integer" optional="true" label="Verbosity" help="default 1"/>
     </inputs>
     <outputs>
         <data name="targetNet" format="ucsc.net" label="${tool.name} on ${on_string}: target.net"/>
-        <data name="queryNet" format="ucsc.net" label="${tool.name} on ${on_string}: query.net" />
+        <data name="queryNet" format="ucsc.net" label="${tool.name} on ${on_string}: query.net"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
-            <param name="in_chain" value="input.chain" />
+            <param name="in_chain" value="input.chain"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="history" />
+                <param name="target_reference_index_source_selector" value="history"/>
                 <param name="in_tar_ref_index" value="hg38.chr20.chunk.fasta.fai"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="history" />
+                <param name="query_reference_index_source_selector" value="history"/>
                 <param name="in_que_ref_index" value="mm39.chr2.chunk.fasta.fai"/>
             </conditional>
             <output name="targetNet" file="target.net"/>
             <output name="queryNet" file="query.net"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="in_chain" value="input.chain" />
+            <param name="in_chain" value="input.chain"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="cached" />
+                <param name="target_reference_index_source_selector" value="cached"/>
                 <param name="tar_ref_index_file" value="hg38.chr20.chunk"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="cached" />
+                <param name="query_reference_index_source_selector" value="cached"/>
                 <param name="que_ref_index_file" value="mm39.chr2.chunk"/>
             </conditional>
             <output name="targetNet" file="target.net"/>
             <output name="queryNet" file="query.net"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="in_chain" value="input.chain" />
-            <param name="minScore" value="1200" />
+            <param name="in_chain" value="input.chain"/>
+            <param name="minScore" value="1200"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="cached" />
+                <param name="target_reference_index_source_selector" value="cached"/>
                 <param name="tar_ref_index_file" value="hg38.chr20.chunk"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="history" />
+                <param name="query_reference_index_source_selector" value="history"/>
                 <param name="in_que_ref_index" value="mm39.chr2.chunk.fasta.fai"/>
             </conditional>
             <output name="targetNet" file="target.1200.net"/>

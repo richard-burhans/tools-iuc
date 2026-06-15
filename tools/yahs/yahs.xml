@@ -80,10 +80,7 @@
                     <validator type="regex" message="Only Numbers and commas can be used in to define the list of range of resolutions.">^\d+(,\d+)*$</validator>
                 </param>
                 <conditional name="enzyme_conditional">
-                    <param name="enzyme_options" type="select" label="Restriction enzyme used in Hi-C experiment" help="Hi-C experiments can use different restriction enzymes.
-                                             The enzyme frequency in contigs is used to normalize the Hi-C interaction frequency. Note that you need to specify the actual                          
-                                             sequence of the cutting site for a restriction enzyme and not the enzyme name. You can also specify DNASE as an enzyme if you                          
-                                             use an enzyme-free prep, e.g. Omni-C.">
+                    <param name="enzyme_options" type="select" label="Restriction enzyme used in Hi-C experiment" help="Hi-C experiments can use different restriction enzymes.                                              The enzyme frequency in contigs is used to normalize the Hi-C interaction frequency. Note that you need to specify the actual                                                                        sequence of the cutting site for a restriction enzyme and not the enzyme name. You can also specify DNASE as an enzyme if you                                                                        use an enzyme-free prep, e.g. Omni-C.">
                         <option value="not_specified">Not specified</option>
                         <option value="preconfigured">Preconfigured restriction enzymes</option>
                         <option value="specific">Enter a specific sequence</option>
@@ -150,7 +147,7 @@
             <conditional name="function">
                 <param name="function_select" value="yahs"/>
                 <param name="fasta" value="test.fasta" ftype="fasta"/>
-                <param name="bfile" value="test.bed" ftype="bed" />
+                <param name="bfile" value="test.bed" ftype="bed"/>
                 <param name="agp" value="test.agp" ftype="agp"/>
                 <param name="res" value="50000,100000,150000,2000000,1000000"/>
             </conditional>

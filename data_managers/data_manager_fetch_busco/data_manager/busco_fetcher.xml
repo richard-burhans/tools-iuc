@@ -1,6 +1,6 @@
 <tool id="busco_fetcher" name="Busco" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="23.1">
     <description>dataset dowloader</description>
-        <macros>
+    <macros>
         <token name="@TOOL_VERSION@">5.8.0</token>
         <token name="@VERSION_SUFFIX@">1</token>
     </macros>
@@ -40,7 +40,7 @@
       }
     }]]>
             </configfile>
-        </configfiles>
+    </configfiles>
     <inputs>
         <param name="lineage" argument="--download" type="select" label="Select the lineage to be downloaded">
             <option value="all">All</option>
@@ -67,7 +67,7 @@
             </output>
         </test>
     </tests>
-    <help>This tool downloads the BUSCO databases.</help>
+    <help><![CDATA[This tool downloads the BUSCO databases.]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btv351</citation>
     </citations>

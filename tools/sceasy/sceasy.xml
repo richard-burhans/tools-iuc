@@ -5,7 +5,7 @@
     <macros>
         <token name="@TOOL_VERSION@">0.0.7</token>
         <token name="@VERSION_SUFFIX@">2</token>
-        <macro name="mac_input_form" token_format="@FORMAT@" >
+        <macro name="mac_input_form" token_format="@FORMAT@">
             <param name="input_object_file" type="data" format="@FORMAT@" label="Input object in @FORMAT@ format"/>
         </macro>
     </macros>
@@ -14,15 +14,15 @@
     </xrefs>
     <requirements>
         <requirement type="package" version="0.0.7">r-sceasy</requirement>
-        <requirement type="package" version="3.0.6" >loompy</requirement>
-        <requirement type="package" version="0.10.0" >anndata</requirement>
-        <requirement type="package" version="3.10" >python</requirement>
-        <requirement type="package" version="0.7.5.4" >r-anndata</requirement>
-        <requirement type="package" version="1.32.0" >r-reticulate</requirement>
+        <requirement type="package" version="3.0.6">loompy</requirement>
+        <requirement type="package" version="0.10.0">anndata</requirement>
+        <requirement type="package" version="3.10">python</requirement>
+        <requirement type="package" version="0.7.5.4">r-anndata</requirement>
+        <requirement type="package" version="1.32.0">r-reticulate</requirement>
     </requirements>
-    <command detect_errors="exit_code">
+    <command detect_errors="exit_code"><![CDATA[
             Rscript '$script_file'
-    </command>
+    ]]></command>
     <configfiles>
         <configfile name="script_file"><![CDATA[
 direction='$conversion.direction'
@@ -101,40 +101,40 @@ if (do_infile_as_first_arg) {
         ]]></configfile>
     </configfiles>
     <inputs>
-        <conditional name="conversion" >
-            <param name="direction" type="select" label="Convert From / To" >
-                <option value="anndata2cds" >AnnData to CellDataSet</option>
-                <option value="anndata2seurat" >AnnData to Seurat</option>
-                <option value="loom2anndata" >Loom to AnnData</option>
+        <conditional name="conversion">
+            <param name="direction" type="select" label="Convert From / To">
+                <option value="anndata2cds">AnnData to CellDataSet</option>
+                <option value="anndata2seurat">AnnData to Seurat</option>
+                <option value="loom2anndata">Loom to AnnData</option>
                 <option value="loom2sce">Loom to SingleCellexperiment</option>
-                <option value="sce2anndata" >SingleCellexperiment to AnnData</option>
-                <option value="sce2loom" >SingleCellexperiment to Loom</option>
+                <option value="sce2anndata">SingleCellexperiment to AnnData</option>
+                <option value="sce2loom">SingleCellexperiment to Loom</option>
                 <option value="seurat2anndata">Seurat to AnnData</option>
-                <option value="seurat2sce" >Seurat to SingleCellexperiment</option>
+                <option value="seurat2sce">Seurat to SingleCellexperiment</option>
             </param>
-            <when value="anndata2cds" >
-                <expand macro="mac_input_form" format="h5ad,h5" />
+            <when value="anndata2cds">
+                <expand macro="mac_input_form" format="h5ad,h5"/>
             </when>
-            <when value="anndata2seurat" >
-                <expand macro="mac_input_form" format="h5ad,h5" />
+            <when value="anndata2seurat">
+                <expand macro="mac_input_form" format="h5ad,h5"/>
             </when>
             <when value="loom2anndata">
-                <expand macro="mac_input_form" format="h5,loom,rdata" />
+                <expand macro="mac_input_form" format="h5,loom,rdata"/>
             </when>
             <when value="loom2sce">
-                <expand macro="mac_input_form" format="h5,loom,rdata" />
+                <expand macro="mac_input_form" format="h5,loom,rdata"/>
             </when>
             <when value="sce2anndata">
-                <expand macro="mac_input_form" format="sce,rds,rdata.sce" />
+                <expand macro="mac_input_form" format="sce,rds,rdata.sce"/>
             </when>
             <when value="sce2loom">
-                <expand macro="mac_input_form" format="sce,rds,rdata.sce" />
+                <expand macro="mac_input_form" format="sce,rds,rdata.sce"/>
             </when>
             <when value="seurat2anndata">
-                <expand macro="mac_input_form" format="rds,rdata" />
+                <expand macro="mac_input_form" format="rds,rdata"/>
             </when>
             <when value="seurat2sce">
-                <expand macro="mac_input_form" format="rds,rdata" />
+                <expand macro="mac_input_form" format="rds,rdata"/>
             </when>
         </conditional>
     </inputs>

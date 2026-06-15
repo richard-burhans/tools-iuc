@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro='xrefs'/>
-    <expand macro="requirements" />
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$__tool_directory__/CEMiTool.R'
             -M '$expression_matrix'
@@ -42,31 +42,21 @@
     ]]></command>
     <inputs>
         <param name="expression_matrix" type="data" format="tabular" label="Expression matrix"/>
-        <param name="annotation" type="data" format="tabular" optional="true" label="Sample annotation" 
-            help="It allows to build a more complete object and generate richer reports about the 
-                expression data. Sample annotation can be supplied in a data.frame that specifies a 
-                class for each sample. Classes can represent different conditions, phenotypes, cell lines, 
-                time points, etc. " />
-        <param name="pathways" type="data" format="tabular,txt" label="Pathways list" optional="true" help="CEMiTool can 
-            determine which biological functions are associated with the modules by performing an over 
-            representation analysis (ORA). To do this you must provide a pathway list in the form of GMT 
-            file. CEMiTool will then analyze how these pathways are represented in the modules." />
-        <param name="interactions" type="data" format="tabular" optional="true" label="Interactions data" help="Interaction data, 
-            such as protein-protein interactions can be added in order to generate annotated module graphs. 
-            Interaction files contains two columns for interacting pairs of genes"/>
-        <param name="beta" type="integer" min="0" label="Beta value" optional="true"
-            help="The beta value is a parameter that lies in the core of the weighted gene co-expression network analysis (WGCNA)."/>
+        <param name="annotation" type="data" format="tabular" optional="true" label="Sample annotation" help="It allows to build a more complete object and generate richer reports about the                  expression data. Sample annotation can be supplied in a data.frame that specifies a                  class for each sample. Classes can represent different conditions, phenotypes, cell lines,                  time points, etc. "/>
+        <param name="pathways" type="data" format="tabular,txt" label="Pathways list" optional="true" help="CEMiTool can              determine which biological functions are associated with the modules by performing an over              representation analysis (ORA). To do this you must provide a pathway list in the form of GMT              file. CEMiTool will then analyze how these pathways are represented in the modules."/>
+        <param name="interactions" type="data" format="tabular" optional="true" label="Interactions data" help="Interaction data,              such as protein-protein interactions can be added in order to generate annotated module graphs.              Interaction files contains two columns for interacting pairs of genes"/>
+        <param name="beta" type="integer" min="0" label="Beta value" optional="true" help="The beta value is a parameter that lies in the core of the weighted gene co-expression network analysis (WGCNA)."/>
         <param name="outputs" type="select" multiple="true" display="checkboxes" label="Outputs selector">
             <option value="report" selected="true">Report</option>
             <option value="tables">Tables</option>
             <option value="plots">Plots</option>
         </param>
         <section name="advanced_parameters" title="Advanced parameters">
-            <param argument="filter" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="True" label="Filter" help="If enabled, it will filter expression data" />
-            <param argument="filter_pval" type="float" min="0" max="1" value="0.1" label="Filter P-value" help="P-value threshold for filtering" />
-            <param argument="apply_vst" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="VST" help="If enabled, it apply Variance Stabilizing Transform before filtering genes" />
-            <param argument="n_genes" type="integer" min="0" value="1000" label="Number of genes" help="Number of genes left after filtering" />
-            <param argument="eps" type="float" min="0" max="1" value="0.1" label="EPS" help="A value for accepted R-squared interval between subsequent beta values" />
+            <param argument="filter" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="True" label="Filter" help="If enabled, it will filter expression data"/>
+            <param argument="filter_pval" type="float" min="0" max="1" value="0.1" label="Filter P-value" help="P-value threshold for filtering"/>
+            <param argument="apply_vst" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="VST" help="If enabled, it apply Variance Stabilizing Transform before filtering genes"/>
+            <param argument="n_genes" type="integer" min="0" value="1000" label="Number of genes" help="Number of genes left after filtering"/>
+            <param argument="eps" type="float" min="0" max="1" value="0.1" label="EPS" help="A value for accepted R-squared interval between subsequent beta values"/>
             <param name="cor_method" type="select" label="Correlation method" help="Correlation coefficient to be computed">
                 <option value="pearson">Pearson</option>
                 <option value="spearman">Spearman</option>
@@ -83,27 +73,27 @@
                 <option value="signed">Signed</option>
                 <option value="unsigned">Unsigned</option>
             </param>
-            <param argument="merge_similar" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Merge similar" help="If enabled, merge similar modules" />
+            <param argument="merge_similar" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Merge similar" help="If enabled, merge similar modules"/>
             <param argument="rank_method" type="select" label="Rank method" help="Indicate how to rank genes">
                 <option value="mean">Mean</option>
                 <option value="median">Median</option>
             </param>
             <param argument="min_ngen" type="integer" min="0" value="30" label="Minimal number of genes per module"/>
-            <param argument="diss_thresh" type="float" min="0" max="1" value="0.8" label="Merging correlation threshold" help="Module merging correlation threshold for eigengene similarity" />
+            <param argument="diss_thresh" type="float" min="0" max="1" value="0.8" label="Merging correlation threshold" help="Module merging correlation threshold for eigengene similarity"/>
             <param argument="center_func" type="select" label="Cetrality measure to show in the plot">
                 <option value="mean">Mean</option>
                 <option value="median">Median</option>
             </param>
             <param argument="ora_pval" type="float" min="0" max="1" value="0.05" label="P-value for overrepresentation analysis"/>
-            <param argument="gsea_scale" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Z-score transformation for GSEA analysis" help="If enabled, it applies z-score transformation" />
+            <param argument="gsea_scale" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Z-score transformation for GSEA analysis" help="If enabled, it applies z-score transformation"/>
             <param argument="gsea_min_size" type="integer" min="0" value="15" label="Minimum size of gene sets for GSEA analysis"/>
             <param argument="gsea_max_size" type="integer" min="0" value="1000" label="Maximum size of gene sets for GSEA analysis"/>
             <param argument="sample_column_name" type="text" value="SampleName" label="Sample column name" help="This is only required if an annotation file is provided">
                 <sanitizer invalid_char="">
                     <valid initial="string.letters,string.digits">
-                        <add value="_" />
-                        <add value="-" />
-                        <add value=":" />
+                        <add value="_"/>
+                        <add value="-"/>
+                        <add value=":"/>
                     </valid>
                 </sanitizer>
                 <validator type="regex">[0-9a-zA-Z:-_]+</validator>
@@ -112,7 +102,7 @@
     </inputs>
     <outputs>
         <collection name="plots" type="list" label="${tool.name} on ${on_string}: Plots">
-            <discover_datasets pattern="__designation_and_ext__" format="pdf" directory="Plots" />
+            <discover_datasets pattern="__designation_and_ext__" format="pdf" directory="Plots"/>
             <filter>"plots" in outputs</filter>
         </collection>
         <data name="module" format="tabular" from_work_dir="Tables/module.tsv" label="${tool.name} on ${on_string}: Module">
@@ -140,7 +130,7 @@
             <filter>"tables" in outputs</filter>
             <filter>interactions</filter>
         </data>
-        <data name='output_html' format='html' from_work_dir="Reports/Report/report.html" label="${tool.name} on ${on_string}: HTML report">
+        <data name="output_html" format="html" from_work_dir="Reports/Report/report.html" label="${tool.name} on ${on_string}: HTML report">
             <filter>"report" in outputs</filter>
         </data>
     </outputs>
@@ -180,7 +170,6 @@
                 </assert_contents>
             </output>
         </test>
-        
         <test expect_num_outputs="8">
             <!--Test all inputs and output tables-->
             <param name="expression_matrix" value="expression_matrix.tab"/>
@@ -257,7 +246,6 @@
                 </assert_contents>
             </output>
         </test>
-
         <test expect_num_outputs="10">
             <!--Test custom inputs and plots-->
             <param name="expression_matrix" value="expression_matrix.tab"/>
@@ -341,7 +329,6 @@
                 </element>
             </output_collection>
         </test>
-
     </tests>
     <help><![CDATA[
 
@@ -357,5 +344,5 @@ discovered gene modules using additional downstream analyses and retrieve public
 **Purpose**
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

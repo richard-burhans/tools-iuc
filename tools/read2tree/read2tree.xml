@@ -3,15 +3,12 @@
     <macros>
         <token name="@TOOL_VERSION@">2.0.1</token>
     </macros>
-
     <xrefs>
-       <xref type="bio.tools">read2tree</xref>
+        <xref type="bio.tools">read2tree</xref>
     </xrefs>
-    
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">read2tree</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[ 
         #import re
         mkdir -p ./genes_dir;
@@ -32,23 +29,14 @@
         #end for
         --output_path ./output --dna_reference $dna_ref
     ]]></command>
-
     <inputs>
-        <param argument="reads" type="data" multiple="true" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" 
-            label="Input reads in FASTA or FASTQ" help="Set of input reads for the species of interest."/>
-
-        <param argument="marker_genes" type="data_collection" collection_type="list" format="fasta,fasta.gz"
-            label="Marker gene files" help="A set of reference orthologous groups, i.e. protein sequences of the marker genes for the reference species. See https://github.com/DessimozLab/read2tree for an example and information on how to obtain a list of marker genes."/>
-
-        <param argument="dna_ref" type="data" format="fasta,fasta.gz" label="DNA reference" 
-            help="Reference file containing nucleotide sequences for the set of marker genes presented. See https://github.com/DessimozLab/read2tree for detail."/>
+        <param argument="reads" type="data" multiple="true" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" label="Input reads in FASTA or FASTQ" help="Set of input reads for the species of interest."/>
+        <param argument="marker_genes" type="data_collection" collection_type="list" format="fasta,fasta.gz" label="Marker gene files" help="A set of reference orthologous groups, i.e. protein sequences of the marker genes for the reference species. See https://github.com/DessimozLab/read2tree for an example and information on how to obtain a list of marker genes."/>
+        <param argument="dna_ref" type="data" format="fasta,fasta.gz" label="DNA reference" help="Reference file containing nucleotide sequences for the set of marker genes presented. See https://github.com/DessimozLab/read2tree for detail."/>
     </inputs>
-    
     <outputs>
         <data name="output_tree" format="newick" from_work_dir="output/tree_*.nwk"/>
     </outputs>
-    
-
     <tests>
         <test>
             <param name="reads" value="sample_1.fastq.gz,sample_2.fastq.gz" ftype="fastqsanger.gz"/>
@@ -76,23 +64,19 @@
                     <element name="gene20" value="marker_genes/OMAGroup_1171372.fa" ftype="fasta"/>
                     <element name="gene21" value="marker_genes/OMAGroup_1188079.fa" ftype="fasta"/>
                 </collection>
-                </param>
+            </param>
             <param name="dna_ref" value="dna_ref.fa" ftype="fasta"/>
             <output name="output_tree" ftype="newick">
                 <assert_contents>
-                    <has_text_matching expression="sample_\d+" />
+                    <has_text_matching expression="sample_\d+"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
         read2tree is a software tool for generating alignment matrices and performing tree inference directly from sequencing reads. It leverages the OMA database and a set of input reads, bypassing many of the standard steps typically required in phylogenomic analysis. In particular, it avoids for read filtering, assembly, gene prediction, gene annotation, all-vs-all comparison, orthology prediction, alignment, and concatenation.
     ]]></help>
-
     <citations>
         <citation type="doi">10.1038/s41587-023-01753-4</citation>
     </citations>
-
-
 </tool>

@@ -38,7 +38,7 @@
 
     ]]></command>
     <inputs>
-        <param type="data" multiple="true" name="inputs" format="genbank" label="Annotated genbank file(s)" help="Genbank files with annotated regions to extract. Multiple files can be selected." />
+        <param type="data" multiple="true" name="inputs" format="genbank" label="Annotated genbank file(s)" help="Genbank files with annotated regions to extract. Multiple files can be selected."/>
         <param name="gene_type_selector" type="select" label="Gene type">
             <option value="CDS" selected="true">CDS</option>
             <option value="tRNA">tRNA</option>
@@ -46,20 +46,20 @@
         </param>
     </inputs>
     <outputs>
-        <data name="output_fasta" format="fasta" from_work_dir="results_directory/gene/gene.fasta" label='${tool.name} on ${on_string}: Annotated genes'/>
+        <data name="output_fasta" format="fasta" from_work_dir="results_directory/gene/gene.fasta" label="${tool.name} on ${on_string}: Annotated genes"/>
     </outputs>
     <tests>
         <test>
             <param name="inputs" value="NC_047059.gb,NC_047060.gb,NC_047400.gb"/>
             <param name="gene_type_selector" value="CDS"/>
             <assert_stdout>
-                <has_text text="Time cost" />
+                <has_text text="Time cost"/>
             </assert_stdout>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_line line=">matK CDS - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome" />
-                    <has_line line=">matK CDS - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome" />
-                    <has_line line=">matK CDS - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome" />
+                    <has_line line="&gt;matK CDS - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome"/>
+                    <has_line line="&gt;matK CDS - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome"/>
+                    <has_line line="&gt;matK CDS - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome"/>
                 </assert_contents>
             </output>
         </test>
@@ -67,13 +67,13 @@
             <param name="inputs" value="NC_047059.gb,NC_047060.gb,NC_047400.gb"/>
             <param name="gene_type_selector" value="tRNA"/>
             <assert_stdout>
-                <has_text text="Time cost" />
+                <has_text text="Time cost"/>
             </assert_stdout>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_line line=">trnA-UGC tRNA - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome" />
-                    <has_line line=">trnA-UGC tRNA - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome" />
-                    <has_line line=">trnA-UGC tRNA - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome" />
+                    <has_line line="&gt;trnA-UGC tRNA - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome"/>
+                    <has_line line="&gt;trnA-UGC tRNA - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome"/>
+                    <has_line line="&gt;trnA-UGC tRNA - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome"/>
                 </assert_contents>
             </output>
         </test>
@@ -81,13 +81,13 @@
             <param name="inputs" value="NC_047059.gb,NC_047060.gb,NC_047400.gb"/>
             <param name="gene_type_selector" value="rRNA"/>
             <assert_stdout>
-                <has_text text="Time cost" />
+                <has_text text="Time cost"/>
             </assert_stdout>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_line line=">rrn16 rRNA - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome" />
-                    <has_line line=">rrn16 rRNA - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome" />
-                    <has_line line=">rrn16 rRNA - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome" />
+                    <has_line line="&gt;rrn16 rRNA - NC_047059--Styphnolobium_japonicum_voucher_Yi15212-KUN_plastid__complete_genome"/>
+                    <has_line line="&gt;rrn16 rRNA - NC_047060--Haematoxylum_brasiletto_voucher_N._Zamora6857-Costa_Rica_plastid__complete_genome"/>
+                    <has_line line="&gt;rrn16 rRNA - NC_047400--Chamaecrista_mimosoides_voucher_Yi15441-KUN_plastid__complete_genome"/>
                 </assert_contents>
             </output>
         </test>

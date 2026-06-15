@@ -37,7 +37,7 @@
                 <param name="taxonomy_source" value="cached"/>
                 <param name="taxonomy_table" value="2019-01-01"/>
             </conditional>
-            <output name="output" file="output_obirefidx.fasta" ftype="fasta" compare="sim_size" />  
+            <output name="output" file="output_obirefidx.fasta" ftype="fasta" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -52,6 +52,5 @@
 
     ]]>
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

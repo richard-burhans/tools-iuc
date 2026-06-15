@@ -1,12 +1,12 @@
 <tool id="data_manager_malt_index_builder" name="MALT index builder" tool_type="manage_data" version="@TOOL_VERSION@+galaxy0" profile="21.01">
-    <description></description>
+    <description/>
+    <macros>
+        <token name="@TOOL_VERSION@">0.5.3</token>
+    </macros>
     <requirements>
         <requirement type="package" version="3.8">python</requirement>
         <requirement type="package" version="0.53">malt</requirement>
     </requirements>
-    <macros>
-        <token name="@TOOL_VERSION@">0.5.3</token>
-    </macros>
     <command detect_errors="exit_code"><![CDATA[
 python '$__tool_directory__/malt_index_builder.py'
 '${out_file}'
@@ -29,7 +29,7 @@ python '$__tool_directory__/malt_index_builder.py'
         </param>
         <param name="sequence_name" type="text" value="" label="Name of sequence"/>
         <param name="sequence_id" type="text" value="" label="ID for sequence"/>
-        <param  name="sequence_type" type="select" label="Reference sequences type" help="Use the DNA setting For RNA sequences">
+        <param name="sequence_type" type="select" label="Reference sequences type" help="Use the DNA setting For RNA sequences">
             <option value="DNA" selected="true">DNA</option>
             <option value="Protein">Protein</option>
         </param>
@@ -65,10 +65,10 @@ python '$__tool_directory__/malt_index_builder.py'
                 <param name="shapes" type="text" value="" label="Comma-separated list of seed shapes" help="See help text below">
                     <sanitizer invalid_char="">
                         <valid initial="string.printable">
-                            <remove value="&apos;"/>
+                            <remove value="'"/>
                         </valid>
                         <mapping initial="none">
-                            <add source="&apos;" target="&apos;&quot;&apos;&quot;&apos;"/>
+                            <add source="'" target="'&quot;'&quot;'"/>
                         </mapping>
                     </sanitizer>
                 </param>
@@ -104,7 +104,7 @@ python '$__tool_directory__/malt_index_builder.py'
             <output name="out_file" value="malt_index_builder2.json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **Notice:** Values for Name and ID of sequence will be generated automatically if left blank.
@@ -124,7 +124,7 @@ sequences to taxonomic or functional classes or to locate genes in DNA reference
   * **Shapes** - specify the seed shapes used. For DNA sequences, the default seed shape is: 111110111011110110111111. For protein sequences, by default MALT uses the following four shapes: 111101101110111, 1111000101011001111, 11101001001000100101111 and 11101001000010100010100111.
   * **Maximim hits per seed** - specify the maximum number of hits per seed - MALT uses this to calculate a maximum number of hits per hash value.
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">https://doi.org/10.1101/050559</citation>
     </citations>

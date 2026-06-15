@@ -3,11 +3,11 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro='xrefs'/>
-    <expand macro="requirements" />
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
     <expand macro="version_command"/>
-    <command detect_errors="exit_code">
-        <![CDATA[
+    <command detect_errors="exit_code"><![CDATA[
+        
         PACU_map
 
         ## FASTA input
@@ -17,10 +17,10 @@
         ## FASTQ input
         --read-type $fastq_tech.read_type
         #if str($fastq_tech.read_type) == 'illumina':
-            --fastq-illumina $fastq_tech.fastq_illumina_1 $fastq_tech.fastq_illumina_2
+            --fastq-illumina '$fastq_tech.fastq_illumina_1' '$fastq_tech.fastq_illumina_2'
             --fastq-illumina-names '$fastq_tech.fastq_illumina_1.element_identifier' '$fastq_tech.fastq_illumina_2.element_identifier'
         #elif str($fastq_tech.read_type) == 'ont':
-            --fastq-ont $fastq_tech.fastq_ont
+            --fastq-ont '$fastq_tech.fastq_ont'
             --fastq-ont-name '$fastq_tech.fastq_ont.element_identifier'
         #end if
 
@@ -31,8 +31,8 @@
         $trim
         --dir-working \$PWD
         --threads \${GALAXY_SLOTS}
-        ]]>
-    </command>
+        
+    ]]></command>
     <inputs>
         <param argument="--ref-fasta" type="data" format="fasta" label="Reference genome"/>
         <conditional name="fastq_tech">
@@ -61,7 +61,7 @@
                 <param name="read_type" value="ont"/>
                 <param name="fastq_ont" value="TIAC1151-ont.gz"/>
             </conditional>
-            <param name="trim" value="false" />
+            <param name="trim" value="false"/>
             <output name="bam" ftype="bam" file="mapped_reads-ont.bam" lines_diff="6"/>
         </test>
         <test>
@@ -72,17 +72,17 @@
                 <param name="fastq_illumina_1" value="TIAC1151_1P.fastq.gz"/>
                 <param name="fastq_illumina_2" value="TIAC1151_2P.fastq.gz"/>
             </conditional>
-            <param name="trim" value="false" />
+            <param name="trim" value="false"/>
             <output name="bam" ftype="bam" file="mapped_reads-ilmn.bam" lines_diff="6"/>
         </test>
-                <test>
+        <test>
             <!-- The line differences correspond to the three commands in the SAM header -->
             <param name="ref_fasta" value="NC_002695.2-subset.fasta"/>
             <conditional name="fastq_tech">
                 <param name="read_type" value="ont"/>
                 <param name="fastq_ont" value="TIAC1151-ont.gz"/>
             </conditional>
-            <param name="trim" value="true" />
+            <param name="trim" value="true"/>
             <output name="bam" ftype="bam" file="mapped_reads_trimmed-ont.bam" lines_diff="6"/>
         </test>
         <test>
@@ -93,14 +93,14 @@
                 <param name="fastq_illumina_1" value="TIAC1151_1P.fastq.gz"/>
                 <param name="fastq_illumina_2" value="TIAC1151_2P.fastq.gz"/>
             </conditional>
-            <param name="trim" value="true" />
+            <param name="trim" value="true"/>
             <output name="bam" ftype="bam" file="mapped_reads_trimmed-ilmn.bam" lines_diff="6"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
         This script maps Illumina or ONT reads to an input reference genome in FASTA format.
         It also writes a custom tag to the BAM file to propagate the sample name to PACU within Galaxy.
         The sample name is derived from the name of the input FASTQ files.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

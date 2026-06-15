@@ -12,8 +12,8 @@
             </param>
         </xml>
         <xml name="reads_extra_params">
-            <param name="output_abundances" type="boolean" checked="false" label="Output abundances" help="" />
-            <param argument="--reassembly" type="boolean" truevalue="-reassembly" falsevalue="" checked="false" label="Reassembly" help="Reassembly option is still highly experimental. To use this function, you need to feed MaxBin interleaved paired-end fastq or fasta file." />
+            <param name="output_abundances" type="boolean" checked="false" label="Output abundances" help=""/>
+            <param argument="--reassembly" type="boolean" truevalue="-reassembly" falsevalue="" checked="false" label="Reassembly" help="Reassembly option is still highly experimental. To use this function, you need to feed MaxBin interleaved paired-end fastq or fasta file."/>
         </xml>
     </macros>
     <xrefs>
@@ -134,17 +134,17 @@ run_MaxBin.pl
             </when>
         </conditional>
         <section name="adv" title="Advanced options">
-            <param argument="-min_contig_length" type="integer" min="0" value="1000" label="minimum contig length" />
-            <param argument="-max_iteration" type="integer" min="0" value="50" label="Maximum Expectation-Maximization algorithm iteration number" />
-            <param argument="-prob_threshold" type="float" min="0" max="1.0" value="0.5" label="Probability threshold for EM final classification" />
+            <param argument="-min_contig_length" type="integer" min="0" value="1000" label="minimum contig length"/>
+            <param argument="-max_iteration" type="integer" min="0" value="50" label="Maximum Expectation-Maximization algorithm iteration number"/>
+            <param argument="-prob_threshold" type="float" min="0" max="1.0" value="0.5" label="Probability threshold for EM final classification"/>
         </section>
         <section name="output" title="Outputs">
-            <param argument="-plotmarker" type="boolean" truevalue="-plotmarker" falsevalue="" checked="false" label="Generate visualization of the marker gene presence numbers" />
-            <param name="marker" type="boolean" checked="false" label="Output marker gene presence for bins table" />
-            <param name="markers" type="boolean" checked="false" label="Output marker genes for each bin as fasta" />
-            <param name="log" type="boolean" checked="false" label="Output log" />
+            <param argument="-plotmarker" type="boolean" truevalue="-plotmarker" falsevalue="" checked="false" label="Generate visualization of the marker gene presence numbers"/>
+            <param name="marker" type="boolean" checked="false" label="Output marker gene presence for bins table"/>
+            <param name="markers" type="boolean" checked="false" label="Output marker genes for each bin as fasta"/>
+            <param name="log" type="boolean" checked="false" label="Output log"/>
             <param argument="-markerset" type="select" label="Marker gene set">
-                <option value="107" selected="true">107 marker genes present in >95% of bacteria</option>
+                <option value="107" selected="true">107 marker genes present in &gt;95% of bacteria</option>
                 <option value="40">40 marker gene sets that are universal among bacteria and archaea</option>
             </param>
         </section>
@@ -152,7 +152,7 @@ run_MaxBin.pl
     <outputs>
         <!-- default outputs -->
         <collection name="bins" type="list" label="${tool.name} on ${on_string}: Bins">
-            <discover_datasets pattern="out.(?P&lt;designation&gt;[0-9]+).fasta" format="fasta" visible="false" />
+            <discover_datasets pattern="out.(?P&lt;designation&gt;[0-9]+).fasta" format="fasta" visible="false"/>
         </collection>
         <data name="noclass" format="fasta" label="${tool.name} on ${on_string}: Unclassified sequences" from_work_dir="out.noclass"/>
         <data name="toshort" format="fasta" label="${tool.name} on ${on_string}: Too short sequences" from_work_dir="out.tooshort"/>
@@ -171,16 +171,16 @@ run_MaxBin.pl
             <filter>output['plotmarker']</filter>
         </data>
         <collection name="markers" type="list" label="${tool.name} on ${on_string}: Markers prediced for bins">
-            <discover_datasets pattern="out.(?P&lt;designation&gt;[0-9]+).marker.fasta" format="fasta" visible="false" />
+            <discover_datasets pattern="out.(?P&lt;designation&gt;[0-9]+).marker.fasta" format="fasta" visible="false"/>
             <filter>output['markers']</filter>
         </collection>
         <!-- additional output in case of reassembly -->
         <collection name="reassembly_bins" type="list" label="${tool.name} on ${on_string}: Reassembly bins">
-            <discover_datasets directory="out.reassem" pattern="out.(?P&lt;designation&gt;[0-9]+).fasta" format="fasta" visible="false" />
+            <discover_datasets directory="out.reassem" pattern="out.(?P&lt;designation&gt;[0-9]+).fasta" format="fasta" visible="false"/>
             <filter>assembly['inputs']['type']=='reads' and assembly['inputs']['reassembly']</filter>
         </collection>
         <collection name="reassembly_reads" type="list" label="${tool.name} on ${on_string}: Reassembly reads">
-            <discover_datasets directory="out.reassem" pattern="out.reads.(?P&lt;designation&gt;[0-9]+)" format="fasta" visible="false" />
+            <discover_datasets directory="out.reassem" pattern="out.reads.(?P&lt;designation&gt;[0-9]+)" format="fasta" visible="false"/>
             <filter>assembly['inputs']['type']=='reads' and assembly['inputs']['reassembly']</filter>
         </collection>
         <data name="reassembly_noclass" format="fasta" label="${tool.name} on ${on_string}: Reassembly unclassified sequences" from_work_dir="out.reassem/out.reads.noclass">
@@ -193,7 +193,7 @@ run_MaxBin.pl
     <tests>
         <!-- test w contigs and reads as input -->
         <test expect_num_outputs="4">
-            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -211,7 +211,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value=""/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -219,13 +219,13 @@ run_MaxBin.pl
                 <element name="001" file="1/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="1/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="1/out.summary" ftype="tabular" />
-            <output name="noclass" file="1/out.noclass" ftype="fasta" />
-            <output name="toshort" file="1/out.tooshort" ftype="fasta" />
+            <output name="summary" file="1/out.summary" ftype="tabular"/>
+            <output name="noclass" file="1/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="1/out.tooshort" ftype="fasta"/>
         </test>
         <!-- test w co-assembled contigs and multiple reads and optional outputs -->
         <test expect_num_outputs="9">
-            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="coassembly"/>
                 <conditional name="inputs">
@@ -243,7 +243,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value="true"/>
                 <param name="marker" value="true"/>
-                <param name="markers" value="true" />
+                <param name="markers" value="true"/>
                 <param name="log" value="true"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -257,25 +257,25 @@ run_MaxBin.pl
                     <has_text text="out.001.fasta"/>
                 </assert_contents>
             </output>
-            <output name="noclass" file="1/out.noclass" ftype="fasta" />
-            <output name="toshort" file="1/out.tooshort" ftype="fasta" />
-            <output name="log" ftype="txt" >
+            <output name="noclass" file="1/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="1/out.tooshort" ftype="fasta"/>
+            <output name="log" ftype="txt">
                 <assert_contents>
                     <has_text text="Input contig"/>
                     <has_text text="Elapsed time"/>
                     <has_text text="Yielded 2 bins for contig (scaffold) file"/>
                 </assert_contents>
             </output>
-            <output name="abundout" file="1/out.abund1" ftype="tabular" />
-            <output name="marker" file="1/out.marker" ftype="tabular" />
-            <output name="plot" file="1/out.marker.pdf" ftype="pdf" compare="sim_size" />
+            <output name="abundout" file="1/out.abund1" ftype="tabular"/>
+            <output name="marker" file="1/out.marker" ftype="tabular"/>
+            <output name="plot" file="1/out.marker.pdf" ftype="pdf" compare="sim_size"/>
             <output_collection name="markers" type="list" count="1">
                 <element name="001" file="1/out.001.marker.fasta" ftype="fasta"/>
             </output_collection>
         </test>
         <!--test w contigs and abundances as input + advanced options -->
         <test expect_num_outputs="5">
-            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -291,7 +291,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value="-plotmarker"/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -299,14 +299,14 @@ run_MaxBin.pl
                 <element name="001" file="2/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="2/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="2/out.summary" ftype="tabular" />
-            <output name="noclass" file="2/out.noclass" ftype="fasta" />
-            <output name="toshort" file="2/out.tooshort" ftype="fasta" />
-            <output name="plot" file="2/out.marker.pdf" ftype="pdf" compare="sim_size" />
+            <output name="summary" file="2/out.summary" ftype="tabular"/>
+            <output name="noclass" file="2/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="2/out.tooshort" ftype="fasta"/>
+            <output name="plot" file="2/out.marker.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- test w contigs and reads as input + reassembly-->
         <test expect_num_outputs="8">
-            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="Bin_Sample3_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -324,7 +324,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value=""/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -332,20 +332,20 @@ run_MaxBin.pl
                 <element name="001" file="3/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="3/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="3/out.summary" ftype="tabular" />
-            <output name="noclass" file="3/out.noclass" ftype="fasta" />
-            <output name="toshort" file="3/out.tooshort" ftype="fasta" />
+            <output name="summary" file="3/out.summary" ftype="tabular"/>
+            <output name="noclass" file="3/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="3/out.tooshort" ftype="fasta"/>
             <output_collection name="reassembly_bins" type="list" count="2">
                 <element name="001" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">scaffold_0"/>
-                        <has_text text=">scaffold_523"/>
+                        <has_text text="&gt;scaffold_0"/>
+                        <has_text text="&gt;scaffold_523"/>
                     </assert_contents>
                 </element>
                 <element name="002" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">scaffold_0"/>
-                        <has_text text=">scaffold_523"/>
+                        <has_text text="&gt;scaffold_0"/>
+                        <has_text text="&gt;scaffold_523"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -353,7 +353,7 @@ run_MaxBin.pl
                 <element name="001" file="3/out.reassem/out.reads.001" ftype="fasta"/>
                 <element name="002" file="3/out.reassem/out.reads.002" ftype="fasta"/>
             </output_collection>
-            <output name="reassembly_noclass" file="3/out.reassem/out.reads.noclass" ftype="fasta" />
+            <output name="reassembly_noclass" file="3/out.reassem/out.reads.noclass" ftype="fasta"/>
             <output name="reassembly_n50" ftype="txt">
                 <assert_contents>
                     <has_text text="N50 before reassem"/>
@@ -364,7 +364,7 @@ run_MaxBin.pl
         </test>
         <!-- test w contigs and reads in fastqsanger format as input -->
         <test expect_num_outputs="4">
-            <param name="contig" value="test4_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="test4_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -382,7 +382,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value=""/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -390,13 +390,13 @@ run_MaxBin.pl
                 <element name="001" file="4/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="4/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="4/out.summary" ftype="tabular" />
-            <output name="noclass" file="4/out.noclass" ftype="fasta" />
-            <output name="toshort" file="4/out.tooshort" ftype="fasta" />
+            <output name="summary" file="4/out.summary" ftype="tabular"/>
+            <output name="noclass" file="4/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="4/out.tooshort" ftype="fasta"/>
         </test>
         <!-- test w contigs and reads in fastqsanger format as input (and whitespace in reads filename)-->
         <test expect_num_outputs="4">
-            <param name="contig" value="test4_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="test4_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -414,7 +414,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value=""/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -422,13 +422,13 @@ run_MaxBin.pl
                 <element name="001" file="4/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="4/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="4/out.summary" ftype="tabular" />
-            <output name="noclass" file="4/out.noclass" ftype="fasta" />
-            <output name="toshort" file="4/out.tooshort" ftype="fasta" />
+            <output name="summary" file="4/out.summary" ftype="tabular"/>
+            <output name="noclass" file="4/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="4/out.tooshort" ftype="fasta"/>
         </test>
         <!-- test w contigs and reads in fastqsanger.gz format as input -->
         <test expect_num_outputs="4">
-            <param name="contig" value="test4_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="test4_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="individual"/>
                 <conditional name="inputs">
@@ -446,7 +446,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value=""/>
                 <param name="marker" value="false"/>
-                <param name="markers" value="false" />
+                <param name="markers" value="false"/>
                 <param name="log" value="false"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -454,13 +454,13 @@ run_MaxBin.pl
                 <element name="001" file="4/out.001.fasta" ftype="fasta"/>
                 <element name="002" file="4/out.002.fasta" ftype="fasta"/>
             </output_collection>
-            <output name="summary" file="4/out.summary" ftype="tabular" />
-            <output name="noclass" file="4/out.noclass" ftype="fasta" />
-            <output name="toshort" file="4/out.tooshort" ftype="fasta" />
+            <output name="summary" file="4/out.summary" ftype="tabular"/>
+            <output name="noclass" file="4/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="4/out.tooshort" ftype="fasta"/>
         </test>
         <!-- test w co-assembled contigs and multiple reads as .gz and optional outputs -->
         <test expect_num_outputs="9">
-            <param name="contig" value="test4_contigs.fasta" ftype="fasta" />
+            <param name="contig" value="test4_contigs.fasta" ftype="fasta"/>
             <conditional name="assembly">
                 <param name="type" value="coassembly"/>
                 <conditional name="inputs">
@@ -478,7 +478,7 @@ run_MaxBin.pl
             <section name="output">
                 <param name="plotmarker" value="true"/>
                 <param name="marker" value="true"/>
-                <param name="markers" value="true" />
+                <param name="markers" value="true"/>
                 <param name="log" value="true"/>
                 <param name="markerset" value="107"/>
             </section>
@@ -492,27 +492,27 @@ run_MaxBin.pl
                     <has_text text="out.001.fasta"/>
                 </assert_contents>
             </output>
-            <output name="noclass" file="4/out.noclass" ftype="fasta" />
-            <output name="toshort" file="4/out.tooshort" ftype="fasta" />
-            <output name="log" ftype="txt" >
+            <output name="noclass" file="4/out.noclass" ftype="fasta"/>
+            <output name="toshort" file="4/out.tooshort" ftype="fasta"/>
+            <output name="log" ftype="txt">
                 <assert_contents>
                     <has_text text="Input contig"/>
                     <has_text text="Elapsed time"/>
                     <has_text text="Yielded 2 bins for contig (scaffold) file"/>
                 </assert_contents>
             </output>
-            <output name="abundout" file="4/out.abund1" ftype="tabular" />
-            <output name="marker" file="4/out.marker" ftype="tabular" />
-            <output name="plot" file="4/out.marker.pdf" ftype="pdf" compare="sim_size" />
+            <output name="abundout" file="4/out.abund1" ftype="tabular"/>
+            <output name="marker" file="4/out.marker" ftype="tabular"/>
+            <output name="plot" file="4/out.marker.pdf" ftype="pdf" compare="sim_size"/>
             <output_collection name="markers" type="list" count="2">
                 <element name="001" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">out.001.Methyltransf_5"/>
+                        <has_text text="&gt;out.001.Methyltransf_5"/>
                     </assert_contents>
                 </element>
                 <element name="002" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">out.002.Methyltransf_5"/>
+                        <has_text text="&gt;out.002.Methyltransf_5"/>
                     </assert_contents>
                 </element>
             </output_collection>

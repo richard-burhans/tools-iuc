@@ -8,7 +8,7 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         #if $query_source.select == "accession_file":
-            { grep -v "^[ \t]*$" $query_source.accession_file > accessions ||
+            { grep -v "^[ \t]*$" '$query_source.accession_file' > accessions ||
             { echo "No accession numbers in input. Aborting." 1>&2; exit 1; } } &&
         #else if $query_source.select == "accession_list":
             echo '$query_source.accession_list' | sed -r 's/(\,|__cn__)/\n/g' | grep -v "^[ \t]*$" > accessions &&
@@ -79,14 +79,13 @@
         <param argument="--range" type="text" label="Range" help="Region to subset accession. Start and end position separated by ':', '..', or '.'. Only for single accession">
             <sanitizer invalid_char="">
                 <valid initial="string.digits">
-                    <add value=":" />
-                    <add value=".." />
-                    <add value="." />
+                    <add value=":"/>
+                    <add value=".."/>
+                    <add value="."/>
                 </valid>
             </sanitizer>
         </param>
-        <param name="ignore_failed" type="select" display="radio"
-        label="How to handle download failures">
+        <param name="ignore_failed" type="select" display="radio" label="How to handle download failures">
             <option value="0">Abort with error on first failure</option>
             <option value="1">Add accession to failed list and continue</option>
         </param>
@@ -110,18 +109,18 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_file" />
+                <param name="select" value="accession_file"/>
                 <param name="accession_file" value="accessions_1.tsv"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence" />
+                        <has_line line="&gt;CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence" />
+                        <has_line line="&gt;CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -132,18 +131,18 @@
                 <param name="format" value="genbank"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_file" />
+                <param name="select" value="accession_file"/>
                 <param name="accession_file" value="accessions_1.tsv"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="genbank">
                     <assert_contents>
-                        <has_line line="DEFINITION  Escherichia coli str. Sanji plasmid pSJ_94, complete sequence." />
+                        <has_line line="DEFINITION  Escherichia coli str. Sanji plasmid pSJ_94, complete sequence."/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="genbank">
                     <assert_contents>
-                        <has_line line="DEFINITION  Escherichia coli strain AR_0162 plasmid tig00002623, complete" />
+                        <has_line line="DEFINITION  Escherichia coli strain AR_0162 plasmid tig00002623, complete"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -154,18 +153,18 @@
                 <param name="format" value="gff3"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_file" />
+                <param name="select" value="accession_file"/>
                 <param name="accession_file" value="accessions_1.tsv"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="gff">
                     <assert_contents>
-                        <has_line line="##sequence-region CP011064.1 1 94712" />
+                        <has_line line="##sequence-region CP011064.1 1 94712"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="gff">
                     <assert_contents>
-                        <has_line line="##sequence-region CP021680.1 1 23332" />
+                        <has_line line="##sequence-region CP021680.1 1 23332"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -176,18 +175,18 @@
                 <param name="format" value="featuretable"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_file" />
+                <param name="select" value="accession_file"/>
                 <param name="accession_file" value="accessions_1.tsv"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="txt">
                     <assert_contents>
-                        <has_line line=">Feature gb|CP011064.1|" />
+                        <has_line line="&gt;Feature gb|CP011064.1|"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="txt">
                     <assert_contents>
-                        <has_line line=">Feature gb|CP021680.1|" />
+                        <has_line line="&gt;Feature gb|CP021680.1|"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -198,18 +197,18 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="CP011064,CP021680"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence" />
+                        <has_line line="&gt;CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence" />
+                        <has_line line="&gt;CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -220,25 +219,25 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="CP011064,CP0XXXXX,CP021680"/>
             </conditional>
-            <param name="ignore_failed" value="1" />
+            <param name="ignore_failed" value="1"/>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence" />
+                        <has_line line="&gt;CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence" />
+                        <has_line line="&gt;CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output name="failed_accessions">
                 <assert_contents>
-                    <has_line line="CP0XXXXX" />
+                    <has_line line="CP0XXXXX"/>
                 </assert_contents>
             </output>
         </test>
@@ -248,13 +247,13 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="CP0XXXXX"/>
             </conditional>
-            <param name="ignore_failed" value="1" />
+            <param name="ignore_failed" value="1"/>
             <output name="failed_accessions">
                 <assert_contents>
-                    <has_line line="CP0XXXXX" />
+                    <has_line line="CP0XXXXX"/>
                 </assert_contents>
             </output>
         </test>
@@ -264,10 +263,10 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="CP011064,CP0XXXXX,CP021680"/>
             </conditional>
-            <param name="ignore_failed" value="0" />
+            <param name="ignore_failed" value="0"/>
         </test>
         <test>
             <conditional name="molecule">
@@ -275,18 +274,18 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="CP011064&#10;CP021680"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="CP011064" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence" />
+                        <has_line line="&gt;CP011064.1 Escherichia coli str. Sanji plasmid pSJ_94, complete sequence"/>
                     </assert_contents>
                 </element>
                 <element name="CP021680" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence" />
+                        <has_line line="&gt;CP021680.1 Escherichia coli strain AR_0162 plasmid tig00002623, complete sequence"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -297,13 +296,13 @@
                 <param name="format" value="fasta"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="NP_003192"/>
             </conditional>
             <output_collection name="output" type="list">
                 <element name="NP_003192" ftype="fasta">
                     <assert_contents>
-                        <has_line line=">NP_003192.1 transcription factor A, mitochondrial isoform 1 precursor [Homo sapiens]" />
+                        <has_line line="&gt;NP_003192.1 transcription factor A, mitochondrial isoform 1 precursor [Homo sapiens]"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -314,15 +313,15 @@
                 <param name="format" value="genbank"/>
             </conditional>
             <conditional name="query_source">
-                <param name="select" value="accession_list" />
+                <param name="select" value="accession_list"/>
                 <param name="accession_list" value="NC_006666"/>
             </conditional>
             <param name="range" value="1697:2764"/>
             <output_collection name="output" type="list">
                 <element name="NC_006666" ftype="genbank">
                     <assert_contents>
-                        <has_text text="ND2" />
-                        <not_has_text text="tRNA-Ile" />
+                        <has_text text="ND2"/>
+                        <not_has_text text="tRNA-Ile"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -339,6 +338,5 @@ Given a file containing a list of NCBI accession numbers or a direct entry of ac
 **Output**
 A collection of sequence records in the desired format.
     ]]></help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

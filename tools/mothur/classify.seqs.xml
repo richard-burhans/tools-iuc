@@ -66,8 +66,7 @@ echo 'classify.seqs(
             </param>
             <when value="ref">
                 <param argument="reference" name="template" type="select" label="reference - Select an alignment database " help="">
-                    <options from_data_table="mothur_aligndb">
-                    </options>
+                    <options from_data_table="mothur_aligndb"/>
                 </param>
             </when>
             <when value="hist">
@@ -124,8 +123,7 @@ echo 'classify.seqs(
         </conditional>
         <param argument="count" type="data" format="mothur.count_table" optional="true" label="count file"/>
         <param argument="name" type="data" format="mothur.names" optional="true" label="names file"/>
-        <param argument="relabund" type="boolean" falsevalue="false" truevalue="true" checked="false"
-            label="relabund - allows you to indicate that you want the summary files to be relative abundances rather than raw abundances"/>
+        <param argument="relabund" type="boolean" falsevalue="false" truevalue="true" checked="false" label="relabund - allows you to indicate that you want the summary files to be relative abundances rather than raw abundances"/>
         <expand macro="param-output"/>
         <expand macro="param-printlevel"/>
         <expand macro="param-savelog"/>
@@ -137,7 +135,8 @@ echo 'classify.seqs(
         <data name="tree_sum" format="tabular" from_work_dir="tax.taxonomy*.tree.sum" label="${tool.name} on ${on_string}: tree.sum"/>
     </outputs>
     <tests>
-        <test><!-- test with wang method -->
+        <test>
+            <!-- test with wang method -->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="source" value="hist"/>
             <param name="template" value="abrecovery.fasta" ftype="fasta"/>
@@ -166,7 +165,8 @@ echo 'classify.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with knn method -->
+        <test>
+            <!-- test with knn method -->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="source" value="hist"/>
             <param name="template" value="abrecovery.fasta" ftype="fasta"/>
@@ -189,7 +189,8 @@ echo 'classify.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with knn method and blast algorithm -->
+        <test>
+            <!-- test with knn method and blast algorithm -->
             <param name="fasta" value="abrecovery.fasta" ftype="fasta"/>
             <param name="source" value="hist"/>
             <param name="template" value="abrecovery.fasta" ftype="fasta"/>

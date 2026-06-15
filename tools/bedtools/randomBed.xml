@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools random
 @GENOME_FILE@
@@ -17,24 +17,24 @@ bedtools random
 > '$output'
     ]]></command>
     <inputs>
-        <expand macro="input_conditional_genome_file" />
-        <param name="length" argument="-l" type="integer" value="100" label="The length of the intervals to generate" />
-        <param name="intervals" argument="-n" type="integer" value="1000000" label="The number of intervals to generate" />
-        <expand macro="seed" />
+        <expand macro="input_conditional_genome_file"/>
+        <param name="length" argument="-l" type="integer" value="100" label="The length of the intervals to generate"/>
+        <param name="intervals" argument="-n" type="integer" value="1000000" label="The number of intervals to generate"/>
+        <expand macro="seed"/>
     </inputs>
     <outputs>
-        <data name="output" format="bed" />
+        <data name="output" format="bed"/>
     </outputs>
     <tests>
         <test>
-            <param name="genome_file_opts|genome_file_opts_selector" value="hist" />
-            <param name="genome_file_opts|genome" value="mm9_chr1.len" ftype="tabular" />
-            <param name="length" value="5" />
-            <param name="intervals" value="3" />
+            <param name="genome_file_opts|genome_file_opts_selector" value="hist"/>
+            <param name="genome_file_opts|genome" value="mm9_chr1.len" ftype="tabular"/>
+            <param name="length" value="5"/>
+            <param name="intervals" value="3"/>
             <output name="output">
                 <assert_contents>
-                    <has_text_matching expression="chr1" />
-                    <has_n_columns n="6" />
+                    <has_text_matching expression="chr1"/>
+                    <has_n_columns n="6"/>
                 </assert_contents>
             </output>
         </test>
@@ -46,5 +46,5 @@ bedtools random will generate a random set of intervals in BED6 format. One can 
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

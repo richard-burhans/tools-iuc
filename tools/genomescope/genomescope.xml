@@ -56,7 +56,7 @@
             <param name="output_files" type="select" multiple="true" display="checkboxes" label="Output files">
                 <option value="model_output">Generate a file with the model parameters</option>
                 <option value="summary_output">Summary of the analysis</option>
-                <option value="progress_output">Additional information for each optimization round</option>       
+                <option value="progress_output">Additional information for each optimization round</option>
             </param>
             <param argument="--no_unique_sequence" type="boolean" truevalue="--no_unique_sequence" falsevalue="" label="Turn off yellow unique sequence line in plots"/>
         </section>
@@ -65,7 +65,10 @@
             <param argument="--initial_repetitiveness" type="float" min="0" max="1" optional="true" label="Initial value for repetitiveness"/>
             <param argument="--initial_heterozygosities" type="text" optional="true" label="Initial values for nucleotide heterozygosity rates" help="Nucleotide hetegozygosity rates should be float values (separated by commas if necessary)">
                 <sanitizer>
-                    <valid initial="string.digits"><add value="," /><add value="." /></valid>
+                    <valid initial="string.digits">
+                        <add value=","/>
+                        <add value="."/>
+                    </valid>
                 </sanitizer>
                 <validator type="regex">[0-9,.]+</validator>
             </param>
@@ -73,7 +76,10 @@
             <param argument="--testing" type="boolean" truevalue="--testing" falsevalue="" label="Create testing.tsv file with model parameters"/>
             <param argument="--true_params" type="text" optional="true" label="Set true simulated parameters for testing mode">
                 <sanitizer>
-                    <valid initial="string.digits"><add value="," /><add value="." /></valid>
+                    <valid initial="string.digits">
+                        <add value=","/>
+                        <add value="."/>
+                    </valid>
                 </sanitizer>
                 <validator type="regex">[0-9,.]+</validator>
             </param>

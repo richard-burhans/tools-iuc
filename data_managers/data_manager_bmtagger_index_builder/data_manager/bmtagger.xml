@@ -55,8 +55,8 @@
         <param name="all_fasta_source" type="select" label="Source FASTA Sequence">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence"/>
         <param name="test" type="hidden"/>
     </inputs>
     <outputs>
@@ -76,12 +76,11 @@
             <output name="out_file" file="bmtagger_data_manager.2.json"/>
         </test>
     </tests>
-
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **Notice:** If you leave name, description, or id blank, it will be generated automatically.
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">@article{rotmistrovsky2011bmtagger,
             title={BMTagger: Best Match Tagger for removing human reads from metagenomics datasets},

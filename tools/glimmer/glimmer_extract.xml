@@ -17,16 +17,15 @@
         <param name="cordInput" type="data" format="tabular" label="Coordinates" help="See Help below"/>
     </inputs>
     <outputs>
-        <data format="fasta" name="output" />
+        <data format="fasta" name="output"/>
     </outputs>
     <tests>
         <test>
-            <param name="seqInput" value='streptomyces_Tu6071_genomic.fasta'/>
-            <param name="cordInput" value='coordTest.txt'/>
-            <output name="output" file='extractTestOutput.fasta' compare="sim_size" delta="20"/>
+            <param name="seqInput" value="streptomyces_Tu6071_genomic.fasta"/>
+            <param name="cordInput" value="coordTest.txt"/>
+            <output name="output" file="extractTestOutput.fasta" compare="sim_size" delta="20"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What it does**
@@ -117,5 +116,5 @@
 		AGATTCTCGAGTCATTTTTCAAGTTTATTTGTTTGTCAGCGGTTGTTTTAT
 		.....
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

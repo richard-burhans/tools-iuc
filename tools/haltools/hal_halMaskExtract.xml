@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halMaskExtract
@@ -41,9 +41,9 @@
             <param name="refGenome" value="Ref"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="chr1&#009;5&#009;10"/>
+                    <has_line line="chr1&#9;5&#9;10"/>
                     <has_n_lines n="1"/>
-                </assert_contents>    
+                </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
@@ -55,9 +55,9 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="chr1&#009;5&#009;100"/>
+                    <has_line line="chr1&#9;5&#9;100"/>
                     <has_n_lines n="1"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
@@ -69,9 +69,9 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="chr1&#009;4&#009;11"/>
+                    <has_line line="chr1&#9;4&#9;11"/>
                     <has_n_lines n="1"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
     </tests>

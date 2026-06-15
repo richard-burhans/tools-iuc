@@ -73,13 +73,13 @@
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </param>
-            <expand macro="minMapq"></expand>
+            <expand macro="minMapq"/>
         </section>
     </inputs>
     <outputs>
         <collection name="output_collection" type="list" label="sam-dump: Downloaded SAM/BAM data">
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.bam" directory="." ext='bam'/>
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.sam" directory="." ext='sam'/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.bam" directory="." ext="bam"/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.sam" directory="." ext="sam"/>
         </collection>
     </outputs>
     <tests>

@@ -53,7 +53,7 @@
 
             -s $lastal.isprotein.s
         #else if $lastal.isprotein.schoring_schemes.score_matrix == 'scoreFile'
-            -p $lastal.isprotein.schoring_schemes.scoreMatrixFile
+            -p '$lastal.isprotein.schoring_schemes.scoreMatrixFile'
         #end if
 
         -D $lastal.evalue_opt.D
@@ -84,11 +84,9 @@
 
         >'$outfile'
     ]]></command>
-
     <inputs>
         <expand macro="input_db"/>
         <param name="query_seq" type="data" format="fasta,fasta.gz,fastq,fastq.gz,tabular" label="Query sequences"/>
-
         <section name="lastal" title="Lastal arguments" expanded="true">
             <param argument="-f" type="select" multiple="false" label="Output format">
                 <option value="MAF" selected="true">MAF</option>
@@ -106,7 +104,6 @@
                 <option value="6">LAMA</option>
                 <option value="7">Expected counts</option>
             </param>
-
             <conditional name="isprotein">
                 <param name="lastal_protein" type="select" multiple="false" label="The sequences are :">
                     <option value="dna" selected="true">DNA</option>
@@ -124,7 +121,7 @@
                             <option value="HOXD70">HOXD70</option>
                             <option value="MIQS">MIQS</option>
                             <option value="PAM10">PAM10</option>
-                            <option value="PAM30">PAM30</option>                    
+                            <option value="PAM30">PAM30</option>
                             <option value="scoreFile">Other score matrix</option>
                         </param>
                         <when value="AT77">
@@ -134,7 +131,7 @@
                         <when value="ATMAP">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="24" b="6"/>
-                        </when>                    
+                        </when>
                         <when value="BISF">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="21" b="9"/>
@@ -142,7 +139,7 @@
                         <when value="BISR">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="21" b="9"/>
-                        </when>                    
+                        </when>
                         <when value="BL62">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="11" b="2"/>
@@ -166,15 +163,15 @@
                         <when value="PAM30">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="13" b="3"/>
-                        </when>             
+                        </when>
                         <when value="scoreFile">
-                            <param name="scoreMatrixFile" type="data" format="txt" label="Score matrix file" />
+                            <param name="scoreMatrixFile" type="data" format="txt" label="Score matrix file"/>
                         </when>
                     </conditional>
                     <param argument="-s" type="select" multiple="false" label="Strand">
                         <option value="0">Reverse</option>
                         <option value="1">Forward</option>
-                        <option value="2" selected="true">Both</option> 
+                        <option value="2" selected="true">Both</option>
                     </param>
                 </when>
                 <when value="prot">
@@ -189,7 +186,7 @@
                             <option value="HOXD70">HOXD70</option>
                             <option value="MIQS">MIQS</option>
                             <option value="PAM10">PAM10</option>
-                            <option value="PAM30">PAM30</option>                  
+                            <option value="PAM30">PAM30</option>
                             <option value="scoreFile">Other score matrix</option>
                         </param>
                         <when value="AT77">
@@ -199,7 +196,7 @@
                         <when value="ATMAP">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="24" b="6"/>
-                        </when>                    
+                        </when>
                         <when value="BISF">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="21" b="9"/>
@@ -207,7 +204,7 @@
                         <when value="BISR">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="21" b="9"/>
-                        </when>                    
+                        </when>
                         <when value="BL62">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="11" b="2"/>
@@ -231,19 +228,18 @@
                         <when value="PAM30">
                             <expand macro="score_macro"/>
                             <expand macro="cost_macro" a="13" b="3"/>
-                        </when>             
+                        </when>
                         <when value="scoreFile">
-                            <param name="scoreMatrixFile" type="data" format="txt" label="Score matrix file" />
+                            <param name="scoreMatrixFile" type="data" format="txt" label="Score matrix file"/>
                         </when>
                     </conditional>
                     <param argument="-s" type="select" multiple="false" label="Strand">
                         <option value="0">Reverse</option>
                         <option value="1" selected="true">Forward</option>
-                        <option value="2">Both</option> 
+                        <option value="2">Both</option>
                     </param>
                 </when>
             </conditional>
-
             <section name="repeats_misc" title="Specify lowercase-marking of repeats. (-R)" expanded="false">
                 <param name="uppercase_misc" type="select" multiple="false" label="Input sequences to uppercase.">
                     <option value="0">Convert the input sequences to uppercase while reading them.(0)</option>
@@ -255,12 +251,10 @@
                     <option value="2">Convert simple DNA repeats to lowercase.(2)</option>
                 </param>
             </section>
-
             <section name="evalue_opt" title="E-value options" expanded="false">
                 <param argument="-D" type="integer" value="1000000" label="Query letters per random alignment (-D)"/>
                 <!--<param argument="-E" type="integer" value="1e+18" label="Maximum expected alignments per square giga"/>-->
             </section>
-
             <section name="init_match_opt" title="Initial-match options" expanded="false">
                 <param argument="-m" type="integer" value="10" min="1" label="Maximum initial matches per query position"/>
                 <param argument="-l" type="integer" value="1" min="1" label="Minimum length for initial matches"/>
@@ -269,23 +263,20 @@
                 <param argument="-k" type="integer" value="1" min="1" label="Use initial matches starting at every k-th position in each query"/>
                 <param argument="-W" type="integer" value="1" min="1" label="Use minimum positions in sliding windows of W consecutive positions"/>
             </section>
-
             <section name="misc_opt" title="Miscellaneous options" expanded="false">
                 <param argument="-S" type="select" multiple="false" label="Score matrix applies to forward strand of :">
                     <option value="0" selected="true">Reference</option>
                     <option value="1">Query</option>
                 </param>
-                <param argument="-K" type="integer" value="0" min="0" label="Omit alignments whose query range lies in >= K others with > score"/>
-                <param argument="-C" type="integer" value="0" min="0" label="Omit gapless alignments in >= C others with > score-per-length"/>
+                <param argument="-K" type="integer" value="0" min="0" label="Omit alignments whose query range lies in &gt;= K others with &gt; score"/>
+                <param argument="-C" type="integer" value="0" min="0" label="Omit gapless alignments in &gt;= C others with &gt; score-per-length"/>
                 <!--<param name="omit_gap" argument="-M" type="integer" value="" label="Find minimum-difference alignments (faster but cruder)"/>-->
-
                 <param argument="-T" type="select" multiple="false" label="Type of alignment">
                     <option value="0" selected="true">Local</option>
                     <option value="1">Overlap</option>
                 </param>
                 <param argument="-n" type="integer" value="10" min="0" label="Maximum gapless alignments per query position" help="Infinity if m=0"/>
                 <!--<param name="max_gap_align" argument="-N" type="integer" value="0" label="Stop after the first N alignments per query strand"/>-->
-
                 <!-- Condition lastdb : 2 if lastdb -c and Q<5 -->
                 <param argument="-u" type="select" multiple="false" label="Mask lowercase during extensions.">
                     <option value="0" selected="true">Never.(0)</option>
@@ -294,7 +285,6 @@
                     <option value="3">Always.(3)</option>
                 </param>
                 <param argument="-w" type="integer" value="1000" min="0" label="Suppress repeats inside exact matches, offset by less or equal this distance. Use 0 to set this off" help="Use 0 to turn this off"/>
-
                 <!-- https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi -->
                 <!-- Condition if ADN vs prot and -F -->
                 <param argument="-G" type="select" multiple="false" label="Genetic code.">
@@ -325,24 +315,21 @@
                     <option value="33">Cephalodiscidae Mitochondrial UAA-Tyr Code</option>
                     <!-- Add filename option with <repeat> -->
                 </param>
-
                 <!--<param name="temperature" argument="-t" type="integer" value="1/lambda" label="Temperature for calculating probabilities"/>-->
                 <param argument="-g" type="integer" value="1" min="0" label="Gamma parameter for gamma-centroid and LAMA"/>
             </section>
         </section>
     </inputs>
-
     <outputs>
-        <data name="outfile" format="maf" label="LAST align from ${on_string}" >
+        <data name="outfile" format="maf" label="LAST align from ${on_string}">
             <change_format>
-                <when input="f" value="MAF" format="maf" />
-                <when input="f" value="TAB" format="tabular" />
-                <when input="f" value="BlastTab" format="tabular" />
-                <when input="f" value="BlastTab+" format="tabular" />
+                <when input="f" value="MAF" format="maf"/>
+                <when input="f" value="TAB" format="tabular"/>
+                <when input="f" value="BlastTab" format="tabular"/>
+                <when input="f" value="BlastTab+" format="tabular"/>
             </change_format>
         </data>
     </outputs>
-
     <tests>
         <test>
             <conditional name="db_opts">
@@ -372,9 +359,10 @@
             </conditional>
             <param name="query_seq" value="fuguMito.fq.gz" ftype="fastqsanger.gz"/>
             <output name="outfile" ftype="maf" file="last_align_fastq.maf" lines_diff="2"/>
-        </test>        
+        </test>
     </tests>
-
-    <help>@LAST_HELP@</help>
-    <citations><expand macro="citations"/></citations>
+    <help><![CDATA[@LAST_HELP@]]></help>
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

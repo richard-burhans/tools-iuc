@@ -39,8 +39,8 @@
         <param name="all_fasta_source" type="select" label="Source FASTA Sequence">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" help="Leave blank to use all_fasta name" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" help="Leave blank to use all_fasta id" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence" help="Leave blank to use all_fasta name"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence" help="Leave blank to use all_fasta id"/>
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json"/>

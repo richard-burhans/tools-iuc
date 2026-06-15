@@ -79,22 +79,22 @@ plot.savefig("plot.$plot_ext")
         <expand macro="inputs_mudata"/>
         <conditional name="method">
             <param name="method" type="select" label="Method used for plotting">
-                    <option value="pl.embedding">Scatter: Scatter plot along observations (.obs column), using 'muon.pl.embedding'</option>
-                    <option value="pl.histogram">Histogram: Plot Histogram of Fragment lengths within specified region, using 'muon.pl.histogram'</option>
-                    <option value="pl.mofa">Scatter: Scatter plot in MOFA factor coordinates, using 'muon.pl.mofa'</option>
-                    <option value="pl.mofa_loadings">Ranking: Rank genes according to contributions to MOFA factors, using 'muon.pl.mofa_loadings'</option>
-                    <option value="pl.umap">Scatter: UMAP scatter plot, using 'muon.pl.umap'</option>
+                <option value="pl.embedding">Scatter: Scatter plot along observations (.obs column), using 'muon.pl.embedding'</option>
+                <option value="pl.histogram">Histogram: Plot Histogram of Fragment lengths within specified region, using 'muon.pl.histogram'</option>
+                <option value="pl.mofa">Scatter: Scatter plot in MOFA factor coordinates, using 'muon.pl.mofa'</option>
+                <option value="pl.mofa_loadings">Ranking: Rank genes according to contributions to MOFA factors, using 'muon.pl.mofa_loadings'</option>
+                <option value="pl.umap">Scatter: UMAP scatter plot, using 'muon.pl.umap'</option>
             </param>
             <when value="pl.embedding">
                 <param argument="basis" type="text" value="X_mofa" label="Name of the obsm basis to use" help="can also be a basis inside any modality, e.g. 'rna:X_pca'">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
                 <expand macro="params_embedding"/>
             </when>
             <when value="pl.histogram">
                 <expand macro="param_keys"/>
                 <param argument="groupby" type="text" optional="true" label="Column name(s) of .obs slot of the AnnData object according to which the plot is split">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
             </when>
             <when value="pl.mofa">
@@ -102,7 +102,7 @@ plot.savefig("plot.$plot_ext")
             </when>
             <when value="pl.mofa_loadings">
                 <param argument="factors" type="text" optional="true" label="Comma separated list of factors" help="For example, '1,2,3' means [1, 2, 3], first, second, third factors">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
                 <param argument="include_lowest" type="boolean" truevalue="True" falsevalue="False" checked="true" label="Whether to show the variables with both highest and lowest loadings"/>
                 <param argument="n_points" type="integer" optional="true" label="Number of variables to plot for each factor"/>
@@ -116,7 +116,7 @@ plot.savefig("plot.$plot_ext")
             <option value="svg">SVG</option>
             <option value="pdf">PDF</option>
         </param>
-        <expand macro="inputs_common_advanced" />
+        <expand macro="inputs_common_advanced"/>
     </inputs>
     <outputs>
         <data name="out_png" format="png" from_work_dir="plot.png" label="PNG plot from ${tool.name} (${method.method}) on ${on_string}">
@@ -128,7 +128,7 @@ plot.savefig("plot.$plot_ext")
         <data name="out_svg" format="svg" from_work_dir="plot.svg" label="SVG plot from ${tool.name} (${method.method}) on ${on_string}">
             <filter>plot_ext == 'svg'</filter>
         </data>
-        <data name="hidden_output" format="txt" label="Log file" hidden="true" >
+        <data name="hidden_output" format="txt" label="Log file" hidden="true">
             <filter>advanced_common['show_log']</filter>
         </data>
     </outputs>
@@ -142,7 +142,7 @@ plot.savefig("plot.$plot_ext")
             <param name="use_raw" value="False"/>
             <param name="plot_ext" value="pdf"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -164,7 +164,7 @@ plot.savefig("plot.$plot_ext")
             </conditional>
             <param name="plot_ext" value="png"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -181,7 +181,7 @@ plot.savefig("plot.$plot_ext")
             <param name="use_raw" value="False"/>
             <param name="plot_ext" value="svg"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -198,7 +198,7 @@ plot.savefig("plot.$plot_ext")
             <param name="factors" value="1,2,3"/>
             <param name="include_lowest" value="True"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -215,7 +215,7 @@ plot.savefig("plot.$plot_ext")
             <param name="method" value="pl.umap"/>
             <param name="use_raw" value="False"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>

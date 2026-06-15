@@ -24,10 +24,10 @@ checkm lineage_set
     <inputs>
         <expand macro="hmm_marker_stats_inputs"/>
         <param name="concatenated_tre" type="data" format="phyloxml" label="Concatenated tree" help="Output of the CheckM tree tool"/>
-        <expand macro="lineage_set_params" />
+        <expand macro="lineage_set_params"/>
     </inputs>
     <outputs>
-        <expand macro="marker_output" />
+        <expand macro="marker_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">

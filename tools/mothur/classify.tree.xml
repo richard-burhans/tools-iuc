@@ -35,8 +35,7 @@ echo 'classify.tree(
         <param argument="tree" type="data" format="txt" label="tree - Sequences to filter"/>
         <param argument="name" type="data" format="mothur.names" optional="true" label="name - Sequences Name reference file"/>
         <param argument="group" type="data" format="mothur.groups" optional="true" label="group - Sequences Group reference"/>
-        <param argument="cutoff" type="integer" value="51" min="51" max="100" optional="true" label="cutoff - consensus confidence threshold"
-            help="The default is 51, meaning 51%. Cutoff cannot be below 51"/>
+        <param argument="cutoff" type="integer" value="51" min="51" max="100" optional="true" label="cutoff - consensus confidence threshold" help="The default is 51, meaning 51%. Cutoff cannot be below 51"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>

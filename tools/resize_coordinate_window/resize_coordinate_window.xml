@@ -15,7 +15,7 @@ python '$__tool_directory__/resize_coordinate_window.py'
 --output '$output'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="gff" label="Gff file" />
+        <param name="input" type="data" format="gff" label="Gff file"/>
         <param name="start_coordinate" type="select" label="Start coordinate" help="Input data is 0-based or 1-based">
             <option value="0" selected="True">0</option>
             <option value="1">1</option>
@@ -34,29 +34,29 @@ python '$__tool_directory__/resize_coordinate_window.py'
         </param>
     </inputs>
     <outputs>
-        <data name="output" format="gff" />
+        <data name="output" format="gff"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="input.gff" ftype="gff" />
-            <param name="start_coordinate" value="1" />
-            <param name="subtract_from_start" value="13" />
-            <param name="add_to_end" value="13" />
-            <param name="extend_existing" value="midpoint" />
-            <param name="region_boundaries" value="error" />
-            <output name="output" file="output.gff" ftype="gff" />
+            <param name="input" value="input.gff" ftype="gff"/>
+            <param name="start_coordinate" value="1"/>
+            <param name="subtract_from_start" value="13"/>
+            <param name="add_to_end" value="13"/>
+            <param name="extend_existing" value="midpoint"/>
+            <param name="region_boundaries" value="error"/>
+            <output name="output" file="output.gff" ftype="gff"/>
         </test>
         <test>
-            <param name="input" value="input.gff" ftype="gff" />
-            <param name="start_coordinate" value="0" />
-            <param name="subtract_from_start" value="80" />
-            <param name="add_to_end" value="80" />
-            <param name="extend_existing" value="midpoint" />
-            <param name="region_boundaries" value="discard" />
-            <output name="output" file="output_discard.gff" ftype="gff" />
+            <param name="input" value="input.gff" ftype="gff"/>
+            <param name="start_coordinate" value="0"/>
+            <param name="subtract_from_start" value="80"/>
+            <param name="add_to_end" value="80"/>
+            <param name="extend_existing" value="midpoint"/>
+            <param name="region_boundaries" value="discard"/>
+            <output name="output" file="output_discard.gff" ftype="gff"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **What it does**
 
@@ -92,7 +92,7 @@ Setting start coordinate to 1 and resizing the coordinate window by 13 from the 
     chr1    genetrack       .       28      54      245     -       .       stddev=2.66582799529`
     chr1    genetrack       .       37      63      2060    +       .       stddev=2.7859667372
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
             @unpublished{None,

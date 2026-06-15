@@ -66,19 +66,14 @@
                 <option value="svg">Svg</option>
             </param>
             <param name="bar_color" type="select" value="timepoint" display="radio" label="Select output figure barcolor" help="Please enter at max 1 format">
-                    <option value="timepoint">timepoint</option>
-                    <option value="condition">condition</option>
+                <option value="timepoint">timepoint</option>
+                <option value="condition">condition</option>
             </param>
-            <param name="axisx_labeltilt" type="integer" min="0" max="180" value="70" label="X axis label tilt"
-                   help="Default value is 70."/>
-            <param name="width_each_subfig" type="float" min="1.0" max="15.0" value="3.0" label="width of subfig plots"
-                   help="Default value is 3."/>
-            <param name="height_each_subfig" type="float" min="1.0" max="15.0" value="5.5" label="height of subfig plots"
-                   help="Default value is 5.5"/>
-            <param name="as_grid" type="boolean" value="false" label="plot as grid"
-                   help="Default value is false."/>
-            <param name="do_stripplot" type="boolean" value="false" label="add strip plot on abundance bar"
-                   help="Default value is false."/>
+            <param name="axisx_labeltilt" type="integer" min="0" max="180" value="70" label="X axis label tilt" help="Default value is 70."/>
+            <param name="width_each_subfig" type="float" min="1.0" max="15.0" value="3.0" label="width of subfig plots" help="Default value is 3."/>
+            <param name="height_each_subfig" type="float" min="1.0" max="15.0" value="5.5" label="height of subfig plots" help="Default value is 5.5"/>
+            <param name="as_grid" type="boolean" value="false" label="plot as grid" help="Default value is false."/>
+            <param name="do_stripplot" type="boolean" value="false" label="add strip plot on abundance bar" help="Default value is false."/>
         </section>
     </inputs>
     <outputs>
@@ -93,8 +88,8 @@
             <repeat name="plot_abundance_factor_list">
                 <param name="condition" value="sgLDHA"/>
             </repeat>
-            <param name="timepoint" value='T0,T24'/>
-            <param name="compartments" value='endo'/>
+            <param name="timepoint" value="T0,T24"/>
+            <param name="compartments" value="endo"/>
             <param name="metabolites_list" value="Fru1P"/>
             <section name="output_options">
                 <param name="axisx_labeltilt" value="70"/>

@@ -71,11 +71,11 @@
             <output name="output" file="sort_output6.fastq.gz" ftype="fastqsanger.gz"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Sort sequences (FASTA, FASTQ) by id, name, sequence, or length.
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

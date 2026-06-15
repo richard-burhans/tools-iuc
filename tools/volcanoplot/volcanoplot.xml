@@ -4,15 +4,12 @@
         <import>macros.xml</import>
         <token name="@TOOL_VERSION@">4.0.3</token>
     </macros>
-
     <edam_topics>
         <edam_topic>topic_0092</edam_topic>
     </edam_topics>
-
     <edam_operations>
         <edam_operation>operation_0337</edam_operation>
     </edam_operations>
-
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">r-ggplot2</requirement>
         <requirement type="package" version="0.9.8">r-ggrepel</requirement>
@@ -207,9 +204,9 @@ dev.off()
 sessionInfo()
 
 ]]></configfile>
-</configfiles>
+    </configfiles>
     <inputs>
-        <param name="input" type="data" format="tabular" label="Specify an input file" />
+        <param name="input" type="data" format="tabular" label="Specify an input file"/>
         <conditional name="with_header">
             <param name="header" type="select" label="File has header?" refresh_on_change="true" help="Does the differentially expressed results file contain a header row. The tool can auto-detect by checking if the first row in the P value column is a number or not. Default: Auto-detect">
                 <option value="auto" selected="True">Auto-detect</option>
@@ -226,7 +223,6 @@ sessionInfo()
                 <expand macro="columns" header="false"/>
             </when>
         </conditional>
-
         <param name="shape_or_facet" type="select" label="Display categories by:" help="Choose whether to display categories by faceting the plot or using shape." optional="true">
             <option value="facet">Facet</option>
             <option value="shape">Shape</option>
@@ -245,7 +241,7 @@ sessionInfo()
             <when value="file">
                 <param name="label_file" type="data" format="tabular" label="File of labels"/>
             </when>
-            <when value="none" />
+            <when value="none"/>
         </conditional>
         <section name="plot_options" expanded="false" title="Plot Options">
             <param name="boxes" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Label Boxes" help="If this is set to Yes, the labels for the points will be in boxes. Default: No"/>
@@ -259,8 +255,7 @@ sessionInfo()
             <param name="legend_labs" type="text" value="Down,Not Sig,Up" label="Labels for Legend" help="Labels in the legend can be specified. Default: Down,Not Sig,Up"/>
         </section>
         <section name="out_options" expanded="false" title="Output Options">
-            <param name="rscript_out" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Output Rscript?"
-                help="Output the R code used by the tool. Can edit in R if you want to customise the plot further. Default: No"/>
+            <param name="rscript_out" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Output Rscript?" help="Output the R code used by the tool. Can edit in R if you want to customise the plot further. Default: No"/>
         </section>
     </inputs>
     <outputs>
@@ -273,31 +268,30 @@ sessionInfo()
         <test expect_num_outputs="1">
             <!-- Ensure default output works -->
             <param name="input" ftype="tabular" value="input.tab"/>
-            <param name="fdr_col" value="4" />
-            <param name="pval_col" value="3" />
-            <param name="lfc_col" value="2" />
-            <param name="label_col" value="1" />
-            <param name="lfc_thresh" value="0" />
+            <param name="fdr_col" value="4"/>
+            <param name="pval_col" value="3"/>
+            <param name="lfc_col" value="2"/>
+            <param name="label_col" value="1"/>
+            <param name="lfc_thresh" value="0"/>
             <output name="plot">
                 <assert_contents>
-                    <has_size value= "933451" delta="1000" />
+                    <has_size value="933451" delta="1000"/>
                 </assert_contents>
             </output>
         </test>
-
         <test expect_num_outputs="1">
             <!-- Ensure input labels and plot options work -->
             <param name="input" ftype="tabular" value="input.tab"/>
-            <param name="fdr_col" value="4" />
-            <param name="pval_col" value="3" />
-            <param name="lfc_col" value="2" />
-            <param name="label_col" value="1" />
-            <param name="lfc_thresh" value="0" />
+            <param name="fdr_col" value="4"/>
+            <param name="pval_col" value="3"/>
+            <param name="lfc_col" value="2"/>
+            <param name="label_col" value="1"/>
+            <param name="lfc_thresh" value="0"/>
             <param name="label_select" value="file"/>
-            <param name="label_file" ftype="tabular" value="labels.tab" />
+            <param name="label_file" ftype="tabular" value="labels.tab"/>
             <output name="plot">
                 <assert_contents>
-                    <has_size value= "933830" delta="1000" />
+                    <has_size value="933830" delta="1000"/>
                 </assert_contents>
             </output>
         </test>
@@ -305,60 +299,61 @@ sessionInfo()
             <!-- Ensure rscript output works -->
             <param name="input" ftype="tabular" value="input.tab"/>
             <param name="header" value="yes"/>
-            <param name="fdr_col" value="4" />
-            <param name="pval_col" value="3" />
-            <param name="lfc_col" value="2" />
-            <param name="label_col" value="1" />
-            <param name="lfc_thresh" value="0" />
+            <param name="fdr_col" value="4"/>
+            <param name="pval_col" value="3"/>
+            <param name="lfc_col" value="2"/>
+            <param name="label_col" value="1"/>
+            <param name="lfc_thresh" value="0"/>
             <param name="label_select" value="file"/>
-            <param name="label_file" ftype="tabular" value="labels.tab" />
+            <param name="label_file" ftype="tabular" value="labels.tab"/>
             <param name="rscript_out" value="True"/>
             <output name="plot">
                 <assert_contents>
-                    <has_size value= "933832" delta="1000" />
+                    <has_size value="933832" delta="1000"/>
                 </assert_contents>
             </output>
-            <output name="rscript" value= "out.rscript" lines_diff="4"/>
+            <output name="rscript" value="out.rscript" lines_diff="4"/>
         </test>
-
-    <test expect_num_outputs="1">
-        <!-- Ensure input labels and plot options work with faceting -->
-        <param name="input" ftype="tabular" value="category.tab"/>
-        <param name="fdr_col" value="4" />
-        <param name="pval_col" value="3" />
-        <param name="lfc_col" value="2" />
-        <param name="label_col" value="1" />
-        <param name="shape_col" value="5" /> <!-- Assuming the shape is in column 5 -->
-        <param name="lfc_thresh" value="0" />
-        <param name="label_select" value="file"/>
-        <param name="label_file" ftype="tabular" value="labels.tab" />
-        <param name="shape_or_facet" value="facet" /> <!-- Testing the facet option -->
-        <output name="plot">
-            <assert_contents>
-                <has_size value="5007" delta="1000" />
-            </assert_contents>
-        </output>
-    </test>
-
-    <test expect_num_outputs="1">
-        <!-- Ensure input labels and plot options work with shape option -->
-        <param name="input" ftype="tabular" value="category.tab"/>
-        <param name="fdr_col" value="4" />
-        <param name="pval_col" value="3" />
-        <param name="lfc_col" value="2" />
-        <param name="label_col" value="1" />
-        <param name="shape_col" value="5" /> <!-- Assuming the shape is in column 5 -->
-        <param name="lfc_thresh" value="0" />
-        <param name="label_select" value="file"/>
-        <param name="label_file" ftype="tabular" value="labels.tab" />
-        <param name="shape_or_facet" value="shape" /> <!-- Testing the shape option -->
-        <output name="plot">
-            <assert_contents>
-                <has_size value="5533" delta="1000" />
-            </assert_contents>
-        </output>
-    </test>
-
+        <test expect_num_outputs="1">
+            <!-- Ensure input labels and plot options work with faceting -->
+            <param name="input" ftype="tabular" value="category.tab"/>
+            <param name="fdr_col" value="4"/>
+            <param name="pval_col" value="3"/>
+            <param name="lfc_col" value="2"/>
+            <param name="label_col" value="1"/>
+            <param name="shape_col" value="5"/>
+            <!-- Assuming the shape is in column 5 -->
+            <param name="lfc_thresh" value="0"/>
+            <param name="label_select" value="file"/>
+            <param name="label_file" ftype="tabular" value="labels.tab"/>
+            <param name="shape_or_facet" value="facet"/>
+            <!-- Testing the facet option -->
+            <output name="plot">
+                <assert_contents>
+                    <has_size value="5007" delta="1000"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <!-- Ensure input labels and plot options work with shape option -->
+            <param name="input" ftype="tabular" value="category.tab"/>
+            <param name="fdr_col" value="4"/>
+            <param name="pval_col" value="3"/>
+            <param name="lfc_col" value="2"/>
+            <param name="label_col" value="1"/>
+            <param name="shape_col" value="5"/>
+            <!-- Assuming the shape is in column 5 -->
+            <param name="lfc_thresh" value="0"/>
+            <param name="label_select" value="file"/>
+            <param name="label_file" ftype="tabular" value="labels.tab"/>
+            <param name="shape_or_facet" value="shape"/>
+            <!-- Testing the shape option -->
+            <output name="plot">
+                <assert_contents>
+                    <has_size value="5533" delta="1000"/>
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help><![CDATA[
 .. class:: infomark

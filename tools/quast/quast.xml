@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro='requirements' />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code">
     <![CDATA[
 #import re
@@ -287,27 +287,27 @@ metaquast
                     <expand macro="reads_option"/>
                     <when value="disabled"/>
                     <when value="single">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="paired">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #1" />
-                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #2" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #1"/>
+                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #2"/>
                     </when>
                     <when value="paired_collection">
-                        <param name="input_1" type="data_collection" collection_type="paired" format="fastq,fastq.gz,fasta,fasta.gz" label="FASTQ/FASTA files" />
+                        <param name="input_1" type="data_collection" collection_type="paired" format="fastq,fastq.gz,fasta,fasta.gz" label="FASTQ/FASTA files"/>
                     </when>
                     <when value="paired_interlaced">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="mate_paired">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #1" />
-                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #2" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #1"/>
+                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file #2"/>
                     </when>
                     <when value="pacbio">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="nanopore">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" label="FASTQ/FASTA file"/>
                     </when>
                 </conditional>
             </when>
@@ -327,27 +327,27 @@ metaquast
                     <expand macro="reads_option"/>
                     <when value="disabled"/>
                     <when value="single">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="paired">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #1" />
-                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #2" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #1"/>
+                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #2"/>
                     </when>
                     <when value="paired_collection">
-                        <param name="input_1" type="data_collection" collection_type="list:paired" format="fastq,fastq.gz,fasta,fasta.gz" label="FASTQ/FASTA files" />
+                        <param name="input_1" type="data_collection" collection_type="list:paired" format="fastq,fastq.gz,fasta,fasta.gz" label="FASTQ/FASTA files"/>
                     </when>
                     <when value="paired_interlaced">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="mate_paired">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #1" />
-                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #2" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #1"/>
+                        <param name="input_2" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file #2"/>
                     </when>
                     <when value="pacbio">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file"/>
                     </when>
                     <when value="nanopore">
-                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file" />
+                        <param name="input_1" format="fastq,fastq.gz,fasta,fasta.gz" type="data" multiple="true" label="FASTQ/FASTA file"/>
                     </when>
                 </conditional>
             </when>
@@ -364,7 +364,7 @@ metaquast
                         <option value="false" selected="true">No</option>
                     </param>
                     <when value="true">
-                        <param argument="-r" type="data" format="fasta" multiple="true" label="Reference genome" />
+                        <param argument="-r" type="data" format="fasta" multiple="true" label="Reference genome"/>
                         <param argument="--features" type="data" format="gff, gff3, bed" optional="true" label="Genomic feature positions in the reference genome" help="Gene coordinates for the reference genome"/>
                         <param argument="--operons" type="data" format="gff, gff3, bed" optional="true" label="Operon positions in the reference genome" help="Operon coordinates for the reference genome"/>
                         <conditional name="k_mer">
@@ -373,7 +373,7 @@ metaquast
                                 <option value="" selected="true">No</option>
                             </param>
                             <when value="--k-mer-stats">
-                                <param argument="--k-mer-size" type="integer" value="101" label="Size of k" />
+                                <param argument="--k-mer-size" type="integer" value="101" label="Size of k"/>
                             </when>
                             <when value=""/>
                         </conditional>
@@ -398,22 +398,22 @@ metaquast
                         <option value="list">From a list</option>
                     </param>
                     <when value="silva">
-                        <param argument="--max-ref-num" type="integer" value="50" label="Maximum number of reference genomes (per each assembly) to download after searching in the SILVA databa" />
+                        <param argument="--max-ref-num" type="integer" value="50" label="Maximum number of reference genomes (per each assembly) to download after searching in the SILVA databa"/>
                     </when>
                     <when value="history">
-                        <param argument="-r" type="data" format="fasta" multiple="true" label="Reference genome" />
+                        <param argument="-r" type="data" format="fasta" multiple="true" label="Reference genome"/>
                     </when>
                     <when value="list">
                         <param argument="--references-list" type="text" value="" label="Comma-separated list of reference genomes" help="MetaQUAST will search for these references in the NCBI database and will download the found ones"/>
                     </when>
                 </conditional>
-                <param argument="--reuse-combined-alignments" type="boolean" truevalue="--reuse-combined-alignments" falsevalue="" checked="false" label="Reuse the alignments on the combined reference" help="Reuse the alignments on the combined reference in the subsequent runs per separate references. That is, the alignment procedure is performed only once (for all assemblies against the combined reference) and does NOT executed for each subgroups of contigs against the corresponding separate reference genomes. In each separate reference run, all precomputed assembly alignments for other references are simply ignored" />
+                <param argument="--reuse-combined-alignments" type="boolean" truevalue="--reuse-combined-alignments" falsevalue="" checked="false" label="Reuse the alignments on the combined reference" help="Reuse the alignments on the combined reference in the subsequent runs per separate references. That is, the alignment procedure is performed only once (for all assemblies against the combined reference) and does NOT executed for each subgroups of contigs against the corresponding separate reference genomes. In each separate reference run, all precomputed assembly alignments for other references are simply ignored"/>
                 <expand macro="min_identity_macros" value="90"/>
             </when>
         </conditional>
         <param argument="--min-contig" type="integer" value="500" label="Lower threshold for a contig length (in bp)" help="Shorter contigs won't be taken into account"/>
-        <param argument="--split-scaffolds" type="boolean" truevalue="--split-scaffolds" falsevalue="" checked="false" label="Are assemblies scaffolds rather than contigs?" help="QUAST will add split versions of assemblies to the comparison. Assemblies are split by continuous fragments of N's of length >= 10. If broken version is equal to the original assembly (i.e. nothing was split) it is not included in the comparison."/>
-        <param argument="--large" type="boolean" truevalue="--large" falsevalue="" checked="false" label="Is genome large (> 100 Mbp)?" help="Use optimal parameters for evaluation of large genomes. Affects speed and accuracy. In particular, imposes --eukaryote --min-contig 3000 --min-alignment 500 --extensive-mis-size 7000 (can be overridden manually with the corresponding options). In addition, this mode tries to identify misassemblies caused by transposable elements and exclude them from the number of misassemblies."/>
+        <param argument="--split-scaffolds" type="boolean" truevalue="--split-scaffolds" falsevalue="" checked="false" label="Are assemblies scaffolds rather than contigs?" help="QUAST will add split versions of assemblies to the comparison. Assemblies are split by continuous fragments of N's of length &gt;= 10. If broken version is equal to the original assembly (i.e. nothing was split) it is not included in the comparison."/>
+        <param argument="--large" type="boolean" truevalue="--large" falsevalue="" checked="false" label="Is genome large (&gt; 100 Mbp)?" help="Use optimal parameters for evaluation of large genomes. Affects speed and accuracy. In particular, imposes --eukaryote --min-contig 3000 --min-alignment 500 --extensive-mis-size 7000 (can be overridden manually with the corresponding options). In addition, this mode tries to identify misassemblies caused by transposable elements and exclude them from the number of misassemblies."/>
         <section name="genes" title="Genes">
             <conditional name="gene_finding">
                 <param name="tool" type="select" label="Tool for gene prediction" help="">
@@ -444,7 +444,7 @@ metaquast
             </param>
             <param argument="--ambiguity-score" type="float" value="0.99" min="0.8" max="1.0" label="Score S for defining equally good alignments of a single contig" help="All alignments are sorted by decreasing LEN × IDY% value. All alignments with LEN × IDY% less than S × best(LEN × IDY%) are discarded. "/>
             <param argument="--fragmented" type="boolean" truevalue="--fragmented" falsevalue="" checked="false" label="Fragmented reference genome" help="Reference genome is fragmented (e.g. a scaffold reference). QUAST will try to detect misassemblies caused by the fragmentation and mark them fake (will be excluded from misassemblies). Note: QUAST will not detect misassemblies caused by the linear representation of circular genome "/>
-            <param argument="--upper-bound-assembly" type="boolean" truevalue="--upper-bound-assembly" falsevalue="" label="Simulate upper bound assembly" help="Simulate upper bound assembly based on the reference genome and a given set reads (mate-pairs or long reads, such as Pacbio SMRT/Oxford Nanopore, are REQUIRED). This assembly is added to the comparison and could be useful for estimating the upper bounds of completeness and contiguity that theoretically can be reached by assembly software from this particular set of reads. The concept is based on the fact that the reference genome cannot be completely reconstructed from raw reads due to long genomic repeats and low covered regions." />
+            <param argument="--upper-bound-assembly" type="boolean" truevalue="--upper-bound-assembly" falsevalue="" label="Simulate upper bound assembly" help="Simulate upper bound assembly based on the reference genome and a given set reads (mate-pairs or long reads, such as Pacbio SMRT/Oxford Nanopore, are REQUIRED). This assembly is added to the comparison and could be useful for estimating the upper bounds of completeness and contiguity that theoretically can be reached by assembly software from this particular set of reads. The concept is based on the fact that the reference genome cannot be completely reconstructed from raw reads due to long genomic repeats and low covered regions."/>
             <param argument="--upper-bound-min-con" type="integer" value="" optional="true" label="Minimal number of 'connecting reads' needed for joining upper bound contigs into a scaffold" help="This is important for a realistic estimation of genome assembly fragmentation due to long repeats. The default values is 2 for mate-pairs and 1 for long reads (PacBio or Nanopore libraries)"/>
             <param argument="--local-mis-size" type="integer" value="200" optional="true" label="Minimal local misassembly size" help="Lower threshold for the local misassembly size. Shorter inconsistencies are considered as (long) indels. The default value is 200 bp. Note that the threshold should be equal to or lower than minimal extensive misassembly size, which is 1000 bp by default"/>
         </section>
@@ -455,9 +455,9 @@ metaquast
             <param argument="--scaffold-gap-max-size" type="integer" value="10000" label="Max allowed scaffold gap length difference for detecting corresponding type of misassemblies" help="Longer inconsistencies are considered as relocations and thus, counted as extensive misassemblies. The default value is 10000 bp. Note that the threshold make sense only if it is greater than extensive misassembly size"/>
             <param argument="--unaligned-part-size" type="integer" value="500" label="Lower threshold for detecting partially unaligned contigs" help=""/>
             <param argument="--skip-unaligned-mis-contigs" type="boolean" truevalue="" falsevalue="--skip-unaligned-mis-contigs" checked="true" label="Distinguish contigs with more than 50% unaligned bases as a separate group of contigs?" help="By default, QUAST breaks contigs only at extensive misassemblies (not local ones)."/>
-            <param argument="--fragmented-max-indent" type="integer" min="0" value="" optional="true" label="Fragment max indent" help="Mark translocation as fake if both alignments are located no further than N bases from the ends of the reference fragments. The value should be less than extensive misassembly size.Default value is 50. Note: requires --fragmented option" />
-            <param argument="--report-all-metrics" type="boolean" truevalue="--report-all-metrics" falsevalue="" checked="false" label="Report all metrics" help="Keep all quality metrics in the main report. Usually, all not-relevant metrics are not included in the report, e.g., reference-based metrics in the no-reference mode. Also, if metric values are undefined for all input assemblies, the metric is removed from the report" />
-            <param argument="--x-for-Nx" type="integer" min="0" max="100" value="90" label="Report Nx, Lx, etc metrics for specific value of 'x'" help="Value of 'x' for Nx, Lx, NGx, NGAx, etc metrics reported in addition to N50, L50, NG50, NGA50, etc" />
+            <param argument="--fragmented-max-indent" type="integer" min="0" value="" optional="true" label="Fragment max indent" help="Mark translocation as fake if both alignments are located no further than N bases from the ends of the reference fragments. The value should be less than extensive misassembly size.Default value is 50. Note: requires --fragmented option"/>
+            <param argument="--report-all-metrics" type="boolean" truevalue="--report-all-metrics" falsevalue="" checked="false" label="Report all metrics" help="Keep all quality metrics in the main report. Usually, all not-relevant metrics are not included in the report, e.g., reference-based metrics in the no-reference mode. Also, if metric values are undefined for all input assemblies, the metric is removed from the report"/>
+            <param argument="--x-for-Nx" type="integer" min="0" max="100" value="90" label="Report Nx, Lx, etc metrics for specific value of 'x'" help="Value of 'x' for Nx, Lx, NGx, NGAx, etc metrics reported in addition to N50, L50, NG50, NGA50, etc"/>
         </section>
         <param name="output_files" type="select" display="checkboxes" optional="true" multiple="true" label="Output files">
             <option value="html" selected="true">HTML reports</option>
@@ -478,7 +478,7 @@ metaquast
         <data name="report_html" format="html" label="${tool.name} on ${on_string}: HTML report" from_work_dir="outputdir/report.html">
             <filter>assembly['type'] == 'genome' and 'html' in output_files</filter>
         </data>
-        <data name="report_html_meta" format="html" label="${tool.name} on ${on_string}: HTML report for combined reference genome"  from_work_dir="outputdir/combined_reference/report.html">
+        <data name="report_html_meta" format="html" label="${tool.name} on ${on_string}: HTML report for combined reference genome" from_work_dir="outputdir/combined_reference/report.html">
             <filter>assembly['type'] == 'metagenome' and 'html' in output_files</filter>
         </data>
         <data name="report_pdf" format="pdf" label="${tool.name} on ${on_string}:  PDF report" from_work_dir="outputdir/report.pdf">
@@ -505,11 +505,11 @@ metaquast
         <data name="circos_output" format="png" from_work_dir="outputdir/circos/circos.png" label="${tool.name} on ${on_string}: Circos plot">
             <filter>assembly['type'] == 'genome' and assembly['ref']['use_ref'] == 'true' and assembly['ref']['circos']</filter>
         </data>
-        <collection name="metrics_tabular" type="list" label="${tool.name} on ${on_string}: Tabular reports for key metrics" >
+        <collection name="metrics_tabular" type="list" label="${tool.name} on ${on_string}: Tabular reports for key metrics">
             <discover_datasets pattern="(?P&lt;designation&gt;.+).tsv" directory="outputdir/summary/TSV/" format="tabular"/>
             <filter>assembly['type'] == 'metagenome' and 'summary' in output_files</filter>
         </collection>
-        <collection name="metrics_pdf" type="list" label="${tool.name} on ${on_string}: PDF reports for key metrics" >
+        <collection name="metrics_pdf" type="list" label="${tool.name} on ${on_string}: PDF reports for key metrics">
             <discover_datasets pattern="(?P&lt;designation&gt;.+).pdf" directory="outputdir/summary/PDF/" format="pdf"/>
             <filter>assembly['type'] == 'metagenome' and 'summary' in output_files</filter>
         </collection>
@@ -543,7 +543,7 @@ metaquast
                     <param name="operons" value="operons.bed"/>
                     <conditional name="k_mer">
                         <param name="k_mer_stats" value="--k-mer-stats"/>
-                        <param name="k_mer_size" value="101" />
+                        <param name="k_mer_size" value="101"/>
                     </conditional>
                     <param name="circos" value="true"/>
                 </conditional>
@@ -604,7 +604,7 @@ metaquast
                     <param name="operons" value="operons.bed"/>
                     <conditional name="k_mer">
                         <param name="k_mer_stats" value="--k-mer-stats"/>
-                        <param name="k_mer_size" value="101" />
+                        <param name="k_mer_size" value="101"/>
                     </conditional>
                     <param name="circos" value="true"/>
                 </conditional>
@@ -661,7 +661,7 @@ metaquast
                 <param name="unaligned_part_size" value="500"/>
                 <param name="skip_unaligned_mis_contigs" value="-"/>
             </section>
-            <param name="output_files" value="html,pdf,log" />
+            <param name="output_files" value="html,pdf,log"/>
             <output name="log" file="test3.log" ftype="txt" compare="sim_size"/>
             <output name="report_html" file="test3_report.html" compare="sim_size"/>
             <output name="report_pdf" file="test3_report.pdf" compare="sim_size"/>
@@ -711,12 +711,12 @@ metaquast
             <param name="output_files" value="log,html,tabular"/>
             <output name="log_meta" ftype="txt">
                 <assert_contents>
-                    <has_text text="Reference genomes are not found" />
+                    <has_text text="Reference genomes are not found"/>
                 </assert_contents>
             </output>
             <output name="report_tabular_meta" ftype="tabular">
                 <assert_contents>
-                    <has_text text="# contigs (>= 0 bp)"/>
+                    <has_text text="# contigs (&gt;= 0 bp)"/>
                     <has_text text="contigs3_fasta"/>
                     <has_text text="# N's per 100 kbp"/>
                     <has_n_lines n="17"/>
@@ -724,9 +724,9 @@ metaquast
             </output>
             <output name="report_html_meta" ftype="html">
                 <assert_contents>
-                    <has_text text="Quality Assessment Tool for Genome Assemblies" />
-                    <has_text text="contigs3_fasta" />
-                    <has_text text="Statistics without reference" />
+                    <has_text text="Quality Assessment Tool for Genome Assemblies"/>
+                    <has_text text="contigs3_fasta"/>
+                    <has_text text="Statistics without reference"/>
                 </assert_contents>
             </output>
         </test>
@@ -765,7 +765,7 @@ metaquast
             <output name="report_tabular" file="test5.tab" ftype="tabular"/>
             <output name="mis_ass" ftype="tabular">
                 <assert_contents>
-                    <has_text text="All statistics are based on contigs of size >= 500 bp"/>
+                    <has_text text="All statistics are based on contigs of size &gt;= 500 bp"/>
                     <has_text text="# scaffold misassemblies"/>
                     <has_text text="contig1"/>
                 </assert_contents>
@@ -874,7 +874,7 @@ metaquast
             <param name="output_files" value="tabular,summary"/>
             <output name="report_tabular_meta" ftype="tabular">
                 <assert_contents>
-                    <has_text text="# contigs (>= 0 bp)"/>
+                    <has_text text="# contigs (&gt;= 0 bp)"/>
                     <has_text text="meta_ref_3_fasta"/>
                     <has_text text="# N's per 100 kbp"/>
                     <has_n_lines n="34"/>
@@ -934,15 +934,15 @@ metaquast
             <param name="output_files" value="html,log"/>
             <output name="report_html_meta" ftype="html">
                 <assert_contents>
-                    <has_text text="meta_contigs_2_fasta" />
-                    <has_text text="combined_reference" />
-                    <has_text text="Lactobacillus" />
+                    <has_text text="meta_contigs_2_fasta"/>
+                    <has_text text="combined_reference"/>
+                    <has_text text="Lactobacillus"/>
                 </assert_contents>
             </output>
-			<output name="log_meta" ftype="txt">
+            <output name="log_meta" ftype="txt">
                 <assert_contents>
-                    <has_text text="List of references was provided, starting to download reference genomes from NCBI" />
-                    <has_text text="Lactobacillus_delbrueckii_bulgaricus" />
+                    <has_text text="List of references was provided, starting to download reference genomes from NCBI"/>
+                    <has_text text="Lactobacillus_delbrueckii_bulgaricus"/>
                 </assert_contents>
             </output>
         </test>
@@ -1002,7 +1002,7 @@ metaquast
             <param name="output_files" value="tabular"/>
             <output name="report_tabular" ftype="tabular">
                 <assert_contents>
-                    <has_text text="# contigs (>= 0 bp)"/>
+                    <has_text text="# contigs (&gt;= 0 bp)"/>
                     <has_text text="contig1"/>
                     <has_text text="# N's per 100 kbp"/>
                     <has_n_lines n="30"/>
@@ -1037,7 +1037,7 @@ metaquast
             <param name="output_files" value="tabular"/>
             <output name="report_tabular" ftype="tabular">
                 <assert_contents>
-                    <has_text text="# contigs (>= 0 bp)"/>
+                    <has_text text="# contigs (&gt;= 0 bp)"/>
                     <has_text text="contig1"/>
                     <has_text text="# N's per 100 kbp"/>
                     <has_n_lines n="23"/>
@@ -1081,7 +1081,7 @@ metaquast
             <param name="output_files" value="tabular"/>
             <output name="report_tabular" ftype="tabular">
                 <assert_contents>
-                    <has_text text="# contigs (>= 0 bp)"/>
+                    <has_text text="# contigs (&gt;= 0 bp)"/>
                     <has_text text="contigs1"/>
                     <has_text text="# N's per 100 kbp"/>
                     <has_n_lines n="30"/>

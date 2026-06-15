@@ -25,12 +25,12 @@
     ]]></command>
     <inputs>
         <param name="input" type="data" format="fasta,fasta.gz" label="Input assembly" help="FASTA assembly to analyse"/>
-        <param argument="--full_sequence" type="boolean" truevalue="--full_sequence" falsevalue="" checked="false" label="Write the full input sequence to the GenBank output" />
+        <param argument="--full_sequence" type="boolean" truevalue="--full_sequence" falsevalue="" checked="false" label="Write the full input sequence to the GenBank output"/>
         <section name="search" title="Search parameters" expanded="false">
-            <param argument="--gene_coverage" type="float" value="0.8" min="0" max="1" label="Minimum gene coverage" />
-            <param argument="--gene_identity" type="float" value="0.7" min="0" max="1" label="Minimum gene identity" />
-            <param argument="--broken_gene_length" type="integer" value="60" min="1" label="Minimum broken gene length" />
-            <param argument="--broken_gene_identity" type="float" value="0.8" min="0" max="1" label="Minimum broken gene identity" />
+            <param argument="--gene_coverage" type="float" value="0.8" min="0" max="1" label="Minimum gene coverage"/>
+            <param argument="--gene_identity" type="float" value="0.7" min="0" max="1" label="Minimum gene identity"/>
+            <param argument="--broken_gene_length" type="integer" value="60" min="1" label="Minimum broken gene length"/>
+            <param argument="--broken_gene_identity" type="float" value="0.8" min="0" max="1" label="Minimum broken gene identity"/>
         </section>
     </inputs>
     <outputs>

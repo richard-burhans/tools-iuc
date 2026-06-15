@@ -42,7 +42,7 @@ python '${__tool_directory__}/detect_circular_sequences.py'
             <param name="verbose" value="3"/>
             <output name="fasta_out">
                 <assert_contents>
-                    <has_text text=">SRR17300492_25544"/>
+                    <has_text text="&gt;SRR17300492_25544"/>
                     <has_text text="GCGATCCAACTGAACCGGATCTAGAGCCGTGGGGTCAACCGC"/>
                 </assert_contents>
             </output>

@@ -64,13 +64,12 @@ tail -n +1 *.csv | sed "s/\,/\\t/g" > scoary_output.tsv
     <inputs>
         <param name="input_traits" argument="-t" type="data" format="csv" label="Trait table"/>
         <param name="input_genes" argument="-g" type="data" format="csv" label="Gene Presence/Absence table from ROARY (default output)"/>
-        <param name="input_restricts" optional="true" argument="-r" type="data" format="tabular" label="Table to analyze a subset of strains" />
-
+        <param name="input_restricts" optional="true" argument="-r" type="data" format="tabular" label="Table to analyze a subset of strains"/>
         <!-- Additional Options -->
         <section name="additional_options" title="Additional Options">
             <repeat name="series_pc" title="P-value cutoff(s) and Correction(s)">
                 <param name="pvalue" argument="-p" type="float" min="0" max="1.0" value="0.05" label="P-value cutoff for one Trait" help="SCOARY will not report genes with higher p-values than this (Default=1.0=All). Provide a single value (applied to all) or exactly as many values as correction criteria and in corresponding order (e.g., 0.05 0.05 for two traits)."/>
-                <param name="correction" argument="-c" type="select" label="P-value correction" help="Apply the p-value corrections to the p-value cutoffs you have entered (Default = Individual p-value)." >
+                <param name="correction" argument="-c" type="select" label="P-value correction" help="Apply the p-value corrections to the p-value cutoffs you have entered (Default = Individual p-value).">
                     <option value="I" selected="true">Individual (naive) p-value</option>
                     <option value="B">Bonferroni adjusted p-value</option>
                     <option value="BH">Benjamini-Hochberg adjusted p</option>
@@ -79,29 +78,28 @@ tail -n +1 *.csv | sed "s/\,/\\t/g" > scoary_output.tsv
                     <option value="P">Empirical p-value from permutations</option>
                 </param>
             </repeat>
-            <param name="permute" argument="-e" type="integer" min="0" value="0" label="Permutations" help="Perform N number of permutations of the significant results post-analysis. (Default = 0 = None)" />
-            <param name="maxhits" argument="-m" type="integer" min="0" value="0" label="Maximal number of hits to report" help="SCOARY will only report the top max hits results per trait. (Default = 0 = All)" />
+            <param name="permute" argument="-e" type="integer" min="0" value="0" label="Permutations" help="Perform N number of permutations of the significant results post-analysis. (Default = 0 = None)"/>
+            <param name="maxhits" argument="-m" type="integer" min="0" value="0" label="Maximal number of hits to report" help="SCOARY will only report the top max hits results per trait. (Default = 0 = All)"/>
             <param argument="--collapse" type="boolean" checked="false" truevalue="--collapse" falsevalue="" label="Collapse correlated genes" help="Collapse correlated genes (genes that have identical distribution patterns in the sample) into merged units. (Default=false)"/>
-            <param name="input_newicktree" optional="true" argument="-n" type="data" format="newick" label="Supply a custom tree (Newick format) for phylogenetic analyses instead instead of calculating it internally." />
+            <param name="input_newicktree" optional="true" argument="-n" type="data" format="newick" label="Supply a custom tree (Newick format) for phylogenetic analyses instead instead of calculating it internally."/>
         </section>
-
         <!-- Output Options -->
         <section name="output_options" title="Output Options" expanded="true">
             <param name="upgma" argument="-u" type="boolean" checked="false" truevalue="-u" falsevalue="" label="UPGMA tree" help="Calculate UPGMA tree to a newick file."/>
         </section>
     </inputs>
     <outputs>
-        <data name="out_tabular" format="tabular" from_work_dir="scoary_output.tsv" label="${tool.name} on ${on_string}: Table" />
+        <data name="out_tabular" format="tabular" from_work_dir="scoary_output.tsv" label="${tool.name} on ${on_string}: Table"/>
         <data name="out_newick" format="newick" from_work_dir="scoary_output.nwk" label="${tool.name} on ${on_string}: Tree">
             <filter>(output_options['upgma'] is True)</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input_traits" ftype="csv" value="Tetracycline_resistance.csv" />
-            <param name="input_genes" ftype="csv" value="Gene_presence_absence.csv" />
+            <param name="input_traits" ftype="csv" value="Tetracycline_resistance.csv"/>
+            <param name="input_genes" ftype="csv" value="Gene_presence_absence.csv"/>
             <section name="output_options">
-                <param name="upgma" value="false" />
+                <param name="upgma" value="false"/>
             </section>
             <section name="additional_options">
                 <repeat name="series_pc">
@@ -111,17 +109,17 @@ tail -n +1 *.csv | sed "s/\,/\\t/g" > scoary_output.tsv
             </section>
             <output name="out_tabular" file="scoary_output.tsv" ftype="tabular" sort="true">
                 <assert_contents>
-                    <has_n_lines n="573" />
-                    <has_line line="==&gt; Bogus_trait.results.csv &lt;==" />
-                    <has_line line="==&gt; Tetracycline_resistance.results.csv &lt;==" />
+                    <has_n_lines n="573"/>
+                    <has_line line="==&gt; Bogus_trait.results.csv &lt;=="/>
+                    <has_line line="==&gt; Tetracycline_resistance.results.csv &lt;=="/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
-            <param name="input_traits" ftype="csv" value="Tetracycline_resistance.csv" />
-            <param name="input_genes" ftype="csv" value="Gene_presence_absence.csv" />
+            <param name="input_traits" ftype="csv" value="Tetracycline_resistance.csv"/>
+            <param name="input_genes" ftype="csv" value="Gene_presence_absence.csv"/>
             <section name="output_options">
-                <param name="upgma" value="true" />
+                <param name="upgma" value="true"/>
             </section>
             <section name="additional_options">
                 <repeat name="series_pc">
@@ -135,15 +133,14 @@ tail -n +1 *.csv | sed "s/\,/\\t/g" > scoary_output.tsv
             </section>
             <output name="out_tabular" file="scoary_output_2.tsv" ftype="tabular" sort="true">
                 <assert_contents>
-                    <has_n_lines n="27" />
-                    <has_line line="==&gt; Bogus_trait.results.csv &lt;==" />
-                    <has_line line="==&gt; Tetracycline_resistance.results.csv &lt;==" />
+                    <has_n_lines n="27"/>
+                    <has_line line="==&gt; Bogus_trait.results.csv &lt;=="/>
+                    <has_line line="==&gt; Tetracycline_resistance.results.csv &lt;=="/>
                 </assert_contents>
             </output>
-            <output name="out_newick" file="scoary_output_2.nwk" ftype="newick" />
+            <output name="out_newick" file="scoary_output_2.nwk" ftype="newick"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 .. class:: infomark
@@ -226,6 +223,6 @@ Author: Florian Heyl
 
 	]]></help>
     <citations>
-	   <citation type="doi">10.1038/s41467-020-15171-6</citation>
+        <citation type="doi">10.1038/s41467-020-15171-6</citation>
     </citations>
 </tool>

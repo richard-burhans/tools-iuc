@@ -4,8 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
 #for $counter, $report in enumerate($reports):
     #if $report.is_of_type('tsv', 'tabular'):
@@ -41,39 +41,39 @@ hamronize
     <tests>
         <!-- tsv output -->
         <test expect_num_outputs="1">
-            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json" />
-            <param name="summary_type" value="tsv" />
+            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json"/>
+            <param name="summary_type" value="tsv"/>
             <output name="output" ftype="tabular">
                 <assert_contents>
                     <has_n_lines n="155"/>
                     <has_n_columns n="37"/>
-                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic" />
-                    <has_text text="ariba_report" />
-                    <has_text text="rgi_report" />
+                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic"/>
+                    <has_text text="ariba_report"/>
+                    <has_text text="rgi_report"/>
                 </assert_contents>
             </output>
         </test>
         <!-- json output -->
         <test expect_num_outputs="1">
-            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json" />
-            <param name="summary_type" value="json" />
+            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json"/>
+            <param name="summary_type" value="json"/>
             <output name="output" ftype="json">
                 <assert_contents>
-                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic" />
-                    <has_text text="ariba_report" />
-                    <has_text text="rgi_report" />
+                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic"/>
+                    <has_text text="ariba_report"/>
+                    <has_text text="rgi_report"/>
                 </assert_contents>
             </output>
         </test>
         <!-- html output -->
         <test expect_num_outputs="1">
-            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json" />
-            <param name="summary_type" value="interactive" />
+            <param name="reports" value="hamronized_abricate.tsv,hamronized_abricate.json,hamronized_ariba.tsv,hamronized_ariba.json,hamronized_rgi.tsv,hamronized_rgi.json"/>
+            <param name="summary_type" value="interactive"/>
             <output name="output" ftype="html">
                 <assert_contents>
-                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic" />
-                    <has_text text="ariba_report" />
-                    <has_text text="rgi_report" />
+                    <has_text text="GCF_010120755.1_ASM1012075v1_genomic"/>
+                    <has_text text="ariba_report"/>
+                    <has_text text="rgi_report"/>
                 </assert_contents>
             </output>
         </test>

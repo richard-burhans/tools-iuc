@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <tool id="mut2read" name="DCS mutations to tags/reads:" version="2.0.0" profile="19.01">
     <description>Extracts all tags that carry a mutation in the duplex consensus sequence (DCS)</description>
     <macros>
@@ -61,5 +60,5 @@ in the DCS and a fastq file of all reads of these tags.
 
     ]]> 
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

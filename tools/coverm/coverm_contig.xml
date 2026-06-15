@@ -110,7 +110,7 @@ coverm
                     <expand macro="assembly_mode"/>
                     <when value="individual">
                         <expand macro="individual_assembly_reads"/>
-                        <expand macro="individual_assembly_reference"/> 
+                        <expand macro="individual_assembly_reference"/>
                     </when>
                     <when value="co">
                         <expand macro="co_assembly_reads"/>
@@ -139,7 +139,7 @@ coverm
     <tests>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <conditional name="read_type">
@@ -155,14 +155,14 @@ coverm
                             </collection>
                         </param>
                     </conditional>
-                    <param name="reference" value="7seqs.fna" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="7seqs.fna"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs_only" value=""/>
                 </conditional>
@@ -188,7 +188,7 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="individual"/>
                     <conditional name="read_type">
@@ -196,14 +196,14 @@ coverm
                         <param name="read1" value="reads_for_seq1_and_seq2.1.fq.gz" ftype="fastqsanger.gz"/>
                         <param name="read2" value="reads_for_seq1_and_seq2.2.fq.gz" ftype="fastqsanger.gz"/>
                     </conditional>
-                    <param name="reference" value="7seqs.fna" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="7seqs.fna"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs_only" value=""/>
                 </conditional>
@@ -229,7 +229,7 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="individual"/>
                     <conditional name="read_type">
@@ -241,14 +241,14 @@ coverm
                             </collection>
                         </param>
                     </conditional>
-                    <param name="reference" value="7seqs.fna" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="7seqs.fna"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs_only" value=""/>
                 </conditional>
@@ -274,21 +274,21 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <conditional name="read_type">
                         <param name="type" value="single"/>
                         <param name="single" value="bad_reads.interleaved.fq"/>
                     </conditional>
-                    <param name="reference" value="2seqs.fasta" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="2seqs.fasta"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs_only" value=""/>
                 </conditional>
@@ -314,21 +314,21 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <conditional name="read_type">
                         <param name="type" value="interleaved"/>
                         <param name="interleaved" value="bad_reads.all.interleaved.fa"/>
                     </conditional>
-                    <param name="reference" value="2seqs.fasta" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="2seqs.fasta"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs_only" value=""/>
                 </conditional>
@@ -355,7 +355,7 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="not-mapped" />
+                <param name="mapped" value="not-mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <conditional name="read_type">
@@ -378,14 +378,14 @@ coverm
                             </param>
                         </conditional>
                     </repeat>
-                    <param name="reference" value="2seqs.fasta" />
-                    <param name="sharded" value="" />
+                    <param name="reference" value="2seqs.fasta"/>
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0.95" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0.95"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs-only" value=""/>
                 </conditional>
@@ -413,17 +413,17 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="mapped" />
+                <param name="mapped" value="mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <param name="bam_files" value="tpm_test.bam"/>
-                    <param name="sharded" value="" />
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0.95" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0.95"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs-only" value=""/>
                 </conditional>
@@ -452,17 +452,17 @@ coverm
         </test>
         <test expect_num_outputs="1">
             <conditional name="mapped">
-                <param name="mapped" value="mapped" />
+                <param name="mapped" value="mapped"/>
                 <conditional name="mode">
                     <param name="mode" value="co"/>
                     <param name="bam_files" value="tpm_test.bam"/>
-                    <param name="sharded" value="" />
+                    <param name="sharded" value=""/>
                 </conditional>
             </conditional>
             <section name="alignment">
-                <param name="min_read_aligned_length" value="0" />
-                <param name="min_read_percent_identity" value="0.95" />
-                <param name="min_read_aligned_percent" value="0" />
+                <param name="min_read_aligned_length" value="0"/>
+                <param name="min_read_percent_identity" value="0.95"/>
+                <param name="min_read_aligned_percent" value="0"/>
                 <conditional name="proper_pairs_only">
                     <param name="proper_pairs-only" value=""/>
                 </conditional>

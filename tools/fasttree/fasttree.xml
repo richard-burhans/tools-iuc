@@ -57,40 +57,38 @@ $model_selector.model
             </param>
             <when value="fasta">
                 <param format="fasta" name="input" type="data" multiple="false" label="FASTA file"/>
-                <param argument="-quote" type="boolean" truevalue="-quote" falsevalue="" checked="false" label="Allow spaces and other restricted characters (but not ') in sequence and quote names in the output tree." help="This tool is only available for fasta input only; FastTree will not be able to read these trees back in." />
+                <param argument="-quote" type="boolean" truevalue="-quote" falsevalue="" checked="false" label="Allow spaces and other restricted characters (but not ') in sequence and quote names in the output tree." help="This tool is only available for fasta input only; FastTree will not be able to read these trees back in."/>
                 <conditional name="intree_selector">
                     <param name="intree_format" type="select" label="Set starting tree(s)">
                         <option value="none" selected="true">No starting trees</option>
                         <option value="one">Use starting tree</option>
                     </param>
-                    <when value="none">
-                    </when>
+                    <when value="none"/>
                     <when value="one">
-                        <param format="nhx" name="start_tree" type="data" label="Newick file" />
+                        <param format="nhx" name="start_tree" type="data" label="Newick file"/>
                     </when>
                 </conditional>
             </when>
             <when value="phylip">
-                <param format="phylip" name="input" type="data" label="PHYLIP file" />
-                <param name="num" type="integer" value="1" optional="true" label="Number of multiple alignments" />
+                <param format="phylip" name="input" type="data" label="PHYLIP file"/>
+                <param name="num" type="integer" value="1" optional="true" label="Number of multiple alignments"/>
                 <conditional name="intree_selector">
                     <param name="intree_format" type="select" label="Set starting tree(s)">
                         <option value="none" selected="true">No starting trees</option>
                         <option value="one">One tree for multiple alignments</option>
                         <option value="many">Multiple trees for multiple alignments</option>
                     </param>
-                    <when value="none">
-                    </when>
+                    <when value="none"/>
                     <when value="one">
-                        <param format="nhx" name="start_tree" type="data" multiple="false" label="Newick file" />
+                        <param format="nhx" name="start_tree" type="data" multiple="false" label="Newick file"/>
                     </when>
                     <when value="many">
-                        <param format="nhx" name="start_tree" type="data" label="Newick file" multiple="false" help="The tree produced by the full alignment to be used as a starting point for each bootstrapping replicate. This will save considerable computation time." />
+                        <param format="nhx" name="start_tree" type="data" label="Newick file" multiple="false" help="The tree produced by the full alignment to be used as a starting point for each bootstrapping replicate. This will save considerable computation time."/>
                     </when>
                 </conditional>
             </when>
         </conditional>
-        <param name="save_logfile" type="boolean" checked="false" label="Save log file output" />
+        <param name="save_logfile" type="boolean" checked="false" label="Save log file output"/>
         <conditional name="model_selector">
             <param name="format" type="select" label="Protein or nucleotide alignment" help="Specify if the aligned sequences are nucleotide or protein sequences">
                 <option value="-nt">Nucleotide</option>
@@ -115,8 +113,7 @@ $model_selector.model
                 <option value="min" selected="true">No</option>
                 <option value="max">Yes</option>
             </param>
-            <when value="min">
-            </when>
+            <when value="min"/>
             <when value="max">
                 <conditional name="cat_selector">
                     <param name="conrate" type="select" label="Use constant rates?">
@@ -124,42 +121,41 @@ $model_selector.model
                         <option value="yes">Use constant rates.</option>
                     </param>
                     <when value="no">
-                        <param name="ratecat" type="integer" value="20" label="Specify the number of rate categories of sites (default 20)" />
+                        <param name="ratecat" type="integer" value="20" label="Specify the number of rate categories of sites (default 20)"/>
                     </when>
-                    <when value="yes">
-                    </when>
+                    <when value="yes"/>
                 </conditional>
-                <param value="gamma" argument="-gamma" type="boolean" truevalue="-gamma" falsevalue="" checked="false" label="Use Gamma20" help="After optimizing the tree under the CAT approximation, rescale the lengths to optimize the Gamma20 likelihood." />
+                <param value="gamma" argument="-gamma" type="boolean" truevalue="-gamma" falsevalue="" checked="false" label="Use Gamma20" help="After optimizing the tree under the CAT approximation, rescale the lengths to optimize the Gamma20 likelihood."/>
                 <param value="nosupport" argument="-nosupport" type="boolean" truevalue="-nosupport" falsevalue="" checked="false" label="Eliminates the support value computation. Support value computation is not recommended for wide alignments."/>
-                <param name="likelihood" argument="-noml" type="boolean" truevalue="-noml" falsevalue="" checked="false" label = "Turn off maximum-likelihood." />
-                <param argument="-fastest" type="boolean" truevalue="-fastest" falsevalue="" checked="false" label="Speed up the neighbor joining phase and reduce memory usage (recommended for >50,000 sequences)" />
-                <param argument="-pseudo" type="boolean" truevalue="-pseudo" falsevalue="" checked="false" label="Use pseudocounts" help="Recommended for highly gapped/fragmentary sequences." />
-                <param argument="-mllen" type="boolean" truevalue="-mllen" falsevalue="" checked="false" label="Optimize branch lengths without ML NNIs." />
+                <param name="likelihood" argument="-noml" type="boolean" truevalue="-noml" falsevalue="" checked="false" label="Turn off maximum-likelihood."/>
+                <param argument="-fastest" type="boolean" truevalue="-fastest" falsevalue="" checked="false" label="Speed up the neighbor joining phase and reduce memory usage (recommended for &gt;50,000 sequences)"/>
+                <param argument="-pseudo" type="boolean" truevalue="-pseudo" falsevalue="" checked="false" label="Use pseudocounts" help="Recommended for highly gapped/fragmentary sequences."/>
+                <param argument="-mllen" type="boolean" truevalue="-mllen" falsevalue="" checked="false" label="Optimize branch lengths without ML NNIs."/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="output" format="nhx" label="${tool.name} on ${on_string}:tree.nhx" />
+        <data name="output" format="nhx" label="${tool.name} on ${on_string}:tree.nhx"/>
         <data name="log" format="txt" label="${tool.name} on ${on_string}:log_FastTree_run.txt">
             <filter>save_logfile</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
-            <param name="select_format" value="fasta" />
-            <param name="model" value="" />
-            <param name="input" value="aligned.fasta" />
-            <param name="format" value="-nt" />
-            <param name="save_logfile" value="true" />
-            <output name="output" file="tree.nhx" ftype="nhx" lines_diff="2" />
-            <output name="log" file="log.txt" ftype="txt" compare="contains" />
+            <param name="select_format" value="fasta"/>
+            <param name="model" value=""/>
+            <param name="input" value="aligned.fasta"/>
+            <param name="format" value="-nt"/>
+            <param name="save_logfile" value="true"/>
+            <output name="output" file="tree.nhx" ftype="nhx" lines_diff="2"/>
+            <output name="log" file="log.txt" ftype="txt" compare="contains"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="select_format" value="fasta" />
-            <param name="model" value="" />
-            <param name="input" value="aligned.fasta" />
-            <param name="format" value="-nt" />
-            <output name="output" file="tree.nhx" ftype="nhx" lines_diff="2" />
+            <param name="select_format" value="fasta"/>
+            <param name="model" value=""/>
+            <param name="input" value="aligned.fasta"/>
+            <param name="format" value="-nt"/>
+            <output name="output" file="tree.nhx" ftype="nhx" lines_diff="2"/>
         </test>
     </tests>
     <help>
@@ -257,6 +253,6 @@ FastTree_v2.1.10_
 ]]>
     </help>
     <citations>
-      <citation type="doi">10.1371/journal.pone.0009490</citation>
+        <citation type="doi">10.1371/journal.pone.0009490</citation>
     </citations>
 </tool>

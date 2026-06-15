@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <code file="get_meme_motif_databases.py" />
+    <expand macro="requirements"/>
+    <code file="get_meme_motif_databases.py"/>
     <command detect_errors="exit_code"><![CDATA[
 @CHECK_NON_COMMERCIAL_USE@
 #import os
@@ -149,7 +149,7 @@ $sequence_alphabet
                     <when value="no"/>
                 </conditional>
                 <param name="ccut" type="integer" optional="true" value="100" min="0" label="maximum size of a sequence before it is cut down to a centered section" help="Zero value indicates the sequences should not be cut down"/>
-                <param name="group_threash" type="float" value="0.05" min="0" label="Primary threshold for clustering motifs" />
+                <param name="group_threash" type="float" value="0.05" min="0" label="Primary threshold for clustering motifs"/>
                 <param name="group_weak" type="float" optional="true" value="0" min="0" label="Secondary threshold for clustering motifs" help="Zero value results in 2*primary threshold"/>
                 <param name="filter_thresh" type="float" value="0.05" min="0" label="E-value threshold for including motifs"/>
                 <param name="search_given_strand" type="boolean" truevalue="-norc" falsevalue="" checked="False" label="Search given strand only"/>
@@ -166,7 +166,7 @@ $sequence_alphabet
                 <param name="meme_maxsites" type="integer" optional="true" value="0" label="Maximum number of sites per motif"/>
                 <param argument="-meme_pal" type="boolean" truevalue="-meme-pal" falsevalue="" checked="False" label="Look for palindromes only"/>
                 <param name="dreme_e" type="float" value="0.05" min="0" label="Stop DREME searching after reaching this E-value threshold"/>
-                <param name="dreme_m" type="integer" value="10" min="1" label="Stop DREME searching after finding this many motifs" />
+                <param name="dreme_m" type="integer" value="10" min="1" label="Stop DREME searching after finding this many motifs"/>
             </when>
         </conditional>
         <param name="non_commercial_use" label="I certify that I am not using this tool for commercial purposes." type="boolean" truevalue="NON_COMMERCIAL_USE" falsevalue="COMMERCIAL_USE" checked="False">
@@ -191,7 +191,7 @@ $sequence_alphabet
             <output name="output" file="output1.html" ftype="html" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 .. class:: warningmark
 
 **WARNING: This tool is only available for non-commercial use. Use for educational, research and non-profit purposes is permitted.
@@ -216,9 +216,8 @@ For detailed information on MEME, click here_, or view the license_.
 .. _here: http://meme-suite.org/doc/meme.html?man_type=web
 .. _license: http://meme-suite.org/doc/copyright.html?man_type=web
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btr189</citation>
     </citations>
 </tool>
-

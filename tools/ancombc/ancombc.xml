@@ -1,5 +1,5 @@
 <tool id="ancombc" name="ANCOM-BC" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-  <description>differential abundance analysis</description>
+    <description>differential abundance analysis</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -145,7 +145,7 @@ Rscript '${__tool_directory__}/ancombc.R'
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Performs a differential abundance analysis for microbiome data. Microbiome data are typically subject
@@ -170,7 +170,6 @@ The tool produces a collection consisting of the following items.
  * **res_qval** - a table of adjusted p-values obtained by applying p_adj_method to p_val
  * **res_diff_abn** - a table of logical values; TRUE if the taxon has q_val less than alpha
  * **res_global** - a table containing the ANCOM-BC global test result for the variable specified in the group
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

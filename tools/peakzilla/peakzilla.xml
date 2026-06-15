@@ -9,10 +9,8 @@
         <requirement type="package" version="@TOOL_VERSION@">peakzilla</requirement>
     </requirements>
     <stdio>
-      <exit_code range="1:" level="fatal" description="Generic error"/>
-      <regex match="ValueError: cannot convert float NaN to integer"
-             level="fatal"
-             description="No peaks detected or input data error"/>
+        <exit_code range="1:" level="fatal" description="Generic error"/>
+        <regex match="ValueError: cannot convert float NaN to integer" level="fatal" description="No peaks detected or input data error"/>
     </stdio>
     <command>
         <![CDATA[
@@ -71,26 +69,26 @@
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="chip_bed" value="chip.bed" />
-            <param name="input_bed" value="input.bed" />
+            <param name="chip_bed" value="chip.bed"/>
+            <param name="input_bed" value="input.bed"/>
             <output name="results" file="results_1.tsv">
                 <assert_contents>
-                    <has_text text="Peak_1" />
+                    <has_text text="Peak_1"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="3">
-            <param name="chip_bed" value="chip.bed" />
-            <param name="input_bed" value="input.bed" />
-            <param name="model_peaks" value="200" />
-            <param name="fragment_size" value="50" />
-            <param name="enrichment_cutoff" value="2" />
-            <param name="score_cutoff" value="1" />
-            <param name="log" value="true" />
-            <param name="negative" value="true" />
+            <param name="chip_bed" value="chip.bed"/>
+            <param name="input_bed" value="input.bed"/>
+            <param name="model_peaks" value="200"/>
+            <param name="fragment_size" value="50"/>
+            <param name="enrichment_cutoff" value="2"/>
+            <param name="score_cutoff" value="1"/>
+            <param name="log" value="true"/>
+            <param name="negative" value="true"/>
             <output name="results" file="results_2.tsv">
                 <assert_contents>
-                    <has_text text="Peak_1" />
+                    <has_text text="Peak_1"/>
                 </assert_contents>
             </output>
             <output name="log" file="log.txt" lines_diff="30">
@@ -100,7 +98,7 @@
             </output>
             <output name="negative_peaks" file="negative_peaks.tsv">
                 <assert_contents>
-                     <has_text text="Chromosome" />
+                    <has_text text="Chromosome"/>
                 </assert_contents>
             </output>
         </test>

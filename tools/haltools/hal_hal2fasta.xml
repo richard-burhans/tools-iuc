@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         hal2fasta
@@ -68,7 +68,7 @@
             <param name="refGenome" value="Genome_0"/>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">Genome_0_seq"/>
+                    <has_line line="&gt;Genome_0_seq"/>
                     <has_line line="CCCGTAACCCAATCCACGGTGCCGGCGGCGAGATGTATTGTCTGGGCGCAAAGCCATTTCGCCACCACATGCTGCGCGAC"/>
                     <has_n_lines n="23"/>
                 </assert_contents>
@@ -77,7 +77,7 @@
         <test expect_num_outputs="1">
             <param name="input_hal" value="halTest.hal"/>
             <param name="refGenome" value="Genome_0"/>
-             <conditional name="compression">
+            <conditional name="compression">
                 <param name="type" value="gz"/>
             </conditional>
             <output name="out_file" ftype="fasta.gz" file="hal2fasta_output.fasta.gz"/>
@@ -85,7 +85,7 @@
         <test expect_num_outputs="1">
             <param name="input_hal" value="halTest.hal"/>
             <param name="refGenome" value="Genome_0"/>
-             <conditional name="compression">
+            <conditional name="compression">
                 <param name="type" value="bz2"/>
             </conditional>
             <output name="out_file" ftype="fasta.bz2" file="hal2fasta_output.fasta.bz2"/>
@@ -97,7 +97,7 @@
             <param name="upper" value="true"/>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">Genome_0_seq"/>
+                    <has_line line="&gt;Genome_0_seq"/>
                     <has_line line="TGCCGCGCGTGAGGTTGACACTCCGTTCGTGTTACATGTC"/>
                     <has_n_lines n="45"/>
                 </assert_contents>
@@ -112,7 +112,7 @@
             </conditional>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">Genome_0_seq"/>
+                    <has_line line="&gt;Genome_0_seq"/>
                     <has_line line="CCCGTAACCCAATCCACGGTGCCGGCGGCGAGATGTATTGTCTGGGCGCAAAGCCATTTCGCCACCACATGCTGCGCGAC"/>
                     <has_n_lines n="23"/>
                 </assert_contents>
@@ -126,10 +126,10 @@
             </conditional>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">Genome_0_seq"/>
-                    <has_line line=">Genome_1_seq"/>
-                    <has_line line=">Genome_2_seq"/>
-                    <has_line line=">Genome_3_seq"/>
+                    <has_line line="&gt;Genome_0_seq"/>
+                    <has_line line="&gt;Genome_1_seq"/>
+                    <has_line line="&gt;Genome_2_seq"/>
+                    <has_line line="&gt;Genome_3_seq"/>
                     <has_line line="CCCGTAACCCAATCCACGGTGCCGGCGGCGAGATGTATTGTCTGGGCGCAAAGCCATTTCGCCACCACATGCTGCGCGAC"/>
                     <has_n_lines n="226"/>
                 </assert_contents>
@@ -147,7 +147,7 @@
             <param name="ucscSequenceNames" value="true"/>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">Genome_2.Genome_2_seq"/>
+                    <has_line line="&gt;Genome_2.Genome_2_seq"/>
                     <has_line line="GAGGTTGACA"/>
                     <has_n_lines n="2"/>
                 </assert_contents>

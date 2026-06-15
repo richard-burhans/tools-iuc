@@ -125,8 +125,7 @@ fi;
 #end if
     ]]></command>
     <inputs>
-        <param name="infile" argument="-s" type="data" format="fasta,phylip" label="Source file with aligned sequences"
-            help="At least four aligned genomes are needed for RAxML." />
+        <param name="infile" argument="-s" type="data" format="fasta,phylip" label="Source file with aligned sequences" help="At least four aligned genomes are needed for RAxML."/>
         <conditional name="search_model_selector">
             <param name="model_type" type="select" label="Model type">
                 <option value="nucleotide" selected="true">Nucleotide</option>
@@ -173,7 +172,7 @@ fi;
                     <option value="GTR_UNLINKED">GTR_UNLINKED</option>
                     <option value="GTR">GTR</option>
                 </param>
-                <param name="aa_model_empirical_base_frequencies" type="boolean" truevalue="F" falsevalue="" checked="no" display="checkboxes" label="Use empirical base frequencies in AA models" />
+                <param name="aa_model_empirical_base_frequencies" type="boolean" truevalue="F" falsevalue="" checked="no" display="checkboxes" label="Use empirical base frequencies in AA models"/>
             </when>
             <when value="binary">
                 <param name="base_model" type="select" label="Substitution model">
@@ -192,15 +191,13 @@ fi;
                 </param>
             </when>
         </conditional>
-        <param name="random_seed" argument="-p" type="integer" value="1234567890" label="Random seed used for the parsimony inferences" />
+        <param name="random_seed" argument="-p" type="integer" value="1234567890" label="Random seed used for the parsimony inferences"/>
         <conditional name="selExtraOpts">
-            <param name="extraOptions" type="select" label="RAxML options to use"
-                help="The required minimal settings are the input file and the
-                substitution model. To specify extra options select the 'Full option list'">
+            <param name="extraOptions" type="select" label="RAxML options to use" help="The required minimal settings are the input file and the                 substitution model. To specify extra options select the 'Full option list'">
                 <option value="required">Required options only</option>
                 <option value="full">Full option list</option>
             </param>
-            <when value="required" />
+            <when value="required"/>
             <when value="full">
                 <conditional name="number_of_runs_conditional">
                     <param name="number_of_runs_selector" type="select" label="Multiple boostrap specification">
@@ -208,8 +205,7 @@ fi;
                         <option value="by_bootstopping">By bootstopping criteria</option>
                     </param>
                     <when value="by_number_of_runs">
-                        <param name="number_of_runs" argument="-N" type="integer" value="1" label="Number of alternative runs on distinct starting trees"
-                            help="In combination with the '-b' option, this will invoke a multiple boostrap analysis" />
+                        <param name="number_of_runs" argument="-N" type="integer" value="1" label="Number of alternative runs on distinct starting trees" help="In combination with the '-b' option, this will invoke a multiple boostrap analysis"/>
                     </when>
                     <when value="by_bootstopping">
                         <param name="number_of_runs_bootstop" argument="-N" type="select" label="Bootstopping criteria" help="Bootstopping will only work in combination with '-x' or '-b'">
@@ -220,7 +216,7 @@ fi;
                         </param>
                     </when>
                 </conditional>
-                <param name="weightfile" argument="-a" type="data" format="txt" optional="true" label="Column weight file" />
+                <param name="weightfile" argument="-a" type="data" format="txt" optional="true" label="Column weight file"/>
                 <param name="secondary_structure_model" argument="-A" type="select" optional="true" label="Secondary structure substitution model">
                     <option value="S6A">S6A</option>
                     <option value="S6B">S6B</option>
@@ -237,21 +233,15 @@ fi;
                     <option value="S16A">S16A</option>
                     <option value="S16B">S16B</option>
                 </param>
-                <param name="bootseed" argument="-b" type="integer" value="" optional="true" label="Random seed for non-parametric bootstrapping"
-                    help="Specifying a value turns on bootstrapping" />
-                <param name="rapid_bootstrap_random_seed" argument="-x" type="integer" value="" optional="true" label="Random seed for rapid bootstrapping"
-                    help="Specifying a value turns on rapid bootstrapping. CAUTION: unlike in version 7.0.4 RAxML will conduct rapid BS replicates under the model of rate heterogeneity you specified via '-m' and not by default under CAT" />
-                <param name="cutoff_threshold" argument="-B" type="float" value="0.03" min="0" max="1" label="MR cutoff threshold"
-                    help="Cutoff threshold for the MR-based bootstopping criteria" />
-                <param name="numofcats" argument="-c" type="integer" value="25" label="Number of Rate Categories for GTRCAT/GTRMIX" />
+                <param name="bootseed" argument="-b" type="integer" value="" optional="true" label="Random seed for non-parametric bootstrapping" help="Specifying a value turns on bootstrapping"/>
+                <param name="rapid_bootstrap_random_seed" argument="-x" type="integer" value="" optional="true" label="Random seed for rapid bootstrapping" help="Specifying a value turns on rapid bootstrapping. CAUTION: unlike in version 7.0.4 RAxML will conduct rapid BS replicates under the model of rate heterogeneity you specified via '-m' and not by default under CAT"/>
+                <param name="cutoff_threshold" argument="-B" type="float" value="0.03" min="0" max="1" label="MR cutoff threshold" help="Cutoff threshold for the MR-based bootstopping criteria"/>
+                <param name="numofcats" argument="-c" type="integer" value="25" label="Number of Rate Categories for GTRCAT/GTRMIX"/>
                 <!-- (-C) Conduct model parameter optimization doesn't work in the pthreads version. Skip for now. -->
-                <param name="search_complete_random_tree" argument="-d" type="boolean" truevalue="-d" falsevalue=""
-                    label="Start ML optimization from a complete random starting tree" />
-                <param name="ml_search_convergence" argument="-D" type="boolean" truevalue="-D" falsevalue=""
-                    label="ML search convergence criterion" help="This will break off ML searches if the relative Robinson-Foulds distance between the trees obtained from two consecutive lazy SPR cycles is smaller or equal to 1%. Usage recommended for very large datasets in terms of taxa. On trees with more than 500 taxa this will yield execution time improvements of approximately 50% while yielding only slightly worse trees" />
-                <param name="model_opt_precision" argument="-e" type="float" label="Model optimization precision" value="" optional="true"
-                    help="Set model optimization precision in log likelihood units for final optimization of tree topology" />
-                <param name="excludefile" argument="-E" type="data" format="txt" optional="true" label="Exclude file" help="Should contain a specification of alignment positions you wish to exclude" />
+                <param name="search_complete_random_tree" argument="-d" type="boolean" truevalue="-d" falsevalue="" label="Start ML optimization from a complete random starting tree"/>
+                <param name="ml_search_convergence" argument="-D" type="boolean" truevalue="-D" falsevalue="" label="ML search convergence criterion" help="This will break off ML searches if the relative Robinson-Foulds distance between the trees obtained from two consecutive lazy SPR cycles is smaller or equal to 1%. Usage recommended for very large datasets in terms of taxa. On trees with more than 500 taxa this will yield execution time improvements of approximately 50% while yielding only slightly worse trees"/>
+                <param name="model_opt_precision" argument="-e" type="float" label="Model optimization precision" value="" optional="true" help="Set model optimization precision in log likelihood units for final optimization of tree topology"/>
+                <param name="excludefile" argument="-E" type="data" format="txt" optional="true" label="Exclude file" help="Should contain a specification of alignment positions you wish to exclude"/>
                 <param name="search_algorithm" argument="-f" type="select" label="Algorithm to execute" optional="true">
                     <option value="a">Rapid bootstrap and best ML tree search (a)</option>
                     <option value="A">Compute marginal ancestral states (A)</option>
@@ -280,14 +270,10 @@ fi;
                     <option value="x">Compute GAMMA model pair-wise ML distances on a tree (x)</option>
                     <option value="y">Classify environmental sequences into a reference tree (y)</option>
                 </param>
-                <param name="save_memory_cat_model" argument="-F" type="boolean" truevalue="-F" falsevalue=""
-                    label="ML tree searches under CAT model"
-                    help="ML tree searches under CAT model for very large trees without switching to GAMMA in the end (saves memory) and no thorough optimization under GAMMA" />
-                <param name="groupingfile" argument="-g" type="data" format="txt" optional="true" label="Multifurcating constraint tree" help="This tree does not need to be comprehensive, i.e. does not have to contain all taxa" />
-                <param name="enable_evol_heuristics" argument="-G" type="float" min="0.0" max="1.0" optional="true"
-                    label="Enable the ML-based evolutionary placement algorithm heuristics"
-                    help="By specifying a threshold value (fraction of insertion branches to be evaluated using slow insertions under ML)" />
-                <param name="initial_rearrangement_setting" argument="-i" type="integer" value="" optional="true" label="Initial rearrangement setting for the subsequent application of topological changes phase" />
+                <param name="save_memory_cat_model" argument="-F" type="boolean" truevalue="-F" falsevalue="" label="ML tree searches under CAT model" help="ML tree searches under CAT model for very large trees without switching to GAMMA in the end (saves memory) and no thorough optimization under GAMMA"/>
+                <param name="groupingfile" argument="-g" type="data" format="txt" optional="true" label="Multifurcating constraint tree" help="This tree does not need to be comprehensive, i.e. does not have to contain all taxa"/>
+                <param name="enable_evol_heuristics" argument="-G" type="float" min="0.0" max="1.0" optional="true" label="Enable the ML-based evolutionary placement algorithm heuristics" help="By specifying a threshold value (fraction of insertion branches to be evaluated using slow insertions under ML)"/>
+                <param name="initial_rearrangement_setting" argument="-i" type="integer" value="" optional="true" label="Initial rearrangement setting for the subsequent application of topological changes phase"/>
                 <param name="posterior_bootstopping_analysis" argument="-I" type="select" optional="true" label="A posteriori bootstopping analysis">
                     <option value="autoFC">Frequency-based criterion (autoFC)</option>
                     <option value="autoMR">Majority-rule consensus tree criterion (autoMR)</option>
@@ -302,57 +288,35 @@ fi;
                     <option value="STRICT_DROP">Identify strict dropsets (STRICT_DROP)</option>
                     <option value="MR_DROP">Identify majority-rule dropsets (MR_DROP)</option>
                 </param>
-                <param name="print_branch_lengths" argument="-k" type="boolean" truevalue="-k" falsevalue=""
-                    label="Print bootstrapped trees with branch lengths"
-                    help="The bootstraps will run a bit longer, because model parameters will be optimized at the end of each run under GAMMA or GAMMA+P-Invar respectively" />
+                <param name="print_branch_lengths" argument="-k" type="boolean" truevalue="-k" falsevalue="" label="Print bootstrapped trees with branch lengths" help="The bootstraps will run a bit longer, because model parameters will be optimized at the end of each run under GAMMA or GAMMA+P-Invar respectively"/>
                 <param name="multistate_sub_model" argument="-K" type="select" label="Specify a multi-state substitution model">
                     <option value="GTR" selected="true">GTR</option>
                     <option value="ORDERED">ORDERED</option>
                     <option value="MK">MK</option>
                 </param>
-                <param name="estimate_individual_branch_lengths" argument="-M" type="boolean" truevalue="-M" falsevalue=""
-                    label="Estimate individual per-partition branch lengths" help="Only has effect with a partition file. A weighted average of the branch lengths is computed by using the respective partition lengths" />
-                <param name="outgroup_name" argument="-o" type="text" value="" optional="true" label="Outgroup name"
-                    help="E.g. Mouse or Mouse,Rat. No spaces between taxon names are allowed" />
-                <param name="disable_undetermined_seq_check" argument="-O" type="boolean" truevalue="-O" falsevalue=""
-                    label="Disable check for completely undetermined sequence in alignment"
-                    help="The program will not exit with an error message when '-O' is specified." />
-                <param name="external_protein_model" argument="-P" type="data" format="txt" optional="true" label="External AA (Protein) substitution model"
-                    help="This file must contain 420 entries, the first 400 being the AA substitution rates (this must be a symmetric matrix) and the last 20 are the empirical base frequencies" />
-                <param name="multiple_model" argument="-q" type="data" format="txt" optional="true"
-                    label="Assignment of models to alignment partitions for multiple models of substitution"
-                    help="For the syntax of this file please consult the RaXML manual" />
-                <param name="constraint_file" argument="-r" type="data" format="txt" optional="true" label="Binary constraint tree"
-                    help="This tree does not need to be comprehensive, i.e. does not have to contain all taxa" />
-                <param name="bin_model_parameter_file" argument="-R" type="data" format="txt" optional="true" label="Binary model parameter file"
-                    help="This parameter file can be generated with RAxML using the '-f e' tree evaluation option" />
-                <param name="secondary_structure_file" argument="-S" type="data" format="txt" optional="true" label="Secondary structure file"
-                    help="The file can contain '.' for alignment columns that do not form part of a stem and characters '()&lt;&gt;[]{}' to define stem regions and pseudoknots" />
-                <param name="start_tree_file" argument="-t" type="data" format="nhx" optional="true" label="Starting tree file" help="In Newick format" />
-                <param name="use_median_approximation" argument="-u" type="boolean" truevalue="-u" falsevalue=""
-                    label="Use the median for the discrete approximation of the GAMMA model of rate heterogeneity" />
-                <param name="save_memory_gappy_alignments" argument="-U" type="boolean" truevalue="-U" falsevalue=""
-                    label="Save memory on large gappy alignments"
-                    help="Try to save memory by using SEV-based implementation for gap columns on large gappy alignments. This will only work for DNA and/or PROTEIN data" />
-                <param name="disable_rate_heterogeneity" argument="-V" type="boolean" truevalue="-V" falsevalue=""
-                    label="Disable rate heterogeneity among sites model and use one without rate heterogeneity instead"
-                    help="Only works if you specify the CAT model of rate heterogeneity" />
-                <param name="sliding_window_size" argument="-W" type="integer" min="1" value="100"
-                    label="Sliding window size for leave-one-out site-specific placement bias algorithm"
-                    help="Only effective when used in combination with '-f S'" />
-                <param name="parsimony_starting_tree_only" argument="-y" type="boolean" truevalue="-y" falsevalue=""
-                    label="Compute a randomized parsimony starting tree only"
-                    help="The program will exit after computation of the starting tree" />
+                <param name="estimate_individual_branch_lengths" argument="-M" type="boolean" truevalue="-M" falsevalue="" label="Estimate individual per-partition branch lengths" help="Only has effect with a partition file. A weighted average of the branch lengths is computed by using the respective partition lengths"/>
+                <param name="outgroup_name" argument="-o" type="text" value="" optional="true" label="Outgroup name" help="E.g. Mouse or Mouse,Rat. No spaces between taxon names are allowed"/>
+                <param name="disable_undetermined_seq_check" argument="-O" type="boolean" truevalue="-O" falsevalue="" label="Disable check for completely undetermined sequence in alignment" help="The program will not exit with an error message when '-O' is specified."/>
+                <param name="external_protein_model" argument="-P" type="data" format="txt" optional="true" label="External AA (Protein) substitution model" help="This file must contain 420 entries, the first 400 being the AA substitution rates (this must be a symmetric matrix) and the last 20 are the empirical base frequencies"/>
+                <param name="multiple_model" argument="-q" type="data" format="txt" optional="true" label="Assignment of models to alignment partitions for multiple models of substitution" help="For the syntax of this file please consult the RaXML manual"/>
+                <param name="constraint_file" argument="-r" type="data" format="txt" optional="true" label="Binary constraint tree" help="This tree does not need to be comprehensive, i.e. does not have to contain all taxa"/>
+                <param name="bin_model_parameter_file" argument="-R" type="data" format="txt" optional="true" label="Binary model parameter file" help="This parameter file can be generated with RAxML using the '-f e' tree evaluation option"/>
+                <param name="secondary_structure_file" argument="-S" type="data" format="txt" optional="true" label="Secondary structure file" help="The file can contain '.' for alignment columns that do not form part of a stem and characters '()&lt;&gt;[]{}' to define stem regions and pseudoknots"/>
+                <param name="start_tree_file" argument="-t" type="data" format="nhx" optional="true" label="Starting tree file" help="In Newick format"/>
+                <param name="use_median_approximation" argument="-u" type="boolean" truevalue="-u" falsevalue="" label="Use the median for the discrete approximation of the GAMMA model of rate heterogeneity"/>
+                <param name="save_memory_gappy_alignments" argument="-U" type="boolean" truevalue="-U" falsevalue="" label="Save memory on large gappy alignments" help="Try to save memory by using SEV-based implementation for gap columns on large gappy alignments. This will only work for DNA and/or PROTEIN data"/>
+                <param name="disable_rate_heterogeneity" argument="-V" type="boolean" truevalue="-V" falsevalue="" label="Disable rate heterogeneity among sites model and use one without rate heterogeneity instead" help="Only works if you specify the CAT model of rate heterogeneity"/>
+                <param name="sliding_window_size" argument="-W" type="integer" min="1" value="100" label="Sliding window size for leave-one-out site-specific placement bias algorithm" help="Only effective when used in combination with '-f S'"/>
+                <param name="parsimony_starting_tree_only" argument="-y" type="boolean" truevalue="-y" falsevalue="" label="Compute a randomized parsimony starting tree only" help="The program will exit after computation of the starting tree"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data format="txt" name="info" from_work_dir="RAxML_info.galaxy" label="${tool.name} on ${on_string}: Info" />
+        <data format="txt" name="info" from_work_dir="RAxML_info.galaxy" label="${tool.name} on ${on_string}: Info"/>
         <!-- REQUIRED -->
         <data format="txt" name="log" from_work_dir="RAxML_log.galaxy" label="${tool.name} on ${on_string}: Log">
             <filter>selExtraOpts['extraOptions'] == 'required' or (selExtraOpts['extraOptions'] == "full" and selExtraOpts['rapid_bootstrap_random_seed'] == '' and selExtraOpts['bootseed'] == '' and selExtraOpts['search_algorithm'] not in ['a', 'b', 'v'] and not selExtraOpts['majority_rule_consensus'])</filter>
         </data>
-
         <data format="nhx" name="parsimonyTree" from_work_dir="RAxML_parsimonyTree.galaxy" label="${tool.name} on ${on_string}: Parsimony Tree">
             <filter>selExtraOpts['extraOptions'] == "required" or (selExtraOpts['extraOptions'] == "full" and selExtraOpts['search_algorithm'] not in ['a', 'v'])</filter>
         </data>
@@ -367,17 +331,14 @@ fi;
         <data format="nhx" name="bestTree" from_work_dir="RAxML_bestTree.galaxy" label="${tool.name} on ${on_string}: Best-scoring ML Tree">
             <filter>selExtraOpts['extraOptions'] != "full" or selExtraOpts['search_algorithm'] not in ['v'] </filter>
         </data>
-
         <data format="txt" name="bestTreeMultipleModelPartitions" from_work_dir="RAxML_bestTreePartitions.galaxy" label="${tool.name} on ${on_string}: Best-scoring ML Tree Partitions">
             <filter>selExtraOpts['extraOptions'] == "full"</filter>
             <filter>selExtraOpts['multiple_model'] is not None </filter>
         </data>
-
         <data format="txt" name="resultMultipleModelPartitions" from_work_dir="RAxML_resultPartitions.galaxy" label="${tool.name} on ${on_string}: Result Partitions">
             <filter>selExtraOpts['extraOptions'] == "full"</filter>
             <filter>selExtraOpts['multiple_model'] is not None</filter>
         </data>
-
         <data format="nhx" name="bootstrap" from_work_dir="RAxML_bootstrap.galaxy" label="${tool.name} on ${on_string}: Final Bootstrap Trees">
             <filter>selExtraOpts['extraOptions'] == "full"</filter>
             <filter>selExtraOpts['number_of_runs'] != '' or selExtraOpts['number_of_runs_bootstop'] != ''</filter>
@@ -415,7 +376,6 @@ fi;
             <filter>selExtraOpts['extraOptions'] == "full"</filter>
             <filter>selExtraOpts['search_algorithm'] == 'x' </filter>
         </data>
-
         <data format="nhx" name="labelledTree" from_work_dir="RAxML_labelledTree.galaxy" label="${tool.name} on ${on_string}: Labelled reference tree including branch labels and query sequences written to file">
             <filter>selExtraOpts['extraOptions'] == "full"</filter>
             <filter>selExtraOpts['search_algorithm'] == 'v' </filter>
@@ -448,7 +408,9 @@ fi;
                 <param name="extraOptions" value="required"/>
             </conditional>
             <output name="info">
-                <assert_contents><has_text text="Overall execution time"/></assert_contents>
+                <assert_contents>
+                    <has_text text="Overall execution time"/>
+                </assert_contents>
             </output>
             <output name="log">
                 <assert_contents>
@@ -456,17 +418,18 @@ fi;
                     <has_n_lines n="9"/>
                 </assert_contents>
             </output>
-            <output name="parsimonyTree" file="RAxML_parsimonyTree.galaxy.basic" ftype="nhx" />
+            <output name="parsimonyTree" file="RAxML_parsimonyTree.galaxy.basic" ftype="nhx"/>
             <output name="result" ftype="nhx">
-                <assert_contents><has_text text="Frog"/></assert_contents>
+                <assert_contents>
+                    <has_text text="Frog"/>
+                </assert_contents>
             </output>
             <output name="bestTree" ftype="nhx">
                 <assert_contents>
-                    <has_text_matching expression="Frog" />
+                    <has_text_matching expression="Frog"/>
                 </assert_contents>
             </output>
         </test>
-        
         <!-- test search algo v: 'Classify environmental sequences' -->
         <test expect_num_outputs="6">
             <param name="infile" value="dna.phy"/>
@@ -477,10 +440,12 @@ fi;
             <conditional name="selExtraOpts">
                 <param name="extraOptions" value="full"/>
                 <param name="search_algorithm" value="v"/>
-                <param name="constraint_file"  value="RAxML_parsimonyTree.galaxy.subset"/>
+                <param name="constraint_file" value="RAxML_parsimonyTree.galaxy.subset"/>
             </conditional>
             <output name="info">
-                <assert_contents><has_text text="Overall Classification time"/></assert_contents>
+                <assert_contents>
+                    <has_text text="Overall Classification time"/>
+                </assert_contents>
             </output>
             <output name="classification">
                 <assert_contents>
@@ -520,7 +485,6 @@ fi;
                 </assert_contents>
             </output>
         </test>
-
         <test expect_num_outputs="5">
             <param name="infile" value="dna.fasta"/>
             <conditional name="search_model_selector">
@@ -535,7 +499,9 @@ fi;
                 </conditional>
             </conditional>
             <output name="info">
-                <assert_contents><has_text text="Overall execution time"/></assert_contents>
+                <assert_contents>
+                    <has_text text="Overall execution time"/>
+                </assert_contents>
             </output>
             <output name="log">
                 <assert_contents>
@@ -545,7 +511,7 @@ fi;
             </output>
             <output name="result">
                 <assert_contents>
-                    <has_text_matching expression="Chicken" />
+                    <has_text_matching expression="Chicken"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>
@@ -557,7 +523,7 @@ fi;
             </output>
             <output name="bestTree" ftype="nhx">
                 <assert_contents>
-                    <has_text text="Whale" />
+                    <has_text text="Whale"/>
                     <has_text text="Chicken"/>
                 </assert_contents>
             </output>

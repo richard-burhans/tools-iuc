@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
 <tool id="gprofiler_orth" name="gProfiler Orth" version="@VERSION@">
     <description>translates gene identifiers between organisms</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"></expand>
-    <expand macro="version_command" />
-    <command detect_errors="aggressive">Rscript $script_file</command>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
+    <command detect_errors="aggressive"><![CDATA[Rscript $script_file]]></command>
     <configfiles>
         <configfile name="script_file"><![CDATA[
 
@@ -47,39 +46,38 @@ write.table(output, file='${output}', quote=FALSE, sep='\t', row.names = FALSE, 
         ]]></configfile>
     </configfiles>
     <inputs>
-        <expand macro="input" />
-        <expand macro="organism" name="source" label="Source organism" />
-        <expand macro="organism" name="target" label="Target organism" hsapiens_selected="false" mmusculus_selected="true" />
-        <param name="numeric_ns" type="text" value="" optional="true" label="Numeric IDs treated as" help="The prefix for fully numeric IDs. Check the “Resources” section below for the complete list of supported namespaces (including numeric). E.g., ENTREZGENE_ACC, WIKIGENE_ACC." />
-        <param name="max" type="integer" value="" optional="true" label="Maximum number of ortholog names per gene to show" help="Shows all by default." />
-        <expand macro="filter_na" />
-        <expand macro="tool_settings"></expand>
+        <expand macro="input"/>
+        <expand macro="organism" name="source" label="Source organism"/>
+        <expand macro="organism" name="target" label="Target organism" hsapiens_selected="false" mmusculus_selected="true"/>
+        <param name="numeric_ns" type="text" value="" optional="true" label="Numeric IDs treated as" help="The prefix for fully numeric IDs. Check the “Resources” section below for the complete list of supported namespaces (including numeric). E.g., ENTREZGENE_ACC, WIKIGENE_ACC."/>
+        <param name="max" type="integer" value="" optional="true" label="Maximum number of ortholog names per gene to show" help="Shows all by default."/>
+        <expand macro="filter_na"/>
+        <expand macro="tool_settings"/>
     </inputs>
     <outputs>
-        <data label="${tool.name} on ${on_string}" name="output" format="tabular" />
+        <data label="${tool.name} on ${on_string}" name="output" format="tabular"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" ftype="txt" value="example_query.txt" />
-            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11" />
-            <output name="output" ftype="tabular" file="example_orth_results.txt" sort="true" />
+            <param name="input" ftype="txt" value="example_query.txt"/>
+            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11"/>
+            <output name="output" ftype="tabular" file="example_orth_results.txt" sort="true"/>
         </test>
         <test>
-            <param name="input" ftype="txt" value="example_query_2.txt" />
-            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11" />
+            <param name="input" ftype="txt" value="example_query_2.txt"/>
+            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11"/>
             <conditional name="source">
-                <param name="organism" value="mmusculus" />
+                <param name="organism" value="mmusculus"/>
             </conditional>
             <conditional name="target">
-                <param name="organism" value="hsapiens" />
+                <param name="organism" value="hsapiens"/>
             </conditional>
-            <param name="numeric_ns" value="WIKIGENE_ACC" />
-            <param name="max" value="1" />
-            <param name="filter_na" value="T" />
-            <output name="output" ftype="tabular" file="example_orth_results_2.txt" sort="true" />
+            <param name="numeric_ns" value="WIKIGENE_ACC"/>
+            <param name="max" value="1"/>
+            <param name="filter_na" value="T"/>
+            <output name="output" ftype="tabular" file="example_orth_results_2.txt" sort="true"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What it does**
@@ -92,5 +90,5 @@ write.table(output, file='${output}', quote=FALSE, sep='\t', row.names = FALSE, 
 @REFERENCES@
 
     ]]></help>
-    <expand macro="citations"></expand>
+    <expand macro="citations"/>
 </tool>

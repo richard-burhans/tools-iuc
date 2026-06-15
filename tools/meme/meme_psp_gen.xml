@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 @CHECK_NON_COMMERCIAL_USE@
 ln -s '${primary_sequence}' meme_psp_input_pos.fa && 
@@ -91,7 +91,7 @@ $adv.raw
             <output name="output_tabular" file="meme_psp_output_test1.tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: warningmark
 
@@ -136,7 +136,7 @@ For detailed information on psp-gen, click here_, or view the license_.
 
    * **Report frequency of each score** - select 'Yes' to include the frequency of each score in the output.
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1186/1471-2105-11-179</citation>
     </citations>

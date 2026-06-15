@@ -52,52 +52,44 @@ ln -s '$elem' inputs/${i}.${elem.ext} &&
     </configfiles>
     <inputs>
         <conditional name="input">
-            <param name="structure" type="select"
-            label="Structure of your input data"
-            help="">
+            <param name="structure" type="select" label="Structure of your input data" help="">
                 <option value="one_to_one">One input dataset per sample</option>
                 <option value="one_to_many">Multiple input datasets per sample</option>
             </param>
             <when value="one_to_one">
-                <param name="reads" type="data" format="@FASTQ_FORMATS@"
-                label="Sequencing dataset(s) - one per sample" />
+                <param name="reads" type="data" format="@FASTQ_FORMATS@" label="Sequencing dataset(s) - one per sample"/>
             </when>
             <when value="one_to_many">
-                <param name="reads" multiple="true" type="data" format="@FASTQ_FORMATS@"
-                label="Partial sequencing datasets for your sample"
-                help="Multiple datasets selected here will get combined into a single output for a single assumed sample. Select a nested list to have its inner lists interpreted as data from one sample each and to obtain one output per inner list." />
+                <param name="reads" multiple="true" type="data" format="@FASTQ_FORMATS@" label="Partial sequencing datasets for your sample" help="Multiple datasets selected here will get combined into a single output for a single assumed sample. Select a nested list to have its inner lists interpreted as data from one sample each and to obtain one output per inner list."/>
             </when>
         </conditional>
-        <param name="max_length" type="integer" value="700" min="1" label="Maximum read length" help="Remove reads greater than this number of base pairs" />
-        <param name="min_length" type="integer" value="400" min="1" label="Minimum read length" help="Remove reads less than this number of base pairs" />
-        <param name="min_quality"
-        optional="true" type="integer" min="0" value="7"
-        label="Minimum read quality"
-        help="Remove reads with average quality lower than this number. Set to 0 to skip the quality check." />
+        <param name="max_length" type="integer" value="700" min="1" label="Maximum read length" help="Remove reads greater than this number of base pairs"/>
+        <param name="min_length" type="integer" value="400" min="1" label="Minimum read length" help="Remove reads less than this number of base pairs"/>
+        <param name="min_quality" optional="true" type="integer" min="0" value="7" label="Minimum read quality" help="Remove reads with average quality lower than this number. Set to 0 to skip the quality check."/>
     </inputs>
     <outputs>
-        <data name="output" format_source="reads" from_work_dir="guppyplex_out.fastq*" />
+        <data name="output" format_source="reads" from_work_dir="guppyplex_out.fastq*"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
             <conditional name="input">
-                <param name="structure" value="one_to_one" />
-                <param name="reads" value="test.fastq.gz" />
+                <param name="structure" value="one_to_one"/>
+                <param name="reads" value="test.fastq.gz"/>
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_size value="72300" delta="1000" />
+                    <has_size value="72300" delta="1000"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="input">
-                <param name="structure" value="one_to_many" />
-                <param name="reads" value="test.fastq.gz,test.fastq.gz" />
+                <param name="structure" value="one_to_many"/>
+                <param name="reads" value="test.fastq.gz,test.fastq.gz"/>
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_size value="72300" delta="200" />
+                    <has_size value="72300" delta="200"/>
                 </assert_contents>
             </output>
         </test>
@@ -119,5 +111,5 @@ ln -s '$elem' inputs/${i}.${elem.ext} &&
 
         .. _ARTIC: https://artic.readthedocs.io/en/latest/
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

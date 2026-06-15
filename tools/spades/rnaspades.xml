@@ -95,7 +95,6 @@ rnaspades.py
             single library: merged, s
             pacbio, nanopore, trusted-contigs, untrusted-contigs, fl-rna
         -->
-
         <!-- #1 -->
         <test expect_num_outputs="1">
             <conditional name="singlePaired">
@@ -105,7 +104,7 @@ rnaspades.py
             <output name="out_tr">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -171,7 +170,7 @@ rnaspades.py
             <output name="out_tr">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -193,7 +192,7 @@ rnaspades.py
             <output name="out_tr">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -227,7 +226,7 @@ rnaspades.py
             <output name="out_tr">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>

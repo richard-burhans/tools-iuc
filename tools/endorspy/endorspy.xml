@@ -5,7 +5,6 @@
         <token name="@VERSION_SUFFIX@">0</token>
         <token name="@PROFILE@">25.1</token>
     </macros>
-
     <requirements>
         <requirement type="package" version="3.12">python</requirement>
     </requirements>
@@ -36,30 +35,26 @@
         ## 3. Output
         mv *.json '$output_json'
     ]]></command>
-
     <inputs>
-        <param argument="-r" name="pre_flagstat" type="data" format="txt" label="Raw Flagstat" help="Output of samtools flagstat before any filtering or deduplication." />        
-        <param argument="-q" name="post_flagstat" type="data" format="txt" optional="true" label="Quality-Filtered Flagstat" help="Output of samtools flagstat after quality filtering." /> 
-        <param argument="-d" name="dedup_flagstat" type="data" format="txt" optional="true" label="Deduplicated Flagstat" help="Output of samtools flagstat after duplicate removal." />
+        <param argument="-r" name="pre_flagstat" type="data" format="txt" label="Raw Flagstat" help="Output of samtools flagstat before any filtering or deduplication."/>
+        <param argument="-q" name="post_flagstat" type="data" format="txt" optional="true" label="Quality-Filtered Flagstat" help="Output of samtools flagstat after quality filtering."/>
+        <param argument="-d" name="dedup_flagstat" type="data" format="txt" optional="true" label="Deduplicated Flagstat" help="Output of samtools flagstat after duplicate removal."/>
     </inputs>
-
     <outputs>
-        <data name="output_json" format="json" label="${tool.name} on ${on_string}: JSON Report" />
+        <data name="output_json" format="json" label="${tool.name} on ${on_string}: JSON Report"/>
     </outputs>
-    
     <tests>
         <test expect_num_outputs="1">
-            <param name="pre_flagstat" value="raw_flagstat.txt" ftype="txt" />
-            <param name="post_flagstat" value="filtered_flagstat.txt" ftype="txt" />
+            <param name="pre_flagstat" value="raw_flagstat.txt" ftype="txt"/>
+            <param name="post_flagstat" value="filtered_flagstat.txt" ftype="txt"/>
             <output name="output_json">
                 <assert_contents>
-                    <has_text text="percent_on_target" />
-                    <has_text text="percent_on_target_quality_filtered" />
+                    <has_text text="percent_on_target"/>
+                    <has_text text="percent_on_target_quality_filtered"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 **EndorSpy: Endogenous DNA, Clonality, and Duplication Calculator**
 
@@ -76,7 +71,6 @@ You can provide a combination of samtools flagstat files:
 **Outputs:**
 A JSON file containing the calculated statistics.
     ]]></help>
-
     <citations>
         <citation type="bibtex">
 @misc{githubendorspy,
@@ -90,6 +84,6 @@ A JSON file containing the calculated statistics.
     </citations>
     <creator>
         <person givenName="Ali Mert" familyName="Aydin" url="https://github.com/mertydn"/>
-        <organization name="Galaxy Europe" url="https://galaxyproject.eu/" />
+        <organization name="Galaxy Europe" url="https://galaxyproject.eu/"/>
     </creator>
 </tool>

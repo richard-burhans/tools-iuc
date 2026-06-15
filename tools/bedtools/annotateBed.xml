@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools annotate
 -i '${inputA}'
@@ -35,39 +35,35 @@ $both
 > '${output}'
     ]]></command>
     <inputs>
-        <param name="inputA" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file" />
+        <param name="inputA" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
         <conditional name="names">
             <param name="names_select" type="select" label="Specify names for each file">
                 <option value="no" selected="true">No</option>
                 <option value="yes">Yes</option>
             </param>
             <when value="yes">
-                <repeat name="beds" title="Add BED files and names" >
-                    <param name="input" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file" />
-                    <param name="inputName" type="text" label="Name of the file" />
+                <repeat name="beds" title="Add BED files and names">
+                    <param name="input" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
+                    <param name="inputName" type="text" label="Name of the file"/>
                 </repeat>
             </when>
             <when value="no">
-                <param name="beds" type="data" format="@STD_BEDTOOLS_INPUTS@" multiple="true" label="@STD_BEDTOOLS_INPUT_LABEL@ files" />
+                <param name="beds" type="data" format="@STD_BEDTOOLS_INPUTS@" multiple="true" label="@STD_BEDTOOLS_INPUT_LABEL@ files"/>
             </when>
         </conditional>
-        <expand macro="strand2" />
-        <param argument="-counts" type="boolean" truevalue="-counts" falsevalue="" checked="false"
-            label="Report the count of features followed by the % coverage for each annotation file"
-            help="Default is to report solely the fraction of -i covered by each file" />
-        <param argument="-both" type="boolean" truevalue="-both" falsevalue="" checked="false"
-            label="Report the count of features followed by the % coverage for each annotation file"
-            help="Default is to report solely the fraction of the input file covered by each file" />
+        <expand macro="strand2"/>
+        <param argument="-counts" type="boolean" truevalue="-counts" falsevalue="" checked="false" label="Report the count of features followed by the % coverage for each annotation file" help="Default is to report solely the fraction of -i covered by each file"/>
+        <param argument="-both" type="boolean" truevalue="-both" falsevalue="" checked="false" label="Report the count of features followed by the % coverage for each annotation file" help="Default is to report solely the fraction of the input file covered by each file"/>
     </inputs>
     <outputs>
-        <data name="output" format="bed" />
+        <data name="output" format="bed"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputA" value="annotateBed1.bed" ftype="bed" />
-            <param name="names|names_select" value="no" />
+            <param name="inputA" value="annotateBed1.bed" ftype="bed"/>
+            <param name="names|names_select" value="no"/>
             <param name="names|beds" value="annotateBed2.bed,annotateBed3.bed,annotateBed4.bed"/>
-            <output name="output" file="annotateBed_result.bed" ftype="bed" />
+            <output name="output" file="annotateBed_result.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -77,5 +73,5 @@ bedtools annotate, well, annotates one @STD_BEDTOOLS_INPUT_LABEL@ file with the 
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

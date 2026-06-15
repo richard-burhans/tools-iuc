@@ -7,11 +7,11 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_command_memote"/>
-    <command>
+    <command><![CDATA[
         memote report snapshot
             '${cb_model_location}'
             --filename '${output}'
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_model"/>
     </inputs>

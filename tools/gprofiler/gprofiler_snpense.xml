@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
 <tool id="gprofiler_snpense" name="gProfiler SNPense" version="@VERSION@">
     <description>maps SNP rs-codes to gene names, chromosomal coordinates and variant effects</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"></expand>
-    <expand macro="version_command" />
-    <command detect_errors="aggressive">Rscript $script_file</command>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
+    <command detect_errors="aggressive"><![CDATA[Rscript $script_file]]></command>
     <configfiles>
         <configfile name="script_file"><![CDATA[
 
@@ -40,27 +39,26 @@ write.table(output, file='${output}', quote=FALSE, sep='\t', row.names = FALSE, 
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="input" type="data" format="txt" label="Input is whitespace-separated list of SNP IDs to be translated (should start with prefix ’rs’)." />
-        <expand macro="filter_na" />
-        <expand macro="tool_settings"></expand>
+        <param name="input" type="data" format="txt" label="Input is whitespace-separated list of SNP IDs to be translated (should start with prefix ’rs’)."/>
+        <expand macro="filter_na"/>
+        <expand macro="tool_settings"/>
     </inputs>
     <outputs>
-        <data name="output" format="tabular" label="${tool.name} on ${on_string}" />
+        <data name="output" format="tabular" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" ftype="txt" value="example_snpense_query.txt" />
-            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11" />
-            <output name="output" ftype="tabular" file="example_snpense_results.txt" sort="true" />
+            <param name="input" ftype="txt" value="example_snpense_query.txt"/>
+            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11"/>
+            <output name="output" ftype="tabular" file="example_snpense_results.txt" sort="true"/>
         </test>
         <test>
-            <param name="input" ftype="txt" value="example_snpense_query.txt" />
-            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11" />
-            <param name="filter_na" value="T" />
-            <output name="output" ftype="tabular" file="example_snpense_results_2.txt" sort="true" />
+            <param name="input" ftype="txt" value="example_snpense_query.txt"/>
+            <param name="base_url" value="http://biit.cs.ut.ee/gprofiler_archive3/e94_eg41_p11"/>
+            <param name="filter_na" value="T"/>
+            <output name="output" ftype="tabular" file="example_snpense_results_2.txt" sort="true"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What it does**
@@ -73,5 +71,5 @@ write.table(output, file='${output}', quote=FALSE, sep='\t', row.names = FALSE, 
 @REFERENCES@
 
     ]]></help>
-    <expand macro="citations"></expand>
+    <expand macro="citations"/>
 </tool>

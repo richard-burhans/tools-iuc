@@ -1,5 +1,5 @@
 <tool id="bamutil_clip_overlap" name="BamUtil clipOverlap" version="@WRAPPER_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -72,7 +72,7 @@ $unmapped
             <output name="output" file="output_qname_sorted.bam" ftype="qname_sorted.bam"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Clips overlapping read pairs in a SAM or BAM file based on criteria.
@@ -151,7 +151,6 @@ The first operation after the softclip will be a Match/Mismatch, meaning that an
 | Clip occurs after the read ends                                            | Nothing is clipped. The read is not changed.                                                                      |
 +----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

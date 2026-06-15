@@ -56,13 +56,11 @@
             --outfile '$pvalues'
     ]]></command>
     <inputs>
-        <param argument="--otu_table" type="data" format="tabular" label="Input OTU table"
-               help="The table must contain absolute OTU counts in plain tabular (TSV) format, with OTUs as rows and samples as columns. Do not include any metadata rows or columns."/>
+        <param argument="--otu_table" type="data" format="tabular" label="Input OTU table" help="The table must contain absolute OTU counts in plain tabular (TSV) format, with OTUs as rows and samples as columns. Do not include any metadata rows or columns."/>
         <conditional name="correlation">
-            <param name="select" type="select" label="Tested correlation matrix"
-                   help="For meaningful p-values, the parameters used during bootstrapped correlation estimation should be identical to those used for the FastSpar run which produced the correlation matrix. &lt;br&gt;For your convenience you can choose to calculate the correlation matrix here. In that case the seed used for the calculation is the same one used for generating the bootstrapped samples.">
-                    <option value="new">Recalculate the correlation matrix</option>
-                    <option value="original">Use an existing correlation matrix</option>
+            <param name="select" type="select" label="Tested correlation matrix" help="For meaningful p-values, the parameters used during bootstrapped correlation estimation should be identical to those used for the FastSpar run which produced the correlation matrix. &lt;br&gt;For your convenience you can choose to calculate the correlation matrix here. In that case the seed used for the calculation is the same one used for generating the bootstrapped samples.">
+                <option value="new">Recalculate the correlation matrix</option>
+                <option value="original">Use an existing correlation matrix</option>
             </param>
             <when value="new"/>
             <when value="original">

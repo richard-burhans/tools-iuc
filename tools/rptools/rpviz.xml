@@ -36,13 +36,13 @@
                 <option value="single_sbml">single SBML</option>
             </param>
             <when value="tar">
-                <param name="input_tar" type="data" format="tar" label="Source SBML" />
+                <param name="input_tar" type="data" format="tar" label="Source SBML"/>
             </when>
             <when value="sbml">
-                <param name="input_sbml" type="data_collection" format="sbml" collection_type="list" label="Source SBML" />
+                <param name="input_sbml" type="data_collection" format="sbml" collection_type="list" label="Source SBML"/>
             </when>
             <when value="single_sbml">
-                <param name="input_single_sbml" type="data" format="sbml" label="Source SBML" />
+                <param name="input_single_sbml" type="data" format="sbml" label="Source SBML"/>
             </when>
         </conditional>
         <section name="adv" title="Advanced Options" expanded="false">
@@ -54,26 +54,26 @@
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical html output is produced (single sbml input) --> 
+            <!-- test 1: check if identical html output is produced (single sbml input) -->
             <conditional name="input_type_conditional">
                 <param name="input_type" value="single_sbml"/>
-                <param name="input_single_sbml" value="lycopene_CrtEBI_from_selenzy.xml" />
+                <param name="input_single_sbml" value="lycopene_CrtEBI_from_selenzy.xml"/>
             </conditional>
-            <output name="html_file" >
+            <output name="html_file">
                 <assert_contents>
-                    <has_size value="1296252" delta="100" />
+                    <has_size value="1296252" delta="100"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-        <!-- test 2: check if identical html output is produced (tar input) --> 
+            <!-- test 2: check if identical html output is produced (tar input) -->
             <conditional name="input_type_conditional">
                 <param name="input_type" value="tar"/>
-                <param name="input_tar" value="as_tar_inputs.tgz" />
+                <param name="input_tar" value="as_tar_inputs.tgz"/>
             </conditional>
-            <output name="html_file" >
+            <output name="html_file">
                 <assert_contents>
-                    <has_size value="1604488" delta="100" />
+                    <has_size value="1604488" delta="100"/>
                 </assert_contents>
             </output>
         </test>
@@ -112,6 +112,6 @@ License
 
     ]]></help>
     <creator>
-        <person givenName="Thomas" familyName="Duigou" email="thomas.duigou@inrae.fr" identifier="https://orcid.org/0000-0002-2649-2950" />
+        <person givenName="Thomas" familyName="Duigou" email="thomas.duigou@inrae.fr" identifier="https://orcid.org/0000-0002-2649-2950"/>
     </creator>
 </tool>

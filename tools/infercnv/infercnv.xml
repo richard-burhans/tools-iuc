@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #if $annotation.gene_annotation == "gtf":
             ln -s '$gtf_file' '${gtf_file.element_identifier}.${gtf_file.ext}' &&
@@ -198,11 +198,11 @@
                 <option value="mtx" selected="true">10x sparse matrix</option>
             </param>
             <when value="tsv">
-                <param name="raw_mtx" type="data" format="tabular" label="Raw counts matrix" help="The matrix of genes (rows) vs. cells (columns) containing the raw counts" />
+                <param name="raw_mtx" type="data" format="tabular" label="Raw counts matrix" help="The matrix of genes (rows) vs. cells (columns) containing the raw counts"/>
             </when>
             <when value="mtx">
-                <param name="mtx" type="data" format="mtx,tabular,txt" label="Raw counts matrix (matrix market)" help="The matrix of genes (rows) vs. cells (columns) containing the raw counts" />
-                <param name="mtx_genes" type="data" format="tabular,txt" label="Genes file" help="The genes file for matrix market matrix, a two column symbol - symbol or gene_id - symbol tab separated file" />
+                <param name="mtx" type="data" format="mtx,tabular,txt" label="Raw counts matrix (matrix market)" help="The matrix of genes (rows) vs. cells (columns) containing the raw counts"/>
+                <param name="mtx_genes" type="data" format="tabular,txt" label="Genes file" help="The genes file for matrix market matrix, a two column symbol - symbol or gene_id - symbol tab separated file"/>
                 <param name="mtx_barcodes" type="data" format="tabular,txt" label="Barcodes file" help="The barcodes file for matrix market matrix, a single column file with the cell/barcode identifiers"/>
             </when>
         </conditional>
@@ -212,24 +212,24 @@
                 <option value="gtf">use a GTF file: </option>
             </param>
             <when value="local">
-                <param name="gene_order" type="data" format="tabular" label="Gene order file" help="Tabular file containing the positions of each gene along each chromosome in the genome." />
+                <param name="gene_order" type="data" format="tabular" label="Gene order file" help="Tabular file containing the positions of each gene along each chromosome in the genome."/>
             </when>
             <when value="gtf">
-                <param name="gtf_file" type="data" format="gtf,gtf.gz" label="GTF file" />
+                <param name="gtf_file" type="data" format="gtf,gtf.gz" label="GTF file"/>
                 <param name="attribute" type="text" value="gene_id" label="attribute name" help="The name of the attribute in the GTF attributes to use, for example 'gene_name' or 'transcript_id'">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
+                            <add value="_"/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_]+</validator>
                 </param>
             </when>
         </conditional>
-        <param name="cell_annotations" type="data" format="tabular" label="Cell annotations file" help="A description of the cells, indicating the cell type classifications" />
+        <param name="cell_annotations" type="data" format="tabular" label="Cell annotations file" help="A description of the cells, indicating the cell type classifications"/>
         <param name="ref_group" type="text" label="Reference group names" optional="true" help="A vector containing the classifications of the reference (normal) cells to use for infering cnv">
             <sanitizer>
-                <valid initial="string.printable"></valid>
+                <valid initial="string.printable"/>
             </sanitizer>
         </param>
         <section name="advanced" title="Advanced parameters">
@@ -238,24 +238,24 @@
             <param name="max_count" type="integer" min="0" optional="true" label="Maximum counts allowed per cell."/>
             <param name="chr_exclude" type="text" value="&quot;chrX&quot;, &quot;chrY&quot;, &quot;chrM&quot;" label="Chromosomes to exclude" optional="true" help="Chromosomes to exclude from the analysis">
                 <sanitizer>
-                    <valid initial="string.printable"></valid>
+                    <valid initial="string.printable"/>
                 </sanitizer>
             </param>
-            <param name="cutoff" type="float" min="0" max="1" value="1" label="Cutoff" help="The cutoff value to use for infercnv" />
-            <param name="min_cells_per_gene" type="integer" min="0" value="3" label="Minimum cells per gene" help="minimum number of reference cells requiring expression measurements to include the corresponding gene." />
+            <param name="cutoff" type="float" min="0" max="1" value="1" label="Cutoff" help="The cutoff value to use for infercnv"/>
+            <param name="min_cells_per_gene" type="integer" min="0" value="3" label="Minimum cells per gene" help="minimum number of reference cells requiring expression measurements to include the corresponding gene."/>
             <section name="smoothing" title="Smoothing parameters">
-                <param name="window_length" type="integer" min="0" value="101" label="Window length" help="Length of the window for the moving average (smoothing). Should be an odd integer." />
-                <param name="smooth_method" type="select" label="Smoothing method" help="The method to use for smoothing" >
+                <param name="window_length" type="integer" min="0" value="101" label="Window length" help="Length of the window for the moving average (smoothing). Should be an odd integer."/>
+                <param name="smooth_method" type="select" label="Smoothing method" help="The method to use for smoothing">
                     <option value="pyramidinal">pyramidinal</option>
                     <option value="runmeans">runmeans</option>
                     <option value="coordinates">coordinates</option>
                 </param>
             </section>
             <section name="clustering" title="Clustering parameters">
-                <param name="cluster_by_groups" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Cluster by groups" help="Whether to cluster by groups" />
-                <param name="cluster_references" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Cluster references" help="Whether to cluster references within their annotations or not" />
-                <param name="k_obs_groups" type="integer" min="0" value="1" label="K obs groups" help="Number of groups in which to break the observations" />
-                <param name="hclust_method" type="select" label="Hclust method" help="Method used for hierarchical clustering of cells." >
+                <param name="cluster_by_groups" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Cluster by groups" help="Whether to cluster by groups"/>
+                <param name="cluster_references" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Cluster references" help="Whether to cluster references within their annotations or not"/>
+                <param name="k_obs_groups" type="integer" min="0" value="1" label="K obs groups" help="Number of groups in which to break the observations"/>
+                <param name="hclust_method" type="select" label="Hclust method" help="Method used for hierarchical clustering of cells.">
                     <option value="ward.D2">ward.D2</option>
                     <option value="ward.D">ward.D</option>
                     <option value="single">single</option>
@@ -265,64 +265,64 @@
                     <option value="median">median</option>
                     <option value="centroid">centroid</option>
                 </param>
-                <param name="scale_data" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Scale data" help="Whether to scale the data" />
+                <param name="scale_data" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Scale data" help="Whether to scale the data"/>
             </section>
             <section name="HMM" title="HMM parameters">
-                <param name="HMM" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="HMM" help="Whether to run HMM to predict CNV level" />
-                <param name="HMM_report_by" type="select" label="HMM report by" help="Note, reporting is performed entirely separately from the HMM prediction. So, you can predict on subclusters, but get per-cell level reporting (more voluminous output" >
+                <param name="HMM" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="HMM" help="Whether to run HMM to predict CNV level"/>
+                <param name="HMM_report_by" type="select" label="HMM report by" help="Note, reporting is performed entirely separately from the HMM prediction. So, you can predict on subclusters, but get per-cell level reporting (more voluminous output">
                     <option value="subcluster">subcluster</option>
                     <option value="cell">cell</option>
                     <option value="consensus">consensus</option>
                 </param>
-                <param name="HMM_type" type="select" label="HMM model type" help="The type of HMM to use" >
+                <param name="HMM_type" type="select" label="HMM model type" help="The type of HMM to use">
                     <option value="i6">i6</option>
                     <option value="i3">i3</option>
                 </param>
-                <param name="BayesMaxPNormal" type="float" min="0" max="1" value="0.5" label="Bayes max p normal" help="Maximum P(Normal) allowed for a CNV prediction according to BayesNet. (zero turns it off)" />
+                <param name="BayesMaxPNormal" type="float" min="0" max="1" value="0.5" label="Bayes max p normal" help="Maximum P(Normal) allowed for a CNV prediction according to BayesNet. (zero turns it off)"/>
             </section>
             <section name="tumor_subclustering" title="Tumor subclustering parameters">
-                <param name="analysis_mode" type="select" label="Analysis mode" help="Grouping level for image filtering or HMM predictions. default: samples (fastest, but subclusters is ideal)" >
+                <param name="analysis_mode" type="select" label="Analysis mode" help="Grouping level for image filtering or HMM predictions. default: samples (fastest, but subclusters is ideal)">
                     <option value="samples">samples</option>
                     <option value="subclusters">subclusters</option>
                     <option value="cells">cells</option>
                 </param>
-                <param name="tumor_subcluster_partition_method" type="select" label="Tumor subcluster partition method" help="Method for defining tumor subclusters." >
+                <param name="tumor_subcluster_partition_method" type="select" label="Tumor subcluster partition method" help="Method for defining tumor subclusters.">
                     <option value="leiden">leiden</option>
                     <option value="random_trees">random_trees</option>
                     <option value="qnorm">qnorm</option>
                 </param>
-                <param name="k_nn" type="integer" min="0" value="20" label="KNN" help="number k of nearest neighbors to search for when using the Leiden partition method for subclustering" />
-                <param name="leiden_method" type="select" label="Leiden method" help="Method used to generate the graph on which the Leiden algorithm is applied" >
+                <param name="k_nn" type="integer" min="0" value="20" label="KNN" help="number k of nearest neighbors to search for when using the Leiden partition method for subclustering"/>
+                <param name="leiden_method" type="select" label="Leiden method" help="Method used to generate the graph on which the Leiden algorithm is applied">
                     <option value="PCA">PCA</option>
                     <option value="simple">simple</option>
                 </param>
-                <param name="leiden_function" type="select" label="Leiden function" help="Whether to use the Constant Potts Model (CPM) or modularity in igraph." >
+                <param name="leiden_function" type="select" label="Leiden function" help="Whether to use the Constant Potts Model (CPM) or modularity in igraph.">
                     <option value="CPM">CPM</option>
                     <option value="modularity">modularity</option>
                 </param>
-                <param name="leiden_method_per_chr" type="select" label="Leiden method per chr" help="Method used to generate the graph on which the Leiden algorithm is applied for the per chromosome subclustering." >
+                <param name="leiden_method_per_chr" type="select" label="Leiden method per chr" help="Method used to generate the graph on which the Leiden algorithm is applied for the per chromosome subclustering.">
                     <option value="simple">simple</option>
                     <option value="PCA">PCA</option>
                 </param>
-                <param name="leiden_function_per_chr" type="select" label="Leiden function per chr" help="Whether to use the Constant Potts Model (CPM) or modularity in igraph for the per chromosome subclustering." >
+                <param name="leiden_function_per_chr" type="select" label="Leiden function per chr" help="Whether to use the Constant Potts Model (CPM) or modularity in igraph for the per chromosome subclustering.">
                     <option value="modularity">modularity</option>
                     <option value="CPM">CPM</option>
                 </param>
-                <param name="leiden_resolution_per_chr" type="integer" min="0" value="1" label="Leiden resolution per chr" help="esolution parameter for the Leiden algorithm for the per chromosome subclustering." />
-                <param name="per_chr_hmm_subclusters" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Per chr HMM subclusters" help="Run subclustering per chromosome over all cells combined to run the HMM on those subclusters instead. Only applicable when using leiden subclustering." />
-                <param name="per_chr_hmm_subclusters_references" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Per chr HMM subclusters references" help="Whether the per chromosome subclustering should also be done on references" />
-                <param name="z_score_filter" type="float" min="0" max="1" value="0.8" label="Z score treshold" help="Z-score used as a treshold to filter genes used for subclustering. Applied to remove genes with high expression variability such as MHC genes. " />
+                <param name="leiden_resolution_per_chr" type="integer" min="0" value="1" label="Leiden resolution per chr" help="esolution parameter for the Leiden algorithm for the per chromosome subclustering."/>
+                <param name="per_chr_hmm_subclusters" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Per chr HMM subclusters" help="Run subclustering per chromosome over all cells combined to run the HMM on those subclusters instead. Only applicable when using leiden subclustering."/>
+                <param name="per_chr_hmm_subclusters_references" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Per chr HMM subclusters references" help="Whether the per chromosome subclustering should also be done on references"/>
+                <param name="z_score_filter" type="float" min="0" max="1" value="0.8" label="Z score treshold" help="Z-score used as a treshold to filter genes used for subclustering. Applied to remove genes with high expression variability such as MHC genes. "/>
             </section>
             <section name="denoise" title="Denoising parameters">
-                <param name="denoise" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Denoise" help="Whether to denoise the data" />
-                <param name="noise_filter" type="integer" min="0" optional="true" label="Noise filter" help="Values +- from the reference cell mean will be set to zero" />
-                <param name="sd_amplifier" type="float" min="0" value="1.5" label="SD amplifier" help="Noise is defined as mean(reference_cells) +- sdev(reference_cells) * sd_amplifier" />
-                <param name="noise_logistic" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Noise logistic" help="use the noise_filter or sd_amplifier based threshold (whichever is invoked) as the midpoint in a logistic model for downscaling values close to the mean." />
-                <param name="median_filter" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Median filter" help="Apply the median filtering to smooth the visual output of inferCNV" />
+                <param name="denoise" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Denoise" help="Whether to denoise the data"/>
+                <param name="noise_filter" type="integer" min="0" optional="true" label="Noise filter" help="Values +- from the reference cell mean will be set to zero"/>
+                <param name="sd_amplifier" type="float" min="0" value="1.5" label="SD amplifier" help="Noise is defined as mean(reference_cells) +- sdev(reference_cells) * sd_amplifier"/>
+                <param name="noise_logistic" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Noise logistic" help="use the noise_filter or sd_amplifier based threshold (whichever is invoked) as the midpoint in a logistic model for downscaling values close to the mean."/>
+                <param name="median_filter" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Median filter" help="Apply the median filtering to smooth the visual output of inferCNV"/>
             </section>
             <section name="plotting" title="Plotting parameters">
-                <param name="png_res" type="integer" min="0" value="300" label="PNG resolution" help="Resolution of the PNG files" />
-                <param name="diagnostics" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Diagnostics" help="Create diagnostic plots after running the Bayesian model" />
+                <param name="png_res" type="integer" min="0" value="300" label="PNG resolution" help="Resolution of the PNG files"/>
+                <param name="diagnostics" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Diagnostics" help="Create diagnostic plots after running the Bayesian model"/>
             </section>
         </section>
     </inputs>
@@ -347,21 +347,21 @@
                 <param name="gene_annotation" value="local"/>
                 <param name="gene_order" value="gene_order_file.tabular"/>
             </conditional>
-            <param name="cell_annotations" value="annotations_file.tabular" />
-            <param name="ref_group" value="&quot;normal&quot;" />
+            <param name="cell_annotations" value="annotations_file.tabular"/>
+            <param name="ref_group" value="&quot;normal&quot;"/>
             <section name="advanced">
-                <param name="cutoff" value="1" />
+                <param name="cutoff" value="1"/>
                 <section name="clustering">
                     <param name="cluster_by_groups" value="TRUE"/>
                 </section>
                 <section name="HMM">
-                    <param name="HMM" value="TRUE" />
+                    <param name="HMM" value="TRUE"/>
                 </section>
                 <section name="denoise">
-                    <param name="denoise" value="TRUE" />
+                    <param name="denoise" value="TRUE"/>
                 </section>
                 <section name="tumor_subclustering">
-                    <param name="analysis_mode" value="subclusters" />
+                    <param name="analysis_mode" value="subclusters"/>
                 </section>
             </section>
             <output_collection name="infercnv_results" type="list">
@@ -409,21 +409,21 @@
                 <param name="gene_annotation" value="local"/>
                 <param name="gene_order" value="gene_order_file.tabular"/>
             </conditional>
-            <param name="cell_annotations" value="annotations_file.tabular" />
-            <param name="ref_group" value="&quot;normal&quot;" />
+            <param name="cell_annotations" value="annotations_file.tabular"/>
+            <param name="ref_group" value="&quot;normal&quot;"/>
             <section name="advanced">
-                <param name="cutoff" value="1" />
+                <param name="cutoff" value="1"/>
                 <section name="clustering">
                     <param name="cluster_by_groups" value="TRUE"/>
                 </section>
                 <section name="HMM">
-                    <param name="HMM" value="TRUE" />
+                    <param name="HMM" value="TRUE"/>
                 </section>
                 <section name="denoise">
-                    <param name="denoise" value="TRUE" />
+                    <param name="denoise" value="TRUE"/>
                 </section>
                 <section name="tumor_subclustering">
-                    <param name="analysis_mode" value="subclusters" />
+                    <param name="analysis_mode" value="subclusters"/>
                 </section>
             </section>
             <output_collection name="infercnv_results" type="list">
@@ -469,21 +469,21 @@
                 <param name="gene_annotation" value="local"/>
                 <param name="gene_order" value="gencode_downsampled.EXAMPLE_ONLY_DONT_REUSE.txt"/>
             </conditional>
-            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt" />
-            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;" />
+            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt"/>
+            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;"/>
             <section name="advanced">
-                <param name="cutoff" value="1" />
+                <param name="cutoff" value="1"/>
                 <section name="clustering">
                     <param name="cluster_by_groups" value="TRUE"/>
                 </section>
                 <section name="HMM">
-                    <param name="HMM" value="TRUE" />
+                    <param name="HMM" value="TRUE"/>
                 </section>
                 <section name="denoise">
-                    <param name="denoise" value="TRUE" />
+                    <param name="denoise" value="TRUE"/>
                 </section>
                 <section name="tumor_subclustering">
-                    <param name="analysis_mode" value="subclusters" />
+                    <param name="analysis_mode" value="subclusters"/>
                 </section>
             </section>
             <output_collection name="infercnv_results" type="list">
@@ -529,19 +529,19 @@
                 <param name="gene_annotation" value="local"/>
                 <param name="gene_order" value="gencode_downsampled.EXAMPLE_ONLY_DONT_REUSE.txt"/>
             </conditional>
-            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt" />
-            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;" />
+            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt"/>
+            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;"/>
             <section name="advanced">
-                <param name="cutoff" value="1" />
+                <param name="cutoff" value="1"/>
                 <section name="clustering">
                     <param name="cluster_by_groups" value="TRUE"/>
                 </section>
                 <section name="denoise">
-                    <param name="denoise" value="TRUE" />
-                    <param name="median_filter" value="true" />
+                    <param name="denoise" value="TRUE"/>
+                    <param name="median_filter" value="true"/>
                 </section>
                 <section name="tumor_subclustering">
-                    <param name="analysis_mode" value="subclusters" />
+                    <param name="analysis_mode" value="subclusters"/>
                 </section>
             </section>
             <output_collection name="infercnv_results" type="list">
@@ -589,15 +589,15 @@
                 <param name="gtf_file" value="test.gtf.gz"/>
                 <param name="attribute" value="gene_name"/>
             </conditional>
-            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt" />
-            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;" />
+            <param name="cell_annotations" value="oligodendroglioma_annotations_downsampled.txt"/>
+            <param name="ref_group" value="&quot;Microglia/Macrophage&quot;, &quot;Oligodendrocytes (non-malignant)&quot;"/>
             <section name="advanced">
-                <param name="cutoff" value="1" />
+                <param name="cutoff" value="1"/>
                 <section name="clustering">
                     <param name="cluster_by_groups" value="TRUE"/>
                 </section>
                 <section name="tumor_subclustering">
-                    <param name="analysis_mode" value="subclusters" />
+                    <param name="analysis_mode" value="subclusters"/>
                 </section>
             </section>
             <output_collection name="infercnv_results" type="list">
@@ -617,7 +617,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 InferCNV is used to explore tumor single cell RNA-Seq data to identify evidence for somatic large-scale chromosomal copy number alterations, such as gains or deletions of entire chromosomes or large segments of chromosomes. This is done by exploring expression intensity of genes across positions of tumor genome in comparison to a set of reference 'normal' cells.
 
 InferCNV is one component of the TrinityCTAT toolkit focused on leveraging the use of RNA-Seq to better understand cancer transcriptomes. To find out more about Trinity CTAT please visit TrinityCTAT_.
@@ -747,6 +747,6 @@ By setting "analysis_mode" to "subclusters", inferCNV will attempt to partition 
 
 
 .. _TrinityCTAT: https://github.com/NCIP/Trinity_CTAT/wiki
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

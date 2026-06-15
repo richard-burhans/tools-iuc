@@ -3,20 +3,19 @@
     <macros>
         <token name="@TOOL_VERSION@">482</token>
         <token name="@VERSION_SUFFIX@">0</token>
-
         <xml name="mask_cond" tokens="maskarg,label,help">
             <conditional name="@MASKARG@_type">
-                <param  argument="-@MASKARG@" type="select" label="@LABEL@" help="@HELP@">
+                <param argument="-@MASKARG@" type="select" label="@LABEL@" help="@HELP@">
                     <option value="" selected="true">No masking</option>
                     <option value="lower">lower - mask out lower-cased sequence</option>
                     <option value="upper">upper - mask out upper-cased sequence</option>
                     <option value="file.out">out - mask database according to RepeatMasker out</option>
                 </param>
-                <when value="" />
-                <when value="lower" />
-                <when value="upper" />
+                <when value=""/>
+                <when value="lower"/>
+                <when value="upper"/>
                 <when value="file.out">
-                    <param name="@MASKARG@_file" type="data" format="txt" label="RepeatMasker file.out" />
+                    <param name="@MASKARG@_file" type="data" format="txt" label="RepeatMasker file.out"/>
                 </when>
             </conditional>
         </xml>
@@ -129,13 +128,13 @@
                     <options from_data_table="all_fasta">
                         <!-- <column name="name" index="0"/>
                         <column name="value" index="2"/> -->
-                        <filter type="sort_by" column="2" />
+                        <filter type="sort_by" column="2"/>
                     </options>
-                    <validator type="no_options" message="A built-in database is not available" />
+                    <validator type="no_options" message="A built-in database is not available"/>
                 </param>
             </when>
             <when value="history">
-                <param name="database" type="data" format="fasta,fasta.gz,twobit" label="Using database file, either a fasta, fasta.gz or twobit dataset" />
+                <param name="database" type="data" format="fasta,fasta.gz,twobit" label="Using database file, either a fasta, fasta.gz or twobit dataset"/>
             </when>
         </conditional>
         <param name="query" type="data" format="fasta,fasta.gz,twobit" label="Query data, either a fasta, fasta.gz or twobit dataset"/>
@@ -152,31 +151,31 @@
             <option value="rnax">rnax - DNA sequence translated in three frames to protein</option>
         </param>
         <section name="basic_align" title="Alignment parameters" expanded="true">
-            <param argument="-minScore" type="integer" value="30" label="Minimum score" help="It is the matches minus the mismatches minus some sort of gap penalty" />
-            <param argument="-minIdentity" type="integer" value="" optional="true" min="0" max="100" label="Minimum sequence identity (in percent)" help="Default is 90 for nucleotide searches, 25 for protein or translated protein searches" />
-            <param argument="-trimT" type="boolean" truevalue="-trimT" falsevalue="" label="Trim leading poly-T" />
-            <param argument="-noTrimA" type="boolean" truevalue="-noTrimA" falsevalue="" label="Don't trim trailing poly-A" />
-            <param argument="-trimHardA" type="boolean" truevalue="-trimHardA" falsevalue="" label="Remove poly-A tail from qSize and alignments in .psl output" />
-            <param argument="-fastMap" type="boolean" truevalue="-fastMap" falsevalue="" label="Run for fast DNA/DNA remapping" help="It does not allow introns and require high %ID. Query sizes must not exceed 5000" />
-            <param argument="-fine" type="boolean" truevalue="-fine" falsevalue="" label="Refine search for small initial and terminal exons" help="For high-quality mRNAs. Not recommended for ESTs" />
-            <param argument="-maxIntron" type="integer" value="750000" optional="true" label="Maximum intron size" />
-            <param argument="-extendThroughN" type="boolean" truevalue="-extendThroughN" falsevalue="" label="Allow extension of alignment through large blocks of N's" />
+            <param argument="-minScore" type="integer" value="30" label="Minimum score" help="It is the matches minus the mismatches minus some sort of gap penalty"/>
+            <param argument="-minIdentity" type="integer" value="" optional="true" min="0" max="100" label="Minimum sequence identity (in percent)" help="Default is 90 for nucleotide searches, 25 for protein or translated protein searches"/>
+            <param argument="-trimT" type="boolean" truevalue="-trimT" falsevalue="" label="Trim leading poly-T"/>
+            <param argument="-noTrimA" type="boolean" truevalue="-noTrimA" falsevalue="" label="Don't trim trailing poly-A"/>
+            <param argument="-trimHardA" type="boolean" truevalue="-trimHardA" falsevalue="" label="Remove poly-A tail from qSize and alignments in .psl output"/>
+            <param argument="-fastMap" type="boolean" truevalue="-fastMap" falsevalue="" label="Run for fast DNA/DNA remapping" help="It does not allow introns and require high %ID. Query sizes must not exceed 5000"/>
+            <param argument="-fine" type="boolean" truevalue="-fine" falsevalue="" label="Refine search for small initial and terminal exons" help="For high-quality mRNAs. Not recommended for ESTs"/>
+            <param argument="-maxIntron" type="integer" value="750000" optional="true" label="Maximum intron size"/>
+            <param argument="-extendThroughN" type="boolean" truevalue="-extendThroughN" falsevalue="" label="Allow extension of alignment through large blocks of N's"/>
         </section>
         <section name="adv_align" title="Advanced alignment parameters" expanded="false">
-            <param argument="-tileSize" type="integer" value="" optional="true" min="1" label="Tile size" help="Sets the size of match that triggers an alignment. Usually between 8 and 12. Default is 11 for DNA and 5 for protein" />
-            <param argument="-stepSize" type="integer" value="" optional="true" min="1" label="Spacing between tiles" help="Default is tileSize" />
-            <param argument="-oneOff" type="boolean" truevalue="-oneOff=1" falsevalue="" label="If set, this allows one mismatch in tile and still triggers an alignments" />
-            <param argument="-minMatch" type="integer" value="" optional="true" min="1" label="Minimum number of tile matches" help="Usually set from 2 to 4. Default is 2 for nucleotide, 1 for protein." />
-            <param argument="-maxGap" type="integer" value="2" min="0" max="3" label="Maximum gap between tiles in a clump" help="Usually set from 0 to 3. Only relevant for minMatch > 1" />
-            <param argument="-repMatch" type="integer" value="" optional="true" label="Number of repetitions of a tile allowed before it is marked as overused" help="Typically this is 256 for tileSize 12, 1024 for tileSize 11, 4096 for tileSize 10. Also affected by stepSize. When stepSize is halved repMatch is doubled to compensate" />
+            <param argument="-tileSize" type="integer" value="" optional="true" min="1" label="Tile size" help="Sets the size of match that triggers an alignment. Usually between 8 and 12. Default is 11 for DNA and 5 for protein"/>
+            <param argument="-stepSize" type="integer" value="" optional="true" min="1" label="Spacing between tiles" help="Default is tileSize"/>
+            <param argument="-oneOff" type="boolean" truevalue="-oneOff=1" falsevalue="" label="If set, this allows one mismatch in tile and still triggers an alignments"/>
+            <param argument="-minMatch" type="integer" value="" optional="true" min="1" label="Minimum number of tile matches" help="Usually set from 2 to 4. Default is 2 for nucleotide, 1 for protein."/>
+            <param argument="-maxGap" type="integer" value="2" min="0" max="3" label="Maximum gap between tiles in a clump" help="Usually set from 0 to 3. Only relevant for minMatch &gt; 1"/>
+            <param argument="-repMatch" type="integer" value="" optional="true" label="Number of repetitions of a tile allowed before it is marked as overused" help="Typically this is 256 for tileSize 12, 1024 for tileSize 11, 4096 for tileSize 10. Also affected by stepSize. When stepSize is halved repMatch is doubled to compensate"/>
         </section>
         <section name="repeat" title="Repeat masking parameters" expanded="true">
             <expand macro="mask_cond" maskarg="mask" label="Mask out repeats" help="Alignments won't be started in masked region but may extend through it in nucleotide searches. Masked areas are ignored entirely in protein or translated searches. Default is no masking"/>
             <expand macro="mask_cond" maskarg="qMask" label="Mask out repeats in query sequence" help="Analoguous to -mask, but for the query sequence"/>
             <expand macro="mask_cond" maskarg="repeats" label="Report matches in repeats separately" help="Repeat bases will not be masked in any way, but matches in repeat areas will be reported separately from matches in other areas in the output"/>
-            <param argument="-minRepDivergence" type="integer" value=""  min="0" max="100" optional="true" label="Minimum divergence of repeats (percent)" help="to allow them to be unmasked.  Default is 15.  Only relevant for masking using RepeatMasker .out files" />
+            <param argument="-minRepDivergence" type="integer" value="" min="0" max="100" optional="true" label="Minimum divergence of repeats (percent)" help="to allow them to be unmasked.  Default is 15.  Only relevant for masking using RepeatMasker .out files"/>
         </section>
-        <param argument="-dots" type="integer" value="" optional="true" label="Output a dot every N sequences in log" help="Dots show program's progress" />
+        <param argument="-dots" type="integer" value="" optional="true" label="Output a dot every N sequences in log" help="Dots show program's progress"/>
         <param name="out" type="select" label="Select output file format (-out)">
             <option value="psl">Tab-separated format, no sequence (psl)</option>
             <option value="psl -noHead">Tab-separated format, no sequence, no header (psl -noHead)</option>
@@ -193,10 +192,11 @@
     </inputs>
     <outputs>
         <data name="output" format="tabular" label="${tool.name} on ${on_string}">
-            <change_format><!-- add test -->
-                <when input="out" value="axt" format="axt" />
-                <when input="out" value="maf" format="maf" />
-                <when input="out" value="sim4" format="txt" />
+            <change_format>
+                <!-- add test -->
+                <when input="out" value="axt" format="axt"/>
+                <when input="out" value="maf" format="maf"/>
+                <when input="out" value="sim4" format="txt"/>
             </change_format>
         </data>
     </outputs>
@@ -204,16 +204,16 @@
         <!-- test on query of GenBank RefSeq records for Gallus gallus and database of Amazona vittata -->
         <test>
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="database" value="amaVit1_Gallus/amaVit1.fa" ftype="fasta" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="database" value="amaVit1_Gallus/amaVit1.fa" ftype="fasta"/>
             </conditional>
-            <param name="query" value="amaVit1_Gallus/Gallus_gallus_RefSeq.fa" ftype="fasta" />
-            <param name="database_type" value="dnax" />
-            <param name="query_type" value="rnax" />
+            <param name="query" value="amaVit1_Gallus/Gallus_gallus_RefSeq.fa" ftype="fasta"/>
+            <param name="database_type" value="dnax"/>
+            <param name="query_type" value="rnax"/>
             <conditional name="mask_type">
-                <param name="mask" value="lower" />
+                <param name="mask" value="lower"/>
             </conditional>
-            <param name="out" value="maf" />
+            <param name="out" value="maf"/>
             <output name="output" value="amaVit1_Gallus/amaVit1_Gallus_gallus_sorted.maf" ftype="maf"/>
             <assert_command>
                 <has_text text="-tileSize=" negate="true"/>
@@ -229,17 +229,19 @@
                 <param name="reference_source_selector" value="cached"/>
                 <param name="database" value="dbdia display name"/>
             </conditional>
-            <param name="query" value="dbia3/dmel-transcript.fa" ftype="fasta" />
-            <param name="database_type" value="dnax" />
-            <param name="query_type" value="rnax" />
+            <param name="query" value="dbia3/dmel-transcript.fa" ftype="fasta"/>
+            <param name="database_type" value="dnax"/>
+            <param name="query_type" value="rnax"/>
             <section name="basic_align">
-                <param name="maxIntron" value="" />
+                <param name="maxIntron" value=""/>
             </section>
             <section name="adv_align">
-                <param name="tileSize" value="5"/><!--explicitly set default .. to check if it is on the CL-->
-                <param name="stepSize" value="5"/><!--explicitly set default .. to check if it is on the CL-->
+                <param name="tileSize" value="5"/>
+                <!--explicitly set default .. to check if it is on the CL-->
+                <param name="stepSize" value="5"/>
+                <!--explicitly set default .. to check if it is on the CL-->
             </section>
-            <param name="out" value="psl -noHead" />
+            <param name="out" value="psl -noHead"/>
             <output name="output" value="dbia3/dbia3.sorted.psl" ftype="tabular" sort="true">
                 <assert_contents>
                     <has_n_columns n="21"/>
@@ -255,17 +257,19 @@
                 <param name="reference_source_selector" value="cached"/>
                 <param name="database" value="dbdia display name"/>
             </conditional>
-            <param name="query" value="dbia3/dmel-transcript.fa" ftype="fasta" />
-            <param name="database_type" value="dnax" />
-            <param name="query_type" value="rnax" />
+            <param name="query" value="dbia3/dmel-transcript.fa" ftype="fasta"/>
+            <param name="database_type" value="dnax"/>
+            <param name="query_type" value="rnax"/>
             <section name="basic_align">
-                <param name="maxIntron" value="" />
+                <param name="maxIntron" value=""/>
             </section>
             <section name="adv_align">
-                <param name="tileSize" value="5"/><!--explicitly set default .. to check if it is on the CL-->
-                <param name="stepSize" value="5"/><!--explicitly set default .. to check if it is on the CL-->
+                <param name="tileSize" value="5"/>
+                <!--explicitly set default .. to check if it is on the CL-->
+                <param name="stepSize" value="5"/>
+                <!--explicitly set default .. to check if it is on the CL-->
             </section>
-            <param name="out" value="pslx -noHead" />
+            <param name="out" value="pslx -noHead"/>
             <output name="output" value="dbia3/dbia3.sorted.psl" ftype="tabular" sort="true" compare="contains">
                 <assert_contents>
                     <has_n_columns n="23"/>
@@ -279,25 +283,25 @@
         <!-- test on the database masked by repeat masker -->
         <test>
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="database" value="dbia3/dbia3_masked.2bit" ftype="twobit" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="database" value="dbia3/dbia3_masked.2bit" ftype="twobit"/>
             </conditional>
             <param name="query" value="dbia3/dmel-transcript.fa" ftype="fasta"/>
-            <param name="database_type" value="dnax" />
-            <param name="query_type" value="rnax" />
-            <param name="oneOff" value="false" />
-            <param name="minScore" value="30" />
-            <param name="maxGap" value="2" />
-            <param name="trimT" value="false" />
-            <param name="noTrimA" value="false" />
-            <param name="fine" value="false" />
-            <param name="maxIntron" value="750000" />
-            <param name="extendThroughN" value="false" />
+            <param name="database_type" value="dnax"/>
+            <param name="query_type" value="rnax"/>
+            <param name="oneOff" value="false"/>
+            <param name="minScore" value="30"/>
+            <param name="maxGap" value="2"/>
+            <param name="trimT" value="false"/>
+            <param name="noTrimA" value="false"/>
+            <param name="fine" value="false"/>
+            <param name="maxIntron" value="750000"/>
+            <param name="extendThroughN" value="false"/>
             <conditional name="mask_type">
-                <param name="mask" value="file.out" />
-                <param name="mask_file" value="dbia3/dbia3_RM.out" />
+                <param name="mask" value="file.out"/>
+                <param name="mask_file" value="dbia3/dbia3_RM.out"/>
             </conditional>
-            <param name="out" value="psl" ftype="tabular" />
+            <param name="out" value="psl" ftype="tabular"/>
             <output name="output" value="dbia3/dbia3_masked.sorted.psl"/>
             <assert_command>
                 <has_text text="-tileSize=" negate="true"/>
@@ -308,15 +312,15 @@
         <!-- tiny test data from https://davetang.org/muse/2012/05/15/using-blat/ -->
         <test>
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
-                <param name="database" value="mini-db.fa.gz" ftype="fasta.gz" />
+                <param name="reference_source_selector" value="history"/>
+                <param name="database" value="mini-db.fa.gz" ftype="fasta.gz"/>
             </conditional>
             <param name="query" value="mini-query.fa.gz" ftype="fasta.gz"/>
-            <param name="minScore" value="0" />
+            <param name="minScore" value="0"/>
             <section name="adv_align">
                 <param name="stepSize" value="1"/>
             </section>
-            <param name="out" value="psl" ftype="tabular" />
+            <param name="out" value="psl" ftype="tabular"/>
             <output name="output">
                 <assert_contents>
                     <has_n_lines n="7"/>
@@ -326,7 +330,8 @@
                 <has_text text="-minScore=0"/>
                 <has_text text="-stepSize=1"/>
             </assert_command>
-        </test> </tests>
+        </test>
+    </tests>
     <help>
         <![CDATA[
 BLAT

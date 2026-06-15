@@ -1,5 +1,5 @@
 <tool id="data_manager_mmseqs2_download" name="Download MMseqs2 databases" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="22.05">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">17-b804f</token>
         <token name="@VERSION_SUFFIX@">0</token>
@@ -17,7 +17,7 @@ mmseqs databases
         --threads "\${GALAXY_SLOTS:-1}" &&
 cp '$dmjson' '$out_file'
     ]]></command>
-     <configfiles>
+    <configfiles>
         <configfile name="dmjson"><![CDATA[
 #from datetime import date
 #set $database_name = str($database).split('/')[-1] if '/' in str($database) else str($database)
@@ -50,7 +50,7 @@ cp '$dmjson' '$out_file'
                 <param name="db_type" value="aminoacid" type="hidden"/>
                 <param name="db_taxonomy" value="no" type="hidden"/>
                 <param name="database" type="select" label="MMseqs2 aminoacid databases">
-                    <option value="PDB">PDB (The Protein Data Bank)</option>            
+                    <option value="PDB">PDB (The Protein Data Bank)</option>
                 </param>
             </when>
             <when value="aminoacid_taxonomy">
@@ -104,39 +104,39 @@ cp '$dmjson' '$out_file'
     <tests>
         <test expect_num_outputs="1">
             <conditional name="db_name">
-                <param name="type" value="nucleotide_taxonomy" />
-                <param name="db_type" value="nucleotide" />
-                <param name="db_taxonomy" value="yes" />
-                <param name="database" value="SILVA" />
+                <param name="type" value="nucleotide_taxonomy"/>
+                <param name="db_type" value="nucleotide"/>
+                <param name="db_taxonomy" value="yes"/>
+                <param name="database" value="SILVA"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"mmseqs2_databases":'/>
-                    <has_text text='"version": "@TOOL_VERSION@"'/>
-                    <has_text_matching expression='"value": "SILVA-@TOOL_VERSION@-[0-9]{8}"'/>
-                    <has_text_matching expression='"name": "SILVA [0-9]{8}"'/>
-                    <has_text text='"type": "nucleotide"'/>
-                    <has_text text='"taxonomy": "yes"'/>
-                    <has_text text='"path": "SILVA"'/>
+                    <has_text text="&quot;mmseqs2_databases&quot;:"/>
+                    <has_text text="&quot;version&quot;: &quot;@TOOL_VERSION@&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;SILVA-@TOOL_VERSION@-[0-9]{8}&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;SILVA [0-9]{8}&quot;"/>
+                    <has_text text="&quot;type&quot;: &quot;nucleotide&quot;"/>
+                    <has_text text="&quot;taxonomy&quot;: &quot;yes&quot;"/>
+                    <has_text text="&quot;path&quot;: &quot;SILVA&quot;"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="db_name">
-                <param name="type" value="aminoacid_taxonomy" />
-                <param name="db_type" value="aminoacid" />
-                <param name="db_taxonomy" value="yes" />
-                <param name="database" value="UniProtKB/Swiss-Prot" />
+                <param name="type" value="aminoacid_taxonomy"/>
+                <param name="db_type" value="aminoacid"/>
+                <param name="db_taxonomy" value="yes"/>
+                <param name="database" value="UniProtKB/Swiss-Prot"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"mmseqs2_databases":'/>
-                    <has_text text='"version": "@TOOL_VERSION@"'/>
-                    <has_text_matching expression='"value": "UniProtKB/Swiss-Prot-@TOOL_VERSION@-[0-9]{8}"'/>
-                    <has_text_matching expression='"name": "UniProtKB/Swiss-Prot [0-9]{8}"'/>
-                    <has_text text='"type": "aminoacid"'/>
-                    <has_text text='"taxonomy": "yes"'/>
-                    <has_text text='"path": "Swiss-Prot"'/>
+                    <has_text text="&quot;mmseqs2_databases&quot;:"/>
+                    <has_text text="&quot;version&quot;: &quot;@TOOL_VERSION@&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;UniProtKB/Swiss-Prot-@TOOL_VERSION@-[0-9]{8}&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;UniProtKB/Swiss-Prot [0-9]{8}&quot;"/>
+                    <has_text text="&quot;type&quot;: &quot;aminoacid&quot;"/>
+                    <has_text text="&quot;taxonomy&quot;: &quot;yes&quot;"/>
+                    <has_text text="&quot;path&quot;: &quot;Swiss-Prot&quot;"/>
                 </assert_contents>
             </output>
         </test>

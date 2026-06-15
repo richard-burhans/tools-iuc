@@ -3,9 +3,9 @@
     <macros>
         <import>macro.xml</import>
     </macros>
-    <expand macro='xrefs'/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         ln -s '$input_file' input &&
         isescan.py
@@ -21,9 +21,7 @@
     </command>
     <inputs>
         <param name="input_file" type="data" format="fasta" label="Genome fasta input" help="Fasta sequence to analyse for IS"/>
-        <param name="remove_short_is" argument="--removeShortIS" type="boolean" truevalue="--removeShortIS" falsevalue=""
-               label="Remove incomplete IS elements"
-               help="Remove partial IS elements which include IS element with length &gt; 400 or single copy IS element without perfect TIR"/>
+        <param name="remove_short_is" argument="--removeShortIS" type="boolean" truevalue="--removeShortIS" falsevalue="" label="Remove incomplete IS elements" help="Remove partial IS elements which include IS element with length &gt; 400 or single copy IS element without perfect TIR"/>
         <param name="log_activate" type="boolean" truevalue="true" falsevalue="false" checked="True" label="Keep the log file"/>
     </inputs>
     <outputs>
@@ -38,7 +36,8 @@
         <data format="fasta" name="orf_faa" from_work_dir="results/input.orf.faa" label="${tool.name} on ${on_string}: ORF amino acide sequences"/>
     </outputs>
     <tests>
-        <test expect_num_outputs="7"> <!-- TEST_1 default parameters -->
+        <test expect_num_outputs="7">
+            <!-- TEST_1 default parameters -->
             <param name="input_file" value="NC_012624.fna"/>
             <output name="logfile" value="TEST_1/test_1.log" lines_diff="70"/>
             <output name="summary" value="TEST_1/test_1.fna.sum" lines_diff="2"/>
@@ -48,7 +47,8 @@
             <output name="orf_fna" value="TEST_1/test_1.fna.orf.fna" lines_diff="1"/>
             <output name="orf_faa" value="TEST_1/test_1.fna.orf.faa" lines_diff="1"/>
         </test>
-        <test expect_num_outputs="7"> <!-- TEST_1 remove short is -->
+        <test expect_num_outputs="7">
+            <!-- TEST_1 remove short is -->
             <param name="input_file" value="NC_012624.fna"/>
             <param name="remove_short_is" value="true"/>
             <output name="logfile" value="test_2.log" lines_diff="50"/>
@@ -59,7 +59,8 @@
             <output name="orf_fna" value="test_2.fna.orf.fna" lines_diff="1"/>
             <output name="orf_faa" value="test_2.fna.orf.faa" lines_diff="1"/>
         </test>
-        <test expect_num_outputs="6"> <!-- TEST_1 remove short is and no logfile -->
+        <test expect_num_outputs="6">
+            <!-- TEST_1 remove short is and no logfile -->
             <param name="input_file" value="NC_012624.fna"/>
             <param name="remove_short_is" value="true"/>
             <param name="log_activate" value="False"/>

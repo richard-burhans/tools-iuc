@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="biotools" />
+    <expand macro="biotools"/>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 ln -s '$input' input.fasta &&
@@ -47,7 +47,7 @@ $tree_calculation.KIMURA
 $tree_calculation.TOSSGAPS
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="fasta" label="FASTA file" />
+        <param name="input" type="data" format="fasta" label="FASTA file"/>
         <conditional name="type_conditional">
             <param name="dnarna" type="select" label="Data type">
                 <option value="DNA" selected="True">DNA nucleotide sequences</option>
@@ -75,9 +75,8 @@ $tree_calculation.TOSSGAPS
                 <option value="NJ">NJ</option>
                 <option value="NEXUS">NEXUS</option>
             </param>
-            <param argument="-KIMURA" type="boolean" truevalue="-KIMURA" falsevalue="" checked="false" label="Use Kimura correction" 
-                help="For small divergence (say inferior 10%) this option makes no difference. For greater divergence, this option corrects for the fact that observed distances underestimate actual evolutionary distances." />
-            <param argument="-TOSSGAPS" type="boolean" truevalue="-TOSSGAPS" falsevalue="" checked="false" label="Ignore positions with gaps" help="Default: No" />
+            <param argument="-KIMURA" type="boolean" truevalue="-KIMURA" falsevalue="" checked="false" label="Use Kimura correction" help="For small divergence (say inferior 10%) this option makes no difference. For greater divergence, this option corrects for the fact that observed distances underestimate actual evolutionary distances."/>
+            <param argument="-TOSSGAPS" type="boolean" truevalue="-TOSSGAPS" falsevalue="" checked="false" label="Ignore positions with gaps" help="Default: No"/>
         </section>
         <conditional name="outcontrol">
             <param name="outform" type="select" label="Output alignment format">
@@ -85,10 +84,10 @@ $tree_calculation.TOSSGAPS
                 <option value="phylip">PHYLIP format</option>
                 <option value="fasta">FASTA format</option>
             </param>
-            <when value="fasta" />
-            <when value="phylip" />
+            <when value="fasta"/>
+            <when value="phylip"/>
             <when value="clustal">
-                <param name="out_seqnos" type="boolean" truevalue="ON" falsevalue="OFF" label="Show residue numbers in clustal format output" />
+                <param name="out_seqnos" type="boolean" truevalue="ON" falsevalue="OFF" label="Show residue numbers in clustal format output"/>
             </when>
         </conditional>
         <param name="out_order" type="select" label="Output order">
@@ -100,33 +99,33 @@ $tree_calculation.TOSSGAPS
                 <option value="complete">Complete alignment</option>
                 <option value="part">Only part of the alignment</option>
             </param>
-            <when value="complete" />
+            <when value="complete"/>
             <when value="part">
-                <param name="seq_range_start" type="integer" value="1" label="Start point" help="Sequence range to write" />
-                <param name="seq_range_end" type="integer" value="99999" label="End point" />
+                <param name="seq_range_start" type="integer" value="1" label="Start point" help="Sequence range to write"/>
+                <param name="seq_range_end" type="integer" value="99999" label="End point"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
         <data name="output" format="clustal" label="${tool.name} on ${on_string}: ${outcontrol.outform}">
             <change_format>
-                <when input="outcontrol.outform" value="phylip" format="phylip" />
-                <when input="outcontrol.outform" value="fasta" format="fasta" />
+                <when input="outcontrol.outform" value="phylip" format="phylip"/>
+                <when input="outcontrol.outform" value="fasta" format="fasta"/>
             </change_format>
         </data>
-        <data name="dnd" format="nhx" label="${tool.name} on ${on_string}: dnd" from_work_dir="input.dnd" />
+        <data name="dnd" format="nhx" label="${tool.name} on ${on_string}: dnd" from_work_dir="input.dnd"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="rgClustal_testin.fasta" />
-            <param name="outform" value="fasta" />
+            <param name="input" value="rgClustal_testin.fasta"/>
+            <param name="outform" value="fasta"/>
             <conditional name="type_conditional">
                 <param name="dnarna" value="DNA"/>
             </conditional>
-            <param name="mode" value="complete" />
-            <param name="out_order" value="ALIGNED" />
-            <output name="output" file="rgClustal_testout.fasta" ftype="fasta" />
-            <output name="dnd" file="rgClustal_testin.dnd" ftype="nhx" />
+            <param name="mode" value="complete"/>
+            <param name="out_order" value="ALIGNED"/>
+            <output name="output" file="rgClustal_testout.fasta" ftype="fasta"/>
+            <output name="dnd" file="rgClustal_testin.dnd" ftype="nhx"/>
         </test>
         <!-- Test DNA options-->
         <test expect_num_outputs="2">

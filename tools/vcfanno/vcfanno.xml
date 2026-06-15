@@ -1,16 +1,11 @@
-<?xml version="1.0"?>
 <tool id="vcfanno" name="vcfanno" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>VCF annotation</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="xrefs"/>
-
     <expand macro="requirements"/>
-
     <expand macro="version_command"/>
-
     <!--
     In future versions - figure out how to safely add in lua support without posing security risk
     (Should be doable but requires writing some lua unfortunately to make custom sandboxes)
@@ -160,79 +155,79 @@ ${ops}
             <param name="input_vcf" value="query.vcf.gz" ftype="vcf_bgzip"/>
             <repeat name="annotations">
                 <conditional name="type">
-                    <param name="type_select" value="vcf.gz" />
+                    <param name="type_select" value="vcf.gz"/>
                     <param name="annotation" value="exac.vcf.gz" ftype="vcf_bgzip"/>
                     <repeat name="fields">
-                        <param name="name" value="AC_AFR" />
-                        <param name="field" value="AC_AFR" />
-                        <param name="op" value="first" />
+                        <param name="name" value="AC_AFR"/>
+                        <param name="field" value="AC_AFR"/>
+                        <param name="op" value="first"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="AC_AMR" />
-                        <param name="field" value="AC_AMR" />
-                        <param name="op" value="first" />
+                        <param name="name" value="AC_AMR"/>
+                        <param name="field" value="AC_AMR"/>
+                        <param name="op" value="first"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="AC_EAS" />
-                        <param name="field" value="AC_EAS" />
-                        <param name="op" value="first" />
+                        <param name="name" value="AC_EAS"/>
+                        <param name="field" value="AC_EAS"/>
+                        <param name="op" value="first"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="ID" />
-                        <param name="field" value="ID" />
-                        <param name="op" value="first" />
-                    </repeat>
-                </conditional>
-            </repeat>
-            <repeat name="annotations">
-                <conditional name="type">
-                    <param name="type_select" value="bam" />
-                    <param name="annotation" value="ex.bam" />
-                    <repeat name="fields">
-                        <param name="name" value="mapq" />
-                        <param name="field" value="mapq" />
-                        <param name="op" value="mean" />
-                    </repeat>
-                    <repeat name="fields">
-                        <param name="name" value="coverage" />
-                        <param name="field" value="coverage" />
-                        <param name="op" value="sum" />
-                    </repeat>
-                    <repeat name="fields">
-                        <param name="name" value="xdp2" />
-                        <param name="field" value="DP2" />
-                        <param name="op" value="self" />
+                        <param name="name" value="ID"/>
+                        <param name="field" value="ID"/>
+                        <param name="op" value="first"/>
                     </repeat>
                 </conditional>
             </repeat>
             <repeat name="annotations">
                 <conditional name="type">
-                    <param name="type_select" value="bed" />
-                    <param name="annotation" value="fitcons.bed" />
+                    <param name="type_select" value="bam"/>
+                    <param name="annotation" value="ex.bam"/>
                     <repeat name="fields">
-                        <param name="name" value="lua_start" />
-                        <param name="columns" value="4" />
-                        <param name="op" value="first" />
+                        <param name="name" value="mapq"/>
+                        <param name="field" value="mapq"/>
+                        <param name="op" value="mean"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="lua_end" />
-                        <param name="columns" value="4" />
-                        <param name="op" value="first" />
+                        <param name="name" value="coverage"/>
+                        <param name="field" value="coverage"/>
+                        <param name="op" value="sum"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="lua_len" />
-                        <param name="columns" value="4" />
-                        <param name="op" value="first" />
+                        <param name="name" value="xdp2"/>
+                        <param name="field" value="DP2"/>
+                        <param name="op" value="self"/>
+                    </repeat>
+                </conditional>
+            </repeat>
+            <repeat name="annotations">
+                <conditional name="type">
+                    <param name="type_select" value="bed"/>
+                    <param name="annotation" value="fitcons.bed"/>
+                    <repeat name="fields">
+                        <param name="name" value="lua_start"/>
+                        <param name="columns" value="4"/>
+                        <param name="op" value="first"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="lua_mean" />
-                        <param name="columns" value="4" />
-                        <param name="op" value="first" />
+                        <param name="name" value="lua_end"/>
+                        <param name="columns" value="4"/>
+                        <param name="op" value="first"/>
                     </repeat>
                     <repeat name="fields">
-                        <param name="name" value="lua_loc" />
-                        <param name="columns" value="4" />
-                        <param name="op" value="first" />
+                        <param name="name" value="lua_len"/>
+                        <param name="columns" value="4"/>
+                        <param name="op" value="first"/>
+                    </repeat>
+                    <repeat name="fields">
+                        <param name="name" value="lua_mean"/>
+                        <param name="columns" value="4"/>
+                        <param name="op" value="first"/>
+                    </repeat>
+                    <repeat name="fields">
+                        <param name="name" value="lua_loc"/>
+                        <param name="columns" value="4"/>
+                        <param name="op" value="first"/>
                     </repeat>
                 </conditional>
             </repeat>

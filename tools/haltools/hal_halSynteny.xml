@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halSynteny
@@ -34,19 +34,19 @@
             <when value="psl">
                 <param name="input_psl" type="data" format="psl" label="PSL file"/>
             </when>
-        </conditional> 
+        </conditional>
         <param argument="--queryGenome" type="text" value="" label="Query genome" help="Specify the genome to query from which the synteny is inferred">
             <expand macro="sanitizer_default"/>
             <expand macro="validator_trim"/>
-        </param>  
+        </param>
         <param argument="--targetGenome" type="text" value="" label="Target genome" help="Specify the target genome against which the query genome is compared. Must be different to 'Query genome'">
             <expand macro="sanitizer_default"/>
             <expand macro="validator_trim"/>
-        </param>  
+        </param>
         <param argument="--queryChromosome" type="text" optional="true" value="" label="Query chromosome" help="Limit synteny detection to a specific chromosome (or sequence) from the query genome (if empty, whole genome is used) ">
             <expand macro="sanitizer_default"/>
             <expand macro="validator_trim"/>
-        </param>  
+        </param>
         <param argument="--maxAnchorDistance" type="integer" min="0" value="5000" label="Max anchor distance" help="Set the maximum allowed distance between adjacent alignment anchors to be considered part of the same synteny block"/>
         <param argument="--minBlockSize" type="integer" min="0" value="5000" label="Min block size" help="Set the minimum length of a synteny block to process. Blocks shorter than this threshold are ignored"/>
     </inputs>
@@ -64,9 +64,9 @@
             <param name="minBlockSize" value="100"/>
             <output name="output_file" ftype="psl">
                 <assert_contents>
-                    <has_line line="1465&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;0&#009;1465&#009;Genome_1_seq&#009;5472&#009;0&#009;1465&#009;1&#009;1465,&#009;0,&#009;0,"/>   
-                    <has_line line="879&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;586&#009;1465&#009;Genome_1_seq&#009;5472&#009;3809&#009;4688&#009;1&#009;879,&#009;586,&#009;3809,"/>    
-                    <has_line line="293&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;879&#009;1172&#009;Genome_1_seq&#009;5472&#009;4981&#009;5274&#009;1&#009;293,&#009;879,&#009;4981,"/>
+                    <has_line line="1465&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;0&#9;1465&#9;Genome_1_seq&#9;5472&#9;0&#9;1465&#9;1&#9;1465,&#9;0,&#9;0,"/>
+                    <has_line line="879&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;586&#9;1465&#9;Genome_1_seq&#9;5472&#9;3809&#9;4688&#9;1&#9;879,&#9;586,&#9;3809,"/>
+                    <has_line line="293&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;879&#9;1172&#9;Genome_1_seq&#9;5472&#9;4981&#9;5274&#9;1&#9;293,&#9;879,&#9;4981,"/>
                     <has_n_lines n="6"/>
                 </assert_contents>
             </output>
@@ -82,9 +82,9 @@
             <param name="maxAnchorDistance" value="500"/>
             <output name="output_file" ftype="psl">
                 <assert_contents>
-                    <has_line line="1465&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;0&#009;1465&#009;Genome_1_seq&#009;5472&#009;0&#009;1465&#009;1&#009;1465,&#009;0,&#009;0,"/>   
-                    <has_line line="293&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;1172&#009;1465&#009;Genome_1_seq&#009;5472&#009;4688&#009;4981&#009;1&#009;293,&#009;1172,&#009;4688,"/>    
-                    <has_line line="293&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;++&#009;Genome_0_seq&#009;1758&#009;0&#009;293&#009;Genome_1_seq&#009;5472&#009;1758&#009;2051&#009;1&#009;293,&#009;0,&#009;1758,"/>
+                    <has_line line="1465&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;0&#9;1465&#9;Genome_1_seq&#9;5472&#9;0&#9;1465&#9;1&#9;1465,&#9;0,&#9;0,"/>
+                    <has_line line="293&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;1172&#9;1465&#9;Genome_1_seq&#9;5472&#9;4688&#9;4981&#9;1&#9;293,&#9;1172,&#9;4688,"/>
+                    <has_line line="293&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;++&#9;Genome_0_seq&#9;1758&#9;0&#9;293&#9;Genome_1_seq&#9;5472&#9;1758&#9;2051&#9;1&#9;293,&#9;0,&#9;1758,"/>
                     <has_n_lines n="8"/>
                 </assert_contents>
             </output>
@@ -99,8 +99,8 @@
             <param name="minBlockSize" value="500"/>
             <output name="output_file" ftype="psl">
                 <assert_contents>
-                    <has_line line="686&#009;0&#009;0&#009;0&#009;1&#009;414&#009;1&#009;4516&#009;++&#009;Genome_0_seq&#009;1758&#009;0&#009;1100&#009;Genome_1_seq&#009;5472&#009;0&#009;5202&#009;3&#009;243,343,100,&#009;0,243,1000,&#009;0,243,5102,"/>   
-                    <has_line line="686&#009;0&#009;0&#009;0&#009;1&#009;414&#009;2&#009;1879&#009;++&#009;Genome_0_seq&#009;1758&#009;0&#009;1100&#009;Genome_1_seq&#009;5472&#009;1758&#009;4323&#009;4&#009;243,50,293,100,&#009;0,243,293,1000,&#009;1758,2001,2637,4223,"/>
+                    <has_line line="686&#9;0&#9;0&#9;0&#9;1&#9;414&#9;1&#9;4516&#9;++&#9;Genome_0_seq&#9;1758&#9;0&#9;1100&#9;Genome_1_seq&#9;5472&#9;0&#9;5202&#9;3&#9;243,343,100,&#9;0,243,1000,&#9;0,243,5102,"/>
+                    <has_line line="686&#9;0&#9;0&#9;0&#9;1&#9;414&#9;2&#9;1879&#9;++&#9;Genome_0_seq&#9;1758&#9;0&#9;1100&#9;Genome_1_seq&#9;5472&#9;1758&#9;4323&#9;4&#9;243,50,293,100,&#9;0,243,293,1000,&#9;1758,2001,2637,4223,"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>

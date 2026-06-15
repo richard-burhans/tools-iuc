@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halAlignmentDepth
@@ -28,9 +28,9 @@
             #else
                 "\"\""  ## Defaults to input HAL file's tree root
             #end if 
-            > '$out_file'
+            > ''$out_file''
     ]]></command>
-    <inputs>        
+    <inputs>
         <expand macro="input_hal"/>
         <expand macro="params_conditional_refGenome"/>
         <conditional name="mode">

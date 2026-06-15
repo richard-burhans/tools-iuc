@@ -4,8 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
     CAT summarise
         #if $contigs_fasta
@@ -16,10 +16,8 @@
     && @TXT2TSV@ -i 'output_names_summary.txt' -o '$output'
     ]]></command>
     <inputs>
-        <param argument="--input" type="data" format="tabular" label="classification.names.txt output from CAT add_names"
-            help="The classication must be made with --only_official names"/>
-        <param argument="--contigs_fasta" type="data" format="fasta" optional="true" label="contigs.fasta used for CAT contigs" 
-            help="Required if summarising a contig2classification.names output derived from CAT contigs"/>
+        <param argument="--input" type="data" format="tabular" label="classification.names.txt output from CAT add_names" help="The classication must be made with --only_official names"/>
+        <param argument="--contigs_fasta" type="data" format="fasta" optional="true" label="contigs.fasta used for CAT contigs" help="Required if summarising a contig2classification.names output derived from CAT contigs"/>
     </inputs>
     <outputs>
         <data name="output" format="tabular" label="#set name = $input.name.replace('.txt','.summary.txt')# ${tool.name} on ${on_string} $name"/>
@@ -30,7 +28,7 @@
             <param name="contigs_fasta" ftype="fasta" value="contigs.fasta"/>
             <output name="output">
                 <assert_contents>
-                    <has_text text="Firmicutes" />
+                    <has_text text="Firmicutes"/>
                 </assert_contents>
             </output>
         </test>
@@ -84,5 +82,5 @@ Optional arguments:
 
 @COMMON_HELP@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

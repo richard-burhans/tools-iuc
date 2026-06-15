@@ -125,7 +125,6 @@ $full_tree
                 </element>
             </output_collection>
         </test> -->
-
         <!-- GTDB-Tk databases are far too large to test currently -->
         <test expect_failure="true">
             <param name="input" value="genome_1.fna.gz" ftype="fasta.gz"/>
@@ -162,4 +161,3 @@ Results can be impacted by a lack of marker genes or contamination.
     ]]></help>
     <expand macro="citations"/>
 </tool>
-

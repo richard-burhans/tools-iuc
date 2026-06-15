@@ -72,11 +72,8 @@ echo 'classify.otu(
             <option value="sequence">sequence</option>
         </param>
         <param argument="group" type="data" format="mothur.groups" optional="true" label="group - Groups for summary file"/>
-        <param argument="persample" type="boolean" falsevalue="false" truevalue="true" checked="false"
-            label="persample - allows you to find a consensus taxonomy for each group"
-            help="default false"/>
-        <param argument="relabund" type="boolean" checked="false" truevalue="T" falsevalue="F" label="Relative abundance values?"
-            help="use relative abundances rather than raw abundances for the tax.summary file"/>
+        <param argument="persample" type="boolean" falsevalue="false" truevalue="true" checked="false" label="persample - allows you to find a consensus taxonomy for each group" help="default false"/>
+        <param argument="relabund" type="boolean" checked="false" truevalue="T" falsevalue="F" label="Relative abundance values?" help="use relative abundances rather than raw abundances for the tax.summary file"/>
         <expand macro="param-output"/>
         <expand macro="param-printlevel"/>
         <expand macro="param-savelog"/>
@@ -91,7 +88,8 @@ echo 'classify.otu(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="source" value="hist"/>
             <param name="taxonomy" value="abrecovery.pds.wang.taxonomy" ftype="mothur.seq.taxonomy"/>
@@ -114,7 +112,8 @@ echo 'classify.otu(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with names file and label select -->
+        <test>
+            <!-- test with names file and label select -->
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="name" value="amazon1.names" ftype="mothur.names"/>
             <param name="source" value="hist"/>
@@ -140,7 +139,8 @@ echo 'classify.otu(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with count table -->
+        <test>
+            <!-- test with count table -->
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="count" value="amazon1.count_table" ftype="mothur.count_table"/>
             <param name="source" value="hist"/>
@@ -165,7 +165,8 @@ echo 'classify.otu(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group file -->
+        <test>
+            <!-- test with group file -->
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="group" value="amazon.groups" ftype="mothur.groups"/>
             <param name="source" value="hist"/>

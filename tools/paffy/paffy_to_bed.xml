@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -46,18 +46,18 @@
         <conditional name="alignment">
             <param name="exclude" type="select" label="Alignment coverage exclusion">
                 <option value="" selected="true">Include intervals with any alignment coverage (default)</option>
-                <option value="--excludeAligned">Exclude intervals with > 0 alignment coverage (--excludeAligned)</option>
+                <option value="--excludeAligned">Exclude intervals with &gt; 0 alignment coverage (--excludeAligned)</option>
                 <option value="--excludeUnaligned">Exclude intervals with 0 alignment coverage (--excludeUnaligned)</option>
             </param>
             <when value=""/>
             <when value="--excludeAligned">
-                <param name="input_fasta" type="data" optional="true" format="fasta,fasta.gz,fasta.bz2" label="Query FASTA file" help="Provide the original query FASTA file to include sequences in the output that have no alignments at all (completely missing in the PAF) (--queryFastaFile)" />      
+                <param name="input_fasta" type="data" optional="true" format="fasta,fasta.gz,fasta.bz2" label="Query FASTA file" help="Provide the original query FASTA file to include sequences in the output that have no alignments at all (completely missing in the PAF) (--queryFastaFile)"/>
             </when>
             <when value="--excludeUnaligned"/>
         </conditional>
-        <param argument="--minSize" type="integer" min="1" value="1" label="Min size" help="Exclude any interval shorter than this given value"/> 
-        <param argument="--binary" type="boolean" truevalue="--binary" falsevalue="" checked="false" label="Binary output for alignments" help="If enabled, outputs 0 for unaligned and 1 for aligned, rather than reporting the actual number of alignments"/>  
-        <param argument="--includeInverted" type="boolean" truevalue="--includeInverted" falsevalue="" checked="false" label="Include target sequence" help="Flip the alignments to also include the target sequences"/>   
+        <param argument="--minSize" type="integer" min="1" value="1" label="Min size" help="Exclude any interval shorter than this given value"/>
+        <param argument="--binary" type="boolean" truevalue="--binary" falsevalue="" checked="false" label="Binary output for alignments" help="If enabled, outputs 0 for unaligned and 1 for aligned, rather than reporting the actual number of alignments"/>
+        <param argument="--includeInverted" type="boolean" truevalue="--includeInverted" falsevalue="" checked="false" label="Include target sequence" help="Flip the alignments to also include the target sequences"/>
     </inputs>
     <outputs>
         <data name="out_file" format="bed" label="${tool.name} on ${on_string}"/>
@@ -68,10 +68,10 @@
             <param name="input_paf" value="testPaf.paf"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2"/>
                     <has_n_lines n="15599"/>
                 </assert_contents>
             </output>
@@ -81,10 +81,10 @@
             <param name="input_paf" value="testPaf.paf.gz"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2"/>
                     <has_n_lines n="15599"/>
                 </assert_contents>
             </output>
@@ -95,10 +95,10 @@
             <param name="minSize" value="100"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2"/>
                     <has_n_lines n="1747"/>
                 </assert_contents>
             </output>
@@ -109,10 +109,10 @@
             <param name="binary" value="true"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2" negate="true"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2" negate="true"/>
                     <has_n_lines n="14116"/>
                 </assert_contents>
             </output>
@@ -125,10 +125,10 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2"/>
                     <has_n_lines n="8541"/>
                 </assert_contents>
             </output>
@@ -141,10 +141,10 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1" negate="true"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2" negate="true"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1" negate="true"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2" negate="true"/>
                     <has_n_lines n="7058"/>
                 </assert_contents>
             </output>
@@ -159,10 +159,10 @@
             <param name="binary" value="true"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2" negate="true"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2" negate="true"/>
                     <has_n_lines n="1720"/>
                 </assert_contents>
             </output>
@@ -173,10 +173,10 @@
             <param name="includeInverted" value="true"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2"/>
                     <has_n_lines n="30644"/>
                 </assert_contents>
             </output>
@@ -190,11 +190,11 @@
             </conditional>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="simCow.chr6&#009;0&#009;2&#009;0" negate="true"/>
-                    <has_line line="simDog.chr6&#009;0&#009;3&#009;0"/>
-                    <has_line line="simDog.chr6&#009;3&#009;126&#009;1" negate="true"/>
-                    <has_line line="simDog.chr6&#009;488539&#009;488641&#009;2" negate="true"/>
-                    <has_line line="simDog.chr7&#009;0&#009;50&#009;0"/>
+                    <has_line line="simCow.chr6&#9;0&#9;2&#9;0" negate="true"/>
+                    <has_line line="simDog.chr6&#9;0&#9;3&#9;0"/>
+                    <has_line line="simDog.chr6&#9;3&#9;126&#9;1" negate="true"/>
+                    <has_line line="simDog.chr6&#9;488539&#9;488641&#9;2" negate="true"/>
+                    <has_line line="simDog.chr7&#9;0&#9;50&#9;0"/>
                     <has_n_lines n="7059"/>
                 </assert_contents>
             </output>

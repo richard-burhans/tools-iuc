@@ -25,8 +25,8 @@ python '$__tool_directory__/version_command.py'
         #end if
     ]]></command>
     <inputs>
-        <param type="data" argument="--input" format="newick" label="Tree file" />
-        <param argument="--branch-annotate" type="select" label="Amount of annotations that should be added to each branch (-t)"> 
+        <param type="data" argument="--input" format="newick" label="Tree file"/>
+        <param argument="--branch-annotate" type="select" label="Amount of annotations that should be added to each branch (-t)">
             <option value="0">0: no annotations</option>
             <option value="1">1: only the quartet support for the main resolution</option>
             <option value="2">2: full annotation</option>
@@ -37,8 +37,7 @@ python '$__tool_directory__/version_command.py'
             <option value="32">32: for file export of branch annotations to freqQuad.csv (see below)</option>
             <option value="10">10: p-values of a polytomy null hypothesis test (default: 3)</option>
         </param>
-        <param argument="--lambda" type="float" min="0.0" max="10.0" value="0.5" optional="true" label="Lambda parameter for the Yule prior"
-            help="Used in the calculations of branch lengths and posterior probabilities.">
+        <param argument="--lambda" type="float" min="0.0" max="10.0" value="0.5" optional="true" label="Lambda parameter for the Yule prior" help="Used in the calculations of branch lengths and posterior probabilities.">
             <validator type="in_range" min="0.0" max="10.0"/>
         </param>
     </inputs>
@@ -46,23 +45,22 @@ python '$__tool_directory__/version_command.py'
         <data name="output" format="newick" label="Output tree file"/>
         <data name="log_output" format="txt" label="Astral log"/>
         <data name="branch_annotations" format="tabular" label="Branch annotations file.">
-            <filter>branch_annotate == '16' or branch_annotate == '32'</filter> 
-
+            <filter>branch_annotate == '16' or branch_annotate == '32'</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="3">
             <param name="input" value="song_mammals.424.gene.tre" ftype="newick"/>
-            <param name="branch_annotate" value="16" />
-            <param name="lambda" value="2.0" />
+            <param name="branch_annotate" value="16"/>
+            <param name="lambda" value="2.0"/>
             <output name="output" file="song_mammals.tre" ftype="newick"/>
             <output name="log_output">
-                 <assert_contents>
-                    <has_line line="Number of taxa: 37 (37 species)" />
-                    <has_line line="gradient0: 1933" />
-                    <has_line line="Number of Clusters after addition by distance: 1933" />
-                    <has_line line="Final quartet score is: 25526915" />
-                </assert_contents> 
+                <assert_contents>
+                    <has_line line="Number of taxa: 37 (37 species)"/>
+                    <has_line line="gradient0: 1933"/>
+                    <has_line line="Number of Clusters after addition by distance: 1933"/>
+                    <has_line line="Final quartet score is: 25526915"/>
+                </assert_contents>
             </output>
             <output name="branch_annotations" file="freqQuad.csv" ftype="tabular"/>
             <assert_command_version>
@@ -71,15 +69,15 @@ python '$__tool_directory__/version_command.py'
         </test>
         <test expect_num_outputs="2">
             <param name="input" value="song_primates.424.gene.tre"/>
-            <param name="branch_annotate" value="0" />
-            <param name="lambda" value="2.0" />
+            <param name="branch_annotate" value="0"/>
+            <param name="lambda" value="2.0"/>
             <output name="output" file="song_primates.tre" ftype="newick"/>
             <output name="log_output">
                 <assert_contents>
-                    <has_line line="Number of taxa: 14 (14 species)" />
-                    <has_line line="gradient0: 339" />
-                    <has_line line="Number of Clusters after addition by distance: 339" />
-                    <has_line line="Final quartet score is: 389734" />
+                    <has_line line="Number of taxa: 14 (14 species)"/>
+                    <has_line line="gradient0: 339"/>
+                    <has_line line="Number of Clusters after addition by distance: 339"/>
+                    <has_line line="Final quartet score is: 389734"/>
                 </assert_contents>
             </output>
             <assert_command_version>

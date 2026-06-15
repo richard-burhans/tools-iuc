@@ -1,4 +1,4 @@
-<tool id="pyega3" name="EGA Download Client" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="21.01" >
+<tool id="pyega3" name="EGA Download Client" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="21.01">
     <macros>
         <token name="@TOOL_VERSION@">5.0.2</token>
         <token name="@VERSION_SUFFIX@">0</token>
@@ -107,19 +107,19 @@
             <when value="list_datasets"/>
             <when value="download_file">
                 <param name="file_id" type="text" optional="false" label="EGA File Accession Identifier" help="Identifier starting with 'EGAF'. For example: EGAF00001753735">
-                     <validator type="regex" message="EGA Accession ID must be a string of numbers prefixed by 'EGAD' (datasets) or 'EGAF' (files)">EGA[DF][0-9]+</validator>
+                    <validator type="regex" message="EGA Accession ID must be a string of numbers prefixed by 'EGAD' (datasets) or 'EGAF' (files)">EGA[DF][0-9]+</validator>
                 </param>
                 <section name="range" title="Request a specific Genomic range?" expanded="false">
-                    <param argument="--reference-name" type="text" optional="true" label="Reference Sequence Name" help="For example 'chr1', '1', or 'chrX'. If unspecified, all data is returned." />
+                    <param argument="--reference-name" type="text" optional="true" label="Reference Sequence Name" help="For example 'chr1', '1', or 'chrX'. If unspecified, all data is returned."/>
                     <param argument="--start" type="integer" optional="true" min="0" label="Start Position" help="0-based, inclusive. Only used if a reference sequence name was specified"/>
                     <param argument="--end" type="integer" optional="true" min="0" label="End Position" help="0-based, exclusive. Only used if a reference sequence name was specified"/>
                 </section>
             </when>
             <when value="download_files">
                 <param name="id_table" type="data" format="tabular" label="Table with IDs to download" help="A tabular file where one column contains the set of file IDs. This will output a collection. Please select files that are all the same format (e.g. all BAM or all VCF)."/>
-                <param name="id_column" type="data_column" data_ref="id_table" label="Column containing the file IDs" help="File Identifiers starting with 'EGAF'. For example: EGAF00001753735" />
+                <param name="id_column" type="data_column" data_ref="id_table" label="Column containing the file IDs" help="File Identifiers starting with 'EGAF'. For example: EGAF00001753735"/>
                 <section name="range" title="Request a specific Genomic range? (will be applied to ALL requested files)" expanded="false">
-                    <param argument="--reference-name" type="text" optional="true" label="Reference Sequence Name" help="For example 'chr1', '1', or 'chrX'. If unspecified, all data is returned." />
+                    <param argument="--reference-name" type="text" optional="true" label="Reference Sequence Name" help="For example 'chr1', '1', or 'chrX'. If unspecified, all data is returned."/>
                     <param argument="--start" type="integer" optional="true" min="0" label="Start Position" help="0-based, inclusive. Only used if a reference sequence name was specified"/>
                     <param argument="--end" type="integer" optional="true" min="0" label="End Position" help="0-based, exclusive. Only used if a reference sequence name was specified"/>
                 </section>
@@ -142,7 +142,7 @@
         </data>
         <collection name="downloaded_file_collection" type="list" label="${tool.name} on ${on_string}: Downloaded datasets">
             <filter> action['action_type'] == 'download_files' </filter>
-            <discover_datasets pattern="__name_and_ext__" recurse="true" directory="downloads" />
+            <discover_datasets pattern="__name_and_ext__" recurse="true" directory="downloads"/>
         </collection>
     </outputs>
     <tests>
@@ -171,16 +171,16 @@
             </output>
         </test>
         <!-- download a single file -->
-        <test expect_num_outputs="1"> 
+        <test expect_num_outputs="1">
             <param name="action_type" value="download_file"/>
             <param name="file_id" value="EGAF00001775036"/>
             <output name="downloaded_file" md5="3b89b96387db5199fef6ba613f70e27c"/>
         </test>
         <!-- download a single vcf.gz -->
-        <test expect_num_outputs="1"> 
+        <test expect_num_outputs="1">
             <param name="action_type" value="download_file"/>
             <param name="file_id" value="EGAF00007243775"/>
-            <output name="downloaded_file" md5="51cfb69bf3b9416ff425381a58c18a2b" ftype="vcf_bgzip" />
+            <output name="downloaded_file" md5="51cfb69bf3b9416ff425381a58c18a2b" ftype="vcf_bgzip"/>
         </test>
         <!-- download a single bam, with genomic range specified -->
         <test expect_num_outputs="1">
@@ -197,8 +197,8 @@
             <param name="id_table" value="filelist.tabular"/>
             <param name="id_column" value="1"/>
             <output_collection name="downloaded_file_collection" type="list" count="2">
-                <element name="ENCFF000VWO.bam" md5="b8ae14d5d1f717ab17d45e8fc36946a0" />
-                <element name="ENCFF284YOU.bam" md5="3b89b96387db5199fef6ba613f70e27c" />
+                <element name="ENCFF000VWO.bam" md5="b8ae14d5d1f717ab17d45e8fc36946a0"/>
+                <element name="ENCFF284YOU.bam" md5="3b89b96387db5199fef6ba613f70e27c"/>
             </output_collection>
             <assert_stderr>
                 <has_text text="Ignoring &quot;File ID&quot;: no EGA file ID"/>
@@ -213,8 +213,8 @@
             <param name="start" value="0"/>
             <param name="end" value="10000"/>
             <output_collection name="downloaded_file_collection" count="2">
-                <element name="NA19239_genomic_range_1_0_10000" md5="497f443830a6a3ec2e5bb5a19c4db638" />
-                <element name="NA19240_genomic_range_1_0_10000" md5="4b5344ad094c2bed7787430259205098" />
+                <element name="NA19239_genomic_range_1_0_10000" md5="497f443830a6a3ec2e5bb5a19c4db638"/>
+                <element name="NA19240_genomic_range_1_0_10000" md5="4b5344ad094c2bed7787430259205098"/>
             </output_collection>
             <assert_stderr>
                 <has_text text="Ignoring &quot;File ID&quot;: no EGA file ID"/>
@@ -226,8 +226,8 @@
             <param name="id_table" value="filelist3.tabular"/>
             <param name="id_column" value="1"/>
             <output_collection name="downloaded_file_collection" type="list" count="2">
-                <element name="HG00408.novoBreak__256r__4.100100-10100100__7.200100-9000100" md5="51cfb69bf3b9416ff425381a58c18a2b" ftype="vcf_bgzip" />
-                <element name="HG01890.HGSVC__145r__1.900100-10001000__18.2001000-90001000" md5="ebad4425191a89d3e970c02190a87175" ftype="vcf_bgzip" />
+                <element name="HG00408.novoBreak__256r__4.100100-10100100__7.200100-9000100" md5="51cfb69bf3b9416ff425381a58c18a2b" ftype="vcf_bgzip"/>
+                <element name="HG01890.HGSVC__145r__1.900100-10001000__18.2001000-90001000" md5="ebad4425191a89d3e970c02190a87175" ftype="vcf_bgzip"/>
             </output_collection>
         </test>
     </tests>

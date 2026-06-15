@@ -73,7 +73,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 02: Testing -count option -->
         <test expect_num_outputs="1">
             <param name="maf_file" value="mafFetch.maf"/>
@@ -91,7 +90,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 03: Testing with restrict option -->
         <test expect_num_outputs="1">
             <param name="maf_file" value="mafFetch.maf"/>
@@ -116,8 +114,8 @@ forceTwoBit=on
 mafCoverage is a command-line tool from the UCSC Genome Browser suite that analyses the coverage by MAF files chromosome by chromosome and genome-wide. 
 
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{mafCoverage,
                 author = {Kent UCSC},
                 title = {mafCoverage: A tool for analysing coverage by MAF files chromosome by chromosome and genome-wide},

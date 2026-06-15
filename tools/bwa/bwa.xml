@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="bwa" name="Map with BWA" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="22.05">
     <description>- map short reads (&lt; 100 bp) against reference genome</description>
     <macros>
@@ -34,40 +33,28 @@
 #end if
         </token>
         <xml name="advanced_pe_options">
-            <param name="adv_pe_options_selector" type="select" label="Set advanced paired end options?"
-                   help="Provides additional controls">
+            <param name="adv_pe_options_selector" type="select" label="Set advanced paired end options?" help="Provides additional controls">
                 <option value="set">Set</option>
                 <option value="do_not_set" selected="True">Do not set</option>
             </param>
             <when value="set">
-                <param name="a" type="integer" value="500"
-                       label="Maximum insert size for a read pair to be considered being mapped properly."
-                       help="sampe -a; This option is only used when there are not enough good alignment to infer the distribution of insert sizes; default=500"/>
-                <param name="o" type="integer" value="100000"
-                       label="Maximum occurrences of a read for pairing. A read with more occurrences will be treated as a single-end read."
-                       help="sampe -o; Reducing this parameter helps faster pairing; default=100000"/>
-                <param name="n" type="integer" value="3"
-                       label="Maximum number of alignments to output in the XA tag for reads paired properly."
-                       help="sampe -n; If a read has more than this many hits, the XA tag will not be written; default=3"/>
-                <param name="N" type="integer" value="10"
-                       label="Maximum number of alignments to output in the XA tag for disconcordant read pairs (excluding singletons)."
-                       help="sampe -N; If a read has more than this many hits, the XA tag will not be written; default=10"/>
-                <param name="c" type="float" value="0.00005" label="Prior of chimeric rate (lower bound)"
-                       help="sampe -c"/>
+                <param name="a" type="integer" value="500" label="Maximum insert size for a read pair to be considered being mapped properly." help="sampe -a; This option is only used when there are not enough good alignment to infer the distribution of insert sizes; default=500"/>
+                <param name="o" type="integer" value="100000" label="Maximum occurrences of a read for pairing. A read with more occurrences will be treated as a single-end read." help="sampe -o; Reducing this parameter helps faster pairing; default=100000"/>
+                <param name="n" type="integer" value="3" label="Maximum number of alignments to output in the XA tag for reads paired properly." help="sampe -n; If a read has more than this many hits, the XA tag will not be written; default=3"/>
+                <param name="N" type="integer" value="10" label="Maximum number of alignments to output in the XA tag for disconcordant read pairs (excluding singletons)." help="sampe -N; If a read has more than this many hits, the XA tag will not be written; default=10"/>
+                <param name="c" type="float" value="0.00005" label="Prior of chimeric rate (lower bound)" help="sampe -c"/>
             </when>
             <when value="do_not_set">
                 <!-- do nothing -->
             </when>
         </xml>
         <xml name="advanced_se_options">
-            <param name="adv_se_options_selector" type="select" label="Set advanced single end options?"
-                   help="Provides additional controls">
+            <param name="adv_se_options_selector" type="select" label="Set advanced single end options?" help="Provides additional controls">
                 <option value="set">Set</option>
                 <option value="do_not_set" selected="True">Do not set</option>
             </param>
             <when value="set">
-                <param name="n" type="integer" value="3" label="Maximum number of alignments to output in the XA tag."
-                       help="-n; If a read has more than this many hits, the XA tag will not be written; default=3"/>
+                <param name="n" type="integer" value="3" label="Maximum number of alignments to output in the XA tag." help="-n; If a read has more than this many hits, the XA tag will not be written; default=3"/>
             </when>
             <when value="do_not_set">
                 <!-- do nothing -->
@@ -214,12 +201,10 @@
 | samtools sort -@\${GALAXY_SLOTS:-2} -T "\${TMPDIR:-.}" -O bam -o '$bam_output'
 ]]>
     </command>
-
     <inputs>
         <expand macro="reference_source_conditional"/>
         <conditional name="input_type">
-            <param name="input_type_selector" type="select" label="Select input type"
-                   help="Select between fastq and bam datasets and between paired and single end data">
+            <param name="input_type_selector" type="select" label="Select input type" help="Select between fastq and bam datasets and between paired and single end data">
                 <option value="paired">Paired fastq</option>
                 <option value="paired_collection">Paired fastq collection</option>
                 <option value="single">Single fastq</option>
@@ -227,39 +212,33 @@
                 <option value="single_bam">Single BAM</option>
             </param>
             <when value="paired">
-                <param name="fastq_input1" type="data" format="fastqsanger,fastqsanger.gz,fasta"
-                       label="Select first set of reads" help="Specify dataset with forward reads"/>
-                <param name="fastq_input2" type="data" format="fastqsanger,fastqsanger.gz,fasta"
-                       label="Select second set of reads" help="Specify dataset with reverse reads"/>
+                <param name="fastq_input1" type="data" format="fastqsanger,fastqsanger.gz,fasta" label="Select first set of reads" help="Specify dataset with forward reads"/>
+                <param name="fastq_input2" type="data" format="fastqsanger,fastqsanger.gz,fasta" label="Select second set of reads" help="Specify dataset with reverse reads"/>
                 <conditional name="adv_pe_options">
                     <expand macro="advanced_pe_options"/>
                 </conditional>
             </when>
             <when value="paired_collection">
-                <param name="fastq_input1" format="fastqsanger,fastqsanger.gz" type="data_collection" collection_type="paired" label="Select a paired collection"
-                       help="See help section for an explanation of dataset collections"/>
+                <param name="fastq_input1" format="fastqsanger,fastqsanger.gz" type="data_collection" collection_type="paired" label="Select a paired collection" help="See help section for an explanation of dataset collections"/>
                 <conditional name="adv_pe_options">
                     <expand macro="advanced_pe_options"/>
                 </conditional>
             </when>
             <when value="single">
-                <param name="fastq_input1" type="data" format="fastqsanger,fastqsanger.gz,fasta"
-                       label="Select fastq dataset" help="Specify dataset with single reads"/>
+                <param name="fastq_input1" type="data" format="fastqsanger,fastqsanger.gz,fasta" label="Select fastq dataset" help="Specify dataset with single reads"/>
                 <conditional name="adv_se_options">
                     <expand macro="advanced_se_options"/>
                 </conditional>
             </when>
             <!-- the difference between single and paired bams is in the <command> tag portion and realated to -0, -1, and -2 options -->
             <when value="paired_bam">
-                <param name="bam_input" type="data" format="bam" label="Select BAM dataset"
-                       help="Specify BAM dataset with paired reads"/>
+                <param name="bam_input" type="data" format="bam" label="Select BAM dataset" help="Specify BAM dataset with paired reads"/>
                 <conditional name="adv_bam_pe_options">
                     <expand macro="advanced_pe_options"/>
                 </conditional>
             </when>
             <when value="single_bam">
-                <param name="bam_input" type="data" format="bam" label="Select BAM dataset"
-                       help="Specify BAM dataset with single reads"/>
+                <param name="bam_input" type="data" format="bam" label="Select BAM dataset" help="Specify BAM dataset with single reads"/>
                 <conditional name="adv_bam_se_options">
                     <expand macro="advanced_se_options"/>
                 </conditional>
@@ -275,34 +254,21 @@
                 <!-- do nothing -->
             </when>
             <when value="full">
-                <param name="n" type="text" value="0.04"
-                       label="maximum edit distance if the value is integer, or the fraction of missing alignments given 2% uniform base error rate if float. In the latter case, the maximum edit distance is automatically chosen for different read lengths."
-                       help="aln -n; default=0.04"/>
-                <param name="o" type="integer" value="1" label="maximum number or gap openings"
-                       help="aln -o; default=1"/>
-                <param name="e" type="integer" value="-1" label="maximum number of gap extensions"
-                       help="aln -e; -1 disables long gaps and invokes k-difference mode; default=-1"/>
-                <param name="i" type="integer" value="5"
-                       label="do not put an indel within this many bp towards the ends" help="aln -i; default=5"/>
-                <param name="d" type="integer" value="10" label="maximum occurrences for extending a long deletion"
-                       help="aln -d; default=10"/>
+                <param name="n" type="text" value="0.04" label="maximum edit distance if the value is integer, or the fraction of missing alignments given 2% uniform base error rate if float. In the latter case, the maximum edit distance is automatically chosen for different read lengths." help="aln -n; default=0.04"/>
+                <param name="o" type="integer" value="1" label="maximum number or gap openings" help="aln -o; default=1"/>
+                <param name="e" type="integer" value="-1" label="maximum number of gap extensions" help="aln -e; -1 disables long gaps and invokes k-difference mode; default=-1"/>
+                <param name="i" type="integer" value="5" label="do not put an indel within this many bp towards the ends" help="aln -i; default=5"/>
+                <param name="d" type="integer" value="10" label="maximum occurrences for extending a long deletion" help="aln -d; default=10"/>
                 <param name="l" type="integer" value="32" label="seed length" help="aln -l; default=32"/>
-                <param name="k" type="integer" value="2" label="maximum differences in the seed"
-                       help="aln -k; default=2"/>
-                <param name="m" type="integer" value="2000000" label="maximum entries in the queue"
-                       help="aln -m; default=2000000"/>
+                <param name="k" type="integer" value="2" label="maximum differences in the seed" help="aln -k; default=2"/>
+                <param name="m" type="integer" value="2000000" label="maximum entries in the queue" help="aln -m; default=2000000"/>
                 <param name="M" type="integer" value="3" label="mismatch penalty" help="aln -M; default=3"/>
                 <param name="O" type="integer" value="11" label="gap open penalty" help="aln -O; default=11"/>
                 <param name="E" type="integer" value="4" label="gap extension penalty" help="aln -E; default=4"/>
-                <param name="R" type="integer" value="30"
-                       label="stop searching when there are more than this value of equally best hits"
-                       help="aln -R; default=30"/>
-                <param name="q" type="integer" value="0" label="quality threshold for read trimming down to 35bp"
-                       help="aln -q; default=0"/>
-                <param name="B" type="integer" optional="True" label="length of barcode"
-                       help="aln -B; optional parameter"/>
-                <param name="L" type="float" optional="True" label="log-scaled gap penalty for long deletions"
-                       help="aln -L; optional parameter"/>
+                <param name="R" type="integer" value="30" label="stop searching when there are more than this value of equally best hits" help="aln -R; default=30"/>
+                <param name="q" type="integer" value="0" label="quality threshold for read trimming down to 35bp" help="aln -q; default=0"/>
+                <param name="B" type="integer" optional="True" label="length of barcode" help="aln -B; optional parameter"/>
+                <param name="L" type="float" optional="True" label="log-scaled gap penalty for long deletions" help="aln -L; optional parameter"/>
             </when>
         </conditional>
     </inputs>

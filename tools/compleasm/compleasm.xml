@@ -38,12 +38,11 @@
         <param argument="--specified_contigs" type="text" label="Specify the contigs to be evaluated" optional="true" help="e.g. chr1 chr2 chr3. If not specified, all contigs will be evaluated">
             <sanitizer invalid_char="">
                 <valid initial="string.letters,string.digits">
-                    <add value="_" />
+                    <add value="_"/>
                 </valid>
             </sanitizer>
             <validator type="regex">[0-9a-zA-Z_ ]+</validator>
         </param>
-
         <param name="outputs" type="select" multiple="true" label="Which outputs should be generated">
             <option value="full_table_busco" selected="true">full busco table</option>
             <option value="full_table">full table</option>
@@ -51,38 +50,34 @@
             <option value="translated_protein">translated proteins</option>
             <option value="summary">summary</option>
         </param>
-
         <param name="busco_database" label="Choose the BUSCO database to be used" type="select" multiple="false">
             <options from_data_table="busco_database">
                 <validator message="No BUSCO database is available - please contact your Galaxy admin." type="no_options"/>
             </options>
         </param>
-
         <param name="lineage_dataset" type="select" label="Lineage">
             <options from_data_table="busco_database_options">
                 <filter type="param_value" column="2" ref="busco_database"/>
             </options>
         </param>
     </inputs>
-
     <outputs>
-        <data name='full_table_busco' format='tsv' label="${tool.name} on ${on_string}: full table BUSCO" from_work_dir="galaxy_output/*_odb10/full_table_busco_format.tsv">
+        <data name="full_table_busco" format="tsv" label="${tool.name} on ${on_string}: full table BUSCO" from_work_dir="galaxy_output/*_odb10/full_table_busco_format.tsv">
             <filter>outputs and 'full_table_busco' in outputs</filter>
         </data>
-        <data name='full_table' format='tsv' label="${tool.name} on ${on_string}: full table" from_work_dir="galaxy_output/*_odb10/full_table.tsv">
+        <data name="full_table" format="tsv" label="${tool.name} on ${on_string}: full table" from_work_dir="galaxy_output/*_odb10/full_table.tsv">
             <filter>outputs and 'full_table' in outputs</filter>
         </data>
-        <data name='miniprot' format='gff3' label="${tool.name} on ${on_string}: Miniprot" from_work_dir="galaxy_output/*_odb10/miniprot_output.gff">
+        <data name="miniprot" format="gff3" label="${tool.name} on ${on_string}: Miniprot" from_work_dir="galaxy_output/*_odb10/miniprot_output.gff">
             <filter>outputs and 'miniprot' in outputs</filter>
         </data>
-        <data name='translated_protein' format='fasta' label="${tool.name} on ${on_string}: Translated protein" from_work_dir="galaxy_output/*_odb10/translated_protein.fasta">
+        <data name="translated_protein" format="fasta" label="${tool.name} on ${on_string}: Translated protein" from_work_dir="galaxy_output/*_odb10/translated_protein.fasta">
             <filter>outputs and 'translated_protein' in outputs</filter>
         </data>
-        <data name='summary' format='txt' label="${tool.name} on ${on_string}: Summary" from_work_dir="galaxy_output/summary.txt">
+        <data name="summary" format="txt" label="${tool.name} on ${on_string}: Summary" from_work_dir="galaxy_output/summary.txt">
             <filter>outputs and 'summary' in outputs</filter>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="4">
             <param name="input" value="small_genome.fasta"/>
@@ -93,19 +88,19 @@
             <output name="full_table_busco">
                 <assert_contents>
                     <has_text text="Busco id"/>
-                    <has_text text="496at186328&#009;Missing"/>
-                    <has_text text="165at186328&#009;Complete"/>
-                    <has_text text="421at186328&#009;Complete"/>
-                    <has_text text="90at186328&#009;Complete"/>
+                    <has_text text="496at186328&#9;Missing"/>
+                    <has_text text="165at186328&#9;Complete"/>
+                    <has_text text="421at186328&#9;Complete"/>
+                    <has_text text="90at186328&#9;Complete"/>
                 </assert_contents>
             </output>
             <output name="full_table">
                 <assert_contents>
-                    <has_text text="Gene&#009;Status"/>
-                    <has_text text="496at186328&#009;Missing"/>
-                    <has_text text="165at186328&#009;Single"/>
-                    <has_text text="421at186328&#009;Single"/>
-                    <has_text text="90at186328&#009;Single"/>
+                    <has_text text="Gene&#9;Status"/>
+                    <has_text text="496at186328&#9;Missing"/>
+                    <has_text text="165at186328&#9;Single"/>
+                    <has_text text="421at186328&#9;Single"/>
+                    <has_text text="90at186328&#9;Single"/>
                 </assert_contents>
             </output>
             <output name="miniprot">

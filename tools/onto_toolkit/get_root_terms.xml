@@ -3,18 +3,18 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     get_root_terms.pl
         -f '$input' > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="Root terms of ${on_string}">
             <actions>
-                <action name="column_names" type="metadata" default="term ID,term name" />
+                <action name="column_names" type="metadata" default="term ID,term name"/>
             </actions>
         </data>
     </outputs>
@@ -24,13 +24,12 @@
             <output name="output" file="root_terms.tab"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
 Collects the root terms (list of IDs) of the given OBO ontology.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

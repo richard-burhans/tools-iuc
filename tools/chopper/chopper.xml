@@ -66,20 +66,19 @@
 
 
  #if str($input.ext).endswith("gz")
-    | gzip > $fq_filt
+    | gzip > '$fq_filt'
  #else
-    > $fq_filt
+    > '$fq_filt'
  #end if
 
  ]]></command>
     <inputs>
-        <param argument="--input" type="data" label="FASTQ file to check" format="fastqsanger.gz,fastqsanger" />
-        <param argument="--contam" type="data" format="fasta" optional="True" label="Reference FASTA" help="FASTA file with reference to check potential contaminants against."/>    
-
+        <param argument="--input" type="data" label="FASTQ file to check" format="fastqsanger.gz,fastqsanger"/>
+        <param argument="--contam" type="data" format="fasta" optional="True" label="Reference FASTA" help="FASTA file with reference to check potential contaminants against."/>
         <section name="option_params" title="Optional Parameters" expanded="True">
             <param argument="--quality" type="integer" label="Minimal quality score" value="0" min="0" max="60" help="Sets a minimum Phred average quality score."/>
             <param argument="--maxqual" type="integer" label="Maximal quality score" value="60" min="0" max="60" help="Sets a maximum Phred average quality score."/>
-            <param argument="--minlength" type="integer" label="Sets a minimum read length" value="1" min="1"  help="Minimal length of read to keep."  optional="True"/>
+            <param argument="--minlength" type="integer" label="Sets a minimum read length" value="1" min="1" help="Minimal length of read to keep." optional="True"/>
             <param argument="--maxlength" type="integer" label="Sets a maximum read length" help="Maximal length of read to keep" optional="True"/>
             <param argument="--mingc" type="float" optional="True" label="Minimum GC content" value="0.0" min="0.0" max="1.0" help="Sets a minimum GC content for reads to keep."/>
             <param argument="--maxgc" type="float" optional="True" label="Maximum GC content" value="1.0" min="0.0" max="1.0" help="Sets a maximum GC content for reads to keep."/>
@@ -113,7 +112,7 @@
         </section>
     </inputs>
     <outputs>
-	    <data name="fq_filt" format_source="input" label="${tool.name} on ${on_string}" />
+        <data name="fq_filt" format_source="input" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <!-- 1) -->
@@ -146,13 +145,13 @@
                 <param name="mingc" value="0.3"/>
                 <param name="maxgc" value="0.8"/>
             </section>
-            <output name="fq_filt" ftype="fastqsanger"> 
+            <output name="fq_filt" ftype="fastqsanger">
                 <assert_contents>
-                    <not_has_text text='@GC20'/>
-                    <not_has_text text='@GC0'/>
-                    <not_has_text text='@GC100'/>
-                    <has_text text='@GC50'/>
-                    <has_text text='@GC80'/>
+                    <not_has_text text="@GC20"/>
+                    <not_has_text text="@GC0"/>
+                    <not_has_text text="@GC100"/>
+                    <has_text text="@GC50"/>
+                    <has_text text="@GC80"/>
                 </assert_contents>
             </output>
         </test>
@@ -162,11 +161,11 @@
             <section name="option_params">
                 <param name="maxlength" value="136"/>
             </section>
-            <output name="fq_filt" ftype="fastqsanger"> 
+            <output name="fq_filt" ftype="fastqsanger">
                 <assert_contents>
-                    <not_has_text text='@SRR014849.203935'/>
-                    <has_text text='@SRR014849.50939'/>
-                    <has_text text='@SRR014849.110027'/>
+                    <not_has_text text="@SRR014849.203935"/>
+                    <has_text text="@SRR014849.50939"/>
+                    <has_text text="@SRR014849.110027"/>
                 </assert_contents>
             </output>
         </test>
@@ -178,9 +177,9 @@
             </section>
             <output name="fq_filt" ftype="fastqsanger.gz" decompress="true">
                 <assert_contents>
-                    <not_has_text text='@SRR014849.203935'/>
-                    <has_text text='@SRR014849.50939'/>
-                    <has_text text='@SRR014849.110027'/>
+                    <not_has_text text="@SRR014849.203935"/>
+                    <has_text text="@SRR014849.50939"/>
+                    <has_text text="@SRR014849.110027"/>
                 </assert_contents>
             </output>
             <assert_stderr>

@@ -18,7 +18,7 @@
     </command>
     <inputs>
         <param argument="--fasta" type="data" format="fasta" label="FASTA or Multi-FASTA file" help="FASTA dataset to get statistics."/>
-        <param argument="--genome_size" type="integer" min="0" optional="true" label="Estimated genome size" help="This parameter is optional. If provided, it will be used for calculating the NG50 statistic." />
+        <param argument="--genome_size" type="integer" min="0" optional="true" label="Estimated genome size" help="This parameter is optional. If provided, it will be used for calculating the NG50 statistic."/>
         <param argument="--gaps_option" type="boolean" truevalue="true" falsevalue="false" label="Generate gap stats"/>
     </inputs>
     <outputs>
@@ -48,7 +48,7 @@
                     <has_text text="8353"/>
                     <has_text text="303889"/>
                     <has_text text="22107"/>
-                </assert_contents>  
+                </assert_contents>
             </output>
         </test>
     </tests>

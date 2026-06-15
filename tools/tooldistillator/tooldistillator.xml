@@ -593,7 +593,7 @@ tooldistillator
                         <option value="shovill">Shovill</option>
                         <option value="staramr">Staramr</option>
                         <option value="sylph">Sylph</option>
-                        <option value="sylphtax">Sylph-tax</option>                        
+                        <option value="sylphtax">Sylph-tax</option>
                         <option value="tabular_file">tabular_generic_file</option>
                     </param>
                     <when value="abricate">
@@ -676,7 +676,7 @@ tooldistillator
                         <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="Concoct log file" help="Log file from Concoct"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                                          
+                    </when>
                     <when value="coreprofiler">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="CoreProfiler allele calling report file" help="Tabular file from CoreProfiler output"/>
                         <param argument="--profiles_json_path" type="data" format="json" optional="true" multiple="false" label="Coreprofiler JSON results file" help="JSON file containing info about files with temporary alleles"/>
@@ -697,21 +697,21 @@ tooldistillator
                         <param argument="--contig_to_bin_file_path" type="data" format="tabular" optional="true" multiple="false" label="DasTool contig to bin file" help="Tabular file with contig to bin association from DasTool"/>
                         <param argument="--quality_and_completness_file_path" type="data" format="tabular" optional="true" multiple="false" label="DasTool quality and completness file" help="Tabular file with quality and completness information from DasTool"/>
                         <param argument="--protein_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="DasTool proteins sequences fasta file" help="Fasta file with proteins sequences from DasTool"/>
-                        <param argument="--unbinned_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="DasTool unbinned sequences fasta file" help="Fasta file with unbinned sequences from DasTool"/>    
+                        <param argument="--unbinned_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="DasTool unbinned sequences fasta file" help="Fasta file with unbinned sequences from DasTool"/>
                         <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="DasTool log file" help="Log file from DasTool"/>
                         <expand macro="analysis_software_version"/>
-                        <expand macro="reference_database_version"/>        
-                    </when>                    
+                        <expand macro="reference_database_version"/>
+                    </when>
                     <when value="deeparg">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="DeepARG ARG report file" help="Tabular file from DeepARG output (corresponding to .clean.deeparg.mapping.ARG file)"/>
                         <param argument="--report_arg_merged_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG ARG merged report file" help="ARG merged file (.clean.deeparg.mapping.ARG.merged)"/>
                         <param argument="--report_arg_merged_quant_subtype_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG ARG merged quantitative subtype report file" help="ARG merged quant subtype file (.clean.deeparg.mapping.ARG.merged.quant.subtype)"/>
-                        <param argument="--report_arg_merged_quant_type_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG ARG merged quantitative type report file" help="ARG merged quant type file (.clean.deeparg.mapping.ARG.merged.quant.type)"/>                        
-                        <param argument="--report_potential_arg_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG potential ARG file" help="Potential ARG file (.clean.deeparg.mapping.potential.ARG)"/>                                                
-                        <param argument="--sequence_clean_file_path" type="data" format="fasta" optional="true" multiple="false" label="DeepARG clean sequences fasta file" help="Clean sequences file (.clean)"/>                                                                        
-                        <param argument="--bam_clean_file_path" type="data" format="bam" optional="true" multiple="false" label="DeepARG clean sequences bam file" help="Clean sequences bam file (.clean.bam)"/> 
-                        <param argument="--sam_clean_file_path" type="data" format="sam" optional="true" multiple="false" label="DeepARG clean sequences sam file" help="Clean sequences sam file (.clean.sam)"/> 
-                        <param argument="--bam_clean_sorted_file_path" type="data" format="bam" optional="true" multiple="false" label="DeepARG clean sorted sequences bam file" help="Clean sorted sequences bam file (.clean.sorted.bam)"/> 
+                        <param argument="--report_arg_merged_quant_type_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG ARG merged quantitative type report file" help="ARG merged quant type file (.clean.deeparg.mapping.ARG.merged.quant.type)"/>
+                        <param argument="--report_potential_arg_path" type="data" format="txt,tabular" optional="true" multiple="false" label="DeepARG potential ARG file" help="Potential ARG file (.clean.deeparg.mapping.potential.ARG)"/>
+                        <param argument="--sequence_clean_file_path" type="data" format="fasta" optional="true" multiple="false" label="DeepARG clean sequences fasta file" help="Clean sequences file (.clean)"/>
+                        <param argument="--bam_clean_file_path" type="data" format="bam" optional="true" multiple="false" label="DeepARG clean sequences bam file" help="Clean sequences bam file (.clean.bam)"/>
+                        <param argument="--sam_clean_file_path" type="data" format="sam" optional="true" multiple="false" label="DeepARG clean sequences sam file" help="Clean sequences sam file (.clean.sam)"/>
+                        <param argument="--bam_clean_sorted_file_path" type="data" format="bam" optional="true" multiple="false" label="DeepARG clean sorted sequences bam file" help="Clean sorted sequences bam file (.clean.sorted.bam)"/>
                         <param argument="--daa_clean_align_file_path" type="data" format="daa" optional="true" multiple="false" label="DeepARG clean aligned sequences daa file" help="Clean aligned sequences daa file (.clean.deeparg.align.daa)"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
@@ -735,14 +735,14 @@ tooldistillator
                         <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="dRep log file" help="Log file from dRep"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                    
+                    </when>
                     <when value="eggnogmapper">
                         <param name="input" type="data" format="tabular" multiple="false" label="Annotation report file" help="Eggnogmapper annotation report file"/>
                         <param argument="--seed_orthologs_report_path" type="data" format="tabular" optional="true" multiple="false" label="Eggnogmapper seed orthologs report file" help="Seed orthologs report file from eggnogmapper"/>
                         <param argument="--orthologs_report_path" type="data" format="tabular" optional="true" multiple="false" label="Eggnogmapper orthologs report file" help="Orthologs report file from eggnogmapper"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                    
+                    </when>
                     <when value="fastp">
                         <param name="input" type="data" format="json" multiple="false" label="Fastp report file" help="Fastp result in json format"/>
                         <param argument="--trimmed_forward_R1_path" type="data" format="fastq,fastq.gz" optional="true" multiple="false" label="Fastp trimmed R1" help="trimmed file R1"/>
@@ -781,10 +781,10 @@ tooldistillator
                         <param argument="--classify_directory_path" type="data" format="zip,tar,tar.gz" multiple="false" optional="true" label="GTDB-tk classify ZIP directory" help="Classify zipped directory from GTDB-tk"/>
                         <param argument="--align_directory_path" type="data" format="zip,tar,tar.gz" multiple="false" optional="true" label="GTDB-tk align ZIP directory" help="Align zipped directory from GTDB-tk"/>
                         <param argument="--identify_directory_path" type="data" format="zip,tar,tar.gz" multiple="false" optional="true" label="GTDB-tk identify ZIP directory" help="Identify zipped directory from GTDB-tk"/>
-                        <param argument="--log_file_path" type="data" format="txt" multiple="false" optional="true" label="GTDB-tk log file" help="Log file from GTDB-tk"/>                        
+                        <param argument="--log_file_path" type="data" format="txt" multiple="false" optional="true" label="GTDB-tk log file" help="Log file from GTDB-tk"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                    
+                    </when>
                     <when value="integronfinder2">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="Integronfinder report" help="Integron file from integronfinder2"/>
                         <param argument="--summary_file_path" type="data" format="txt,tabular" multiple="false" optional="true" label="Summary report" help="Summary file from integronfinder2"/>
@@ -810,19 +810,19 @@ tooldistillator
                     <when value="maxbin2">
                         <param name="input" type="data" format="tabular" multiple="false" label="Maxbin2 bin summary file" help="Bin summary file from Maxbin2"/>
                         <param argument="--fasta_bin_zip_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Maxbin2 bins fasta ZIP folder" help="ZIP folder with bins from Maxbin2"/>
-                        <param argument="--bin_predicted_markers_zip_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Maxbin2 bin predicted markers ZIP folder" help="Bin predicted markers ZIP folder for Maxbin2"/>                        
-                        <param argument="--too_short_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Maxbin2 too short sequences fasta file" help="Too short sequences file from Maxbin2"/>                                               
-                        <param argument="--unclassified_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Maxbin2 unclassified sequences fasta file" help="Unclassified sequences file from Maxbin2"/>                                               
+                        <param argument="--bin_predicted_markers_zip_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Maxbin2 bin predicted markers ZIP folder" help="Bin predicted markers ZIP folder for Maxbin2"/>
+                        <param argument="--too_short_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Maxbin2 too short sequences fasta file" help="Too short sequences file from Maxbin2"/>
+                        <param argument="--unclassified_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Maxbin2 unclassified sequences fasta file" help="Unclassified sequences file from Maxbin2"/>
                         <param argument="--marker_gene_presence_file_path" type="data" format="tabular" optional="true" multiple="false" label="Maxbin2 marker gene presence file" help="Marker gene presence file from Maxbin2"/>
-                        <param argument="--marker_gene_presence_plot_path" type="data" format="pdf" optional="true" multiple="false" label="Maxbin2 marker gene presence plot file" help="Marker gene presence plot file from Maxbin2"/>                                               
-                        <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="Maxbin2 log file" help="Log file from Maxbin2"/>                                                                                                                                              
+                        <param argument="--marker_gene_presence_plot_path" type="data" format="pdf" optional="true" multiple="false" label="Maxbin2 marker gene presence plot file" help="Marker gene presence plot file from Maxbin2"/>
+                        <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="Maxbin2 log file" help="Log file from Maxbin2"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                    
+                    </when>
                     <when value="megahit">
                         <param name="input" type="data" format="fasta" multiple="false" label="Megahit contigs fasta file" help="Sequences fasta file from Megahit assembly"/>
                         <param argument="--intermediate_contig_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Megahit intermediate contig ZIP folder" help="ZIP folder with intermediate contigs from Megahit"/>
-                        <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="Megahit log file" help="Log file from Megahit"/>                        
+                        <param argument="--log_file_path" type="data" format="txt" optional="true" multiple="false" label="Megahit log file" help="Log file from Megahit"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
                     </when>
@@ -830,15 +830,15 @@ tooldistillator
                         <param name="input" type="data" format="tabular" multiple="false" label="Metabat2 cluster memberships file" help="Tabular file with cluster membership from Metabat2"/>
                         <param argument="--fasta_bin_zip_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Metabat2 bins fasta ZIP folder" help="ZIP folder with bins from Metabat2"/>
                         <param argument="--too_short_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Metabat2 too short sequences fasta file" help="Fasta file with too short sequences from Metabat2"/>
-                        <param argument="--unbinned_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Metabat2 unbinned sequences fasta file" help="Fasta file with unbinned sequences from Metabat2"/>                        
-                        <param argument="--low_depth_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Metabat2 low depth sequences fasta file" help="Fasta file with low depth sequences from Metabat2"/>                        
+                        <param argument="--unbinned_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Metabat2 unbinned sequences fasta file" help="Fasta file with unbinned sequences from Metabat2"/>
+                        <param argument="--low_depth_sequences_file_path" type="data" format="fasta" optional="true" multiple="false" label="Metabat2 low depth sequences fasta file" help="Fasta file with low depth sequences from Metabat2"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                                        
+                    </when>
                     <when value="mmseqs2linclust">
                         <param name="input" type="data" format="fasta" multiple="false" label="MMseqs2 linclust representative sequences fasta file" help="Representative sequences fasta file from MMseqs2 linclust module"/>
                         <param argument="--cluster_fasta_like_path" type="data" format="fasta" optional="true" multiple="false" label="MMseqs2 linclust clusters fasta file" help="Contigs clusters fasta file from MMseqs2 linclust module"/>
-                        <param argument="--tsv_file_path" type="data" format="txt,tabular" optional="true" multiple="false" label="MMseqs2 linclust clusters tsv file" help="Contigs clusters tsv file from MMseqs2 linclust module"/>                        
+                        <param argument="--tsv_file_path" type="data" format="txt,tabular" optional="true" multiple="false" label="MMseqs2 linclust clusters tsv file" help="Contigs clusters tsv file from MMseqs2 linclust module"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
                     </when>
@@ -848,7 +848,7 @@ tooldistillator
                         <param argument="--krona_report_path" type="data" format="html" optional="true" multiple="false" label="MMseqs2 taxonomy report file (krona format)" help="Krona taxonomy report from MMseqs2 taxonomy module"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                                    
+                    </when>
                     <when value="multiqc">
                         <param name="input" type="data" format="html" multiple="false" label="MultiQC report" help="Html report from MultiQC"/>
                         <expand macro="analysis_software_version"/>
@@ -876,7 +876,7 @@ tooldistillator
                         <param argument="--sco_genes_coordinate_file_path" type="data" format="genbank" multiple="false" optional="true" label="Prodigal SCO genes coordinate file" help="SCO file with genes coordinate from Prodigal"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when>                    
+                    </when>
                     <when value="quast">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="Quast report" help="Tabular Quast report"/>
                         <param argument="--quast_html_path" type="data" format="html" multiple="false" optional="true" label="Quast html report" help="Quast html report"/>
@@ -918,10 +918,10 @@ tooldistillator
                     </when>
                     <when value="sylphtax">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="Sylph-tax merge report" help="Final report from Sylph-tax"/>
-                        <param argument="--taxonomic_profile_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Sylph-tax folder with taxonomy for every folder" help="ZIP folder with taxonomy for each sample from sylph-tax"/>                        
+                        <param argument="--taxonomic_profile_folder_path" type="data" format="zip,tar,tar.gz" optional="true" multiple="false" label="Sylph-tax folder with taxonomy for every folder" help="ZIP folder with taxonomy for each sample from sylph-tax"/>
                         <expand macro="analysis_software_version"/>
                         <expand macro="reference_database_version"/>
-                    </when> 
+                    </when>
                     <when value="tabular_file">
                         <param name="input" type="data" format="txt,tabular" multiple="false" label="Tabular file type" help="Generic result file in tabular format with header"/>
                         <param argument="--analysis_software_name" type="text" multiple="false" optional="true" label="Tool name" help="Tool name which generated the result file"/>
@@ -931,18 +931,19 @@ tooldistillator
                 </conditional>
             </repeat>
         </section>
-        <param name="log" type="boolean" truevalue="true"  falsevalue="" label="Add log" help="Activate/Deactivate the log"/>
+        <param name="log" type="boolean" truevalue="true" falsevalue="" label="Add log" help="Activate/Deactivate the log"/>
     </inputs>
     <outputs>
         <collection name="output_json" type="list" label="${tool.name} on ${on_string}: JSON">
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.json" format="json" directory="tooldistillator_folder" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.json" format="json" directory="tooldistillator_folder"/>
         </collection>
         <data name="logfile" format="txt" label="${tool.name} on ${on_string}: Log">
             <filter> log == True </filter>
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="2"> <!-- TEST_1 abricate with logfile -->
+        <test expect_num_outputs="2">
+            <!-- TEST_1 abricate with logfile -->
             <section name="tool_section">
                 <repeat name="tools">
                     <conditional name="select_tool">
@@ -951,7 +952,7 @@ tooldistillator
                         <conditional name="origin">
                             <param name="origin" value="false"/>
                         </conditional>
-                        <param name="reference_database_version" value="2.0" />
+                        <param name="reference_database_version" value="2.0"/>
                     </conditional>
                 </repeat>
             </section>
@@ -959,11 +960,14 @@ tooldistillator
             <output_collection name="output_json" type="list">
                 <expand macro="element_assert" name="abricate_0_output" text="Enterococcus faecalis V583"/>
             </output_collection>
-            <output name="logfile" compare="sim_size" > 
-                <assert_contents><has_size value="0"/></assert_contents>
+            <output name="logfile" compare="sim_size">
+                <assert_contents>
+                    <has_size value="0"/>
+                </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"> <!-- TEST_2 bakta all files -->
+        <test expect_num_outputs="1">
+            <!-- TEST_2 bakta all files -->
             <section name="tool_section">
                 <repeat name="tools">
                     <conditional name="select_tool">
@@ -991,7 +995,8 @@ tooldistillator
                 <expand macro="element_assert" name="bakta_0_output" text="hypothetical protein"/>
             </output_collection>
         </test>
-        <test expect_num_outputs="1"> <!-- TEST_3 bakta with no files -->
+        <test expect_num_outputs="1">
+            <!-- TEST_3 bakta with no files -->
             <section name="tool_section">
                 <repeat name="tools">
                     <conditional name="select_tool">
@@ -1004,7 +1009,8 @@ tooldistillator
                 <expand macro="element_assert" name="bakta_0_output" text="hypothetical protein"/>
             </output_collection>
         </test>
-        <test expect_num_outputs="1"> <!-- TEST_4 All tool in repeat -->
+        <test expect_num_outputs="1">
+            <!-- TEST_4 All tool in repeat -->
             <section name="tool_section">
                 <repeat name="tools">
                     <conditional name="select_tool">
@@ -1014,7 +1020,7 @@ tooldistillator
                             <param name="origin" value="true"/>
                             <param name="analysis_software_version" value="1.0"/>
                         </conditional>
-                        <param name="reference_database_version" value="2.0" />
+                        <param name="reference_database_version" value="2.0"/>
                     </conditional>
                 </repeat>
                 <repeat name="tools">
@@ -1128,7 +1134,7 @@ tooldistillator
                             <param name="analysis_software_version" value="1.1.0"/>
                         </conditional>
                     </conditional>
-                </repeat>        
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="coreprofiler"/>
@@ -1164,7 +1170,7 @@ tooldistillator
                             <param name="analysis_software_version" value="1.1.7"/>
                         </conditional>
                     </conditional>
-                </repeat>       
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="deeparg"/>
@@ -1174,10 +1180,10 @@ tooldistillator
                         <param name="report_arg_merged_quant_type_path" value="deeparg/result_file.clean.deeparg.mapping.ARG.merged.quant.type" ftype="tabular"/>
                         <param name="report_potential_arg_path" value="deeparg/result_file.clean.deeparg.mapping.potential.ARG" ftype="tabular"/>
                         <param name="sequence_clean_file_path" value="deeparg/result_file.clean" ftype="fasta"/>
-                        <param name="bam_clean_file_path" value="deeparg/result_file.clean.bam" ftype="bam"/> 
-                        <param name="sam_clean_file_path" value="deeparg/result_file.clean.sam" ftype="sam"/> 
-                        <param name="bam_clean_sorted_file_path" value="deeparg/result_file.clean.sorted.bam" ftype="bam"/> 
-                        <param name="daa_clean_align_file_path" value="deeparg/result_file.clean.deeparg.align.daa" ftype="daa"/> 
+                        <param name="bam_clean_file_path" value="deeparg/result_file.clean.bam" ftype="bam"/>
+                        <param name="sam_clean_file_path" value="deeparg/result_file.clean.sam" ftype="sam"/>
+                        <param name="bam_clean_sorted_file_path" value="deeparg/result_file.clean.sorted.bam" ftype="bam"/>
+                        <param name="daa_clean_align_file_path" value="deeparg/result_file.clean.deeparg.align.daa" ftype="daa"/>
                         <conditional name="origin">
                             <param name="origin" value="true"/>
                             <param name="analysis_software_version" value="1.0.4"/>
@@ -1200,7 +1206,7 @@ tooldistillator
                         <param name="cluster_scoring_pdf_path" value="drep/cluster_scoring.pdf" ftype="pdf"/>
                         <param name="clustering_scatterplots_pdf_path" value="drep/clustering_scatterplots.pdf" ftype="pdf"/>
                         <param name="primary_clustering_dendrogram_pdf_path" value="drep/primary_clustering_dendrogram.pdf" ftype="pdf"/>
-                        <param name="secondary_clustering_dendrogram_pdf_path" value="drep/secondary_clustering_dendrogram.pdf" ftype="pdf"/>                        
+                        <param name="secondary_clustering_dendrogram_pdf_path" value="drep/secondary_clustering_dendrogram.pdf" ftype="pdf"/>
                         <param name="secondary_clustering_mds_pdf_path" value="drep/secondary_clustering_MDS.pdf" ftype="pdf"/>
                         <param name="log_file_path" value="drep/log_file.txt" ftype="txt"/>
                         <conditional name="origin">
@@ -1209,7 +1215,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value=""/>
                     </conditional>
-                </repeat>              
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="eggnogmapper"/>
@@ -1222,7 +1228,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value="Eggnog-DB"/>
                     </conditional>
-                </repeat>              
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="fastp"/>
@@ -1285,7 +1291,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value="groot-db.90"/>
                     </conditional>
-                </repeat>                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="gtdbtk"/>
@@ -1297,7 +1303,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value="release220"/>
                     </conditional>
-                </repeat>                                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="isescan"/>
@@ -1329,7 +1335,7 @@ tooldistillator
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="maxbin2"/>
-                        <param name="input" value="maxbin2/bin_summary.tabular" ftype="tabular"/>                        
+                        <param name="input" value="maxbin2/bin_summary.tabular" ftype="tabular"/>
                         <param name="too_short_sequences_file_path" value="maxbin2/too_short_sequences.fasta" ftype="fasta"/>
                         <param name="unclassified_sequences_file_path" value="maxbin2/unclassified_sequences.fasta" ftype="fasta"/>
                         <param name="marker_gene_presence_file_path" value="maxbin2/marker_gene_presence.tabular" ftype="tabular"/>
@@ -1341,7 +1347,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value=""/>
                     </conditional>
-                </repeat>                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="megahit"/>
@@ -1366,7 +1372,7 @@ tooldistillator
                             <param name="analysis_software_version" value="2.17"/>
                         </conditional>
                     </conditional>
-                </repeat>                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="mmseqs2linclust"/>
@@ -1392,7 +1398,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value="Uniref50"/>
                     </conditional>
-                </repeat>                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="plasmidfinder"/>
@@ -1432,7 +1438,7 @@ tooldistillator
                         </conditional>
                         <param name="reference_database_version" value=""/>
                     </conditional>
-                </repeat>                
+                </repeat>
                 <repeat name="tools">
                     <conditional name="select_tool">
                         <param name="tool_list" value="quast"/>

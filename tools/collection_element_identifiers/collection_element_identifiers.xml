@@ -1,7 +1,6 @@
 <tool id="collection_element_identifiers" name="Extract element identifiers" version="0.0.3" profile="24.2">
     <description>of a list collection</description>
-    <requirements>
-    </requirements>
+    <requirements/>
     <command detect_errors="exit_code"><![CDATA[
 mv '$cf' '$output'
     ]]>
@@ -21,26 +20,26 @@ ${el.element_identifier}
         <test>
             <param name="input_collection">
                 <collection type="list">
-                    <element name="e1" value="simple_line.txt" />
-                    <element name="e2" value="simple_line.txt" />
-                    <element name="e3" value="simple_line.txt" />
+                    <element name="e1" value="simple_line.txt"/>
+                    <element name="e2" value="simple_line.txt"/>
+                    <element name="e3" value="simple_line.txt"/>
                 </collection>
             </param>
-            <output name="output" file="output_1.txt" />
+            <output name="output" file="output_1.txt"/>
         </test>
         <test>
             <param name="input_collection">
                 <collection type="list:paired">
                     <element name="pair1">
                         <collection type="paired">
-                            <element name="forward" value="simple_line.txt" />
-                            <element name="reverse" value="simple_line.txt" />
+                            <element name="forward" value="simple_line.txt"/>
+                            <element name="reverse" value="simple_line.txt"/>
                         </collection>
                     </element>
                     <element name="pair2">
                         <collection type="paired">
-                            <element name="forward" value="simple_line.txt" />
-                            <element name="reverse" value="simple_line.txt" />
+                            <element name="forward" value="simple_line.txt"/>
+                            <element name="reverse" value="simple_line.txt"/>
                         </collection>
                     </element>
                 </collection>
@@ -103,6 +102,5 @@ Output::
  pair2
 
     ]]></help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

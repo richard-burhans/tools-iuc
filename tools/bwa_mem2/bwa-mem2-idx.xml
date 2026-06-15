@@ -1,4 +1,4 @@
-<tool id="bwa_mem2_idx" name="BWA-MEM2 indexer"  version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE_VERSION@">
+<tool id="bwa_mem2_idx" name="BWA-MEM2 indexer" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE_VERSION@">
     <description>Build BWA-MEM2 reference index</description>
     <macros>
         <import>macros.xml</import>
@@ -19,7 +19,7 @@ bwa-mem2 index -p 'reference' '${reference}'
         <test>
             <param name="reference" ftype="fasta" value="bwa-mem-mt-genome.fa"/>
             <output name="index" ftype="bwa_mem2_index">
-                <extra_files name="reference.0123" type="file" value="test-cache/reference.0123"></extra_files>
+                <extra_files name="reference.0123" type="file" value="test-cache/reference.0123"/>
             </output>
         </test>
     </tests>
@@ -32,5 +32,5 @@ This tools build a reference index for the bwa-mem2 galaxy tool.
 
 @info@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

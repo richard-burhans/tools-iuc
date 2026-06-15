@@ -73,17 +73,12 @@ loadings.to_csv('variable_loadings.tsv', sep='\t', index=True)
             </param>
             <when value="spatial_neighbors">
                 <param argument="bandwidth" type="float" value="" optional="true" label="Kernel bandwidth" help="Bandwidth controlling spatial weight decay over distance. Empty = auto-computed from median nearest neighbor distance. Larger values = smoother weighting."/>
-                <param argument="cutoff" type="float" value="0.1" min="0" max="1" label="Weight threshold" help="Weights below this value are set to zero (sparsify matrix). Default: 0.1. Ranges 0-1.">
-                </param>
-                <param argument="max_neighbours" type="integer" value="100" min="1" label="Maximum neighbors" help="Maximum nearest neighbors to include per spot/cell. Default: 100. Limits computation.">
-                </param>
+                <param argument="cutoff" type="float" value="0.1" min="0" max="1" label="Weight threshold" help="Weights below this value are set to zero (sparsify matrix). Default: 0.1. Ranges 0-1."/>
+                <param argument="max_neighbours" type="integer" value="100" min="1" label="Maximum neighbors" help="Maximum nearest neighbors to include per spot/cell. Default: 100. Limits computation."/>
                 <expand macro="param_kernel" DEFAULT_KERNEL="gaussian"/>
-                <param argument="set_diag" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Include self-interactions" help="If enabled: diagonal = 1 (spot/cell interacts with itself). If disabled: diagonal = 0 (inter-cell only).">
-                </param>
-                <param argument="zoi" type="float" value="0" min="0" label="Zone of indifference distance" help="Distance threshold: weights = 0 below this distance. Default: 0 (no dead zone).">
-                </param>
-                <param argument="standardize" type="boolean" truevalue="True" falsevalue="False" checked="false" label="L1-normalize weights" help="If enabled: normalize weights per cell to sum to 1. Makes comparisons across regions easier.">
-                </param>
+                <param argument="set_diag" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Include self-interactions" help="If enabled: diagonal = 1 (spot/cell interacts with itself). If disabled: diagonal = 0 (inter-cell only)."/>
+                <param argument="zoi" type="float" value="0" min="0" label="Zone of indifference distance" help="Distance threshold: weights = 0 below this distance. Default: 0 (no dead zone)."/>
+                <param argument="standardize" type="boolean" truevalue="True" falsevalue="False" checked="false" label="L1-normalize weights" help="If enabled: normalize weights per cell to sum to 1. Makes comparisons across regions easier."/>
                 <expand macro="param_spatial_key"/>
                 <param argument="key_added" type="text" value="spatial" label="Output key in adata.obsp" help="Key in adata.obsp where connectivity matrix will be stored. Default: 'spatial'.">
                     <expand macro="sanitize_query"/>
@@ -104,9 +99,9 @@ loadings.to_csv('variable_loadings.tsv', sep='\t', index=True)
                 <param argument="varm_key" type="text" value="" label="Variable loadings varm key" help="Key in adata.varm containing variable/feature loadings (e.g., 'NMF_H', 'LFs', 'PCs'). Variables x Factors matrix.">
                     <expand macro="sanitize_query"/>
                 </param>
-                <param argument="view_sep" type="text" value="" label="View separator" help="Separator between views in variable names (default ':'). Used for multi-view data." />
-                <param argument="pair_sep" type="text" value="" label="Pair separator" help="Separator between interacting entities (default '&amp;'). Example: ligand&amp;receptor." />
-                <param argument="variable_sep" type="text" value="" label="Variable separator" help="Separator between subcomponents of variables (default '^')." />
+                <param argument="view_sep" type="text" value="" label="View separator" help="Separator between views in variable names (default ':'). Used for multi-view data."/>
+                <param argument="pair_sep" type="text" value="" label="Pair separator" help="Separator between interacting entities (default '&amp;'). Example: ligand&amp;receptor."/>
+                <param argument="variable_sep" type="text" value="" label="Variable separator" help="Separator between subcomponents of variables (default '^')."/>
             </when>
         </conditional>
         <expand macro="inputs_common_advanced"/>

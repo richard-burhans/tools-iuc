@@ -36,15 +36,15 @@ checkm lineage_wf
     --pplacer_threads \${GALAXY_SLOTS:-1}
     ]]></command>
     <inputs>
-        <expand macro="bin_inputs" />
+        <expand macro="bin_inputs"/>
         <section name="tree_analyze" title="Bin placement in the genome tree and marker gene identification">
-            <expand macro="tree_params" />
+            <expand macro="tree_params"/>
         </section>
         <section name="lineage_set" title="Bin lineage-specific marker set inference">
-            <expand macro="lineage_set_params" />
+            <expand macro="lineage_set_params"/>
         </section>
         <section name="qa" title="Bin assessment">
-            <expand macro="qa_params" />
+            <expand macro="qa_params"/>
         </section>
         <param name="extra_outputs" type="select" multiple="true" optional="true" label="Extra outputs">
             <option value="phylo_hmm_info">Phylogenetic HMM model info for each bin</option>
@@ -52,14 +52,14 @@ checkm lineage_wf
             <option value="hmmer_tree">Phylogenetic HMM hits to each bin</option>
             <option value="concatenated_tre">Concatenated tree</option>
             <option value="concatenated_fasta">Concatenated masked sequences</option>
-            <expand macro="tree_extra_output_options" />
+            <expand macro="tree_extra_output_options"/>
             <option value="marker_file">Marker genes</option>
             <option value="hmmer_analyze">Marker gene HMM hits to each bin</option>
             <option value="bin_stats_analyze">Marker gene bin stats</option>
             <option value="checkm_hmm_info">Marker gene HMM info for each bin</option>
-            <expand macro="analyze_extra_output_options" />
+            <expand macro="analyze_extra_output_options"/>
             <option value="bin_stats_ext">Marker gene bin extensive stats</option>
-            <expand macro="qa_extra_output_options" />
+            <expand macro="qa_extra_output_options"/>
         </param>
     </inputs>
     <outputs>
@@ -112,7 +112,7 @@ checkm lineage_wf
         <data name="bin_stats_analyze" format="tabular" from_work_dir="output/storage/bin_stats.analyze.tsv" label="${tool.name} on ${on_string}: Marker gene bin stats">
             <filter>extra_outputs and 'bin_stats_analyze' in extra_outputs</filter>
         </data>
-        <data name="checkm_hmm_info" format="zip" from_work_dir="output/storage/checkm_hmm_info.pkl.gz" label="${tool.name} on ${on_string}: Marker gene HMM info for each bin" >
+        <data name="checkm_hmm_info" format="zip" from_work_dir="output/storage/checkm_hmm_info.pkl.gz" label="${tool.name} on ${on_string}: Marker gene HMM info for each bin">
             <filter>extra_outputs and 'checkm_hmm_info' in extra_outputs</filter>
         </data>
         <collection name="hmmer_analyze_ali" type="list" label="${tool.name} on ${on_string}: HMMER alignment file for each bin">
@@ -123,7 +123,7 @@ checkm lineage_wf
         <data name="bin_stats_ext" format="tabular" from_work_dir="output/storage/bin_stats_ext.tsv" label="${tool.name} on ${on_string}: Marker gene bin extensive stats">
             <filter>extra_outputs and 'bin_stats_ext' in extra_outputs</filter>
         </data>
-        <expand macro="qa_extra_outputs" />
+        <expand macro="qa_extra_outputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">

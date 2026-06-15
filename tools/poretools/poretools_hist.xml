@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="aggressive">
     <![CDATA[
 @MPLBACKEND@
@@ -12,33 +12,33 @@ poretools hist '$input' --saveas histogram.$extension --min-length $min_length -
     ]]>
     </command>
     <inputs>
-        <param name="input" type="data" format="h5,fast5.tar,fast5.tar.gz,fast5.tar.bz2" label="Input fast5 or archive of fast5 files" />
-        <expand macro="plot_options" />
-        <expand macro="length_options" />
-        <param argument="--num-bins" type="integer" value="50" label="Number of bins in the histogram" />
+        <param name="input" type="data" format="h5,fast5.tar,fast5.tar.gz,fast5.tar.bz2" label="Input fast5 or archive of fast5 files"/>
+        <expand macro="plot_options"/>
+        <expand macro="length_options"/>
+        <param argument="--num-bins" type="integer" value="50" label="Number of bins in the histogram"/>
     </inputs>
     <outputs>
-        <expand macro="image_output" />
+        <expand macro="image_output"/>
     </outputs>
     <tests>
         <test>
-            <expand macro="test_input" />
-            <param name="extension" value="png" />
-            <output name="output" file="poretools-hist-out1.png" ftype="png" compare="sim_size" />
+            <expand macro="test_input"/>
+            <param name="extension" value="png"/>
+            <output name="output" file="poretools-hist-out1.png" ftype="png" compare="sim_size"/>
         </test>
         <test>
-            <expand macro="test_input" />
-            <param name="extension" value="pdf" />
-            <output name="output" file="poretools-hist-out1.pdf" ftype="pdf" lines_diff="272" />
+            <expand macro="test_input"/>
+            <param name="extension" value="pdf"/>
+            <output name="output" file="poretools-hist-out1.pdf" ftype="pdf" lines_diff="272"/>
         </test>
         <test>
-            <expand macro="test_input" />
-            <param name="extension" value="svg" />
-            <output name="output" file="poretools-hist-out1.svg" ftype="svg" lines_diff="140" />
+            <expand macro="test_input"/>
+            <param name="extension" value="svg"/>
+            <output name="output" file="poretools-hist-out1.svg" ftype="svg" lines_diff="140"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
         Draw a histogram of read lengths in one or more nanopore reads.
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

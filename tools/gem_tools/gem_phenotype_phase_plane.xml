@@ -7,7 +7,7 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_command_cobra"/>
-    <command>
+    <command><![CDATA[
         python '$__tool_directory__/gem_phenotype_phase_plane.py'
             --cb_model_location '${cb_model_location}'
             --output '${output}'
@@ -16,7 +16,7 @@
             --points '${points}'
             --objective '${objective}'
             --uptake_constraints_file '${uptake_constraints_file}'
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_model"/>
         <param name="reaction1" type="text" label="First reaction to calculate phenotype phase plane (PhPP) for" optional="false" help="Must be a valid reaction ID from the model">

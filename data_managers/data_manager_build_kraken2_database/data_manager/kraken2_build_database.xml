@@ -5,11 +5,11 @@
         <token name="@VERSION_SUFFIX@">1</token>
         <token name="@PROFILE@">24.0</token>
         <xml name="common_params">
-            <param name="kmer_len" type="integer" value="35" label="K-mer length in BP" />
-            <param name="minimizer_len" type="integer" value="31" label="Minimizer length" />
-            <param name="minimizer_spaces" type="integer" value="7" label="Minimizer spaces" />
-            <param name="load_factor" type="float" value="0.7" min="0" max="1" label="Load factor" help="Proportion of the hash table to be populated" />
-            <param name="clean" type="boolean" truevalue="--clean" falsevalue="" checked="false" label="Clean up extra files. Note: If the extra files are removed this DB cannot be used to build a bracken DB!" />
+            <param name="kmer_len" type="integer" value="35" label="K-mer length in BP"/>
+            <param name="minimizer_len" type="integer" value="31" label="Minimizer length"/>
+            <param name="minimizer_spaces" type="integer" value="7" label="Minimizer spaces"/>
+            <param name="load_factor" type="float" value="0.7" min="0" max="1" label="Load factor" help="Proportion of the hash table to be populated"/>
+            <param name="clean" type="boolean" truevalue="--clean" falsevalue="" checked="false" label="Clean up extra files. Note: If the extra files are removed this DB cannot be used to build a bracken DB!"/>
         </xml>
         <xml name="viral">
             <option value="viral">Viral (viral; ~0.5 GB)</option>
@@ -213,7 +213,7 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 <option value="custom">Custom</option>
             </param>
             <when value="standard_local_build">
-                <expand macro="common_params" />
+                <expand macro="common_params"/>
             </when>
             <when value="standard_prebuilt">
                 <conditional name="prebuilt">
@@ -479,9 +479,9 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 <conditional name="prebuilt">
                     <param name="xyz" type="select" multiple="false" label="Select pre-built database to download">
                         <option value="16S_Greengenes13.5_20200326">Greengenes 13.5</option>
-                        <option value="16S_RDP11.5_20200326">RDP 11.5</option> 
-                        <option value="16S_Silva132_20200326">Silva 132</option> 
-                        <option value="16S_Silva138_20200326">Silva 138</option> 
+                        <option value="16S_RDP11.5_20200326">RDP 11.5</option>
+                        <option value="16S_Silva132_20200326">Silva 132</option>
+                        <option value="16S_Silva138_20200326">Silva 138</option>
                     </param>
                     <when value="16S_Greengenes13.5_20200326">
                         <param name="prebuilt_db" type="hidden" value="16S_Greengenes13.5"/>
@@ -513,30 +513,29 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                     <option value="silva">Silva</option>
                     <!-- <option value="rdp">RDP</option> https://github.com/DerrickWood/kraken2/issues/736 -->
                 </param>
-                <expand macro="common_params" />
+                <expand macro="common_params"/>
             </when>
             <when value="custom">
-                <param name="custom_fasta" type="data" format="fasta" multiple="False" label="Select history item" />
-                <param name="custom_database_name" type="text" label="Name for this database" />
-                <param name="custom_source_info" type="text" label="Database source info" help="Concise description of how this build has been sourced. This description will be appended (in parentheses) to the user-facing name of the build. Example: https://doi.org/10.5281/zenodo.8339822, from v1 assembly_summary.txt sequences" />
-                <param name="skip_maps" type="boolean" truevalue="--skip-maps" falsevalue="" label="Skip downloading accession number to taxid maps during taxonomy download." />
-                <expand macro="common_params" />
+                <param name="custom_fasta" type="data" format="fasta" multiple="False" label="Select history item"/>
+                <param name="custom_database_name" type="text" label="Name for this database"/>
+                <param name="custom_source_info" type="text" label="Database source info" help="Concise description of how this build has been sourced. This description will be appended (in parentheses) to the user-facing name of the build. Example: https://doi.org/10.5281/zenodo.8339822, from v1 assembly_summary.txt sequences"/>
+                <param name="skip_maps" type="boolean" truevalue="--skip-maps" falsevalue="" label="Skip downloading accession number to taxid maps during taxonomy download."/>
+                <expand macro="common_params"/>
             </when>
         </conditional>
-        <param name="run_test_command" type="hidden" />
+        <param name="run_test_command" type="hidden"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <!-- standard_local_build - test 1 -->
-
         <test expect_num_outputs="1">
             <conditional name="database_type">
-                <param name="database_type" value="standard_local_build" />
-                <param name="kmer_len" value="35" />
+                <param name="database_type" value="standard_local_build"/>
+                <param name="kmer_len" value="35"/>
                 <param name="minimizer_spaces" value="6"/>
-                <param name="load_factor" value="0.7" />
+                <param name="load_factor" value="0.7"/>
                 <param name="clean" value="true"/>
             </conditional>
             <param name="run_test_command" value="false"/>
@@ -549,11 +548,10 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 </assert_contents>
             </output>
         </test>
-
         <!-- standard_prebuilt - test 2 -->
         <test>
             <conditional name="database_type">
-                <param name="database_type" value="standard_prebuilt" />
+                <param name="database_type" value="standard_prebuilt"/>
                 <conditional name="prebuilt">
                     <param name="prebuilt_date" value="2022-06-07"/>
                     <param name="prebuilt_db" value="viral"/>
@@ -574,7 +572,7 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
         <!-- test with latest version - test 3 -->
         <test>
             <conditional name="database_type">
-                <param name="database_type" value="standard_prebuilt" />
+                <param name="database_type" value="standard_prebuilt"/>
                 <conditional name="prebuilt">
                     <param name="prebuilt_date" value="2024-01-12"/>
                     <param name="prebuilt_db" value="viral"/>
@@ -595,7 +593,7 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
         <!-- test with first 2024 version - test 4 -->
         <test>
             <conditional name="database_type">
-                <param name="database_type" value="standard_prebuilt" />
+                <param name="database_type" value="standard_prebuilt"/>
                 <conditional name="prebuilt">
                     <param name="prebuilt_date" value="2024-06-05"/>
                     <param name="prebuilt_db" value="viral"/>
@@ -613,12 +611,10 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 </assert_contents>
             </output>
         </test>
-
         <!-- minikraken - test 5 -->
-
         <test>
             <conditional name="database_type">
-                <param name="database_type" value="minikraken" />
+                <param name="database_type" value="minikraken"/>
                 <param name="minikraken2_version" value="v1"/>
             </conditional>
             <param name="run_test_command" value="false"/>
@@ -631,13 +627,11 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                     <has_text text="Created"/>
                 </assert_contents>
             </output>
-        </test> 
-
+        </test>
         <!-- special_prebuilt - test 6 -->
-
-       <test>
+        <test>
             <conditional name="database_type">
-                <param name="database_type" value="special_prebuilt" />
+                <param name="database_type" value="special_prebuilt"/>
                 <conditional name="prebuilt">
                     <param name="xyz" value="eupathdb48_20201113"/>
                     <param name="prebuilt_date" value="2020-11-13"/>
@@ -655,13 +649,11 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                     <has_text text="Downloaded"/>
                 </assert_contents>
             </output>
-        </test> 
-
+        </test>
         <!-- amplicon_prebuilt - test 7 -->
-
-       <test>
+        <test>
             <conditional name="database_type">
-                <param name="database_type" value="amplicon_prebuilt" />
+                <param name="database_type" value="amplicon_prebuilt"/>
                 <conditional name="prebuilt">
                     <param name="xyz" value="16S_Greengenes13.5_20200326"/>
                     <param name="prebuilt_date" value="20200326"/>
@@ -676,17 +668,15 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                     <has_text text="16S_Greengenes13.5"/>
                 </assert_contents>
             </output>
-        </test> 
-
+        </test>
         <!-- special - test 8 -->
-
         <test expect_num_outputs="1">
             <conditional name="database_type">
-                <param name="database_type" value="special" />
-                <param name="special_database_type" value="greengenes" />
-                <param name="kmer_len" value="35" />
+                <param name="database_type" value="special"/>
+                <param name="special_database_type" value="greengenes"/>
+                <param name="kmer_len" value="35"/>
                 <param name="minimizer_spaces" value="6"/>
-                <param name="load_factor" value="0.7" />
+                <param name="load_factor" value="0.7"/>
                 <param name="clean" value="true"/>
             </conditional>
             <param name="run_test_command" value="true"/>
@@ -699,15 +689,14 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 </assert_contents>
             </output>
         </test>
-
         <!-- special - test 9 -->
         <test expect_num_outputs="1">
             <conditional name="database_type">
-                <param name="database_type" value="special" />
-                <param name="special_database_type" value="silva" />
-                <param name="kmer_len" value="35" />
+                <param name="database_type" value="special"/>
+                <param name="special_database_type" value="silva"/>
+                <param name="kmer_len" value="35"/>
                 <param name="minimizer_spaces" value="6"/>
-                <param name="load_factor" value="0.7" />
+                <param name="load_factor" value="0.7"/>
                 <param name="clean" value="true"/>
             </conditional>
             <param name="run_test_command" value="true"/>
@@ -720,19 +709,17 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 </assert_contents>
             </output>
         </test>
-
         <!-- custom - test 10 -->
-
         <test expect_num_outputs="1">
             <conditional name="database_type">
-                <param name="database_type" value="custom" />
-                <param name="custom_fasta" value="adapter.fa" />
-                <param name="custom_database_name" value="custom_database" />
-                <param name="custom_source_info" value="from adapter.fa test data" />
-                <param name="skip_maps" value="true" />
-                <param name="kmer_len" value="35" />
+                <param name="database_type" value="custom"/>
+                <param name="custom_fasta" value="adapter.fa"/>
+                <param name="custom_database_name" value="custom_database"/>
+                <param name="custom_source_info" value="from adapter.fa test data"/>
+                <param name="skip_maps" value="true"/>
+                <param name="kmer_len" value="35"/>
                 <param name="minimizer_spaces" value="6"/>
-                <param name="load_factor" value="0.7" />
+                <param name="load_factor" value="0.7"/>
                 <param name="clean" value="true"/>
             </conditional>
             <param name="run_test_command" value="true"/>
@@ -744,8 +731,6 @@ echo '{"data_tables": {"kraken2_databases": [{"value": "$database_value", "name"
                 </assert_contents>
             </output>
         </test>
-
-
     </tests>
     <help><![CDATA[
 Build Kraken2 databases or download `prebuilt Kraken2 RefSeq indexes <https://benlangmead.github.io/aws-indexes/k2>`__

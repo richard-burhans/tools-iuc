@@ -40,7 +40,7 @@ make_emperor.py
     ]]></command>
     <inputs>
         <param argument="--input_coords" type="data" format="txt" label="Filepath of a coordinates file to create a PCoA plot"/>
-        <param argument="--map_fp" type="data" format="tabular,txt,tsv" label="Mapping file" />
+        <param argument="--map_fp" type="data" format="tabular,txt,tsv" label="Mapping file"/>
         <param argument="--number_of_axes" type="integer" value="10" label="Number of axes to be incorporated in the plot" help="Only 3 will be displayed at any given time but this option modifies how many axes you can use for your visualization. Note that Emperor will only use the axes that explain more than 0.5% (this will be shown as 1% in the GUI) of the variability"/>
         <param argument="--add_unique_columns" type="boolean" label="Add to the output categories of the mapping file the columns where all values are different?" truevalue="--add_unique_columns" falsevalue="" checked="false" help="If the result of one of the concatenated fields in --color_by is a column where all values are unique, the resulting column will get removed as well"/>
         <param argument="--add_vectors" type="data" format="txt" optional="true" label="Comma-sparated category(ies) used to add connecting lines (vectors) between samples" help="The first category specifies the samples that will be connected by the vectors, whilst the second category (optionally) determines the order in which the samples will be connected"/>

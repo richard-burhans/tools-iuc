@@ -22,14 +22,14 @@ python '$__tool_directory__/fastaregexfinder.py'
 > '$output'
     ]]></command>
     <inputs>
-        <param type="data" name="input" format="fasta" />
+        <param type="data" name="input" format="fasta"/>
         <param name="regex" size="30" type="text" value="([gG]{3,}\w{1,7}){3,}[gG]{3,}" label="Regular expression" help="(--regex)">
             <sanitizer>
                 <valid initial="string.printable">
-                    <remove value="&apos;"/>
+                    <remove value="'"/>
                 </valid>
                 <mapping initial="none">
-                    <add source="&apos;" target="__sq__"/>
+                    <add source="'" target="__sq__"/>
                 </mapping>
             </sanitizer>
         </param>
@@ -38,18 +38,17 @@ python '$__tool_directory__/fastaregexfinder.py'
                 <option value="simple" selected="true">No, use program defaults.</option>
                 <option value="advanced">Yes, see full parameter list.</option>
             </param>
-            <when value="simple">
-            </when>
+            <when value="simple"/>
             <when value="advanced">
-                <param name="matchcase" type="boolean" label="Match case" truevalue="--matchcase" falsevalue="" help="(--matchcase)" />
-                <param name="noreverse" type="boolean" label="Do not search the reverse complement" truevalue="--noreverse" falsevalue="" help="(--noreverse)" />
-                <param name="maxstr" type="integer" label="Maximum length of the match to report" value="10000" min="1" help="(--maxstr)" />
+                <param name="matchcase" type="boolean" label="Match case" truevalue="--matchcase" falsevalue="" help="(--matchcase)"/>
+                <param name="noreverse" type="boolean" label="Do not search the reverse complement" truevalue="--noreverse" falsevalue="" help="(--noreverse)"/>
+                <param name="maxstr" type="integer" label="Maximum length of the match to report" value="10000" min="1" help="(--maxstr)"/>
                 <param name="seqnames" size="30" type="text" value="" label="Space separated list of fasta sequences to search" help="--seqnames"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="output" format="bed" from_work_dir="TestSeqGroup-G4.bed" />
+        <data name="output" format="bed" from_work_dir="TestSeqGroup-G4.bed"/>
     </outputs>
     <tests>
         <test>
@@ -88,7 +87,7 @@ python '$__tool_directory__/fastaregexfinder.py'
             <param name="seqnames" value="HJ24-Shp2_oncogenicProtein2 HJ24-Shp2_oncogenicProtein"/>
             <output name="output" file="TestSeqGroup-G4-sub.bed"/>
         </test>
-</tests>
+    </tests>
     <help><![CDATA[
 DESCRIPTION
     

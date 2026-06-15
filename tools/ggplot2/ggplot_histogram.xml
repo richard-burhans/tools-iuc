@@ -70,9 +70,9 @@ plot_out <- gg_density +
     </configfiles>
     <inputs>
         <param name="input1" type="data" format="tabular" label="Input should have column headers - these will be the columns that are plotted"/>
-        <expand macro="title" />
-        <expand macro="xy_lab" />
-        <param name="size" type="float" value="1.0" label="relative line width" />
+        <expand macro="title"/>
+        <expand macro="xy_lab"/>
+        <param name="size" type="float" value="1.0" label="relative line width"/>
         <param name="binwidth" type="float" value="0.5" label="Bin width for plotting"/>
         <section name="adv" title="Advanced Options" expanded="false">
             <param name="density" type="select" label="Plot counts or density">
@@ -85,31 +85,30 @@ plot_out <- gg_density +
                 <option value="facet">Plot my groups on individual plots</option>
             </param>
             <conditional name="coloring">
-                <param name="colorscheme" type="select" label="Coloring groups" >
+                <param name="colorscheme" type="select" label="Coloring groups">
                     <option value="Default" selected="true">No thanks - just use the default scheme to color code my groups (columns)</option>
                     <option value="Defined">I want to use defined color palettes to differentiate my groups (columns) </option>
                 </param>
-                <when value="Default">
-                </when>
+                <when value="Default"/>
                 <when value="Defined">
-                    <expand macro="colors" />
-                    <param name="colororder" type="select" label="Reverse color scheme" >
+                    <expand macro="colors"/>
+                    <param name="colororder" type="select" label="Reverse color scheme">
                         <option value="1">Default order of color scheme</option>
                         <option value="-1">Reverse the order of my color scheme</option>
                     </param>
                 </when>
             </conditional>
-            <expand macro="transform" />
-            <expand macro="xy_scaling" />
-            <expand macro="theme" />
-            <expand macro="legend" />
+            <expand macro="transform"/>
+            <expand macro="xy_scaling"/>
+            <expand macro="theme"/>
+            <expand macro="legend"/>
         </section>
         <section name="out" title="Output Options" expanded="true">
-            <expand macro="dimensions" />
+            <expand macro="dimensions"/>
         </section>
     </inputs>
     <outputs>
-        <expand macro="additional_output" />
+        <expand macro="additional_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -122,7 +121,7 @@ plot_out <- gg_density +
         </test>
         <test expect_num_outputs="2">
             <param name="input1" value="mtcars.txt"/>
-            <param name="additional_output_format" value="pdf" />
+            <param name="additional_output_format" value="pdf"/>
             <output name="output2" file="ggplot_histogram_result1.pdf" ftype="pdf" compare="sim_size"/>
         </test>
     </tests>

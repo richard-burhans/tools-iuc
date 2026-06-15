@@ -3,8 +3,8 @@
         <import>qualimap_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         #import os
         #import re
@@ -76,53 +76,53 @@
         @MASSAGE_OUTPUT@
     ]]></command>
     <inputs>
-        <param name="input1" argument="-bam" type="data" format="bam" label="Mapped reads input dataset" />
+        <param name="input1" argument="-bam" type="data" format="bam" label="Mapped reads input dataset"/>
         <conditional name="stats_regions">
             <param name="region_select" type="select" label="Reference genome regions to calculate mapping statistics for">
                 <option value="all">All (whole genome)</option>
                 <option value="custom_regions">Select regions</option>
             </param>
-            <when value="all" />
+            <when value="all"/>
             <when value="custom_regions">
-                <param name="regions" argument="-gff" type="data" format="gff,gtf,bed" label="Dataset specifying regions" />
-                <param name="outside_stats" argument="-os" type="boolean" truevalue="--outside-stats" falsevalue="" checked="false" label="Invert regions" help="If selected, report read statistics *outside* the regions in the regions file." />
+                <param name="regions" argument="-gff" type="data" format="gff,gtf,bed" label="Dataset specifying regions"/>
+                <param name="outside_stats" argument="-os" type="boolean" truevalue="--outside-stats" falsevalue="" checked="false" label="Invert regions" help="If selected, report read statistics *outside* the regions in the regions file."/>
             </when>
         </conditional>
-        <param name="per_base_coverage" argument="-oc" type="boolean" truevalue="--output-genome-coverage" falsevalue="" checked="false" label="Generate per-base coverage output" help="Produce additional tabular output listing the coverage at every site (omitting only zero-coverage positions) in the selected regions of the genome. Caution: Will generate a huge dataset for anything but small input genomes or restricted regions!" />
+        <param name="per_base_coverage" argument="-oc" type="boolean" truevalue="--output-genome-coverage" falsevalue="" checked="false" label="Generate per-base coverage output" help="Produce additional tabular output listing the coverage at every site (omitting only zero-coverage positions) in the selected regions of the genome. Caution: Will generate a huge dataset for anything but small input genomes or restricted regions!"/>
         <param name="duplicate_skipping" argument="--skip-dup-mode" type="select" optional="true" label="Skip duplicate reads" display="checkboxes" multiple="true">
             <option value="0" selected="true">Reads flagged as duplicates in input</option>
             <option value="1">Duplicates detected by Qualimap</option>
         </param>
         <section name="plot_specific" title="Settings affecting specific plots" expanded="false">
-            <param name="n_bins" argument="-nw" type="integer" value="400" label="Number of bins to use in across-reference plots" help="Affected plots: Coverage, Mapping Quality and Insert Size across reference, Mapped reads GC-content distribution; the value determines the resolution of the affected plots. Note: The lower the value, the higher the memory usage of the tool!" />
-            <param name="paint_chromosome_limits" argument="-c" type="boolean" truevalue="--paint-chromosome-limits" falsevalue="" checked="true" label="Draw chromosome limits" help="Affected plots: Coverage, Mapping Quality and Insert Size across reference; in across-reference plots, indicate chromosome boundaries with dotted lines and labels" />
+            <param name="n_bins" argument="-nw" type="integer" value="400" label="Number of bins to use in across-reference plots" help="Affected plots: Coverage, Mapping Quality and Insert Size across reference, Mapped reads GC-content distribution; the value determines the resolution of the affected plots. Note: The lower the value, the higher the memory usage of the tool!"/>
+            <param name="paint_chromosome_limits" argument="-c" type="boolean" truevalue="--paint-chromosome-limits" falsevalue="" checked="true" label="Draw chromosome limits" help="Affected plots: Coverage, Mapping Quality and Insert Size across reference; in across-reference plots, indicate chromosome boundaries with dotted lines and labels"/>
             <param name="genome_gc_distr" argument="-gd" type="select" optional="true" label="Plot expected GC-content distribution of the following reference genome" help="Affected plot: Mapped reads GC-content distribution; include a precalculated GC-content distribution for the selected (Qualimap-supported) reference genome in the plot">
                 <option value="hg19">Human genome (hg19)</option>
                 <option value="mm9">Mouse genome (mm9)</option>
                 <option value="mm10">Mouse genome (mm10)</option>
             </param>
-            <param name="homopolymer_size" argument="-hm" type="integer" min="2" value="3" label="Homopolymer size" help="Affected plot: Homopolymer indels; sets the minimal number of consecutive bases that define a homopolymer" />
+            <param name="homopolymer_size" argument="-hm" type="integer" min="2" value="3" label="Homopolymer size" help="Affected plot: Homopolymer indels; sets the minimal number of consecutive bases that define a homopolymer"/>
         </section>
     </inputs>
     <outputs>
-        <data name="output_html" format="html" label="${tool.name} report on ${on_string}" />
+        <data name="output_html" format="html" label="${tool.name} report on ${on_string}"/>
         <data name="output_per_base_coverage" format="tsv" label="${tool.name} per-base coverage on ${on_string}">
             <filter>per_base_coverage</filter>
         </data>
         <collection name="raw_data" type="list" label="Raw data for ${tool.name} on ${on_string}">
-            <data name="genome_results" format="txt" from_work_dir="results/summary_report.txt" />
-            <data name="coverage_across_reference" format="tsv" from_work_dir="results/coverage_across_reference.txt" />
-            <data name="coverage_histogram" format="tsv" from_work_dir="results/coverage_histogram.txt" />
-            <data name="genome_fraction_coverage" format="tsv" from_work_dir="results/genome_fraction_coverage.txt" />
-            <data name="duplication_rate_histogram" format="tsv" from_work_dir="results/duplication_rate_histogram.txt" />
-            <data name="homopolymer_indels" format="tsv" from_work_dir="results/homopolymer_indels.txt" />
-            <data name="insert_size_across_reference" format="tsv" from_work_dir="results/insert_size_across_reference.txt" />
-            <data name="insert_size_histogram" format="tsv" from_work_dir="results/insert_size_histogram.txt" />
-            <data name="mapped_reads_clipping_profile" format="tsv" from_work_dir="results/mapped_reads_clipping_profile.txt" />
-            <data name="mapped_reads_gc-content_distribution" format="tsv" from_work_dir="results/mapped_reads_gc-content_distribution.txt" />
-            <data name="mapped_reads_nucleotide_content" format="tsv" from_work_dir="results/mapped_reads_nucleotide_content.txt" />
-            <data name="mapping_quality_across_reference" format="tsv" from_work_dir="results/mapping_quality_across_reference.txt" />
-            <data name="mapping_quality_histogram" format="tsv" from_work_dir="results/mapping_quality_histogram.txt" />
+            <data name="genome_results" format="txt" from_work_dir="results/summary_report.txt"/>
+            <data name="coverage_across_reference" format="tsv" from_work_dir="results/coverage_across_reference.txt"/>
+            <data name="coverage_histogram" format="tsv" from_work_dir="results/coverage_histogram.txt"/>
+            <data name="genome_fraction_coverage" format="tsv" from_work_dir="results/genome_fraction_coverage.txt"/>
+            <data name="duplication_rate_histogram" format="tsv" from_work_dir="results/duplication_rate_histogram.txt"/>
+            <data name="homopolymer_indels" format="tsv" from_work_dir="results/homopolymer_indels.txt"/>
+            <data name="insert_size_across_reference" format="tsv" from_work_dir="results/insert_size_across_reference.txt"/>
+            <data name="insert_size_histogram" format="tsv" from_work_dir="results/insert_size_histogram.txt"/>
+            <data name="mapped_reads_clipping_profile" format="tsv" from_work_dir="results/mapped_reads_clipping_profile.txt"/>
+            <data name="mapped_reads_gc-content_distribution" format="tsv" from_work_dir="results/mapped_reads_gc-content_distribution.txt"/>
+            <data name="mapped_reads_nucleotide_content" format="tsv" from_work_dir="results/mapped_reads_nucleotide_content.txt"/>
+            <data name="mapping_quality_across_reference" format="tsv" from_work_dir="results/mapping_quality_across_reference.txt"/>
+            <data name="mapping_quality_histogram" format="tsv" from_work_dir="results/mapping_quality_histogram.txt"/>
         </collection>
     </outputs>
     <tests>
@@ -130,74 +130,74 @@
             <param name="input1" value="test_mapped_reads.bam"/>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: BAM QC" />
+                    <has_text text="Qualimap report: BAM QC"/>
                 </assert_contents>
             </output>
             <output_collection name="raw_data" type="list">
-                <element name="genome_results" file="genome_results_default.txt" ftype="txt" compare="diff" lines_diff="2" />
+                <element name="genome_results" file="genome_results_default.txt" ftype="txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
         <test expect_num_outputs="16">
-            <param name="input1" value="test_mapped_reads.bam" />
-            <param name="per_base_coverage" value="true" />
+            <param name="input1" value="test_mapped_reads.bam"/>
+            <param name="per_base_coverage" value="true"/>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: BAM QC" />
+                    <has_text text="Qualimap report: BAM QC"/>
                 </assert_contents>
             </output>
-            <output name="output_per_base_coverage" file="per_base_coverage_default.txt" ftype="tsv" />
+            <output name="output_per_base_coverage" file="per_base_coverage_default.txt" ftype="tsv"/>
             <output_collection name="raw_data" type="list">
-                <element name="genome_results" file="genome_results_default.txt" ftype="txt" compare="diff" lines_diff="2" />
+                <element name="genome_results" file="genome_results_default.txt" ftype="txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
         <test expect_num_outputs="15">
             <param name="input1" value="test_mapped_reads.bam"/>
             <conditional name="stats_regions">
-                <param name="region_select" value="custom_regions" />
-                <param name="regions" value="features.gtf" />
+                <param name="region_select" value="custom_regions"/>
+                <param name="regions" value="features.gtf"/>
             </conditional>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: BAM QC" />
+                    <has_text text="Qualimap report: BAM QC"/>
                 </assert_contents>
             </output>
             <output_collection name="raw_data" type="list">
-                <element name="genome_results" file="genome_results_inside_features.txt" ftype="txt" compare="diff" lines_diff="2" />
+                <element name="genome_results" file="genome_results_inside_features.txt" ftype="txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
         <test expect_num_outputs="16">
-            <param name="input1" value="test_mapped_reads.bam" />
+            <param name="input1" value="test_mapped_reads.bam"/>
             <conditional name="stats_regions">
-                <param name="region_select" value="custom_regions" />
-                <param name="regions" value="features.gtf" />
+                <param name="region_select" value="custom_regions"/>
+                <param name="regions" value="features.gtf"/>
             </conditional>
-            <param name="per_base_coverage" value="true" />
+            <param name="per_base_coverage" value="true"/>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: BAM QC" />
+                    <has_text text="Qualimap report: BAM QC"/>
                 </assert_contents>
             </output>
-            <output name="output_per_base_coverage" file="per_base_coverage_inside_features.txt" ftype="tsv" />
+            <output name="output_per_base_coverage" file="per_base_coverage_inside_features.txt" ftype="tsv"/>
             <output_collection name="raw_data" type="list">
-                <element name="genome_results" file="genome_results_inside_features.txt" ftype="txt" compare="diff" lines_diff="2" />
+                <element name="genome_results" file="genome_results_inside_features.txt" ftype="txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
         <test expect_num_outputs="16">
-            <param name="input1" value="test_mapped_reads.bam" />
+            <param name="input1" value="test_mapped_reads.bam"/>
             <conditional name="stats_regions">
-                <param name="region_select" value="custom_regions" />
-                <param name="regions" value="features.gtf" />
-                <param name="outside_stats" value="true" />
+                <param name="region_select" value="custom_regions"/>
+                <param name="regions" value="features.gtf"/>
+                <param name="outside_stats" value="true"/>
             </conditional>
-            <param name="per_base_coverage" value="true" />
+            <param name="per_base_coverage" value="true"/>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: BAM QC" />
+                    <has_text text="Qualimap report: BAM QC"/>
                 </assert_contents>
             </output>
-            <output name="output_per_base_coverage" file="per_base_coverage_outside_features.txt" ftype="tsv" />
+            <output name="output_per_base_coverage" file="per_base_coverage_outside_features.txt" ftype="tsv"/>
             <output_collection name="raw_data" type="list">
-                <element name="genome_results" file="genome_results_outside_features.txt" ftype="txt" compare="diff" lines_diff="2" />
+                <element name="genome_results" file="genome_results_outside_features.txt" ftype="txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
     </tests>

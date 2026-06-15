@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="creators" />
+    <expand macro="requirements"/>
+    <expand macro="creators"/>
     <command detect_errors="aggressive"><![CDATA[
         ln -s /home/appuser/DiffDock/* . &&
         ln -s '$protein_path' protein_path.pdb &&
@@ -27,22 +27,22 @@
         </collection>
     </outputs>
     <tests>
-    <test expect_num_outputs="1">
-        <param name="protein_path" value="1a0q_protein_processed.pdb"/>
-        <param name="ligand_description" value="1a0q_ligand.sdf"/>
-        <param name="samples_per_complex" value="10"/>
-        <param name="inference_steps" value="20"/>
-        <param name="actual_steps" value="19"/>
-        <output_collection name="output_collection" type="list">
-            <element name="rank1">
-                <assert_contents>
-                    <has_n_lines n="52"/>
-                    <has_line line="1a0q_ligand"/>
-                    <has_line line=" 23 23  0  0  0  0  0  0  0  0999 V2000"/>
-                </assert_contents>
-            </element>
-        </output_collection>
-    </test>
+        <test expect_num_outputs="1">
+            <param name="protein_path" value="1a0q_protein_processed.pdb"/>
+            <param name="ligand_description" value="1a0q_ligand.sdf"/>
+            <param name="samples_per_complex" value="10"/>
+            <param name="inference_steps" value="20"/>
+            <param name="actual_steps" value="19"/>
+            <output_collection name="output_collection" type="list">
+                <element name="rank1">
+                    <assert_contents>
+                        <has_n_lines n="52"/>
+                        <has_line line="1a0q_ligand"/>
+                        <has_line line=" 23 23  0  0  0  0  0  0  0  0999 V2000"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+        </test>
     </tests>
     <help><![CDATA[
 DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking
@@ -57,5 +57,5 @@ For more information, visit the `DiffDock GitHub repository <https://github.com/
 * `MIT <https://raw.githubusercontent.com/gcorso/DiffDock/refs/heads/main/LICENSE>`_
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

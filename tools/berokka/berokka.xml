@@ -24,10 +24,10 @@
 
     ]]></command>
     <inputs>
-        <param name="input_file" type="data"  format="fasta" label="Input (FASTA)" help="Should be completed long-read assemblies in FASTA format, such as those from CANU or HGAP"/>
+        <param name="input_file" type="data" format="fasta" label="Input (FASTA)" help="Should be completed long-read assemblies in FASTA format, such as those from CANU or HGAP"/>
         <param name="filter_fasta" optional="true" type="data" format="fasta" label="Filter (FASTA)" help="Give a fasta to use as a filter."/>
-        <param name="read_length" type="integer" value="60000" min="28"  label="Read Length" help="Approximate max read length (default '60000')"/>
-        <param name="fuzz" type="integer" value="5" label="Fuzz" help="Accept local alignment within X bp of global (default '5')"/>	
+        <param name="read_length" type="integer" value="60000" min="28" label="Read Length" help="Approximate max read length (default '60000')"/>
+        <param name="fuzz" type="integer" value="5" label="Fuzz" help="Accept local alignment within X bp of global (default '5')"/>
         <param name="anno" type="boolean" checked="true" label="Annotation" help="Annotate Trimmed FASTA"/>
     </inputs>
     <outputs>
@@ -60,8 +60,8 @@
             <output name="trimmed" file="trimmed_3" ftype="fasta"/>
             <output name="results" file="results_3" ftype="tabular"/>
         </test>
-   </tests>
-   <help><![CDATA[
+    </tests>
+    <help><![CDATA[
 **Summary**
 
 Trim, circularise, orient & filter long read bacterial genome assemblies

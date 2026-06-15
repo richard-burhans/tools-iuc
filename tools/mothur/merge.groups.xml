@@ -113,7 +113,8 @@ echo 'merge.groups(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with shared file -->
+        <test>
+            <!-- test with shared file -->
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="source" value="hist"/>
             <param name="design_dataset" value="toymothur.design2"/>
@@ -121,7 +122,8 @@ echo 'merge.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared file and label and group select -->
+        <test>
+            <!-- test with shared file and label and group select -->
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="label" value="0.05,0.22,0.38"/>
             <param name="groups" value="forest,pasture"/>
@@ -131,7 +133,8 @@ echo 'merge.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group file -->
+        <test>
+            <!-- test with group file -->
             <param name="group" value="amazon.groups" ftype="mothur.groups"/>
             <param name="source" value="hist"/>
             <param name="design_dataset" value="toymothur.design2"/>
@@ -139,7 +142,8 @@ echo 'merge.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with count table and fasta file -->
+        <test>
+            <!-- test with count table and fasta file -->
             <param name="group" value="amazon_withgroups.count_table" ftype="mothur.count_table"/>
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="method" value="median"/>
@@ -155,7 +159,8 @@ echo 'merge.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with design creation -->
+        <test>
+            <!-- test with design creation -->
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="source" value="build"/>
             <repeat name="groupings">

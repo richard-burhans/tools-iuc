@@ -203,11 +203,11 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="sc_count" type="data" format="tabular" label="Single-cell count matrix" help="A matrix representing Digital Gene Expression (DGE). Rownames should be genes and colnames represent barcodes/cell names" />
-        <param name="metadata" type="data" format="tabular" label="Metadata" help="single-cell annotation file with columns: barcode, annotation, and nUMI(optional)" />
-        <param name="sc_umi_input" type="boolean" truevalue="True" falsevalue="False" checked="false" label="nUMI" help="Does your single-cell metadata have nUMI column?" />
-        <param name="st_count" type="data" format="tabular" label="Spatial count matrix" help="A matrix representing Digital Gene Expression (DGE). Rownames should be genes and colnames represent barcodes/pixel names" />
-        <param name="coord" type="data" format="tabular" label="Spatial coordinates" help="A numeric table representing the spatial pixel locations. Rownames are barcodes/pixel names, and there should be two columns for x and for y" />
+        <param name="sc_count" type="data" format="tabular" label="Single-cell count matrix" help="A matrix representing Digital Gene Expression (DGE). Rownames should be genes and colnames represent barcodes/cell names"/>
+        <param name="metadata" type="data" format="tabular" label="Metadata" help="single-cell annotation file with columns: barcode, annotation, and nUMI(optional)"/>
+        <param name="sc_umi_input" type="boolean" truevalue="True" falsevalue="False" checked="false" label="nUMI" help="Does your single-cell metadata have nUMI column?"/>
+        <param name="st_count" type="data" format="tabular" label="Spatial count matrix" help="A matrix representing Digital Gene Expression (DGE). Rownames should be genes and colnames represent barcodes/pixel names"/>
+        <param name="coord" type="data" format="tabular" label="Spatial coordinates" help="A numeric table representing the spatial pixel locations. Rownames are barcodes/pixel names, and there should be two columns for x and for y"/>
         <param name="doublet_mode" type="select" label="Doublet mode">
             <option value="doublet">doublet</option>
             <option value="full">full</option>
@@ -215,14 +215,14 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
         </param>
         <section name="advanced_param" title="Advanced parameters">
             <section name="ref_param" title="Reference object parameters">
-                <param argument="n_max_cells" type="integer" min="0" value="10000" label="Maximum number of cells per cell type" help="Will downsample if this number is exceeded." />
+                <param argument="n_max_cells" type="integer" min="0" value="10000" label="Maximum number of cells per cell type" help="Will downsample if this number is exceeded."/>
                 <param argument="min_UMI" type="integer" min="0" value="100" label="Minimum UMI count for cells to be included in the reference"/>
             </section>
             <section name="st_param" title="SpatialRNA object parameters">
-                <param argument="gene_cutoff" type="float" min="0" value="0.000125" label="Gene cutoff" help="Minimum normalized gene expression for genes to be included in the platform effect normalization step." />
-                <param argument="fc_cutoff" type="float" min="0" value="0.5" label="logFC cutoff" help="Minimum log-fold-change (across cell types) for genes to be included in the platform effect normalization step." />
-                <param argument="gene_cutoff_reg" type="float" min="0" value="0.0002" label="Gene cutoff-reg" help="Minimum normalized gene expression for genes to be included in the RCTD step." />
-                <param argument="fc_cutoff_reg" type="float" min="0" value="0.75" label="logFC cutoff-reg" help="Minimum log-fold-change (across cell types) for genes to be included in the RCTD step." />
+                <param argument="gene_cutoff" type="float" min="0" value="0.000125" label="Gene cutoff" help="Minimum normalized gene expression for genes to be included in the platform effect normalization step."/>
+                <param argument="fc_cutoff" type="float" min="0" value="0.5" label="logFC cutoff" help="Minimum log-fold-change (across cell types) for genes to be included in the platform effect normalization step."/>
+                <param argument="gene_cutoff_reg" type="float" min="0" value="0.0002" label="Gene cutoff-reg" help="Minimum normalized gene expression for genes to be included in the RCTD step."/>
+                <param argument="fc_cutoff_reg" type="float" min="0" value="0.75" label="logFC cutoff-reg" help="Minimum log-fold-change (across cell types) for genes to be included in the RCTD step."/>
                 <param argument="umi_min" type="integer" min="0" value="100" label="Minimum UMI per pixel"/>
                 <param argument="umi_max" type="integer" min="0" value="20000000" label="Maximum UMI per pixel"/>
                 <param argument="counts_min" type="integer" min="0" value="10" label="Minimum total counts per pixel"/>
@@ -232,8 +232,8 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
                     <expand macro="sanitizer"/>
                 </param>
                 <param argument="max_multi_types" type="integer" min="0" value="4" label="Max number of cell types per pixel"/>
-                <param argument="confidence_threshold" type="integer" min="0" value="5" label="Confidence threshold" help="The minimum change in likelihood (compared to other cell types) necessary to determine a cell type identity with confidence." />
-                <param argument="doublet_threshold" type="integer" min="0" value="20" label="Doublet threshold" help="The penalty weight of predicting a doublet instead of a singlet for a pixel." />
+                <param argument="confidence_threshold" type="integer" min="0" value="5" label="Confidence threshold" help="The minimum change in likelihood (compared to other cell types) necessary to determine a cell type identity with confidence."/>
+                <param argument="doublet_threshold" type="integer" min="0" value="20" label="Doublet threshold" help="The penalty weight of predicting a doublet instead of a singlet for a pixel."/>
             </section>
         </section>
         <expand macro="output"/>
@@ -242,11 +242,9 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
         <collection name="out_fig" type="list" label="${tool.name} on ${on_string}: Spacexr Results">
             <discover_datasets pattern="(?P&lt;name&gt;.+)\.pdf$" format="pdf" directory="figures/"/>
         </collection>
-
         <data name="out_doublet_df" format="tabular" from_work_dir="results/doublet_results_df.tabular" label="${tool.name} on ${on_string}: Doublet result table">
             <filter>doublet_mode == 'doublet'</filter>
         </data>
-
         <data name="out_multi" format="txt" from_work_dir="results/multi_results.txt" label="${tool.name} on ${on_string}: multi result">
             <filter>doublet_mode == 'multi'</filter>
         </data>
@@ -265,7 +263,7 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
             <param name="st_count" location="https://zenodo.org/records/14642119/files/st_count.tabular"/>
             <param name="coord" location="https://zenodo.org/records/14642119/files/coords.tabular"/>
             <param name="doublet_mode" value="doublet"/>
-            <param name="output_selector" value="rds,rscript" />
+            <param name="output_selector" value="rds,rscript"/>
             <output_collection name="out_fig" type="list">
                 <element name="all_cell_types" location="https://zenodo.org/records/14642119/files/all_cell_types_d.pdf" ftype="pdf" compare="sim_size"/>
                 <element name="all_doublets" location="https://zenodo.org/records/14642119/files/all_doublets_d.pdf" ftype="pdf" compare="sim_size"/>
@@ -299,7 +297,7 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
             <param name="st_count" location="https://zenodo.org/records/14642119/files/st_count.tabular"/>
             <param name="coord" location="https://zenodo.org/records/14642119/files/coords.tabular"/>
             <param name="doublet_mode" value="full"/>
-            <param name="output_selector" value="rds,rscript" />
+            <param name="output_selector" value="rds,rscript"/>
             <output_collection name="out_fig" type="list">
                 <element name="cell_type_occur" location="https://zenodo.org/records/14642119/files/cell_type_occur_f.pdf" ftype="pdf" compare="sim_size"/>
                 <element name="cell_type_weights" location="https://zenodo.org/records/14642119/files/cell_type_weights_f.pdf" ftype="pdf" compare="sim_size"/>
@@ -322,7 +320,7 @@ saveRDS(myRCTD, file = 'results/rctd_results.rds')
             <param name="st_count" location="https://zenodo.org/records/14642119/files/st_count.tabular"/>
             <param name="coord" location="https://zenodo.org/records/14642119/files/coords.tabular"/>
             <param name="doublet_mode" value="multi"/>
-            <param name="output_selector" value="rds,rscript" />
+            <param name="output_selector" value="rds,rscript"/>
             <output_collection name="out_fig" type="list">
                 <element name="nUMI_plot" location="https://zenodo.org/records/14642119/files/nUMI_plot.pdf" ftype="pdf" compare="sim_size"/>
             </output_collection>
@@ -372,6 +370,5 @@ RCTD has **three** modes:
     * **multi mode**, an extension of doublet mode that can discover more than two cell types per spot (3-4 cell types) as an alternative option to full mode.
 
     ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

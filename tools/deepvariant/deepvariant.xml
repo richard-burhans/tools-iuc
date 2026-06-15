@@ -1,11 +1,11 @@
-<tool id='deepvariant' name='DeepVariant' version='@TOOL_VERSION@+galaxy@SUFFIX_VERSION@' profile='@PROFILE@'>
+<tool id="deepvariant" name="DeepVariant" version="@TOOL_VERSION@+galaxy@SUFFIX_VERSION@" profile="@PROFILE@">
     <description>deep learning-based variant caller</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro='edam_ontology' />
-    <expand macro='requirements' />
-    <command detect_errors='exit_code'><![CDATA[
+    <expand macro="edam_ontology"/>
+    <expand macro="requirements"/>
+    <command detect_errors="exit_code"><![CDATA[
         ln -s '${reads}' 'reads_alignment.$reads.ext'
         #if $reads.is_of_type("bam")
             && ln -s '${reads.metadata.bam_index}' reads_alignment.bam.bai
@@ -85,17 +85,17 @@
             <when value="indexed">
                 <param name="index" type="select" label="Select a reference genome" help="If your genome of interest is not listed, contact the Galaxy team.">
                     <options from_data_table="fasta_indexes">
-                        <filter type="sort_by" column="2" />
-                        <validator type="no_options" message="No genomes are available for the selected input dataset" />
+                        <filter type="sort_by" column="2"/>
+                        <validator type="no_options" message="No genomes are available for the selected input dataset"/>
                     </options>
                 </param>
             </when>
             <when value="history">
-                <param name="history_item" type="data" format="fasta" label="Reference genome" help="A reference genome in FASTA format" />
+                <param name="history_item" type="data" format="fasta" label="Reference genome" help="A reference genome in FASTA format"/>
             </when>
         </conditional>
-        <param argument="--reads" type="data" format="bam,cram" label="BAM file" help="An aligned reads file in BAM format. The reads must be aligned to the reference genome" />
-        <param argument="--sample_name" type="text" optional="true" label="Sample name" help="Sample name to use instead of the SM tag in the BAM header. Example: NA12878" />
+        <param argument="--reads" type="data" format="bam,cram" label="BAM file" help="An aligned reads file in BAM format. The reads must be aligned to the reference genome"/>
+        <param argument="--sample_name" type="text" optional="true" label="Sample name" help="Sample name to use instead of the SM tag in the BAM header. Example: NA12878"/>
         <param argument="--model_type" type="select" label="Model type" help="Type of model to use for variant calling">
             <option value="WGS">WGS: Illumina whole genome sequencing</option>
             <option value="WES">WES: Illumina whole exome sequencing</option>
@@ -114,31 +114,31 @@
                 <param name="region_literal" argument="--regions" type="text" label="Regions" help="This option refers to contigs present in the reference genome. These arguments accept space-separated lists, so all of the follow examples are valid arguments: 'chr20:10,000,000-11,000,000', 'chr20 chr21' and 'chr20'">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="," />
-                            <add value=":" />
-                            <add value="-" />
+                            <add value=","/>
+                            <add value=":"/>
+                            <add value="-"/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z,:-]+</validator>
                 </param>
             </when>
             <when value="bed">
-                <param name="bed_file" argument="--regions" type="data" format="bed" label="BED file" help="The BED should the store genomic regions of interest" />
+                <param name="bed_file" argument="--regions" type="data" format="bed" label="BED file" help="The BED should the store genomic regions of interest"/>
             </when>
         </conditional>
-        <param argument="--output_gvcf" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Generate genomic VCF (gVCF) output" help="The key difference between a regular VCF and a gVCF is that the gVCF has records for all sites, whether there is a variant call there or not. The goal is to have every site represented in the file in order to do joint analysis of a cohort in subsequent steps" />
+        <param argument="--output_gvcf" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Generate genomic VCF (gVCF) output" help="The key difference between a regular VCF and a gVCF is that the gVCF has records for all sites, whether there is a variant call there or not. The goal is to have every site represented in the file in order to do joint analysis of a cohort in subsequent steps"/>
         <section name="advanced_options" title="Advanced options" expanded="false">
-            <param argument="--disable_small_model" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Disable small model" help="Disable the use of the small model to call variants during make_examples." />
-            <param argument="--haploid_contigs" type="text" optional="true" label="Haploid contigs" help="Comma-separated list of non-autosomal chromosomes. Example: chrX,chrY" />
-            <param argument="--par_regions_bed" type="data" format="bed" optional="true" label="PAR regions BED file" help="BED file of pseudoautosomal regions." />
-            <param argument="--report_title" type="text" optional="true" label="Report title" help="Title for the VCF stats report (HTML). Example: NA12878 DeepVariant report" />
-            <param argument="--vcf_stats_report" type="boolean" truevalue="--vcf_stats_report=True" falsevalue="--vcf_stats_report=False" checked="False" label="Create VCF stats report (HTML)" help="Output a visual report (HTML) of statistics about the output VCF." />
-            <param name="create_runtime_report" argument="--runtime_report" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Create runtime report" help="Output make_examples runtime metrics and create a visual runtime report." />
+            <param argument="--disable_small_model" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Disable small model" help="Disable the use of the small model to call variants during make_examples."/>
+            <param argument="--haploid_contigs" type="text" optional="true" label="Haploid contigs" help="Comma-separated list of non-autosomal chromosomes. Example: chrX,chrY"/>
+            <param argument="--par_regions_bed" type="data" format="bed" optional="true" label="PAR regions BED file" help="BED file of pseudoautosomal regions."/>
+            <param argument="--report_title" type="text" optional="true" label="Report title" help="Title for the VCF stats report (HTML). Example: NA12878 DeepVariant report"/>
+            <param argument="--vcf_stats_report" type="boolean" truevalue="--vcf_stats_report=True" falsevalue="--vcf_stats_report=False" checked="False" label="Create VCF stats report (HTML)" help="Output a visual report (HTML) of statistics about the output VCF."/>
+            <param name="create_runtime_report" argument="--runtime_report" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Create runtime report" help="Output make_examples runtime metrics and create a visual runtime report."/>
         </section>
         <section name="expert_options" title="Expert options (may increase runtime and disk usage)" expanded="false">
-            <param argument="--make_examples_extra_args" type="text" optional="true" label="make_examples extra args" help="Comma-separated flag_name=flag_value for make_examples.py. Example: min_base_quality=10,min_mapping_quality=5" />
-            <param argument="--call_variants_extra_args" type="text" optional="true" label="call_variants extra args" help="Comma-separated flag_name=flag_value for call_variants.py. Example: allow_empty_examples=true,batch_size=1024" />
-            <param argument="--postprocess_variants_extra_args" type="text" optional="true" label="postprocess_variants extra args" help="Comma-separated flag_name=flag_value for postprocess_variants.py. Example: cnn_homref_call_min_gq=20.0" />
+            <param argument="--make_examples_extra_args" type="text" optional="true" label="make_examples extra args" help="Comma-separated flag_name=flag_value for make_examples.py. Example: min_base_quality=10,min_mapping_quality=5"/>
+            <param argument="--call_variants_extra_args" type="text" optional="true" label="call_variants extra args" help="Comma-separated flag_name=flag_value for call_variants.py. Example: allow_empty_examples=true,batch_size=1024"/>
+            <param argument="--postprocess_variants_extra_args" type="text" optional="true" label="postprocess_variants extra args" help="Comma-separated flag_name=flag_value for postprocess_variants.py. Example: cnn_homref_call_min_gq=20.0"/>
         </section>
     </inputs>
     <outputs>
@@ -177,7 +177,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Test Report Title"/>
                 </assert_contents>
             </output>
@@ -205,7 +205,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -233,7 +233,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -268,7 +268,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -295,7 +295,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -322,7 +322,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -350,7 +350,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -384,7 +384,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>
@@ -416,7 +416,7 @@
             </output>
             <output name="html_report" ftype="html">
                 <assert_contents>
-                    <has_n_lines n="34" delta="10" />
+                    <has_n_lines n="34" delta="10"/>
                     <has_text text="Variant types"/>
                 </assert_contents>
             </output>

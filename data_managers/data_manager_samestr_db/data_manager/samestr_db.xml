@@ -75,35 +75,31 @@
         }' > '$out_file'
     ]]></command>
     <inputs>
-
         <conditional name="db_source">
             <param name="db_type" type="select" label="Source database type">
                 <option value="metaphlan">MetaPhlAn</option>
                 <option value="motus">mOTUs</option>
             </param>
             <when value="metaphlan">
-
                 <param name="database" type="select" label="Marker database" help="MetaPhlAn clade marker database.">
                     <options from_data_table="metaphlan_database_versioned">
-                        <filter type="sort_by" column="2" />
+                        <filter type="sort_by" column="2"/>
                     </options>
                 </param>
             </when>
             <when value="motus">
                 <param name="motus_db" type="select" label="mOTUs database" help="mOTUs clade marker database">
                     <options from_data_table="motus_db_versioned">
-                        <filter type="sort_by" column="2" />
+                        <filter type="sort_by" column="2"/>
                     </options>
                 </param>
             </when>
         </conditional>
-
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
-
         <test>
             <conditional name="db_source">
                 <param name="db_type" value="motus"/>
@@ -113,9 +109,9 @@
                 <assert_contents>
                     <has_text text="data_tables"/>
                     <has_text text="samestr_db"/>
-                    <has_text_matching expression= '"value": "motus_test"'/>
-                    <has_text_matching expression='"path": ".+/samestr_db/motus_test"' />
-                    <has_text_matching expression='"version_file": "motus_test"'/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;motus_test&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;.+/samestr_db/motus_test&quot;"/>
+                    <has_text_matching expression="&quot;version_file&quot;: &quot;motus_test&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -128,13 +124,12 @@
                 <assert_contents>
                     <has_text text="data_tables"/>
                     <has_text text="samestr_db"/>
-                    <has_text_matching expression='"value": "mpa_test_value"' />
-                    <has_text_matching expression='"path": ".+/samestr_db/mpa_test_value"' />
-                    <has_text_matching expression='"version_file": "mpa_test_value"' />
+                    <has_text_matching expression="&quot;value&quot;: &quot;mpa_test_value&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;.+/samestr_db/mpa_test_value&quot;"/>
+                    <has_text_matching expression="&quot;version_file&quot;: &quot;mpa_test_value&quot;"/>
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
     This data manager builds Samestr compatible databases from MetaPhlAn or mOTUS marker files already installed in Galaxy.

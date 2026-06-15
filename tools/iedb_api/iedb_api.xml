@@ -12,12 +12,12 @@
                </param>
                <when value="history">
                    <param name="allele_file" type="data" format="txt" label="Alleles file">
-                       <help>The dataset should have on allele per line. The allele may be followed by an optional comma-separated list of peptide lengths, e.g.: @HLALEN_EXAMPLES@</help>
+                       <help><![CDATA[The dataset should have on allele per line. The allele may be followed by an optional comma-separated list of peptide lengths, e.g.: @HLALEN_EXAMPLES@]]></help>
                    </param>
                </when>
                <when value="entry">
                    <param name="allele_text" type="text" label="Alleles">
-                       <help>Enter alleles separated by white space: @HLA_EXAMPLES@  (The peptide lengths may follow each allele: @HLALEN_EXAMPLES@)</help>
+                       <help><![CDATA[Enter alleles separated by white space: @HLA_EXAMPLES@  (The peptide lengths may follow each allele: @HLALEN_EXAMPLES@)]]></help>
                        <validator type="regex" message="Doesn't appear to be a valid allele">^@HLA_REGEX@(\s+@HLA_REGEX@)*$</validator>
                    </param>
                </when>
@@ -27,7 +27,6 @@
     <requirements>
         <requirement type="package" version="3.7">python</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
         #import re
         python '${__tool_directory__}/iedb_api.py' 
@@ -62,7 +61,7 @@
         #end if
         -o '$output'
     ]]></command>
-    <configfiles>     
+    <configfiles>
         <configfile name="entered_alleles"><![CDATA[#slurp
 #if $prediction.tool != 'bcell' and $prediction.alleles.allelesrc == 'entry'
 #for $word in str($prediction.alleles.allele_text).strip().split():
@@ -74,7 +73,7 @@ $allele
 #end if
 #end for
 #end if
-]]></configfile>     
+]]></configfile>
         <configfile name="entered_seqs"><![CDATA[#slurp
 #if $sequence.seqsrc == 'entry'
 #for $i, $seq in enumerate(str($sequence.seq_text).strip().split())
@@ -83,8 +82,8 @@ $allele
 $seqtext
 #end for
 #end if
-]]></configfile>     
-    </configfiles>     
+]]></configfile>
+    </configfiles>
     <inputs>
         <conditional name="prediction">
             <param name="tool" type="select" label="Prediction">
@@ -110,7 +109,7 @@ $seqtext
                 </param>
                 <expand macro="alleles" hla_regex="(HLA-[A-CEG]\*[0-8][0-9]:[0-9][0-9][0-9]*|BoLA-.+|Gogo-.+|H-2-[DKL][bdk]|Mamu-.+|Patr-.+|RT.+|SLA-.+)(,([8-9]|1[0-5]))*" hla_examples="HLA-A*03:01  HLA-B*07:02" hlalen_examples="HLA-A*03:01,8,9,10  HLA-B*07:02,9"/>
                 <param name="lengths" type="select" multiple="true" optional="false" label="peptide lengths for prediction">
-                    <help>Used for any alleles which don't include specified lengths</help>
+                    <help><![CDATA[Used for any alleles which don't include specified lengths]]></help>
                     <option value="8" selected="true">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
@@ -120,7 +119,6 @@ $seqtext
                     <option value="14">14</option>
                     <option value="15">15</option>
                 </param>
-
             </when>
             <when value="mhcii">
                 <param name="method" type="select" label="prediction method">
@@ -134,7 +132,7 @@ $seqtext
                 </param>
                 <expand macro="alleles" hla_regex="(DPA1\*0[1-3]:0[1-3]/DPB1\*0[1-6]:0[12]|DQA1\*0[1-5]:0[12]/DQB1\*0[2-6]:0[12]|(HLA-)?DRB[1-5]\*[01][1-9]:0[1-5]|H2-IA[bd])(,(asis|[1-2][0-9]|30))*" hla_examples="DPA1*01:03/DPB1*04:01 HLA-DRB1*01:01 H2-IAb" hlalen_examples="DPA1*01:03/DPB1*04:01,11,15"/>
                 <param name="lengths" type="select" multiple="true" optional="false" label="peptide lengths for prediction">
-                    <help>Used for any alleles which don't include specified lengths</help>
+                    <help><![CDATA[Used for any alleles which don't include specified lengths]]></help>
                     <option value="asis">asis</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
@@ -172,9 +170,9 @@ $seqtext
                     <option value="immuno">immuno</option>
                     <option value="constitutive">constitutive</option>
                 </param>
-                <expand macro="alleles" hla_regex="(HLA-[A-CE]\*[0-8][0-9]:[0-9][0-9]|BoLA-.+|Gogo-.+|H-2-[DKL][bdk]|Mamu-.+|Patr-.+|RT.+|SLA-.+)(,([8-9]|1[0-4]))*" hla_examples="HLA-A*03:01  HLA-B*07:02" hlalen_examples="HLA-A*03:01,8,9,10  HLA-B*07:02,9"/> 
+                <expand macro="alleles" hla_regex="(HLA-[A-CE]\*[0-8][0-9]:[0-9][0-9]|BoLA-.+|Gogo-.+|H-2-[DKL][bdk]|Mamu-.+|Patr-.+|RT.+|SLA-.+)(,([8-9]|1[0-4]))*" hla_examples="HLA-A*03:01  HLA-B*07:02" hlalen_examples="HLA-A*03:01,8,9,10  HLA-B*07:02,9"/>
                 <param name="lengths" type="select" multiple="true" optional="false" label="peptide lengths for prediction">
-                    <help>Used for any alleles which don't include specified lengths</help>
+                    <help><![CDATA[Used for any alleles which don't include specified lengths]]></help>
                     <option value="8" selected="true">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
@@ -189,9 +187,9 @@ $seqtext
                     <option value="mhcnp" selected="true">mhcnp</option>
                     <option value="netmhcpan">netmhcpan</option>
                 </param>
-                <expand macro="alleles" hla_regex="(HLA-(A\*02:01|B\*07:02|B\*35:01|B\*44:03|B\*53:01|B\*57:01)|H-2-[DK]b)(,[8-9]|1[0-1])*" hla_examples="HLA-A*02:01  H-2-Db" hlalen_examples="HLA-A*02:01,8,9,10"/> 
+                <expand macro="alleles" hla_regex="(HLA-(A\*02:01|B\*07:02|B\*35:01|B\*44:03|B\*53:01|B\*57:01)|H-2-[DK]b)(,[8-9]|1[0-1])*" hla_examples="HLA-A*02:01  H-2-Db" hlalen_examples="HLA-A*02:01,8,9,10"/>
                 <param name="lengths" type="select" multiple="true" optional="false" label="peptide lengths for prediction">
-                    <help>Used for any alleles which don't include specified lengths</help>
+                    <help><![CDATA[Used for any alleles which don't include specified lengths]]></help>
                     <option value="8" selected="true">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
@@ -211,24 +209,23 @@ $seqtext
             </when>
         </conditional>
         <conditional name="sequence">
-           <param name="seqsrc" type="select" label="Peptide sequences">
-               <option value="fasta">Fasta file</option>
-               <option value="tabular">From tabular</option>
-               <option value="entry"></option>
-           </param>
-           <when value="fasta">
-               <param name="seq_fasta" type="data" format="fasta" label="Peptide Sequence Fasta"/>
-           </when>
-           <when value="tabular">
-               <param name="seq_tsv" type="data" format="tabular" label="Peptide Sequence Tabular"/>
-               <param name="pep_col" label="Select column with peptides" type="data_column" numerical="false" data_ref="seq_tsv" />
-               <param name="id_col" label="Select column with name" type="data_column" numerical="false" data_ref="seq_tsv" optional="true"/>
-           </when>
-           <when value="entry">
-               <param name="seq_text" type="text" label="Peptide Sequence"/>
-           </when>
+            <param name="seqsrc" type="select" label="Peptide sequences">
+                <option value="fasta">Fasta file</option>
+                <option value="tabular">From tabular</option>
+                <option value="entry"/>
+            </param>
+            <when value="fasta">
+                <param name="seq_fasta" type="data" format="fasta" label="Peptide Sequence Fasta"/>
+            </when>
+            <when value="tabular">
+                <param name="seq_tsv" type="data" format="tabular" label="Peptide Sequence Tabular"/>
+                <param name="pep_col" label="Select column with peptides" type="data_column" numerical="false" data_ref="seq_tsv"/>
+                <param name="id_col" label="Select column with name" type="data_column" numerical="false" data_ref="seq_tsv" optional="true"/>
+            </when>
+            <when value="entry">
+                <param name="seq_text" type="text" label="Peptide Sequence"/>
+            </when>
         </conditional>
-
     </inputs>
     <outputs>
         <!--
@@ -237,11 +234,11 @@ $seqtext
         <data name="output" format="tabular" label="IEDB ${prediction.tool} ${prediction.method}"/>
         <data name="output2" format="tabular" label="IEDB ${prediction.tool} ${prediction.method} residue scores" from_work_dir="iedb_results2">
             <filter>prediction['method'] == 'Bepipred'</filter>
-        </data> 
+        </data>
     </outputs>
     <tests>
         <!-- test1 -->
-        <test expect_num_outputs="1"> 
+        <test expect_num_outputs="1">
             <conditional name="prediction">
                 <param name="tool" value="mhci"/>
                 <param name="method" value="recommended"/>
@@ -256,7 +253,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="LYNTVATLY" />
+                    <has_text text="LYNTVATLY"/>
                 </assert_contents>
             </output>
         </test>
@@ -276,8 +273,8 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="peptide1" />
-                    <has_text text="HKVPRRLLK" />
+                    <has_text text="peptide1"/>
+                    <has_text text="HKVPRRLLK"/>
                 </assert_contents>
             </output>
         </test>
@@ -300,8 +297,8 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="peptide1" />
-                    <has_text text="HKVPRRLLK" />
+                    <has_text text="peptide1"/>
+                    <has_text text="HKVPRRLLK"/>
                 </assert_contents>
             </output>
         </test>
@@ -322,7 +319,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="VATLYCVHQ" />
+                    <has_text text="VATLYCVHQ"/>
                 </assert_contents>
             </output>
         </test>
@@ -343,7 +340,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="LYNTVATLY" />
+                    <has_text text="LYNTVATLY"/>
                 </assert_contents>
             </output>
         </test>
@@ -363,7 +360,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="LYNTVATLY" />
+                    <has_text text="LYNTVATLY"/>
                 </assert_contents>
             </output>
         </test>
@@ -379,7 +376,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="VLSEGE" />
+                    <has_text text="VLSEGE"/>
                 </assert_contents>
             </output>
         </test>
@@ -396,7 +393,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_text text="ADVAGH" />
+                    <has_text text="ADVAGH"/>
                 </assert_contents>
             </output>
         </test>
@@ -413,7 +410,7 @@ $seqtext
             </conditional>
             <output name="output">
                 <assert_contents>
-                    <has_n_lines n="0" />
+                    <has_n_lines n="0"/>
                 </assert_contents>
             </output>
             <output name="output2">
@@ -423,7 +420,6 @@ $seqtext
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
 The IEDB is a free resource, funded by a contract from the National Institute of Allergy and Infectious Diseases. It offers easy searching of experimental data characterizing antibody and T cell epitopes studied in humans, non-human primates, and other animal species. 
@@ -502,6 +498,6 @@ The TextProcessing steps to convert the alleles:
 
     ]]></help>
     <citations>
-       <citation type="doi">10.1093/nar/gku938</citation>
+        <citation type="doi">10.1093/nar/gku938</citation>
     </citations>
 </tool>

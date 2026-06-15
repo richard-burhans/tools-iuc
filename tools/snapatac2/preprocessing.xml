@@ -492,13 +492,13 @@ snap.ex.export_coverage(
             <when value="ex.export_fragments">
                 <expand macro="param_inputs_anndata"/>
                 <expand macro="param_groupby"/>
-                <param argument="--min_frag_length" type="integer" optional="true"   min="0" value="" label="Minimum fragment length to be included in the computation"/>
+                <param argument="--min_frag_length" type="integer" optional="true" min="0" value="" label="Minimum fragment length to be included in the computation"/>
                 <param argument="--max_frag_length" type="integer" optional="true" min="0" value="" label="Maximum fragment length to be included in the computation"/>
             </when>
             <when value="ex.export_coverage">
                 <expand macro="param_inputs_anndata"/>
                 <expand macro="param_groupby"/>
-                <param argument="--bin_size" type="integer" min="0"  value="10" label="Size of the bins, in bases, for the output of the bigwig/bedgraph file"/>
+                <param argument="--bin_size" type="integer" min="0" value="10" label="Size of the bins, in bases, for the output of the bigwig/bedgraph file"/>
                 <param argument="--blacklist" type="data" format="bed" optional="true" label="A BED file containing the blacklisted regions"/>
                 <param argument="--normalization" type="select" label="Normalization method for coverage calculation">
                     <option value="RPKM" selected="true">RPKM (per bin) = #reads per bin / (#mapped_reads (in millions) * bin length (kb))</option>
@@ -531,7 +531,7 @@ snap.ex.export_coverage(
         <data name="anndata_out" format="h5ad" from_work_dir="anndata.h5ad.gz" label="${tool.name} (${method.method}) on ${on_string}: Annotated data matrix">
             <filter>method['method'] != 'pp.make_fragment_file' and method['method'] != 'ex.export_fragments' and method['method'] != 'ex.export_coverage'</filter>
             <change_format>
-                <when input="method.method" value="pp.import_fragments" format="h5" />
+                <when input="method.method" value="pp.import_fragments" format="h5"/>
             </change_format>
         </data>
         <collection name="export_fragment" type="list" format="bed" label="${tool.name} (${method.method}) on ${on_string}: exported fragments">
@@ -572,13 +572,13 @@ snap.ex.export_coverage(
                 <param name="chrom_sizes" location="https://zenodo.org/records/17512085/files/chrom_size.tabular"/>
                 <param name="min_num_fragments" value="200"/>
                 <param name="sorted_by_barcode" value="true"/>
-                <param name="chrM" value="" />
+                <param name="chrM" value=""/>
                 <param name="shift_left" value="0"/>
                 <param name="shift_right" value="0"/>
                 <param name="chunk_size" value="2000"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -614,9 +614,9 @@ snap.ex.export_coverage(
                 <param name="gene_name_key" value="gene_name"/>
                 <param name="gene_id_key" value="gene_id"/>
                 <param name="counting_strategy" value="insertion"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -654,9 +654,9 @@ snap.ex.export_coverage(
                 <param name="gene_name_key" value="gene_name"/>
                 <param name="gene_id_key" value="gene_id"/>
                 <param name="counting_strategy" value="insertion"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -685,9 +685,9 @@ snap.ex.export_coverage(
                 <param name="min_counts" value="500"/>
                 <param name="min_tsse" value="1"/>
                 <param name="max_counts" value="10000"/>
-              </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="6 × 9342"/>
@@ -715,9 +715,9 @@ snap.ex.export_coverage(
                 <param name="chunk_size" value="500"/>
                 <param name="exclude_chroms" value="chr1, chr2, chr3, chr4, chr5, chr6, chr7, chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16, chr17, chr18, chr19, chr20, chr22, chrX, chrY"/>
                 <param name="counting_strategy" value="insertion"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -745,9 +745,9 @@ snap.ex.export_coverage(
                 <param name="chunk_size" value="500"/>
                 <param name="exclude_chroms" value="chr1, chr2, chr3, chr4, chr5, chr6, chr7, chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16, chr17, chr18, chr19, chr20, chr22, chrX, chrY"/>
                 <param name="counting_strategy" value="fragment"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -771,9 +771,9 @@ snap.ex.export_coverage(
                 <param name="method" value="pp.select_features"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.add_tile_matrix.pbmc_500_chr21.h5ad"/>
                 <param name="n_features" value="15000"/>
-              </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -788,7 +788,7 @@ snap.ex.export_coverage(
             </output>
         </test>
         <test expect_num_outputs="2">
-        <!-- pp.scrublet -->
+            <!-- pp.scrublet -->
             <conditional name="method">
                 <param name="method" value="pp.scrublet"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.select_features.pbmc_500_chr21.h5ad"/>
@@ -796,9 +796,9 @@ snap.ex.export_coverage(
                 <param name="sim_doublet_ratio" value="2.0"/>
                 <param name="expected_doublet_rate" value="0.1"/>
                 <param name="random_state" value="0"/>
-              </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="158 × 9342"/>
@@ -819,14 +819,14 @@ snap.ex.export_coverage(
             </output>
         </test>
         <test expect_num_outputs="2">
-        <!-- pp.filter_doublets -->
+            <!-- pp.filter_doublets -->
             <conditional name="method">
                 <param name="method" value="pp.filter_doublets"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.scrublet.pbmc_500_chr21.h5ad"/>
-                <param name="probability_threshold"  value="0.1"/>
-              </conditional>
+                <param name="probability_threshold" value="0.1"/>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <assert_stdout>
                 <has_text_matching expression="156 × 9342"/>
@@ -854,7 +854,7 @@ snap.ex.export_coverage(
                 <param name="use_rep" value="X_spectral"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -881,7 +881,7 @@ snap.ex.export_coverage(
                 <param name="use_rep" value="X_spectral"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -905,7 +905,7 @@ snap.ex.export_coverage(
                 <param name="use_rep" value="X_spectral"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -920,15 +920,15 @@ snap.ex.export_coverage(
                 </assert_contents>
             </output>
         </test>
-                <!-- pp.import_contacts -->
-         <test expect_num_outputs="2">
+        <!-- pp.import_contacts -->
+        <test expect_num_outputs="2">
             <conditional name="method">
                 <param name="method" value="pp.import_contacts"/>
                 <param name="contact_file" location="https://zenodo.org/records/17512085/files/pp.make_fragment_file.pbmc_500_chr21.tsv.gz"/>
                 <param name="chrom_sizes" location="https://zenodo.org/records/17512085/files/chrom_size.tabular"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -951,14 +951,14 @@ snap.ex.export_coverage(
                 <param name="method" value="ex.export_fragments"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/tl.leiden.modularity.pbmc_500_chr21.h5ad"/>
                 <param name="groupby" value="leiden"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="snap.ex.export_fragments"/>
-                    <has_text_matching expression="groupby = &apos;leiden&apos;"/>
+                    <has_text_matching expression="groupby = 'leiden'"/>
                 </assert_contents>
             </output>
             <output_collection name="export_fragment" type="list" count="8">
@@ -1010,15 +1010,15 @@ snap.ex.export_coverage(
                 <param name="method" value="ex.export_coverage"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/tl.leiden.modularity.pbmc_500_chr21.h5ad"/>
                 <param name="groupby" value="leiden"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
                     <has_text_matching expression="snap.ex.export_coverage"/>
-                    <has_text_matching expression="groupby = &apos;leiden&apos;"/>
-                    <has_text_matching expression="output_format = &apos;bigwig&apos;"/>
+                    <has_text_matching expression="groupby = 'leiden'"/>
+                    <has_text_matching expression="output_format = 'bigwig'"/>
                 </assert_contents>
             </output>
             <output_collection name="export_coverage" type="list" count="8">

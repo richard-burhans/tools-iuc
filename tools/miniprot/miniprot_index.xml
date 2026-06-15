@@ -9,18 +9,18 @@
         miniprot -t \${GALAXY_SLOTS:-1} -d '$output_index' '$input_genome'
     ]]></command>
     <inputs>
-        <param name="input_genome" type="data" format="fasta,fasta.gz" label="Genomic sequence (FASTA)" help="Genomic contigs / scaffolds in FASTA format" />
+        <param name="input_genome" type="data" format="fasta,fasta.gz" label="Genomic sequence (FASTA)" help="Genomic contigs / scaffolds in FASTA format"/>
     </inputs>
     <outputs>
         <!-- refine this when miniprot index format is in Galaxy datatypes -->
-        <data name="output_index" format="binary" label="Miniprot index on ${on_string}" />
+        <data name="output_index" format="binary" label="Miniprot index on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_genome" value="input_genome.fasta.gz" ftype="fasta" />
+            <param name="input_genome" value="input_genome.fasta.gz" ftype="fasta"/>
             <output name="output_index" ftype="binary">
                 <assert_contents>
-                    <has_size value="69720149" delta="1000" />
+                    <has_size value="69720149" delta="1000"/>
                 </assert_contents>
             </output>
         </test>
@@ -30,5 +30,5 @@
 
         .. _miniprot: https://github.com/lh3/miniprot
     ]]></help>
-    <expand macro="citation"></expand>
+    <expand macro="citation"/>
 </tool>

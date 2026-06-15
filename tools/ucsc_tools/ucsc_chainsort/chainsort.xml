@@ -19,7 +19,7 @@
         '$out'
     ]]></command>
     <inputs>
-        <param name="in_chain" format="chain" type="data" label="Chain dataset" />
+        <param name="in_chain" format="chain" type="data" label="Chain dataset"/>
         <param name="sort_by" type="select" label="Sort">
             <option value="" selected="true">by score</option>
             <option value="-target">on target start</option>
@@ -27,17 +27,17 @@
         </param>
     </inputs>
     <outputs>
-        <data name="out" format="chain" />
+        <data name="out" format="chain"/>
     </outputs>
     <tests>
         <test>
-            <param name="in_chain" value="input.chain" />
-            <output name="out" file="sorted_score.chain" />
+            <param name="in_chain" value="input.chain"/>
+            <output name="out" file="sorted_score.chain"/>
         </test>
         <test>
-            <param name="in_chain" value="input.chain" />
-            <param name="sort_by" value="-query" />
-            <output name="out" file="sorted_query.chain" />
+            <param name="in_chain" value="input.chain"/>
+            <param name="sort_by" value="-query"/>
+            <output name="out" file="sorted_query.chain"/>
         </test>
     </tests>
     <help><![CDATA[

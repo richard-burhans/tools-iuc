@@ -46,7 +46,7 @@
                 <option value="db" selected="true">Locally installed kmindex indexes</option>
             </param>
             <when value="histdb">
-                <param name="histdb" type="data" format="kmindex" label="Kmindex" />
+                <param name="histdb" type="data" format="kmindex" label="Kmindex"/>
             </when>
             <when value="db">
                 <param name="kmindex" type="select" label="kmindex">
@@ -79,94 +79,94 @@
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="histdb"/>
-                <param name="histdb" ftype="kmindex" class="Directory" value="index1" />
+                <param name="histdb" ftype="kmindex" class="Directory" value="index1"/>
             </conditional>
             <param name="fastx" value="query1.fasta"/>
             <param name="format" value="json"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output" type="list" count="1">
-                <element name="abundance_test" ftype="json" value="expected_query_t1.json" />
+                <element name="abundance_test" ftype="json" value="expected_query_t1.json"/>
             </output_collection>
         </test>
         <!-- Test 2: Matrix output format -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="histdb"/>
-                <param name="histdb" ftype="kmindex" class="Directory" value="index1" />
+                <param name="histdb" ftype="kmindex" class="Directory" value="index1"/>
             </conditional>
             <param name="fastx" value="query1.fasta.gz"/>
             <param name="format" value="matrix"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output_matrix" type="list" count="1">
-                <element name="abundance_test" ftype="tabular" value="expected_query2_index1.tsv" />
+                <element name="abundance_test" ftype="tabular" value="expected_query2_index1.tsv"/>
             </output_collection>
         </test>
         <!-- Test 3: Query with threshold and z-value -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="histdb"/>
-                <param name="histdb" ftype="kmindex" class="Directory" value="index1" />
+                <param name="histdb" ftype="kmindex" class="Directory" value="index1"/>
             </conditional>
             <param name="fastx" value="query2.fastq.gz"/>
             <param name="threshold" value="0.5"/>
             <param name="zvalue" value="5"/>
             <param name="format" value="json"/>
             <output_collection name="output" type="list" count="1">
-                <element name="abundance_test" ftype="json" value="expected_query_t4.json" />
+                <element name="abundance_test" ftype="json" value="expected_query_t4.json"/>
             </output_collection>
         </test>
         <!-- Test 4: query pre-built configured index1 -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="db"/>
-                <param name="kmindex" value="index1" />
+                <param name="kmindex" value="index1"/>
             </conditional>
             <param name="fastx" value="query1.fasta"/>
             <param name="format" value="json"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output" type="list" count="1">
-                <element name="abundance_test" ftype="json" value="expected_query_t1.json" />
+                <element name="abundance_test" ftype="json" value="expected_query_t1.json"/>
             </output_collection>
         </test>
         <!-- Test 5: query pre-built configured index2 -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="db"/>
-                <param name="kmindex" value="index2" />
+                <param name="kmindex" value="index2"/>
             </conditional>
             <param name="fastx" value="query1.fasta"/>
             <param name="format" value="json"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output" type="list" count="1">
-                <element name="test_index" ftype="json" value="expected_query_t6.json" />
+                <element name="test_index" ftype="json" value="expected_query_t6.json"/>
             </output_collection>
         </test>
         <!-- Test 6: using register index, JSON output -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="db"/>
-                <param name="kmindex" ftype="kmindex" value="register" />
+                <param name="kmindex" ftype="kmindex" value="register"/>
             </conditional>
             <param name="fastx" value="query1.fasta"/>
             <param name="format" value="json"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output" type="list" count="2">
-                <element name="index1" ftype="json" value="expected_query2_index1.json" />
-                <element name="index2" ftype="json" value="expected_query2_index2.json" />
+                <element name="index1" ftype="json" value="expected_query2_index1.json"/>
+                <element name="index2" ftype="json" value="expected_query2_index2.json"/>
             </output_collection>
         </test>
         <!-- Test 7: using register index, matrix output -->
         <test expect_num_outputs="1">
             <conditional name="db_opts">
                 <param name="db_opts_selector" value="db"/>
-                <param name="kmindex" ftype="kmindex" value="register" />
+                <param name="kmindex" ftype="kmindex" value="register"/>
             </conditional>
             <param name="fastx" value="query1.fasta"/>
             <param name="format" value="matrix"/>
             <param name="zvalue" value="0"/>
             <output_collection name="output_matrix" type="list" count="2">
-                <element name="index1" ftype="tabular" value="expected_query2_index1_register.tsv" />
-                <element name="index2" ftype="tabular" value="expected_query2_index2_register.tsv" />
+                <element name="index1" ftype="tabular" value="expected_query2_index1_register.tsv"/>
+                <element name="index2" ftype="tabular" value="expected_query2_index2_register.tsv"/>
             </output_collection>
         </test>
     </tests>

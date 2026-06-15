@@ -63,7 +63,7 @@ filter_fasta.py
                 <param argument="--valid_states" type="text" label="Description of the sample ids to retain"/>
             </when>
         </conditional>
-        <param argument="--negate" type="boolean" truevalue="--negate" falsevalue="" checked="false" label="Discard passed seq ids rather than keep passed seq ids?"/>        
+        <param argument="--negate" type="boolean" truevalue="--negate" falsevalue="" checked="false" label="Discard passed seq ids rather than keep passed seq ids?"/>
     </inputs>
     <outputs>
         <data name="fitered_fasta" format="fasta" label="${tool.name} on ${on_string}: Filtered sequences"/>

@@ -33,10 +33,8 @@ echo 'chimera.bellerophon(
         <param argument="fasta" type="data" format="fasta" label="fasta - Candiate Sequences"/>
         <param argument="filter" type="boolean" falsevalue="False" truevalue="True" checked="false" label="filter - Apply a 50% soft vertical filter"/>
         <param argument="correction" type="boolean" falsevalue="False" truevalue="True" checked="true" label="correction - Use the square root of the distances instead of the distance value"/>
-        <param argument="window" type="integer" value="0" label="window - Length of sequence you want in each window analyzed"
-            help="Default is 25% of the sequence length. Uses default if &lt; 1"/>
-        <param argument="increment" type="integer" value="25" min="0" label="increment - Increment for window slide on each iteration"
-            help="Default is 25, but you may set it up to sequence length minus twice the window."/>
+        <param argument="window" type="integer" value="0" label="window - Length of sequence you want in each window analyzed" help="Default is 25% of the sequence length. Uses default if &lt; 1"/>
+        <param argument="increment" type="integer" value="25" min="0" label="increment - Increment for window slide on each iteration" help="Default is 25, but you may set it up to sequence length minus twice the window."/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -47,10 +45,12 @@ echo 'chimera.bellerophon(
     <tests>
         <test>
             <param name="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.fasta"/>
-            <param name="window" value="-1"/> <!-- don't use window if negative -->
+            <param name="window" value="-1"/>
+            <!-- don't use window if negative -->
             <output name="bellerophon.chimeras" md5="435ff11d15d6c117e29747ab8ac36c75" ftype="txt"/>
             <output name="bellerophon.accnos" ftype="mothur.accnos" file="Mock_S280_L001_R1_001_small.trim.contigs.good.bellerophon.accnos"/>
-            <output name="logfile" ftype="txt"> <!-- outputs some results to the log file -->
+            <output name="logfile" ftype="txt">
+                <!-- outputs some results to the log file -->
                 <assert_contents>
                     <has_text text="Minimum"/>
                     <has_text text="Median"/>
@@ -90,6 +90,6 @@ Tips for using Bellerophon:
 
     ]]></help>
     <expand macro="citations">
-         <citation type="doi">10.1093/bioinformatics/bth226</citation>
+        <citation type="doi">10.1093/bioinformatics/bth226</citation>
     </expand>
 </tool>

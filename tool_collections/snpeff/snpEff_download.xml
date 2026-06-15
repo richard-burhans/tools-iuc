@@ -4,10 +4,10 @@
         <import>snpEff_macros.xml</import>
     </macros>
     <requirements>
-        <expand macro="requirement" />
+        <expand macro="requirement"/>
     </requirements>
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
 snpEff download -dataDir "\$PWD/temp" -v '$genome_version' &&
 mkdir -p '$snpeff_db.files_path' &&
@@ -15,7 +15,7 @@ mv temp/'$genome_version' '$snpeff_db.files_path'
     ]]></command>
     <inputs>
         <param name="genome_version" type="text" value="" label="Select the annotation database you want to download (e.g. GRCh38.86, mm10 etc.)" help="The list of available databases can be obtained with 'SnpEff databases' tool">
-            <validator type="empty_field" message="A genome version name is required" />
+            <validator type="empty_field" message="A genome version name is required"/>
         </param>
     </inputs>
     <outputs>
@@ -57,5 +57,5 @@ Suppose you want to annoate a VCF file containing variants within mm10 version o
 @SNPEFF_IN_GALAXY_INFO@
 @EXTERNAL_DOCUMENTATION@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -1,5 +1,5 @@
 <tool id="ampvis2_rankabundance" name="ampvis2 rank abundance plot" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -33,15 +33,15 @@
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="group_by" value="Plant"/>
             <output name="plot" value="AalborgWWTPs-rankabundance.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- non-defaults -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="group_by" value="Plant"/>
             <param name="showSD" value="false"/>
             <param name="log10_x" value="false"/>

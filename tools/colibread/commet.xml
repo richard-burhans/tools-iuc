@@ -26,19 +26,19 @@
         <repeat name="sets" title="Read sets" min="1">
             <param name="reads" type="data" multiple="true" format="fasta,fasta.gz,fastq,fastq.gz" label="Dataset" help="Accept fasta/fastq"/>
         </repeat>
-        <param argument="-k" type="integer" label="Size of kmers" value="33" help="Set the length of used kmers." />
-        <param argument="-t" type="integer" label="Mini shared kmers" value="2" help="Minimal number of shared kmers." />
-        <param argument="-l" type="integer" label="Read mini length" value="66" help="Minimal length a read should have to be kept." />
-        <param argument="-e" type="float" label="Mini Shannon index" value="0" min="0" max="2.32" help="Minimal Shannon index a read should have to be kept." />
+        <param argument="-k" type="integer" label="Size of kmers" value="33" help="Set the length of used kmers."/>
+        <param argument="-t" type="integer" label="Mini shared kmers" value="2" help="Minimal number of shared kmers."/>
+        <param argument="-l" type="integer" label="Read mini length" value="66" help="Minimal length a read should have to be kept."/>
+        <param argument="-e" type="float" label="Mini Shannon index" value="0" min="0" max="2.32" help="Minimal Shannon index a read should have to be kept."/>
         <conditional name="options_advanced">
             <param name="options_advanced_selector" type="select" label="Reads filter options" help="By default, all reads are kept with no Ns limitation">
                 <option value="default" selected="true">default</option>
                 <option value="advanced">advanced</option>
             </param>
-            <when value="default" />
+            <when value="default"/>
             <when value="advanced">
-                <param argument="-m" type="integer" value="-1" label="Maximum number of selected reads in sets" help="Maximum number of selected reads in sets. If a set is composed by 3 read files, and this option = 600, then the first 200 reads from each read file will be treated. (-1 = any)" />
-                <param argument="-n" type="integer" value="-1" label="Read maxi number of Ns" help="Maximal number of Ns a read should contain to be kept. (-1 = all)" />
+                <param argument="-m" type="integer" value="-1" label="Maximum number of selected reads in sets" help="Maximum number of selected reads in sets. If a set is composed by 3 read files, and this option = 600, then the first 200 reads from each read file will be treated. (-1 = any)"/>
+                <param argument="-n" type="integer" value="-1" label="Read maxi number of Ns" help="Maximal number of Ns a read should contain to be kept. (-1 = all)"/>
             </when>
         </conditional>
         <param name="normalized_outputs" label="Generate normalized files" type="boolean" checked="true"/>
@@ -46,36 +46,36 @@
         <param name="percentage_outputs" label="Generate percentage files" type="boolean" checked="false"/>
     </inputs>
     <outputs>
-        <data format="csv" name="matrix_plain" from_work_dir="output_commet/matrix_plain.csv" label="${tool.name} on ${on_string}: Matrix plain" >
+        <data format="csv" name="matrix_plain" from_work_dir="output_commet/matrix_plain.csv" label="${tool.name} on ${on_string}: Matrix plain">
             <filter>plain_outputs</filter>
         </data>
-        <data format="csv" name="matrix_percentage" from_work_dir="output_commet/matrix_percentage.csv" label="${tool.name} on ${on_string}: Matrix percentage" >
+        <data format="csv" name="matrix_percentage" from_work_dir="output_commet/matrix_percentage.csv" label="${tool.name} on ${on_string}: Matrix percentage">
             <filter>percentage_outputs</filter>
         </data>
-        <data format="csv" name="matrix_normalized" from_work_dir="output_commet/matrix_normalized.csv" label="${tool.name} on ${on_string}: Matrix normalized" >
+        <data format="csv" name="matrix_normalized" from_work_dir="output_commet/matrix_normalized.csv" label="${tool.name} on ${on_string}: Matrix normalized">
             <filter>normalized_outputs</filter>
         </data>
-        <data format="png" name="dendrogram_normalized" from_work_dir="output_commet/dendrogram_normalized.png" label="${tool.name} on ${on_string}: Dendrogram" />
-        <data format="png" name="heatmap_normalized" from_work_dir="output_commet/heatmap_normalized.png" label="${tool.name} on ${on_string}: Heatmap normalized" >
+        <data format="png" name="dendrogram_normalized" from_work_dir="output_commet/dendrogram_normalized.png" label="${tool.name} on ${on_string}: Dendrogram"/>
+        <data format="png" name="heatmap_normalized" from_work_dir="output_commet/heatmap_normalized.png" label="${tool.name} on ${on_string}: Heatmap normalized">
             <filter>normalized_outputs</filter>
         </data>
-        <data format="png" name="heatmap_percentage" from_work_dir="output_commet/heatmap_percentage.png" label="${tool.name} on ${on_string}: Heatmap percentage" >
+        <data format="png" name="heatmap_percentage" from_work_dir="output_commet/heatmap_percentage.png" label="${tool.name} on ${on_string}: Heatmap percentage">
             <filter>percentage_outputs</filter>
         </data>
-        <data format="png" name="heatmap_plain" from_work_dir="output_commet/heatmap_plain.png" label="${tool.name} on ${on_string}: Heatmap Plain" >
+        <data format="png" name="heatmap_plain" from_work_dir="output_commet/heatmap_plain.png" label="${tool.name} on ${on_string}: Heatmap Plain">
             <filter>plain_outputs</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="5">
             <repeat name="sets">
-                <param name="reads" value="commet/A.fa.gz" ftype="fasta.gz" />
+                <param name="reads" value="commet/A.fa.gz" ftype="fasta.gz"/>
             </repeat>
             <repeat name="sets">
-                <param name="reads" value="commet/B.fa.gz,commet/C.fa.gz" ftype="fasta.gz" />
+                <param name="reads" value="commet/B.fa.gz,commet/C.fa.gz" ftype="fasta.gz"/>
             </repeat>
             <repeat name="sets">
-                <param name="reads" value="commet/D.fa.gz" ftype="fasta.gz" />
+                <param name="reads" value="commet/D.fa.gz" ftype="fasta.gz"/>
             </repeat>
             <param name="plain_outputs" value="True"/>
             <output name="dendrogram_normalized" file="commet/dendrogram.png" compare="sim_size" delta="10000"/>

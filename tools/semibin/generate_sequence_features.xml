@@ -107,7 +107,8 @@ SemiBin2
                     <has_n_lines n="1" delta="1"/>
                 </assert_contents>
             </output>
-        </test><test expect_num_outputs="4">
+        </test>
+        <test expect_num_outputs="4">
             <conditional name="input_type_select">
                 <param name="input_type" value="bam"/>
                 <conditional name="mode">
@@ -303,17 +304,16 @@ SemiBin2
             <output_collection name="multi_contigs" count="10">
                 <element name="S1" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">g1k_0"/>
+                        <has_text text="&gt;g1k_0"/>
                     </assert_contents>
                 </element>
                 <element name="S9" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">g1k_0"/>
+                        <has_text text="&gt;g1k_0"/>
                     </assert_contents>
                 </element>
             </output_collection>
         </test>
-
         <test expect_num_outputs="5">
             <conditional name="input_type_select">
                 <param name="input_type" value="txt"/>
@@ -372,12 +372,12 @@ SemiBin2
             <output_collection name="multi_contigs" count="10">
                 <element name="S1" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">g1k_0"/>
+                        <has_text text="&gt;g1k_0"/>
                     </assert_contents>
                 </element>
                 <element name="S9" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">g1k_0"/>
+                        <has_text text="&gt;g1k_0"/>
                     </assert_contents>
                 </element>
             </output_collection>

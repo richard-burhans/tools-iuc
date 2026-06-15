@@ -36,7 +36,7 @@ core_diversity_analyses.py
     ]]></command>
     <inputs>
         <param argument="--input_biom_fp" type="data" format="tabular,txt,biom,h5" label="OTU table"/>
-        <param argument="--mapping_fp" type="data" format="tabular,txt,tsv" label="Mapping file" />
+        <param argument="--mapping_fp" type="data" format="tabular,txt,tsv" label="Mapping file"/>
         <param argument="--sampling_depth" type="integer" value="" label="Sequencing depth to use for even sub-sampling and maximum rarefaction depth" help="To decide this value, review the output of the ‘biom summarize-table’"/>
         <param argument="--parameter_fp" type="data" format="txt" label="Parameter file" help="It specifies changes to the default behavior" optional="true"/>
         <param argument="--parallel" type="boolean" truevalue="--parallel" falsevalue="" checked="true" label="Run in parallel where available?"/>
@@ -60,7 +60,8 @@ core_diversity_analyses.py
         <data name="html_report" format="html" label="${tool.name} on ${on_string}: Core diversity report"/>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"> <!-- test taxa summary and group significance -->
+        <test expect_num_outputs="1">
+            <!-- test taxa summary and group significance -->
             <param name="input_biom_fp" value="core_diversity_analyses/otu_table.biom"/>
             <param name="mapping_fp" value="core_diversity_analyses/map.txt"/>
             <param name="sampling_depth" value="22"/>
@@ -79,7 +80,8 @@ core_diversity_analyses.py
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"><!-- test beta diversity -->
+        <test expect_num_outputs="1">
+            <!-- test beta diversity -->
             <param name="input_biom_fp" value="core_diversity_analyses/otu_table.biom"/>
             <param name="mapping_fp" value="core_diversity_analyses/map.txt"/>
             <param name="sampling_depth" value="22"/>
@@ -97,7 +99,8 @@ core_diversity_analyses.py
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"><!-- test alpha diversity -->
+        <test expect_num_outputs="1">
+            <!-- test alpha diversity -->
             <param name="input_biom_fp" value="core_diversity_analyses/otu_table.biom"/>
             <param name="mapping_fp" value="core_diversity_analyses/map.txt"/>
             <param name="parameter_fp" value="core_diversity_analyses/alpha_diversity_params.txt"/>
@@ -116,7 +119,8 @@ core_diversity_analyses.py
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"><!-- test suppressing all -->
+        <test expect_num_outputs="1">
+            <!-- test suppressing all -->
             <param name="input_biom_fp" value="core_diversity_analyses/otu_table.biom"/>
             <param name="mapping_fp" value="core_diversity_analyses/map.txt"/>
             <param name="sampling_depth" value="22"/>

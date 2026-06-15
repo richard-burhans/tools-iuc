@@ -148,7 +148,6 @@ dada_result <- dada(
             </when>
         </conditional>
         <param argument="err" type="data" format="dada2_errorrates" label="Error rates"/>
-
         <conditional name="advanced">
             <param name="enable" type="select" label="Set advanced options">
                 <option value="yes">Yes</option>
@@ -156,23 +155,22 @@ dada_result <- dada(
             </param>
             <when value="yes">
                 <param argument="priors" type="data" optional="true" format="fasta,fastq,fastq.gz,dada2_dada,dada2_mergepairs,tabular,dada2_sequencetable,dada2_uniques" label="Priors" help="The priors argument provides a set of sequences for which there is prior information suggesting they may truly exist, i.e. are not errors. The abundance p-value of dereplicated sequences that exactly match one of the priors are calculated without conditioning on presence, allowing singletons to be detected, and are compared to a reduced threshold ‘OMEGA_P‘ when forming new partitions."/>
-
                 <section name="sensitivity" title="Sensitivity">
                     <param argument="OMEGA_A" type="float" value="1e-40" min="0" max="1" label="Omega A" help="Threshold for calling unique sequences significantly overabundant, and therefore creating a new partition with that sequence as the center. Default is 1e-40, which is a conservative setting to avoid making false positive inferences, but which comes at the cost of reducing the ability to identify some rare variants."/>
                     <param argument="OMEGA_P" type="float" value="1e-4" min="0" max="1" label="Omega P" help="Threshold for unique sequences with prior evidence of existence (see ‘priors‘ argument)"/>
-                    <param argument="OMEGA_C" type="float" value="1e-40" min="0" max="1" label="Omega C" help="Threshold at which unique sequences inferred to contain errors are corrected in the final output. The probability that each unique sequence is generated at its observed abundance from the center of its final partition is evaluated, and compared to OMEGA_C. If that probability is >= OMEGA_C, it is 'corrected', i.e. replaced by the partition center sequence. The special value of 0 corresponds to correcting all input sequences, and any value > 1 corresponds to performing no correction on sequences found to contain error"/>
+                    <param argument="OMEGA_C" type="float" value="1e-40" min="0" max="1" label="Omega C" help="Threshold at which unique sequences inferred to contain errors are corrected in the final output. The probability that each unique sequence is generated at its observed abundance from the center of its final partition is evaluated, and compared to OMEGA_C. If that probability is &gt;= OMEGA_C, it is 'corrected', i.e. replaced by the partition center sequence. The special value of 0 corresponds to correcting all input sequences, and any value &gt; 1 corresponds to performing no correction on sequences found to contain error"/>
                     <param argument="DETECT_SINGLETONS" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Detect singletons" help="et to TRUE, this removes the requirement for at least two reads with the same sequences to exist in order for a new ASV to be detected. It also somewhat increases sensitivity to other low abundance sequences as well, e.g. those present in just 2/3/4/... reads. Note, this applies to all unique sequences, not just those supported by prior evidence (see ‘priors‘ argument), and so it does make false-positive detections more likely.When enabled, singleton sequences are retained in the output"/>
                 </section>
                 <section name="alignment" title="Alignment">
                     <param argument="MATCH" type="integer" value="4" label="Match score" help="Score of a match in the Needleman-Wunsch alignment"/>
                     <param argument="MISMATCH" type="integer" value="-5" label="Mismatch penalty" help="Cost of a mismatch in the Needleman-Wunsch alignmenmt"/>
                     <param argument="GAP_PENALTY" type="integer" value="-8" label="Gap penalty" help="Cost of gaps in the Needleman-Wunsch alignment"/>
-                    <param argument="HOMOPOLYMER_GAP_PENALTY" type="text" optional="true" label="Homopolymer gap penalty" help="e cost of gaps in homopolymer regions (>=3 repeated bases). If not specified homopolymer gaps are treated as normal gaps."/>
+                    <param argument="HOMOPOLYMER_GAP_PENALTY" type="text" optional="true" label="Homopolymer gap penalty" help="e cost of gaps in homopolymer regions (&gt;=3 repeated bases). If not specified homopolymer gaps are treated as normal gaps."/>
                     <param argument="BAND_SIZE" type="integer" value="16" optional="true" label="Band size" help="When set, banded Needleman-Wunsch alignments are performed. Banding restricts the net cumulative number of insertion of one sequence relative to the other. The default value of BAND_SIZE is 16. If DADA is applied to sequencing technologies with high rates of indels, such as 454 sequencing, the BAND_SIZE parameter should be increased. Setting BAND_SIZE to a negative number turns off banding (i.e. full Needleman-Wunsch"/>
                 </section>
                 <section name="comparison_heuristics" title="Sequence comparison heuristics">
                     <param argument="USE_KMERS" type="boolean" checked="true" truevalue="TRUE" falsevalue="FALSE" label="K‑mers" help="If enabled, a 5-mer distance screen is performed prior to performing each pairwise alignment, and if the 5mer-distance is greater than KDIST_CUTOFF, no alignment is performed"/>
-                    <param argument="KDIST_CUTOFF" type="float" value="0.42" label="K‑dist cutoff" min="0" max="1" help="The default value of 0.42 was chosen to screen pairs of sequences that differ by >10%, and was calibrated on Illumina sequenced 16S amplicon data. The assumption is that sequences that differ by such a large amount cannot be linked by amplicon errors (i.e. if you sequence one, you won’t get a read of other) and so careful (and costly) alignment is unnecessary"/>
+                    <param argument="KDIST_CUTOFF" type="float" value="0.42" label="K‑dist cutoff" min="0" max="1" help="The default value of 0.42 was chosen to screen pairs of sequences that differ by &gt;10%, and was calibrated on Illumina sequenced 16S amplicon data. The assumption is that sequences that differ by such a large amount cannot be linked by amplicon errors (i.e. if you sequence one, you won’t get a read of other) and so careful (and costly) alignment is unnecessary"/>
                     <param argument="GAPLESS" type="boolean" checked="true" truevalue="TRUE" falsevalue="FALSE" label="Perform gapless alignment" help="If enabled, the ordered kmer identity between pairs of sequences is compared to their unordered overlap. If equal, the optimal alignment is assumed to be gapless. Only relevant if USE_KMERS is enabled"/>
                     <param argument="GREEDY" type="boolean" checked="true" truevalue="TRUE" falsevalue="FALSE" label="Enable greedy partitioning" help="The DADA2 algorithm is not greedy, but a very restricted form of greediness can be turned on via this option. If TRUE, unique sequences with reads less than those expected to be generated by resequencing just the central unique in their partition are 'locked' to that partition. Modest (~30%) speedup, and almost no impact on output"/>
                 </section>
@@ -212,8 +210,8 @@ dada_result <- dada(
         <!-- default, non batch -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz,filterAndTrim_F3D141_R1.fq.gz" ftype="fastq.gz" />
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz,filterAndTrim_F3D141_R1.fq.gz" ftype="fastq.gz"/>
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <output_collection name="data_collection" type="list">
                 <element name="filterAndTrim_F3D0_R1.fq.gz" file="dada_F3D0_S188_L001_R1.Rdata" ftype="dada2_dada" compare="sim_size" delta="10000"/>
                 <element name="filterAndTrim_F3D141_R1.fq.gz" file="dada_F3D141_S207_L001_R1.Rdata" ftype="dada2_dada" compare="sim_size" delta="10000"/>
@@ -225,19 +223,19 @@ dada_result <- dada(
         <!-- default, batch -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="yes"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
-            <output name="dada" value="dada_F3D0_S188_L001_R1.Rdata" ftype="dada2_dada"  compare="sim_size" delta="10000"/>
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
+            <output name="dada" value="dada_F3D0_S188_L001_R1.Rdata" ftype="dada2_dada" compare="sim_size" delta="10000"/>
             <assert_stdout>
                 <has_line line="43 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
-       </test>
+        </test>
         <!-- test non-default options -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <output_collection name="data_collection" type="list">
                 <element name="filterAndTrim_F3D0_R1.fq.gz" file="dada_F3D0_S188_L001_R1.Rdata" ftype="dada2_dada" compare="sim_size" delta="10000"/>
             </output_collection>
@@ -248,9 +246,9 @@ dada_result <- dada(
         <!-- test non-default options + enable advanced-->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
             </conditional>
@@ -261,13 +259,12 @@ dada_result <- dada(
                 <has_line line="43 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
-
         <!-- test non-default options + enable advanced + fasta priors -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <param name="priors" value="prior.fa"/>
@@ -280,13 +277,12 @@ dada_result <- dada(
                 <has_line line="45 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
-    
         <!-- test non-default options + enable advanced + fastq priors-->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <!-- just take all seq as priors - just for the test -->
@@ -295,7 +291,8 @@ dada_result <- dada(
             <output_collection name="data_collection" type="list">
                 <element name="filterAndTrim_F3D0_R1.fq.gz" ftype="dada2_dada">
                     <assert_contents>
-                        <has_size min="41788"/><!-- should be larger than the test not using priors -->
+                        <has_size min="41788"/>
+                        <!-- should be larger than the test not using priors -->
                     </assert_contents>
                 </element>
             </output_collection>
@@ -304,13 +301,12 @@ dada_result <- dada(
                 <has_line line="270 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
-
         <!-- test non-default options + enable advanced + priors from dada output itself .. just feeding it back-->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <!-- just take all seq as priors - just for the test -->
@@ -324,13 +320,12 @@ dada_result <- dada(
                 <has_line line="43 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
-
         <!-- test non-default options + enable advanced + priors from merge output -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <!-- just take all seq as priors - just for the test -->
@@ -344,13 +339,12 @@ dada_result <- dada(
                 <has_line line="43 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
-
         <!-- test non-default options + enable advanced + priors from sequencetable output -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <!-- just take all seq as priors - just for the test -->
@@ -364,13 +358,12 @@ dada_result <- dada(
                 <has_line line="43 sequence variants were inferred from 379 input unique sequences."/>
             </assert_stdout>
         </test>
- 
         <!-- test non-default options + enable advanced + priors from uniques output -->
         <test expect_num_outputs="1">
             <param name="batch_cond|batch_select" value="no"/>
-            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz" />
+            <param name="batch_cond|derep" value="filterAndTrim_F3D0_R1.fq.gz" ftype="fastq.gz"/>
             <param name="batch_cond|pool" value="pseudo"/>
-            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates" />
+            <param name="err" value="learnErrors_R1.Rdata" ftype="dada2_errorrates"/>
             <conditional name="advanced">
                 <param name="enable" value="yes"/>
                 <!-- just take all seq as priors - just for the test -->

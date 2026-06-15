@@ -3,22 +3,22 @@
         <import>qualimap_macros.xml</import>
         <xml name="test_collection">
             <collection type="list">
-                <element name="genome_results" value="genome_results_inside_features.txt" />
-                <element name="coverage_across_reference" value="coverage_across_reference.txt" />
-                <element name="coverage_histogram" value="coverage_histogram.txt" />
-                <element name="genome_fraction_coverage" value="genome_fraction_coverage.txt" />
-                <element name="duplication_rate_histogram" value="duplication_rate_histogram.txt" />
-                <element name="mapped_reads_clipping_profile" value="mapped_reads_clipping_profile.txt" />
-                <element name="mapped_reads_gc-content_distribution" value="mapped_reads_gc-content_distribution.txt" />
-                <element name="mapped_reads_nucleotide_content" value="mapped_reads_nucleotide_content.txt" />
-                <element name="mapping_quality_across_reference" value="mapping_quality_across_reference.txt" />
-                <element name="mapping_quality_histogram" value="mapping_quality_histogram.txt" />
+                <element name="genome_results" value="genome_results_inside_features.txt"/>
+                <element name="coverage_across_reference" value="coverage_across_reference.txt"/>
+                <element name="coverage_histogram" value="coverage_histogram.txt"/>
+                <element name="genome_fraction_coverage" value="genome_fraction_coverage.txt"/>
+                <element name="duplication_rate_histogram" value="duplication_rate_histogram.txt"/>
+                <element name="mapped_reads_clipping_profile" value="mapped_reads_clipping_profile.txt"/>
+                <element name="mapped_reads_gc-content_distribution" value="mapped_reads_gc-content_distribution.txt"/>
+                <element name="mapped_reads_nucleotide_content" value="mapped_reads_nucleotide_content.txt"/>
+                <element name="mapping_quality_across_reference" value="mapping_quality_across_reference.txt"/>
+                <element name="mapping_quality_histogram" value="mapping_quality_histogram.txt"/>
             </collection>
         </xml>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         #if str($input.mode) == 'grouped':
           #set $n = 0
@@ -71,22 +71,16 @@
         #set $summary_report = None
         @MASSAGE_OUTPUT@
     ]]></command>
-
     <inputs>
         <conditional name="input">
-            <param name="mode" type="select"
-            label="Report samples"
-            help="">
+            <param name="mode" type="select" label="Report samples" help="">
                 <option value="individual">Individually</option>
                 <option value="grouped">In groups</option>
             </param>
             <when value="individual">
-                <repeat name="bam_qc_data" default="2" min="2"
-                title="BAM QC data to combine">
-                    <param name="bam_qc_input" type="data_collection" format="txt" label="Single-sample BAM QC data" help="" collection_type="list" />
-                    <param name="sample_name" type="text"
-                    label="Name to use for this dataset"
-                    help="This is the name that will be used for this dataset throughout the Qualimap report. Default: Name of the raw data collection in the history" />
+                <repeat name="bam_qc_data" default="2" min="2" title="BAM QC data to combine">
+                    <param name="bam_qc_input" type="data_collection" format="txt" label="Single-sample BAM QC data" help="" collection_type="list"/>
+                    <param name="sample_name" type="text" label="Name to use for this dataset" help="This is the name that will be used for this dataset throughout the Qualimap report. Default: Name of the raw data collection in the history"/>
                 </repeat>
             </when>
             <when value="grouped">
@@ -94,36 +88,34 @@
                     <param name="name" type="text" label="Name of the group">
                         <validator type="expression" message="A name is required for every group">value.strip()</validator>
                     </param>
-                    <repeat name="bam_qc_data" default="1" min="1"
-                    title="Data associated with this group">
-                        <param name="bam_qc_input" type="data_collection" format="txt" label="Single-sample BAM QC data" help="" collection_type="list" multiple="true" />
+                    <repeat name="bam_qc_data" default="1" min="1" title="Data associated with this group">
+                        <param name="bam_qc_input" type="data_collection" format="txt" label="Single-sample BAM QC data" help="" collection_type="list" multiple="true"/>
                     </repeat>
                 </repeat>
             </when>
         </conditional>
     </inputs>
-
     <outputs>
-        <data name="output_html" format="html" />
+        <data name="output_html" format="html"/>
     </outputs>
     <tests>
         <test>
             <conditional name="input">
-                <param name="mode" value="individual" />
+                <param name="mode" value="individual"/>
                 <repeat name="bam_qc_data">
                     <param name="bam_qc_input">
-                        <expand macro="test_collection" />
+                        <expand macro="test_collection"/>
                     </param>
                 </repeat>
                 <repeat name="bam_qc_data">
                     <param name="bam_qc_input">
-                        <expand macro="test_collection" />
+                        <expand macro="test_collection"/>
                     </param>
                 </repeat>
             </conditional>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: Multi-sample BAM QC" />
+                    <has_text text="Qualimap report: Multi-sample BAM QC"/>
                 </assert_contents>
             </output>
         </test>

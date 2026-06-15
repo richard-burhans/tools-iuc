@@ -3,28 +3,28 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
         get_term_id_vs_term_def.pl
         -f '$input' | sort > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test>
             <param name="input" value="pre_cco_core.obo"/>
             <output name="output">
                 <assert_contents>
-                    <has_text text="Any process that modulates the frequency, rate or extent of the cell cycle process" />
+                    <has_text text="Any process that modulates the frequency, rate or extent of the cell cycle process"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -44,6 +44,6 @@ If you ask for the term IDs and terms definitions of the Gene Ontology, you will
   ...
   ...
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

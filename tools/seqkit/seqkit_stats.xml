@@ -48,11 +48,11 @@ $tabular
             <output name="output" file="stats_output2.tabular" ftype="tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Outputs simple statistics of FASTA/Q files; number of sequences, sum / min / avg / max sequence lengths, Q1, Q2, Q3,
 sum gap, N50, Q20(%), and Q30(%).
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

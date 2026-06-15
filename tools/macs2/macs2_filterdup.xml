@@ -4,9 +4,9 @@
         <import>macs2_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         @home_dir@
         macs2 filterdup
@@ -25,23 +25,23 @@
     ]]>
     </command>
     <inputs>
-        <param name="infile" type="data" format="bam,bed" label="Sequencing alignment file" />
-        <expand macro="conditional_effective_genome_size" />
-        <expand macro="tag_size" />
-        <param name="pvalue" type="text" value="1e-5" label="Pvalue cutoff for binomial distribution test" help="Default=1e-5 (--pvalue)" />
-        <expand macro="keep_duplicates" />
+        <param name="infile" type="data" format="bam,bed" label="Sequencing alignment file"/>
+        <expand macro="conditional_effective_genome_size"/>
+        <expand macro="tag_size"/>
+        <param name="pvalue" type="text" value="1e-5" label="Pvalue cutoff for binomial distribution test" help="Default=1e-5 (--pvalue)"/>
+        <expand macro="keep_duplicates"/>
         <expand macro="buffer_size"/>
     </inputs>
     <outputs>
-        <data name="outfile" format="bed" label="${tool.name} on ${on_string}" />
+        <data name="outfile" format="bed" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
             <param name="infile" value="ChIP_200K_w_dups.bed" ftype="bed"/>
             <param name="pvalue" value="1e-5"/>
             <param name="keep_dup_options_selector" value="auto"/>
-            <param name="effective_genome_size_options_selector" value="user_defined" />
-            <param name="gsize" value="3300000000" />
+            <param name="effective_genome_size_options_selector" value="user_defined"/>
+            <param name="gsize" value="3300000000"/>
             <output name="outfile" file="filterdup_on_ChIP_200K_w_dups.bed"/>
         </test>
     </tests>
@@ -56,5 +56,5 @@ This is **filterdup** utility from the MACS2_ Package. It removes duplicate read
 @citation@
 ]]>
   </help>
-  <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

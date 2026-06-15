@@ -74,10 +74,8 @@ echo 'remove.groups(
                 <param name="name_in" type="data" format="mothur.names" optional="true" label="name - Sequences Name reference"/>
                 <param name="list_in" type="data" format="mothur.list" optional="true" label="list - OTU List"/>
                 <param name="taxonomy_in" type="data" format="mothur.seq.taxonomy" optional="true" label="taxonomy - Taxonomy"/>
-                <param name="phylip_in" type="data" format="mothur.lower.dist,mothur.square.dist" optional="true" label="phylip - Distance Matrix you would like to select distances from"
-                    help="must be a phylip-formatted distance matrix"/>
-                <param name="column_in" type="data" format="mothur.pair.dist" optional="true" label="column - Distance Matrix you would like to select distances from"
-                    help="must be a column-formatted distance matrix"/>
+                <param name="phylip_in" type="data" format="mothur.lower.dist,mothur.square.dist" optional="true" label="phylip - Distance Matrix you would like to select distances from" help="must be a phylip-formatted distance matrix"/>
+                <param name="column_in" type="data" format="mothur.pair.dist" optional="true" label="column - Distance Matrix you would like to select distances from" help="must be a column-formatted distance matrix"/>
             </when>
             <when value="shared">
                 <param name="shared_in" type="data" format="mothur.shared" optional="true" label="shared - OTU Shared"/>
@@ -123,7 +121,8 @@ echo 'remove.groups(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with shared file -->
+        <test>
+            <!-- test with shared file -->
             <param name="source" value="shared"/>
             <param name="shared_in" value="amazon.an.shared"/>
             <param name="groups" value="pasture"/>
@@ -133,7 +132,8 @@ echo 'remove.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group file and fasta/names/list/taxonomy files -->
+        <test>
+            <!-- test with group file and fasta/names/list/taxonomy files -->
             <param name="source" value="other"/>
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>
             <param name="fasta_in" value="amazon.fasta" ftype="fasta"/>
@@ -151,7 +151,8 @@ echo 'remove.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with distance matrices -->
+        <test>
+            <!-- test with distance matrices -->
             <param name="source" value="other"/>
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>
             <param name="column_in" value="amazon.pair.dist" ftype="mothur.pair.dist"/>

@@ -193,7 +193,7 @@ busco
                                 <param name="augustus_model" type="data" format="augustus" label="Augustus model"/>
                             </when>
                             <when value="builtin">
-                                <param name="augustus_species" type="select" label="Augustus species model" help="If model name is different than species name it is shown in parentheses." >
+                                <param name="augustus_species" type="select" label="Augustus species model" help="If model name is different than species name it is shown in parentheses.">
                                     <expand macro="augustus_species"/>
                                 </param>
                             </when>
@@ -226,7 +226,6 @@ busco
                 </param>
             </when>
         </conditional>
-
         <param name="outputs" type="select" optional="true" multiple="true" label="Which outputs should be generated">
             <option value="short_summary" selected="true">Short summary text</option>
             <option value="missing">List with missing IDs</option>
@@ -235,59 +234,54 @@ busco
             <option value="faa">Protein sequences</option>
             <option value="fna">Nucleotide sequences</option>
         </param>
-
         <section name="adv" title="Advanced Options" expanded="False">
             <param argument="--evalue" type="float" value="0.001" min="0" max="1" label="E-value cutoff for BLAST searches."/>
             <param argument="--limit" type="integer" value="3" label="How many candidate regions to consider"/>
             <param argument="--contig_break" type="integer" value="10" label="Number of contiguous Ns to signify a break between contigs"/>
         </section>
     </inputs>
-
     <outputs>
-        <data name='busco_sum' format='txt' label="${tool.name} on ${on_string}: Short summary - Specific lineage" from_work_dir="busco_galaxy/short_summary.specific.*.txt">
+        <data name="busco_sum" format="txt" label="${tool.name} on ${on_string}: Short summary - Specific lineage" from_work_dir="busco_galaxy/short_summary.specific.*.txt">
             <filter>outputs and 'short_summary' in outputs</filter>
         </data>
-        <data name='busco_sum_generic' format='txt' label="${tool.name} on ${on_string}: Short summary - Generic lineage" from_work_dir="busco_galaxy/short_summary.generic.*.txt">
+        <data name="busco_sum_generic" format="txt" label="${tool.name} on ${on_string}: Short summary - Generic lineage" from_work_dir="busco_galaxy/short_summary.generic.*.txt">
             <filter>(outputs and 'short_summary' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
         </data>
-        <data name='busco_table' format='tabular' label="${tool.name} on ${on_string}: Full table - Specific lineage" from_work_dir="busco_galaxy/full_table_specific_lineage.tsv">
-        </data>
-        <data name='busco_table_generic' format='tabular' label="${tool.name} on ${on_string}: Full table - Generic lineage" from_work_dir="busco_galaxy/full_table_generic_lineage.tsv">
+        <data name="busco_table" format="tabular" label="${tool.name} on ${on_string}: Full table - Specific lineage" from_work_dir="busco_galaxy/full_table_specific_lineage.tsv"/>
+        <data name="busco_table_generic" format="tabular" label="${tool.name} on ${on_string}: Full table - Generic lineage" from_work_dir="busco_galaxy/full_table_generic_lineage.tsv">
             <filter>lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
         </data>
-        <data name='busco_missing' format='tabular' label="${tool.name} on ${on_string}: Missing buscos - Specific lineage" from_work_dir="busco_galaxy/missing_busco_list_specific_lineage.tsv">
+        <data name="busco_missing" format="tabular" label="${tool.name} on ${on_string}: Missing buscos - Specific lineage" from_work_dir="busco_galaxy/missing_busco_list_specific_lineage.tsv">
             <filter>outputs and 'missing' in outputs</filter>
         </data>
-        <data name='busco_missing_generic' format='tabular' label="${tool.name} on ${on_string}: Missing buscos - Generic lineage" from_work_dir="busco_galaxy/missing_busco_list_generic_lineage.tsv">
+        <data name="busco_missing_generic" format="tabular" label="${tool.name} on ${on_string}: Missing buscos - Generic lineage" from_work_dir="busco_galaxy/missing_busco_list_generic_lineage.tsv">
             <filter>(outputs and 'missing' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
         </data>
-        <data name='summary_image' format='png' label="${tool.name} on ${on_string}: Summary image - Specific lineage" from_work_dir="busco_galaxy/busco_figure_specific_lineage.png">
+        <data name="summary_image" format="png" label="${tool.name} on ${on_string}: Summary image - Specific lineage" from_work_dir="busco_galaxy/busco_figure_specific_lineage.png">
             <filter>outputs and 'image' in outputs</filter>
         </data>
-        <data name='summary_image_generic' format='png' label="${tool.name} on ${on_string}: Summary image - Generic lineage" from_work_dir="busco_galaxy/busco_figure_generic_lineage.png">
+        <data name="summary_image_generic" format="png" label="${tool.name} on ${on_string}: Summary image - Generic lineage" from_work_dir="busco_galaxy/busco_figure_generic_lineage.png">
             <filter>(outputs and 'image' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
         </data>
-        <data name='busco_gff' format='gff3' label="${tool.name} on ${on_string}: GFF - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.gff">
+        <data name="busco_gff" format="gff3" label="${tool.name} on ${on_string}: GFF - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.gff">
             <filter>outputs and 'gff' in outputs</filter>
-        </data>              
-        <data name='busco_gff_generic' format='gff3' label="${tool.name} on ${on_string}: GFF - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.gff">
+        </data>
+        <data name="busco_gff_generic" format="gff3" label="${tool.name} on ${on_string}: GFF - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.gff">
             <filter>(outputs and 'gff' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
         </data>
-        <data name='busco_faa' format='fasta' label="${tool.name} on ${on_string}: Protein sequences - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.faa">
+        <data name="busco_faa" format="fasta" label="${tool.name} on ${on_string}: Protein sequences - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.faa">
             <filter>outputs and 'faa' in outputs</filter>
-        </data>              
-        <data name='busco_faa_generic' format='fasta' label="${tool.name} on ${on_string}: Protein sequences - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.faa">
+        </data>
+        <data name="busco_faa_generic" format="fasta" label="${tool.name} on ${on_string}: Protein sequences - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.faa">
             <filter>(outputs and 'faa' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
-        </data>  
-        <data name='busco_fna' format='fasta' label="${tool.name} on ${on_string}: Nucleotide sequences - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.fna">
+        </data>
+        <data name="busco_fna" format="fasta" label="${tool.name} on ${on_string}: Nucleotide sequences - Specific lineage" from_work_dir="busco_galaxy/busco_output_specific.fna">
             <filter>outputs and 'fna' in outputs</filter>
         </data>
-        <data name='busco_fna_generic' format='fasta' label="${tool.name} on ${on_string}: Nucleotide sequences - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.fna">
+        <data name="busco_fna_generic" format="fasta" label="${tool.name} on ${on_string}: Nucleotide sequences - Generic lineage" from_work_dir="busco_galaxy/busco_output_generic.fna">
             <filter>(outputs and 'fna' in outputs) and lineage['lineage_mode'] == 'auto_detect' and lineage['generic_results']</filter>
-        </data>              
+        </data>
     </outputs>
-
-    
     <tests>
         <!-- <test expect_num_outputs="6">
             <param name="test" value="true"/>
@@ -486,7 +480,7 @@ busco
                 <has_text text="BUSCO analysis done"/>
             </assert_stdout>
         </test> -->
-		<test expect_num_outputs="2">
+        <test expect_num_outputs="2">
             <param name="test" value="true"/>
             <param name="input" value="bacilli_odb_test.fasta"/>
             <conditional name="lineage">
@@ -529,7 +523,7 @@ busco
                     <has_text text="Gene predictor used: prodigal"/>
                 </assert_contents>
             </output>
-			<output name="busco_sum_generic">
+            <output name="busco_sum_generic">
                 <assert_contents>
                     <has_text text="Gene predictor used: prodigal"/>
                 </assert_contents>
@@ -546,13 +540,13 @@ busco
                     <has_text text="The lineage dataset is: "/>
                 </assert_contents>
             </output>
-			<output name="busco_missing">
+            <output name="busco_missing">
                 <assert_contents>
                     <has_text text="# BUSCO version is: @TOOL_VERSION@"/>
                     <has_text text="The lineage dataset is: "/>
                 </assert_contents>
             </output>
-			<output name="busco_missing_generic">
+            <output name="busco_missing_generic">
                 <assert_contents>
                     <has_text text="# BUSCO version is: @TOOL_VERSION@"/>
                     <has_text text="The lineage dataset is: "/>

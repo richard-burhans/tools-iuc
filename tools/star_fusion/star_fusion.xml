@@ -3,27 +3,21 @@
     <requirements>
         <requirement type="package" version="0.5.4">star-fusion</requirement>
     </requirements>
-
     <stdio>
         <regex match="command not found" source="stderr" level="fatal"/>
         <regex match="EXITING because of INPUT ERROR" source="stderr" level="fatal"/>
         <regex match="FATAL ERROR" source="stderr" level="fatal"/>
-        
         <regex match="Warning:" source="stderr" level="warning"/>
         <regex match="CMD:" source="stderr" level="warning"/>
-        
         <regex match="-done creating index file:" source="stderr" level="warning"/>
         <regex match="-parsing GTF file:" source="stderr" level="warning"/>
         <regex match="-building interval tree" source="stderr" level="warning"/>
         <regex match="-parsing fusion evidence:" source="stderr" level="warning"/>
         <regex match="-mapping reads to genes" source="stderr" level="warning"/>
         <regex match="-outputting fusion candidates to file:" source="stderr" level="warning"/>
-        
         <regex match="Process complete" source="stderr" level="warning"/>
     </stdio>
-
-    <version_command>STAR-Fusion --version  2>&amp;1 | grep version | grep -o -E "software version.*?"</version_command>
-
+    <version_command>STAR-Fusion --version  2&gt;&amp;1 | grep version | grep -o -E "software version.*?"</version_command>
     <command><![CDATA[
 ## 1. ensure the blastn file is provided as *.gz
 gzip -1 -c -- '${blast_pairs}' > blast_pairs.gz &&
@@ -80,37 +74,20 @@ STAR-Fusion
     --E $params.E
 #end if
     ]]></command>
-
     <inputs>
         <conditional name="input_params">
-            <param name="input_source"
-                   type="select"
-                   label="Use output from earlier STAR run or let STAR Fusion control running STAR">
+            <param name="input_source" type="select" label="Use output from earlier STAR run or let STAR Fusion control running STAR">
                 <option value="use_chimeric">Use output from earlier STAR</option>
                 <option value="use_fastq">Let STAR Fusion control running STAR</option>
             </param>
             <when value="use_chimeric">
-                <param name="chimeric_junction"
-                       type="data"
-                       format="interval"
-                       argument="--chimeric_junction"
-                       label="Chimeric junction file from STAR (with STAR-Fusion settings)"/>
+                <param type="data" format="interval" argument="--chimeric_junction" label="Chimeric junction file from STAR (with STAR-Fusion settings)"/>
             </when>
             <when value="use_fastq">
-                <param name="left_fq"
-                       type="data"
-                       format="fastqsanger,fastqsanger.gz"
-                       argument="--left_fq"
-                       label="left.fq file"/>
-                <param name="right_fq"
-                       type="data"
-                       format="fastqsanger,fastqsanger.gz"
-                       optional="true"
-                       argument="--right_fq"
-                       label="right.fq file (actually optional, but highly recommended)"/>
+                <param type="data" format="fastqsanger,fastqsanger.gz" argument="--left_fq" label="left.fq file"/>
+                <param type="data" format="fastqsanger,fastqsanger.gz" optional="true" argument="--right_fq" label="right.fq file (actually optional, but highly recommended)"/>
             </when>
         </conditional>
-
         <!-- Genome source. -->
         <conditional name="fasta_type">
             <param name="fasta_type_selector" type="select" label="Source for sequence to search">
@@ -118,8 +95,7 @@ STAR-Fusion
                 <option value="history" selected="true">Sequences from your history</option>
             </param>
             <when value="cached">
-                <param name="ownFile"
-                       type="select" label="Genome to search">
+                <param name="ownFile" type="select" label="Genome to search">
                     <options from_data_table="all_fasta">
                         <column name="dbkey" index="1"/>
                         <column name="name" index="2"/>
@@ -128,126 +104,83 @@ STAR-Fusion
                 </param>
             </when>
             <when value="history">
-                <param name="ownFile"
-                       type="data"
-                       format="fasta"
-                       label="Select the reference genome (FASTA file)"/>
+                <param name="ownFile" type="data" format="fasta" label="Select the reference genome (FASTA file)"/>
             </when>
         </conditional>
-        
-        <param name="geneModel"
-               type="data"
-               format="gff3,gtf"
-               label="Gene model (gff3,gtf) file for splice junctions and fusion gene detection"/>
-        <param name="blast_pairs"
-               type="data"
-               format="tabular"
-               label="Result of BLAST+-blastn of the reference fasta sequence with itself"
-               help="Run blastn with '-outputfmt 6' or choose 'Tabular (standard 12 columns)' in the Galaxy wrapper. For human data it is recommended to obtain it from here: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/"/>
-        
+        <param name="geneModel" type="data" format="gff3,gtf" label="Gene model (gff3,gtf) file for splice junctions and fusion gene detection"/>
+        <param name="blast_pairs" type="data" format="tabular" label="Result of BLAST+-blastn of the reference fasta sequence with itself" help="Run blastn with '-outputfmt 6' or choose 'Tabular (standard 12 columns)' in the Galaxy wrapper. For human data it is recommended to obtain it from here: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/"/>
         <conditional name="params">
             <param name="settingsType" type="select" label="Settings to use" help="You can use the default settings or set custom values for any STAR Fusion parameter.">
                 <option value="default" selected="true">Use Defaults</option>
                 <option value="full">Full parameter list</option>
             </param>
-            <when value="default" />
-            <when value="full"><!-- Full/advanced params. -->
-                <param name="min_junction_reads"
-                       type="integer" value="1"
-                       label="minimum number of junction-spanning reads required."
-                       argument="--min_junction_reads"/>
-                <param name="min_sum_frags"
-                       type="integer"
-                       value="2"
-                       label="minimum fusion support = (#junction_reads + #spanning_frags)"
-                       argument="--min_sum_frags"/>
-                <param name="max_promiscuity"
-                       type="integer"
-                       value="3"
-                       label="maximum number of partners allowed for a given fusion"
-                       argument="--max_promiscuity"/>
-                <param name="min_novel_junction_support"
-                       type="integer"
-                       value="3"
-                       label="minimum of 3 junction reads required if breakpoint lacks involvement of only reference junctions"
-                       argument="--min_novel_junction_support"/>
-                <param name="min_alt_pct_junction"
-                       type="float"
-                       value="10"
-                       label="10% of the dominant isoform junction support"
-                       argument="--min_alt_pct_junction"/>
-                <param name="aggregate_novel_junction_dist"
-                       type="integer"
-                       value="5"
-                       label="non-ref junctions within 5 are merged into single calls"
-                       argument="--aggregate_novel_junction_dist"/>
-                <param name="E"
-                       type="float"
-                       value="0.001"
-                       label="E-value threshold for blast searches"
-                       argument="-E"/>
+            <when value="default"/>
+            <when value="full">
+                <!-- Full/advanced params. -->
+                <param type="integer" value="1" label="minimum number of junction-spanning reads required." argument="--min_junction_reads"/>
+                <param type="integer" value="2" label="minimum fusion support = (#junction_reads + #spanning_frags)" argument="--min_sum_frags"/>
+                <param type="integer" value="3" label="maximum number of partners allowed for a given fusion" argument="--max_promiscuity"/>
+                <param type="integer" value="3" label="minimum of 3 junction reads required if breakpoint lacks involvement of only reference junctions" argument="--min_novel_junction_support"/>
+                <param type="float" value="10" label="10% of the dominant isoform junction support" argument="--min_alt_pct_junction"/>
+                <param type="integer" value="5" label="non-ref junctions within 5 are merged into single calls" argument="--aggregate_novel_junction_dist"/>
+                <param type="float" value="0.001" label="E-value threshold for blast searches" argument="-E"/>
             </when>
         </conditional>
     </inputs>
-
     <outputs>
         <data format="tabular" name="output_final" label="${tool.name} on ${on_string}: fusion_candidates.final" from_work_dir="star-fusion.fusion_candidates.final"/>
     </outputs>
-
     <tests>
         <test>
-            <param name="input_source" value="use_chimeric" />
-            <param name="chimeric_junction" ftype="interval" value="test1.tabular" />
-            <param name="fasta_type_selector" value="history" />
-            <param name="ownFile" ftype="fasta" value="test1.fa" />
-            <param name="geneModel" ftype="gtf" value="test1.gtf" />
-            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular" />
-            <param name="settingsType" value="default" />
-            
+            <param name="input_source" value="use_chimeric"/>
+            <param name="chimeric_junction" ftype="interval" value="test1.tabular"/>
+            <param name="fasta_type_selector" value="history"/>
+            <param name="ownFile" ftype="fasta" value="test1.fa"/>
+            <param name="geneModel" ftype="gtf" value="test1.gtf"/>
+            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular"/>
+            <param name="settingsType" value="default"/>
             <!-- Last column of the results contains data in a random order so exact matching is not feasible -->
             <output name="output_final">
                 <assert_contents>
-                    <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;JunctionReads&#009;SpanningFrags" />
-                    <has_text text="GENE1--GENE2&#009;24&#009;0&#009;INCL_NON_REF_SPLICE&#009;GENE1^GENE1&#009;chr1:240:+&#009;GENE2^GENE2&#009;chr2:241:+" />
+                    <has_line line="#fusion_name&#9;JunctionReads&#9;SpanningFrags&#9;Splice_type&#9;LeftGene&#9;LeftBreakpoint&#9;RightGene&#9;RightBreakpoint&#9;JunctionReads&#9;SpanningFrags"/>
+                    <has_text text="GENE1--GENE2&#9;24&#9;0&#9;INCL_NON_REF_SPLICE&#9;GENE1^GENE1&#9;chr1:240:+&#9;GENE2^GENE2&#9;chr2:241:+"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_source" value="use_fastq" />
+            <param name="input_source" value="use_fastq"/>
             <param name="left_fq" ftype="fastqsanger" value="test1.fastqsanger"/>
-            <param name="fasta_type_selector" value="history" />
-            <param name="ownFile" ftype="fasta" value="test1.fa" />
-            <param name="geneModel" ftype="gtf" value="test1.gtf" />
-            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular" />
-            <param name="settingsType" value="default" />
-            
+            <param name="fasta_type_selector" value="history"/>
+            <param name="ownFile" ftype="fasta" value="test1.fa"/>
+            <param name="geneModel" ftype="gtf" value="test1.gtf"/>
+            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular"/>
+            <param name="settingsType" value="default"/>
             <!-- Last column of the results contains data in a random order so exact matching is not feasible -->
             <output name="output_final">
                 <assert_contents>
-                    <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;JunctionReads&#009;SpanningFrags" />
-                    <has_text text="GENE1--GENE2&#009;24&#009;0&#009;INCL_NON_REF_SPLICE&#009;GENE1^GENE1&#009;chr1:240:+&#009;GENE2^GENE2&#009;chr2:241:+" />
+                    <has_line line="#fusion_name&#9;JunctionReads&#9;SpanningFrags&#9;Splice_type&#9;LeftGene&#9;LeftBreakpoint&#9;RightGene&#9;RightBreakpoint&#9;JunctionReads&#9;SpanningFrags"/>
+                    <has_text text="GENE1--GENE2&#9;24&#9;0&#9;INCL_NON_REF_SPLICE&#9;GENE1^GENE1&#9;chr1:240:+&#9;GENE2^GENE2&#9;chr2:241:+"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input_source" value="use_fastq" />
+            <param name="input_source" value="use_fastq"/>
             <param name="left_fq" ftype="fastqsanger.gz" value="test1.fastqsanger.gz"/>
-            <param name="fasta_type_selector" value="history" />
-            <param name="ownFile" ftype="fasta" value="test1.fa" />
-            <param name="geneModel" ftype="gtf" value="test1.gtf" />
-            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular" />
-            <param name="settingsType" value="default" />
-            
+            <param name="fasta_type_selector" value="history"/>
+            <param name="ownFile" ftype="fasta" value="test1.fa"/>
+            <param name="geneModel" ftype="gtf" value="test1.gtf"/>
+            <param name="blast_pairs" ftype="tabular" value="test1-test1.blastn.tabular"/>
+            <param name="settingsType" value="default"/>
             <!-- Last column of the results contains data in a random order so exact matching is not feasible -->
             <output name="output_final">
                 <assert_contents>
-                    <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;JunctionReads&#009;SpanningFrags" />
-                    <has_text text="GENE1--GENE2&#009;24&#009;0&#009;INCL_NON_REF_SPLICE&#009;GENE1^GENE1&#009;chr1:240:+&#009;GENE2^GENE2&#009;chr2:241:+" />
+                    <has_line line="#fusion_name&#9;JunctionReads&#9;SpanningFrags&#9;Splice_type&#9;LeftGene&#9;LeftBreakpoint&#9;RightGene&#9;RightBreakpoint&#9;JunctionReads&#9;SpanningFrags"/>
+                    <has_text text="GENE1--GENE2&#9;24&#9;0&#9;INCL_NON_REF_SPLICE&#9;GENE1^GENE1&#9;chr1:240:+&#9;GENE2^GENE2&#9;chr2:241:+"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 STAR-Fusion is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). STAR-Fusion uses the STAR aligner to identify candidate fusion transcripts supported by Illumina reads. STAR-Fusion further processes the output generated by the STAR aligner to map junction reads and spanning reads to a reference annotation set.
@@ -261,8 +194,7 @@ STAR-Fusion is a component of the Trinity Cancer Transcriptome Analysis Toolkit 
 The authors of STAR Fusion have made some of these files avaialble at: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/. The gene annotations in each case are restricted to the protein-coding and lincRNA transcripts.
 More info: https://github.com/STAR-Fusion/STAR-Fusion/wiki
 
-    </help>
-
+    ]]></help>
     <citations>
         <citation type="bibtex">
            @unpublished{star_fusion,

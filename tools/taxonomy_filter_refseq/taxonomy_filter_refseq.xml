@@ -37,15 +37,15 @@
             <when value="cached">
                 <param type="select" name="taxonomy_table" label="NCBI Taxonomy database">
                     <options from_data_table="ncbi_taxonomy">
-                        <filter type="sort_by" column="name" /> 
-                        <validator type="no_options" message="No NCBI Taxonomy downloads are available" />
+                        <filter type="sort_by" column="name"/>
+                        <validator type="no_options" message="No NCBI Taxonomy downloads are available"/>
                     </options>
-                    <validator type="no_options" message="No NCBI Taxonomy database download is available" />
+                    <validator type="no_options" message="No NCBI Taxonomy database download is available"/>
                 </param>
             </when>
             <when value="history">
-                <param name="nodes" type="data" format="txt" label="NCBI Taxonomy nodes.dmp file" />
-                <param name="names" type="data" format="txt" label="NCBI Taxonomy names.dmp file" />
+                <param name="nodes" type="data" format="txt" label="NCBI Taxonomy nodes.dmp file"/>
+                <param name="names" type="data" format="txt" label="NCBI Taxonomy names.dmp file"/>
             </when>
         </conditional>
         <conditional name="refseq">
@@ -56,74 +56,68 @@
             <when value="cached">
                 <param type="select" name="cached_refseq" label="Select RefSeq FASTA file">
                     <options from_data_table="all_fasta">
-                        <filter type="sort_by" column="name" /> 
-                        <validator type="no_options" message="No FASTA data is available" />
+                        <filter type="sort_by" column="name"/>
+                        <validator type="no_options" message="No FASTA data is available"/>
                     </options>
-                    <validator type="no_options" message="No FASTA data is available" />
+                    <validator type="no_options" message="No FASTA data is available"/>
                 </param>
             </when>
             <when value="history">
-                <param type="data" name="history_refseq" format="fasta" label="RefSeq FASTA file" />
+                <param type="data" name="history_refseq" format="fasta" label="RefSeq FASTA file"/>
             </when>
         </conditional>
-        <param name="ancestor_name" type="text" label="Ancestor taxon (scientific) name" />
-        <param argument="--no_curated" type="boolean" truevalue="--no_curated" falsevalue="" checked="false"
-            label="Exclude curated sequences from dataset"
-            help="Curated sequences are identified by their accession number prefixes and excluded if this option is checked"
-        />
-        <param argument="--no_predicted" type="boolean" truevalue="--no_predicted" falsevalue="" checked="false"
-            label="Exclude predicted sequences from the dataset"
-            help="Computationally predicted (but not curated) sequences are identifed by their accession number prefix and excluded if this option is checked"
-        />
+        <param name="ancestor_name" type="text" label="Ancestor taxon (scientific) name"/>
+        <param argument="--no_curated" type="boolean" truevalue="--no_curated" falsevalue="" checked="false" label="Exclude curated sequences from dataset" help="Curated sequences are identified by their accession number prefixes and excluded if this option is checked"/>
+        <param argument="--no_predicted" type="boolean" truevalue="--no_predicted" falsevalue="" checked="false" label="Exclude predicted sequences from the dataset" help="Computationally predicted (but not curated) sequences are identifed by their accession number prefix and excluded if this option is checked"/>
     </inputs>
     <outputs>
-        <data name="refseq_output_fasta" format="fasta" label="${tool.name} on ${on_string}" />
+        <data name="refseq_output_fasta" format="fasta" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="taxonomy_source" value="history" />
-            <param name="refseq_source" value="history" />
-            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp" />
-            <param name="names" ftype="txt" value="sample_tree_names.dmp" />
-            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta" />
-            <param name="ancestor_name" value="unclassified bacterial viruses" />
-            <output name="refseq_output_fasta" value="output1.fasta" />
+            <param name="taxonomy_source" value="history"/>
+            <param name="refseq_source" value="history"/>
+            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp"/>
+            <param name="names" ftype="txt" value="sample_tree_names.dmp"/>
+            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta"/>
+            <param name="ancestor_name" value="unclassified bacterial viruses"/>
+            <output name="refseq_output_fasta" value="output1.fasta"/>
         </test>
         <test>
-            <param name="taxonomy_source" value="cached" />
-            <param name="taxonomy_table" value="2019-01-01" />
-            <param name="refseq_source" value="cached" />
-            <param name="cached_refseq" value="refseq_sample" />
-            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp" />
-            <param name="names" ftype="txt" value="sample_tree_names.dmp" />
-            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta" />
-            <param name="ancestor_name" value="unclassified bacterial viruses" />
-            <param name="no_predicted" value="false" />
-            <param name="no_curated" value="false" />
-            <output name="refseq_output_fasta" value="output1.fasta" />
+            <param name="taxonomy_source" value="cached"/>
+            <param name="taxonomy_table" value="2019-01-01"/>
+            <param name="refseq_source" value="cached"/>
+            <param name="cached_refseq" value="refseq_sample"/>
+            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp"/>
+            <param name="names" ftype="txt" value="sample_tree_names.dmp"/>
+            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta"/>
+            <param name="ancestor_name" value="unclassified bacterial viruses"/>
+            <param name="no_predicted" value="false"/>
+            <param name="no_curated" value="false"/>
+            <output name="refseq_output_fasta" value="output1.fasta"/>
         </test>
         <test>
-            <param name="taxonomy_source" value="history" />
-            <param name="refseq_source" value="history" />
-            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp" />
-            <param name="names" ftype="txt" value="sample_tree_names.dmp" />
-            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta" />
-            <param name="ancestor_name" value="unclassified bacterial viruses" />
-            <param name="no_predicted" value="true" />
-            <param name="no_curated" value="false" />
-            <output name="refseq_output_fasta" value="output2.fasta" />
-        </test>        
+            <param name="taxonomy_source" value="history"/>
+            <param name="refseq_source" value="history"/>
+            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp"/>
+            <param name="names" ftype="txt" value="sample_tree_names.dmp"/>
+            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta"/>
+            <param name="ancestor_name" value="unclassified bacterial viruses"/>
+            <param name="no_predicted" value="true"/>
+            <param name="no_curated" value="false"/>
+            <output name="refseq_output_fasta" value="output2.fasta"/>
+        </test>
         <test>
-            <param name="taxonomy_source" value="history" />
-            <param name="refseq_source" value="history" />
-            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp" />
-            <param name="names" ftype="txt" value="sample_tree_names.dmp" />
-            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta" />
-            <param name="ancestor_name" value="unclassified bacterial viruses" />
-            <param name="no_predicted" value="false" />
-            <param name="no_curated" value="true" />
-            <output name="refseq_output_fasta" value="output3.fasta" />
-        </test>        
+            <param name="taxonomy_source" value="history"/>
+            <param name="refseq_source" value="history"/>
+            <param name="nodes" ftype="txt" value="sample_tree_nodes.dmp"/>
+            <param name="names" ftype="txt" value="sample_tree_names.dmp"/>
+            <param name="history_refseq" ftype="fasta" value="sample_refseq.fasta"/>
+            <param name="ancestor_name" value="unclassified bacterial viruses"/>
+            <param name="no_predicted" value="false"/>
+            <param name="no_curated" value="true"/>
+            <output name="refseq_output_fasta" value="output3.fasta"/>
+        </test>
     </tests>
     <help><![CDATA[
         This tool allows NCBI RefSeq sequences to be filtered so that only those whose species name are 
@@ -135,7 +129,7 @@
         possible the nodes.dmp and names.dmp files from the NCBI taxonomy can be provided in the history.
     ]]></help>
     <citations>
-       <citation type="bibtex">
+        <citation type="bibtex">
     @misc{vanHeusden2019,
     author = {van Heusden, Peter},
     year = {2019},

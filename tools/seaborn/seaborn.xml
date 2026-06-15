@@ -1,18 +1,14 @@
 <tool id="seaborn" name="seaborn" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="23.0" license="MIT">
     <description>generate various plots using seaborn</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="edam"/>
     <expand macro="requirements"/>
-    <expand macro="creator" />
-
+    <expand macro="creator"/>
     <command detect_errors="exit_code"><![CDATA[
         python3 '${run_script}'
     ]]></command>
-
     <configfiles>
         <configfile name="run_script"><![CDATA[
 index_col = False
@@ -86,7 +82,6 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
     <inputs>
         <expand macro="inputs"/>
         <expand macro="transformation"/>
-
         <param name="plot" type="select" label="Plot to choose from seaborn" help="Select the type of plot you want to generate using seaborn. Each option corresponds to a specific seaborn plotting function.">
             <option value="sns.scatterplot">scatterplot</option>
             <option value="sns.lineplot">lineplot</option>
@@ -98,20 +93,18 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
             <option value="sns.lmplot">lmplot</option>
             <option value="sns.histplot">histplot</option>
         </param>
-
         <conditional name="header">
             <param name="has_header" type="select" display="radio" label="Does your table have a header?" help="Specify whether the input data contains a header row. If yes, column names will be used for selection." refresh_on_change="true">
                 <option value="0" selected="true">yes</option>
                 <option value="None">no</option>
             </param>
             <when value="0">
-                <expand macro="columns" header="true" />
+                <expand macro="columns" header="true"/>
             </when>
             <when value="None">
-                <expand macro="columns" header="false" />
+                <expand macro="columns" header="false"/>
             </when>
         </conditional>
-
         <section name="advanced" title="Advanced Options">
             <param name="kind" type="select" label="Kind specification" optional="true" help="Specify the kind of plot to generate for multi-plot functions like `sns.relplot` or `sns.catplot`.">
                 <option value="hist">hist</option>
@@ -129,7 +122,7 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
                 <option value="False">none</option>
                 <sanitizer invalid_char="">
                     <valid initial="string.ascii_letters">
-                        <add value="'" />
+                        <add value="'"/>
                     </valid>
                 </sanitizer>
             </param>
@@ -141,7 +134,7 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
                 <option value="lower right">lower right</option>
                 <option value="lower left">lower left</option>
             </param>
-            <param name="scale" type="integer" optional="true" min="1" label="Scale" help="Scale parameter to control the size of the plot." />
+            <param name="scale" type="integer" optional="true" min="1" label="Scale" help="Scale parameter to control the size of the plot."/>
             <param name="palette" type="select" label="Color palette" optional="true" help="Color palette to use for the seaborn plot.">
                 <option value="muted">Muted</option>
                 <option value="pastel">Pastel</option>
@@ -159,129 +152,135 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
         </section>
     </inputs>
     <outputs>
-        <data name="output_file" format="png" label="${tool.name} ${plot} of ${on_string}" />
+        <data name="output_file" format="png" label="${tool.name} ${plot} of ${on_string}"/>
     </outputs>
     <tests>
         <!-- Test 1: Generate a scatterplot -->
         <test>
             <param name="input_data" value="mtcars.txt"/>
-            <param name="plot" value="sns.scatterplot" />
+            <param name="plot" value="sns.scatterplot"/>
             <conditional name="header">
-                <param name="has_header" value="0" />
-                <param name="xcol" value="2" /> <!-- Column 2: mpg -->
-                <param name="ycol" value="3" /> <!-- Column 3: cyl -->
+                <param name="has_header" value="0"/>
+                <param name="xcol" value="2"/>
+                <!-- Column 2: mpg -->
+                <param name="ycol" value="3"/>
+                <!-- Column 3: cyl -->
             </conditional>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="960.65, 718.85" eps="0.1"/>
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 2: Generate a barplot -->
         <test>
             <param name="input_data" value="mtcars.txt"/>
-            <param name="plot" value="sns.barplot" />
+            <param name="plot" value="sns.barplot"/>
             <conditional name="header">
-                <param name="has_header" value="0" />
-                <param name="xcol" value="3" /> <!-- Column 3: cyl -->
-                <param name="ycol" value="2" /> <!-- Column 2: mpg -->
+                <param name="has_header" value="0"/>
+                <param name="xcol" value="3"/>
+                <!-- Column 3: cyl -->
+                <param name="ycol" value="2"/>
+                <!-- Column 2: mpg -->
             </conditional>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="971.48, 692.18" eps="0.3"/>
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 3: Generate a boxplot with hue -->
         <test>
             <param name="input_data" value="mtcars.txt"/>
-            <param name="plot" value="sns.boxplot" />
+            <param name="plot" value="sns.boxplot"/>
             <conditional name="header">
-                <param name="has_header" value="0" />
-                <param name="xcol" value="3" /> <!-- Column 3: cyl -->
-                <param name="ycol" value="2" /> <!-- Column 2: mpg -->
+                <param name="has_header" value="0"/>
+                <param name="xcol" value="3"/>
+                <!-- Column 3: cyl -->
+                <param name="ycol" value="2"/>
+                <!-- Column 2: mpg -->
                 <section name="advanced_input">
-                    <param name="hue" value="4" /> <!-- Column 4: disp -->
+                    <param name="hue" value="4"/>
+                    <!-- Column 4: disp -->
                 </section>
             </conditional>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="957.48, 720.14" eps="0.1"/>
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 4: Generate a violinplot with advanced options -->
         <test>
             <param name="input_data" value="mtcars.txt"/>
-            <param name="plot" value="sns.violinplot" />
+            <param name="plot" value="sns.violinplot"/>
             <conditional name="header">
-                <param name="has_header" value="0" />
-                <param name="xcol" value="3" /> <!-- Column 3: cyl -->
-                <param name="ycol" value="2" /> <!-- Column 2: mpg -->
+                <param name="has_header" value="0"/>
+                <param name="xcol" value="3"/>
+                <!-- Column 3: cyl -->
+                <param name="ycol" value="2"/>
+                <!-- Column 2: mpg -->
             </conditional>
             <section name="advanced">
-                <param name="legend" value="'brief'" />
-                <param name="legend_pos" value="upper right" />
+                <param name="legend" value="'brief'"/>
+                <param name="legend_pos" value="upper right"/>
             </section>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="959.80, 716.27" eps="0.1"/>
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 5: Generate a lmplot with hue -->
         <test>
             <param name="input_data" value="mtcars.txt"/>
-            <param name="plot" value="sns.boxplot" />
+            <param name="plot" value="sns.boxplot"/>
             <conditional name="header">
-                <param name="has_header" value="0" />
-                <param name="xcol" value="2" /> <!-- Column 2: mpg -->
-                <param name="ycol" value="5" /> <!-- Column 5: hp -->
+                <param name="has_header" value="0"/>
+                <param name="xcol" value="2"/>
+                <!-- Column 2: mpg -->
+                <param name="ycol" value="5"/>
+                <!-- Column 5: hp -->
                 <section name="advanced_input">
-                    <param name="hue" value="3" /> <!-- Column 3: cyl -->
+                    <param name="hue" value="3"/>
+                    <!-- Column 3: cyl -->
                 </section>
             </conditional>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="958.93, 716.80" eps="0.1"/>
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 6: Plot CSV with no header -->
         <test>
             <param name="input_data" value="matrix.csv" ftype="csv"/>
-            <param name="plot" value="sns.scatterplot" />
-            <param name="header|has_header" value="None" />
+            <param name="plot" value="sns.scatterplot"/>
+            <param name="header|has_header" value="None"/>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="1440"/>
-                    <has_image_width width="1920" />
+                    <has_image_width width="1920"/>
                     <has_image_center_of_mass center_of_mass="959.9, 719.02" eps="0.1"/>
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
 .. class:: infomark

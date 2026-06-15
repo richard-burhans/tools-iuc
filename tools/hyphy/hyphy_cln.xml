@@ -14,7 +14,7 @@
             --output '$output_file'
     ]]></command>
     <inputs>
-        <param name="input_file" type="data" format="fasta,fasta.gz,nex,nexus,phylip,mega" label="Input alignment file" help="An in-frame codon alignment in one of the formats supported by HyPhy (FASTA, NEXUS, PHYLIP, or MEGA)" />
+        <param name="input_file" type="data" format="fasta,fasta.gz,nex,nexus,phylip,mega" label="Input alignment file" help="An in-frame codon alignment in one of the formats supported by HyPhy (FASTA, NEXUS, PHYLIP, or MEGA)"/>
         <expand macro="gencode"/>
         <param argument="--filtering-method" type="select" label="Filter duplicates/gaps" help="How to filter duplicates and gaps">
             <option value="No/No" selected="true">Keep all sequences and sites</option>
@@ -25,7 +25,7 @@
         </param>
     </inputs>
     <outputs>
-        <data name="output_file" format="fasta" label="${tool.name} on ${on_string}: Cleaned alignment" />
+        <data name="output_file" format="fasta" label="${tool.name} on ${on_string}: Cleaned alignment"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -33,7 +33,7 @@
             <param name="filtering_method" value="No/No"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text=">epi_isl_1041406_hCoV_19_USA_NY_PRL_2021_02_08_05H12_2021" />
+                    <has_text text="&gt;epi_isl_1041406_hCoV_19_USA_NY_PRL_2021_02_08_05H12_2021"/>
                 </assert_contents>
             </output>
         </test>
@@ -42,11 +42,11 @@
             <param name="filtering_method" value="Disallow stops"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text=">GoodSeq" />
-                    <has_text text="ATGGCGACC" />
-                    <has_text text=">StopSeq" />
-                    <has_text text="ATG---GCG" />
-                    <not_has_text text=">GoodSeqDup" />
+                    <has_text text="&gt;GoodSeq"/>
+                    <has_text text="ATGGCGACC"/>
+                    <has_text text="&gt;StopSeq"/>
+                    <has_text text="ATG---GCG"/>
+                    <not_has_text text="&gt;GoodSeqDup"/>
                 </assert_contents>
             </output>
         </test>
@@ -79,5 +79,5 @@ This tool reads a sequence alignment and 'normalizes' it by cleaning sequence id
 *   A cleaned FASTA alignment.
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

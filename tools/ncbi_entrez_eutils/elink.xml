@@ -1,11 +1,11 @@
 <tool id="ncbi_eutils_elink" name="NCBI ELink" version="@WRAPPER_VERSION@" profile="@PROFILE@">
-  <description>link UIDs from one database to another</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <expand macro="requirements"/>
-  <version_command>python '$__tool_directory__/elink.py' --version</version_command>
-  <command detect_errors="aggressive"><![CDATA[
+    <description>link UIDs from one database to another</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements"/>
+    <version_command>python '$__tool_directory__/elink.py' --version</version_command>
+    <command detect_errors="aggressive"><![CDATA[
 python '$__tool_directory__/elink.py'
 
 @LINK_TOKEN@
@@ -14,165 +14,165 @@ python '$__tool_directory__/elink.py'
 
 @LIST_OR_HIST@
 
-> $default]]></command>
-  <inputs>
-    <expand macro="list_or_hist"/>
-    <expand macro="linkmacro"/>
-  </inputs>
-  <outputs>
-    <data format="xml" name="default" label="NCBI ${cmd.cmd_select} Links From ${cmd.db_from_link.db_select_from_link} To ${cmd.db_from_link.db_to.db_select_to} Via ${cmd.db_from_link.db_to.linkname}">
-      <change_format>
-        <when input="cmd.output_format" value="xml" format="xml" />
-        <when input="cmd.output_format" value="json" format="json" />
-        <when input="cmd.output_format" value="text" format="tabular" />
-      </change_format>
-      <filter>query_source['qss'] != 'history_json' and query_source['qss'] != 'history_xml'</filter>
-    </data>
-    <collection name="linksets" type="list" label="NCBI ${cmd.cmd_select} Links From ${cmd.db_from_link.db_select_from_link} To ${cmd.db_from_link.db_to.db_select_to} Via All">
-      <discover_datasets pattern="__designation_and_ext__" directory="downloads"/>
-      <filter>query_source['qss'] == 'history_json' or query_source['qss'] == 'history_xml'</filter>
-    </collection>
-  </outputs>
-  <tests>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="taxonomy"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="pubmed"/>
-            <param name="linkname" value="None"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="xml"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_list"/>
-        <param name="id_list" value="510899"/>
-      </conditional>
-      <output name="default" file="pm-tax-neighbor.xml" ftype="xml"/>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="gene"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="nuccore"/>
-            <param name="linkname" value="gene_nuccore"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="text"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_xml"/>
-        <param name="id_xml" value="elink.esearch_in_xmlid.xml"/>
-      </conditional>
-      <output name="default" ftype="tabular">
-        <assert_contents>
-          <has_line line="1899688395"/>
-          <has_line line="1896832511"/>
-        </assert_contents>
-      </output>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="gene"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="nuccore"/>
-            <param name="linkname" value="None"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="json"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_json"/>
-        <param name="id_json" value="elink.esearchin_id.json"/>
-      </conditional>
-      <output name="default" ftype="json">
-        <assert_contents>
-          <has_text text="gene_nuccore_refseqrna"/>
-          <has_text text="gene_nuccore"/>
-          <has_text text="1899688395"/>
-        </assert_contents>
-      </output>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="gene"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="nuccore"/>
-            <param name="linkname" value="gene_nuccore_refseqrna"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="xml"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_file"/>
-        <param name="id_file" value="elink.esearchin_id.tabular"/>
-      </conditional>
-      <output name="default" file="elink.esearchin_id_1link.xml" ftype="xml"/>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor_history"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="nuccore"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="gene"/>
-            <param name="linkname" value="nuccore_gene"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="json"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_json"/>
-        <param name="id_json" value="elink.elinkin_1link.json"/>
-      </conditional>
-      <output name="default" file="elink.elinkin_1link_hist.json" ftype="json" lines_diff="2"/>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor_history"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="nuccore"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="gene"/>
-            <param name="linkname" value="nuccore_gene"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="xml"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_xml"/>
-        <param name="id_xml" value="elink.elinkin_alllinks_id.xml"/>
-      </conditional>
-      <output name="default" file="elink.elinkin_allalllinks_id.xml" ftype="xml" lines_diff="2"/>
-    </test>
-    <test expect_num_outputs="1">
-      <conditional name="cmd">
-        <param name="cmd_select" value="neighbor_score"/>
-        <conditional name="db_from_link">
-          <param name="db_select_from_link" value="nuccore"/>
-          <conditional name="db_to">
-            <param name="db_select_to" value="gene"/>
-            <param name="linkname" value="nuccore_gene"/>
-          </conditional>
-        </conditional>
-        <param name="output_format" value="text"/>
-      </conditional>
-      <conditional name="query_source">
-        <param name="qss" value="id_list"/>
-        <param name="id_list" value="1899688395"/>
-      </conditional>
-      <output name="default" file="elink.elinkin_1link_id.tabular" ftype="tabular"/>
-    </test>
-  </tests>
-  <help><![CDATA[
+> '$default']]></command>
+    <inputs>
+        <expand macro="list_or_hist"/>
+        <expand macro="linkmacro"/>
+    </inputs>
+    <outputs>
+        <data format="xml" name="default" label="NCBI ${cmd.cmd_select} Links From ${cmd.db_from_link.db_select_from_link} To ${cmd.db_from_link.db_to.db_select_to} Via ${cmd.db_from_link.db_to.linkname}">
+            <change_format>
+                <when input="cmd.output_format" value="xml" format="xml"/>
+                <when input="cmd.output_format" value="json" format="json"/>
+                <when input="cmd.output_format" value="text" format="tabular"/>
+            </change_format>
+            <filter>query_source['qss'] != 'history_json' and query_source['qss'] != 'history_xml'</filter>
+        </data>
+        <collection name="linksets" type="list" label="NCBI ${cmd.cmd_select} Links From ${cmd.db_from_link.db_select_from_link} To ${cmd.db_from_link.db_to.db_select_to} Via All">
+            <discover_datasets pattern="__designation_and_ext__" directory="downloads"/>
+            <filter>query_source['qss'] == 'history_json' or query_source['qss'] == 'history_xml'</filter>
+        </collection>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="taxonomy"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="pubmed"/>
+                        <param name="linkname" value="None"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="xml"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_list"/>
+                <param name="id_list" value="510899"/>
+            </conditional>
+            <output name="default" file="pm-tax-neighbor.xml" ftype="xml"/>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="gene"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="nuccore"/>
+                        <param name="linkname" value="gene_nuccore"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="text"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_xml"/>
+                <param name="id_xml" value="elink.esearch_in_xmlid.xml"/>
+            </conditional>
+            <output name="default" ftype="tabular">
+                <assert_contents>
+                    <has_line line="1899688395"/>
+                    <has_line line="1896832511"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="gene"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="nuccore"/>
+                        <param name="linkname" value="None"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="json"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_json"/>
+                <param name="id_json" value="elink.esearchin_id.json"/>
+            </conditional>
+            <output name="default" ftype="json">
+                <assert_contents>
+                    <has_text text="gene_nuccore_refseqrna"/>
+                    <has_text text="gene_nuccore"/>
+                    <has_text text="1899688395"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="gene"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="nuccore"/>
+                        <param name="linkname" value="gene_nuccore_refseqrna"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="xml"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_file"/>
+                <param name="id_file" value="elink.esearchin_id.tabular"/>
+            </conditional>
+            <output name="default" file="elink.esearchin_id_1link.xml" ftype="xml"/>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor_history"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="nuccore"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="gene"/>
+                        <param name="linkname" value="nuccore_gene"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="json"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_json"/>
+                <param name="id_json" value="elink.elinkin_1link.json"/>
+            </conditional>
+            <output name="default" file="elink.elinkin_1link_hist.json" ftype="json" lines_diff="2"/>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor_history"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="nuccore"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="gene"/>
+                        <param name="linkname" value="nuccore_gene"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="xml"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_xml"/>
+                <param name="id_xml" value="elink.elinkin_alllinks_id.xml"/>
+            </conditional>
+            <output name="default" file="elink.elinkin_allalllinks_id.xml" ftype="xml" lines_diff="2"/>
+        </test>
+        <test expect_num_outputs="1">
+            <conditional name="cmd">
+                <param name="cmd_select" value="neighbor_score"/>
+                <conditional name="db_from_link">
+                    <param name="db_select_from_link" value="nuccore"/>
+                    <conditional name="db_to">
+                        <param name="db_select_to" value="gene"/>
+                        <param name="linkname" value="nuccore_gene"/>
+                    </conditional>
+                </conditional>
+                <param name="output_format" value="text"/>
+            </conditional>
+            <conditional name="query_source">
+                <param name="qss" value="id_list"/>
+                <param name="id_list" value="1899688395"/>
+            </conditional>
+            <output name="default" file="elink.elinkin_1link_id.tabular" ftype="tabular"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 NCBI Entrez ELink
 =================
 
@@ -283,5 +283,5 @@ Find links to full text providers for two PubMed abstracts.
 
 @DISCLAIMER@
       ]]></help>
-  <expand macro="citations"/>
+    <expand macro="citations"/>
 </tool>

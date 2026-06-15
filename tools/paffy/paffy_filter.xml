@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[    
@@ -37,13 +37,13 @@
     <inputs>
         <expand macro="input_paf"/>
         <section name="filters" title="Filter criteria" expanded="true" help="Filters can be disabled by specifying a negative value">
-            <param argument="--minChainScore" type="integer" min="-1" value="-1" label="Min. chain score" help="Filter alignments with a chain score less than this value"/> 
-            <param argument="--minAlignmentScore" type="integer" min="-1" value="-1" label="Min. alignment score" help="Filter alignments with an alignment score less than this value"/>        
-            <param argument="--minIdentity" type="float" min="-1" value="-1" max="1" label="Min. identity" help="Filter alignments with an identity less than this value, excluding indels"/> 
-            <param argument="--minIdentityWithGaps" type="float" min="-1" value="-1" max="1" label="Min. identity with gaps" help="Filter alignments with an identity less than this value, including indels"/> 
-            <param argument="--maxTileLevel" type="integer" min="-1" value="-1" label="Max. tile level" help="Filter alignments with a tile level greater than this value"/> 
+            <param argument="--minChainScore" type="integer" min="-1" value="-1" label="Min. chain score" help="Filter alignments with a chain score less than this value"/>
+            <param argument="--minAlignmentScore" type="integer" min="-1" value="-1" label="Min. alignment score" help="Filter alignments with an alignment score less than this value"/>
+            <param argument="--minIdentity" type="float" min="-1" value="-1" max="1" label="Min. identity" help="Filter alignments with an identity less than this value, excluding indels"/>
+            <param argument="--minIdentityWithGaps" type="float" min="-1" value="-1" max="1" label="Min. identity with gaps" help="Filter alignments with an identity less than this value, including indels"/>
+            <param argument="--maxTileLevel" type="integer" min="-1" value="-1" label="Max. tile level" help="Filter alignments with a tile level greater than this value"/>
         </section>
-        <param argument="--invert" type="boolean" truevalue="--invert" falsevalue="" checked="false" label="Invert filters" help="Only output alignments that don't pass the above filters"/>  
+        <param argument="--invert" type="boolean" truevalue="--invert" falsevalue="" checked="false" label="Invert filters" help="Only output alignments that don't pass the above filters"/>
         <expand macro="params_conditional_compression"/>
     </inputs>
     <outputs>

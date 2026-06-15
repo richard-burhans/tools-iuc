@@ -334,7 +334,8 @@
             </conditional>
         </section>
         <section name="scoring" expanded="false" title="Scoring">
-            <param name="score_file" type="data" format="txt" optional="true" argument="--scores" label="Read the substitution scores and gap penalties (and possibly other options) from a scoring file (see help below for file fomat description)." help="This option cannot be used in conjunction with ‑‑match or inference."/> <!--TODO EDIT INFERENCE -->
+            <param name="score_file" type="data" format="txt" optional="true" argument="--scores" label="Read the substitution scores and gap penalties (and possibly other options) from a scoring file (see help below for file fomat description)." help="This option cannot be used in conjunction with ‑‑match or inference."/>
+            <!--TODO EDIT INFERENCE -->
             <conditional name="match">
                 <param name="match_selector" type="select" label="Set the score values for a match and mismatch" argument="--match" help="Note that specifying ‑‑match changes the defaults for some of the other options (e.g. the scoring penalties for gaps, and various extension thresholds), as described in respective sections of LASTZ manual. The regular defaults are chosen for compatibility with BLASTZ, but since BLASTZ doesn't support ‑‑match, LASTZ infers that you are not expecting BLASTZ compatibility for this run, so it is free to use improved defaults. THIS OPTION CANNOT BE USED WITH --scores">
                     <option value="yes">Yes</option>
@@ -383,13 +384,13 @@
                     </param>
                 </when>
                 <when value="len">
-                     <param name="seed_match" type="integer" value="" optional="true" label="Set seed length" help="Seeds require a N-bp word with matches in all positions" argument="--seed=match" />
+                    <param name="seed_match" type="integer" value="" optional="true" label="Set seed length" help="Seeds require a N-bp word with matches in all positions" argument="--seed=match"/>
                 </when>
                 <when value="half_len">
-                    <param name="seed_half" type="integer" value="" optional="true" label="Set seed length" help="Seeds requires N-bp word with matches or transitions in all positions" argument="--seed=half" />
+                    <param name="seed_half" type="integer" value="" optional="true" label="Set seed length" help="Seeds requires N-bp word with matches or transitions in all positions" argument="--seed=half"/>
                 </when>
                 <when value="pattern">
-                    <param name="pattern" type="text" size="25" optional="true" argument="--seed=PATTERN" label="Specify an arbitrary pattern" help="Use 1s, 0s, and Ts for seed discovery (e.g., 1110100110010101111 where 1 = match, 0 = mismatch, T = transition)" />
+                    <param name="pattern" type="text" size="25" optional="true" argument="--seed=PATTERN" label="Specify an arbitrary pattern" help="Use 1s, 0s, and Ts for seed discovery (e.g., 1110100110010101111 where 1 = match, 0 = mismatch, T = transition)"/>
                 </when>
             </conditional>
             <param name="transitions" type="select" label="Allow transitions" help="In each seed, specify how many match positions can be transition(s) instead">
@@ -403,7 +404,7 @@
                     <option value="no" selected="true">No</option>
                 </param>
                 <when value="yes">
-                    <param name="filter_tr" type="integer" value="" optional="true" label="Number of transitions" help="Allowing no more than this number of transversions. If not specified, any number of transversions is allowed (they are not limited)" />
+                    <param name="filter_tr" type="integer" value="" optional="true" label="Number of transitions" help="Allowing no more than this number of transversions. If not specified, any number of transversions is allowed (they are not limited)"/>
                     <param name="filter_match" type="integer" value="" optional="true" label="Number of matches" help="Require at least this many exact matches"/>
                 </when>
                 <when value="no">
@@ -479,7 +480,7 @@
                 <param name="cov_min" type="integer" value="" min="0" max="100" optional="true" label="Minimum coverage"/>
                 <param name="cov_max" type="integer" value="" min="0" max="100" optional="true" argument="--filter=coverage" label="Maximum coverage (optional)" help=" 0 ≤ min ≤ max ≤ 100 percent. Coverage is the percentage of the entire target or query sequence (whichever is shorter) that is included in the alignment block. Blocks outside the given range are discarded."/>
             </section>
-            <param name="filter_nmatch" type="integer" value="" min="1" optional="true" argument="--filter=nmatch" label="Filter alignments by how many bases match" help="Requiring at least this number of matched bases, min > 0. Match count is the number of matched bases in the alignment."/>
+            <param name="filter_nmatch" type="integer" value="" min="1" optional="true" argument="--filter=nmatch" label="Filter alignments by how many bases match" help="Requiring at least this number of matched bases, min &gt; 0. Match count is the number of matched bases in the alignment."/>
             <param name="filter_nmatch_percent" type="integer" value="" min="1" optional="true" argument="--filter=nmatch%" label="Filter alignments by how many bases match expressed as percentage" help="e.g., percentage of the query length."/>
             <param name="filter_nmismatch" type="integer" value="" min="0" optional="true" argument="--filter=nmismatch:0.." label="Filter alignments by the number of mismatches" help="Allow no more than this number of mismatched bases. Mismatch count, or nmismatch, is the number of aligned bases in the alignment that are mismatches (substitutions)."/>
             <param name="filter_ngap" type="integer" value="" min="0" optional="true" argument="--filter=ngap:0.." label="Filter alignments by the number of gaps" help="Allow no more than this number of gaps. Gap count, or ngap, is the number of runs of gapped columns in the alignment (each run is counted as one gap)."/>
@@ -560,7 +561,9 @@
                         <option value="number">number: The alignment number, counted as alignments are written to output (1-base)</option>
                         <option value="znumber">znumber: The alignment number, counted as alignments are written to output (0-base)</option>
                         <sanitizer invalid_char="">
-                            <valid initial="string.letters,string.digits"><add value="%" /> </valid>
+                            <valid initial="string.letters,string.digits">
+                                <add value="%"/>
+                            </valid>
                         </sanitizer>
                     </param>
                 </when>
@@ -587,10 +590,10 @@
     <outputs>
         <data format="tabular" name="output" label="${tool.name} on ${on_string}: mapped reads">
             <change_format>
-                <when input="output_format.out.format" value="paf" format="paf" />
-                <when input="output_format.out.format" value="bam" format="bam" />
-                <when input="output_format.out.format" value="maf" format="maf" />
-                <when input="output_format.out.format" value="differences" format="interval" />
+                <when input="output_format.out.format" value="paf" format="paf"/>
+                <when input="output_format.out.format" value="bam" format="bam"/>
+                <when input="output_format.out.format" value="maf" format="maf"/>
+                <when input="output_format.out.format" value="differences" format="interval"/>
             </change_format>
         </data>
         <data format="png" name="out_plot" label="${tool.name} on ${on_string}: dot plot">
@@ -600,148 +603,148 @@
     <tests>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="cached" />
-                <param name="target_2bit" value="phiX174" />
+                <param name="ref_source" value="cached"/>
+                <param name="target_2bit" value="phiX174"/>
             </conditional>
-            <param name="query" value="phiX_split.fasta" />
+            <param name="query" value="phiX_split.fasta"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="general_def" />
+                    <param name="format" value="general_def"/>
                 </conditional>
             </section>
-            <output name="output" value="test1.out" />
+            <output name="output" value="test1.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" value="phiX_split.fasta" />
+                <param name="ref_source" value="history"/>
+                <param name="target" value="phiX_split.fasta"/>
             </conditional>
-            <param name="query" value="phiX.fasta" />
+            <param name="query" value="phiX.fasta"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="general_def" />
+                    <param name="format" value="general_def"/>
                 </conditional>
             </section>
-            <output name="output" value="test2.out" />
+            <output name="output" value="test2.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" value="phiX_split.fasta" />
+                <param name="ref_source" value="history"/>
+                <param name="target" value="phiX_split.fasta"/>
             </conditional>
-            <param name="query" value="phiX.fasta" />
+            <param name="query" value="phiX.fasta"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
-             <section name="scoring">
-                <param name="score_file" value="score_file.txt" />
-             </section>
+            <section name="scoring">
+                <param name="score_file" value="score_file.txt"/>
+            </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="general_def" />
+                    <param name="format" value="general_def"/>
                 </conditional>
             </section>
-            <output name="output" value="test3.out" />
+            <output name="output" value="test3.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" value="chrM_mouse.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" value="chrM_mouse.fa.gz"/>
             </conditional>
-            <param name="query" value="chrM_human.fa.gz" />
+            <param name="query" value="chrM_human.fa.gz"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="blastn" />
+                    <param name="format" value="blastn"/>
                 </conditional>
             </section>
-            <output name="output" value="test4.out" />
+            <output name="output" value="test4.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz"/>
             </conditional>
-            <param name="query" ftype="fastq.bz2" value="chrM_mouse.fq.bz2" />
+            <param name="query" ftype="fastq.bz2" value="chrM_mouse.fq.bz2"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="blastn" />
+                    <param name="format" value="blastn"/>
                 </conditional>
             </section>
-            <output name="output" value="test5.out" />
+            <output name="output" value="test5.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz"/>
             </conditional>
-            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz" />
+            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="blastn" />
+                    <param name="format" value="blastn"/>
                 </conditional>
             </section>
-            <output name="output" value="test5.out" />
+            <output name="output" value="test5.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz"/>
             </conditional>
-            <param name="query" ftype="fastq" value="chrM_mouse.fq" />
-            <param name="lastz_32" value="true" />
+            <param name="query" ftype="fastq" value="chrM_mouse.fq"/>
+            <param name="lastz_32" value="true"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="blastn" />
+                    <param name="format" value="blastn"/>
                 </conditional>
             </section>
-            <output name="output" value="test5.out" />
+            <output name="output" value="test5.out"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="cached" />
-                <param name="target_2bit" value="phiX174" />
+                <param name="ref_source" value="cached"/>
+                <param name="target_2bit" value="phiX174"/>
             </conditional>
-            <param name="query" value="phiX_split.fasta" />
+            <param name="query" value="phiX_split.fasta"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="differences" />
+                    <param name="format" value="differences"/>
                 </conditional>
             </section>
-            <output name="output" value="test6.out" />
+            <output name="output" value="test6.out"/>
         </test>
         <test expect_num_outputs="2">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz"/>
             </conditional>
-            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz" />
+            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="paf" />
+                    <param name="format" value="paf"/>
                 </conditional>
                 <param name="rplot" value="true"/>
             </section>
@@ -750,22 +753,21 @@
         </test>
         <test expect_num_outputs="1">
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz" />
+                <param name="ref_source" value="history"/>
+                <param name="target" ftype="fasta.gz" value="chrM_human.fa.gz"/>
             </conditional>
-            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz" />
+            <param name="query" ftype="fastq.gz" value="chrM_mouse.fq.gz"/>
             <section name="where_to_look">
-                <param name="strand" value="--strand=both" />
+                <param name="strand" value="--strand=both"/>
             </section>
             <section name="output_format">
                 <conditional name="out">
-                    <param name="format" value="bam" />
+                    <param name="format" value="bam"/>
                 </conditional>
             </section>
             <output name="output" value="test8.bam" ftype="bam"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What is does**

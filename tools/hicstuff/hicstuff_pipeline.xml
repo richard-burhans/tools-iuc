@@ -42,7 +42,7 @@ hicstuff pipeline
                 <param name="reverse_reads" type="data" format="fastqsanger,fastqsanger.gz" label="Reverse reads"/>
             </when>
         </conditional>
-        <param argument="--aligner" type="select" label="Alignment software to use" help="Minimap2 should only be used for reads > 100 bp">
+        <param argument="--aligner" type="select" label="Alignment software to use" help="Minimap2 should only be used for reads &gt; 100 bp">
             <option value="bowtie2" selected="true">bowtie2</option>
             <option value="minimap2">minimap2</option>
             <option value="bwa">bwa</option>

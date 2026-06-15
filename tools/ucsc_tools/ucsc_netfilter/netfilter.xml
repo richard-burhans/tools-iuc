@@ -33,40 +33,38 @@
         > '$out'
     ]]></command>
     <inputs>
-        <param name="in_net" format="ucsc.net" type="data" label="net dataset" help="" />
-
+        <param name="in_net" format="ucsc.net" type="data" label="net dataset" help=""/>
         <conditional name="synteny">
             <param name="syn_filter" type="select" label="Filter on synteny?">
                 <option value="skipsyn" selected="true">no</option>
                 <option value="filtersyn">yes</option>
             </param>
-            <when value="skipsyn" />
+            <when value="skipsyn"/>
             <when value="filtersyn">
                 <param name="syntype" type="select" display="radio" label="Select synteny filter">
                     <option value="-syn" selected="true">filter on synteny tuned for human/mouse (-syn)</option>
                     <option value="-chimpSyn">filter on synteny tuned for human/chimp (-chimpSyn)</option>
                     <option value="-nonsyn">do inverse filtering based on synteny tuned for human/mouse (-nonsyn)</option>
                 </param>
-                <param argument="-minSynScore" type="integer" optional="true" label="Min syntenic block score" help="default 200,000: covers 27,000 bases including 9,000 aligning--a very stringent requirement." />
-                <param argument="-minSynSize" type="integer" min="0" optional="true" label="Min syntenic block size" help="default 20,000" />
-                <param argument="-minSynAli" type="integer" min="0" optional="true" label="Min syntenic alignment size" help="default 10,000" />
+                <param argument="-minSynScore" type="integer" optional="true" label="Min syntenic block score" help="default 200,000: covers 27,000 bases including 9,000 aligning--a very stringent requirement."/>
+                <param argument="-minSynSize" type="integer" min="0" optional="true" label="Min syntenic block size" help="default 20,000"/>
+                <param argument="-minSynAli" type="integer" min="0" optional="true" label="Min syntenic alignment size" help="default 10,000"/>
             </when>
         </conditional>
-
-        <param argument="-minGap" type="integer" min="0" optional="true" label="Minimum gap" help="Restrict to those with gap size (tSize) >= minSize" />
+        <param argument="-minGap" type="integer" min="0" optional="true" label="Minimum gap" help="Restrict to those with gap size (tSize) &gt;= minSize"/>
     </inputs>
     <outputs>
-        <data name="out" format="ucsc.net" />
+        <data name="out" format="ucsc.net"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="in_net" value="in.ucsc.net" />
+            <param name="in_net" value="in.ucsc.net"/>
             <conditional name="synteny">
-                <param name="syn_filter" value="filtersyn" />
-                <param name="syntype" value="-chimpSyn" />
+                <param name="syn_filter" value="filtersyn"/>
+                <param name="syntype" value="-chimpSyn"/>
             </conditional>
-            <param name="minGap" value="300" />
-            <output name="out" file="out.ucsc.net" />
+            <param name="minGap" value="300"/>
+            <output name="out" file="out.ucsc.net"/>
         </test>
     </tests>
     <help><![CDATA[

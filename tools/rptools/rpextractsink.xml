@@ -8,7 +8,7 @@
         <requirement type="package" version="@TOOL_VERSION@">rptools</requirement>
     </requirements>
     <stdio>
-        <regex match="Could not retreive any species in the compartment" level="fatal" />
+        <regex match="Could not retreive any species in the compartment" level="fatal"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
         python -m rptools.rpextractsink
@@ -19,21 +19,21 @@
             --cache-dir "\${TMPDIR:-.}"
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="sbml" optional="false" label="Strain" help="The structure of metabolites present in the chosen chassis strain in SBML format" />
-        <param name="compartment_id" type="text" value="c" label="SBML compartment ID" help="Specify the compartment from which to extract the sink molecules. The default are for BiGG models (cytosol)" >
+        <param name="input" type="data" format="sbml" optional="false" label="Strain" help="The structure of metabolites present in the chosen chassis strain in SBML format"/>
+        <param name="compartment_id" type="text" value="c" label="SBML compartment ID" help="Specify the compartment from which to extract the sink molecules. The default are for BiGG models (cytosol)">
             <validator type="empty_field" message="SBML compartment ID is required"/>
         </param>
         <section name="adv" title="Advanced Options" expanded="false">
-            <param argument="--remove_dead_end" type="boolean" truevalue="--remove_dead_end" falsevalue="" checked="true" label="Remove dead-end metabolites using FVA evaluation?" help="Perform FVA (Flux Variability Analysis) evaluation to remove dead end metabolites" />
+            <param argument="--remove_dead_end" type="boolean" truevalue="--remove_dead_end" falsevalue="" checked="true" label="Remove dead-end metabolites using FVA evaluation?" help="Perform FVA (Flux Variability Analysis) evaluation to remove dead end metabolites"/>
         </section>
     </inputs>
     <outputs>
-        <data name="sink" format="csv" metadata_source="input" label="Sink - ${input.name}" />
+        <data name="sink" format="csv" metadata_source="input" label="Sink - ${input.name}"/>
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical outputs are produced with iCN718 model input  -->
-            <param name="input" value="iCN718.xml.gz" />
+            <!-- test 1: check if identical outputs are produced with iCN718 model input  -->
+            <param name="input" value="iCN718.xml.gz"/>
             <output name="sink" file="sink.csv" ftype="csv" compare="diff"/>
         </test>
     </tests>
@@ -82,8 +82,8 @@ Acknowledgments
 
     ]]></help>
     <creator>
-        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847" />
-        <person givenName="Melchior" familyName="du Lac" identifier="https://orcid.org/0000-0002-9984-4689" />
+        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847"/>
+        <person givenName="Melchior" familyName="du Lac" identifier="https://orcid.org/0000-0002-9984-4689"/>
     </creator>
     <citations>
         <citation type="doi">10.1038/nbt1156</citation>

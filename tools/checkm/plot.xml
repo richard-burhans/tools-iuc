@@ -16,21 +16,21 @@ ln -s '$i' 'inputs/bins/${identifier}/genes.gff' &&
 ]]></token>
         <xml name="tetra_profile">
             <param name="tetra_profile" type="data" format="tabular" multiple="true" label="Tetranucleotide profiles for each bin" help="This can be generated using the tetra tool"/>
-        </xml>   
+        </xml>
         <xml name="dist_value">
-            <param argument="--dist_value" type="integer" min="0" max="100" value="" label="Reference distribution(s) to plot" />
+            <param argument="--dist_value" type="integer" min="0" max="100" value="" label="Reference distribution(s) to plot"/>
         </xml>
         <xml name="gc_params">
-            <param argument="--gc_window_size" type="integer" min="0" value="5000" label="Window size used to calculate GC histogram" />
-            <param argument="--gc_bin_width" type="float" min="0" value="0.01" label="Width of GC bars in histogram" />
+            <param argument="--gc_window_size" type="integer" min="0" value="5000" label="Window size used to calculate GC histogram"/>
+            <param argument="--gc_bin_width" type="float" min="0" value="0.01" label="Width of GC bars in histogram"/>
         </xml>
         <xml name="cd_params">
-            <param argument="--cd_window_size" type="integer" min="0" value="10000" label="Window size used to calculate CD histogram" />
-            <param argument="--cd_bin_width" type="float" min="0" value="0.01" label="Width of CD bars in histogram" />
+            <param argument="--cd_window_size" type="integer" min="0" value="10000" label="Window size used to calculate CD histogram"/>
+            <param argument="--cd_bin_width" type="float" min="0" value="0.01" label="Width of CD bars in histogram"/>
         </xml>
         <xml name="td_params">
-            <param argument="--td_window_size" type="integer" min="0" value="5000" label="Window size used to calculate TD histogram" />
-            <param argument="--td_bin_width" type="float" min="0" value="0.01" label="Width of TD bars in histogram" />
+            <param argument="--td_window_size" type="integer" min="0" value="5000" label="Window size used to calculate TD histogram"/>
+            <param argument="--td_bin_width" type="float" min="0" value="0.01" label="Width of TD bars in histogram"/>
         </xml>
         <xml name="fig_padding">
             <param argument="--fig_padding" type="float" min="0" value="0.2" label="White space to place around figure" help="In inches"/>
@@ -38,8 +38,8 @@ ln -s '$i' 'inputs/bins/${identifier}/genes.gff' &&
         <xml name="gc_bias_plot">
             <when value="gc_bias_plot">
                 <param name="bam_file" type="data" format="bam" label="BAM file to interrogate for coverage information" help="The file should be sorted"/>
-                <param argument="--window_size" type="integer" min="0" value="5000" label="Window size used to calculate plot statistics" />
-                <param argument="--all_reads" type="boolean" truevalue="--all_reads" falsevalue="" checked="false" label="Use all reads to estimate coverage instead of just those in proper pairs?" />
+                <param argument="--window_size" type="integer" min="0" value="5000" label="Window size used to calculate plot statistics"/>
+                <param argument="--all_reads" type="boolean" truevalue="--all_reads" falsevalue="" checked="false" label="Use all reads to estimate coverage instead of just those in proper pairs?"/>
                 <param argument="--min_align" type="float" min="0" max="1" value="0.98" label="Minimum alignment length as percentage of read length"/>
                 <param argument="--max_edit_dist" type="float" min="0" max="1" value="0.02" label="Maximum edit distance as percentage of read length"/>
             </when>
@@ -222,16 +222,16 @@ checkm gc_bias_plot
                 <expand macro="td_params"/>
             </when>
             <when value="nx_plot">
-                <param argument="--step_size" type="float" min="0" value="0.05" label="x step size for calculating Nx" />
+                <param argument="--step_size" type="float" min="0" value="0.05" label="x step size for calculating Nx"/>
             </when>
             <when value="len_hist">
-                <expand macro="fig_padding" />
+                <expand macro="fig_padding"/>
             </when>
             <when value="marker_plot">
-                <param name="genes_fna" type="data_collection" collection_type="list" format="fasta" label="Nucleotide gene sequences for each bin"  help="Optional output of the CheckM tree or lineage_wf tools"/>
+                <param name="genes_fna" type="data_collection" collection_type="list" format="fasta" label="Nucleotide gene sequences for each bin" help="Optional output of the CheckM tree or lineage_wf tools"/>
                 <param name="marker_gene_stats" type="data" format="tabular" label="Marker gene stats" help="Output of the CheckM qa tool or optional output of the lineage_wf or taxonomy_wf tools"/>
                 <param name="bin_stats_ext" type="data" format="tabular" label="Marker gene bin extensive stats" help="Output of the CheckM qa tool or optional output of the lineage_wf or taxonomy_wf tools"/>
-                <expand macro="fig_padding" />
+                <expand macro="fig_padding"/>
             </when>
         </conditional>
         <param argument="--image_type" type="select" label="Image type">
@@ -240,10 +240,10 @@ checkm gc_bias_plot
             <option value="png" selected="true">PNG</option>
             <option value="svg">SVG</option>
         </param>
-        <param argument="--dpi" type="integer" min="0" value="600" label="DPI of output image" />
-        <param argument="--font_size" type="integer" min="0" value="8" label="Font size" />
-        <param argument="--width" type="float" min="0" value="6.5" label="Width of output image" />
-        <param argument="--height" type="float" min="0" value="3.5" label="Height of output image" />
+        <param argument="--dpi" type="integer" min="0" value="600" label="DPI of output image"/>
+        <param argument="--font_size" type="integer" min="0" value="8" label="Font size"/>
+        <param argument="--width" type="float" min="0" value="6.5" label="Width of output image"/>
+        <param argument="--height" type="float" min="0" value="3.5" label="Height of output image"/>
     </inputs>
     <outputs>
         <collection name="gc_plot" type="list" label="${tool.name} on ${on_string}: GC distribution plot">
@@ -291,12 +291,12 @@ checkm gc_bias_plot
             </conditional>
             <conditional name="plot">
                 <param name="command" value="gc_plot"/>
-                <param name="dist_value" value="100" />
+                <param name="dist_value" value="100"/>
                 <param name="gc_window_size" value="5000"/>
                 <param name="gc_bin_width" value="0.01"/>
             </conditional>
             <param name="image_type" value="eps"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -324,12 +324,12 @@ checkm gc_bias_plot
                         <element name="637000110" ftype="gff" value="637000110.gff"/>
                     </collection>
                 </param>
-                <param name="dist_value" value="100" />
+                <param name="dist_value" value="100"/>
                 <param name="cd_window_size" value="10000"/>
                 <param name="cd_bin_width" value="0.01"/>
             </conditional>
             <param name="image_type" value="png"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -358,12 +358,12 @@ checkm gc_bias_plot
                     </collection>
                 </param>
                 <param name="tetra_profile" ftype="tabular" value="tetra"/>
-                <param name="dist_value" value="100" />
+                <param name="dist_value" value="100"/>
                 <param name="td_window_size" value="5000"/>
                 <param name="td_bin_width" value="0.01"/>
             </conditional>
             <param name="image_type" value="pdf"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -392,7 +392,7 @@ checkm gc_bias_plot
                     </collection>
                 </param>
                 <param name="tetra_profile" ftype="tabular" value="tetra"/>
-                <param name="dist_value" value="100" />
+                <param name="dist_value" value="100"/>
                 <param name="gc_window_size" value="5000"/>
                 <param name="gc_bin_width" value="0.01"/>
                 <param name="cd_window_size" value="10000"/>
@@ -401,7 +401,7 @@ checkm gc_bias_plot
                 <param name="td_bin_width" value="0.01"/>
             </conditional>
             <param name="image_type" value="png"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -427,7 +427,7 @@ checkm gc_bias_plot
                 <param name="step_size" value="0.05"/>
             </conditional>
             <param name="image_type" value="eps"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -453,7 +453,7 @@ checkm gc_bias_plot
                 <param name="fig_padding" value="0.2"/>
             </conditional>
             <param name="image_type" value="svg"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>
@@ -486,7 +486,7 @@ checkm gc_bias_plot
                 <param name="fig_padding" value="0.2"/>
             </conditional>
             <param name="image_type" value="png"/>
-            <param name="dpi" value="600" />
+            <param name="dpi" value="600"/>
             <param name="font_size" value="8"/>
             <param name="width" value="6.5"/>
             <param name="height" value="3.5"/>

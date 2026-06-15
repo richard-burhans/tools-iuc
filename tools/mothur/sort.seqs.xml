@@ -110,7 +110,8 @@ echo 'sort.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with multiple file types input -->
+        <test>
+            <!-- test with multiple file types input -->
             <param name="fasta_in" value="amazon.fasta" ftype="fasta"/>
             <param name="qfile_in" value="Mock_S280_L001_R1_001_small.trim.contigs.qual" ftype="qual454"/>
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>

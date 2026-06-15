@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -42,10 +42,10 @@
             <param name="input_fasta" value="simCow.chr6.range.fasta,simDog.chr6.range.fasta"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;9163&#009;9272" negate="true"/>
-                    <has_text text="simCow.chr6&#009;602619&#009;9185&#009;9295" negate="true"/>
-                    <has_text text="simDog.chr6|593897|5000&#009;593897&#009;4163&#009;4272"/>
-                    <has_text text="simCow.chr6|602619|5000&#009;602619&#009;4185&#009;4295"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;9163&#9;9272" negate="true"/>
+                    <has_text text="simCow.chr6&#9;602619&#9;9185&#9;9295" negate="true"/>
+                    <has_text text="simDog.chr6|593897|5000&#9;593897&#9;4163&#9;4272"/>
+                    <has_text text="simCow.chr6|602619|5000&#9;602619&#9;4185&#9;4295"/>
                 </assert_contents>
             </output>
         </test>
@@ -55,10 +55,10 @@
             <param name="input_fasta" value="simCow.chr6.range.fasta.gz,simDog.chr6.range.fasta"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;9163&#009;9272" negate="true"/>
-                    <has_text text="simCow.chr6&#009;602619&#009;9185&#009;9295" negate="true"/>
-                    <has_text text="simDog.chr6|593897|5000&#009;593897&#009;4163&#009;4272"/>
-                    <has_text text="simCow.chr6|602619|5000&#009;602619&#009;4185&#009;4295"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;9163&#9;9272" negate="true"/>
+                    <has_text text="simCow.chr6&#9;602619&#9;9185&#9;9295" negate="true"/>
+                    <has_text text="simDog.chr6|593897|5000&#9;593897&#9;4163&#9;4272"/>
+                    <has_text text="simCow.chr6|602619|5000&#9;602619&#9;4185&#9;4295"/>
                 </assert_contents>
             </output>
         </test>

@@ -26,14 +26,14 @@
                     <option value="integer">Integer Parameter</option>
                     <option value="float">Float Parameter</option>
                 </param>
-                 <when value="integer">
+                <when value="integer">
                     <param name="component_value" value="" type="integer" label="Enter integer for calculating the parameter"/>
                 </when>
-                 <when value="float">
+                <when value="float">
                     <param name="component_value" value="" type="float" label="Enter float for calculating the parameter"/>
                 </when>
             </conditional>
-            <param name='arith' type='select' label='Choose the arithmetic operator to apply'>
+            <param name="arith" type="select" label="Choose the arithmetic operator to apply">
                 <option value="+">Addition (+)</option>
                 <option value="-">Subtraction (-)</option>
                 <option value="*">Multiplication (*)</option>
@@ -43,7 +43,7 @@
                 <option value="">None (expression should end here)</option>
             </param>
         </repeat>
-        <param name='output_type' type='select' label='Choose whether the output should be an integer or a float.'>
+        <param name="output_type" type="select" label="Choose whether the output should be an integer or a float.">
             <option value="integer">Integer</option>
             <option value="float">Float</option>
         </param>

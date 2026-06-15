@@ -3,17 +3,17 @@
     <macros>
         <import>macros.xml</import>
         <xml name="pe_options">
-            <param name="read_length" type="integer" value="101" label="Length of sequenced reads" help="" />
-            <param name="min_non_overlap" type="integer" value="101" label="Number of base pair positions that must be unique to each end of a read pair" help="Some library preps are created with large reads and small library sizes such that read overlap, in all over cases overlapping reads tends to be a sign of an error. We typically set this to read length (pairs cannot overlap)." />
-            <param name="discordant_z" type="integer" value="5" label="Number of standard deviations away from the mean to be considered as a normal library size" help="" />
-            <param name="back_distance" type="integer" value="10" label="Distance into the read to add to the breakpoint interval" help="" />
-            <param name="min_mapping_threshold" type="integer" value="20" label="Minimum mapping quality (reported from the aligner) that a read must have to be considered" help="A quality of 1 will filter all reads with two or more equally good mappings." />
-            <param name="weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help="" />
+            <param name="read_length" type="integer" value="101" label="Length of sequenced reads" help=""/>
+            <param name="min_non_overlap" type="integer" value="101" label="Number of base pair positions that must be unique to each end of a read pair" help="Some library preps are created with large reads and small library sizes such that read overlap, in all over cases overlapping reads tends to be a sign of an error. We typically set this to read length (pairs cannot overlap)."/>
+            <param name="discordant_z" type="integer" value="5" label="Number of standard deviations away from the mean to be considered as a normal library size" help=""/>
+            <param name="back_distance" type="integer" value="10" label="Distance into the read to add to the breakpoint interval" help=""/>
+            <param name="min_mapping_threshold" type="integer" value="20" label="Minimum mapping quality (reported from the aligner) that a read must have to be considered" help="A quality of 1 will filter all reads with two or more equally good mappings."/>
+            <param name="weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help=""/>
         </xml>
         <xml name="sr_options">
-            <param name="sr_back_distance" type="integer" value="10" label="Distance around the +/- of the split to include in the breakpoint interval" help="A distance of 20 will created a breakpoint interval of size 40 centered at the split." />
-            <param name="sr_min_mapping_threshold" type="integer" value="20" label="Minimum mapping quality (reported from the aligner) that a read must have to be considered" help="A quality of 1 will filter all reads with two or more equally good mappings." />
-            <param name="sr_weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help="" />
+            <param name="sr_back_distance" type="integer" value="10" label="Distance around the +/- of the split to include in the breakpoint interval" help="A distance of 20 will created a breakpoint interval of size 40 centered at the split."/>
+            <param name="sr_min_mapping_threshold" type="integer" value="20" label="Minimum mapping quality (reported from the aligner) that a read must have to be considered" help="A quality of 1 will filter all reads with two or more equally good mappings."/>
+            <param name="sr_weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help=""/>
         </xml>
     </macros>
     <requirements>
@@ -180,74 +180,67 @@ print(' '.join(lumpy_cmd_parts))
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="input_bams" type="data" format="qname_sorted.bam" multiple="true" label="BAM input dataset" />
-        <param name="discordant_alns" type="data" format="bam" multiple="true" optional="true" label="Discordant reads input" />
-        <param name="split_alns" type="data" format="bam" multiple="true" optional="true" label="Split alignments input" />
+        <param name="input_bams" type="data" format="qname_sorted.bam" multiple="true" label="BAM input dataset"/>
+        <param name="discordant_alns" type="data" format="bam" multiple="true" optional="true" label="Discordant reads input"/>
+        <param name="split_alns" type="data" format="bam" multiple="true" optional="true" label="Split alignments input"/>
         <!--<param name="input_bedpe_file" type="data" format="bed" multiple="false" label="BEDPE file" help="Position sorted bedpe file containing the breakpoint intervals for this sample." />-->
         <!-- General options -->
         <section name="general" title="General options" expanded="false">
             <!--<param name="g" type="data" label="Genome file (-g)" help="Defines chromosome order" />-->
-            <param name="e" type="boolean" truevalue="-e" falsevalue=""
-            label="Show evidence for each call (-e)" help="" />
+            <param name="e" type="boolean" truevalue="-e" falsevalue="" label="Show evidence for each call (-e)" help=""/>
             <!--<param name="w" type="integer" value="1000000" label="File read windows size (-w)" help="Default 1000000" />-->
-            <param name="mw" type="integer" value="4" label="Minimum weight across all samples for a call (-mw)" help="" />
+            <param name="mw" type="integer" value="4" label="Minimum weight across all samples for a call (-mw)" help=""/>
             <!--<param name="msw" type="integer" value="1" label="Minimum per-sample weight for a call (-msw)" help="" />-->
-            <param name="tt" type="integer" value="0" label="Trim threshold (-tt)" help="" />
+            <param name="tt" type="integer" value="0" label="Trim threshold (-tt)" help=""/>
             <!--<param name="x" type="boolean" checked="true" label="Exclude bed file (-x)" help="" />-->
             <!--<param name="t" type="text" value="" label="Temp file prefix, must be to a writeable directory (-t)" help="" />-->
             <!--<param name="P" type="boolean" checked="false" label="Output probability curve for each variant (-P)" help="" />-->
             <!--<param name="b" type="boolean" checked="false" label="output as BEDPE instead of VCF (-b)" help="" />-->
-            <param name="stat_tail_n" type="integer" min="1" value="100000" label="stat_tail_n" help="" />
+            <param name="stat_tail_n" type="integer" min="1" value="100000" label="stat_tail_n" help=""/>
         </section>
         <!-- PE options -->
         <section name="pe" title="Paired-end options (-pe)" expanded="false">
-            <repeat name="rg_specific" title="Read group-specific settings" default="0" min="0"
-            help="Define paired-end options to be applied to one specific read group.">
-                <param name="rg_id" type="text"
-                label="Read group to apply settings to"
-                help="All settings below will only be applied to reads belonging to the specified read group. The value provided here must correspond to one of the read group IDs defined in the main input and the discordant pairs datasets." />
-                <expand macro="pe_options" />
+            <repeat name="rg_specific" title="Read group-specific settings" default="0" min="0" help="Define paired-end options to be applied to one specific read group.">
+                <param name="rg_id" type="text" label="Read group to apply settings to" help="All settings below will only be applied to reads belonging to the specified read group. The value provided here must correspond to one of the read group IDs defined in the main input and the discordant pairs datasets."/>
+                <expand macro="pe_options"/>
             </repeat>
             <section name="default" title="Default settings for unconfigured read groups" expanded="true">
-                <expand macro="pe_options" />
+                <expand macro="pe_options"/>
             </section>
         </section>
         <!-- SR options -->
         <section name="sr" title="Split-read options (-sr)" expanded="false">
-            <repeat name="sm_specific" title="Sample-specific settings" default="0" min="0"
-            help="Define split-reads options to be applied to one specific sample.">
-                <param name="rg_sm" type="text"
-                label="Sample to apply settings to"
-                help="All settings below will only be applied to reads of the specified sample. The value provided here must correspond to one of the read group SM values defined in the main input and the split-reads datasets." />
-                <expand macro="sr_options" />
+            <repeat name="sm_specific" title="Sample-specific settings" default="0" min="0" help="Define split-reads options to be applied to one specific sample.">
+                <param name="rg_sm" type="text" label="Sample to apply settings to" help="All settings below will only be applied to reads of the specified sample. The value provided here must correspond to one of the read group SM values defined in the main input and the split-reads datasets."/>
+                <expand macro="sr_options"/>
             </repeat>
             <section name="default" title="Default settings for unconfigured samples" expanded="true">
-                <expand macro="sr_options" />
+                <expand macro="sr_options"/>
             </section>
         </section>
         <!-- BEDPE options -->
         <!--<section name="bedpe" title="BEDPE options (-bedpe)" expanded="false">-->
-            <!--<param name="bedpe_back_distance" type="integer" value="10" label="Distance into the read to add to the breakpoint interval" help="" />-->
-            <!--<param name="bedpe_weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help="" />-->
+        <!--<param name="bedpe_back_distance" type="integer" value="10" label="Distance into the read to add to the breakpoint interval" help="" />-->
+        <!--<param name="bedpe_weight" type="integer" value="1" label="Weight of each piece of evidence from this sample" help="" />-->
         <!--</section>-->
     </inputs>
     <outputs>
-        <data name="result" format="vcf" label="${tool.name} on ${on_string}" />
+        <data name="result" format="vcf" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_bams" ftype="qname_sorted.bam" value="blasted.bam" />
-            <param name="discordant_alns" ftype="bam" value="discordants.bam" />
+            <param name="input_bams" ftype="qname_sorted.bam" value="blasted.bam"/>
+            <param name="discordant_alns" ftype="bam" value="discordants.bam"/>
             <section name="general">
-                <param name="e" value="false" />
-                <param name="stat_tail_n" value="1" />
+                <param name="e" value="false"/>
+                <param name="stat_tail_n" value="1"/>
             </section>
             <section name="pe">
                 <section name="default">
-                    <param name="weight" value="2" />
+                    <param name="weight" value="2"/>
                 </section>
             </section>
-            <output name="result" ftype="vcf" file="sample.vcf" />
+            <output name="result" ftype="vcf" file="sample.vcf"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -261,5 +254,5 @@ For more information see the LUMPY documentation_.
 .. _documentation: https://github.com/arq5x/lumpy-sv
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

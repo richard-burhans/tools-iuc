@@ -47,8 +47,7 @@ echo 'make.group(
                 <option value="manually"> Manually specify fasta files and group names</option>
             </param>
             <when value="collection">
-                <param name="fasta_collection" type="data_collection" collection_type="list" format="fasta" label="Collection with fasta files to group"
-                    help="group names will be derived from the dataset names of the collection elements, please make sure these are meaningful names"/>
+                <param name="fasta_collection" type="data_collection" collection_type="list" format="fasta" label="Collection with fasta files to group" help="group names will be derived from the dataset names of the collection elements, please make sure these are meaningful names"/>
             </when>
             <when value="manually">
                 <repeat name="inputs" title="Additional">
@@ -64,7 +63,8 @@ echo 'make.group(
         <data name="output" format="mothur.groups" from_work_dir="*groups" label="${tool.name} on ${on_string}: group"/>
     </outputs>
     <tests>
-        <test> <!-- test manual groups creation -->
+        <test>
+            <!-- test manual groups creation -->
             <param name="how" value="manually"/>
             <repeat name="inputs">
                 <param name="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
@@ -78,28 +78,30 @@ echo 'make.group(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test> <!-- test auto-creation from collection -->
+        <test>
+            <!-- test auto-creation from collection -->
             <param name="how" value="collection"/>
             <param name="fasta_collection">
-               <collection type="list">
-                   <element name="testgroup" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head" />
-                   <element name="testgroup2" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head" />
-              </collection>
-           </param>
-           <output name="output" file="Mock_S280_L001_R1_001_small.trim.contigs.good.Mock_S280_L001_R1_001_small.trim.contigs.good.groups"/>
-           <param name="savelog" value="true"/>
+                <collection type="list">
+                    <element name="testgroup" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
+                    <element name="testgroup2" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
+                </collection>
+            </param>
+            <output name="output" file="Mock_S280_L001_R1_001_small.trim.contigs.good.Mock_S280_L001_R1_001_small.trim.contigs.good.groups"/>
+            <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test> <!-- test with spaces or hyphens in element identifier -->
+        <test>
+            <!-- test with spaces or hyphens in element identifier -->
             <param name="how" value="collection"/>
             <param name="fasta_collection">
-               <collection type="list">
-                   <element name="test group" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head" />
-                   <element name="test-group2" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head" />
-              </collection>
-           </param>
-           <output name="output" file="make_group_collection.groups"/>
-           <param name="savelog" value="true"/>
+                <collection type="list">
+                    <element name="test group" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
+                    <element name="test-group2" ftype="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
+                </collection>
+            </param>
+            <output name="output" file="make_group_collection.groups"/>
+            <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
     </tests>

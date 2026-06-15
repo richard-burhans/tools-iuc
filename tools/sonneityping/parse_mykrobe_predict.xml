@@ -22,23 +22,22 @@
 
     ]]></command>
     <inputs>
-        <param name="json" type="data" format="json" multiple="true" optional="false" label="Mykrobe results to parse." help="Mykrobe predict results in JSON format." />
-
+        <param name="json" type="data" format="json" multiple="true" optional="false" label="Mykrobe results to parse." help="Mykrobe predict results in JSON format."/>
         <section name="optional" title="Optional Parameters" expanded="false">
-            <param name="alleles" type="data" format="txt,tabular" optional="true" label="Alleles" help="Links each lineage name to its human-readable counterpart." />
+            <param name="alleles" type="data" format="txt,tabular" optional="true" label="Alleles" help="Links each lineage name to its human-readable counterpart."/>
         </section>
     </inputs>
     <outputs>
-        <data format="tabular" label="parsed output" name="parsed_output" from_work_dir="results_predictResults.tsv" />
+        <data format="tabular" label="parsed output" name="parsed_output" from_work_dir="results_predictResults.tsv"/>
     </outputs>
     <tests>
         <test>
             <param name="json" ftype="json" value="SRR6114360.json"/>
-            <param name="alleles" ftype="txt" value="alleles.txt" />
+            <param name="alleles" ftype="txt" value="alleles.txt"/>
             <output name="parsed_output">
                 <assert_contents>
-                    <has_text text="3.7.30.4" />
-                    <has_text text="S. sonnei" />
+                    <has_text text="3.7.30.4"/>
+                    <has_text text="S. sonnei"/>
                 </assert_contents>
             </output>
         </test>
@@ -46,8 +45,8 @@
             <param name="json" ftype="json" value="SRR6114360.json"/>
             <output name="parsed_output">
                 <assert_contents>
-                    <has_text text="3.7.30.4" />
-                    <has_text text="S. sonnei" />
+                    <has_text text="3.7.30.4"/>
+                    <has_text text="S. sonnei"/>
                 </assert_contents>
             </output>
         </test>
@@ -62,7 +61,7 @@ Mykrobe v0.9.0+ can identify input genomes as S. sonnei, assign those identified
 
 Details of the genotyping scheme are available in the paper Hawkey et al, 2021, Nature Communications. Proposals for new genotype definitions to be added to the scheme can be submitted as an Issue in this repository.]]></help>
     <citations>
-		<citation type="bibtex">
+        <citation type="bibtex">
 			@misc{GitHubsonneityping,
 			title = {sonneityping},
 			journal = {GitHub Repository},
@@ -71,4 +70,3 @@ Details of the genotyping scheme are available in the paper Hawkey et al, 2021, 
 		</citation>
     </citations>
 </tool>
-

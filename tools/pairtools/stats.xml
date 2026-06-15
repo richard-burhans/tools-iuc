@@ -30,11 +30,11 @@
             $input_file_links
     ]]></command>
     <inputs>
-        <param type="data" name="input_file" format="4dn_pairs,4dn_pairsam,4dn_pairs.gz,4dn_pairsam.gz" multiple="true" label="Input pairs or pairsam file" help="Input 4dn pairs or pairsam file"></param>
-        <param type="boolean" argument="--merge" truevalue="--merge" falsevalue="" checked="False" label="Merge input stats files" help="If selected, will merge multiple input stats files instead of calculating statistics of .pairs/.pairsam file"></param>
-        <param type="boolean" argument="--with-chromsizes" truevalue="--with-chromsizes" falsevalue="" checked="False" label="Store sizes of chromosomes from the header of the pairs file in the stats file"></param>
-        <param type="boolean" argument="--yaml" truevalue="--yaml" falsevalue="" checked="False" label="Output stats in yaml format instead of table"></param>
-        </inputs>
+        <param type="data" name="input_file" format="4dn_pairs,4dn_pairsam,4dn_pairs.gz,4dn_pairsam.gz" multiple="true" label="Input pairs or pairsam file" help="Input 4dn pairs or pairsam file"/>
+        <param type="boolean" argument="--merge" truevalue="--merge" falsevalue="" checked="False" label="Merge input stats files" help="If selected, will merge multiple input stats files instead of calculating statistics of .pairs/.pairsam file"/>
+        <param type="boolean" argument="--with-chromsizes" truevalue="--with-chromsizes" falsevalue="" checked="False" label="Store sizes of chromosomes from the header of the pairs file in the stats file"/>
+        <param type="boolean" argument="--yaml" truevalue="--yaml" falsevalue="" checked="False" label="Output stats in yaml format instead of table"/>
+    </inputs>
     <outputs>
         <data name="pairs_output" format="tabular" label="${tool.name} on ${on_string}"/>
     </outputs>
@@ -63,7 +63,7 @@
             <param name="yaml" value="false"/>
             <output name="pairs_output" ftype="tabular" file="pairs_output_with_chromsize.stats"/>
         </test>
-         <!--Test 04 with pair files as input and yaml output format-->
+        <!--Test 04 with pair files as input and yaml output format-->
         <test expect_num_outputs="1">
             <param name="input_file" ftype="4dn_pairs" value="output_parsed_pairs_sam.pairs"/>
             <param name="merge" value="false"/>

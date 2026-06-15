@@ -32,10 +32,9 @@
 
         >'$outfile'
     ]]></command>
-
     <inputs>
-        <expand macro="input_db" />
-        <param name="last_align" type="data" format="maf" label="LASTal data file" />
+        <expand macro="input_db"/>
+        <param name="last_align" type="data" format="maf" label="LASTal data file"/>
         <param name="output_format" argument="-f" type="select" multiple="false" label="Output format">
             <option value="MAF">MAF</option>
             <option value="MAF+" selected="true">MAF+</option>
@@ -45,7 +44,7 @@
                 <option value="0">Reverse</option>
                 <option value="1" selected="true">Forward</option>
                 <option value="2">Mixed</option>
-            </param>    
+            </param>
             <param argument="-c" type="float" value="0.004" label="Cis-splice probability per base"/>
             <param argument="-t" type="float" value="0.00001" label="Trans-splice probability per base"/>
             <param argument="-M" type="float" value="7" label="Mean of ln[intron length]"/>
@@ -55,11 +54,9 @@
             <param name="no_split" argument="-n" type="boolean" truevalue="-n" falsevalue="" checked="false" label="Write original, not split, alignement."/>
         </section>
     </inputs>
-
     <outputs>
-        <data name="outfile" format="maf" label="LAST split from  ${on_string}" />
+        <data name="outfile" format="maf" label="LAST split from  ${on_string}"/>
     </outputs>
-
     <tests>
         <test>
             <conditional name="db_opts">
@@ -67,10 +64,11 @@
                 <param name="database" value="humdb"/>
             </conditional>
             <param name="last_align" ftype="maf" value="last_align_gen.maf"/>
-            <output name="outfile" ftype="maf" file="last_split.maf"  lines_diff="2"/>
+            <output name="outfile" ftype="maf" file="last_split.maf" lines_diff="2"/>
         </test>
     </tests>
-
-    <help>@LAST_HELP@</help>
-    <citations><expand macro="citations"/></citations>
+    <help><![CDATA[@LAST_HELP@]]></help>
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

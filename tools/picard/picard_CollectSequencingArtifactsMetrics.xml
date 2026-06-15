@@ -4,8 +4,7 @@
         <import>picard_macros.xml</import>
         <token name="@WRAPPER_VERSION@">0</token>
     </macros>
-    <expand macro="requirements">
-  </expand>
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
     @java_options@
     @symlink_element_identifier@
@@ -101,7 +100,7 @@
             <output name="err_summary" file="err_summary" ftype="tabular" value="err_summary" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -139,6 +138,6 @@ Program to chart the distribution of potential sequencing "single nucleotide mut
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

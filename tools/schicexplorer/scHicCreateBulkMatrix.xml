@@ -5,7 +5,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         @BINARY@
 
@@ -17,7 +17,6 @@
 
     ]]></command>
     <inputs>
-
         <expand macro="matrix_scooler_macro"/>
     </inputs>
     <outputs>
@@ -25,7 +24,7 @@
     </outputs>
     <tests>
         <test>
-            <param name='matrix_scooler' value='test_matrix.scool' />
+            <param name="matrix_scooler" value="test_matrix.scool"/>
             <output name="outFileName" file="scHicCreateBulkMatrix/bulk_matrix.cool" ftype="scool" compare="sim_size" delta="4000"/>
         </test>
     </tests>
@@ -40,6 +39,5 @@ For more information about scHiCExplorer please consider our documentation on re
 
 .. _readthedocs.io: http://schicexplorer.readthedocs.io/
 ]]></help>
-    <expand macro="citations" />
-
+    <expand macro="citations"/>
 </tool>

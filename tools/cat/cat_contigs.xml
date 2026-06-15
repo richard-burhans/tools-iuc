@@ -4,8 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
     CAT contigs 
     -c '$contigs_fasta'
@@ -19,16 +19,16 @@
     ]]></command>
     <inputs>
         <param name="contigs_fasta" type="data" format="fasta" label="Contigs fasta"/>
-        <expand macro="cat_db" />
-        <expand macro="use_intermediates" />
-        <expand macro="custom_settings_contigs" />
-        <expand macro="diamond_options" />
-        <expand macro="add_names" />
-        <expand macro="summarise" />
-        <expand macro="select_cat_outputs" />
+        <expand macro="cat_db"/>
+        <expand macro="use_intermediates"/>
+        <expand macro="custom_settings_contigs"/>
+        <expand macro="diamond_options"/>
+        <expand macro="add_names"/>
+        <expand macro="summarise"/>
+        <expand macro="select_cat_outputs"/>
     </inputs>
     <outputs>
-        <expand macro="outputs" />
+        <expand macro="outputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -37,7 +37,7 @@
             <param name="select_outputs" value="contig2classification"/>
             <output name="contig2classification">
                 <assert_contents>
-                    <has_text text="contig_38063" />
+                    <has_text text="contig_38063"/>
                 </assert_contents>
             </output>
         </test>
@@ -51,17 +51,17 @@
             <param name="summarise" value="classification"/>
             <output name="predicted_proteins_faa">
                 <assert_contents>
-                    <has_text text=">contig_9952" />
+                    <has_text text="&gt;contig_9952"/>
                 </assert_contents>
             </output>
             <output name="orf2lca_names">
                 <assert_contents>
-                    <has_text text="Bacilli" />
+                    <has_text text="Bacilli"/>
                 </assert_contents>
             </output>
             <output name="classification_summary">
                 <assert_contents>
-                    <has_text text="Bacilli" />
+                    <has_text text="Bacilli"/>
                 </assert_contents>
             </output>
         </test>
@@ -89,5 +89,5 @@ Required arguments:
 @OPTIONS_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

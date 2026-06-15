@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         ## A .1aln file embeds relative paths to the source genome databases
         ## (.1gdb/.gix). To make this tool portable we re-stage the two source
@@ -158,5 +158,5 @@ Output
 A filtered ``.1aln`` file containing only the selected chains. On small or simple inputs where every alignment already satisfies the defaults, the output may look nearly identical to the input; ALNchain only appends a provenance line to the file header in that case.
 
 ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="biotools" />
+    <expand macro="biotools"/>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">fastp</requirement>
     </requirements>
@@ -241,41 +241,37 @@ $read_mod_options.base_correction_options.correction
                 <option value="paired_collection">Paired Collection</option>
             </param>
             <when value="single">
-                <expand macro="in" />
-                <expand macro="adapter_trimming_options" />
-                <expand macro="global_trimming_options" />
+                <expand macro="in"/>
+                <expand macro="adapter_trimming_options"/>
+                <expand macro="global_trimming_options"/>
             </when>
             <when value="paired_collection">
                 <param name="paired_input" type="data_collection" format="fastqsanger,fastqsanger.gz" label="Select paired collection(s)" collection_type="paired"/>
-                <expand macro="merge_reads" />
+                <expand macro="merge_reads"/>
                 <expand macro="adapter_trimming_options">
                     <expand macro="adapter_sequence" read_number="2"/>
-                    <expand macro="detect_adapter_for_pe" />
+                    <expand macro="detect_adapter_for_pe"/>
                 </expand>
-                <expand macro="global_trimming_options_paired" />
+                <expand macro="global_trimming_options_paired"/>
             </when>
         </conditional>
-
         <section name="overrepresented_sequence_analysis" title="Overrepresented Sequence Analysis" expanded="False">
             <param name="overrepresentation_analysis" argument="-p" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Enable overrepresented analysis" help="Enable overrepresented sequence analysis."/>
             <param name="overrepresentation_sampling" argument="-P" type="integer" optional="true" label="Overrepresentation sampling" help="One in (--overrepresentation_sampling) reads will be computed for overrepresentation analysis (1~10000), smaller is slower, default is 20."/>
         </section>
-
         <!-- Filter Options -->
         <section name="filter_options" title="Filter Options">
             <section name="quality_filtering_options" title="Quality filtering options" expanded="True">
                 <param name="disable_quality_filtering" argument="-Q" type="boolean" truevalue="-Q" falsevalue="" checked="false" label="Disable quality filtering" help="Quality filtering is enabled by default. If this option is specified, quality filtering is disabled."/>
-                <param name="qualified_quality_phred" argument="-q" type="integer" optional="true" label="Qualified quality phred" help="The quality value that a base is qualified. Default 15 means phred quality >=Q15 is qualified."/>
+                <param name="qualified_quality_phred" argument="-q" type="integer" optional="true" label="Qualified quality phred" help="The quality value that a base is qualified. Default 15 means phred quality &gt;=Q15 is qualified."/>
                 <param name="unqualified_percent_limit" argument="-u" type="integer" optional="true" label="Unqualified percent limit" help="How many percents of bases are allowed to be unqualified (0~100). Default 40 means 40%."/>
-                <param name="n_base_limit" argument="-n" type="integer" optional="true" label="N base limit" help="If one read's number of N base is >n_base_limit, then this read/pair is discarded. Default is 5."/>
+                <param name="n_base_limit" argument="-n" type="integer" optional="true" label="N base limit" help="If one read's number of N base is &gt;n_base_limit, then this read/pair is discarded. Default is 5."/>
             </section>
-
             <section name="length_filtering_options" title="Length filtering options" expanded="True">
                 <param name="disable_length_filtering" argument="-L" type="boolean" truevalue="-L" falsevalue="" checked="false" label="Disable length filtering" help="Length filtering is enabled by default. If this option is specified, length filtering is disabled."/>
                 <param name="length_required" argument="-l" type="integer" optional="true" label="Length required" help="Reads shorter than this value will be discarded. Default is 15."/>
                 <param argument="--length_limit" type="integer" optional="true" label="Maximum length" help="Reads longer than this value will be discarded. Default is 0 and means no limitation."/>
             </section>
-
             <section name="low_complexity_filter" title="Low complexity filtering options" expanded="True">
                 <param name="enable_low_complexity_filter" argument="-y" type="boolean" truevalue="-y" falsevalue="" checked="false" label="Enable low complexity filter" help="The complexity is defined as the percentage of base that is different from its next base, default is No"/>
                 <param name="complexity_threshold" argument="-Y" type="integer" optional="true" label="Complexity threshold" help="Threshold for low complexity filter (0~100). Default is 30, which means 30% complexity is required."/>
@@ -287,7 +283,7 @@ $read_mod_options.base_correction_options.correction
                     <option value="">Enable</option>
                     <option value="--dont_eval_duplication" selected="true">Disable (--dont_eval_duplication)</option>
                 </param>
-                <when value="--dont_eval_duplication" />
+                <when value="--dont_eval_duplication"/>
                 <when value="">
                     <param argument="--dedup" type="boolean" truevalue="--dedup" falsevalue="" label="Drop duplicate reads/pairs"/>
                 </when>
@@ -302,33 +298,29 @@ $read_mod_options.base_correction_options.correction
                     <option value="-G">Disable polyG tail trimming</option>
                 </param>
                 <when value="-g">
-                    <expand macro="poly_g_min_len" />
+                    <expand macro="poly_g_min_len"/>
                 </when>
                 <when value="">
-                    <expand macro="poly_g_min_len" />
+                    <expand macro="poly_g_min_len"/>
                 </when>
-                <when value="-G" />
+                <when value="-G"/>
             </conditional>
-
             <conditional name="polyx_tail_trimming">
                 <param name="polyx_trimming_select" type="select" label="PolyX tail trimming" help="Similar to polyG tail trimming. When polyG tail trimming and polyX tail trimming are both enabled, fastp will perform polyG trimming first, then perform polyX trimming. Disabled by default.">
                     <option value="" selected="true">Disable polyX trimming</option>
                     <option value="-x">Enable polyX tail trimming</option>
                 </param>
                 <when value="-x">
-                    <param argument="--poly_x_min_len" type="integer" optional="true" label="PolyX minimum length"
-                        help="The minimum length to detect polyX in the read tail. 10 by default."/>
+                    <param argument="--poly_x_min_len" type="integer" optional="true" label="PolyX minimum length" help="The minimum length to detect polyX in the read tail. 10 by default."/>
                 </when>
-                <when value="" />
+                <when value=""/>
             </conditional>
-
             <section name="umi_processing" title="UMI processing" expanded="True">
                 <param name="umi" argument="-U" type="boolean" truevalue="-U" falsevalue="" checked="false" label="Enable unique molecular identifer" help="Enable unique molecular identifer (UMI) preprocessing."/>
                 <param argument="--umi_loc" type="text" optional="true" label="UMI location" help="Specify the location of UMI, can be (index1/index2/read1/read2/per_index/per_read, default is none."/>
                 <param argument="--umi_len" type="integer" optional="true" label="UMI length" help="If the UMI is in read1/read2, its length should be provided."/>
                 <param argument="--umi_prefix" type="text" optional="true" label="UMI prefix" help="If specified, an underline will be used to connect prefix and UMI (i.e. prefix=UMI, UMI=AATTCG, final=UMI_AATTCG). No prefix by default."/>
             </section>
-
             <section name="cutting_by_quality_options" title="Per read cutting by quality options" expanded="True">
                 <conditional name="cut_front_select">
                     <param argument="--cut_front" type="select" truevalue="--cut_front" falsevalue="" checked="false" label="Cut by quality in front (5')" help="Enable per read cutting by quality in front (5'). (WARNING: this will interfere with deduplication of both PE/SE data if performed with downstream tools.)">
@@ -339,8 +331,7 @@ $read_mod_options.base_correction_options.correction
                         <param argument="--cut_front_window_size" type="integer" optional="true" value="4" min="1" max="1000" label="Cutting window size for cut front" help="The size of the sliding window for sliding window trimming."/>
                         <param argument="--cut_front_mean_quality" type="integer" optional="true" value="20" min="1" max="30 " label="Cutting mean quality for cut front" help="The bases in the sliding window with mean quality below cutting_quality will be cut."/>
                     </when>
-                    <when value="">
-                    </when>
+                    <when value=""/>
                 </conditional>
                 <conditional name="cut_tail_select">
                     <param argument="--cut_tail" type="select" truevalue="--cut_tail" falsevalue="" checked="false" label="Cut by quality in tail (3')" help="Enable per read cutting by quality in tail (3'). (WARNING: this will interfere with deduplication of SE data if performed with downstream tools.)">
@@ -351,8 +342,7 @@ $read_mod_options.base_correction_options.correction
                         <param argument="--cut_tail_window_size" type="integer" optional="true" value="4" min="1" max="1000" label="Cutting window size for cut tail" help="The size of the sliding window for sliding window trimming."/>
                         <param argument="--cut_tail_mean_quality" type="integer" optional="true" value="20" min="1" max="30 " label="Cutting mean quality for cut tail" help="The bases in the sliding window with mean quality below cutting_quality will be cut."/>
                     </when>
-                    <when value="">
-                    </when>
+                    <when value=""/>
                 </conditional>
                 <conditional name="cut_right_select">
                     <param argument="--cut_right" type="select" truevalue="--cut_right" falsevalue="" checked="false" label="Cut by quality in tail (3')" help="Move a sliding window from front to tail, if meet one window with mean quality &lt; threshold, drop the bases in the window and the right part, and then stop. (WARNING: this will interfere with deduplication of SE data if performed with downstream tools.)">
@@ -363,22 +353,18 @@ $read_mod_options.base_correction_options.correction
                         <param argument="--cut_right_window_size" type="integer" optional="true" value="4" min="1" max="1000" label="Cutting window size for cut right" help="The size of the sliding window for sliding window trimming."/>
                         <param argument="--cut_right_mean_quality" type="integer" optional="true" value="20" min="1" max="30 " label="Cutting mean quality for cut right" help="The bases in the sliding window with mean quality below cutting_quality will be cut."/>
                     </when>
-                    <when value="">
-                    </when>
+                    <when value=""/>
                 </conditional>
             </section>
-
             <section name="base_correction_options" title="Base correction by overlap analysis options" expanded="True">
                 <param name="correction" argument="-c" type="boolean" truevalue="-c" falsevalue="" checked="false" label="Enable base correction" help="Enable base correction in overlapped regions (only for PE data), default is disabled."/>
             </section>
         </section>
-
         <section name="output_options" title="Output Options" expanded="False">
             <param name="report_html" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Output HTML report" help="fastp provides a QC report for the data Before and After filtering within a single HTML page, which enables comparison of the quality statistics changed by the preprocessing step directly"/>
             <param name="report_json" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Output JSON report" help="The JSON report contains all the data visualized in the HTML report. The format of the JSON report is manually optimized to be easily readable by humans and is compatible with MultiQC"/>
         </section>
     </inputs>
-
     <outputs>
         <data name="out1" format_source="single_paired|in1" label="${tool.name} on ${on_string}: Read 1 output">
             <filter>single_paired['single_paired_selector'] == "single"</filter>
@@ -386,7 +372,6 @@ $read_mod_options.base_correction_options.correction
         <collection name="output_paired_coll" type="paired" format_source="single_paired|paired_input['forward']" label="${tool.name} on ${on_string}: Paired-end output">
             <filter>single_paired['single_paired_selector'] == "paired_collection" and not single_paired['merge_reads']['merge']</filter>
         </collection>
-
         <data name="report_html" format="html" from_work_dir="fastp.html" label="${tool.name} on ${on_string}: HTML report">
             <filter>output_options['report_html'] is True</filter>
         </data>
@@ -403,7 +388,6 @@ $read_mod_options.base_correction_options.correction
             <filter>single_paired['single_paired_selector'] == "paired_collection" and single_paired['merge_reads']['merge'] and not single_paired['merge_reads']['include_unmerged']</filter>
         </collection>
     </outputs>
-
     <tests>
         <!-- 1. Ensure default output works -->
         <test expect_num_outputs="3">
@@ -431,13 +415,13 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output name="report_html">
                 <assert_contents>
@@ -460,7 +444,7 @@ $read_mod_options.base_correction_options.correction
                 </section>
             </conditional>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output name="out1" ftype="fastqsanger" file="out_a.fq"/>
         </test>
@@ -478,7 +462,7 @@ $read_mod_options.base_correction_options.correction
                 </section>
             </section>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output name="out1" ftype="fastqsanger" file="out2.fq"/>
         </test>
@@ -496,7 +480,7 @@ $read_mod_options.base_correction_options.correction
                 </section>
             </section>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output name="out1" ftype="fastqsanger" file="out3.fq"/>
         </test>
@@ -506,8 +490,8 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
@@ -519,7 +503,7 @@ $read_mod_options.base_correction_options.correction
                 </section>
             </section>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output_collection name="output_paired_coll" type="paired">
                 <element name="forward" value="out_bwa_umi_read1_1.fq" ftype="fastqsanger"/>
@@ -532,8 +516,8 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
@@ -627,8 +611,8 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2_too_long.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2_too_long.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
@@ -651,19 +635,19 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
                 <conditional name="merge_reads">
-                    <param name="merge" value="--merge" />
+                    <param name="merge" value="--merge"/>
                 </conditional>
             </conditional>
             <section name="output_options">
-                <param name="report_json" value="False" />
-                <param name="report_html" value="False" />
+                <param name="report_json" value="False"/>
+                <param name="report_html" value="False"/>
             </section>
-            <output name="merged_reads" ftype="fastqsanger" file="bwa-mem-merged-reads.fastqsanger" />
+            <output name="merged_reads" ftype="fastqsanger" file="bwa-mem-merged-reads.fastqsanger"/>
             <output_collection name="unmerged_out_coll" type="paired">
                 <element name="forward" value="bwa-mem-unmerged-filtered-reads1.fastqsanger" ftype="fastqsanger"/>
                 <element name="reverse" value="bwa-mem-unmerged-filtered-reads2.fastqsanger" ftype="fastqsanger"/>
@@ -672,7 +656,7 @@ $read_mod_options.base_correction_options.correction
                 <element name="forward" value="bwa-mem-unmerged-unfiltered-reads1.fastqsanger" ftype="fastqsanger"/>
                 <element name="reverse" ftype="fastqsanger">
                     <assert_contents>
-                        <has_size size="0" />
+                        <has_size size="0"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -683,19 +667,19 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger" />
+                        <element name="forward" value="bwa-mem-fastq1.fq" ftype="fastqsanger"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq" ftype="fastqsanger"/>
                     </collection>
                 </param>
                 <conditional name="merge_reads">
-                    <param name="merge" value="--merge" />
-                    <param name="include_unmerged" value="true" />
+                    <param name="merge" value="--merge"/>
+                    <param name="include_unmerged" value="true"/>
                 </conditional>
             </conditional>
             <section name="output_options">
-                <param name="report_html" value="False" />
+                <param name="report_html" value="False"/>
             </section>
-            <output name="merged_reads" ftype="fastqsanger" file="bwa-mem-merged-read-include-unmerged.fastqsanger" />
+            <output name="merged_reads" ftype="fastqsanger" file="bwa-mem-merged-read-include-unmerged.fastqsanger"/>
             <output name="report_json">
                 <assert_contents>
                     <has_text text="paired end (251 cycles + 251 cycles)"/>
@@ -708,19 +692,19 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq.gz" ftype="fastqsanger.gz" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq.gz" ftype="fastqsanger.gz" />
+                        <element name="forward" value="bwa-mem-fastq1.fq.gz" ftype="fastqsanger.gz"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq.gz" ftype="fastqsanger.gz"/>
                     </collection>
                 </param>
                 <conditional name="merge_reads">
-                    <param name="merge" value="--merge" />
+                    <param name="merge" value="--merge"/>
                 </conditional>
             </conditional>
             <section name="output_options">
-                <param name="report_html" value="False" />
-                <param name="report_json" value="False" />
+                <param name="report_html" value="False"/>
+                <param name="report_json" value="False"/>
             </section>
-            <output name="merged_reads" ftype="fastqsanger.gz" decompress="true" file="bwa-mem-merged-reads.fastqsanger.gz" />
+            <output name="merged_reads" ftype="fastqsanger.gz" decompress="true" file="bwa-mem-merged-reads.fastqsanger.gz"/>
             <output_collection name="unmerged_out_coll" type="paired">
                 <element name="forward" value="bwa-mem-unmerged-filtered-reads1.fastqsanger.gz" decompress="true" ftype="fastqsanger.gz"/>
                 <element name="reverse" value="bwa-mem-unmerged-filtered-reads2.fastqsanger.gz" decompress="true" ftype="fastqsanger.gz"/>
@@ -729,7 +713,7 @@ $read_mod_options.base_correction_options.correction
                 <element name="forward" value="bwa-mem-unmerged-unfiltered-reads1.fastqsanger.gz" decompress="true" ftype="fastqsanger.gz"/>
                 <element name="reverse" ftype="fastqsanger.gz" decompress="true">
                     <assert_contents>
-                        <has_size size="0" />
+                        <has_size size="0"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -740,19 +724,19 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq1.fq.gz" ftype="fastqsanger.gz" />
-                        <element name="reverse" value="bwa-mem-fastq2.fq.gz" ftype="fastqsanger.gz" />
+                        <element name="forward" value="bwa-mem-fastq1.fq.gz" ftype="fastqsanger.gz"/>
+                        <element name="reverse" value="bwa-mem-fastq2.fq.gz" ftype="fastqsanger.gz"/>
                     </collection>
                 </param>
                 <conditional name="merge_reads">
-                    <param name="merge" value="--merge" />
-                    <param name="include_unmerged" value="true" />
+                    <param name="merge" value="--merge"/>
+                    <param name="include_unmerged" value="true"/>
                 </conditional>
             </conditional>
             <section name="output_options">
-                <param name="report_html" value="False" />
+                <param name="report_html" value="False"/>
             </section>
-            <output name="merged_reads" ftype="fastqsanger.gz" decompress="true" file="bwa-mem-merged-read-include-unmerged.fastqsanger.gz" />
+            <output name="merged_reads" ftype="fastqsanger.gz" decompress="true" file="bwa-mem-merged-read-include-unmerged.fastqsanger.gz"/>
             <output name="report_json">
                 <assert_contents>
                     <has_text text="paired end (251 cycles + 251 cycles)"/>
@@ -765,13 +749,13 @@ $read_mod_options.base_correction_options.correction
                 <param name="single_paired_selector" value="paired_collection"/>
                 <param name="paired_input">
                     <collection type="paired">
-                        <element name="forward" value="bwa-mem-fastq-paired-collection/input_forward.fastqsanger.gz" ftype="fastqsanger.gz" />
-                        <element name="reverse" value="bwa-mem-fastq-paired-collection/input_reverse.fastqsanger.gz" ftype="fastqsanger.gz" />
+                        <element name="forward" value="bwa-mem-fastq-paired-collection/input_forward.fastqsanger.gz" ftype="fastqsanger.gz"/>
+                        <element name="reverse" value="bwa-mem-fastq-paired-collection/input_reverse.fastqsanger.gz" ftype="fastqsanger.gz"/>
                     </collection>
                 </param>
             </conditional>
             <section name="output_options">
-                <param name="report_json" value="False" />
+                <param name="report_json" value="False"/>
             </section>
             <output name="report_html">
                 <assert_contents>

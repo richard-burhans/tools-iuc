@@ -61,9 +61,8 @@
         #end if
 
     ]]></command>
-
     <inputs>
-        <param type="data" name="sequences" format="fasta" label="Input sequences" />
+        <param type="data" name="sequences" format="fasta" label="Input sequences"/>
         <conditional name="ref_db">
             <param name="db_source" type="select" label="Use cached database or database from history" help="">
                 <option value="cached">Cached database</option>
@@ -72,13 +71,13 @@
             <when value="cached">
                 <param name="db_cached" type="select" label="Using built-in mapseq DB" help="">
                     <options from_data_table="mapseq_db">
-                        <column name="value" index="0" />
-                        <column name="name" index="1" />
-                        <column name="version" index="2" />
-                        <column name="path" index="3" />
+                        <column name="value" index="0"/>
+                        <column name="name" index="1"/>
+                        <column name="version" index="2"/>
+                        <column name="path" index="3"/>
                         <filter type="sort_by" column="1"/>
                     </options>
-                    <validator type="no_options" message="A built-in mapseq DB is not available. Please ask the Galaxy admins to install one on the server." />
+                    <validator type="no_options" message="A built-in mapseq DB is not available. Please ask the Galaxy admins to install one on the server."/>
                 </param>
                 <conditional name="mapseq2biom">
                     <param type="select" name="mapseq2biom" label="Create OTU table" help="Creates a tab-separated OTU table (including taxonomy classification) that can be used to create BIOM files">
@@ -86,72 +85,55 @@
                         <option value="no">No</option>
                     </param>
                     <when value="yes">
-                        <param type="boolean" name="krona_input" truevalue="yes" falsevalue="no" label="Create taxon table for Krona" help="Generates a reads per taxon file suitable for the use with Krona" />
+                        <param type="boolean" name="krona_input" truevalue="yes" falsevalue="no" label="Create taxon table for Krona" help="Generates a reads per taxon file suitable for the use with Krona"/>
                     </when>
-                    <when value="no" />
+                    <when value="no"/>
                 </conditional>
             </when>
             <when value="history">
-                <param type="data" name="database" label="Database file (FASTA format)" format="fasta" />
-                <param type="data" name="taxonomy" label="Taxonomy file" format="tabular" />
-                <param type="data" name="mscluster" label="Database cluster" format="txt" optional="true" />
+                <param type="data" name="database" label="Database file (FASTA format)" format="fasta"/>
+                <param type="data" name="taxonomy" label="Taxonomy file" format="tabular"/>
+                <param type="data" name="mscluster" label="Database cluster" format="txt" optional="true"/>
                 <conditional name="mapseq2biom">
                     <param type="select" name="mapseq2biom" label="Create out of the MAPseq output a tab-separated output file?">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </param>
                     <when value="yes">
-                        <param type="data" name="otu_table" format="txt" label="OTU table" help="The OTU table produced for the taxonomies found in the reference databases that was used with MAPseq" />
-                        <param type="boolean" name="krona_input" truevalue="yes" falsevalue="no" help="Generates an output file suitable for the use with Krona" />
+                        <param type="data" name="otu_table" format="txt" label="OTU table" help="The OTU table produced for the taxonomies found in the reference databases that was used with MAPseq"/>
+                        <param type="boolean" name="krona_input" truevalue="yes" falsevalue="no" help="Generates an output file suitable for the use with Krona"/>
                     </when>
-                    <when value="no" />
+                    <when value="no"/>
                 </conditional>
             </when>
         </conditional>
-               
         <param argument="-seed" type="integer" label="Fix random seed" help="Sets a fixed integer seed value for random number generation, ensuring reproducible results" optional="true"/>
-
-        <param argument="-tophits" type="integer" label="Top hits" help="Number of reference sequences to include in alignment phase"
-                value="20" min="1" max="200" />
-               
-        <param argument="-topotus" type="integer" label="Top OTUs" help="Number of internal reference otus to include in alignment phase"
-                value="10" min="1" max="200" />
-               
-        <param argument="-minscore" type="integer" label="Minimum score" 
-                help="Minimum score cutoff to consider for a classification, should be reduced when searching very small sequences, i.e.: primer search"
-                value="30" min="1" max="50" />
-               
-        <param argument="-minid1" type="integer" label="Minimum number of shared kmers" help="Minimum number of shared kmers to consider hit in second phase kmer search" 
-                value="1" min="1" max="10" />
-               
-        <param argument="-minid2" type="integer" label="Number of ref. sequences" help="Number of reference sequences to include in alignment phase"
-                value="1" min="1" max="10" />
-               
-        <param argument="-otulim" type="integer" label="OTU limit" help="Minimum number of shared kmers to consider hit in alignment phase" 
-                value="50" min="1" max="60" />
-
+        <param argument="-tophits" type="integer" label="Top hits" help="Number of reference sequences to include in alignment phase" value="20" min="1" max="200"/>
+        <param argument="-topotus" type="integer" label="Top OTUs" help="Number of internal reference otus to include in alignment phase" value="10" min="1" max="200"/>
+        <param argument="-minscore" type="integer" label="Minimum score" help="Minimum score cutoff to consider for a classification, should be reduced when searching very small sequences, i.e.: primer search" value="30" min="1" max="50"/>
+        <param argument="-minid1" type="integer" label="Minimum number of shared kmers" help="Minimum number of shared kmers to consider hit in second phase kmer search" value="1" min="1" max="10"/>
+        <param argument="-minid2" type="integer" label="Number of ref. sequences" help="Number of reference sequences to include in alignment phase" value="1" min="1" max="10"/>
+        <param argument="-otulim" type="integer" label="OTU limit" help="Minimum number of shared kmers to consider hit in alignment phase" value="50" min="1" max="60"/>
         <param argument="-outfmt" type="select" label="Output format" help="The `confidences` format outputs confidence values for each of the taxonomic levels. ">
             <option value="simple">simple</option>
             <option value="confidences">confidences</option>
         </param>
     </inputs>
-
     <outputs>
         <data format="tabular" name="classifications" label="Classification results"/>
         <data name="otu_tsv" format="tabular" label="tab-output including taxIDs">
             <filter>(ref_db['mapseq2biom']['mapseq2biom'] == "yes")</filter>
         </data>
-        <data name="otu_tsv_notaxid" format="tabular" label="tab-output without taxIDs" >
+        <data name="otu_tsv_notaxid" format="tabular" label="tab-output without taxIDs">
             <filter>(ref_db['mapseq2biom']['mapseq2biom'] == "yes")</filter>
         </data>
-        <data name="krona_format" format="tabular" label="Krona input" >
+        <data name="krona_format" format="tabular" label="Krona input">
             <filter>(ref_db['mapseq2biom']['mapseq2biom'] == "yes" and ref_db['mapseq2biom']['krona_input'])</filter>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
-            <param name="db_source" value="history" />
+            <param name="db_source" value="history"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="database" value="mapseq_db/LSU_trimmed.fasta"/>
             <param name="taxonomy" value="mapseq_db/slv_lsu_filtered2_trimmed.txt"/>
@@ -159,94 +141,93 @@
             <param name="mapseq2biom" value="no"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
             <assert_command>
-                <has_text text="-seed" negate="true" />
+                <has_text text="-seed" negate="true"/>
             </assert_command>
         </test>
         <test expect_num_outputs="1">
-            <param name="db_source" value="history" />
+            <param name="db_source" value="history"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="database" value="mapseq_db/LSU_trimmed.fasta"/>
             <param name="taxonomy" value="mapseq_db/slv_lsu_filtered2_trimmed.txt"/>
             <param name="mapseq2biom" value="no"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
             <assert_command>
-                <has_text text="-seed" negate="true" />
+                <has_text text="-seed" negate="true"/>
             </assert_command>
         </test>
         <test expect_num_outputs="3">
-            <param name="db_source" value="history" />
+            <param name="db_source" value="history"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="database" value="mapseq_db/LSU_trimmed.fasta"/>
             <param name="taxonomy" value="mapseq_db/slv_lsu_filtered2_trimmed.txt"/>
             <param name="mscluster" value="mapseq_db/LSU_trimmed.fasta.mscluster"/>
             <param name="mapseq2biom" value="yes"/>
             <param name="krona_input" value="no"/>
-            <param name="otu_table" value="mapseq_db/test.otu" />
-            <param name="seed" value="12" />
+            <param name="otu_table" value="mapseq_db/test.otu"/>
+            <param name="seed" value="12"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
-            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular" />
-            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular" />
+            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular"/>
+            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular"/>
             <assert_command>
-                <has_text text="-seed '12'" n="1" />
+                <has_text text="-seed '12'" n="1"/>
             </assert_command>
         </test>
         <test expect_num_outputs="4">
-            <param name="db_source" value="history" />
+            <param name="db_source" value="history"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="database" value="mapseq_db/LSU_trimmed.fasta"/>
             <param name="taxonomy" value="mapseq_db/slv_lsu_filtered2_trimmed.txt"/>
             <param name="mscluster" value="mapseq_db/LSU_trimmed.fasta.mscluster"/>
             <param name="mapseq2biom" value="yes"/>
             <param name="krona_input" value="yes"/>
-            <param name="otu_table" value="mapseq_db/test.otu" />
+            <param name="otu_table" value="mapseq_db/test.otu"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
-            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular" />
-            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular" />
-            <output name="krona_format" file="mapseq2biom/krona_input.tabular" />
+            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular"/>
+            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular"/>
+            <output name="krona_format" file="mapseq2biom/krona_input.tabular"/>
             <assert_command>
-                <has_text text="-seed" negate="true" />
+                <has_text text="-seed" negate="true"/>
             </assert_command>
         </test>
         <test expect_num_outputs="1">
-            <param name="db_source" value="cached" />
-            <param name="db_cached" value="test_mapseq_db" />
+            <param name="db_source" value="cached"/>
+            <param name="db_cached" value="test_mapseq_db"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="mapseq2biom" value="no"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
             <assert_command>
-                <has_text text="-seed" negate="true" />
+                <has_text text="-seed" negate="true"/>
             </assert_command>
         </test>
         <test expect_num_outputs="3">
-            <param name="db_source" value="cached" />
-            <param name="db_cached" value="test_mapseq_db" />
+            <param name="db_source" value="cached"/>
+            <param name="db_cached" value="test_mapseq_db"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="mapseq2biom" value="yes"/>
             <param name="krona_input" value="no"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
-            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular" />
-            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular" />
+            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular"/>
+            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular"/>
             <assert_command>
-                <has_text text="-seed" negate="true" />
+                <has_text text="-seed" negate="true"/>
             </assert_command>
         </test>
         <test expect_num_outputs="4">
-            <param name="db_source" value="cached" />
-            <param name="db_cached" value="test_mapseq_db" />
+            <param name="db_source" value="cached"/>
+            <param name="db_cached" value="test_mapseq_db"/>
             <param name="sequences" value="sequences.fasta"/>
             <param name="mapseq2biom" value="yes"/>
             <param name="krona_input" value="yes"/>
-            <param name="seed" value="12" />
+            <param name="seed" value="12"/>
             <output name="classifications" file="sequences.mapseq" sort="true"/>
-            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular" />
-            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular" />
-            <output name="krona_format" file="mapseq2biom/krona_input.tabular" />
+            <output name="otu_tsv" file="mapseq2biom/tab-output_including_taxIDs.tabular"/>
+            <output name="otu_tsv_notaxid" file="mapseq2biom/tab-output_without_taxIDs.tabular"/>
+            <output name="krona_format" file="mapseq2biom/krona_input.tabular"/>
             <assert_command>
-                <has_text text="-seed '12'" n="1" />
+                <has_text text="-seed '12'" n="1"/>
             </assert_command>
         </test>
     </tests>
-
     <help><![CDATA[
 MAPseq
 ======

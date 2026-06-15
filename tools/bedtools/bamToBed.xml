@@ -3,11 +3,11 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
+    <expand macro="bio_tools"/>
     <expand macro="requirements">
         <requirement type="package" version="1.18">samtools</requirement>
     </expand>
-    <expand macro="stdio" />
+    <expand macro="stdio"/>
     <command><![CDATA[
 #if $input.extension in ['bam', 'unsorted.bam', 'qname_input_sorted.bam'] and $option == "-bedpe":
     samtools sort -n -@ "\${GALAXY_SLOTS:-4}" -T "\${TMPDIR:-.}" '${input}' > ./input.bam &&
@@ -32,33 +32,31 @@ $split
             <option value="-bed12">Create a full, 12-column "blocked" BED file</option>
             <option value="-bedpe">Create a paired-end, BEDPE format</option>
         </param>
-        <expand macro="split" />
-        <param name="ed_score" argument="-ed" type="boolean" truevalue="-ed" falsevalue="" checked="false"
-            label="Use alignment's edit-distance for BED score" />
-        <param argument="-tag" type="text" optional="true"
-            label="Use other NUMERIC BAM alignment tag as the BED score" />
+        <expand macro="split"/>
+        <param name="ed_score" argument="-ed" type="boolean" truevalue="-ed" falsevalue="" checked="false" label="Use alignment's edit-distance for BED score"/>
+        <param argument="-tag" type="text" optional="true" label="Use other NUMERIC BAM alignment tag as the BED score"/>
     </inputs>
     <outputs>
         <data name="output" format="bed" metadata_source="input" label="${input.name} (as BED)"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="srma_in3.bam" ftype="bam" />
-            <param name="option" value="" />
-            <param name="tag" value="" />
-            <output name="output" file="bamToBed_result1.bed" ftype="bed" />
+            <param name="input" value="srma_in3.bam" ftype="bam"/>
+            <param name="option" value=""/>
+            <param name="tag" value=""/>
+            <output name="output" file="bamToBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="srma_in3.bam" ftype="bam" />
-            <param name="option" value="" />
-            <param name="tag" value="NM" />
-            <output name="output" file="bamToBed_result2.bed" ftype="bed" />
+            <param name="input" value="srma_in3.bam" ftype="bam"/>
+            <param name="option" value=""/>
+            <param name="tag" value="NM"/>
+            <output name="output" file="bamToBed_result2.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="bedpeToBam_result1.bam" ftype="bam" />
-            <param name="option" value="-bedpe" />
-            <param name="tag" value="" />
-            <output name="output" file="bamToBed_result3.bed" ftype="bed" />
+            <param name="input" value="bedpeToBam_result1.bam" ftype="bam"/>
+            <param name="option" value="-bedpe"/>
+            <param name="tag" value=""/>
+            <output name="output" file="bamToBed_result3.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -81,5 +79,5 @@ If using a custom BAM alignment TAG as the BED score, note that this must be a n
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

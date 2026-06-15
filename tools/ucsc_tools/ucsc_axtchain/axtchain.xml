@@ -48,82 +48,82 @@
                 <option value="medium">medium (mouse/human linear gap costs)</option>
                 <option value="linear_gap_file">Provide a dataset with linear gap costs</option>
             </param>
-            <when value="medium" />
-            <when value="loose" />
+            <when value="medium"/>
+            <when value="loose"/>
             <when value="linear_gap_file">
                 <param name="lineargap_input" type="data" format="tabular" label="Read the linear gap costs from" help="See help for an example file."/>
             </when>
         </conditional>
         <param argument="-minScore" type="integer" optional="true" min="0" label="Minimum score for chain" help="Minimum score for a chain to be reported. Lower values keep more, weaker chains. Default: 1000."/>
         <param argument="-scoreScheme" type="data" format="tabular" optional="true" label="Scoring matrix" help="Read the alignment scoring matrix from a blastz-format file. Leave unset to use axtChain's built-in scoring."/>
-        <param name="details_output" argument="-details" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Output additional chain details" help="Writes an extra file with per-chain gap/scoring details." />
+        <param name="details_output" argument="-details" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Output additional chain details" help="Writes an extra file with per-chain gap/scoring details."/>
     </inputs>
     <outputs>
-        <data name="out" format="chain" />
+        <data name="out" format="chain"/>
         <data name="out_details" format="txt" label="${tool.name} on ${on_string}: details">
             <filter>details_output</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt" />
-            <param name="in_target" value="hg38.chrM.fasta" />
-            <param name="in_query" value="mm39.chrM.fasta" />
+            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt"/>
+            <param name="in_target" value="hg38.chrM.fasta"/>
+            <param name="in_query" value="mm39.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <output name="out" file="hg38.chrM.mm39.chrM.chain" />
+            <output name="out" file="hg38.chrM.mm39.chrM.chain"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt.gz" />
-            <param name="in_target" value="hg38.chrM.fasta" />
-            <param name="in_query" value="mm39.chrM.fasta" />
+            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt.gz"/>
+            <param name="in_target" value="hg38.chrM.fasta"/>
+            <param name="in_query" value="mm39.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <output name="out" file="hg38.chrM.mm39.chrM.chain" />
+            <output name="out" file="hg38.chrM.mm39.chrM.chain"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt.gz" />
-            <param name="in_target" value="hg38.chrM.fasta" />
-            <param name="in_query" value="mm39.chrM.fasta" />
+            <param name="in_aln" value="hg38.chrM.mm39.chrM.axt.gz"/>
+            <param name="in_target" value="hg38.chrM.fasta"/>
+            <param name="in_query" value="mm39.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <param name="details_output" value="true" />
-            <output name="out" file="hg38.chrM.mm39.chrM.chain" />
-            <output name="out_details" file="hg38.chrM.mm39.chrM.chain.details" />
+            <param name="details_output" value="true"/>
+            <output name="out" file="hg38.chrM.mm39.chrM.chain"/>
+            <output name="out_details" file="hg38.chrM.mm39.chrM.chain.details"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl" />
-            <param name="in_target" value="mm39.chrM.fasta" />
-            <param name="in_query" value="hg38.chrM.fasta" />
+            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl"/>
+            <param name="in_target" value="mm39.chrM.fasta"/>
+            <param name="in_query" value="hg38.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain" />
+            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl" />
-            <param name="in_target" value="mm39.chrM.fasta" />
-            <param name="in_query" value="hg38.chrM.fasta" />
+            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl"/>
+            <param name="in_target" value="mm39.chrM.fasta"/>
+            <param name="in_query" value="hg38.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <param name="details_output" value="true" />
-            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain" />
-            <output name="out_details" file="mm39.chrM.hg38.chrM.psl.chain.details" />
+            <param name="details_output" value="true"/>
+            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain"/>
+            <output name="out_details" file="mm39.chrM.hg38.chrM.psl.chain.details"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl.gz" />
-            <param name="in_target" value="mm39.chrM.fasta" />
-            <param name="in_query" value="hg38.chrM.fasta" />
+            <param name="in_aln" value="mm39.chrM.hg38.chrM.psl.gz"/>
+            <param name="in_target" value="mm39.chrM.fasta"/>
+            <param name="in_query" value="hg38.chrM.fasta"/>
             <conditional name="linear_gap_options">
-                <param name="linear_gap" value="medium" />
+                <param name="linear_gap" value="medium"/>
             </conditional>
-            <param name="details_output" value="true" />
-            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain" />
-            <output name="out_details" file="mm39.chrM.hg38.chrM.psl.chain.details" />
+            <param name="details_output" value="true"/>
+            <output name="out" file="mm39.chrM.hg38.chrM.psl.chain"/>
+            <output name="out_details" file="mm39.chrM.hg38.chrM.psl.chain.details"/>
         </test>
     </tests>
     <help><![CDATA[

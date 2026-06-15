@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="strelka_germline" name="Strelka Germline" version="@TOOL_VERSION@+@GALAXY_VERSION@">
     <description>@DESCRIPTION@ for germline variation in small cohorts</description>
     <macros>
@@ -76,7 +75,6 @@
         #end if
     #end if
     ]]></command>
-    
     <configfiles>
         <configfile name="config_file">
 ## parser cannot handle indents
@@ -85,7 +83,6 @@ minMapq = $strelka.minMapq
 @CONFIG@
         </configfile>
     </configfiles>
-
     <inputs>
         <param argument="--bam" type="data" format="bam,cram" multiple="true" label="Select sample file(s)" help=""/>
         <expand macro="input_required" ref="bam"/>
@@ -93,17 +90,16 @@ minMapq = $strelka.minMapq
             <option value="--rna">RNA sequencing data (--rna)</option>
         </expand>
         <expand macro="calling_model_expert">
-            <param name="s_e_e" type="select" label="Configure sequence error estimation for indels"
-            help="By default, indel error rates are estimated from a subsample of the input sequencing data for each sample. This step can be disabled so that the tool reverts to precomputed indel error rates reflecting an intermediate point between different sequencing assays. Alternatively, all data (from sufficiently large chromosomes) can be used to obtain the estimate, but this may greatly increase runtime.">
+            <param name="s_e_e" type="select" label="Configure sequence error estimation for indels" help="By default, indel error rates are estimated from a subsample of the input sequencing data for each sample. This step can be disabled so that the tool reverts to precomputed indel error rates reflecting an intermediate point between different sequencing assays. Alternatively, all data (from sufficiently large chromosomes) can be used to obtain the estimate, but this may greatly increase runtime.">
                 <option value="--disableSequenceErrorEstimation">Use default sequence error estimate (--disableSequenceErrorEstimation)</option>
                 <option value="" selected="true">Estimate sequence error rate from a subsample of the input data (default)</option>
                 <option value="--useAllDataForSequenceErrorEstimation">Estimate sequence error rate from the full input data (--useAllDataForSequenceErrorEstimation)</option>
             </param>
         </expand>
-        <expand macro="regions_select" />
+        <expand macro="regions_select"/>
         <section name="pl" title="Ploidy configuration" expanded="false">
             <param argument="--ploidy" type="data" format="vcf,vcf_bgzip" optional="true" label="Select ploidy file" help="Provide ploidy file in VCF. The VCF should include one sample column per input sample labeled with the same sample names found in the input BAM/CRAM RG header sections. Ploidy should be provided in records using the FORMAT/CN field, which are interpreted to span the range [POS+1, INFO/END]. Any CN value besides 1 (haploid regions) or 0 (regions expected to be absent) will be treated as 2."/>
-            <param argument="--callContinuousVf" type="text" value="" label="Call variants without ploidy assumption on this chromosome" help="For the specified chromosome the sequencing data will be treated as a pooled sample: variants on it will be called with continuous frequencies and scored using a simple Poisson noise model. May be applied to the mitochondrial genome, for example." />
+            <param argument="--callContinuousVf" type="text" value="" label="Call variants without ploidy assumption on this chromosome" help="For the specified chromosome the sequencing data will be treated as a pooled sample: variants on it will be called with continuous frequencies and scored using a simple Poisson noise model. May be applied to the mitochondrial genome, for example."/>
         </section>
         <section name="oo" title="Output options" expanded="false">
             <expand macro="input_output"/>
@@ -112,30 +108,28 @@ minMapq = $strelka.minMapq
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
                 </param>
-                <when value="no" />
+                <when value="no"/>
                 <when value="yes">
-                    <param argument="--noCompress" type="data" format="bed" optional="true"
-                    label="In the gVCFs, do NOT block-compress sites that fall in these regions"
-                    help="If you have regions of special interest, for which you do not want site-information to be binned into blocks in the gVCF output, but would want to have calling statistics reported separately, you can specify those regions through a BED dataset here." />
+                    <param argument="--noCompress" type="data" format="bed" optional="true" label="In the gVCFs, do NOT block-compress sites that fall in these regions" help="If you have regions of special interest, for which you do not want site-information to be binned into blocks in the gVCF output, but would want to have calling statistics reported separately, you can specify those regions through a BED dataset here."/>
                 </when>
             </conditional>
         </section>
         <section name="strelka" title="Strelka run configuration" expanded="false">
-            <param argument="minMapq" name="minMapq" type="integer" value="20" label="Set minMapq" help="Don't use reads with MAPQ less than this value for variant calling."/>
+            <param argument="minMapq" type="integer" value="20" label="Set minMapq" help="Don't use reads with MAPQ less than this value for variant calling."/>
             <expand macro="input_strelka"/>
         </section>
     </inputs>
     <outputs>
         <data name="out_variants" format="vcf" from_work_dir="results/results/variants/variants_out" label="${tool.name} on ${on_string}, Variants, vcf">
             <change_format>
-                <when input="oo.vcf_type" value="compressed" format="vcf_bgzip" />
+                <when input="oo.vcf_type" value="compressed" format="vcf_bgzip"/>
             </change_format>
         </data>
         <collection name="out_genome" type="list" label="${tool.name} on ${on_string}: Genome, vcf">
-            <discover_datasets pattern="genome\.(?P&lt;designation&gt;.+)\.vcf\.gz&#36;" format="vcf_bgzip" directory="results/results/variants/" />
+            <discover_datasets pattern="genome\.(?P&lt;designation&gt;.+)\.vcf\.gz$" format="vcf_bgzip" directory="results/results/variants/"/>
             <filter>oo['gvcf']['emit_gvcfs'] == 'yes'</filter>
         </collection>
-   </outputs>
+    </outputs>
     <tests>
         <!-- #1; input bam, decompressed -->
         <test expect_num_outputs="2">
@@ -145,23 +139,23 @@ minMapq = $strelka.minMapq
                 <param name="ref" value="hg98.fa" ftype="fasta"/>
             </conditional>
             <section name="expert_settings">
-                <param name="s_e_e" value="--disableSequenceErrorEstimation" />
+                <param name="s_e_e" value="--disableSequenceErrorEstimation"/>
             </section>
             <section name="oo">
                 <param name="vcf_type" value="decompressed"/>
                 <conditional name="gvcf">
-                    <param name="emit_gvcfs" value="yes" />
+                    <param name="emit_gvcfs" value="yes"/>
                 </conditional>
             </section>
             <output name="out_variants" ftype="vcf">
                 <assert_contents>
                     <has_n_lines n="62"/>
-                    <has_line_matching expression="#CHROM&#009;POS&#009;.+"/>
-                    <has_line_matching expression="demo20&#009;3664&#009;.+"/>
+                    <has_line_matching expression="#CHROM&#9;POS&#9;.+"/>
+                    <has_line_matching expression="demo20&#9;3664&#9;.+"/>
                 </assert_contents>
             </output>
             <output_collection name="out_genome" type="list" count="3">
-                <element name="S1" ftype="vcf_bgzip" file="genome_test1.vcf" decompress="true" compare="diff" lines_diff="8" />
+                <element name="S1" ftype="vcf_bgzip" file="genome_test1.vcf" decompress="true" compare="diff" lines_diff="8"/>
             </output_collection>
         </test>
         <!-- #2; input cram, compressed -->
@@ -172,12 +166,12 @@ minMapq = $strelka.minMapq
                 <param name="ref" value="hg98.fa" ftype="fasta"/>
             </conditional>
             <section name="expert_settings">
-                <param name="s_e_e" value="--disableSequenceErrorEstimation" />
+                <param name="s_e_e" value="--disableSequenceErrorEstimation"/>
             </section>
             <section name="oo">
                 <param name="vcf_type" value="compressed"/>
             </section>
-            <output name="out_variants" ftype="vcf_bgzip" file="variants_test2.vcf" decompress="true" compare="diff" lines_diff="8" />
+            <output name="out_variants" ftype="vcf_bgzip" file="variants_test2.vcf" decompress="true" compare="diff" lines_diff="8"/>
         </test>
         <!-- #3; input bam, no defaults (note without s_e_e (genome) output seem not deterministic -->
         <test expect_num_outputs="2">
@@ -186,11 +180,11 @@ minMapq = $strelka.minMapq
                 <param name="ref_sel" value="history"/>
                 <param name="ref" value="hg98.fa" ftype="fasta"/>
             </conditional>
-            <param name="optimization" value="--rna" />
+            <param name="optimization" value="--rna"/>
             <section name="oo">
                 <param name="vcf_type" value="decompressed"/>
                 <conditional name="gvcf">
-                    <param name="emit_gvcfs" value="yes" />
+                    <param name="emit_gvcfs" value="yes"/>
                 </conditional>
             </section>
             <section name="pl">
@@ -203,8 +197,8 @@ minMapq = $strelka.minMapq
             <output name="out_variants" ftype="vcf">
                 <assert_contents>
                     <has_n_lines n="81"/>
-                    <has_line_matching expression="#CHROM&#009;POS&#009;.+"/>
-                    <has_line_matching expression="demo20&#009;3664&#009;.+"/>
+                    <has_line_matching expression="#CHROM&#9;POS&#9;.+"/>
+                    <has_line_matching expression="demo20&#9;3664&#9;.+"/>
                 </assert_contents>
             </output>
             <output_collection name="out_genome" type="list" count="2">

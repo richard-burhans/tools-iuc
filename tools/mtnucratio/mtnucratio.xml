@@ -5,11 +5,9 @@
         <token name="@VERSION_SUFFIX@">0</token>
         <token name="@PROFILE@">25.1</token>
     </macros>
-
     <requirements>
         <requirement type="package" version="0.7.1">mtnucratio</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
         ## 1. Create symlinks for BAM and its index
         ln -s '$input_bam' input.bam &&
@@ -20,45 +18,41 @@
         mv input*.mtnucratio '$output_report' &&
         mv input*.json '$output_json'
     ]]></command>
-
     <inputs>
-        <param name="input_bam" type="data" format="bam" label="Input BAM file" help="BAM file must be coordinate-sorted and indexed." />
+        <param name="input_bam" type="data" format="bam" label="Input BAM file" help="BAM file must be coordinate-sorted and indexed."/>
         <param name="mt_chrom_name" type="text" value="MT" label="Mitochondrial Chromosome Name" help="Exact name of the mitochondrial contig (e.g., MT, chrM, rCRS).">
             <sanitizer invalid_char="">
                 <valid initial="string.letters,string.digits">
-                    <add value="_" />
-                    <add value="." />
-                    <add value="-" />
+                    <add value="_"/>
+                    <add value="."/>
+                    <add value="-"/>
                 </valid>
             </sanitizer>
         </param>
     </inputs>
-
     <outputs>
-        <data name="output_report" format="txt" label="${tool.name} on ${on_string}: Report" />
-        <data name="output_json" format="json" label="${tool.name} on ${on_string}: JSON" />
+        <data name="output_report" format="txt" label="${tool.name} on ${on_string}: Report"/>
+        <data name="output_json" format="json" label="${tool.name} on ${on_string}: JSON"/>
     </outputs>
-
     <tests>
         <test expect_num_outputs="2">
-            <param name="input_bam" value="test.bam" ftype="bam" />
-            <param name="mt_chrom_name" value="MT" />
+            <param name="input_bam" value="test.bam" ftype="bam"/>
+            <param name="mt_chrom_name" value="MT"/>
             <output name="output_report">
                 <assert_contents>
-                    <has_text text="mitochondrium" />
-                    <has_text text="nuclear" />
+                    <has_text text="mitochondrium"/>
+                    <has_text text="nuclear"/>
                 </assert_contents>
             </output>
             <output name="output_json">
                 <assert_contents>
-                    <has_text text="mtnuccalculator" />
-                    <has_text text="mtreads" />
-                    <has_text text="nucreads" />
+                    <has_text text="mtnuccalculator"/>
+                    <has_text text="mtreads"/>
+                    <has_text text="nucreads"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 **Mt/Nuc Ratio Calculator**
  
@@ -74,12 +68,11 @@ It calculates the ratio of reads mapping to the mitochondrial genome versus the 
 * **Report:** A text file containing the counts and the calculated ratio.
 * **MultiQC JSON:** A JSON file properly formatted to be recognized by MultiQC for plotting.
     ]]></help>
-
     <citations>
         <citation type="doi">10.5281/zenodo.13739840</citation>
     </citations>
     <creator>
         <person givenName="Ali Mert" familyName="Aydin" url="https://github.com/mertydn"/>
-        <organization name="Galaxy Europe" url="https://galaxyproject.eu/" />
+        <organization name="Galaxy Europe" url="https://galaxyproject.eu/"/>
     </creator>
 </tool>

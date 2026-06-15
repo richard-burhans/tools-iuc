@@ -1,16 +1,13 @@
 <tool id="data_manager_fetch_liana_resources" name="Download LIANA Resources" tool_type="manage_data" version="1.0+galaxy0" profile="25.0">
     <description>Download ligand-receptor, ortholog, and metalinks resources from LIANA</description>
-    
     <requirements>
         <requirement type="package" version="1.7.1">liana</requirement>
     </requirements>
-    
     <command detect_errors="exit_code"><![CDATA[
         python '$__tool_directory__/liana_resources_downloader.py'
             --resource '$resource_select'
             --output '$output_file'
     ]]></command>
-    
     <inputs>
         <param name="resource_select" type="select" label="Resources to download" help="Choose which LIANA resources to download and cache">
             <!-- LIGAND-RECEPTOR RESOURCES (DEFAULT) -->
@@ -18,25 +15,20 @@
             <option value="ligand_receptor_main">L-R: Main databases: consensus, cellphonedb, cellchatdb (5-8 MB)</option>
             <option value="ligand_receptor_single_cell">L-R: Single-cell methods (15-25 MB)</option>
             <option value="ligand_receptor_all">L-R: All 17 databases (50-100 MB, COMPREHENSIVE)</option>
-            
             <!-- ORTHOLOG MAPPING RESOURCES -->
             <option value="orthologs_common">Orthologs: Human-Mouse and Human-Rat (HCOP)</option>
             <option value="orthologs_all">Orthologs: All species pairs (Human-Mouse, Human-Rat, Human-Chicken, Human-Zebrafish)</option>
-            
             <!-- METALINKS RESOURCES -->
             <option value="metalinks_blood">Metalinks: Blood biospecimens only</option>
             <option value="metalinks_plasma">Metalinks: Plasma biospecimens only</option>
             <option value="metalinks_all">Metalinks: All biospecimens (metabolite-protein)</option>
-            
             <!-- COMBINATION -->
             <option value="all">ALL: Complete LIANA resources (all L-R + orthologs + metalinks, ~200 MB)</option>
         </param>
     </inputs>
-    
     <outputs>
         <data name="output_file" format="data_manager_json"/>
     </outputs>
-    
     <tests>
         <test>
             <param name="resource_select" value="ligand_receptor_consensus"/>
@@ -58,7 +50,6 @@
             </output>
         </test>
     </tests>
-    
     <help><![CDATA[
     **What it does**
     
@@ -143,7 +134,6 @@
     - Resources persist across Galaxy restarts
     - No manual intervention needed in tool definitions
     ]]></help>
-    
     <citations>
         <citation type="doi">10.1038/s41556-024-01469-w</citation>
     </citations>

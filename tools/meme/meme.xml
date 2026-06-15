@@ -100,7 +100,7 @@ meme '$input1'
                     <param name="alphabet_type_selector" type="select" label="Sequence Alphabet">
                         <option value="protein">Protein</option>
                         <option value="dna" selected="true">DNA</option>
-                        <option value="alph">Alphabet</option> 
+                        <option value="alph">Alphabet</option>
                     </param>
                     <when value="protein">
                         <conditional name="prior_type">
@@ -311,7 +311,7 @@ meme '$input1'
                         <param argument="-ws" type="integer" value="1" label="Space cost"/>
                         <param argument="-noendgaps" type="boolean" truevalue="-noendgaps" falsevalue="" checked="False" label="Do not penalize endgaps"/>
                     </when>
-                </conditional>   
+                </conditional>
                 <param argument="-bfile" type="data" format="txt" optional="True" label="Background Model"/>
                 <param name="pspfile" argument="-psp" type="data" format="txt" optional="True" label="Position-Specific Prior"/>
                 <param argument="-maxiter" type="integer" value="50" label="Number of iterations of EM to run"/>
@@ -380,7 +380,7 @@ meme '$input1'
             <output name="xml_outfile" file="meme_output_custom.xml" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 
 .. class:: warningmark
@@ -405,7 +405,7 @@ For detailed information on MEME, click here_, or view the license_.
 .. _here: http://meme-suite.org/doc/meme.html?man_type=web
 .. _license: http://meme-suite.org/doc/copyright.html?man_type=web
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
 @inproceedings{Bailey1994Fitting,

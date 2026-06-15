@@ -1,5 +1,5 @@
 <tool id="enasearch_retrieve_run_report" name="Retrieve a run report" version="@WRAPPER_VERSION@.0">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
         <import>search_macros.xml</import>

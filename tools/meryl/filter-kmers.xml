@@ -12,7 +12,7 @@
     <command detect_errors="exit_code"><![CDATA[
     export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-8192}/1024)) &&
     mkdir  -p ./temp_db/ &&
-    tar -xmf $input_meryldb_02 --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
+    tar -xmf '$input_meryldb_02' --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
     mv ./temp_db/* tmp.meryl &&
     meryl
     $filter_operations
@@ -121,7 +121,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -134,6 +134,6 @@ Meryl is the k-mer counter. This tool can be used to filter k-mers.
 - Equal-to: return k-mers that occur exactly N times in the input
 - Not-equal-to: return k-mers that do not occur exactly N times in the input
 
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>

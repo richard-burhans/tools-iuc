@@ -41,8 +41,8 @@ python '$__tool_directory__/jbrowse2.py'
 
 cp '$output.files_path/index.html' '$output';
   ]]></command>
-  <configfiles>
-      <configfile name="trackxml"><![CDATA[<?xml version="1.0"?>
+    <configfiles>
+        <configfile name="trackxml"><![CDATA[<?xml version="1.0"?>
 #import json
 <root>
     <metadata>
@@ -308,193 +308,170 @@ cp '$output.files_path/index.html' '$output';
                 <option value="create">New JBrowse Instance</option>
                 <option value="update">Update exising JBrowse Instance</option>
             </param>
-            <when value="create" />
+            <when value="create"/>
             <when value="update">
-                <param name="update_jbrowse" type="data" format="html" label="Previous JBrowse Instance" />
+                <param name="update_jbrowse" type="data" format="html" label="Previous JBrowse Instance"/>
             </when>
         </conditional>
-
         <repeat name="assemblies" min="1" title="Genome Assembly">
-        <conditional name="reference_genome">
-            <param label="Reference genome to display" name="genome_type_select" type="select">
-                <option selected="True" value="indexed">Use a built-in genome</option>
-                <option value="history">Use a genome from history</option>
-                <option value="remote">Use a genome from a remote source (not recommended)</option>
-            </param>
-            <when value="indexed">
-                <param
-                    help="If your genome of interest is not listed, contact the Galaxy team"
-                    label="Select a reference genome"
-                    name="genomes"
-                    type="select"
-                >
-                    <options from_data_table="all_fasta">
-                        <filter column="2" type="sort_by" />
-                        <validator message="No genomes are available for the selected input dataset" type="no_options" />
-                    </options>
+            <conditional name="reference_genome">
+                <param label="Reference genome to display" name="genome_type_select" type="select">
+                    <option selected="True" value="indexed">Use a built-in genome</option>
+                    <option value="history">Use a genome from history</option>
+                    <option value="remote">Use a genome from a remote source (not recommended)</option>
                 </param>
-            </when>
-            <when value="history">
-                <param
-                    format="fasta"
-                    label="Select the reference genome"
-                    name="genome"
-                    type="data" />
-            </when>
-            <when value="remote">
-                <param name="label" type="text" label="Display name of the genome"/>
-                <param name="uri" type="text" label="URI pointing to a bgzip compressed fasta (.fai and .gzi files expected to be present)"
-                    help="⚠️ WARNING: If this URI is not available for any reason, your JBrowse dataset will be unusable." />
-            </when>
-        </conditional>
-
-        <!-- TODO genetic code not yet supported in jbrowse2
+                <when value="indexed">
+                    <param help="If your genome of interest is not listed, contact the Galaxy team" label="Select a reference genome" name="genomes" type="select">
+                        <options from_data_table="all_fasta">
+                            <filter column="2" type="sort_by"/>
+                            <validator message="No genomes are available for the selected input dataset" type="no_options"/>
+                        </options>
+                    </param>
+                </when>
+                <when value="history">
+                    <param format="fasta" label="Select the reference genome" name="genome" type="data"/>
+                </when>
+                <when value="remote">
+                    <param name="label" type="text" label="Display name of the genome"/>
+                    <param name="uri" type="text" label="URI pointing to a bgzip compressed fasta (.fai and .gzi files expected to be present)" help="⚠️ WARNING: If this URI is not available for any reason, your JBrowse dataset will be unusable."/>
+                </when>
+            </conditional>
+            <!-- TODO genetic code not yet supported in jbrowse2
              https://github.com/GMOD/jbrowse-components/issues/1765
         -->
-
-        <param label="Default region to display" type="text" name="defaultLocation" value="" help="e.g. 'ctgA:1234..5678'">
-            <validator type="expression" message="Region should be like ctgA:1234..5678">'^[a-zA-Z0-9_]:\d+\.\.\d+$'</validator>
-        </param>
-
-        <param name="ref_name_aliases" type="data" format="tsv,tabular" label="Reference sequence name aliases" help="Use when chromosomes have alternate names (TSV file: first column is the names from your genome sequence, the rest of the columns are aliases." optional="true" />
-
-        <param name="cytobands" type="data" format="bed" label="cytobands data" help="BED file containing cytobands locations" optional="true" />
-
-        <repeat name="track_groups" title="Track Category" help="Organise your tracks into different Categories for a nicer end-user experience.">
-            <param label="Track Category Label"
-                name="category"
-                type="text"
-                value="Default"
-                help="You can use #date# and it will be replaced with the current date in 'yyyy-mm-dd' format, which is very useful for repeatedly updating a JBrowse instance when member databases / underlying tool versions are updated." optional="False"/>
-            <repeat name="data_tracks" title="Track">
-                <conditional name="data_format" label="Track Options">
-                    <param type="select" label="Track Type" name="data_format_select">
-                        <option value="gene_calls">GFF/GFF3/BED Features</option>
-                        <option value="pileup">BAM Pileups</option>
-                        <option value="cram">CRAM</option>
-                        <option value="wiggle">BigWig</option>
-                        <option value="vcf">VCF SNPs</option>
-                        <option value="hic">HiC</option>
-                        <option value="maf">MAF</option>
-                        <option value="synteny">Synteny</option>
-                        <option value="sparql">SPARQL</option>
-                        <option value="gc">GC content</option>
-                    </param>
-                    <when value="gene_calls">
-                        <expand macro="input_conditional" label="GFF/GFF3/BED Track Data" format="gff,gff3,bed" help="GTF format is supported but GFF should be preferred" />
-
-                        <param label="Index this track" name="index" type="boolean" checked="false" truevalue="true" falsevalue="false" />
-
-                        <expand macro="track_styling_feature"/>
-                        <expand macro="details_panel" />
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="pileup">
-                        <expand macro="input_conditional" label="BAM Track Data" format="bam" />
-                        <expand macro="track_styling_xam"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="cram">
-                        <expand macro="input_conditional" label="CRAM Track Data" format="cram" />
-                        <expand macro="track_styling_xam"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="wiggle">
-                        <expand macro="input_conditional" label="BigWig Track Data" format="bigwig" />
-                        <expand macro="track_styling_bigwig"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="vcf">
-                        <expand macro="input_conditional" label="SNP Track Data" format="vcf,vcf_bgzip" />
-                        <expand macro="track_styling_vcf"/>
-                        <expand macro="details_panel" />
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="hic">
-                        <expand macro="input_conditional" label="HiC data" format="hic" help="Cool files can be converted to hic format with hictk tool" />
-                        <expand macro="track_styling_hic"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="maf">
-                        <expand macro="input_conditional_no_remote" label="MAF Track Data" format="maf" />
-                        <param name="assembly_name" type="text" label="Assembly name" optional="True" help="As used when creating the MAF file (default: guessed from selected genome assembly)" />
-                        <expand macro="track_styling_maf"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="synteny">
-                        <expand macro="input_conditional" label="PAF Alignment Data" format="paf" multiple="False" help="Query is current assembly, and target is the next assembly. You should not fill this field on the last assembly." />
-                        <expand macro="track_styling_synteny"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                    <when value="sparql">
-                        <!-- Not totally sure it works in real life, probably very rare use case -->
-                        <param type="text" label="SPARQL Server URL" name="url" />
-                        <param type="text" label="Track Label" name="label" value="SPARQL Genes" />
-                        <param type="text" label="SPARQL Query" name="query" area="true">
-                            <sanitizer>
-                                <mapping initial="galaxy.util.mapped_chars">
-                                <add source="&#10;" target=" " />
-                                <add source="&gt;" target="__gt__" />
-                                <add source="&lt;" target="__lt__" />
-                                </mapping>
-                                <valid initial="default">
-                                <add value="|" />
-                                <add value="#" />
-                                <add value="{"/>
-                                <add value="}"/>
-                                <add value="!"/>
-                                <add value="?"/>
-                                <add value="&amp;"/>
-                                <add value="+"/>
-                                <add value="="/>
-                                <add value="'"/>
-                                <add value='"'/>
-                                </valid>
-                            </sanitizer>
+            <param label="Default region to display" type="text" name="defaultLocation" value="" help="e.g. 'ctgA:1234..5678'">
+                <validator type="expression" message="Region should be like ctgA:1234..5678">'^[a-zA-Z0-9_]:\d+\.\.\d+$'</validator>
+            </param>
+            <param name="ref_name_aliases" type="data" format="tsv,tabular" label="Reference sequence name aliases" help="Use when chromosomes have alternate names (TSV file: first column is the names from your genome sequence, the rest of the columns are aliases." optional="true"/>
+            <param name="cytobands" type="data" format="bed" label="cytobands data" help="BED file containing cytobands locations" optional="true"/>
+            <repeat name="track_groups" title="Track Category" help="Organise your tracks into different Categories for a nicer end-user experience.">
+                <param label="Track Category Label" name="category" type="text" value="Default" help="You can use #date# and it will be replaced with the current date in 'yyyy-mm-dd' format, which is very useful for repeatedly updating a JBrowse instance when member databases / underlying tool versions are updated." optional="False"/>
+                <repeat name="data_tracks" title="Track">
+                    <conditional name="data_format" label="Track Options">
+                        <param type="select" label="Track Type" name="data_format_select">
+                            <option value="gene_calls">GFF/GFF3/BED Features</option>
+                            <option value="pileup">BAM Pileups</option>
+                            <option value="cram">CRAM</option>
+                            <option value="wiggle">BigWig</option>
+                            <option value="vcf">VCF SNPs</option>
+                            <option value="hic">HiC</option>
+                            <option value="maf">MAF</option>
+                            <option value="synteny">Synteny</option>
+                            <option value="sparql">SPARQL</option>
+                            <option value="gc">GC content</option>
                         </param>
-                        <param type="text" label="SPARQL reference names query" help="This query should return a line for each reference name in a `refName` column" name="query_refnames" area="true">
-                            <sanitizer>
-                                <mapping initial="galaxy.util.mapped_chars">
-                                <add source="&#10;" target=" " />
-                                <add source="&gt;" target="__gt__" />
-                                <add source="&lt;" target="__lt__" />
-                                </mapping>
-                                <valid initial="default">
-                                <add value="|" />
-                                <add value="#" />
-                                <add value="{"/>
-                                <add value="}"/>
-                                <add value="!"/>
-                                <add value="?"/>
-                                <add value="&amp;"/>
-                                <add value="+"/>
-                                <add value="="/>
-                                <add value="'"/>
-                                <add value='"'/>
-                                </valid>
-                            </sanitizer>
-                        </param>
-                        <expand macro="track_visibility" />
-                    </when>
-
-                    <when value="gc">
-                        <expand macro="track_styling_gc"/>
-                        <expand macro="track_metadata" />
-                        <expand macro="track_visibility" />
-                    </when>
-                </conditional>
+                        <when value="gene_calls">
+                            <expand macro="input_conditional" label="GFF/GFF3/BED Track Data" format="gff,gff3,bed" help="GTF format is supported but GFF should be preferred"/>
+                            <param label="Index this track" name="index" type="boolean" checked="false" truevalue="true" falsevalue="false"/>
+                            <expand macro="track_styling_feature"/>
+                            <expand macro="details_panel"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="pileup">
+                            <expand macro="input_conditional" label="BAM Track Data" format="bam"/>
+                            <expand macro="track_styling_xam"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="cram">
+                            <expand macro="input_conditional" label="CRAM Track Data" format="cram"/>
+                            <expand macro="track_styling_xam"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="wiggle">
+                            <expand macro="input_conditional" label="BigWig Track Data" format="bigwig"/>
+                            <expand macro="track_styling_bigwig"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="vcf">
+                            <expand macro="input_conditional" label="SNP Track Data" format="vcf,vcf_bgzip"/>
+                            <expand macro="track_styling_vcf"/>
+                            <expand macro="details_panel"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="hic">
+                            <expand macro="input_conditional" label="HiC data" format="hic" help="Cool files can be converted to hic format with hictk tool"/>
+                            <expand macro="track_styling_hic"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="maf">
+                            <expand macro="input_conditional_no_remote" label="MAF Track Data" format="maf"/>
+                            <param name="assembly_name" type="text" label="Assembly name" optional="True" help="As used when creating the MAF file (default: guessed from selected genome assembly)"/>
+                            <expand macro="track_styling_maf"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="synteny">
+                            <expand macro="input_conditional" label="PAF Alignment Data" format="paf" multiple="False" help="Query is current assembly, and target is the next assembly. You should not fill this field on the last assembly."/>
+                            <expand macro="track_styling_synteny"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="sparql">
+                            <!-- Not totally sure it works in real life, probably very rare use case -->
+                            <param type="text" label="SPARQL Server URL" name="url"/>
+                            <param type="text" label="Track Label" name="label" value="SPARQL Genes"/>
+                            <param type="text" label="SPARQL Query" name="query" area="true">
+                                <sanitizer>
+                                    <mapping initial="galaxy.util.mapped_chars">
+                                        <add source="&#10;" target=" "/>
+                                        <add source="&gt;" target="__gt__"/>
+                                        <add source="&lt;" target="__lt__"/>
+                                    </mapping>
+                                    <valid initial="default">
+                                        <add value="|"/>
+                                        <add value="#"/>
+                                        <add value="{"/>
+                                        <add value="}"/>
+                                        <add value="!"/>
+                                        <add value="?"/>
+                                        <add value="&amp;"/>
+                                        <add value="+"/>
+                                        <add value="="/>
+                                        <add value="'"/>
+                                        <add value="&quot;"/>
+                                    </valid>
+                                </sanitizer>
+                            </param>
+                            <param type="text" label="SPARQL reference names query" help="This query should return a line for each reference name in a `refName` column" name="query_refnames" area="true">
+                                <sanitizer>
+                                    <mapping initial="galaxy.util.mapped_chars">
+                                        <add source="&#10;" target=" "/>
+                                        <add source="&gt;" target="__gt__"/>
+                                        <add source="&lt;" target="__lt__"/>
+                                    </mapping>
+                                    <valid initial="default">
+                                        <add value="|"/>
+                                        <add value="#"/>
+                                        <add value="{"/>
+                                        <add value="}"/>
+                                        <add value="!"/>
+                                        <add value="?"/>
+                                        <add value="&amp;"/>
+                                        <add value="+"/>
+                                        <add value="="/>
+                                        <add value="'"/>
+                                        <add value="&quot;"/>
+                                    </valid>
+                                </sanitizer>
+                            </param>
+                            <expand macro="track_visibility"/>
+                        </when>
+                        <when value="gc">
+                            <expand macro="track_styling_gc"/>
+                            <expand macro="track_metadata"/>
+                            <expand macro="track_visibility"/>
+                        </when>
+                    </conditional>
+                </repeat>
             </repeat>
         </repeat>
-        </repeat>
-        <expand macro="general_options" />
+        <expand macro="general_options"/>
     </inputs>
     <outputs>
         <data format="html" name="output" label="JBrowse2 on $on_string"/>
@@ -509,19 +486,10 @@ cp '$output.files_path/index.html' '$output';
                 <repeat name="track_groups">
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
+                            <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="gff3/merlin.gff" />
-                            </conditional>
-                        </conditional>
-                    </repeat>
-                    <repeat name="data_tracks">
-                        <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
-                            <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="gtf/merlin.gtf" ftype="gtf" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="gff3/merlin.gff"/>
                             </conditional>
                         </conditional>
                     </repeat>
@@ -529,17 +497,26 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="gtf/merlin.gtf" ftype="gtf"/>
+                            </conditional>
+                        </conditional>
+                    </repeat>
+                    <repeat name="data_tracks">
+                        <conditional name="data_format">
+                            <param name="data_format_select" value="gene_calls"/>
+                            <conditional name="annotation_cond">
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="bed/test-3.bed,bed/test-6.bed"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="pileup" />
+                            <param name="data_format_select" value="pileup"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="bam/merlin-sample.bam" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="bam/merlin-sample.bam"/>
                             </conditional>
                         </conditional>
                     </repeat>
@@ -547,20 +524,20 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="bw/data.bw"/>
                             </conditional>
                         </conditional>
                     </repeat>
                 </repeat>
                 <repeat name="track_groups">
-                    <param name="category" value="Second category" />
+                    <param name="category" value="Second category"/>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="cram" />
+                            <param name="data_format_select" value="cram"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="cram/merlin-sample.cram" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="cram/merlin-sample.cram"/>
                             </conditional>
                         </conditional>
                     </repeat>
@@ -568,41 +545,41 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="bw/data.bw,bw/smaller2.bw"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="vcf" />
+                            <param name="data_format_select" value="vcf"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="vcf/test.vcf" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="vcf/test.vcf"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="hic" />
+                            <param name="data_format_select" value="hic"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="hic/merlin.hic" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="hic/merlin.hic"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="maf" />
+                            <param name="data_format_select" value="maf"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="maf/merlinlastz.maf" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="maf/merlinlastz.maf"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gc" />
+                            <param name="data_format_select" value="gc"/>
                         </conditional>
                     </repeat>
                 </repeat>
@@ -610,13 +587,14 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/01_all_tracks/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/01_all_tracks/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/01_all_tracks/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
-        <test> <!-- Remote data -->
+        <test>
+            <!-- Remote data -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="remote"/>
@@ -626,96 +604,96 @@ cp '$output.files_path/index.html' '$output';
                 <repeat name="track_groups">
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="wiggle" />
+                            <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw" />
-                                <param name="label" value="SKBR3 pacbio coverage (NGMLR)" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw"/>
+                                <param name="label" value="SKBR3 pacbio coverage (NGMLR)"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="wiggle" />
+                            <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw" />
-                                <param name="label" value="SKBR3 pacbio coverage (NGMLR)" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw"/>
+                                <param name="label" value="SKBR3 pacbio coverage (NGMLR)"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="MultiLinearWiggleDisplay" />
+                                    <param name="display" value="MultiLinearWiggleDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="pileup" />
+                            <param name="data_format_select" value="pileup"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/1000genomes/phase3/data/NA12878/exome_alignment/NA12878.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam" />
-                                <param name="label" value="NA12878 Exome" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/1000genomes/phase3/data/NA12878/exome_alignment/NA12878.mapped.ILLUMINA.bwa.CEU.exome.20121211.bam"/>
+                                <param name="label" value="NA12878 Exome"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="cram" />
+                            <param name="data_format_select" value="cram"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/alzheimers_isoseq/hq_isoforms.fasta.cram" />
-                                <param name="label" value="hg_isoforms.fasta_cram" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/alzheimers_isoseq/hq_isoforms.fasta.cram"/>
+                                <param name="label" value="hg_isoforms.fasta_cram"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="hic" />
+                            <param name="data_format_select" value="hic"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://jbrowse.org/genomes/hg19/intra_nofrag_30.hic" />
-                                <param name="label" value="hg_isoforms.fasta_cram" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://jbrowse.org/genomes/hg19/intra_nofrag_30.hic"/>
+                                <param name="label" value="hg_isoforms.fasta_cram"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="vcf" />
+                            <param name="data_format_select" value="vcf"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_study/vcf/nstd175.GRCh37.variant_call.vcf.gz" />
-                                <param name="label" value="HG002 dbVar variant calls" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://ftp.ncbi.nlm.nih.gov/pub/dbVar/data/Homo_sapiens/by_study/vcf/nstd175.GRCh37.variant_call.vcf.gz"/>
+                                <param name="label" value="HG002 dbVar variant calls"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="vcf" />
+                            <param name="data_format_select" value="vcf"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/COLO829/truthset_somaticSVs_COLO829.vcf" />
-                                <param name="label" value="truthset_somaticSVs_COLO829" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/COLO829/truthset_somaticSVs_COLO829.vcf"/>
+                                <param name="label" value="truthset_somaticSVs_COLO829"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
+                            <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/gencode/gencode.v36lift37.annotation.sort.gff3.gz" />
-                                <param name="label" value="Gencode v36 (GRCh37 liftover)" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/gencode/gencode.v36lift37.annotation.sort.gff3.gz"/>
+                                <param name="label" value="Gencode v36 (GRCh37 liftover)"/>
                             </conditional>
                         </conditional>
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
+                            <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/mappability/wgEncodeDukeMapabilityRegionsExcludable.bed.gz" />
-                                <param name="label" value="wgEncodeDukeMapabilityRegionsExcludable" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/hg19/mappability/wgEncodeDukeMapabilityRegionsExcludable.bed.gz"/>
+                                <param name="label" value="wgEncodeDukeMapabilityRegionsExcludable"/>
                             </conditional>
                         </conditional>
                     </repeat>
@@ -724,18 +702,19 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/02_remote/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
                 <extra_files name="config.json" type="file" value="out/02_remote/config.json" compare="sim_size" delta="0">
                     <assert_contents>
-                        <has_json_property_with_value property="adapter" value="{&quot;type&quot;:&quot;BigWigAdapter&quot;,&quot;bigWigLocation&quot;:{&quot;uri&quot;:&quot;https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw&quot;,&quot;locationType&quot;:&quot;UriLocation&quot;}}" />
-                        <has_json_property_with_value property="adapter" value="{&quot;type&quot;:&quot;MultiWiggleAdapter&quot;,&quot;subadapters&quot;:[{&quot;type&quot;:&quot;BigWigAdapter&quot;,&quot;name&quot;:&quot;SKBR3 pacbio coverage (NGMLR)&quot;,&quot;bigWigLocation&quot;:{&quot;uri&quot;:&quot;https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw&quot;,&quot;locationType&quot;:&quot;UriLocation&quot;}}]}" />
+                        <has_json_property_with_value property="adapter" value="{&quot;type&quot;:&quot;BigWigAdapter&quot;,&quot;bigWigLocation&quot;:{&quot;uri&quot;:&quot;https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw&quot;,&quot;locationType&quot;:&quot;UriLocation&quot;}}"/>
+                        <has_json_property_with_value property="adapter" value="{&quot;type&quot;:&quot;MultiWiggleAdapter&quot;,&quot;subadapters&quot;:[{&quot;type&quot;:&quot;BigWigAdapter&quot;,&quot;name&quot;:&quot;SKBR3 pacbio coverage (NGMLR)&quot;,&quot;bigWigLocation&quot;:{&quot;uri&quot;:&quot;https://s3.amazonaws.com/jbrowse.org/genomes/hg19/reads_lr_skbr3.fa_ngmlr-0.2.3_mapped.bam.regions.bw&quot;,&quot;locationType&quot;:&quot;UriLocation&quot;}}]}"/>
                     </assert_contents>
                 </extra_files>
             </output>
         </test>
-        <test> <!-- Synteny merlin -->
+        <test>
+            <!-- Synteny merlin -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="history"/>
@@ -746,12 +725,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlun_on_merlon.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -768,12 +747,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlon_on_merlin.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -790,7 +769,7 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="bw/data.bw"/>
                             </conditional>
                         </conditional>
@@ -800,13 +779,14 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/03_synteny/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/03_synteny/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/03_synteny/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
-        <test> <!-- Synteny with remote genomes -->
+        <test>
+            <!-- Synteny with remote genomes -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="remote"/>
@@ -818,12 +798,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/peach-grape-map.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -840,13 +820,14 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/04_synteny_remote/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/04_synteny_remote/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/04_synteny_remote/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
-        <test> <!-- Synteny with remote genomes *and* paf -->
+        <test>
+            <!-- Synteny with remote genomes *and* paf -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="remote"/>
@@ -858,13 +839,13 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="remote" />
-                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/synteny/peach_grape.paf.gz" />
-                                <param name="label" value="Peach vs grape" />
+                                <param name="annotation_source" value="remote"/>
+                                <param name="uri" value="https://s3.amazonaws.com/jbrowse.org/genomes/synteny/peach_grape.paf.gz"/>
+                                <param name="label" value="Peach vs grape"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -881,13 +862,14 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/05_synteny_full_remote/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/05_synteny_full_remote/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/05_synteny_full_remote/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
-        <test> <!-- various options,  cytobands, ref name aliases -->
+        <test>
+            <!-- various options,  cytobands, ref name aliases -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="history"/>
@@ -899,22 +881,22 @@ cp '$output.files_path/index.html' '$output';
                 <repeat name="track_groups">
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
+                            <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="gff3/merlin.gff" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="gff3/merlin.gff"/>
                             </conditional>
-                            <param name="index" value="true" />
+                            <param name="index" value="true"/>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearBasicDisplay" />
-                                    <param name="display_mode" value="reducedRepresentation" />
-                                    <param name="labels_name" value="jexl:get(feature,'id')" />
+                                    <param name="display" value="LinearBasicDisplay"/>
+                                    <param name="display_mode" value="reducedRepresentation"/>
+                                    <param name="labels_name" value="jexl:get(feature,'id')"/>
                                 </conditional>
                             </section>
                             <section name="metadata">
-                                <param name="galaxy_metadata" value="false" />
-                                <param name="metadata_bonus" value="metadata.tsv" />
+                                <param name="galaxy_metadata" value="false"/>
+                                <param name="metadata_bonus" value="metadata.tsv"/>
                             </section>
                             <section name="formatdetails">
                                 <param name="formatdetails_feature" value="jexl:{newfield:'Top custom contents here: '+feature.name}"/>
@@ -925,41 +907,42 @@ cp '$output.files_path/index.html' '$output';
                     </repeat>
                     <repeat name="data_tracks">
                         <conditional name="data_format">
-                            <param name="data_format_select" value="gene_calls" />
+                            <param name="data_format_select" value="gene_calls"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
-                                <param name="annotation" value="gff3/1.gff" />
+                                <param name="annotation_source" value="history"/>
+                                <param name="annotation" value="gff3/1.gff"/>
                             </conditional>
-                            <param name="index" value="true" />
+                            <param name="index" value="true"/>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearArcDisplay" />
-                                    <param name="display_mode" value="semicircles" />
+                                    <param name="display" value="LinearArcDisplay"/>
+                                    <param name="display_mode" value="semicircles"/>
                                 </conditional>
                             </section>
-                            <param name="track_visibility" value="default_off" />
+                            <param name="track_visibility" value="default_off"/>
                         </conditional>
                     </repeat>
                 </repeat>
             </repeat>
             <section name="jbgen">
-                <param name="enableAnalytics" value="true" />
+                <param name="enableAnalytics" value="true"/>
                 <param name="primary_color" value="#9d233f"/>
                 <param name="secondary_color" value="#421e63"/>
                 <param name="tertiary_color" value="#935560"/>
                 <param name="quaternary_color" value="#9fb11d"/>
-                <param name="font_size" value="15" />
+                <param name="font_size" value="15"/>
             </section>
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/06_various_options/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/06_various_options/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/06_various_options/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
-        <test> <!-- Synteny, mixed basic / viewer -->
+        <test>
+            <!-- Synteny, mixed basic / viewer -->
             <repeat name="assemblies">
                 <conditional name="reference_genome">
                     <param name="genome_type_select" value="history"/>
@@ -970,12 +953,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlun_on_merlon.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -984,12 +967,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlun_on_merlon.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearBasicDisplay" />
+                                    <param name="display" value="LinearBasicDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -1006,12 +989,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlon_on_merlin.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearSyntenyDisplay" />
+                                    <param name="display" value="LinearSyntenyDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -1020,12 +1003,12 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="synteny"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="paf/merlon_on_merlin.paf"/>
                             </conditional>
                             <section name="jbstyle">
                                 <conditional name="track_style">
-                                    <param name="display" value="LinearBasicDisplay" />
+                                    <param name="display" value="LinearBasicDisplay"/>
                                 </conditional>
                             </section>
                         </conditional>
@@ -1042,7 +1025,7 @@ cp '$output.files_path/index.html' '$output';
                         <conditional name="data_format">
                             <param name="data_format_select" value="wiggle"/>
                             <conditional name="annotation_cond">
-                                <param name="annotation_source" value="history" />
+                                <param name="annotation_source" value="history"/>
                                 <param name="annotation" value="bw/data.bw"/>
                             </conditional>
                         </conditional>
@@ -1052,10 +1035,10 @@ cp '$output.files_path/index.html' '$output';
             <output name="output">
                 <extra_files name="galaxy.xml" type="file" value="out/07_synteny_mixed/galaxy.xml" compare="sim_size" delta="0">
                     <assert_contents>
-                        <is_valid_xml />
+                        <is_valid_xml/>
                     </assert_contents>
                 </extra_files>
-                <extra_files name="config.json" type="file" value="out/07_synteny_mixed/config.json" compare="sim_size" delta="0" />
+                <extra_files name="config.json" type="file" value="out/07_synteny_mixed/config.json" compare="sim_size" delta="0"/>
             </output>
         </test>
     </tests>

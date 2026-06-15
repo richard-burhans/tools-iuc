@@ -99,7 +99,7 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                     <param argument="region_name" type="text" value="" label="Name of the region" help="A region can be a promoter or enhancer and so on">
                         <expand macro="sanitize_query">
                             <remove value="'"/>
-                            <remove value='"'/>
+                            <remove value="&quot;"/>
                             <remove value=" "/>
                         </expand>
                     </param>
@@ -136,9 +136,9 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.import_fragment.h5ad"/>
                 <param name="max_recorded_size" value="500"/>
                 <param name="add_key" value="frag_size_distr"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -163,7 +163,7 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -188,7 +188,7 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -203,7 +203,7 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
             </output>
         </test>
         <!-- metrics.frip -->
-       <test expect_num_outputs="2">
+        <test expect_num_outputs="2">
             <conditional name="method">
                 <param name="method" value="metrics.frip"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.import_fragment.h5ad"/>
@@ -213,9 +213,9 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                 </repeat>
                 <param name="normalized" value="true"/>
                 <param name="count_as_insertion" value="false"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -237,9 +237,9 @@ summary_df.to_csv('summary_by_chrom.tabular', sep='\t')
                 <param name="method" value="metrics.summary_by_chrom"/>
                 <param name="adata" location="https://zenodo.org/records/17512085/files/pp.import_fragment.h5ad"/>
                 <param name="mode" value="sum"/>
-                </conditional>
+            </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>

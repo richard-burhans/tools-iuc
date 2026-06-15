@@ -14,7 +14,7 @@
     #set grp_str = $grouping.groups.__str__
     #if grp_str:
         #for $grp in grp_str.split(','):
-            echo -e "$grp\t$grouping.name" >> $design;
+            echo -e "$grp\t$grouping.name" >> '$design';
         #end for
     #end if
 #end for

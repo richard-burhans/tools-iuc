@@ -32,25 +32,24 @@
             #end if
             --output sample.cnv.input
     ]]></command>
-     <inputs>
-        <param name="input_segmented_file" type="data" format="cns,cnr" label="Segmented copy ratio data file (cns file)" help="" />
+    <inputs>
+        <param name="input_segmented_file" type="data" format="cns,cnr" label="Segmented copy ratio data file (cns file)" help=""/>
         <section name="advanced_settings" title="Advanced settings" expanded="false">
-            <param argument="--reference" optional="true" type="data" format="cnn" label="Reference" help="Reference copy number profile (.cnn), or normal-sample bin-level log2 copy ratios (.cnr). Use if the tumor_segment input file does not contain a 'weight' column" />
-            <param argument="--vcf" optional="true" type="data" format="vcf" label="VCF" help="VCF file containing SNVs observed in both the tumor and normal samples. Tumor sample ID should match the `tumor_segment` filename or be specified with sample ID" />
-            <param argument="--sample-id" type="text" label="Sample ID" help="Sample name to write in the genotype field of the output VCF file" />
-            <param argument="--normal-id" type="text" label="Normal Id" help="Corresponding normal sample ID in the input VCF" />
-            <param argument="--min-variant-depth" optional="true" type="integer" label="Minimum Variant Depth" min="1" value="20" help="Minimum read depth for a SNP in the VCF to be counted. [Default: 20]" />
-            <param argument="--zygosity-freq" optional="true" type="float" label="Zygosity Frequency" min="0" value="0.25" help="Ignore VCF's genotypes (GT field) and instead infer zygosity from allele frequencies. [Default if used without a number: 0.25]" />
-
-        </section>  
-        </inputs>
+            <param argument="--reference" optional="true" type="data" format="cnn" label="Reference" help="Reference copy number profile (.cnn), or normal-sample bin-level log2 copy ratios (.cnr). Use if the tumor_segment input file does not contain a 'weight' column"/>
+            <param argument="--vcf" optional="true" type="data" format="vcf" label="VCF" help="VCF file containing SNVs observed in both the tumor and normal samples. Tumor sample ID should match the `tumor_segment` filename or be specified with sample ID"/>
+            <param argument="--sample-id" type="text" label="Sample ID" help="Sample name to write in the genotype field of the output VCF file"/>
+            <param argument="--normal-id" type="text" label="Normal Id" help="Corresponding normal sample ID in the input VCF"/>
+            <param argument="--min-variant-depth" optional="true" type="integer" label="Minimum Variant Depth" min="1" value="20" help="Minimum read depth for a SNP in the VCF to be counted. [Default: 20]"/>
+            <param argument="--zygosity-freq" optional="true" type="float" label="Zygosity Frequency" min="0" value="0.25" help="Ignore VCF's genotypes (GT field) and instead infer zygosity from allele frequencies. [Default if used without a number: 0.25]"/>
+        </section>
+    </inputs>
     <outputs>
-        <data name="CNVs_Theta" format="tabular" label="${tool.name} on ${on_string}: CNVs theta file" from_work_dir="sample.cnv.input" />
+        <data name="CNVs_Theta" format="tabular" label="${tool.name} on ${on_string}: CNVs theta file" from_work_dir="sample.cnv.input"/>
     </outputs>
-       <tests>
+    <tests>
         <test expect_num_outputs="1">
-            <param name="input_segmented_file" ftype="cns" value="tumor.cns" />
-            <output name="CNVs_Theta" file="sample.cnv.input" />
+            <param name="input_segmented_file" ftype="cns" value="tumor.cns"/>
+            <output name="CNVs_Theta" file="sample.cnv.input"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -92,9 +91,5 @@ Tabular file with smoothed, merged segments of stable copy number, derived from 
     "p_value","Statistical confidence (lower = more significant)."
     
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>
-
-
-
- 

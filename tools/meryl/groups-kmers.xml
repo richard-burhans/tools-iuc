@@ -150,7 +150,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -169,6 +169,6 @@ Meryl is the k-mer counter. Apply operations on multiple k-mer databases.
 - Difference: return k-mers that occur in the first input, but none of the other inputs
 - Symmetric-difference: return k-mers that occur in exactly one input
 
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>

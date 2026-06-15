@@ -41,12 +41,12 @@
                 <assert_contents>
                     <has_n_lines n="5" delta="1"/>
                 </assert_contents>
-            </output> 
+            </output>
             <output name="novelty">
                 <assert_contents>
                     <has_n_lines n="3"/>
                 </assert_contents>
-            </output> 
+            </output>
         </test>
         <test expect_num_outputs="3">
             <param name="fasta" value="bin3.fa,bin4.fa" ftype="fasta"/>
@@ -59,12 +59,12 @@
                 <assert_contents>
                     <has_n_lines n="8" delta="1"/>
                 </assert_contents>
-            </output> 
+            </output>
             <output name="novelty">
                 <assert_contents>
                     <has_n_lines n="3"/>
                 </assert_contents>
-            </output> 
+            </output>
         </test>
     </tests>
     <help>

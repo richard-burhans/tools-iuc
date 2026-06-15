@@ -45,8 +45,7 @@ echo 'bin.seqs(
             <expand macro="labeloptions"/>
         </param>
         <param argument="group" type="data" format="mothur.groups" optional="true" label="group - Sequences Name reference"/>
-        <param argument="count" type="data" format="mothur.count_table" optional="true" label="count - Count Table"
-            help="Represents the number of duplicate sequences for a given representitive sequence"/>
+        <param argument="count" type="data" format="mothur.count_table" optional="true" label="count - Count Table" help="Represents the number of duplicate sequences for a given representitive sequence"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -56,7 +55,8 @@ echo 'bin.seqs(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="otu" value="amazon.an.list"/>
             <param name="fasta" value="amazon.fasta"/>
             <output_collection name="fastafiles" count="36">
@@ -70,7 +70,8 @@ echo 'bin.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group and name file and label select -->
+        <test>
+            <!-- test with group and name file and label select -->
             <param name="otu" value="amazon.an.list"/>
             <param name="fasta" value="amazon.fasta"/>
             <param name="name" value="amazon.names"/>

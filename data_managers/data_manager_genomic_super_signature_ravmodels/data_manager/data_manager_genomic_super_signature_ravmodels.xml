@@ -38,9 +38,9 @@
        --id '${rav_id or $guess_id}'
     ]]></command>
     <inputs>
-        <param name="rav_name" type="text" value="" label="Name of RAV" help="Leave blank to generate automatically" />
-        <param name="rav_id" type="text" value="" label="ID for RAV" help="Leave blank to generate automatically" />
-        <param name="rav_dbkey" type="text" value="hg38" label="Identifier for reference genome for RAV" />
+        <param name="rav_name" type="text" value="" label="Name of RAV" help="Leave blank to generate automatically"/>
+        <param name="rav_id" type="text" value="" label="ID for RAV" help="Leave blank to generate automatically"/>
+        <param name="rav_dbkey" type="text" value="hg38" label="Identifier for reference genome for RAV"/>
         <conditional name="reference_source">
             <param name="reference_source_selector" type="select" label="Choose the source for the RAV">
                 <option value="prior" selected="True">Published GenomicSuperSignature RAVmodel</option>
@@ -54,10 +54,10 @@
                 </param>
             </when>
             <when value="url">
-                <param name="user_url" type="text" area="True" value="https://" optional="false" label="URL" />
+                <param name="user_url" type="text" area="True" value="https://" optional="false" label="URL"/>
             </when>
             <when value="history">
-                <param name="input_rav" type="data" format="rds" label="RAV Model file" />
+                <param name="input_rav" type="data" format="rds" label="RAV Model file"/>
             </when>
         </conditional>
     </inputs>
@@ -75,7 +75,7 @@
             <output name="out_file" file="RAVmodel_prior_C2.data_manager_json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Fetches a reference RAVmodel from various sources (Google Cloud, URL, Galaxy History, or a server file) and populates the "genomic_super_signature_ravmodels" data table.
@@ -85,5 +85,5 @@ Fetches a reference RAVmodel from various sources (Google Cloud, URL, Galaxy His
 .. class:: infomark
 
 **Notice:** If you leave name or id blank, it will be generated automatically.
-    </help>
+    ]]></help>
 </tool>

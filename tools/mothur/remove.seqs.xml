@@ -15,31 +15,31 @@
 #if $os.lstat(str($accnos)).st_size == 0:
     echo "accnos file empty, nothing to remove, skipping step"
     #if $fasta_in:
-        && cp $fasta_in $fasta_out
+        && cp '$fasta_in' '$fasta_out'
     #end if
     #if $fastq_in:
-        && cp $fastq_in $fastq_out
+        && cp '$fastq_in' '$fastq_out'
     #end if
     #if $count_in:
-        && cp $count_in $count_out
+        && cp '$count_in' '$count_out'
     #end if
     #if $qfile_in:
-        && cp $qfile_in $qfile_out
+        && cp '$qfile_in' '$qfile_out'
     #end if
     #if $name_in:
-        && cp $name_in $name_out
+        && cp '$name_in' '$name_out'
     #end if
     #if $group_in:
-        && cp $group_in $group_out
+        && cp '$group_in' '$group_out'
     #end if
     #if $alignreport_in:
-        && cp $alignreport_in $alignreport_out
+        && cp '$alignreport_in' '$alignreport_out'
     #end if
     #if $list_in:
-        && cp $list_in $list_out
+        && cp '$list_in' '$list_out'
     #end if
     #if $taxonomy_in:
-        && cp $taxonomy_in $taxonomy_out
+        && cp '$taxonomy_in' '$taxonomy_out'
     #end if
 #else:
     ## create symlinks to input datasets
@@ -160,7 +160,8 @@
                 </assert_contents>
             </output>
         </test>
-        <test><!-- test two input files -->
+        <test>
+            <!-- test two input files -->
             <param name="accnos" value="Mock_S280_L001_R1_001_small.trim.contigs.bad.accnos"/>
             <param name="fasta_in" value="Mock_S280_L001_R1_001_small.trim.contigs.fasta"/>
             <param name="fastq_in" value="Mock_S280_L001_R1_001_small.fastq"/>

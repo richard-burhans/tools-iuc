@@ -4,11 +4,9 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">metawrap-binning</requirement>
     </requirements>
-
     <command detect_errors="exit_code"><![CDATA[
         ## set memory usage
         if [ -n "\${GALAXY_MEMORY_MB}" ] ; then
@@ -66,7 +64,7 @@
             <output_collection name="concoct_bins" type="list" count="27">
                 <element name="bin.1" ftype="fasta">
                     <assert_contents>
-                        <has_text text=">NODE_"/>
+                        <has_text text="&gt;NODE_"/>
                     </assert_contents>
                 </element>
             </output_collection>

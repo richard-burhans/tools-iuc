@@ -1,5 +1,5 @@
 <tool id="bam_to_scidx" name="Convert BAM to ScIdx" version="1.0.1">
-    <description></description>
+    <description/>
     <requirements>
         <requirement type="package" version="8.0.112">openjdk</requirement>
     </requirements>
@@ -21,8 +21,8 @@ java -jar '$__tool_directory__/BAMtoscIDX.jar'
 1>/dev/null
     ]]></command>
     <inputs>
-        <param name="input_bam" type="data" format="bam" label="BAM file" />
-        <param name="require_proper_mate_pairing" type="select" label="Require proper mate-pairing?" help="Required if filtering by insert size for single-end Reqd 1 (below)." >
+        <param name="input_bam" type="data" format="bam" label="BAM file"/>
+        <param name="require_proper_mate_pairing" type="select" label="Require proper mate-pairing?" help="Required if filtering by insert size for single-end Reqd 1 (below).">
             <option value="1" selected="True">Yes</option>
             <option value="0">No</option>
         </param>
@@ -32,20 +32,20 @@ java -jar '$__tool_directory__/BAMtoscIDX.jar'
             <option value="2">Combined</option>
         </param>
         <param name="min_insert_size" type="integer" value="" optional="True" min="0" label="Minimum insert size to output" help="Will not filter out single-end Read 1 unless proper mate-pairing is required (above)."/>
-        <param name="max_insert_size" type="integer" value="" optional="True" min="0" label="Maximum insert size to output" help="Will not filter out single-end Read 1 unless proper mate-pairing is required (above)." />
+        <param name="max_insert_size" type="integer" value="" optional="True" min="0" label="Maximum insert size to output" help="Will not filter out single-end Read 1 unless proper mate-pairing is required (above)."/>
     </inputs>
     <outputs>
-        <data name="output" format="scidx" />
+        <data name="output" format="scidx"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_bam" value="input.bam" ftype="bam" />
-            <param name="require_proper_mate_pairing" value="1" />
-            <param name="read" value="0" />
-            <output name="output" file="output.scidx" lines_diff="1" ftype="scidx" compare="contains" />
+            <param name="input_bam" value="input.bam" ftype="bam"/>
+            <param name="require_proper_mate_pairing" value="1"/>
+            <param name="read" value="0"/>
+            <output name="output" file="output.scidx" lines_diff="1" ftype="scidx" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **What it does**
 
@@ -63,7 +63,7 @@ READ1 will be used to create the ScIdx data file.  Tools that use this format in
 * **Minimum insert size to output** - Insert size below the minimum will be filtered from the results, but single-end Read 1 will not be filtered unless proper mate-pairing is required.
 * **Maximum insert size to output** - Insert size above the maximum will be filtered from the results, but single-end Read 1 will not be filtered unless proper mate-pairing is required.
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
             @unpublished{None,

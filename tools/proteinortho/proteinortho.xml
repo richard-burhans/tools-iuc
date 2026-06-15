@@ -109,7 +109,7 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="input_files" format="fasta" type="data" multiple="true" min="2" label="Select the input fasta files (>2)" help="The input fasta files. At least 2 are needed!"/>    
+        <param name="input_files" format="fasta" type="data" multiple="true" min="2" label="Select the input fasta files (&gt;2)" help="The input fasta files. At least 2 are needed!"/>
         <param argument="--p" type="select" label="Similarity comparision algorithm" help="In the first step of proteinortho an all-versus-all reciprocal best hit graph is build from the input files (using this algorithm).">
             <option value="diamond" selected="true">Diamond sensitive (aminoacid sequences)</option>
             <option value="autoblast">auto detect NCBI-BLAST (protein and nucleotide sequences)</option>
@@ -148,21 +148,19 @@
                 <param argument="--dups" type="integer" value="0" min="0" max="100" label="Number of reiterations for adjacencies heuristic, to determine duplicated regions"/>
                 <param argument="--cs" type="integer" value="3" min="0" max="100" label="Size of a maximum common substring (MCS) for adjacency matches"/>
                 <param argument="--alpha" type="float" value="0.5" min="0." max="1." label="Weight of adjacencies vs. sequence similarity" help="alpha[FF-adj score] + (1−alpha)[BLAST score]"/>
-                <param name="input_files_syn" type="data" format="gff" multiple="true" min="2" label="Select the GFF3 files matching the input fasta files" help="The GFF3 files need matching names with the input fasta files. If you provide mybacteria123.faa or mybacteria123.fasta ... then you need to provide mybacteria123.gff here accordingly. The attributes column (#9) must contain the attribute Name=GENE IDENTIFIER where GENE IDENTIFIER corresponds to the respective (protein) identifier in the FASTA input. For example see https://gitlab.com/paulklemm_PHD/proteinortho/-/blob/master/test/C.gff"/> 
+                <param name="input_files_syn" type="data" format="gff" multiple="true" min="2" label="Select the GFF3 files matching the input fasta files" help="The GFF3 files need matching names with the input fasta files. If you provide mybacteria123.faa or mybacteria123.fasta ... then you need to provide mybacteria123.gff here accordingly. The attributes column (#9) must contain the attribute Name=GENE IDENTIFIER where GENE IDENTIFIER corresponds to the respective (protein) identifier in the FASTA input. For example see https://gitlab.com/paulklemm_PHD/proteinortho/-/blob/master/test/C.gff"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
         <data name="blastgraph" format="tabular" label="${tool.name} on ${on_string}: RBH graph" from_work_dir="result.blast-graph">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="seqidA,seqidB,evalue_ab,bitscore_ab,evalue_ba,bitscore_ba"/>
+                <action name="column_names" type="metadata" default="seqidA,seqidB,evalue_ab,bitscore_ab,evalue_ba,bitscore_ba"/>
             </actions>
         </data>
         <data name="proteinortho" format="tabular" label="${tool.name} on ${on_string}: orthology-groups" from_work_dir="result.proteinortho.tsv">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="species,genes,alg.-conn.,${','.join([ f.element_identifier for f in $input_files ])}"/>
+                <action name="column_names" type="metadata" default="species,genes,alg.-conn.,${','.join([ f.element_identifier for f in $input_files ])}"/>
             </actions>
         </data>
         <data name="proteinorthograph" format="tabular" label="${tool.name} on ${on_string}: orthology-pairs" from_work_dir="result.proteinortho-graph">
@@ -179,7 +177,8 @@
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="3"> <!-- test normal / default params -->
+        <test expect_num_outputs="3">
+            <!-- test normal / default params -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="diamond"/>
             <expand macro="test_output_proteinortho" nlines="33" nlines_delta="5"/>
@@ -189,7 +188,8 @@
                 <has_text text="--p=diamond"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- test normal mmseqs -->
+        <test expect_num_outputs="3">
+            <!-- test normal mmseqs -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="mmseqsp"/>
             <expand macro="test_output_proteinortho" nlines="33" nlines_delta="5"/>
@@ -199,7 +199,8 @@
                 <has_text text="--p=mmseqsp"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- various parameter -->
+        <test expect_num_outputs="3">
+            <!-- various parameter -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="diamond"/>
             <param name="conn" value="1"/>
@@ -217,7 +218,8 @@
                 <has_text text="--p=diamond"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- synteny -->
+        <test expect_num_outputs="3">
+            <!-- synteny -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="input_files_syn" value="L.gff,C.gff,E.gff,M.gff"/>
             <param name="p" value="diamond"/>
@@ -231,7 +233,8 @@
                 <has_text text="--p=diamond"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- blast -->
+        <test expect_num_outputs="3">
+            <!-- blast -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="blastp"/>
             <expand macro="test_output_proteinortho" nlines="33" nlines_delta="20"/>
@@ -241,7 +244,8 @@
                 <has_text text="--p=blastp"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- auto blast -->
+        <test expect_num_outputs="3">
+            <!-- auto blast -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="autoblast"/>
             <expand macro="test_output_proteinortho" nlines="33" nlines_delta="20"/>
@@ -251,7 +255,8 @@
                 <has_text text="--p=autoblast"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- last -->
+        <test expect_num_outputs="3">
+            <!-- last -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="lastp"/>
             <expand macro="test_output_proteinortho" nlines="34" nlines_delta="20"/>
@@ -261,7 +266,8 @@
                 <has_text text="--p=lastp"/>
             </assert_command>
         </test>
-        <test expect_num_outputs="3"> <!-- blat -->
+        <test expect_num_outputs="3">
+            <!-- blat -->
             <param name="input_files" value="L.fasta,C.fasta,E.fasta,M.fasta"/>
             <param name="p" value="blatp"/>
             <expand macro="test_output_proteinortho" nlines="33" nlines_delta="20"/>

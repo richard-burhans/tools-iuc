@@ -24,18 +24,17 @@
     <inputs>
         <expand macro="inputs"/>
         <expand macro="gencode"/>
-        <expand macro="conditional_posteriorEstimationMethod" />
+        <expand macro="conditional_posteriorEstimationMethod"/>
         <section name="advanced_options" title="Advanced Options" expanded="false">
-            <param argument="--grid" name="grid_points" type="integer" value="20" min="5" max="50" label="Grid points" help="The number of grid points used to approximate the posterior distribution of dN and dS." />
-            <param argument="--concentration_parameter" name="concentration" type="float" value="0.5" min="0.001" max="1" label="Concentration parameter of the Dirichlet prior" help="The concentration parameter of the Dirichlet prior on the grid weights." />
+            <param argument="--grid" name="grid_points" type="integer" value="20" min="5" max="50" label="Grid points" help="The number of grid points used to approximate the posterior distribution of dN and dS."/>
+            <param argument="--concentration_parameter" name="concentration" type="float" value="0.5" min="0.001" max="1" label="Concentration parameter of the Dirichlet prior" help="The concentration parameter of the Dirichlet prior on the grid weights."/>
             <param argument="--non-zero" type="boolean" truevalue="Yes" falsevalue="No" label="Enforce non-zero synonymous rates" help="Enforce non-zero synonymous rates on the grid. This is useful for calculating dN/dS ratios, as it prevents division by zero."/>
             <expand macro="kill_zero_lengths_param"/>
         </section>
-
     </inputs>
     <outputs>
-        <data name="fubar_output" format="hyphy_results.json" />
-        <data name="fubar_md_report" format="markdown" from_work_dir="fubar_stdout.md" label="FUBAR Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="fubar_output" format="hyphy_results.json"/>
+        <data name="fubar_md_report" format="markdown" from_work_dir="fubar_stdout.md" label="FUBAR Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">

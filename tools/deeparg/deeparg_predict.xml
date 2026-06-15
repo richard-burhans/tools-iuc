@@ -98,7 +98,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 DeepARG Predict is a computational tool designed to classify and annotate antibiotic resistance genes (ARGs) from nucleotide or protein sequences
 
 It takes as input a **fasta nucleotide or protein file** containing short (SS model) or long (LS model) sequences
@@ -125,6 +125,6 @@ The output format for both files consists of the following fields:
 
 If you want to annotate paired-end short read sequencing data use the DeepARG Short Reads tool
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

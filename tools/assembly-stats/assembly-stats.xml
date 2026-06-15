@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="assembly_stats" name="Assembly stats" version="@TOOL_VERSION@+galaxy0" profile="21.05">
     <description>visualisations</description>
     <macros>
@@ -25,33 +24,30 @@
         #end if
 
     ]]></command>
-
     <inputs>
         <param name="input_fasta" type="data" format="fasta" label="Genome assembly"/>
-        <param name="output_format" type="select" label="Output format" >
+        <param name="output_format" type="select" label="Output format">
             <option value="html" selected="true">HTML</option>
             <option value="json">JSON</option>
         </param>
     </inputs>
-    
     <outputs>
-        <data name="output" format="html" label="Assembly-stats on ${on_string}" >
+        <data name="output" format="html" label="Assembly-stats on ${on_string}">
             <change_format>
-                <when input="output_format" value="json" format="json" />
+                <when input="output_format" value="json" format="json"/>
             </change_format>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
             <param name="input_fasta" value="sequence.fasta"/>
             <param name="output_format" value="json"/>
             <output name="output" ftype="json">
                 <assert_contents>
-                    <has_text text='"contig_count" : 1' />
-                    <has_text text='"scaffold_count" : 1' />
-                    <has_text text='154478' />
-                    <has_text text='"GC" : 36.29' />
+                    <has_text text="&quot;contig_count&quot; : 1"/>
+                    <has_text text="&quot;scaffold_count&quot; : 1"/>
+                    <has_text text="154478"/>
+                    <has_text text="&quot;GC&quot; : 36.29"/>
                 </assert_contents>
             </output>
         </test>
@@ -65,7 +61,6 @@
             </output>
         </test>
     </tests>
-    
     <help><![CDATA[
         assembly_stats_ Assembly metric visualisations to facilitate rapid assessment and comparison of assembly quality.
 

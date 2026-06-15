@@ -1,17 +1,17 @@
 <tool id="velvetg" name="velvetg" version="@WRAPPER_VERSION@.3" profile="@PROFILE@">
-  <description>Velvet sequence assembler for very short reads</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <xrefs>
-      <xref type="bio.tools">velvet</xref>
-  </xrefs>
-  <expand macro="requirements"/>
-  <expand macro="stdio"/>
-  <version_command><![CDATA[
+    <description>Velvet sequence assembler for very short reads</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <xrefs>
+        <xref type="bio.tools">velvet</xref>
+    </xrefs>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <version_command><![CDATA[
     velvetg 2>&1 | grep "Version" | sed -e 's/Version //'
   ]]></version_command>
-  <command><![CDATA[
+    <command><![CDATA[
     ln -s '$input.extra_files_path'/Roadmaps &&
     ln -s '$input.extra_files_path'/Sequences &&
     velvetg .
@@ -89,86 +89,84 @@
                #end if
            #end if
   ]]></command>
-  <inputs>
-    <param name="input" type="data" format="velvet" label="Velvet Dataset" help="Prepared by velveth."/>
-    <conditional name="coverage">
-      <param name="cutoff" type="select" label="Coverage cutoff" help="">
-        <option value="none">None</option>
-        <option value="auto">Automatically Determined</option>
-        <option value="value">Specify Cutoff Value</option>
-      </param>
-      <when value="none"/>
-      <when value="auto"/>
-      <when value="value">
-        <param name="cov_cutoff" value="10.0" label="Remove nodes with coverage below" type="float" />
-      </when>
-    </conditional>
-    <param name="read_trkg" type="boolean" checked="false" truevalue="-read_trkg yes" falsevalue="-read_trkg no" label="Tracking of short read positions in assembly" help="Generates Graph2 dataset" />
-    <conditional name="contig_lgth">
-      <param name="use_contig_lgth" type="select" label=" Set minimum contig length" help="minimum contig length exported to contigs.fa file (default: hash length * 2).">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </param>
-      <when value="no"/>
-      <when value="yes">
-        <param name="min_contig_lgth" value="42" label="minimum contig length" type="integer" help="minimum contig length exported to contigs.fa file (default: hash length * 2)"/>
-      </when>
-    </conditional>
-    <conditional name="expected">
-      <param name="coverage" type="select" label="Expected Coverage of Unique Regions" help="">
-        <option value="none">None</option>
-        <option value="auto">Automatically Determined</option>
-        <option value="value">Specify Expected Value</option>
-      </param>
-      <when value="none"/>
-      <when value="auto"/>
-      <when value="value">
-        <param name="exp_cov" value="10.0" label="Remove nodes with coverage below" type="float" />
-      </when>
-    </conditional>
-
-    <param name="add_out" type="select" multiple="true" optional="true" label="Additional outputs" help="">
-        <option value="amos">Generate a AMOS.afg file</option>
-        <option value="unused">Generate a UnusedReads fasta file</option>
-        <option value="lastgraph">Generate velvet LastGraph file</option>
-    </param>
-
-    <conditional name="reads">
-      <param name="paired" type="select" label="Using Paired Reads">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </param>
-      <when value="no"/>
-      <when value="yes">
-        <param name="ins_length" value="-1" label="Insert Length in Paired-End Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads"/>
-        <conditional name="options">
-          <param name="advanced" type="select" label="Velvet Advanced Options">
-            <option value="no">Use Defaults</option>
-            <option value="yes">Set Advanced Option Values</option>
-          </param>
-          <when value="no"/>
-          <when value="yes">
-            <param name="ins_length_sd" value="-1" label="Estimate of Standard Deviation of Paired-End Read dataset(ignored when -1)" type="integer" help="Estimate of standard deviation of Paired-End Read dataset (default: 10% of corresponding length)"/>
-            <param name="ins_length2" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
-            <param name="ins_length2_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
-            <param name="ins_length3" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
-            <param name="ins_length3_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
-            <param name="ins_length4" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
-            <param name="ins_length4_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
-            <param name="ins_length_long" value="-1" label="Insert Length in Long Paired-End Read dataset (ignored when -1)" type="integer" help="Expected distance between two long paired-end reads"/>
-            <param name="ins_length_long_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of Long Paired-End Read dataset (default: 10% of corresponding length)"/>
-            <param name="max_branch_length" value="-1" label="Maximum branch length (ignored when -1)" type="integer" help="maximum length in base pair of bubble (default: 100)"/>
-            <param name="max_divergence" value="-1." label="Maximum max_divergence (between .0 and 1., ignored when -1.)" type="float" help="maximum divergence rate between two branches in a bubble (default: .2)"/>
-            <param name="max_gap_count" value="-1" label="Maximum gap count (ignored when -1)" type="integer" help="maximum number of gaps allowed in the alignment of the two branches of a bubble (default: 3)"/>
-            <param name="min_pair_count" value="-1" label="Minimum read-pair count (ignored when -1)" type="integer" help="minimum number of paired end connections to justify the scaffolding of two long contigs (default: 10)"/>
-            <param name="max_coverage" value="-1." label="Maximum coverage exclusion(ignored when -1.)" type="float" help="Exclude data that has coverage more than this maximum coverage value"/>
-            <param name="long_mult_cutoff" value="-1" label="Minimum number of long reads required to merge contigs (ignored when -1)" type="integer" help="minimum number of long reads required to merge contigs (default: 2)"/>
-            <param name="scaffolding" type="boolean" checked="true" truevalue="-scaffolding yes" falsevalue="-scaffolding no" label="Use Scaffolding" help="Scaffold contigs that it cannot quite be connected (This results in sequences of Ns in the contigs)"/>
-          </when>
+    <inputs>
+        <param name="input" type="data" format="velvet" label="Velvet Dataset" help="Prepared by velveth."/>
+        <conditional name="coverage">
+            <param name="cutoff" type="select" label="Coverage cutoff" help="">
+                <option value="none">None</option>
+                <option value="auto">Automatically Determined</option>
+                <option value="value">Specify Cutoff Value</option>
+            </param>
+            <when value="none"/>
+            <when value="auto"/>
+            <when value="value">
+                <param name="cov_cutoff" value="10.0" label="Remove nodes with coverage below" type="float"/>
+            </when>
         </conditional>
-      </when>
-    </conditional>
-<!-- TODO
+        <param name="read_trkg" type="boolean" checked="false" truevalue="-read_trkg yes" falsevalue="-read_trkg no" label="Tracking of short read positions in assembly" help="Generates Graph2 dataset"/>
+        <conditional name="contig_lgth">
+            <param name="use_contig_lgth" type="select" label=" Set minimum contig length" help="minimum contig length exported to contigs.fa file (default: hash length * 2).">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value="no"/>
+            <when value="yes">
+                <param name="min_contig_lgth" value="42" label="minimum contig length" type="integer" help="minimum contig length exported to contigs.fa file (default: hash length * 2)"/>
+            </when>
+        </conditional>
+        <conditional name="expected">
+            <param name="coverage" type="select" label="Expected Coverage of Unique Regions" help="">
+                <option value="none">None</option>
+                <option value="auto">Automatically Determined</option>
+                <option value="value">Specify Expected Value</option>
+            </param>
+            <when value="none"/>
+            <when value="auto"/>
+            <when value="value">
+                <param name="exp_cov" value="10.0" label="Remove nodes with coverage below" type="float"/>
+            </when>
+        </conditional>
+        <param name="add_out" type="select" multiple="true" optional="true" label="Additional outputs" help="">
+            <option value="amos">Generate a AMOS.afg file</option>
+            <option value="unused">Generate a UnusedReads fasta file</option>
+            <option value="lastgraph">Generate velvet LastGraph file</option>
+        </param>
+        <conditional name="reads">
+            <param name="paired" type="select" label="Using Paired Reads">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </param>
+            <when value="no"/>
+            <when value="yes">
+                <param name="ins_length" value="-1" label="Insert Length in Paired-End Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads"/>
+                <conditional name="options">
+                    <param name="advanced" type="select" label="Velvet Advanced Options">
+                        <option value="no">Use Defaults</option>
+                        <option value="yes">Set Advanced Option Values</option>
+                    </param>
+                    <when value="no"/>
+                    <when value="yes">
+                        <param name="ins_length_sd" value="-1" label="Estimate of Standard Deviation of Paired-End Read dataset(ignored when -1)" type="integer" help="Estimate of standard deviation of Paired-End Read dataset (default: 10% of corresponding length)"/>
+                        <param name="ins_length2" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
+                        <param name="ins_length2_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
+                        <param name="ins_length3" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
+                        <param name="ins_length3_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
+                        <param name="ins_length4" value="-1" label="Insert Length in 2nd Paired-End Short Read dataset (ignored when -1)" type="integer" help="Expected distance between two paired end reads in the second short-read dataset"/>
+                        <param name="ins_length4_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of 2nd Paired-End Read dataset (default: 10% of corresponding length)"/>
+                        <param name="ins_length_long" value="-1" label="Insert Length in Long Paired-End Read dataset (ignored when -1)" type="integer" help="Expected distance between two long paired-end reads"/>
+                        <param name="ins_length_long_sd" value="-1" label="Estimate of Standard Deviation of 2nd Paired-End Read dataset (ignored when -1)" type="integer" help="Estimate of standard deviation of Long Paired-End Read dataset (default: 10% of corresponding length)"/>
+                        <param name="max_branch_length" value="-1" label="Maximum branch length (ignored when -1)" type="integer" help="maximum length in base pair of bubble (default: 100)"/>
+                        <param name="max_divergence" value="-1." label="Maximum max_divergence (between .0 and 1., ignored when -1.)" type="float" help="maximum divergence rate between two branches in a bubble (default: .2)"/>
+                        <param name="max_gap_count" value="-1" label="Maximum gap count (ignored when -1)" type="integer" help="maximum number of gaps allowed in the alignment of the two branches of a bubble (default: 3)"/>
+                        <param name="min_pair_count" value="-1" label="Minimum read-pair count (ignored when -1)" type="integer" help="minimum number of paired end connections to justify the scaffolding of two long contigs (default: 10)"/>
+                        <param name="max_coverage" value="-1." label="Maximum coverage exclusion(ignored when -1.)" type="float" help="Exclude data that has coverage more than this maximum coverage value"/>
+                        <param name="long_mult_cutoff" value="-1" label="Minimum number of long reads required to merge contigs (ignored when -1)" type="integer" help="minimum number of long reads required to merge contigs (default: 2)"/>
+                        <param name="scaffolding" type="boolean" checked="true" truevalue="-scaffolding yes" falsevalue="-scaffolding no" label="Use Scaffolding" help="Scaffold contigs that it cannot quite be connected (This results in sequences of Ns in the contigs)"/>
+                    </when>
+                </conditional>
+            </when>
+        </conditional>
+        <!-- TODO
 -coverage_mask
 -paired_exp_fraction
 -alignments
@@ -176,52 +174,52 @@
 -clean
 -very_clean
 -shortMatePaired-->
-  </inputs>
-  <outputs>
-    <data format="txt" name="Graph2" label="${tool.name} on ${on_string}: Graph2" from_work_dir="Graph2">
-      <filter>read_trkg is True</filter>
-    </data>
-    <data format="txt" name="LastGraph" label="${tool.name} on ${on_string}: LastGraph" from_work_dir="LastGraph">
-      <filter>'lastgraph' in add_out</filter>
-    </data>
-    <data format="afg" name="velvet_asm" label="${tool.name} on ${on_string}: AMOS.afg" from_work_dir="velvet_asm.afg">
-      <filter>'amos' in add_out</filter>
-    </data>
-    <data format="fasta" name="unused_reads_fasta" label="${tool.name} on ${on_string}: Unused Reads" from_work_dir="UnusedReads.fa">
-      <filter>'unused' in add_out</filter>
-    </data>
-    <data format="tabular" name="stats" label="${tool.name} on ${on_string}: Stats" from_work_dir="stats.txt" />
-    <data format="fasta" name="contigs" label="${tool.name} on ${on_string}: Contigs" from_work_dir="contigs.fa" />
-  </outputs>
-  <tests>
-    <test expect_num_outputs="5">
-      <param name="input" value="velvetg_paired.out" ftype="velvet" >
-        <composite_data value='velvetg_paired/Sequences'/>
-        <composite_data value='velvetg_paired/Roadmaps'/>
-        <composite_data value='velvetg_paired/Log'/>
-      </param>
-      <param name="add_out" value="amos,unused,lastgraph" />
-      <param name="read_trkg" value="false" />
-      <conditional name="coverage">
-        <param name="cutoff" value="auto" />
-      </conditional>
-      <conditional name="expected">
-        <param name="coverage" value="auto" />
-      </conditional>
-      <conditional name="contig_lgth">
-        <param name="use_contig_lgth" value="no" />
-      </conditional>
-      <conditional name="reads">
-        <param name="paired" value="no" />
-      </conditional>
-      <output name="velvet_asm" file="velvetg_paired/velvet_asm.afg" compare="diff"/>
-      <output name="unused_reads_fasta" file="velvetg_paired/UnusedReads.fa" compare="diff"/>
-      <output name="LastGraph" file="velvetg_paired/lastgraph.txt" compare="diff"/>
-      <output name="stats" file="velvetg_paired/stats.txt" compare="diff"/>
-      <output name="contigs" file="velvetg_paired/contigs.fa" compare="diff"/>
-    </test>
-  </tests>
-  <help><![CDATA[
+    </inputs>
+    <outputs>
+        <data format="txt" name="Graph2" label="${tool.name} on ${on_string}: Graph2" from_work_dir="Graph2">
+            <filter>read_trkg is True</filter>
+        </data>
+        <data format="txt" name="LastGraph" label="${tool.name} on ${on_string}: LastGraph" from_work_dir="LastGraph">
+            <filter>'lastgraph' in add_out</filter>
+        </data>
+        <data format="afg" name="velvet_asm" label="${tool.name} on ${on_string}: AMOS.afg" from_work_dir="velvet_asm.afg">
+            <filter>'amos' in add_out</filter>
+        </data>
+        <data format="fasta" name="unused_reads_fasta" label="${tool.name} on ${on_string}: Unused Reads" from_work_dir="UnusedReads.fa">
+            <filter>'unused' in add_out</filter>
+        </data>
+        <data format="tabular" name="stats" label="${tool.name} on ${on_string}: Stats" from_work_dir="stats.txt"/>
+        <data format="fasta" name="contigs" label="${tool.name} on ${on_string}: Contigs" from_work_dir="contigs.fa"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="5">
+            <param name="input" value="velvetg_paired.out" ftype="velvet">
+                <composite_data value="velvetg_paired/Sequences"/>
+                <composite_data value="velvetg_paired/Roadmaps"/>
+                <composite_data value="velvetg_paired/Log"/>
+            </param>
+            <param name="add_out" value="amos,unused,lastgraph"/>
+            <param name="read_trkg" value="false"/>
+            <conditional name="coverage">
+                <param name="cutoff" value="auto"/>
+            </conditional>
+            <conditional name="expected">
+                <param name="coverage" value="auto"/>
+            </conditional>
+            <conditional name="contig_lgth">
+                <param name="use_contig_lgth" value="no"/>
+            </conditional>
+            <conditional name="reads">
+                <param name="paired" value="no"/>
+            </conditional>
+            <output name="velvet_asm" file="velvetg_paired/velvet_asm.afg" compare="diff"/>
+            <output name="unused_reads_fasta" file="velvetg_paired/UnusedReads.fa" compare="diff"/>
+            <output name="LastGraph" file="velvetg_paired/lastgraph.txt" compare="diff"/>
+            <output name="stats" file="velvetg_paired/stats.txt" compare="diff"/>
+            <output name="contigs" file="velvetg_paired/contigs.fa" compare="diff"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 @WHATITDOES@
 
 ------
@@ -299,5 +297,5 @@ This is a list of implemented Velvetg options::
         directory/velvet_asm.afg         : (if requested) AMOS compatible assembly file
 
   ]]></help>
-  <expand macro="citation"/>
+    <expand macro="citation"/>
 </tool>

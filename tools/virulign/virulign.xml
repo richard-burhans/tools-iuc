@@ -5,8 +5,8 @@
         <token name="@VERSION_SUFFIX@">0</token>
     </macros>
     <creator>
-        <person givenName="Lieven" familyName="Sterck" url="https://github.com/lsterck" />
-        <organization name="Sciensano-BioIT" url="https://github.com/BioinformaticsPlatformWIV-ISP" />
+        <person givenName="Lieven" familyName="Sterck" url="https://github.com/lsterck"/>
+        <organization name="Sciensano-BioIT" url="https://github.com/BioinformaticsPlatformWIV-ISP"/>
     </creator>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">virulign</requirement>
@@ -41,9 +41,8 @@
 
     ]]></command>
     <inputs>
-        <param name="reference" type="data" format="fasta,xml" label="Reference (FASTA or ORF‑description XML)" />
-        <param name="sequences" type="data" format="fasta" label="FASTA sequences to align" />
-
+        <param name="reference" type="data" format="fasta,xml" label="Reference (FASTA or ORF‑description XML)"/>
+        <param name="sequences" type="data" format="fasta" label="FASTA sequences to align"/>
         <param argument="--exportKind" type="select" label="Which type of output to generate:" help="Defines the output type of the alignment, either a FASTA alignment file or a CSV mutation file">
             <option value="GlobalAlignment">GlobalAlignment</option>
             <option value="PairwiseAlignments">PairwiseAlignments</option>
@@ -51,34 +50,29 @@
             <option value="MutationTable">MutationTable</option>
             <option value="Mutations">Mutations</option>
         </param>
-
         <param argument="--exportAlphabet" type="select" label="Sequence alphabet" help="Defines the alphabet in which the alignment is generated.">
             <option value="AminoAcids">Amino acids</option>
             <option value="Nucleotides">Nucleotides</option>
         </param>
-
         <param argument="--exportWithInsertions" type="boolean" truevalue="yes" falsevalue="no" label="Include insertions?" checked="true" help="Determines whether insertions can be added to the reference sequence. The option 'yes' will insert gaps into the reference sequence to accommodate the identification of codon insertions in the target sequences. Option 'No' removes codon insertions in the reference sequence that were generated during the alignment procedure."/>
-
         <param argument="--exportReferenceSequence" type="boolean" truevalue="yes" falsevalue="no" label="Add the reference sequence to output?" checked="false" help="Controls whether the reference sequence is to be added to the alignment."/>
-
         <param argument="--gapOpenPenalty" type="float" value="10.0" label="Gap open penalty" help="Defines the value of the penalty to start a new gap."/>
         <param argument="--gapExtensionPenalty" type="float" value="3.3" min="0" label="Gap extension penalty" help="Defines the value of the penalty to extend an existing gap."/>
-        <param argument="--maxFrameShifts" type="integer"  value="3" min="0" label="Maximum allowed frame shifts" help="Defines the maximum number of frame-shifts allowed."/>
+        <param argument="--maxFrameShifts" type="integer" value="3" min="0" label="Maximum allowed frame shifts" help="Defines the maximum number of frame-shifts allowed."/>
         <param argument="--nt-debug" type="boolean" truevalue="yes" falsevalue="no" label="Report failed sequences?" checked="false" help="This parameter allows to visualise sequences that could not be aligned by VIRULIGN. When this option is used, pairwise sequence alignments of failed target sequences and the reference sequence will be reported. This feature allows to inspect each failed target sequence individually to understand why the target sequence did not pass the quality control of the alignment."/>
     </inputs>
-
     <outputs>
         <data name="output" format="txt" label="${tool.name} on ${sequences.name} ($on_string): Output">
             <change_format>
-                <when input="exportKind" value="GlobalAlignment" format="fasta" />
-                <when input="exportKind" value="Mutations" format="tsv" />
-                <when input="exportKind" value="MutationTable" format="csv" />
-                <when input="exportKind" value="PositionTable" format="csv" />
-                <when input="exportKind" value="PairwiseAlignments" format="fasta" />
+                <when input="exportKind" value="GlobalAlignment" format="fasta"/>
+                <when input="exportKind" value="Mutations" format="tsv"/>
+                <when input="exportKind" value="MutationTable" format="csv"/>
+                <when input="exportKind" value="PositionTable" format="csv"/>
+                <when input="exportKind" value="PairwiseAlignments" format="fasta"/>
             </change_format>
         </data>
         <collection name="failed_outputs" type="list" label="${tool.name} on ${sequences.name}: Failed alignments">
-            <filter>nt_debug is True</filter> 
+            <filter>nt_debug is True</filter>
             <discover_datasets pattern="(?P&lt;designation&gt;.+)\.fasta" directory="Failed" format="fasta" visible="false"/>
         </collection>
     </outputs>
@@ -86,27 +80,27 @@
         <test expect_num_outputs="1">
             <param name="reference" value="denv-NC_001477.fasta" ftype="fasta"/>
             <param name="sequences" value="denv-1_small.fasta" ftype="fasta"/>
-            <param name="exportKind" value="GlobalAlignment" />
-            <param name="exportAlphabet" value="Nucleotides" />
+            <param name="exportKind" value="GlobalAlignment"/>
+            <param name="exportAlphabet" value="Nucleotides"/>
             <output name="output" file="denv-output.fasta" ftype="fasta"/>
         </test>
         <test expect_num_outputs="1">
             <param name="reference" value="ZIKV-rega.xml" ftype="xml"/>
             <param name="sequences" value="zikv-small.fasta" ftype="fasta"/>
-            <param name="exportKind" value="PositionTable" />
-            <param name="exportReferenceSequence" value="yes" />
-            <param name="exportAlphabet" value="AminoAcids" />
+            <param name="exportKind" value="PositionTable"/>
+            <param name="exportReferenceSequence" value="yes"/>
+            <param name="exportAlphabet" value="AminoAcids"/>
             <output name="output" file="zikv-output.csv" ftype="csv"/>
         </test>
         <test expect_num_outputs="1">
             <param name="reference" value="HIV-HXB2-gag.xml" ftype="xml"/>
             <param name="sequences" value="HIV_small.fasta" ftype="fasta"/>
-            <param name="exportKind" value="GlobalAlignment" />
-            <param name="exportAlphabet" value="Nucleotides" />
-            <param name="exportReferenceSequence" value="yes" />
-            <param name="exportWithInsertions" value="no" />
+            <param name="exportKind" value="GlobalAlignment"/>
+            <param name="exportAlphabet" value="Nucleotides"/>
+            <param name="exportReferenceSequence" value="yes"/>
+            <param name="exportWithInsertions" value="no"/>
             <output name="output" file="HIV-output.fasta" ftype="fasta"/>
-        </test> 
+        </test>
     </tests>
     <help><![CDATA[
 **VIRULIGN**

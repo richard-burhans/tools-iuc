@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -33,7 +33,7 @@
     ]]></command>
     <inputs>
         <expand macro="params_fastaList"/>
-        <expand macro="params_conditional_compression"/>  
+        <expand macro="params_conditional_compression"/>
     </inputs>
     <outputs>
         <data name="out_file" format="fasta" label="${tool.name} on ${on_string}">
@@ -49,8 +49,8 @@
             <param name="input_fasta" value="faffy_chunk_output/0.fa,faffy_chunk_output/1.fa,faffy_chunk_output/2.fa" ftype="fasta"/>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">simCow.chr6"/>
-                     <has_text text=">" n="1"/>
+                    <has_line line="&gt;simCow.chr6"/>
+                    <has_text text="&gt;" n="1"/>
                     <has_size value="602635"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
@@ -61,9 +61,9 @@
             <param name="input_fasta" value="faffy_chunk_overlap_output/0.fa.bz2,faffy_chunk_overlap_output/1.fa.bz2,faffy_chunk_overlap_output/2.fa.bz2" ftype="fasta"/>
             <output name="out_file" ftype="fasta">
                 <assert_contents>
-                    <has_line line=">simCow.chr6"/>
-                    <has_line line=">simDog.chr6"/>
-                    <has_text text=">" n="2"/>
+                    <has_line line="&gt;simCow.chr6"/>
+                    <has_line line="&gt;simDog.chr6"/>
+                    <has_text text="&gt;" n="2"/>
                     <has_size value="902659"/>
                     <has_n_lines n="6"/>
                 </assert_contents>

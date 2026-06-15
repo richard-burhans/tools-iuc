@@ -89,7 +89,8 @@ echo 'trim.flows(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="flow" value="mock.flow" ftype="mothur.sff.flow"/>
             <output name="trim_flow" md5="6850bb59570822aec6cd7aa7ce4675c4" ftype="mothur.sff.flow"/>
             <output name="scrap_flow" md5="e5d39459c28f5e7245bae7c509f05cba" ftype="mothur.sff.flow"/>
@@ -101,7 +102,8 @@ echo 'trim.flows(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with oligos file and fasta output -->
+        <test>
+            <!-- test with oligos file and fasta output -->
             <param name="flow" value="testflow.flow" ftype="mothur.sff.flow"/>
             <param name="add" value="yes"/>
             <param name="oligos" value="GQY1XT001.oligos" ftype="mothur.oligos"/>

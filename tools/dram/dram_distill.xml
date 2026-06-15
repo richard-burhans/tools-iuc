@@ -63,7 +63,7 @@ $distillate_gene_names
             </assert_stderr>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 @WHATITDOESHEADER@
@@ -89,6 +89,6 @@ This tool produces the following outputs.
   * **product tsv** - a tabular file with corresponding genes for the html heatmap
 
 @WHATITDOESFOOTER@
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

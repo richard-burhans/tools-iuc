@@ -23,7 +23,7 @@
         @ERRORS@
         ]]></command>
     <inputs>
-        <param name="input_tree" type="data" format="nhx" label="Input tree" help="The tree to annotate (Newick format)" />
+        <param name="input_tree" type="data" format="nhx" label="Input tree" help="The tree to annotate (Newick format)"/>
         <conditional name="selection_method">
             <param name="method" type="select" label="Select branches by">
                 <option value="regexp">Regular Expression</option>
@@ -38,9 +38,9 @@
                 <param name="list_file" type="data" format="txt" optional="false" label="List of sequences" help="Line list of sequences to include in the set"/>
             </when>
         </conditional>
-        <param name="label" type="text" value="Foreground" label="Label for annotation" help="Use the following label for annotation" />
-        <param name="reroot" type="text" value="None" label="Reroot the tree on this node" help="Reroot the tree on this node ('None' to skip rerooting)" />
-        <param argument="--invert" type="boolean" truevalue="--invert Yes" falsevalue="--invert No" label="Invert selection" help="Invert selection" />
+        <param name="label" type="text" value="Foreground" label="Label for annotation" help="Use the following label for annotation"/>
+        <param name="reroot" type="text" value="None" label="Reroot the tree on this node" help="Reroot the tree on this node ('None' to skip rerooting)"/>
+        <param argument="--invert" type="boolean" truevalue="--invert Yes" falsevalue="--invert No" label="Invert selection" help="Invert selection"/>
         <param name="internal_nodes" type="select" label="Strategy for labeling internal nodes" help="Strategy for labeling internal nodes">
             <option value="All descendants">All descendants</option>
             <option value="None">None</option>
@@ -54,8 +54,8 @@
         </param>
     </inputs>
     <outputs>
-        <data name="labeled_tree" format="nhx" from_work_dir="labeled_tree.nhx" label="${tool.name} on ${on_string}: Labeled tree" />
-        <data name="annotate_md_report" format="markdown" from_work_dir="annotate_stdout.md" label="Annotate Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="labeled_tree" format="nhx" from_work_dir="labeled_tree.nhx" label="${tool.name} on ${on_string}: Labeled tree"/>
+        <data name="annotate_md_report" format="markdown" from_work_dir="annotate_stdout.md" label="Annotate Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">

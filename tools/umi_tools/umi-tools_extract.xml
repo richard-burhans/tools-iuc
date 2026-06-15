@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
     @COMMAND_LINK@
 
@@ -83,43 +83,35 @@
     ]]></command>
     <inputs>
         <expand macro="input_types">
-            <param argument="--reconcile-pairs" type="boolean" truevalue="--reconcile-pairs" falsevalue="" checked="false" label="Allow unpaired reads" help="Allow the presences of reads in read2 input that are not present in read1 input. This allows cell barcode filtering of read1s without considering read2s" />
+            <param argument="--reconcile-pairs" type="boolean" truevalue="--reconcile-pairs" falsevalue="" checked="false" label="Allow unpaired reads" help="Allow the presences of reads in read2 input that are not present in read1 input. This allows cell barcode filtering of read1s without considering read2s"/>
         </expand>
         <expand macro="fastq_barcode_extraction_options_macro"/>
-
-        <param argument="--whitelist" type="data" optional="true" format="txt,tabular,tsv" label="Allowlist of accepted barcodes" />
-        <param argument="--blacklist" type="data" optional="true" format="txt,tabular,tsv" label="Denylist of accepted barcodes" />
-        <param argument="--error-correct-cell" type="boolean" truevalue="--error-correct-cell" falsevalue="" checked="false" label="Apply correction to cell barcodes?" help="This only applies if your barcode file has two columns output from the umi_tools whitelist command" />
-
+        <param argument="--whitelist" type="data" optional="true" format="txt,tabular,tsv" label="Allowlist of accepted barcodes"/>
+        <param argument="--blacklist" type="data" optional="true" format="txt,tabular,tsv" label="Denylist of accepted barcodes"/>
+        <param argument="--error-correct-cell" type="boolean" truevalue="--error-correct-cell" falsevalue="" checked="false" label="Apply correction to cell barcodes?" help="This only applies if your barcode file has two columns output from the umi_tools whitelist command"/>
         <conditional name="quality">
-            <param name="quality_selector" type="select" label="Enable quality filter?" >
+            <param name="quality_selector" type="select" label="Enable quality filter?">
                 <option value="false">No</option>
                 <option value="true">Yes</option>
             </param>
-            <when value="false">
-            </when>
+            <when value="false"/>
             <when value="true">
-                <param argument="--quality-filter-threshold" label="Phred score threshold"
-                    type="integer" value="" optional="true"
-                    help="Remove reads where any UMI base quality score falls below this threshold" />
-                <param argument="--quality-filter-mask" label="Mask UMI bases below threshold"
-                    type="integer" value="" optional="true"
-                    help="If a UMI base has a quality below this threshold,
-                    replace the base with 'N'" />
+                <param argument="--quality-filter-threshold" label="Phred score threshold" type="integer" value="" optional="true" help="Remove reads where any UMI base quality score falls below this threshold"/>
+                <param argument="--quality-filter-mask" label="Mask UMI bases below threshold" type="integer" value="" optional="true" help="If a UMI base has a quality below this threshold,                     replace the base with 'N'"/>
             </when>
         </conditional>
         <expand macro="log_input_macro"/>
     </inputs>
     <outputs>
-        <data name="out" format_source="input_read1" label="${tool.name} on ${on_string}: Forward reads" >
+        <data name="out" format_source="input_read1" label="${tool.name} on ${on_string}: Forward reads">
             <filter>input_type_cond['input_type'] in ['single', 'paired']</filter>
         </data>
-        <data name="out2" format_source="input_read2" label="${tool.name} on ${on_string}: Reverse reads" >
+        <data name="out2" format_source="input_read2" label="${tool.name} on ${on_string}: Reverse reads">
             <filter>input_type_cond['input_type'] == 'paired'</filter>
         </data>
         <collection name="out_paired_collection" type="paired" label="${tool.name} on ${on_string}: Reads">
-            <data name="forward" format_source="input_readpair" />
-            <data name="reverse" format_source="input_readpair" />
+            <data name="forward" format_source="input_readpair"/>
+            <data name="reverse" format_source="input_readpair"/>
             <filter>input_type_cond['input_type'] == 'paired_collection'</filter>
         </collection>
         <expand macro="log_output_macro"/>
@@ -127,99 +119,102 @@
     <tests>
         <test expect_num_outputs="2">
             <conditional name="input_type_cond">
-                <param name="input_type" value="single" />
-                <param name="input_read1" value="t_R1.fastq" ftype="fastqsanger" />
-                <param name="bc_pattern" value="XXXNNN" />
+                <param name="input_type" value="single"/>
+                <param name="input_read1" value="t_R1.fastq" ftype="fastqsanger"/>
+                <param name="bc_pattern" value="XXXNNN"/>
             </conditional>
             <conditional name="extract_method_cond">
-                <param name="prime3" value="true" />
+                <param name="prime3" value="true"/>
             </conditional>
-            <param name="quality|quality_selector" value="true" />
-            <param name="quality|quality_filter_threshold" value="10" />
+            <param name="quality|quality_selector" value="true"/>
+            <param name="quality|quality_filter_threshold" value="10"/>
             <param name="log" value="true"/>
-            <output name="out" file="out_SE.fastq" ftype="fastqsanger" />
-            <output name="out_log" >
+            <output name="out" file="out_SE.fastq" ftype="fastqsanger"/>
+            <output name="out_log">
                 <assert_contents>
-                    <has_text text="Input Reads: 100" />
-                    <has_text text="umi quality: 28" />
-                    <has_text text="Reads output: 72" />
+                    <has_text text="Input Reads: 100"/>
+                    <has_text text="umi quality: 28"/>
+                    <has_text text="Reads output: 72"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="3">
             <conditional name="input_type_cond">
-                <param name="input_type" value="paired" />
-                <param name="input_read1" value="t_R1.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="input_read2" value="t_R2.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="NNNXXX" />
+                <param name="input_type" value="paired"/>
+                <param name="input_read1" value="t_R1.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="input_read2" value="t_R2.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="NNNXXX"/>
             </conditional>
             <param name="log" value="true"/>
-            <output name="out" file="out_R1.fastq.gz" decompress="true" lines_diff="2" ftype="fastqsanger.gz" />
-            <output name="out2" file="out_R2.fastq.gz" decompress="true" lines_diff="2" ftype="fastqsanger.gz" />
-            <output name="out_log" >
+            <output name="out" file="out_R1.fastq.gz" decompress="true" lines_diff="2" ftype="fastqsanger.gz"/>
+            <output name="out2" file="out_R2.fastq.gz" decompress="true" lines_diff="2" ftype="fastqsanger.gz"/>
+            <output name="out_log">
                 <assert_contents>
-                    <has_text text="Input Reads: 100" />
-                    <has_text text="Reads output: 100" />
+                    <has_text text="Input Reads: 100"/>
+                    <has_text text="Reads output: 100"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="4">
             <conditional name="input_type_cond">
-                <param name="input_type" value="paired_collection" /> <!-- same as before, but uncompressed -->
+                <param name="input_type" value="paired_collection"/>
+                <!-- same as before, but uncompressed -->
                 <param name="input_readpair">
-                    <collection type="paired" >
-                        <element name="forward" ftype="fastqsanger" value="t_R1.fastq" />
-                        <element name="reverse" ftype="fastqsanger" value="t_R2.fastq" />
+                    <collection type="paired">
+                        <element name="forward" ftype="fastqsanger" value="t_R1.fastq"/>
+                        <element name="reverse" ftype="fastqsanger" value="t_R2.fastq"/>
                     </collection>
                 </param>
-                <param name="bc_pattern" value="NNNXXX" />
+                <param name="bc_pattern" value="NNNXXX"/>
             </conditional>
             <param name="log" value="true"/>
             <output_collection name="out_paired_collection" type="paired">
-                <element name="forward" file="out_R1.fastq" ftype="fastqsanger" />
-                <element name="reverse" file="out_R2.fastq" ftype="fastqsanger" />
+                <element name="forward" file="out_R1.fastq" ftype="fastqsanger"/>
+                <element name="reverse" file="out_R2.fastq" ftype="fastqsanger"/>
             </output_collection>
-            <output name="out_log" >
+            <output name="out_log">
                 <assert_contents>
-                    <has_text text="Input Reads: 100" />
-                    <has_text text="Reads output: 100" />
+                    <has_text text="Input Reads: 100"/>
+                    <has_text text="Reads output: 100"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="3">
             <conditional name="input_type_cond">
-                <param name="input_type" value="paired" />
-                <param name="input_read1" value="scrb_seq_fastq.1.gz" ftype="fastqsanger.gz" />
-                <param name="input_read2" value="scrb_seq_fastq.2.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="CCCCCCNNNNNNNNNN" />
+                <param name="input_type" value="paired"/>
+                <param name="input_read1" value="scrb_seq_fastq.1.gz" ftype="fastqsanger.gz"/>
+                <param name="input_read2" value="scrb_seq_fastq.2.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="CCCCCCNNNNNNNNNN"/>
             </conditional>
-            <param name="extract_method_cond|extract_method" value="string" />
-            <param name="whitelist" value="scrb_seq_barcodes" />
+            <param name="extract_method_cond|extract_method" value="string"/>
+            <param name="whitelist" value="scrb_seq_barcodes"/>
             <param name="log" value="true"/>
-            <output name="out2" file="scrb_extract.fastq.gz" decompress="true"  ftype="fastqsanger.gz" />
+            <output name="out2" file="scrb_extract.fastq.gz" decompress="true" ftype="fastqsanger.gz"/>
         </test>
-        <test expect_num_outputs="3"><!-- same as above but with regex barcode-->
+        <test expect_num_outputs="3">
+            <!-- same as above but with regex barcode-->
             <conditional name="input_type_cond">
-                <param name="input_type" value="paired" />
-                <param name="input_read1" value="scrb_seq_fastq.1.gz" ftype="fastqsanger.gz" />
-                <param name="input_read2" value="scrb_seq_fastq.2.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="^(?P&lt;cell_1&gt;.{6})(?P&lt;umi_1&gt;.{10})" />
+                <param name="input_type" value="paired"/>
+                <param name="input_read1" value="scrb_seq_fastq.1.gz" ftype="fastqsanger.gz"/>
+                <param name="input_read2" value="scrb_seq_fastq.2.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="^(?P&lt;cell_1&gt;.{6})(?P&lt;umi_1&gt;.{10})"/>
             </conditional>
-            <param name="extract_method_cond|extract_method" value="regex" />
-            <param name="whitelist" value="scrb_seq_barcodes" />
+            <param name="extract_method_cond|extract_method" value="regex"/>
+            <param name="whitelist" value="scrb_seq_barcodes"/>
             <param name="log" value="true"/>
-            <output name="out2" file="scrb_extract.fastq.gz" decompress="true" ftype="fastqsanger.gz" />
+            <output name="out2" file="scrb_extract.fastq.gz" decompress="true" ftype="fastqsanger.gz"/>
         </test>
-        <test expect_num_outputs="2"><!-- CelSeq2 example -->
+        <test expect_num_outputs="2">
+            <!-- CelSeq2 example -->
             <conditional name="input_type_cond">
-                <param name="input_type" value="paired" />
-                <param name="input_read1" value="read_R1.200.gz" ftype="fastqsanger.gz" />
-                <param name="input_read2" value="read_R2.200.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="NNNNNNCCCCCC" />
+                <param name="input_type" value="paired"/>
+                <param name="input_read1" value="read_R1.200.gz" ftype="fastqsanger.gz"/>
+                <param name="input_read2" value="read_R2.200.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="NNNNNNCCCCCC"/>
             </conditional>
-            <param name="extract_method_cond|extract_method" value="string" />
-            <output name="out" file="read_R1.200_extracted.fastq.gz" ftype="fastqsanger.gz" decompress="true" lines_diff="1" />
-            <output name="out2" file="read_R2.200_extracted.fastq.gz" ftype="fastqsanger.gz" decompress="true" lines_diff="1" />
+            <param name="extract_method_cond|extract_method" value="string"/>
+            <output name="out" file="read_R1.200_extracted.fastq.gz" ftype="fastqsanger.gz" decompress="true" lines_diff="1"/>
+            <output name="out2" file="read_R2.200_extracted.fastq.gz" ftype="fastqsanger.gz" decompress="true" lines_diff="1"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -270,5 +265,5 @@ umi_tools whitelist, will be ignored.
 @FASTQ_BARCODE_EXTRACTION_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

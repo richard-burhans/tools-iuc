@@ -87,19 +87,17 @@
     <outputs>
         <data name="log" format="txt" label="fasterq-dump log"/>
         <collection name="list_paired" type="list:paired" label="Pair-end data (fasterq-dump)">
-
-        <!-- Use named regex group to grab pattern
+            <!-- Use named regex group to grab pattern
              <identifier_0>_<identifier_1>.fq. Here identifier_0 is the list
              identifier in the nested collection and identifier_1 is either
              forward or reverse (for instance samp1_forward.fq).
         -->
-
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;[^_]+)_(?P&lt;identifier_1&gt;[^_]+)\.fastqsanger.gz" directory="output" ext="fastqsanger.gz" />
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;[^_]+)_(?P&lt;identifier_1&gt;[^_]+)\.fastqsanger.gz" directory="output" ext="fastqsanger.gz"/>
         </collection>
-        <collection name="output_collection" type='list' label="Single-end data (fasterq-dump)">
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)__single\.fastqsanger.gz" directory="output" ext='fastqsanger.gz'/>
+        <collection name="output_collection" type="list" label="Single-end data (fasterq-dump)">
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)__single\.fastqsanger.gz" directory="output" ext="fastqsanger.gz"/>
         </collection>
-        <collection name="output_collection_other" type='list' label="Other data (fasterq-dump)">
+        <collection name="output_collection_other" type="list" label="Other data (fasterq-dump)">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)\.fastqsanger\.gz" directory="outputOther" format="fastqsanger.gz"/>
         </collection>
     </outputs>

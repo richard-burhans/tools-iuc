@@ -24,50 +24,50 @@
             <when value="cached">
                 <param type="select" name="taxonomy_table" label="NCBI Taxonomy database">
                     <options from_data_table="ncbi_taxonomy">
-                        <filter type="sort_by" column="1" /> 
-                        <validator type="no_options" message="No NCBI Taxonomy downloads are available" />
+                        <filter type="sort_by" column="1"/>
+                        <validator type="no_options" message="No NCBI Taxonomy downloads are available"/>
                     </options>
-                    <validator type="no_options" message="No NCBI Taxonomy database download is available" />
+                    <validator type="no_options" message="No NCBI Taxonomy database download is available"/>
                 </param>
             </when>
             <when value="history">
-                <param name="nodes" type="data" format="txt" label="NCBI Taxonomy nodes.dmp file" />
-                <param name="names" type="data" format="txt" label="NCBI Taxonomy names.dmp file" />
+                <param name="nodes" type="data" format="txt" label="NCBI Taxonomy nodes.dmp file"/>
+                <param name="names" type="data" format="txt" label="NCBI Taxonomy names.dmp file"/>
             </when>
         </conditional>
-        <param name="name" type="text" label="Name of taxonomy database" help="(leave blank to use name based on today's date)" />
-        <param name="description" type="text" label="Description of taxonomy database" help="(leave blank to use name based on today's date)" />
+        <param name="name" type="text" label="Name of taxonomy database" help="(leave blank to use name based on today's date)"/>
+        <param name="description" type="text" label="Description of taxonomy database" help="(leave blank to use name based on today's date)"/>
     </inputs>
     <outputs>
-        <data name="output_file" format="data_manager_json"/> 
+        <data name="output_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
             <conditional name="taxonomy">
-                <param name="taxonomy_source" value="history" />
-                <param name="nodes" ftype="txt" value="taxdb/nodes.dmp" />
-                <param name="names" ftype="txt" value="taxdb/names.dmp" />
+                <param name="taxonomy_source" value="history"/>
+                <param name="nodes" ftype="txt" value="taxdb/nodes.dmp"/>
+                <param name="names" ftype="txt" value="taxdb/names.dmp"/>
             </conditional>
-            <param name="name" value="test" />
-            <param name="description" value="test database" />
+            <param name="name" value="test"/>
+            <param name="description" value="test database"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="tax.ncbitaxonomy.sqlite" />
-                    <has_text text="test database" />
+                    <has_text text="tax.ncbitaxonomy.sqlite"/>
+                    <has_text text="test database"/>
                 </assert_contents>
             </output>
         </test>
         <test>
             <conditional name="taxonomy">
-                <param name="taxonomy_source" value="cached" />
-                <param name="taxonomy_table" value="sample" />
+                <param name="taxonomy_source" value="cached"/>
+                <param name="taxonomy_table" value="sample"/>
             </conditional>
-            <param name="name" value="test" />
-            <param name="description" value="test database" />
+            <param name="name" value="test"/>
+            <param name="description" value="test database"/>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text="tax.ncbitaxonomy.sqlite" />
-                    <has_text text="test database" />
+                    <has_text text="tax.ncbitaxonomy.sqlite"/>
+                    <has_text text="test database"/>
                 </assert_contents>
             </output>
         </test>

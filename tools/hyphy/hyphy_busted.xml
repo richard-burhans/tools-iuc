@@ -32,12 +32,12 @@
                 #if $advanced_options.mss.mss_type_cond.mss_type == "Random":
                     --mss-classes $advanced_options.mss.mss_type_cond.mss_classes
                 #elif $advanced_options.mss.mss_type_cond.mss_type == "Empirical":
-                    --mss-file $advanced_options.mss.mss_type_cond.mss_file
+                    --mss-file '$advanced_options.mss.mss_type_cond.mss_file'
                 #elif $advanced_options.mss.mss_type_cond.mss_type == "File":
-                    --mss-file $advanced_options.mss.mss_type_cond.mss_file
+                    --mss-file '$advanced_options.mss.mss_type_cond.mss_file'
                     --mss-neutral $advanced_options.mss.mss_type_cond.mss_neutral
                 #elif $advanced_options.mss.mss_type_cond.mss_type == "Codon-file":
-                    --mss-file $advanced_options.mss.mss_type_cond.mss_file
+                    --mss-file '$advanced_options.mss.mss_type_cond.mss_file'
                     --mss-neutral $advanced_options.mss.mss_type_cond.mss_neutral
                 #end if
             #end if
@@ -106,12 +106,11 @@
         </section>
     </inputs>
     <outputs>
-        <data name="busted_output" format="hyphy_results.json" />
-        <data name="busted_md_report" format="markdown" from_work_dir="busted_stdout.md" label="BUSTED Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="busted_output" format="hyphy_results.json"/>
+        <data name="busted_md_report" format="markdown" from_work_dir="busted_stdout.md" label="BUSTED Report (Markdown) for ${tool.name} on ${on_string}"/>
         <data name="alternative_model" format="nex" from_work_dir="alternative_model.nhx" label="${tool.name} on ${on_string}: Alternative model">
             <filter>advanced_options["save_alternative_model"]</filter>
         </data>
-
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -207,7 +206,7 @@
             </output>
             <output name="busted_md_report">
                 <assert_contents>
-                    <has_text text=">mss-neutral => NEUTRAL"/>
+                    <has_text text="&gt;mss-neutral =&gt; NEUTRAL"/>
                     <has_text text="## Branch-site unrestricted statistical test of episodic diversification [BUSTED]"/>
                 </assert_contents>
             </output>

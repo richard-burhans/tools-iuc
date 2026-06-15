@@ -3,17 +3,17 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     perl '$__tool_directory__/get_parent_terms_by_relationship_type.pl'
         '$input'
         '$term_id'
         '$rel_id' > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
-        <expand macro="term_id" />
-        <expand macro="rel_id" />
+        <expand macro="input_ontology"/>
+        <expand macro="term_id"/>
+        <expand macro="rel_id"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="Parent terms of ${on_string} by $rel_id"/>
@@ -26,7 +26,7 @@
             <output name="output" file="ancestors_rel_filtered.tab" ftype="tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -45,7 +45,6 @@ If you ask for the parent terms of **A** along part_of you will get::
   B
   D
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

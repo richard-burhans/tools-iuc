@@ -7,11 +7,11 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_command_cobra"/>
-    <command>
+    <command><![CDATA[
         python '$__tool_directory__/gem_extract_exchange.py'
             --cb_model_location '${cb_model_location}'
             -output '${output}'
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_model"/>
     </inputs>

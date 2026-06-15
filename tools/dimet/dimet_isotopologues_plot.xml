@@ -65,29 +65,18 @@
                 <option value="pdf">Pdf</option>
                 <option value="svg">Svg</option>
             </param>
-            <param name="appearance_separated_time" type="boolean" value="false" label="appearance separated time"
-                   help="Default value is false."/>
-            <param name="split_plots_by_condition" type="boolean" value="false" label="split plots by condition"
-                   help="Default value is false."/>
-            <param name="as_grid" type="boolean" value="false" label="plot as grid"
-                   help="Default value is false."/>
-            <param name="sharey" type="boolean" value="false" label="share y axis"
-                   help="Default value is false."/>
-            <param name="x_ticks_text_size" type="integer" min="1" max="24" value="18" label="xticks text size"
-                   help="Default value is 18."/>
-            <param name="y_ticks_text_size" type="integer" min="1" max="24" value="18" label="yticks text size"
-                   help="Default value is 18."/>
-            <param name="height_each_stack" type="float" min="1.0" max="10.0" value="4.6" label="height of each stack"
-                   help="Default value is 4.6."/>
-            <param name="width_each_stack" type="float" min="0.1" max="5.0" value="3.0" label="width of each stack"
-                   help="Default value is 3.0."/>
-            <param name="inner_numbers_size" type="integer" min="1" max="20" value="13" label="inner number size"
-                   help="Default value is 13."/>
-            <param name="max_nb_carbons_possible" type="integer" min="1" max="30" value="12" label="max number carbons possible"
-                   help="Default value is 12."/>
+            <param name="appearance_separated_time" type="boolean" value="false" label="appearance separated time" help="Default value is false."/>
+            <param name="split_plots_by_condition" type="boolean" value="false" label="split plots by condition" help="Default value is false."/>
+            <param name="as_grid" type="boolean" value="false" label="plot as grid" help="Default value is false."/>
+            <param name="sharey" type="boolean" value="false" label="share y axis" help="Default value is false."/>
+            <param name="x_ticks_text_size" type="integer" min="1" max="24" value="18" label="xticks text size" help="Default value is 18."/>
+            <param name="y_ticks_text_size" type="integer" min="1" max="24" value="18" label="yticks text size" help="Default value is 18."/>
+            <param name="height_each_stack" type="float" min="1.0" max="10.0" value="4.6" label="height of each stack" help="Default value is 4.6."/>
+            <param name="width_each_stack" type="float" min="0.1" max="5.0" value="3.0" label="width of each stack" help="Default value is 3.0."/>
+            <param name="inner_numbers_size" type="integer" min="1" max="20" value="13" label="inner number size" help="Default value is 13."/>
+            <param name="max_nb_carbons_possible" type="integer" min="1" max="30" value="12" label="max number carbons possible" help="Default value is 12."/>
         </section>
     </inputs>
-
     <outputs>
         <collection name="report" type="list">
             <discover_datasets pattern="__designation_and_ext__" directory="figures"/>
@@ -103,7 +92,7 @@
             <repeat name="plot_factor_list">
                 <param name="condition" value="L-Cycloserine"/>
             </repeat>
-            <param name="timepoint" value='T0,T2h'/>
+            <param name="timepoint" value="T0,T2h"/>
             <section name="output_options">
                 <param name="figure_format" value="svg"/>
                 <param name="appearance_separated_time" value="false"/>
@@ -118,7 +107,7 @@
                 <param name="y_ticks_text_size" value="18"/>
             </section>
             <output_collection name="report" type="list" count="13">
-                <element file="Isotopologues_cell-Fructose_1,6-bisphosphate.svg"  name="Isotopologues_cell-Fructose_1,6-bisphosphate" ftype="svg" compare="sim_size" delta="100"/>
+                <element file="Isotopologues_cell-Fructose_1,6-bisphosphate.svg" name="Isotopologues_cell-Fructose_1,6-bisphosphate" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="Isotopologues_cell-L-Aspartic_acid.svg" name="Isotopologues_cell-L-Aspartic_acid" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="Isotopologues_cell-L-Glutamic_acid.svg" name="Isotopologues_cell-L-Glutamic_acid" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="Isotopologues_cell-L-Glutamine.svg" name="Isotopologues_cell-L-Glutamine" ftype="svg" compare="sim_size" delta="100"/>

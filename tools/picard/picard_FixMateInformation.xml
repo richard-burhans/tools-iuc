@@ -37,7 +37,7 @@
             <output name="outFile" file="picard_FixMateInformation_test1.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -65,6 +65,6 @@ is to assume that the BAM you are working with is coordinate sorted.
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="kma_build_index" name="KMA Index Builder" tool_type="manage_data" version="1.6.6+galaxy0" profile="24.1">
     <description>kma index builder</description>
     <requirements>
@@ -28,13 +27,13 @@ kma_index
 ]]></configfile>
     </configfiles>
     <inputs>
-        <param argument="-k" type="integer" value="16" min="8" max="32" label="kmer size used for indexing the database." />
-        <param argument="-k_t" type="integer" value="16" min="8" max="32" label="kmer size used to identify template candidates when running KMA." />
-        <param argument="-k_i" type="integer" value="16" min="8" max="32" label="kmer size used when performing alignments between two sequences." />
-        <param argument="-ML" type="integer" value="16" label="Minimum length of templates" />
-        <param argument="-ht" type="float" value="1.0" min="0.0" max="1.0" label="Homology template" />
-        <param argument="-hq" type="float" value="1.0" min="0.0" max="1.0" label="Homology query" />
-        <param name="fasta" type="data" format="fasta" label="Sequence to index (fasta)" />
+        <param argument="-k" type="integer" value="16" min="8" max="32" label="kmer size used for indexing the database."/>
+        <param argument="-k_t" type="integer" value="16" min="8" max="32" label="kmer size used to identify template candidates when running KMA."/>
+        <param argument="-k_i" type="integer" value="16" min="8" max="32" label="kmer size used when performing alignments between two sequences."/>
+        <param argument="-ML" type="integer" value="16" label="Minimum length of templates"/>
+        <param argument="-ht" type="float" value="1.0" min="0.0" max="1.0" label="Homology template"/>
+        <param argument="-hq" type="float" value="1.0" min="0.0" max="1.0" label="Homology query"/>
+        <param name="fasta" type="data" format="fasta" label="Sequence to index (fasta)"/>
         <param name="name" type="text" optional="false" label="Name for index" help="Choose a name that describes the indexed sequence and possibly any non-default indexing parameters.">
             <validator type="empty_field"/>
         </param>
@@ -48,10 +47,10 @@ kma_index
             <param name="name" value="index"/>
             <output name="out_file" ftype="data_manager_json">
                 <assert_contents>
-                    <has_text text='"kma_index":' />
-                    <has_text text='"name": "index"' />
-                    <has_text text='"path": "index_folder"' />
-                    <has_text_matching expression='"value": "\d{4}-\d{2}-\d{2}_6a992d5529f459a44fee58c733255e86"' />
+                    <has_text text="&quot;kma_index&quot;:"/>
+                    <has_text text="&quot;name&quot;: &quot;index&quot;"/>
+                    <has_text text="&quot;path&quot;: &quot;index_folder&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;\d{4}-\d{2}-\d{2}_6a992d5529f459a44fee58c733255e86&quot;"/>
                 </assert_contents>
             </output>
         </test>

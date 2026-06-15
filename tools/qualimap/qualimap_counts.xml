@@ -3,30 +3,27 @@
         <import>qualimap_macros.xml</import>
         <xml name="gene_info">
             <conditional name="gene_info">
-                <param name="source" type="select"
-                label="Additional information about genes">
+                <param name="source" type="select" label="Additional information about genes">
                     <option value="">None</option>
                     <option value="builtin">Built-in gene information for supported species</option>
                     <option value="custom">Custom gene information</option>
                 </param>
-                <when value="" />
+                <when value=""/>
                 <when value="builtin">
-                    <param argument="-s" name="species" type="select"
-                    label="Select species">
+                    <param argument="-s" name="species" type="select" label="Select species">
                         <option value="HUMAN">Human</option>
                         <option value="MOUSE">Mouse</option>
                     </param>
                 </when>
                 <when value="custom">
-                    <param argument="-i" name="info" type="data" format="tsv"
-                    label="Qualimap compatible gene annotation data" />
+                    <param argument="-i" name="info" type="data" format="tsv" label="Qualimap compatible gene annotation data"/>
                 </when>
             </conditional>
         </xml>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         @SET_JAVA_OPTS@ &&
 
@@ -84,9 +81,8 @@
         #set $summary_report = None
         @MASSAGE_OUTPUT@
     ]]></command>
-
     <inputs>
-        <param name="input" type="data" format="tsv" label="Input counts data" />
+        <param name="input" type="data" format="tsv" label="Input counts data"/>
         <conditional name="analysis">
             <param name="mode" type="select" label="Type of analysis to perform">
                 <option value="multi_sample">Report overview stats for all samples</option>
@@ -94,153 +90,149 @@
                 <option value="comparison">Compare two groups of samples</option>
             </param>
             <when value="multi_sample">
-                <param name="groups" type="hidden" value="" />
+                <param name="groups" type="hidden" value=""/>
             </when>
             <when value="single_sample">
-                <param name="groups" type="hidden" value="" />
-                <param name="sample_number" type="integer" value="1" min="1"
-                label="Which sample in the input would you like to analyze?" />
-                <expand macro="gene_info" />
+                <param name="groups" type="hidden" value=""/>
+                <param name="sample_number" type="integer" value="1" min="1" label="Which sample in the input would you like to analyze?"/>
+                <expand macro="gene_info"/>
             </when>
             <when value="comparison">
-                <param name="groups" type="text"
-                label="Assign each sample to one of two groups"
-                help="The 'Comparison' mode currently works for exactly two groups of samples. Enter comma-separated group names - one for each sample. The group names will be assigned to the samples in the order of the sample columns of the counts data.">
+                <param name="groups" type="text" label="Assign each sample to one of two groups" help="The 'Comparison' mode currently works for exactly two groups of samples. Enter comma-separated group names - one for each sample. The group names will be assigned to the samples in the order of the sample columns of the counts data.">
                     <validator type="expression" message="Please specify a comma-separated list of group names. No group name in the list may be blank.">all(v.strip() for v in value.split(','))</validator>
                     <validator type="expression" message="Please specify a comma-separated list of group names. Only two different group names are allowed.">len(set(v.strip() for v in value.split(','))) == 2</validator>
                 </param>
-                <expand macro="gene_info" />
+                <expand macro="gene_info"/>
             </when>
         </conditional>
-        <param argument="-k" name="threshold" type="integer" value="5" min="1"
-        label="Counts threshold" />
+        <param argument="-k" name="threshold" type="integer" value="5" min="1" label="Counts threshold"/>
     </inputs>
     <outputs>
-        <data name="output_html" format="html" />
+        <data name="output_html" format="html"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv" />
+            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv"/>
             <conditional name="analysis">
-                <param name="mode" value="single_sample" />
-                <param name="sample_number" value="3" />
+                <param name="mode" value="single_sample"/>
+                <param name="sample_number" value="3"/>
             </conditional>
             <assert_command>
-                <has_text text="results/_GlcN03Report.html" />
+                <has_text text="results/_GlcN03Report.html"/>
             </assert_command>
             <output name="output_html">
                 <assert_contents>
-                    <has_text text="Qualimap Report: Counts QC" />
-                    <not_has_text text="#Counts Distribution" />
-                    <not_has_text text="#Features With Low Counts" />
-                    <not_has_text text="#Bio Detection" />
-                    <not_has_text text="#Counts Per Biotype" />
-                    <not_has_text text="#Length Bias" />
-                    <not_has_text text="#GC Bias" />
-                    <not_has_text text="#Counts Density" />
-                    <not_has_text text="#Scatterplot Matrix" />
-                    <has_text text="#Saturation" />
+                    <has_text text="Qualimap Report: Counts QC"/>
+                    <not_has_text text="#Counts Distribution"/>
+                    <not_has_text text="#Features With Low Counts"/>
+                    <not_has_text text="#Bio Detection"/>
+                    <not_has_text text="#Counts Per Biotype"/>
+                    <not_has_text text="#Length Bias"/>
+                    <not_has_text text="#GC Bias"/>
+                    <not_has_text text="#Counts Density"/>
+                    <not_has_text text="#Scatterplot Matrix"/>
+                    <has_text text="#Saturation"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv" />
+            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv"/>
             <conditional name="analysis">
-                <param name="mode" value="single_sample" />
-                <param name="sample_number" value="3" />
+                <param name="mode" value="single_sample"/>
+                <param name="sample_number" value="3"/>
                 <conditional name="gene_info">
-                    <param name="source" value="builtin" />
-                    <param name="species" value="MOUSE" />
+                    <param name="source" value="builtin"/>
+                    <param name="species" value="MOUSE"/>
                 </conditional>
             </conditional>
             <assert_command>
-                <has_text text="results/_GlcN03Report.html" />
+                <has_text text="results/_GlcN03Report.html"/>
             </assert_command>
             <output name="output_html">
                 <assert_contents>
-                    <has_text text="Qualimap Report: Counts QC" />
-                    <not_has_text text="#Counts Distribution" />
-                    <not_has_text text="#Features With Low Counts" />
-                    <has_text text="#Bio Detection" />
-                    <has_text text="#Counts Per Biotype" />
-                    <has_text text="#Length Bias" />
-                    <has_text text="#GC Bias" />
-                    <not_has_text text="#Counts Density" />
-                    <not_has_text text="#Scatterplot Matrix" />
-                    <has_text text="#Saturation" />
+                    <has_text text="Qualimap Report: Counts QC"/>
+                    <not_has_text text="#Counts Distribution"/>
+                    <not_has_text text="#Features With Low Counts"/>
+                    <has_text text="#Bio Detection"/>
+                    <has_text text="#Counts Per Biotype"/>
+                    <has_text text="#Length Bias"/>
+                    <has_text text="#GC Bias"/>
+                    <not_has_text text="#Counts Density"/>
+                    <not_has_text text="#Scatterplot Matrix"/>
+                    <has_text text="#Saturation"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv" />
+            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv"/>
             <conditional name="analysis">
-                <param name="mode" value="comparison" />
-                <param name="groups" value="minus,minus,minus,plus,plus,plus" />
+                <param name="mode" value="comparison"/>
+                <param name="groups" value="minus,minus,minus,plus,plus,plus"/>
             </conditional>
             <output name="output_html">
                 <assert_contents>
-                    <has_text text="Qualimap Report: Counts QC" />
-                    <has_text text="#Counts Distribution" />
-                    <has_text text="#Features With Low Counts" />
-                    <not_has_text text="#Bio Detection" />
-                    <not_has_text text="#Counts Per Biotype" />
-                    <not_has_text text="#Length Bias" />
-                    <not_has_text text="#GC Bias" />
-                    <not_has_text text="#Counts Density" />
-                    <not_has_text text="#Scatterplot Matrix" />
-                    <not_has_text text="#Saturation" />
+                    <has_text text="Qualimap Report: Counts QC"/>
+                    <has_text text="#Counts Distribution"/>
+                    <has_text text="#Features With Low Counts"/>
+                    <not_has_text text="#Bio Detection"/>
+                    <not_has_text text="#Counts Per Biotype"/>
+                    <not_has_text text="#Length Bias"/>
+                    <not_has_text text="#GC Bias"/>
+                    <not_has_text text="#Counts Density"/>
+                    <not_has_text text="#Scatterplot Matrix"/>
+                    <not_has_text text="#Saturation"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv" />
+            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv"/>
             <conditional name="analysis">
-                <param name="mode" value="comparison" />
-                <param name="groups" value="minus,minus,minus,plus,plus,plus" />
+                <param name="mode" value="comparison"/>
+                <param name="groups" value="minus,minus,minus,plus,plus,plus"/>
                 <conditional name="gene_info">
-                    <param name="source" value="builtin" />
-                    <param name="species" value="MOUSE" />
+                    <param name="source" value="builtin"/>
+                    <param name="species" value="MOUSE"/>
                 </conditional>
             </conditional>
             <output name="output_html">
                 <assert_contents>
-                    <has_text text="Qualimap Report: Counts QC" />
-                    <has_text text="#Counts Distribution" />
-                    <has_text text="#Features With Low Counts" />
-                    <has_text text="#Bio Detection" />
-                    <not_has_text text="#Counts Per Biotype" />
-                    <has_text text="#Length Bias" />
-                    <has_text text="#GC Bias" />
-                    <not_has_text text="#Counts Density" />
-                    <not_has_text text="#Scatterplot Matrix" />
-                    <not_has_text text="#Saturation" />
+                    <has_text text="Qualimap Report: Counts QC"/>
+                    <has_text text="#Counts Distribution"/>
+                    <has_text text="#Features With Low Counts"/>
+                    <has_text text="#Bio Detection"/>
+                    <not_has_text text="#Counts Per Biotype"/>
+                    <has_text text="#Length Bias"/>
+                    <has_text text="#GC Bias"/>
+                    <not_has_text text="#Counts Density"/>
+                    <not_has_text text="#Scatterplot Matrix"/>
+                    <not_has_text text="#Saturation"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv" />
+            <param name="input" value="mouse_counts_ensemble_1000_6.tsv" ftype="tsv"/>
             <conditional name="analysis">
-                <param name="mode" value="multi_sample" />
+                <param name="mode" value="multi_sample"/>
             </conditional>
             <output name="output_html">
                 <assert_contents>
-                    <has_text text="Qualimap Report: Counts QC" />
-                    <has_text text="_GlcN01 ." />
-                    <has_text text="_GlcN02 ." />
-                    <has_text text="_GlcN03 ." />
-                    <has_text text="+GlcN01 ." />
-                    <has_text text="+GlcN02 ." />
-                    <has_text text="+GlcN03 ." />
-                    <has_text text="#input" />
-                    <has_text text="#Counts Density" />
-                    <has_text text="#Scatterplot Matrix" />
-                    <has_text text="#Saturation" />
-                    <has_text text="#Counts Distribution" />
-                    <has_text text="#Features With Low Counts" />
-                    <not_has_text text="#Bio Detection" />
-                    <not_has_text text="#Counts Per Biotype" />
-                    <not_has_text text="#Length Bias" />
-                    <not_has_text text="#GC Bias" />
+                    <has_text text="Qualimap Report: Counts QC"/>
+                    <has_text text="_GlcN01 ."/>
+                    <has_text text="_GlcN02 ."/>
+                    <has_text text="_GlcN03 ."/>
+                    <has_text text="+GlcN01 ."/>
+                    <has_text text="+GlcN02 ."/>
+                    <has_text text="+GlcN03 ."/>
+                    <has_text text="#input"/>
+                    <has_text text="#Counts Density"/>
+                    <has_text text="#Scatterplot Matrix"/>
+                    <has_text text="#Saturation"/>
+                    <has_text text="#Counts Distribution"/>
+                    <has_text text="#Features With Low Counts"/>
+                    <not_has_text text="#Bio Detection"/>
+                    <not_has_text text="#Counts Per Biotype"/>
+                    <not_has_text text="#Length Bias"/>
+                    <not_has_text text="#GC Bias"/>
                 </assert_contents>
             </output>
         </test>

@@ -3,14 +3,14 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         tracy basecall --pratio $pratio --format $format --output '$output' '$tracefile'
     ]]></command>
     <inputs>
-        <param name="tracefile" type="data" format="ab1,scf" label="Chromatogram tracefile" />
-        <param argument="--pratio" type="float" label="Peak ratio to call a base" value="0.33" min="0" />
+        <param name="tracefile" type="data" format="ab1,scf" label="Chromatogram tracefile"/>
+        <param argument="--pratio" type="float" label="Peak ratio to call a base" value="0.33" min="0"/>
         <param argument="--format" type="select" label="Output format">
             <option value="fasta" selected="true">FASTA</option>
             <option value="fastq">FASTQ</option>
@@ -24,29 +24,33 @@
                 <when input="format" value="fasta" format="fasta"/>
                 <when input="format" value="fastq" format="fastq"/>
                 <when input="format" value="tsv" format="tabular"/>
-                <when input="format" value="json" format="json" />
+                <when input="format" value="json" format="json"/>
             </change_format>
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"> <!-- test 1 -->
-            <param name="tracefile" value="input1_r.ab1" ftype="ab1" />
-            <output name="output" file="output1.fasta" ftype="fasta" />
+        <test expect_num_outputs="1">
+            <!-- test 1 -->
+            <param name="tracefile" value="input1_r.ab1" ftype="ab1"/>
+            <output name="output" file="output1.fasta" ftype="fasta"/>
         </test>
-        <test expect_num_outputs="1"> <!-- test 2 -->
-            <param name="tracefile" value="input1_r.ab1" ftype="ab1" />
-            <param name="format" value="json" />
-            <output name="output" file="output1.json" ftype="json" />
+        <test expect_num_outputs="1">
+            <!-- test 2 -->
+            <param name="tracefile" value="input1_r.ab1" ftype="ab1"/>
+            <param name="format" value="json"/>
+            <output name="output" file="output1.json" ftype="json"/>
         </test>
-        <test expect_num_outputs="1"> <!-- test 3 -->
-            <param name="tracefile" value="input1_r.ab1" ftype="ab1" />
-            <param name="pratio" value="0.2" />
-            <output name="output" file="output2.fasta" ftype="fasta" />
+        <test expect_num_outputs="1">
+            <!-- test 3 -->
+            <param name="tracefile" value="input1_r.ab1" ftype="ab1"/>
+            <param name="pratio" value="0.2"/>
+            <output name="output" file="output2.fasta" ftype="fasta"/>
         </test>
-        <test expect_num_outputs="1"> <!-- test 4 -->
-            <param name="tracefile" value="input2.scf" ftype="scf" />
-            <param name="format" value="fasta" />
-            <output name="output" file="output3.fasta" ftype="fasta" />
+        <test expect_num_outputs="1">
+            <!-- test 4 -->
+            <param name="tracefile" value="input2.scf" ftype="scf"/>
+            <param name="format" value="fasta"/>
+            <output name="output" file="output3.fasta" ftype="fasta"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -63,5 +67,5 @@ Read more here_
 .. _here: https://www.gear-genomics.com/docs/tracy/cli/#basecalling-a-chromatogram-trace-file
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

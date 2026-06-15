@@ -27,11 +27,11 @@ $partial_data
             <output name="output_file">
                 <assert_contents>
                     <has_text text="InterProScan 5."/>
-                    <has_text text='"interproscan_version": "5.'/>
+                    <has_text text="&quot;interproscan_version&quot;: &quot;5."/>
                 </assert_contents>
             </output>
             <assert_stdout>
-                <has_text text="Finished." />
+                <has_text text="Finished."/>
             </assert_stdout>
         </test>
         <test>
@@ -40,25 +40,25 @@ $partial_data
             <output name="output_file">
                 <assert_contents>
                     <has_text text="InterProScan 5.58-91.0"/>
-                    <has_text text='"interproscan_version": "5.58-91.0'/>
+                    <has_text text="&quot;interproscan_version&quot;: &quot;5.58-91.0"/>
                 </assert_contents>
             </output>
             <assert_stdout>
-                <has_text text="Finished." />
+                <has_text text="Finished."/>
             </assert_stdout>
         </test>
         <test expect_failure="true">
             <param name="partial_data" value="--partial"/>
             <param name="version" value="5.51-85.0"/>
             <assert_stderr>
-                <has_text text="Sorry, this data manager can only download data for InterProScan >= 5.58-91.0. Use the 0.0.2 version for older versions of InterProScan." />
+                <has_text text="Sorry, this data manager can only download data for InterProScan &gt;= 5.58-91.0. Use the 0.0.2 version for older versions of InterProScan."/>
             </assert_stderr>
         </test>
         <test expect_failure="true">
             <param name="partial_data" value="--partial"/>
             <param name="version" value="xxxx"/>
             <assert_stderr>
-                <has_text text="Version must be a valid InterProScan version" />
+                <has_text text="Version must be a valid InterProScan version"/>
             </assert_stderr>
         </test>
     </tests>

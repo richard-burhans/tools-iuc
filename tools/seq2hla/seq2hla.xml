@@ -47,8 +47,7 @@
                 <param name="fastq_input1" format="fastqsanger,fastqsanger.gz" type="data_collection" collection_type="paired" label="Select a collection of paired-end reads"/>
             </when>
         </conditional>
-        <param name="trim" type="integer" value="" min="0" optional="true" label="Trim bases from 3 prime" 
-               help="trim this many bases from the low-quality end of each read" />
+        <param name="trim" type="integer" value="" min="0" optional="true" label="Trim bases from 3 prime" help="trim this many bases from the low-quality end of each read"/>
     </inputs>
     <outputs>
         <data format="txt" name="seq2hla_log" label="${tool.name} on ${on_string}: ${run_name} logfile"/>
@@ -69,7 +68,7 @@
             </conditional>
             <output name="c1_genotype4digits">
                 <assert_contents>
-                    <has_text text="A*24:02" />
+                    <has_text text="A*24:02"/>
                 </assert_contents>
             </output>
         </test>
@@ -79,14 +78,14 @@
                 <param name="fastq_input_selector" value="paired_collection"/>
                 <param name="fastq_input1">
                     <collection type="paired">
-                        <element name="forward" ftype="fastqsanger" value="reads1.fastq" />
-                        <element name="reverse" ftype="fastqsanger" value="reads2.fastq" />
+                        <element name="forward" ftype="fastqsanger" value="reads1.fastq"/>
+                        <element name="reverse" ftype="fastqsanger" value="reads2.fastq"/>
                     </collection>
                 </param>
             </conditional>
             <output name="c1_genotype4digits">
                 <assert_contents>
-                    <has_text text="A*24:02" />
+                    <has_text text="A*24:02"/>
                 </assert_contents>
             </output>
         </test>

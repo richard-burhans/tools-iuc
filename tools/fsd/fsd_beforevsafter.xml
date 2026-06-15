@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <tool id="fsd_beforevsafter" name="FSD Before/After:" version="1.0.2" profile="19.01">
     <description>Family Size Distribution of duplex sequencing tags during Du Novo analysis</description>
     <macros>
@@ -120,5 +119,5 @@ The output is a PDF file with a plot and a summary of the data of the plots. The
 
 ]]>
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

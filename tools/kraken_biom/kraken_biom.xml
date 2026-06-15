@@ -70,76 +70,76 @@ kraken-biom
     <outputs>
         <data name="biomOutput" format="tabular" from_work_dir="./table.biom" label="Kraken-biom output file">
             <change_format>
-                <when input="fmt" value="json" format="biom1" />
-            </change_format> 
+                <when input="fmt" value="json" format="biom1"/>
+            </change_format>
             <change_format>
-                <when input="fmt" value="hdf5" format="biom2" />
+                <when input="fmt" value="hdf5" format="biom2"/>
             </change_format>
         </data>
-        <data name="otuOutput" format="mothur.map" from_work_dir="./OTU_FP" label="OTU File">       
+        <data name="otuOutput" format="mothur.map" from_work_dir="./OTU_FP" label="OTU File">
             <filter>otu_fp is True</filter>
-        </data>     
-    </outputs>  
+        </data>
+    </outputs>
     <tests>
-    <test expect_num_outputs="1">
-        <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
-        <param name="fmt" value="hdf5"/>
-        <output name="biomOutput" ftype="biom2">
-            <assert_contents>
-                <has_text text="creation-date"/>
-            </assert_contents>
-        </output>
-    </test>
-    <test expect_num_outputs="1">
-        <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
-        <param name="fmt" value="tsv"/>
-        <output name="biomOutput" ftype="tabular">
-            <assert_contents>
-                <has_n_lines n="8246"/>
-                <has_text text="Constructed from biom file"/>
-            </assert_contents>
-        </output>
-    </test>    
-    <test expect_num_outputs="1">
-        <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
-        <param name="fmt" value="json"/>
-        <output name="biomOutput" ftype="biom1">
-            <assert_contents>
-                <has_text text="Biological Observation"/>
-            </assert_contents>
-        </output>
-    </test>
-    <test expect_num_outputs="2">
-        <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
-        <param name="otu_fp" value="true"/>
-        <param name="fmt" value="json"/>
-        <output name="biomOutput" ftype="biom1">
-            <assert_contents>
-                <has_text text="Biological Observation"/>
-            </assert_contents>
-        </output>
-        <output name="otuOutput" ftype="mothur.map">
-            <assert_contents>
-                <has_n_lines n="8244"/>
-            </assert_contents>
-        </output>
-    </test>
-    <test expect_num_outputs="2">
-        <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
-        <param name="metadata" value="SamplesMetaDataTabular.csv"/>        
-        <param name="otu_fp" value="true"/>
-        <param name="fmt" value="json"/>
-        <output name="biomOutput" ftype="biom1">
-            <assert_contents>
-                <has_text text="Biological Observation"/>
-            </assert_contents>
-        </output>
-        <output name="otuOutput" ftype="mothur.map">
-            <assert_contents>
-                <has_n_lines n="8244"/>
-            </assert_contents>
-        </output>
-    </test>    
+        <test expect_num_outputs="1">
+            <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
+            <param name="fmt" value="hdf5"/>
+            <output name="biomOutput" ftype="biom2">
+                <assert_contents>
+                    <has_text text="creation-date"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
+            <param name="fmt" value="tsv"/>
+            <output name="biomOutput" ftype="tabular">
+                <assert_contents>
+                    <has_n_lines n="8246"/>
+                    <has_text text="Constructed from biom file"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
+            <param name="fmt" value="json"/>
+            <output name="biomOutput" ftype="biom1">
+                <assert_contents>
+                    <has_text text="Biological Observation"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="2">
+            <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
+            <param name="otu_fp" value="true"/>
+            <param name="fmt" value="json"/>
+            <output name="biomOutput" ftype="biom1">
+                <assert_contents>
+                    <has_text text="Biological Observation"/>
+                </assert_contents>
+            </output>
+            <output name="otuOutput" ftype="mothur.map">
+                <assert_contents>
+                    <has_n_lines n="8244"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="2">
+            <param name="kraken_reports" value="MG_AIR20200707.tabular,MG_AIR20200708.tabular,MG_AIR20200709.tabular"/>
+            <param name="metadata" value="SamplesMetaDataTabular.csv"/>
+            <param name="otu_fp" value="true"/>
+            <param name="fmt" value="json"/>
+            <output name="biomOutput" ftype="biom1">
+                <assert_contents>
+                    <has_text text="Biological Observation"/>
+                </assert_contents>
+            </output>
+            <output name="otuOutput" ftype="mothur.map">
+                <assert_contents>
+                    <has_n_lines n="8244"/>
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help><![CDATA[
 Kraken-biom
@@ -157,7 +157,7 @@ Output
 The BIOM format currently has two major versions. Version 1.0 uses the JSON (JavaScript Object Notation) format as a base. Version 2.x uses the HDF5 (Hierarchical Data Format v5) as a base. The output format can be specified with the --fmt option. Note that a tab-separated (tsv) output format is also available. The resulting file will not contain most of the metadata, but can be opened by spreadsheet programs.
 
 Version 2 of the BIOM format is used by default for output, but requires the Python library 'h5py'. If the library is not installed, kraken-biom will automatically switch to using version 1.0. Note that the output can optionally be compressed with gzip (--gzip) for version 1.0 and TSV files. Version 2 files are automatically compressed.
-    ]]></help> 
+    ]]></help>
     <citations>
         <citation type="bibtex">
 @misc{githubseqtk,
@@ -169,4 +169,4 @@ Version 2 of the BIOM format is used by default for output, but requires the Pyt
   url = {https://github.com/smdabdoub/kraken-biom},
 }</citation>
     </citations>
- </tool>
+</tool>

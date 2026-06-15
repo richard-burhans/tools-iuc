@@ -37,9 +37,9 @@ humann_reduce_table
             <param name="sort_by" value="name"/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="max" />
-                    <has_text text="UNINTEGRATED|unclassified" />
-                    <has_text text="PWY-4203: volatile benzenoid biosynthesis I (ester formation)|unclassified" />
+                    <has_text text="max"/>
+                    <has_text text="UNINTEGRATED|unclassified"/>
+                    <has_text text="PWY-4203: volatile benzenoid biosynthesis I (ester formation)|unclassified"/>
                 </assert_contents>
             </output>
         </test>

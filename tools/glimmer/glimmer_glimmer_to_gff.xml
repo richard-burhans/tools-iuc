@@ -1,5 +1,5 @@
 <tool id="glimmer_glimmer_to_gff" name="Convert Glimmer to GFF" version="@WRAPPER_VERSION@" profile="@PROFILE_VERSION@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -17,8 +17,8 @@
     </outputs>
     <tests>
         <test>
-            <param name="input" value="glimmer_w_icm_trans-table-11_genomic.out" />
-            <output name="output" file='glimmer.gff'/>
+            <param name="input" value="glimmer_w_icm_trans-table-11_genomic.out"/>
+            <output name="output" file="glimmer.gff"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -62,5 +62,5 @@ Output:
     contig00097 sbe.0.234	glimmer	gene	16333	16935	.	+	.	+1     8.86
 
 ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

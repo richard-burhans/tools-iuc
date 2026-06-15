@@ -1,5 +1,5 @@
 <tool id="data_manager_build_coreprofiler" name="Download and build CoreProfiler scheme" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">2.0.0</token>
         <token name="@VERSION_SUFFIX@">4</token>
@@ -144,11 +144,11 @@ cp '$dmjson' '$out_file'
                 <option value="cgmlstorg">cgMLST.org</option>
             </param>
             <when value="pubmlst">
-                <param name="db_version" type="select" label="Database version" >
+                <param name="db_version" type="select" label="Database version">
                     <option value="token" selected="true">Latest version (bash variables for tokens and secrets will have to be set as described in the documentation)</option>
                     <option value="no_token">Version before January 2025 (no tokens and secrets needed)</option>
                 </param>
-                <param name="coreprofiler_scheme_select" type="select" label="PubMLST schema supported by CoreProfiler">                   
+                <param name="coreprofiler_scheme_select" type="select" label="PubMLST schema supported by CoreProfiler">
                     <option value="abaumannii_3-cgMLST_v1-2133-pubmlst">abaumannii_3: cgMLST v1 [2133 loci] (pubmlst)</option>
                     <option value="bcc_2-cgMLST-1925-pubmlst">bcc_2: cgMLST [1925 loci] (pubmlst)</option>
                     <option value="bcereus_2-B._anthracis_cgMLST-3803-pubmlst">bcereus_2: B. anthracis cgMLST [3803 loci] (pubmlst)</option>
@@ -191,11 +191,11 @@ cp '$dmjson' '$out_file'
                 </param>
             </when>
             <when value="bigsdb">
-                <param name="db_version" type="select" label="Database version" >
+                <param name="db_version" type="select" label="Database version">
                     <option value="token" selected="true">Latest version (bash variables for tokens and secrets will have to be set as described in the documentation)</option>
                     <option value="no_token">Version before January 2025 (no tokens and secrets needed)</option>
                 </param>
-                <param name="coreprofiler_scheme_select" type="select" label="BIGSdb schema supported by CoreProfiler">                   
+                <param name="coreprofiler_scheme_select" type="select" label="BIGSdb schema supported by CoreProfiler">
                     <option value="bordetella_1-cgMLST_genus-1415-bigsdb">bordetella_1: cgMLST_genus [1415 loci] (bigsdb)</option>
                     <option value="bordetella_4-cgMLST_pertussis-2038-bigsdb">bordetella_4: cgMLST_pertussis [2038 loci] (bigsdb)</option>
                     <option value="diphtheria_1-cgMLST-1305-bigsdb">diphtheria_1: cgMLST [1305 loci] (bigsdb)</option>
@@ -217,13 +217,13 @@ cp '$dmjson' '$out_file'
                 </param>
             </when>
             <when value="enterobase">
-                <param name="coreprofiler_scheme_select" type="select" label="Enterobase schema supported by CoreProfiler">                   
+                <param name="coreprofiler_scheme_select" type="select" label="Enterobase schema supported by CoreProfiler">
                     <option value="escherichia_v1-cgMLST-2513-enterobase">escherichia_v1: cgMLST v1 [2513 loci] (enterobase)</option>
                     <option value="salmonella_v2-cgMLST-3002-enterobase">salmonella_v2: cgMLST v2 [3002 loci] (enterobase)</option>
                 </param>
             </when>
             <when value="cgmlstorg">
-                <param name="coreprofiler_scheme_select" type="select" label="cgMLST.org schema supported by CoreProfiler">                   
+                <param name="coreprofiler_scheme_select" type="select" label="cgMLST.org schema supported by CoreProfiler">
                     <option value="abaumannii-Acinetobacter_baumannii-2390-cgmlstorg">abaumannii: Acinetobacter baumannii [2390 loci] (cgmlstorg)</option>
                     <option value="banthracis-Bacillus_anthracis-3803-cgmlstorg">banthracis: Bacillus anthracis [3803 loci] (cgmlstorg)</option>
                     <option value="bmallei_fli-Burkholderia_mallei_(FLI)-2838-cgmlstorg">bmallei_fli: Burkholderia mallei (FLI) [2838 loci] (cgmlstorg)</option>
@@ -275,18 +275,18 @@ cp '$dmjson' '$out_file'
             <conditional name="select_db">
                 <param name="db_list" value="pubmlst"/>
                 <param name="db_version" value="no_token"/>
-                <param name="coreprofiler_scheme_select" value="borrelia_3-cgMLST-639-pubmlst" />
+                <param name="coreprofiler_scheme_select" value="borrelia_3-cgMLST-639-pubmlst"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"coreprofiler_versioned_scheme":'/>
-                    <has_text_matching expression='"value": "coreprofiler_downloaded_[0-9-]{10}-borrelia_3-cgMLST-639-pubmlst-no_token"'/>
-                    <has_text text='"name": "borrelia_3: cgMLST [639 loci] (pubmlst - version before 2025)"'/>
-                    <has_text_matching expression='"tool_version": "[0-9.]+"'/>
-                    <has_text_matching expression='"database": "pubmlst"'/>
-                    <has_text_matching expression='"path": "coreprofiler_borrelia_3_pubmlst_no_token_[0-9-]{10}"'/>
-                    <has_text text='"db_path": "db_borrelia_3/borrelia_3.fasta"'/>
-                    <has_text text='"scheme_path": "scheme_borrelia_3"'/>
+                    <has_text text="&quot;coreprofiler_versioned_scheme&quot;:"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;coreprofiler_downloaded_[0-9-]{10}-borrelia_3-cgMLST-639-pubmlst-no_token&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;borrelia_3: cgMLST [639 loci] (pubmlst - version before 2025)&quot;"/>
+                    <has_text_matching expression="&quot;tool_version&quot;: &quot;[0-9.]+&quot;"/>
+                    <has_text_matching expression="&quot;database&quot;: &quot;pubmlst&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;coreprofiler_borrelia_3_pubmlst_no_token_[0-9-]{10}&quot;"/>
+                    <has_text text="&quot;db_path&quot;: &quot;db_borrelia_3/borrelia_3.fasta&quot;"/>
+                    <has_text text="&quot;scheme_path&quot;: &quot;scheme_borrelia_3&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -295,18 +295,18 @@ cp '$dmjson' '$out_file'
             <conditional name="select_db">
                 <param name="db_list" value="bigsdb"/>
                 <param name="db_version" value="no_token"/>
-                <param name="coreprofiler_scheme_select" value="yersinia_1-Yersinia_cgMLST-500-bigsdb" />
+                <param name="coreprofiler_scheme_select" value="yersinia_1-Yersinia_cgMLST-500-bigsdb"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"coreprofiler_versioned_scheme":'/>
-                    <has_text_matching expression='"value": "coreprofiler_downloaded_[0-9-]{10}-yersinia_1-Yersinia_cgMLST-500-bigsdb-no_token"'/>
-                    <has_text text='"name": "yersinia_1: Yersinia_cgMLST [500 loci] (bigsdb - version before 2025)"'/>
-                    <has_text_matching expression='"tool_version": "[0-9.]+"'/>
-                    <has_text_matching expression='"database": "bigsdb"'/>
-                    <has_text_matching expression='"path": "coreprofiler_yersinia_1_bigsdb_no_token_[0-9-]{10}"'/>
-                    <has_text text='"db_path": "db_yersinia_1/yersinia_1.fasta"'/>
-                    <has_text text='"scheme_path": "scheme_yersinia_1"'/>
+                    <has_text text="&quot;coreprofiler_versioned_scheme&quot;:"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;coreprofiler_downloaded_[0-9-]{10}-yersinia_1-Yersinia_cgMLST-500-bigsdb-no_token&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;yersinia_1: Yersinia_cgMLST [500 loci] (bigsdb - version before 2025)&quot;"/>
+                    <has_text_matching expression="&quot;tool_version&quot;: &quot;[0-9.]+&quot;"/>
+                    <has_text_matching expression="&quot;database&quot;: &quot;bigsdb&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;coreprofiler_yersinia_1_bigsdb_no_token_[0-9-]{10}&quot;"/>
+                    <has_text text="&quot;db_path&quot;: &quot;db_yersinia_1/yersinia_1.fasta&quot;"/>
+                    <has_text text="&quot;scheme_path&quot;: &quot;scheme_yersinia_1&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -314,18 +314,18 @@ cp '$dmjson' '$out_file'
             <param name="hide_test" value="true"/>
             <conditional name="select_db">
                 <param name="db_list" value="enterobase"/>
-                <param name="coreprofiler_scheme_select" value="escherichia_v1-cgMLST-2513-enterobase" />
+                <param name="coreprofiler_scheme_select" value="escherichia_v1-cgMLST-2513-enterobase"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"coreprofiler_versioned_scheme":'/>
-                    <has_text_matching expression='"value": "coreprofiler_downloaded_[0-9-]{10}-escherichia_v1-cgMLST-2513-enterobase-no_token"'/>
-                    <has_text_matching expression='"name": "escherichia_v1: cgMLST \[2513 loci\] \(enterobase - downloaded on [0-9-]{10}\)"'/>
-                    <has_text_matching expression='"tool_version": "[0-9.]+"'/>
-                    <has_text_matching expression='"database": "enterobase"'/>
-                    <has_text_matching expression='"path": "coreprofiler_escherichia_v1_enterobase_no_token_[0-9-]{10}"'/>
-                    <has_text text='"db_path": "db_escherichia_v1/escherichia_v1.fasta"'/>
-                    <has_text text='"scheme_path": "scheme_escherichia_v1"'/>
+                    <has_text text="&quot;coreprofiler_versioned_scheme&quot;:"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;coreprofiler_downloaded_[0-9-]{10}-escherichia_v1-cgMLST-2513-enterobase-no_token&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;escherichia_v1: cgMLST \[2513 loci\] \(enterobase - downloaded on [0-9-]{10}\)&quot;"/>
+                    <has_text_matching expression="&quot;tool_version&quot;: &quot;[0-9.]+&quot;"/>
+                    <has_text_matching expression="&quot;database&quot;: &quot;enterobase&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;coreprofiler_escherichia_v1_enterobase_no_token_[0-9-]{10}&quot;"/>
+                    <has_text text="&quot;db_path&quot;: &quot;db_escherichia_v1/escherichia_v1.fasta&quot;"/>
+                    <has_text text="&quot;scheme_path&quot;: &quot;scheme_escherichia_v1&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -333,18 +333,18 @@ cp '$dmjson' '$out_file'
             <param name="hide_test" value="true"/>
             <conditional name="select_db">
                 <param name="db_list" value="cgmlstorg"/>
-                <param name="coreprofiler_scheme_select" value="mgallisepticum-Mycoplasma_gallisepticum-425-cgmlstorg" />
+                <param name="coreprofiler_scheme_select" value="mgallisepticum-Mycoplasma_gallisepticum-425-cgmlstorg"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"coreprofiler_versioned_scheme":'/>
-                    <has_text_matching expression='"value": "coreprofiler_downloaded_[0-9-]{10}-mgallisepticum-Mycoplasma_gallisepticum-425-cgmlstorg-no_token"'/>
-                    <has_text_matching expression='"name": "mgallisepticum: Mycoplasma_gallisepticum \[425 loci\] \(cgmlstorg - downloaded on [0-9-]{10}\)"'/>
-                    <has_text_matching expression='"tool_version": "[0-9.]+"'/>
-                    <has_text_matching expression='"database": "cgmlstorg"'/>
-                    <has_text_matching expression='"path": "coreprofiler_mgallisepticum_cgmlstorg_no_token_[0-9-]{10}"'/>
-                    <has_text text='"db_path": "db_mgallisepticum/mgallisepticum.fasta"'/>
-                    <has_text text='"scheme_path": "scheme_mgallisepticum"'/>
+                    <has_text text="&quot;coreprofiler_versioned_scheme&quot;:"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;coreprofiler_downloaded_[0-9-]{10}-mgallisepticum-Mycoplasma_gallisepticum-425-cgmlstorg-no_token&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;mgallisepticum: Mycoplasma_gallisepticum \[425 loci\] \(cgmlstorg - downloaded on [0-9-]{10}\)&quot;"/>
+                    <has_text_matching expression="&quot;tool_version&quot;: &quot;[0-9.]+&quot;"/>
+                    <has_text_matching expression="&quot;database&quot;: &quot;cgmlstorg&quot;"/>
+                    <has_text_matching expression="&quot;path&quot;: &quot;coreprofiler_mgallisepticum_cgmlstorg_no_token_[0-9-]{10}&quot;"/>
+                    <has_text text="&quot;db_path&quot;: &quot;db_mgallisepticum/mgallisepticum.fasta&quot;"/>
+                    <has_text text="&quot;scheme_path&quot;: &quot;scheme_mgallisepticum&quot;"/>
                 </assert_contents>
             </output>
         </test>

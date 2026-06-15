@@ -1,10 +1,10 @@
 <tool id="bamtools_split_tag" name="Split BAM by read tag value" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>into a dataset list collection</description>
     <macros>
-          <import>macros.xml</import>
+        <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command>
         <![CDATA[
             #import re
@@ -29,13 +29,12 @@
         <test>
             <param name="input_bam" ftype="bam" value="bamtools-input-tags.bam"/>
             <param name="tag_name" value="XG"/>
-            <output_collection name="output_bams"  type="list">
-                <element name="bamtools_input_tags.TAG_XG_V"  file="bamtools_input_tags.TAG_XG_V.bam" compare="sim_size" delta="500" />
+            <output_collection name="output_bams" type="list">
+                <element name="bamtools_input_tags.TAG_XG_V" file="bamtools_input_tags.TAG_XG_V.bam" compare="sim_size" delta="500"/>
             </output_collection>
         </test>
-
     </tests>
-    <help>
+    <help><![CDATA[
 **What is does**
 
 BAMTools split is a utility for splitting BAM files. It is based on the BAMtools suite of tools by Derek Barnett (https://github.com/pezmaster31/bamtools).
@@ -58,7 +57,7 @@ This can generate a collection with a huge number of elements depending on the n
 
 Additional information about BAMtools can be found at https://github.com/pezmaster31/bamtools/wiki
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btr174</citation>
     </citations>

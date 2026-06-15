@@ -45,7 +45,7 @@ python '$__tool_directory__/data_manager_humann_download.py'
         </conditional>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" label="${tool.name}" />
+        <data name="out_file" format="data_manager_json" label="${tool.name}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -112,11 +112,11 @@ python '$__tool_directory__/data_manager_humann_download.py'
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This tool downloads the HUMAnN databases.
 
 Read more about the tool at http://huttenhower.sph.harvard.edu/humann .
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1371/journal.pcbi.1003153</citation>
     </citations>

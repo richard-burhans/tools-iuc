@@ -44,13 +44,9 @@
             </sanitizer>
             <validator type="regex" message="Canonical must contain only A,C,G,T.">^[ACGTacgt]+$</validator>
         </param>
-
-        <param argument="--patterns" type="text" value="TTAGGG,CCCTAA"
-            label="Patterns to explore (comma-separated), IUPAC allowed">
-            <validator type="regex"
-                    message="Use IUPAC letters ACGTRYSWKMBDHVN; comma-separated.">^[ACGTRYSWKMBDHVNacgtryswkmbdhvn]+(?:,[ACGTRYSWKMBDHVNacgtryswkmbdhvn]+)*$</validator>
+        <param argument="--patterns" type="text" value="TTAGGG,CCCTAA" label="Patterns to explore (comma-separated), IUPAC allowed">
+            <validator type="regex" message="Use IUPAC letters ACGTRYSWKMBDHVN; comma-separated.">^[ACGTRYSWKMBDHVNacgtryswkmbdhvn]+(?:,[ACGTRYSWKMBDHVNacgtryswkmbdhvn]+)*$</validator>
         </param>
-
         <param argument="--window" type="integer" min="100" value="1000" label="Sliding window size"/>
         <param argument="--step" type="integer" min="100" value="500" label="Sliding window step"/>
         <param argument="--terminal-limit" type="integer" min="10000" value="50000" label="Terminal limit (bp) in contigs"/>
@@ -59,7 +55,6 @@
         <param argument="--min-block-length" type="integer" min="0" value="500" label="Minimum block length"/>
         <param argument="--min-block-density" type="float" min="0" max="1" value="0.5" label="Minimum block density (0–1)"/>
         <param argument="--edit-distance" type="integer" min="0" max="2" value="0" label="Edit distance for pattern matching (0–2)"/>
-
         <param argument="--out-win-repeats" type="boolean" truevalue="--out-win-repeats" falsevalue="" checked="false" label="Window repeat counts"/>
         <param argument="--out-gc" type="boolean" truevalue="--out-gc" falsevalue="" checked="false" label="Window GC"/>
         <param argument="--out-entropy" type="boolean" truevalue="--out-entropy" falsevalue="" checked="false" label="Window Shannon entropy"/>
@@ -68,12 +63,10 @@
         <param argument="--ultra-fast" type="boolean" truevalue="--ultra-fast" falsevalue="" checked="true" label="Ultra-fast mode (terminal regions only)"/>
         <param argument="--verbose" type="boolean" truevalue="--verbose" falsevalue="" checked="false" label="Verbose output"/>
     </inputs>
-
     <outputs>
         <!-- BASIC OUTFILES -->
         <data name="terminal_telomeres" format="bed" from_work_dir="output/*_terminal_telomeres.bed" label="${tool.name} on ${on_string}: Terminal telomeres"/>
         <data name="telo_report" format="tabular" label="${tool.name} on ${on_string}: Summary report"/>
-
         <!-- OPTIONAL OUTFILES -->
         <data name="interstitial_telomeres" format="bed" from_work_dir="output/*_interstitial_telomeres.bed" label="${tool.name} on ${on_string}: Interstitial telomeres">
             <filter>out_its</filter>
@@ -88,7 +81,6 @@
             <filter>out_gc or out_entropy or out_win_repeats</filter>
         </data>
     </outputs>
-
     <tests>
         <!-- 1) Default (-u) : terminal telomeres + report -->
         <test expect_num_outputs="2">
@@ -111,7 +103,6 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- 2) Genome-wide (-g -e -r -m -i ; disable -u) -->
         <test expect_num_outputs="6">
             <param name="input_sequence" value="bTaeGut7_chr33_mat.fa.gz" ftype="fasta.gz"/>
@@ -123,7 +114,6 @@
             <param name="out_matches" value="true"/>
             <param name="out_its" value="true"/>
             <param name="ultra_fast" value="false"/>
-
             <output name="terminal_telomeres">
                 <assert_contents>
                     <has_line_matching expression="^\S+\t\d+\t\d+(?:\t.*)?$"/>
@@ -163,7 +153,6 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- 3) Edit distance 1: more variants detected -->
         <test expect_num_outputs="2">
             <param name="input_sequence" value="bTaeGut7_chr33_mat.fa.gz" ftype="fasta.gz"/>
@@ -188,7 +177,6 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- 4) Edit distance 2: maximum variants detected -->
         <test expect_num_outputs="2">
             <param name="input_sequence" value="bTaeGut7_chr33_mat.fa.gz" ftype="fasta.gz"/>
@@ -214,7 +202,6 @@
             </output>
         </test>
     </tests>
-    
     <help><![CDATA[
         Description:
         Teloscope is a tool for telomere annotation in genome assemblies. 
@@ -243,6 +230,5 @@
         - -u / --ultra-fast: terminal scan only (default true); disabled automatically when -g/-e/-r/-m/-i are used.
         - -x / --edit-distance: Edit Hamming distance for pattern matching (0–2). Useful for identifying degenerate telomeric repeats (default 0).
     ]]></help>
-
     <expand macro="citations"/>
 </tool>

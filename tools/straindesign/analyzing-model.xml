@@ -37,14 +37,14 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="output_png" format="png" label="${tool.name}" />
+        <data name="output_png" format="png" label="${tool.name}"/>
     </outputs>
     <tests>
         <test>
             <!--  test 1  -->
             <param name="model" ftype="sbml" value="iAF1260.xml.gz"/>
-            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M" />
-            <param name="target_rxn_id" value="EX_tyrp_e" />
+            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M"/>
+            <param name="target_rxn_id" value="EX_tyrp_e"/>
             <output name="output_png" ftype="png">
                 <assert_contents>
                     <has_size value="30000" delta="10000"/>
@@ -54,9 +54,9 @@
         <test>
             <!--  test 2  -->
             <param name="model" ftype="sbml" value="iAF1260.xml.gz"/>
-            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M" />
-            <param name="target_rxn_id" value="EX_tyrp_e" />
-            <param name="substrate_rxn_id" value="EX_glc__D_e" />
+            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M"/>
+            <param name="target_rxn_id" value="EX_tyrp_e"/>
+            <param name="substrate_rxn_id" value="EX_glc__D_e"/>
             <output name="output_png" ftype="png">
                 <assert_contents>
                     <has_size value="30000" delta="10000"/>
@@ -66,11 +66,11 @@
         <test>
             <!--  test 3  -->
             <param name="model" ftype="sbml" value="iAF1260.xml.gz"/>
-            <param name="pathway" ftype="sbml" value="butanol.xml" />
-            <param name="medium" ftype="tabular" value="butanol.tsv" />
-            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M" />
-            <param name="substrate_rxn_id" value="EX_glc__D_e" />
-            <param name="target_rxn_id" value="EX_1btol_e" />
+            <param name="pathway" ftype="sbml" value="butanol.xml"/>
+            <param name="medium" ftype="tabular" value="butanol.tsv"/>
+            <param name="biomass_rxn_id" value="BIOMASS_Ec_iAF1260_core_59p81M"/>
+            <param name="substrate_rxn_id" value="EX_glc__D_e"/>
+            <param name="target_rxn_id" value="EX_1btol_e"/>
             <output name="output_png" ftype="png">
                 <assert_contents>
                     <has_size value="30000" delta="10000"/>

@@ -1,6 +1,7 @@
 <tool id="data_manager_manual" name="Manual Data Manager" version="0.0.3" tool_type="manage_data" profile="19.01">
-    <options sanitize="False" />
+    <options sanitize="False"/>
     <description>Entry Builder</description>
+    <code file="data_manager_manual.py"/>
     <command detect_errors="exit_code"><![CDATA[
         python '$__tool_directory__/data_manager_manual.py'
         '${out_file}'
@@ -8,11 +9,9 @@
     ]]></command>
     <inputs>
         <repeat name="data_tables" title="Data Table to define" min="1">
-            <param name="data_table_name" type="select" multiple="False" optional="False" label="Choose Desired Data Table"
-                dynamic_options="galaxy_code_get_available_data_tables( __trans__ )" refresh_on_change="True"/>
+            <param name="data_table_name" type="select" multiple="False" optional="False" label="Choose Desired Data Table" dynamic_options="galaxy_code_get_available_data_tables( __trans__ )" refresh_on_change="True"/>
             <repeat name="columns" title="Table Columns" min="1">
-                <param name="data_table_column_name" type="select" multiple="False" optional="False" label="Column Name"
-                    dynamic_options="galaxy_code_get_available_data_table_columns( __trans__, data_table_name )" />
+                <param name="data_table_column_name" type="select" multiple="False" optional="False" label="Column Name" dynamic_options="galaxy_code_get_available_data_table_columns( __trans__, data_table_name )"/>
                 <!-- <param name="data_table_column_name" type="text" label="Column Name"/> -->
                 <param name="data_table_column_value" type="text" label="Value to use for data table column"/>
                 <conditional name="is_path">
@@ -21,7 +20,7 @@
                         <option value="no" selected="True">No</option>
                     </param>
                     <when value="yes">
-                        <param name="abspath" type="boolean" label="Apply abspath" checked="True" truevalue="abspath" falsevalue="" />
+                        <param name="abspath" type="boolean" label="Apply abspath" checked="True" truevalue="abspath" falsevalue=""/>
                     </when>
                     <when value="no"/>
                 </conditional>
@@ -35,7 +34,7 @@
                     <option value="URL" selected="True">URL</option>
                 </param>
                 <when value="history">
-                    <param name="file_history" type="data" multiple="false" optional="false" format="data" label="File from history" />
+                    <param name="file_history" type="data" multiple="false" optional="false" format="data" label="File from history"/>
                 </when>
                 <when value="URL">
                     <param name="file_URL" type="text" label="Fetch from URL" value=""/>
@@ -49,8 +48,7 @@
                 <when value="None">
                     <param name="filename_override" type="text" label="Override with Filename" value=""/>
                 </when>
-                <when value="unpack">
-                </when>
+                <when value="unpack"/>
             </conditional>
         </repeat>
     </inputs>
@@ -77,11 +75,10 @@
             <output name="out_file" file="dm6.data_manager_json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 This tool allows manually specifying data table entries and optionally providing filesystem contents.
 
-    </help>
-    <code file="data_manager_manual.py" />
+    ]]></help>
 </tool>

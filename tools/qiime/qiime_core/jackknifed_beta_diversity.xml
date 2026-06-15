@@ -83,30 +83,30 @@ jackknifed_beta_diversity.py
                 <element name="unweighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
                 <element name="weighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
@@ -115,30 +115,30 @@ jackknifed_beta_diversity.py
                 <element name="unweighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
                 <element name="weighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
@@ -147,30 +147,30 @@ jackknifed_beta_diversity.py
                 <element name="unweighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
                 <element name="weighted_unifrac">
                     <element name="10_0">
                         <assert_contents>
-                            <has_text text="PC.636" />
-                            <has_text text="PC.635" />
-                            <has_text text="PC.356" />
-                            <has_text text="PC.481" />
-                            <has_text text="PC.354" />
-                            <has_text text="PC.593" />
-                            <has_text text="PC.355" />
-                            <has_text text="PC.607" />
-                            <has_text text="PC.634" />
+                            <has_text text="PC.636"/>
+                            <has_text text="PC.635"/>
+                            <has_text text="PC.356"/>
+                            <has_text text="PC.481"/>
+                            <has_text text="PC.354"/>
+                            <has_text text="PC.593"/>
+                            <has_text text="PC.355"/>
+                            <has_text text="PC.607"/>
+                            <has_text text="PC.634"/>
                         </assert_contents>
                     </element>
                 </element>
@@ -178,35 +178,35 @@ jackknifed_beta_diversity.py
             <output_collection name="rare_upgma_consensus" type="list" count="2">
                 <element name="unweighted_unifrac">
                     <assert_contents>
-                        <has_text text="PC.636" />
-                        <has_text text="PC.635" />
-                        <has_text text="PC.356" />
-                        <has_text text="PC.481" />
-                        <has_text text="PC.354" />
-                        <has_text text="PC.593" />
-                        <has_text text="PC.355" />
-                        <has_text text="PC.607" />
-                        <has_text text="PC.634" />
+                        <has_text text="PC.636"/>
+                        <has_text text="PC.635"/>
+                        <has_text text="PC.356"/>
+                        <has_text text="PC.481"/>
+                        <has_text text="PC.354"/>
+                        <has_text text="PC.593"/>
+                        <has_text text="PC.355"/>
+                        <has_text text="PC.607"/>
+                        <has_text text="PC.634"/>
                     </assert_contents>
                 </element>
                 <element name="weighted_unifrac">
                     <assert_contents>
-                        <has_text text="PC.636" />
-                        <has_text text="PC.635" />
-                        <has_text text="PC.356" />
-                        <has_text text="PC.481" />
-                        <has_text text="PC.354" />
-                        <has_text text="PC.593" />
-                        <has_text text="PC.355" />
-                        <has_text text="PC.607" />
-                        <has_text text="PC.634" />
+                        <has_text text="PC.636"/>
+                        <has_text text="PC.635"/>
+                        <has_text text="PC.356"/>
+                        <has_text text="PC.481"/>
+                        <has_text text="PC.354"/>
+                        <has_text text="PC.593"/>
+                        <has_text text="PC.355"/>
+                        <has_text text="PC.607"/>
+                        <has_text text="PC.634"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output name="jackknifed_beta_diversity_report">
                 <assert_contents>
-                    <has_text text="unweighted_unifrac" />
-                    <has_text text="weighted_unifrac" />
+                    <has_text text="unweighted_unifrac"/>
+                    <has_text text="weighted_unifrac"/>
                 </assert_contents>
             </output>
         </test>

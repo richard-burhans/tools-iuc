@@ -3,10 +3,10 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
-    <command detect_errors="aggressive">
-        <![CDATA[
+    <command detect_errors="aggressive"><![CDATA[
+        
         set -o pipefail;
 
         ## Uncompress input FASTA files if necessary and create symlinks for uncompressed files
@@ -24,16 +24,16 @@
             $includeAlignment
             $noPerAlignmentStats
             --printAggregateStats ## Must be set and can't be optional. Otherwise, asserts in the tool will throw to 100%
-            --outputFile '$out_file'
+            --outputFile ''$out_file''
     ]]></command>
     <inputs>
         <expand macro="input_paf"/>
         <expand macro="params_fastaList"/>
-        <param argument="--includeAlignment" type="boolean" truevalue="--includeAlignment" falsevalue="" checked="false" label="Include alignment details" help="Include base-level alignment in output"/>  
-        <param argument="--noPerAlignmentStats" type="boolean" truevalue="--noPerAlignmentStats" falsevalue="" checked="false" label="Disable per-alignment statistics" help="Suppresses statistics for individual PAF alignments and only prints the overall summary statistics"/>  
+        <param argument="--includeAlignment" type="boolean" truevalue="--includeAlignment" falsevalue="" checked="false" label="Include alignment details" help="Include base-level alignment in output"/>
+        <param argument="--noPerAlignmentStats" type="boolean" truevalue="--noPerAlignmentStats" falsevalue="" checked="false" label="Disable per-alignment statistics" help="Suppresses statistics for individual PAF alignments and only prints the overall summary statistics"/>
         <section name="check" title="Sanity check for testing" expanded="true">
-            <param argument="--errorIfIdentityLowerThanX" type="float" min="0" value="0" max="1" label="Error if identify is lower than given value" help="Asserts if identity is >= given value"/>
-            <param argument="--errorIfAlignedBasesLowerThanX" type="integer" min="0" value="0" label="Error if aligned bases is lower than given value" help="Asserts if total aligned based is >= given value"/>
+            <param argument="--errorIfIdentityLowerThanX" type="float" min="0" value="0" max="1" label="Error if identify is lower than given value" help="Asserts if identity is &gt;= given value"/>
+            <param argument="--errorIfAlignedBasesLowerThanX" type="integer" min="0" value="0" label="Error if aligned bases is lower than given value" help="Asserts if total aligned based is &gt;= given value"/>
         </section>
     </inputs>
     <outputs>

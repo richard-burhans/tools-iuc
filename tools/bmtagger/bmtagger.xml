@@ -4,7 +4,6 @@
         <token name="@TOOL_VERSION@">3.101</token>
         <token name="@VERSION_SUFFIX@">0</token>
         <token name="@PROFILE@">25.0</token>
-
         <xml name="assert">
             <assert_contents>
                 <has_n_lines n="2668"/>
@@ -123,7 +122,7 @@
                 <param name="reads" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" label="Single end reads"/>
             </when>
             <when value="paired">
-                <param name="reads" type="data_collection" collection_type="paired" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" label="Paired end reads" />
+                <param name="reads" type="data_collection" collection_type="paired" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,fastqillumina,fastqillumina.gz" label="Paired end reads"/>
             </when>
         </conditional>
         <conditional name="host">
@@ -140,7 +139,7 @@
                 </param>
             </when>
             <when value="history">
-                <param name="sequence" type="data" format="fasta,fasta.gz" label="Host sequence" help="nucleotide sequence" />
+                <param name="sequence" type="data" format="fasta,fasta.gz" label="Host sequence" help="nucleotide sequence"/>
             </when>
         </conditional>
         <param name="test" type="hidden"/>
@@ -150,8 +149,8 @@
             <filter>sequences["type"] == "single"</filter>
         </data>
         <collection name="out_pair" type="paired" label="${tool.name} on ${on_string}: pairs">
-            <data name="forward" format_source="reads" />
-            <data name="reverse" format_source="reads" />
+            <data name="forward" format_source="reads"/>
+            <data name="reverse" format_source="reads"/>
             <filter>sequences["type"] == "paired"</filter>
         </collection>
     </outputs>
@@ -201,7 +200,6 @@
                 <expand macro="element_assert" name="reverse" ftype="fastqsanger.gz" decompress="true"/>
             </output_collection>
         </test>
-
         <!-- single gz input, fasta reference -->
         <test expect_num_outputs="1">
             <conditional name="sequences">
@@ -217,7 +215,6 @@
                 <expand macro="assert"/>
             </output>
         </test>
-
         <!-- gz input, gzipped fasta reference -->
         <test expect_num_outputs="3">
             <conditional name="sequences">

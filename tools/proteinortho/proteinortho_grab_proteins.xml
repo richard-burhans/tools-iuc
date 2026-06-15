@@ -30,7 +30,7 @@
             #end for#
     ]]></command>
     <inputs>
-        <param name="input_files" type="data" format="fasta" multiple="true" min="1" label="Select the input fasta files"/>    
+        <param name="input_files" type="data" format="fasta" multiple="true" min="1" label="Select the input fasta files"/>
         <conditional name="query">
             <param name="querytype" type="select" label="Query type">
                 <option value="string" selected="true">String</option>
@@ -52,13 +52,18 @@
                             <add value="_"/>
                             <add value="|"/>
                             <add value="\t"/>
-                            <add value="&#9;"/> <!-- tab -->
+                            <add value="&#9;"/>
+                            <!-- tab -->
                             <add value=","/>
                             <add value=";"/>
-                            <add value="&#91;"/> <!-- left square bracket, e.g subselecting from vec[1] -->
-                            <add value="&#93;"/> <!-- right square bracket -->
-                            <add value="&#40;"/> <!-- left parenthesis -->
-                            <add value="&#41;"/> <!-- right parenthesis -->
+                            <add value="["/>
+                            <!-- left square bracket, e.g subselecting from vec[1] -->
+                            <add value="]"/>
+                            <!-- right square bracket -->
+                            <add value="("/>
+                            <!-- left parenthesis -->
+                            <add value=")"/>
+                            <!-- right parenthesis -->
                         </valid>
                     </sanitizer>
                 </param>
@@ -67,7 +72,7 @@
                 <param name="queryfile" type="data" format="tabular" label="A orthology-groups file" help="For each group a fasta file is generated containing all proteins/genes of that group."/>
             </when>
         </conditional>
-        <param argument="--regex" type="boolean" checked="false" truevalue="-E" falsevalue="" label="Enable regular expressions (perl)" help="If not: the string is escaped (e.g. | -> \|) [-E]"/>
+        <param argument="--regex" type="boolean" checked="false" truevalue="-E" falsevalue="" label="Enable regular expressions (perl)" help="If not: the string is escaped (e.g. | -&gt; \|) [-E]"/>
         <param argument="--source" type="boolean" checked="false" truevalue="-source" falsevalue="" label="Add the filename to the gene/protein-name [--source]"/>
     </inputs>
     <outputs>

@@ -1,5 +1,5 @@
 <tool id="ampvis2_octave" name="ampvis2 octave plot" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -39,21 +39,21 @@
     </outputs>
     <tests>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <output name="plot" value="AalborgWWTPs-octave.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="tax_aggregate" value="Class"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="tax_aggregate" value="Class"/>
             <section name="output_options">
-                <param name="out_format" value="png"/> 
+                <param name="out_format" value="png"/>
             </section>
             <output name="plot" value="AalborgWWTPs-octave.png" ftype="png" compare="sim_size"/>
         </test>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
-            <param name="group_by" value="Year"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
+            <param name="group_by" value="Year"/>
             <param name="scales" value="free"/>
             <section name="output_options">
                 <param name="out_format" value="svg"/>

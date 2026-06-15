@@ -132,10 +132,10 @@ $masking_options.snvs.mark_snv
                 <option value="" selected="true">incorporate IUPAC code representing the genotypes of all selected samples (default)</option>
                 <option value="-H">incorporate specific haplotype allele of one selected sample</option>
             </param>
-            <when value="-s -" />
-            <when value="-I -s -" />
+            <when value="-s -"/>
+            <when value="-I -s -"/>
             <when value="">
-                <expand macro="macro_samples_enhanced" />
+                <expand macro="macro_samples_enhanced"/>
             </when>
             <when value="-H">
                 <expand macro="macro_sample" help="The name of the single sample alleles of which should get used for the consensus sequence. This field is optional only if your input VCF dataset specifies exactly one sample."/>
@@ -151,23 +151,23 @@ $masking_options.snvs.mark_snv
                         <option value="SA">the ALT allele where the sample is homozygous, the ALT allele where it's heterozygous unless the REF allele is shorter (-H SA)</option>
                     </param>
                     <when value="">
-                        <param name="allele_n" type="integer" min="1" value="1" label="where N is" />
+                        <param name="allele_n" type="integer" min="1" value="1" label="where N is"/>
                     </when>
                     <when value="pIu">
-                        <param name="allele_n" type="integer" min="1" value="1" label="where N is" />
+                        <param name="allele_n" type="integer" min="1" value="1" label="where N is"/>
                     </when>
-                    <when value="R" />
-                    <when value="A" />
-                    <when value="LR" />
-                    <when value="LA" />
-                    <when value="SR" />
-                    <when value="SA" />
+                    <when value="R"/>
+                    <when value="A"/>
+                    <when value="LR"/>
+                    <when value="LA"/>
+                    <when value="SR"/>
+                    <when value="SA"/>
                 </conditional>
             </when>
         </conditional>
         <section name="masking_options" expanded="false" title="Masking and marking options" help="The various options in this section are applied in the order they appear, i.e. 1) masking, 2) marking of absent sites, 3) SNV/indel marking.">
             <param argument="--mask" type="data" format="tabular" multiple="true" optional="true" label="Mask" help="Replace regions according to the next --mask-with option"/>
-            <param argument="--mask-with" type="text" value="" optional="true" label="Mask with" help="Replace with CHAR (skips overlapping variants; default: N); use &quot;uc&quot; or &quot;lc&quot; to change to uppercase or lowercase, respectively. If you have provided more than one Mask dataset and you would like to apply a unique mask for the regions in each of them, then you can specify a comma-separated list of masking instructions (as many as mask datasets)." />
+            <param argument="--mask-with" type="text" value="" optional="true" label="Mask with" help="Replace with CHAR (skips overlapping variants; default: N); use &quot;uc&quot; or &quot;lc&quot; to change to uppercase or lowercase, respectively. If you have provided more than one Mask dataset and you would like to apply a unique mask for the regions in each of them, then you can specify a comma-separated list of masking instructions (as many as mask datasets)."/>
             <param argument="--absent" type="text" value="" optional="true" label="Mark absent" help="Replace reference bases at positions absent from the VCF input with a custom character.">
                 <validator type="regex">^.$</validator>
             </param>
@@ -181,9 +181,9 @@ $masking_options.snvs.mark_snv
                     <option value="--mark-ins lc">Lowercase (lc)</option>
                     <option value="--mark-ins">Custom character</option>
                 </param>
-                <when value="" />
-                <when value="--mark-ins uc" />
-                <when value="--mark-ins lc" />
+                <when value=""/>
+                <when value="--mark-ins uc"/>
+                <when value="--mark-ins lc"/>
                 <when value="--mark-ins">
                     <param name="ins_cutom" type="text" optional="false" label="Character to use instead of an inserted base">
                         <validator type="empty_field"/>
@@ -197,9 +197,9 @@ $masking_options.snvs.mark_snv
                     <option value="--mark-snv lc">Lowercase (lc)</option>
                     <option value="--mark-snv">Custom character</option>
                 </param>
-                <when value="" />
-                <when value="--mark-snv uc" />
-                <when value="--mark-snv lc" />
+                <when value=""/>
+                <when value="--mark-snv uc"/>
+                <when value="--mark-snv lc"/>
                 <when value="--mark-snv">
                     <param name="snv_custom" type="text" optional="false" label="Character to use instead of a subtituted base">
                         <validator type="empty_field"/>

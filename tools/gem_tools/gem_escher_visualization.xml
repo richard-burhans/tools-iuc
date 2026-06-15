@@ -7,7 +7,7 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_command_escher"/>
-    <command>
+    <command><![CDATA[
         python '$__tool_directory__/gem_escher_visualization.py'
             -output '${output}'
             --cb_model_location '${cb_model_location}'
@@ -27,7 +27,7 @@
             #elif $map_selection.map_selection_select == "load_map":
                 --map_load_name '${map_selection.map_load_name}'
             #end if
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_model"/>
         <param format="tabular,csv" name="flux_distribution_location" type="data" label="Flux distribution to visualize flux for" optional="true"/>

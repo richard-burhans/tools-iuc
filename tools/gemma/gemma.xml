@@ -7,7 +7,6 @@
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">gemma</requirement>
     </requirements>
-
     <command detect_errors="aggressive"><![CDATA[
 
 ln -s '$bed.extra_files_path'/*.bed input.bed &&
@@ -36,10 +35,10 @@ ln -s '$bed.extra_files_path'/*.fam input.fam &&
                 <option value="gk">Kinship (Genetic Relationship Matrix)</option>
             </param>
             <when value="lmm">
-                <param name="kinship" type="data" format="tsv,tabular" label="Kinship Matrix File" />
+                <param name="kinship" type="data" format="tsv,tabular" label="Kinship Matrix File"/>
             </when>
-            <when value="lm"></when>
-            <when value="gk"></when>
+            <when value="lm"/>
+            <when value="gk"/>
         </conditional>
     </inputs>
     <outputs>
@@ -50,7 +49,7 @@ ln -s '$bed.extra_files_path'/*.fam input.fam &&
     </outputs>
     <tests>
         <test expect_num_outputs="2">
-            <param name="lmm_inputs|analysis" value="lm" />
+            <param name="lmm_inputs|analysis" value="lm"/>
             <param name="bed" ftype="pbed" value="">
                 <composite_data value="rgenetics.bim"/>
                 <composite_data value="rgenetics.bed"/>
@@ -60,7 +59,7 @@ ln -s '$bed.extra_files_path'/*.fam input.fam &&
             <output name="gemma_output_int" file="lm_output.interval"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="lmm_inputs|analysis" value="gk" />
+            <param name="lmm_inputs|analysis" value="gk"/>
             <param name="bed" ftype="pbed" value="">
                 <composite_data value="rgenetics.bim"/>
                 <composite_data value="rgenetics.bed"/>
@@ -69,18 +68,18 @@ ln -s '$bed.extra_files_path'/*.fam input.fam &&
             <output name="gemma_output" file="test_kinship_matrix.tsv"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="lmm_inputs|analysis" value="lmm" />
+            <param name="lmm_inputs|analysis" value="lmm"/>
             <param name="bed" ftype="pbed" value="">
                 <composite_data value="rgenetics.bim"/>
                 <composite_data value="rgenetics.bed"/>
                 <composite_data value="rgenetics.fam"/>
             </param>
-            <param name="lmm_inputs|kinship" value="test_kinship_matrix.tsv" />
+            <param name="lmm_inputs|kinship" value="test_kinship_matrix.tsv"/>
             <output name="gemma_output" file="lmm_output.tsv"/>
             <output name="gemma_output_int" file="lmm_output.interval"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 This tool runs various GEMMA analyses. Choose from:
 - LM: Linear Model for association testing.
@@ -89,7 +88,7 @@ This tool runs various GEMMA analyses. Choose from:
     
 Provide a PLINK binary dataset as input. For LMM, also provide a precomputed kinship matrix.
 For lm/lmm analysis, the tool applies the Wald test.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1038/ng.2310</citation>
     </citations>

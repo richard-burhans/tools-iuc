@@ -22,15 +22,15 @@
             <option value="COG_Category">COG Category</option>
             <option value="taxonomy">Using taxonomy metadata</option>
         </param>
-        <param argument="--level" type="integer" value="3" min="1" label="Hierarchy Level"
-               help="a value of 1 is the highest level, and any higher value nears the leaves of the hierarchy. For instance, if the hierarchy contains 4 levels, specifying 3 would collapse at one level above being fully specified"/>
+        <param argument="--level" type="integer" value="3" min="1" label="Hierarchy Level" help="a value of 1 is the highest level, and any higher value nears the leaves of the hierarchy. For instance, if the hierarchy contains 4 levels, specifying 3 would collapse at one level above being fully specified"/>
         <expand macro="biom_format_select"/>
     </inputs>
     <outputs>
         <expand macro="biom_output"/>
     </outputs>
     <tests>
-        <test> <!-- test with Kegg Pathways and json output -->
+        <test>
+            <!-- test with Kegg Pathways and json output -->
             <param name="input_fp" value="predicted_metagenomes.L3.biom"/>
             <param name="metadata_category" value="KEGG_Pathways"/>
             <param name="level" value="2"/>
@@ -45,14 +45,16 @@
                 </assert_contents>
             </output>
         </test>
-        <test> <!-- test with COG categories and classic output -->
+        <test>
+            <!-- test with COG categories and classic output -->
             <param name="input_fp" value="cog_predicted_metagenomes.L2.biom"/>
             <param name="metadata_category" value="COG_Category"/>
             <param name="level" value="1"/>
             <param name="output_type" value="tsv"/>
             <output name="out_biom" ftype="tabular" md5="7682875d365f884b399ffa521952dbd8"/>
         </test>
-        <test> <!-- test with taxonomy metadata and hdf5 output -->
+        <test>
+            <!-- test with taxonomy metadata and hdf5 output -->
             <param name="input_fp" value="observation_table.biom"/>
             <param name="metadata_category" value="taxonomy"/>
             <param name="level" value="1"/>

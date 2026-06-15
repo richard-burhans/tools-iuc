@@ -75,7 +75,7 @@ blast2lca
             <param argument="--kegg" type="boolean" truevalue="--kegg" falsevalue="" checked="false" label="Map reads to KEGG KOs?"/>
             <param argument="--showRanks" type="boolean" truevalue="--showRanks" falsevalue="" checked="true" label="Show taxonomic ranks?"/>
             <param argument="--officialRanksOnly" type="boolean" truevalue="--officialRanksOnly" falsevalue="" checked="true" label="Report only taxa that have an official rank?"/>
-            <param  argument="--showTaxIds" type="boolean" truevalue="--showTaxIds" falsevalue="" checked="false" label="Report taxon ids rather than taxon names?"/>
+            <param argument="--showTaxIds" type="boolean" truevalue="--showTaxIds" falsevalue="" checked="false" label="Report taxon ids rather than taxon names?"/>
             <expand macro="min_score_param"/>
             <expand macro="max_expected_param"/>
             <expand macro="min_percent_identity_param"/>
@@ -111,7 +111,7 @@ blast2lca
             <output name="kegg_output" file="kegg_output.txt" ftype="txt"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Applies the LCA alignment to reads and can also perform KEGG classification.  The input is a BLAST file or something similar.
@@ -138,7 +138,6 @@ more pathways.
 
 To perform this analysis, MEGAN uses a mapping of GI numbers to KO groups. Hence, if a KEGG-based analysis is desired, then
 the database that is used in the BLAST alignment must contain GI numbers.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

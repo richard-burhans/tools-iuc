@@ -7,9 +7,9 @@
         <requirement type="package" version="@TOOL_VERSION@">rp2paths</requirement>
     </requirements>
     <stdio>
-        <regex match="TIMEOUT:" level="fatal" />
-        <regex match="ERROR:"   level="fatal" />
-        <regex match="WARNING:" level="warning" />
+        <regex match="TIMEOUT:" level="fatal"/>
+        <regex match="ERROR:" level="fatal"/>
+        <regex match="WARNING:" level="warning"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
         mkdir out &&
@@ -25,17 +25,17 @@
     <inputs>
         <param name="rp2_pathways" type="data" format="csv" label="RetroPath2.0 Pathways" help="Retrosynthesis network CSV file outputted by the RetroPath2 tool which desribes the network linking the targeted compound to the chassis."/>
         <section name="adv" title="Advanced Options" expanded="false">
-            <param name="timeout" type="integer" value="1800" label="Time Out" help="Time out before killing a process (in seconds), default: 30 minutes." />
+            <param name="timeout" type="integer" value="1800" label="Time Out" help="Time out before killing a process (in seconds), default: 30 minutes."/>
         </section>
     </inputs>
     <outputs>
-        <data name="master_pathways" format="csv" label="${tool.name} on ${rp2_pathways.name} : Enumerated Pathways" />
-        <data name="compounds" format="tabular" label="${tool.name} on ${rp2_pathways.name} : Compounds" />
+        <data name="master_pathways" format="csv" label="${tool.name} on ${rp2_pathways.name} : Enumerated Pathways"/>
+        <data name="compounds" format="tabular" label="${tool.name} on ${rp2_pathways.name} : Compounds"/>
     </outputs>
     <tests>
         <test>
             <!-- test 1: check if identical outputs are produced with default parameters  -->
-            <param name="rp2_pathways" value="retropath2_pathways.csv" />
+            <param name="rp2_pathways" value="retropath2_pathways.csv"/>
             <output name="master_pathways" file="rp2paths_pathways.csv" ftype="csv" compare="diff"/>
             <output name="compounds" file="rp2paths_compounds.tsv" ftype="tabular" compare="diff"/>
         </test>

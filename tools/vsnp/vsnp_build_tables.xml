@@ -1,5 +1,5 @@
 <tool id="vsnp_build_tables" name="vSNP: build tables" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -178,7 +178,7 @@ python '$__tool_directory__/vsnp_build_tables.py'
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts a combination of single SNPs json, average MQ json and newick files (or associated collections of
@@ -211,7 +211,6 @@ the `vSNP documentation`_.
 
  * **Choose the category for the files to be analyzed** -  select "Single files" or "Collections of files", then select the appropriate history items (single SNPs json, average MQ json and newick files, or collections of each) based on the selected option.
  * **Use Genbank file** - Select "yes" to annotate the tables using the information in the Genbank file.  Locally cached files, if available, provide the most widely used annotations, but more custom Genbank files can be chosen from the current history.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

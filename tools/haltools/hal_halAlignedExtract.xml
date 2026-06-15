@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halAlignedExtract
@@ -27,9 +27,9 @@
             <param name="viewParentCoords" value="true"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="Genome_1_seq&#009;0&#009;293&#009;Genome_0_seq&#009;0&#009;293&#009;+"/>   
-                    <has_line line="Genome_1_seq&#009;2637&#009;2930&#009;Genome_0_seq&#009;293&#009;586&#009;+"/>    
-                    <has_line line="Genome_1_seq&#009;5135&#009;5274&#009;Genome_0_seq&#009;1033&#009;1172&#009;+"/>
+                    <has_line line="Genome_1_seq&#9;0&#9;293&#9;Genome_0_seq&#9;0&#9;293&#9;+"/>
+                    <has_line line="Genome_1_seq&#9;2637&#9;2930&#9;Genome_0_seq&#9;293&#9;586&#9;+"/>
+                    <has_line line="Genome_1_seq&#9;5135&#9;5274&#9;Genome_0_seq&#9;1033&#9;1172&#9;+"/>
                     <has_n_lines n="26"/>
                 </assert_contents>
             </output>
@@ -40,8 +40,8 @@
             <param name="complement" value="true"/>
             <output name="out_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="Genome_1_seq&#009;1465&#009;1758"/>   
-                    <has_line line="Genome_1_seq&#009;5274&#009;5472"/>
+                    <has_line line="Genome_1_seq&#9;1465&#9;1758"/>
+                    <has_line line="Genome_1_seq&#9;5274&#9;5472"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>

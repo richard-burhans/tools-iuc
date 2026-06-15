@@ -201,7 +201,7 @@ $merge_options.strictness=t
             <output name="output_insertlen_hist" ftype="tabular" value="bbmerge/insert_length_hist.tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 BBMerge merges two overlapping paired reads into a single read. A 2x100nt read pair, for instance can be merged into a single read of length 150nt if the last 50nt of the first read mate and the last 50nt of the second read map overlap. The accuracy of the base calling can also improve as a result of such a reconciliation between the read pairs. BBMerge is also capable of error-correcting the overlapping portion of reads without merging them, as well as merging nonoverlapping reads, if enough coverage is available. 
@@ -244,6 +244,6 @@ output.fastq::
     AAAATTTTAAAACCCCCGGGGGTTTAAATTTAAA
     +
     FFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFF
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

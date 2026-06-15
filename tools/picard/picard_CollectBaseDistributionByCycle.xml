@@ -4,8 +4,7 @@
         <import>picard_macros.xml</import>
         <token name="@WRAPPER_VERSION@">0</token>
     </macros>
-    <expand macro="requirements">
-  </expand>
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
     @java_options@
     @symlink_element_identifier@
@@ -38,8 +37,7 @@
             </param>
             <when value="cached">
                 <param name="ref_file" type="select" label="Using reference genome" help="REFERENCE_SEQUENCE">
-                    <options from_data_table="all_fasta">
-          </options>
+                    <options from_data_table="all_fasta"/>
                     <validator type="no_options" message="A built-in reference genome is not available for the build associated with the selected input file"/>
                 </param>
             </when>
@@ -67,7 +65,7 @@
             <output name="outFile" file="picard_CollectBaseDistributionByCycle_test1.tab" ftype="tabular" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -95,6 +93,6 @@ Program to chart the nucleotide distribution per cycle in a SAM or BAM file.
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -86,7 +86,7 @@ $advanced_options.classify
                     <has_size value="1487" delta="25"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
         <test expect_num_outputs="1">
             <param name="in" ftype="daa" value="input.daa"/>
             <param name="longReads" value="true"/>
@@ -98,13 +98,13 @@ $advanced_options.classify
                     <has_size value="1445" delta="25"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Generates a MEGAN RMA (RealMedia Audio) file from a DIAMOND DAA file, a proprietary file format developed by PowerISO Computing
 for disk image files.  MEGAN uses an update of the original RMA file format known as RMA6.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

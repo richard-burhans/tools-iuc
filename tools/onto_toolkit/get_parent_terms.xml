@@ -3,20 +3,20 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     get_parent_terms.pl
         -f '$input'
         -t '$term_id' > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
-        <expand macro="term_id" />
+        <expand macro="input_ontology"/>
+        <expand macro="term_id"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output" label="Parent terms of ${on_string}">
             <actions>
-                <action name="column_names" type="metadata" default="term ID,term name" />
+                <action name="column_names" type="metadata" default="term ID,term name"/>
             </actions>
         </data>
     </outputs>
@@ -27,7 +27,7 @@
             <output name="output" file="parents.tab"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -40,7 +40,6 @@ If you ask for the parents of the Gene Ontology term with ID **GO:0000079** you 
   GO:0045859	regulation of protein kinase activity
   GO:0051726	regulation of cell cycle
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

@@ -1,11 +1,11 @@
 <tool id="homer_install_promoters_data_manager" name="Homer install promoter DB" tool_type="manage_data" version="@TOOL_VERSION@" profile="22.01">
+    <macros>
+        <token name="@TOOL_VERSION@">4.11</token>
+    </macros>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">homer</requirement>
         <requirement type="package" version="3.11">python</requirement>
     </requirements>
-    <macros>
-        <token name="@TOOL_VERSION@">4.11</token>
-    </macros>
     <command detect_errors="exit_code"><![CDATA[
         cp -r \$(dirname \$(which findMotifs.pl))/../share/homer ./ &&
         perl ./homer/configureHomer.pl -install ${organism}-p ${organism}-o -keepScript &&
@@ -48,10 +48,9 @@
                     <has_text text="&quot;promoter_version&quot;: &quot;v"/>
                     <has_text text="&quot;organism&quot;: &quot;worm&quot;"/>
                     <has_text text="&quot;path&quot;: &quot;"/>
-                </assert_contents>                
+                </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
-    </help>
+    <help/>
 </tool>

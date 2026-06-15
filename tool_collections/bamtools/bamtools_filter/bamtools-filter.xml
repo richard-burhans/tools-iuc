@@ -1,10 +1,10 @@
 <tool id="bamFilter" name="Filter BAM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>datasets on a variety of attributes</description>
     <macros>
-          <import>macros.xml</import>
+        <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code">
         <![CDATA[
             cp '$script_file' '$out_file2' &&
@@ -37,7 +37,7 @@ $json.dumps( $config, indent=4 )
         </configfile>
     </configfiles>
     <inputs>
-        <param name="input_bam" type="data" format="bam" label="BAM dataset(s) to filter" />
+        <param name="input_bam" type="data" format="bam" label="BAM dataset(s) to filter"/>
         <repeat name="conditions" title="Condition" min="1">
             <repeat name="filters" title="Filter" min="1">
                 <conditional name="bam_property">
@@ -75,12 +75,17 @@ $json.dumps( $config, indent=4 )
                     <when value="insertSize">
                         <param name="bam_property_value" type="text" value="&gt;=250" label="Filter on insert size" help="You can use &gt;, &lt;, =, and ! (not) in your expression. E.g., to select pairs with insert size above 250 nt use &quot;&gt;=250&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/><add value="-"/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                    <add value="-"/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="isDuplicate">
-                        <param name="bam_property_value" type="boolean" truevalue="true" falsevalue="false" label="Select reads marked as duplicates" help="Checked = Read IS Duplicate, Empty = Read is NOT Duplicate" />
+                        <param name="bam_property_value" type="boolean" truevalue="true" falsevalue="false" label="Select reads marked as duplicates" help="Checked = Read IS Duplicate, Empty = Read is NOT Duplicate"/>
                     </when>
                     <when value="isFailedQC">
                         <param name="bam_property_value" type="boolean" truevalue="true" falsevalue="false" label="Select reads failing QC" help="Checked = Failed QC, Empty = Passed QC"/>
@@ -115,56 +120,88 @@ $json.dumps( $config, indent=4 )
                     <when value="mapQuality">
                         <param name="bam_property_value" type="text" value="20" label="Filter on read mapping quality (phred scale)" help="You can use &gt;, &lt;, =, and ! (not) in your expression. E.g., to select reads with mapping quality of at least 30 use &quot;&gt;=30&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="matePosition">
                         <param name="bam_property_value" type="text" value="1000000" label="Filter on the position of the mate" help="You can use &gt;, &lt;, =, and ! (not) in your expression. E.g., to select reads with mate (second end) mapping after position 1,000,000 use &quot;&gt;1000000&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="mateReference">
                         <param name="bam_property_value" type="text" value="chr22" label="Filter on reference name for the mate" help="You can use = and ! (not) in your expression. E.g., to select reads with mates mapping to chrM use &quot;chr22&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="name">
                         <param name="bam_property_value" type="text" label="Filter on read name" help="You can use = and ! (not) in your expression.">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="position">
                         <param name="bam_property_value" type="text" value="500000" label="Filter on the position of the read" help="You can use &gt;, &lt;, =, and ! (not) in your expression. E.g., to select reads mapping after position 5,000 use &quot;&gt;5000&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="queryBases">
                         <param name="bam_property_value" type="text" value="ttagggttagg" label="Filter on a sequence motif" help="You can use ! (not) in your expression">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="reference">
                         <param name="bam_property_value" type="text" value="chr22" label="Filter on the reference name for the read" help="You can use ! (not) in your expression">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value="!="/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value="!="/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
                     <when value="tag">
                         <param name="bam_property_value" type="text" value="NM:&gt;1" label="Filter on a particular tag" help="You can use +, -, &gt;, &lt;, =, and ! (not).  Tag name and its value must be separated by &quot;:&quot;. E.g., to obtain reads with at least one mismatch use &quot;NM:&gt;1&quot;">
                             <sanitizer invalid_char="">
-                                <valid initial="string.letters,string.digits"><add value="&gt;"/><add value="&lt;"/><add value=":!=+-"/></valid>
+                                <valid initial="string.letters,string.digits">
+                                    <add value="&gt;"/>
+                                    <add value="&lt;"/>
+                                    <add value=":!=+-"/>
+                                </valid>
                             </sanitizer>
                         </param>
                     </when>
@@ -178,7 +215,7 @@ $json.dumps( $config, indent=4 )
             </param>
             <when value="false"/>
             <when value="true">
-                <param name="rules" type="text" label="Enter rules here" help="This option can only be used with at least two conditions. Read help below (Example 4) to understand how it works." >
+                <param name="rules" type="text" label="Enter rules here" help="This option can only be used with at least two conditions. Read help below (Example 4) to understand how it works.">
                     <sanitizer invalid_char="">
                         <valid initial="string.printable"/>
                     </sanitizer>
@@ -187,8 +224,8 @@ $json.dumps( $config, indent=4 )
         </conditional>
     </inputs>
     <outputs>
-        <data format="txt" name="out_file2" label="${tool.name} on ${on_string}: JSON filter rules" />
-        <data name="out_file1" format="bam" label="${tool.name} on ${on_string}: Filtered BAM" />
+        <data format="txt" name="out_file2" label="${tool.name} on ${on_string}: JSON filter rules"/>
+        <data name="out_file1" format="bam" label="${tool.name} on ${on_string}: Filtered BAM"/>
     </outputs>
     <tests>
         <test>
@@ -201,7 +238,7 @@ $json.dumps( $config, indent=4 )
                     </conditional>
                 </repeat>
             </repeat>
-            <output name="out_file1" ftype="bam" file="bamtools-test1.bam" />
+            <output name="out_file1" ftype="bam" file="bamtools-test1.bam"/>
         </test>
     </tests>
     <help>

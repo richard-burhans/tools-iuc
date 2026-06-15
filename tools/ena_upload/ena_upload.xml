@@ -39,10 +39,10 @@ mkdir ./submission_files;
 #end if
         
 #if $action_options.input_format_conditional.input_format == "build_tables":
-    cp $studies_table_path $studies_table_out &&
-    cp $samples_table_path $samples_table_out &&
-    cp $experiments_table_path $experiments_table_out &&
-    cp $runs_table_path $runs_table_out &&
+    cp $studies_table_path '$studies_table_out' &&
+    cp $samples_table_path '$samples_table_out' &&
+    cp $experiments_table_path '$experiments_table_out' &&
+    cp $runs_table_path '$runs_table_out' &&
 #end if
 #if $action_options.input_format_conditional.input_format == "user_generated_tables":
     ln -s '$action_options.input_format_conditional.experiments_users_table' $experiments_table_path &&
@@ -208,18 +208,18 @@ ena-upload-cli
 #if $action_options.input_format_conditional.input_format == "excel_tables" or $action_options.input_format_conditional.input_format == "isa_json":
     ## for the excel/ISA json input case, copy the upload-cli generated tables to the output files
     ## this applies for both draft and real submissions
-    cp './ENA_template_experiment_updated.tsv' $experiments_table_out;
-    cp './ENA_template_sample_updated.tsv' $samples_table_out;
-    cp './ENA_template_study_updated.tsv' $studies_table_out;
-    cp './ENA_template_run_updated.tsv' $runs_table_out;
+    cp './ENA_template_experiment_updated.tsv' '$experiments_table_out';
+    cp './ENA_template_sample_updated.tsv' '$samples_table_out';
+    cp './ENA_template_study_updated.tsv' '$studies_table_out';
+    cp './ENA_template_run_updated.tsv' '$runs_table_out';
 #else
-    cp $studies_table_path_updated $studies_table_out 2>/dev/null;
-    cp $samples_table_path_updated $samples_table_out 2>/dev/null;
-    cp $experiments_table_path_updated $experiments_table_out 2>/dev/null;
-    cp $runs_table_path_updated $runs_table_out 2>/dev/null;
+    cp $studies_table_path_updated '$studies_table_out' 2>/dev/null;
+    cp $samples_table_path_updated '$samples_table_out' 2>/dev/null;
+    cp $experiments_table_path_updated '$experiments_table_out' 2>/dev/null;
+    cp $runs_table_path_updated '$runs_table_out' 2>/dev/null;
 #end if
 
-python '$__tool_directory__/dump_yaml.py' $studies_table_out $samples_table_out $experiments_table_out $runs_table_out >> $output;
+python '$__tool_directory__/dump_yaml.py' '$studies_table_out' '$samples_table_out' '$experiments_table_out' '$runs_table_out' >> '$output';
 ]]></command>
     <configfiles>
         <configfile name="studies_json">
@@ -264,13 +264,13 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <option value="modify">Modify metadata</option>
             </param>
             <when value="add">
-                <param name="test_submit" type="hidden" value="False" />
-                <expand macro="table_inputs_macro" />  
+                <param name="test_submit" type="hidden" value="False"/>
+                <expand macro="table_inputs_macro"/>
                 <expand macro="test_submit_section"/>
             </when>
             <when value="modify">
-                <param name="test_submit" type="hidden" value="False" />
-                <expand macro="table_inputs_macro" />
+                <param name="test_submit" type="hidden" value="False"/>
+                <expand macro="table_inputs_macro"/>
                 <expand macro="test_submit_section"/>
             </when>
         </conditional>
@@ -291,14 +291,14 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
         </data>
     </outputs>
     <tests>
-       <!--Test 1:  excel input of VIRAL samples -->
+        <!--Test 1:  excel input of VIRAL samples -->
         <test expect_num_outputs="5">
             <conditional name="action_options">
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <conditional name="input_format_conditional">
                     <param name="input_format" value="excel_tables"/>
@@ -347,8 +347,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <conditional name="input_format_conditional">
                     <param name="input_format" value="excel_tables"/>
@@ -407,8 +407,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <conditional name="input_format_conditional">
                     <param name="input_format" value="excel_tables"/>
@@ -457,8 +457,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <conditional name="input_format_conditional">
                     <param name="input_format" value="build_tables"/>
@@ -531,8 +531,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="True" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="True"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <param name="test_submit" value="True"/>
                 <conditional name="input_format_conditional">
@@ -577,7 +577,7 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <has_text_matching expression="ena-upload-cli"/>
                 <has_text_matching expression="--data '1.fastqsanger.gz' '2.fastqsanger.gz'"/>
                 <has_text_matching expression="--action 'add' --center 'Some research center'"/>
-                <not_has_text text="modify" />
+                <not_has_text text="modify"/>
             </assert_command>
         </test>
         <!--Test 6: viral submission - User input metadata - Add extension = False-->
@@ -586,8 +586,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <param name="test_submit" value="True"/>
                 <conditional name="input_format_conditional">
@@ -649,8 +649,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="modify"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="False" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="False"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <param name="test_submit" value="True"/>
                 <conditional name="input_format_conditional">
@@ -704,7 +704,7 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <has_text_matching expression="--data '1.fastqsanger.gz' '2.fastqsanger.gz'"/>
                 <has_text_matching expression="--action 'modify' --center 'Some research center'"/>
                 <has_text_matching expression="--checklist ERC000033"/>
-                <not_has_text text="--action 'add'" />
+                <not_has_text text="--action 'add'"/>
             </assert_command>
         </test>
         <!--Test 8: isa JSON input of NON-VIRAL samples-->
@@ -713,8 +713,8 @@ $samples.append({'title':str($sample.sample_title),'description':str($sample.sam
                 <param name="action" value="add"/>
                 <section name="test_submit_parameters">
                     <param name="center" value="Some research center"/>
-                    <param name="submit_dev" value="True" />
-                    <param name="dry_run" value="True" />
+                    <param name="submit_dev" value="True"/>
+                    <param name="dry_run" value="True"/>
                 </section>
                 <conditional name="input_format_conditional">
                     <param name="input_format" value="isa_json"/>

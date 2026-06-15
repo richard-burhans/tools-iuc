@@ -5,7 +5,7 @@
         <token name="@VERSION_SUFFIX@">1</token>
     </macros>
     <xrefs>
-        <xref type='bio.tools'>clair3</xref>
+        <xref type="bio.tools">clair3</xref>
     </xrefs>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">clair3</requirement>
@@ -82,26 +82,22 @@
             #end if
     ]]></command>
     <inputs>
-        <param type="data" name="bam_input" argument="--bam_fn" format="bam,cram" label="BAM/CRAM file input" />
+        <param type="data" name="bam_input" argument="--bam_fn" format="bam,cram" label="BAM/CRAM file input"/>
         <conditional name="ref_source">
             <param type="select" label="Reference genome source" name="source">
                 <option value="history" selected="true">History</option>
                 <option value="builtin">Built-in</option>
             </param>
             <when value="history">
-                <param type="data" format="fasta" name="ref_fasta" argument="--ref_fn" label="Reference genome" />
+                <param type="data" format="fasta" name="ref_fasta" argument="--ref_fn" label="Reference genome"/>
             </when>
             <when value="builtin">
                 <param type="select" name="ref_fasta_builtin" label="Reference genome">
-                    <options from_data_table="all_fasta" />
+                    <options from_data_table="all_fasta"/>
                 </param>
             </when>
         </conditional>
-        <param name="ont_license_agree"
-            label="I agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement"
-            type="boolean" checked="false"
-            help="To use Rerio models (e.g. for ONT R10 chemistry) you must agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement, which can be found in the nanoporetech/rerio Github repository."
-        />
+        <param name="ont_license_agree" label="I agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement" type="boolean" checked="false" help="To use Rerio models (e.g. for ONT R10 chemistry) you must agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement, which can be found in the nanoporetech/rerio Github repository."/>
         <conditional name="model_source">
             <param name="source" type="select" label="Clair3 model" help="Select if you want to use a built-in model shipping with the tool or a model cached on this Galaxy server.">
                 <option value="built-in">Built-in</option>
@@ -116,9 +112,9 @@
                 </param>
             </when>
             <when value="datatable">
-                <param  name="model" argument="--model_path" type="select" label="Cached model from server" >
+                <param name="model" argument="--model_path" type="select" label="Cached model from server">
                     <options from_data_table="clair3_models">
-                        <validator type="no_options" message="no cached models available" />
+                        <validator type="no_options" message="no cached models available"/>
                     </options>
                 </param>
             </when>
@@ -136,28 +132,28 @@
                 <param type="data" argument="--vcf_fn" format="vcf" label="Candidate sites VCF file input" help="Variants will only be called at the sites in the VCF file if provided."/>
             </when>
             <when value="unrestricted">
-                <param type="boolean" argument="--include_all_ctgs" truevalue="--include_all_ctgs" falsevalue="" checked="true" label="Call variants on all contigs" help="If disabled, call in chr{1..22,X,Y} and {1..22,X,Y}" />
+                <param type="boolean" argument="--include_all_ctgs" truevalue="--include_all_ctgs" falsevalue="" checked="true" label="Call variants on all contigs" help="If disabled, call in chr{1..22,X,Y} and {1..22,X,Y}"/>
             </when>
         </conditional>
-        <param type="boolean" argument="--gvcf" truevalue="--gvcf" falsevalue="" label="Enable GVCF output" help="GVCF stands for Genomic VCF. A GVCF is a kind of VCF, so the basic format specification is the same as for a regular VCF but contains extra information. Default: disable" />
+        <param type="boolean" argument="--gvcf" truevalue="--gvcf" falsevalue="" label="Enable GVCF output" help="GVCF stands for Genomic VCF. A GVCF is a kind of VCF, so the basic format specification is the same as for a regular VCF but contains extra information. Default: disable"/>
         <param name="output_files" type="select" display="checkboxes" multiple="true" label="Optional additional output files">
             <option value="full_alignment">Full alignment file</option>
             <option value="pileup">Pileup file</option>
             <option value="phased_vcf">Phased VCF file</option>
         </param>
         <section name="adv" title="Advanced parameters" expanded="false">
-            <param type="integer" argument="--qual" value="0" min="0" label="Qual" help="If set, variants with >qual will be marked PASS, or LowQual otherwise." />
-            <param type="float" argument="--snp_min_af" value="0.08" min="0" max="1" label="Minimum SNP AF" help="Minimum SNP AF required for a candidate variant. Lowering the value might increase a bit of sensitivity in trade of speed and accuracy. Default: ont:0.08,hifi:0.08,ilmn:0.08." />
-            <param type="float" argument="--indel_min_af" value="0.15" min="0" max="1" label="Minimum INDEL AF" help="Minimum INDEL AF required for a candidate variant. Lowering the value might increase a bit of sensitivity in trade of speed and accuracy. Default: ont:0.15,hifi:0.08,ilmn:0.08." />
-            <param type="boolean" argument="--enable_phasing" truevalue="--enable_phasing" falsevalue="" label="Enable phasing" help="Output phased variants using whatshap. Default: disable" />
-            <param type="boolean" argument="--no_phasing_for_fa" truevalue="--no_phasing_for_fa" falsevalue="" label="Call variants without whatshap phasing" help="EXPERIMENTAL: Call variants without whatshap phasing in full alignment calling. Default: disable" />
-            <param type="boolean" argument="--print_ref_calls" truevalue="--print_ref_calls" falsevalue="" label="Print reference calls" help="Show reference calls (0/0) in vcf file. Default: disable." />
+            <param type="integer" argument="--qual" value="0" min="0" label="Qual" help="If set, variants with &gt;qual will be marked PASS, or LowQual otherwise."/>
+            <param type="float" argument="--snp_min_af" value="0.08" min="0" max="1" label="Minimum SNP AF" help="Minimum SNP AF required for a candidate variant. Lowering the value might increase a bit of sensitivity in trade of speed and accuracy. Default: ont:0.08,hifi:0.08,ilmn:0.08."/>
+            <param type="float" argument="--indel_min_af" value="0.15" min="0" max="1" label="Minimum INDEL AF" help="Minimum INDEL AF required for a candidate variant. Lowering the value might increase a bit of sensitivity in trade of speed and accuracy. Default: ont:0.15,hifi:0.08,ilmn:0.08."/>
+            <param type="boolean" argument="--enable_phasing" truevalue="--enable_phasing" falsevalue="" label="Enable phasing" help="Output phased variants using whatshap. Default: disable"/>
+            <param type="boolean" argument="--no_phasing_for_fa" truevalue="--no_phasing_for_fa" falsevalue="" label="Call variants without whatshap phasing" help="EXPERIMENTAL: Call variants without whatshap phasing in full alignment calling. Default: disable"/>
+            <param type="boolean" argument="--print_ref_calls" truevalue="--print_ref_calls" falsevalue="" label="Print reference calls" help="Show reference calls (0/0) in vcf file. Default: disable."/>
             <param type="select" name="ploidity_model" label="Call with the following ploidy model" help="EXPERIMENTAL. When haploid sensitive is enabled only 1/1 is considered as a variant. When haploid precise is enabled only 0/1 and 1/1 are considered as a variant. Default: diploid.">
                 <option value="" selected="true">Diploid</option>
                 <option value="--haploid_sensitive">Haploid sensitive (--haploid_sensitive)</option>
                 <option value="--haploid_precise">haploid precise (--haploid_precise)</option>
             </param>
-            <param type="integer" argument="--chunk_size" value="5000000" min="1" label="Chunk size" help="The size of each chuck for parallel processing. Default: 5Mbp." optional="true" />
+            <param type="integer" argument="--chunk_size" value="5000000" min="1" label="Chunk size" help="The size of each chuck for parallel processing. Default: 5Mbp." optional="true"/>
         </section>
     </inputs>
     <outputs>
@@ -176,17 +172,17 @@
         <!-- test1 -->
         <test expect_num_outputs="1">
             <conditional name="model_source">
-                <param name="source" value="built-in"/>  
+                <param name="source" value="built-in"/>
                 <param name="select_built_in" value="r941_prom_hac_g360+g422"/>
             </conditional>
-            <param name="bam_input" value="test1.bam" />
+            <param name="bam_input" value="test1.bam"/>
             <conditional name="ref_source">
-                <param name="source" value="history" />
-                <param name="ref_fasta" value="test1.fasta" />
+                <param name="source" value="history"/>
+                <param name="ref_fasta" value="test1.fasta"/>
             </conditional>
             <conditional name="bed_or_vcf">
                 <param name="bed_or_vcf_selector" value="vcf"/>
-                <param name="vcf_fn" value="test1.vcf.gz" />
+                <param name="vcf_fn" value="test1.vcf.gz"/>
             </conditional>
             <section name="adv">
                 <param name="no_phasing_for_fa" value="true"/>
@@ -194,23 +190,23 @@
                 <param name="ploidity_model" value=""/>
             </section>
             <assert_stdout>
-              <has_text text="[WARNING] No contig intersection found, output header only in" />
+                <has_text text="[WARNING] No contig intersection found, output header only in"/>
             </assert_stdout>
         </test>
         <!-- test2 -->
         <test expect_num_outputs="4">
             <conditional name="model_source">
-                <param name="source" value="built-in" />
-                <param name="select_built_in" value="r941_prom_hac_g360+g422" />
+                <param name="source" value="built-in"/>
+                <param name="select_built_in" value="r941_prom_hac_g360+g422"/>
             </conditional>
-            <param name="bam_input" value="test1.bam" />
+            <param name="bam_input" value="test1.bam"/>
             <conditional name="bed_or_vcf">
                 <param name="bed_or_vcf_selector" value="unrestricted"/>
-                <param name="include_all_ctgs" value="true" />
+                <param name="include_all_ctgs" value="true"/>
             </conditional>
             <conditional name="ref_source">
-                <param name="source" value="builtin" />
-                <param name="ref_fasta_builtin" value="test1" />
+                <param name="source" value="builtin"/>
+                <param name="ref_fasta_builtin" value="test1"/>
             </conditional>
             <param name="gvcf" value="true"/>
             <param name="output_files" value="full_alignment,pileup,phased_vcf"/>
@@ -226,43 +222,43 @@
         <!-- test3 -->
         <test expect_num_outputs="4">
             <conditional name="model_source">
-                <param name="source" value="datatable" />
-                <param name="model" value="test_model" />
+                <param name="source" value="datatable"/>
+                <param name="model" value="test_model"/>
             </conditional>
-            <param name="bam_input" value="test1.bam" />
+            <param name="bam_input" value="test1.bam"/>
             <conditional name="bed_or_vcf">
                 <param name="bed_or_vcf_selector" value="bed"/>
-                <param name="bed_fn" value="test1.bed" />
+                <param name="bed_fn" value="test1.bed"/>
             </conditional>
             <conditional name="ref_source">
-                <param name="source" value="builtin" />
-                <param name="ref_fasta_builtin" value="test1" />
+                <param name="source" value="builtin"/>
+                <param name="ref_fasta_builtin" value="test1"/>
             </conditional>
             <param name="output_files" value="full_alignment,pileup,phased_vcf"/>
             <section name="adv">
                 <param name="snp_min_af" value="0.5"/>
                 <param name="indel_min_af" value="0.12"/>
-                <param name="no_phasing_for_fa" value="true" />
+                <param name="no_phasing_for_fa" value="true"/>
                 <param name="print_ref_calls" value="true"/>
             </section>
             <output name="merge_output" decompress="true" ftype="vcf_bgzip">
                 <assert_contents>
-                    <has_text text="#CHROM" />
+                    <has_text text="#CHROM"/>
                 </assert_contents>
             </output>
             <output name="pileup" ftype="vcf_bgzip">
                 <assert_contents>
-                    <has_size value="0" />
+                    <has_size value="0"/>
                 </assert_contents>
             </output>
             <output name="full_alignment" ftype="vcf_bgzip">
                 <assert_contents>
-                    <has_size value="0" />
+                    <has_size value="0"/>
                 </assert_contents>
             </output>
             <output name="phased_vcf" ftype="vcf_bgzip">
                 <assert_contents>
-                    <has_size value="0" />
+                    <has_size value="0"/>
                 </assert_contents>
             </output>
         </test>
@@ -270,13 +266,13 @@
         <!-- Test input CRAM -->
         <test expect_num_outputs="1">
             <conditional name="model_source">
-                <param name="source" value="built-in" />
-                <param name="select_built_in" value="r941_prom_hac_g360+g422" />
+                <param name="source" value="built-in"/>
+                <param name="select_built_in" value="r941_prom_hac_g360+g422"/>
             </conditional>
-            <param name="bam_input" value="test1.cram" />
+            <param name="bam_input" value="test1.cram"/>
             <conditional name="ref_source">
-                <param name="source" value="history" />
-                <param name="ref_fasta" value="test1.fasta" />
+                <param name="source" value="history"/>
+                <param name="ref_fasta" value="test1.fasta"/>
             </conditional>
             <output name="merge_output" decompress="true" file="output_cram_test.vcf.gz" ftype="vcf_bgzip" lines_diff="4"/>
         </test>
@@ -284,20 +280,20 @@
         <!-- Test the working of the ont_license_agree checkbox -->
         <test expect_failure="true" expect_exit_code="2">
             <conditional name="model_source">
-                <param name="source" value="datatable" />
-                <param name="model" value="r1041_e82_400bps_sup_v500" />
+                <param name="source" value="datatable"/>
+                <param name="model" value="r1041_e82_400bps_sup_v500"/>
             </conditional>
-            <param name="ont_license_agree" value="false" />
+            <param name="ont_license_agree" value="false"/>
             <!-- the rest of the parameters are included for completeness, as this test
              should fail to run because of the license terms conflict -->
-            <param name="bam_input" value="test1.bam" />
+            <param name="bam_input" value="test1.bam"/>
             <conditional name="ref_source">
-                <param name="source" value="history" />
-                <param name="ref_fasta" value="test1.fasta" />
+                <param name="source" value="history"/>
+                <param name="ref_fasta" value="test1.fasta"/>
             </conditional>
             <conditional name="bed_or_vcf">
                 <param name="bed_or_vcf_selector" value="vcf"/>
-                <param name="vcf_fn" value="test1.vcf.gz" />
+                <param name="vcf_fn" value="test1.vcf.gz"/>
             </conditional>
             <section name="adv">
                 <param name="no_phasing_for_fa" value="true"/>
@@ -305,7 +301,7 @@
                 <param name="ploidity_model" value=""/>
             </section>
             <assert_stderr>
-                <has_line line="You must agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement to use Rerio models." />
+                <has_line line="You must agree to the terms of the Oxford Nanopore Technologies, Ltd. Public License agreement to use Rerio models."/>
             </assert_stderr>
         </test>
     </tests>

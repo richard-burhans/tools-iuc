@@ -1,5 +1,5 @@
 <tool id="ampvis2_ordinate" name="ampvis2 ordination plot" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
         <xml name="distmeasure_macro">
@@ -205,7 +205,6 @@
         <expand macro="metadata_select" argument="sample_label_by" label="Label sample points by"/>
         <expand macro="metadata_select" argument="sample_trajectory" label="Make a trajectory between sample points by"/>
         <expand macro="metadata_select" argument="sample_trajectory_group" label="Make a trajectory between sample points by the sample_trajectory argument, but within individual groups."/>
-         
         <conditional name="species_plot_cond">
             <param argument="species_plot" type="select" label="Plot species points">
                 <option value="TRUE">Yes</option>
@@ -220,11 +219,9 @@
             </when>
             <when value="FALSE"/>
         </conditional>
-
         <expand macro="metadata_select_discrete" argument="envfit_factor" label="Categorical variables to fit onto the ordination plot"/>
         <expand macro="metadata_select_numeric" argument="envfit_numeric" label="Numerical variables to fit arrows onto the ordination plot." help="The lengths of the arrows are scaled by significance. "/>
         <param argument="envfit_signif_level" type="float" value="0.005" min="0" max="1" label="Significance threshold" help="For displaying the fitting results"/>
-
         <param argument="repel_labels" type="boolean" truevalue="TRUE" falsevalue="FALSE" label="Repel all labels" help="To prevent cluttering of the plot"/>
         <param argument="opacity" type="float" value="0.8" min="0" max="1" label="Opacity of plotted points and colorframe" help="0: invisible, 1: opaque."/>
         <expand macro="tax_empty_macro"/>
@@ -240,15 +237,15 @@
     <tests>
         <!-- defaults (PCA) -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <param name="output_screeplot" value="true"/>
             <output name="plot" value="AalborgWWTPs-ordinate.pdf" ftype="pdf" compare="sim_size"/>
             <output name="screeplot" value="AalborgWWTPs-ordinate-screeplot.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- RDA + caption -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <conditional name="type_cond">
                 <param name="type" value="RDA"/>
                 <param name="transform" value="chi.square"/>
@@ -258,8 +255,8 @@
         </test>
         <!-- MMDS + unfirac (which requires a tree) -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <conditional name="type_cond">
                 <param name="type" value="MMDS"/>
                 <param name="distmeasure" value="unifrac"/>
@@ -268,8 +265,8 @@
         </test>
         <!-- color, shape and colorframe -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="sample_color_by" value="Year"/>
             <param name="sample_shape_by" value="Plant"/>
             <param name="sample_colorframe" value="Year"/>
@@ -278,23 +275,23 @@
         </test>
         <!-- label, trajectory -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="sample_label_by" value="Plant"/>
             <param name="sample_trajectory" value="Year"/>
             <output name="plot" value="AalborgWWTPs-ordinate-label-traj.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- trajectory group -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="sample_trajectory_group" value="Plant"/>
             <output name="plot" value="AalborgWWTPs-ordinate-label-traj-group.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- species plot -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <conditional name="species_plot_cond">
                 <param name="species_plot" value="TRUE"/>
                 <param name="species_nlabels" value="2"/>
@@ -305,15 +302,15 @@
         </test>
         <!-- envfit factor-->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="envfit_factor" value="Plant"/>
             <output name="plot" value="AalborgWWTPs-ordinate-envfit-factor.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!-- envfit numeric-->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="envfit_numeric" value="Year"/>
             <output name="plot" value="AalborgWWTPs-ordinate-envfit-num.pdf" ftype="pdf" compare="sim_size"/>
         </test>

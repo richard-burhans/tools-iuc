@@ -18,24 +18,22 @@ samtools sort discordants.unsorted.bam > discordants.bam &&
 samtools sort splitters.unsorted.bam > splitters.bam
     ]]></command>
     <inputs>
-        <param name="bam_in" type="data" format="bam" label="BAM input dataset" />
-        <param name="dup_handling" type="select"
-        label="Duplicate detection and removal"
-        help="Duplicate reads can be detected and removed with the help of samblaster. If you have already marked duplicates in the input dataset with another tool, you can choose to skip duplicate detection and remove only pre-marked duplicates. Not handling duplicates is only recommended if you have already deduplicated your input with other tools.">
+        <param name="bam_in" type="data" format="bam" label="BAM input dataset"/>
+        <param name="dup_handling" type="select" label="Duplicate detection and removal" help="Duplicate reads can be detected and removed with the help of samblaster. If you have already marked duplicates in the input dataset with another tool, you can choose to skip duplicate detection and remove only pre-marked duplicates. Not handling duplicates is only recommended if you have already deduplicated your input with other tools.">
             <option value="--removeDups">Detect and remove duplicates (samblaster -r)</option>
             <option value="--acceptDupMarks --removeDups">Remove duplicates marked in input data (samblaster -a -r)</option>
             <option value="">Don't handle duplicates</option>
         </param>
     </inputs>
     <outputs>
-        <data name="blasted_bam" format="qname_sorted.bam" from_work_dir="blasted.bam" label="${tool.name}: Collated and groomed on ${on_string}" />
-        <data name="discordants_bam" format="bam" from_work_dir="discordants.bam" label="${tool.name}: Discordant read pairs on ${on_string}" />
-        <data name="splitters_bam" format="bam" from_work_dir="splitters.bam" label="${tool.name}: Split-read alignments on ${on_string}" />
+        <data name="blasted_bam" format="qname_sorted.bam" from_work_dir="blasted.bam" label="${tool.name}: Collated and groomed on ${on_string}"/>
+        <data name="discordants_bam" format="bam" from_work_dir="discordants.bam" label="${tool.name}: Discordant read pairs on ${on_string}"/>
+        <data name="splitters_bam" format="bam" from_work_dir="splitters.bam" label="${tool.name}: Split-read alignments on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="bam_in" ftype="bam" value="sample.bam" />
-            <param name="dup_handling" value="" />
+            <param name="bam_in" ftype="bam" value="sample.bam"/>
+            <param name="dup_handling" value=""/>
             <output name="blasted_bam" ftype="qname_sorted.bam" file="blasted.bam" lines_diff="2"/>
             <output name="discordants_bam" ftype="bam" file="discordants.bam" lines_diff="2"/>
             <output name="splitters_bam" ftype="bam" file="splitters.bam" lines_diff="2"/>
@@ -57,4 +55,3 @@ This tool implements the mapped reads preprocessing `suggested for LUMPY <https:
         </citation>
     </expand>
 </tool>
-    

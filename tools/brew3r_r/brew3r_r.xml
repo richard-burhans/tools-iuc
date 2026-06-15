@@ -15,7 +15,7 @@
         <container type="docker">lldelisle/brew3r:v2</container>
     </requirements>
     <required_files>
-        <include path="brew3r.r_script.R" />
+        <include path="brew3r.r_script.R"/>
     </required_files>
     <version_command><![CDATA[
 echo $(R --version | grep version | grep -v GNU)", BREW3R.r version" $(R --vanilla --slave -e "library(BREW3R.r); cat(sessionInfo()\$otherPkgs\$BREW3R.r\$Version)" 2> /dev/null | grep -v -i "WARNING: ")
@@ -40,22 +40,22 @@ Rscript '${__tool_directory__}/brew3r.r_script.R'
 
     ]]></command>
     <inputs>
-        <param argument="--gtf_to_extend" type="data" format="gtf" label="Input gtf file to be extended on 3'" help="Usually coming from public resource." />
-        <param argument="--gtf_to_overlap" type="data" format="gtf" label="Input gtf file that will be used to extend" help="Coming from StringTie or another public resource." />
-        <param argument="--sup_output" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Get a supplementary output table with resolution of overlaps" />
-        <param argument="--no_add" type="boolean" truevalue="--no_add" falsevalue="" checked="false" label="Do not add new exons" />
+        <param argument="--gtf_to_extend" type="data" format="gtf" label="Input gtf file to be extended on 3'" help="Usually coming from public resource."/>
+        <param argument="--gtf_to_overlap" type="data" format="gtf" label="Input gtf file that will be used to extend" help="Coming from StringTie or another public resource."/>
+        <param argument="--sup_output" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Get a supplementary output table with resolution of overlaps"/>
+        <param argument="--no_add" type="boolean" truevalue="--no_add" falsevalue="" checked="false" label="Do not add new exons"/>
         <param argument="--exclude_pattern" type="text" value="" label="Do not extend genes with names matching this pattern" help="Leave empty if you want to extend all genes.">
             <sanitizer>
-              <valid initial="string.printable">
-               <remove value="'"/>
-               <remove value="\"/>
-             </valid>
+                <valid initial="string.printable">
+                    <remove value="'"/>
+                    <remove value="\"/>
+                </valid>
             </sanitizer>
         </param>
-        <param argument="--filter_unstranded" type="boolean" truevalue="--filter_unstranded" falsevalue="" checked="false" label="Filter unstranded intervals that overlaps genes of both strands" help="Recommanded if you used StringTie on unstranded libraries." />
+        <param argument="--filter_unstranded" type="boolean" truevalue="--filter_unstranded" falsevalue="" checked="false" label="Filter unstranded intervals that overlaps genes of both strands" help="Recommanded if you used StringTie on unstranded libraries."/>
     </inputs>
     <outputs>
-        <data name="output" format="gtf" from_work_dir="output.gtf" label="${tool.name} on ${gtf_to_extend.name} and ${gtf_to_overlap.name}: GTF" />
+        <data name="output" format="gtf" from_work_dir="output.gtf" label="${tool.name} on ${gtf_to_extend.name} and ${gtf_to_overlap.name}: GTF"/>
         <data name="output_table" format="tabular" label="${tool.name} on ${gtf_to_extend.name} and ${gtf_to_overlap.name}: overlap resolution">
             <filter>sup_output == True</filter>
         </data>

@@ -69,8 +69,7 @@ echo 'get.groups(
     <inputs>
         <param name="group_in" type="data" format="mothur.groups,mothur.count_table" optional="true" label="group or count_table file"/>
         <param name="shared_in" type="data" format="mothur.shared" optional="true" label="shared - OTU Shared"/>
-        <param name="design_in" type="data" format="tabular" optional="true" label="design - assign groups to new grouping"
-            help="design has 2 columns: group(col 1) and grouping(col 2) (separated by a TAB character) use make.design"/>
+        <param name="design_in" type="data" format="tabular" optional="true" label="design - assign groups to new grouping" help="design has 2 columns: group(col 1) and grouping(col 2) (separated by a TAB character) use make.design"/>
         <conditional name="groupnames">
             <param name="source" type="select" label="Select Group Names from">
                 <option value="groups">A List of Group Names</option>
@@ -91,10 +90,8 @@ echo 'get.groups(
         <param name="name_in" type="data" format="mothur.names" optional="true" label="name - Sequences Name reference"/>
         <param name="list_in" type="data" format="mothur.list" optional="true" label="list - OTU List"/>
         <param name="taxonomy_in" type="data" format="mothur.seq.taxonomy" optional="true" label="taxonomy - Taxonomy"/>
-        <param name="phylip_in" type="data" format="mothur.lower.dist,mothur.square.dist" optional="true" label="phylip - Distance Matrix you would like to select distances from"
-            help="must be a phylip-formatted distance matrix"/>
-        <param name="column_in" type="data" format="mothur.pair.dist" optional="true" label="column - Distance Matrix you would like to select distances from"
-            help="must be a column-formatted distance matrix"/>
+        <param name="phylip_in" type="data" format="mothur.lower.dist,mothur.square.dist" optional="true" label="phylip - Distance Matrix you would like to select distances from" help="must be a phylip-formatted distance matrix"/>
+        <param name="column_in" type="data" format="mothur.pair.dist" optional="true" label="column - Distance Matrix you would like to select distances from" help="must be a column-formatted distance matrix"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -133,7 +130,8 @@ echo 'get.groups(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with group file -->
+        <test>
+            <!-- test with group file -->
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>
             <param name="source" value="groups"/>
             <param name="groups" value="forest,pasture"/>
@@ -141,7 +139,8 @@ echo 'get.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with accnos file -->
+        <test>
+            <!-- test with accnos file -->
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>
             <param name="source" value="accnos"/>
             <param name="accnos" value="amazon.groupaccnos" ftype="mothur.accnos"/>
@@ -149,7 +148,8 @@ echo 'get.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with accnos file and most extra files-->
+        <test>
+            <!-- test with accnos file and most extra files-->
             <param name="group_in" value="amazon.groups" ftype="mothur.groups"/>
             <param name="source" value="accnos"/>
             <param name="accnos" value="amazon.groupaccnos" ftype="mothur.accnos"/>
@@ -169,7 +169,8 @@ echo 'get.groups(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with distance matrix -->
+        <test>
+            <!-- test with distance matrix -->
             <param name="group_in" value="amazon_withgroups.count_table" ftype="mothur.count_table"/>
             <param name="source" value="accnos"/>
             <param name="accnos" value="amazon.groupaccnos" ftype="mothur.accnos"/>

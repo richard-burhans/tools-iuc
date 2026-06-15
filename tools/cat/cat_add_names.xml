@@ -4,8 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
     CAT add_names 
     -i '$input'
@@ -16,11 +16,11 @@
     ]]></command>
     <inputs>
         <param argument="--input" type="data" format="tabular,txt" label="classification.txt or ORF2LCA.txt from CAT contigs or CAT bins"/>
-        <expand macro="cat_db" />
-        <expand macro="add_names_options" />
+        <expand macro="cat_db"/>
+        <expand macro="add_names_options"/>
     </inputs>
     <outputs>
-        <data name="output" format="tabular"  label="#set name = $input.name.replace('.txt','.names.txt')# $name"/>
+        <data name="output" format="tabular" label="#set name = $input.name.replace('.txt','.names.txt')# $name"/>
     </outputs>
     <tests>
         <test>
@@ -28,7 +28,7 @@
             <expand macro="test_catdb"/>
             <output name="output">
                 <assert_contents>
-                    <has_text text="Firmicutes" />
+                    <has_text text="Firmicutes"/>
                 </assert_contents>
             </output>
         </test>
@@ -71,5 +71,5 @@ Optional arguments:
                          lineage.
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -364,8 +364,7 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 <param argument="qc_vars" type="text" optional="true" value="" label="Keys for boolean columns of '.var' which identify variables you could want to control for" help="Keys separated by a comma">
                     <expand macro="sanitize_query"/>
                 </param>
-                <param argument="percent_top" type="text" value="" optional="true" label="Proportions of top genes to cover"
-                    help=" Values (integers) are considered 1-indexed, '50' finds cumulative proportion to the 50th most expressed genes. Values separated by a comma. If empty don't calculate">
+                <param argument="percent_top" type="text" value="" optional="true" label="Proportions of top genes to cover" help=" Values (integers) are considered 1-indexed, '50' finds cumulative proportion to the 50th most expressed genes. Values separated by a comma. If empty don't calculate">
                     <expand macro="sanitize_vectors"/>
                 </param>
                 <expand macro="param_layer"/>
@@ -402,7 +401,7 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 <expand macro="params_score_genes"/>
             </when>
             <when value="tl.score_genes_cell_cycle">
-                <conditional name='s_genes'>
+                <conditional name="s_genes">
                     <param name="format" type="select" label="Format for the list of genes associated with S phase">
                         <option value="text" selected="true">Text</option>
                         <option value="file">File</option>
@@ -416,7 +415,7 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                         <param name="file" type="data" format="txt" label="File with the list of genes associated with S phase" help="One gene per line"/>
                     </when>
                 </conditional>
-                <conditional name='g2m_genes'>
+                <conditional name="g2m_genes">
                     <param name="format" type="select" label="Format for the list of genes associated with G2M phase">
                         <option value="text" selected="true">Text</option>
                         <option value="file">File</option>
@@ -514,8 +513,7 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                                     <expand macro="penalty"/>
                                     <when value="l1"/>
                                     <when value="l2">
-                                        <param argument="dual" type="boolean" truevalue="True" falsevalue="False" checked="false"
-                                            label="Dual (not primal) formulation?" help="Prefer primal when n_samples > n_features"/>
+                                        <param argument="dual" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Dual (not primal) formulation?" help="Prefer primal when n_samples &gt; n_features"/>
                                     </when>
                                 </conditional>
                                 <conditional name="intercept_scaling">
@@ -619,7 +617,7 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
         </data>
     </outputs>
     <tests>
-<!-- test 1 -->
+        <!-- test 1 -->
         <test expect_num_outputs="2">
             <param name="adata" value="sparce_csr_matrix.h5ad"/>
             <conditional name="method">
@@ -644,7 +642,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 2 -->
         <test expect_num_outputs="2">
             <param name="adata" value="sparce_csr_matrix.h5ad"/>
@@ -654,15 +651,15 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 <param name="percent_top" value="50,100,200,300"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
-                    <has_text_matching expression="sc.pp.calculate_qc_metrics" />
-                    <has_text_matching expression="expr_type='counts'" />
-                    <has_text_matching expression="var_type='genes'" />
-                    <has_text_matching expression="qc_vars=\['mito', 'negative'\]" />
-                    <has_text_matching expression="percent_top=\[50, 100, 200, 300\]" />
+                    <has_text_matching expression="sc.pp.calculate_qc_metrics"/>
+                    <has_text_matching expression="expr_type='counts'"/>
+                    <has_text_matching expression="var_type='genes'"/>
+                    <has_text_matching expression="qc_vars=\['mito', 'negative'\]"/>
+                    <has_text_matching expression="percent_top=\[50, 100, 200, 300\]"/>
                 </assert_contents>
             </output>
             <output name="anndata_out" ftype="h5ad">
@@ -672,7 +669,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 3 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -699,7 +695,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 4 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -727,7 +722,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 5 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -759,17 +753,16 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 6 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="tl.score_genes_cell_cycle"/>
-                <conditional name='s_genes'>
+                <conditional name="s_genes">
                     <param name="format" value="text"/>
                     <param name="text" value="Gata2, Fog1, EgrNab"/>
                 </conditional>
-                <conditional name='g2m_genes'>
+                <conditional name="g2m_genes">
                     <param name="format" value="text"/>
                     <param name="text" value="Gata2, Fog1, EgrNab"/>
                 </conditional>
@@ -795,7 +788,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 7 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -827,7 +819,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 8 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -865,7 +856,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 9 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -910,7 +900,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 10 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -961,7 +950,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 11 -->
         <test expect_num_outputs="2">
             <param name="adata" value="tl.rank_genes_groups.newton-cg.pbmc68k_reduced.h5ad"/>
@@ -997,7 +985,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 12 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -1018,7 +1005,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 13 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -1040,7 +1026,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 14 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -1064,7 +1049,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 15 -->
         <test expect_num_outputs="2">
             <param name="adata" value="random-randint.h5ad"/>
@@ -1087,7 +1071,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 16 -->
         <test expect_num_outputs="3">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -1129,7 +1112,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 17 -->
         <test expect_num_outputs="3">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -1190,7 +1172,6 @@ print("stats after sqrt:", "min=", adata.X.min(), "max=", adata.X.max(), "mean="
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 18 -->
         <test expect_num_outputs="3">
             <param name="adata" value="krumsiek11.h5ad"/>

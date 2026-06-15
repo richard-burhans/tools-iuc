@@ -6,10 +6,7 @@
     <expand macro="bio_tools"/>
     <expand macro="requirements"/>
     <stdio>
-        <regex match="Warning"
-               source="stderr"
-               level="warning"
-               description="" />
+        <regex match="Warning" source="stderr" level="warning" description=""/>
     </stdio>
     <version_command>graphlan_annotate.py -v</version_command>
     <command>
@@ -27,13 +24,13 @@
         <param argument="--annot" type="data" format="txt" label="Annotation file" help="The annotation file is a tab-delimited file listing the graphical options for clades" optional="True"/>
     </inputs>
     <outputs>
-        <data format="phyloxml" name="output_tree" label="${tool.name} on ${on_string}: Tree in PhyloXML" />
+        <data format="phyloxml" name="output_tree" label="${tool.name} on ${on_string}: Tree in PhyloXML"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_tree" value="input_tree" />
-            <param name="annot" value="input_annotation" />
-            <output name="output_tree" file="intermediary_tree" />
+            <param name="input_tree" value="input_tree"/>
+            <param name="annot" value="input_annotation"/>
+            <output name="output_tree" file="intermediary_tree"/>
         </test>
     </tests>
     <help><![CDATA[

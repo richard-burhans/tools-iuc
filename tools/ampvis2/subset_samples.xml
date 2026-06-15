@@ -48,7 +48,7 @@
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="var" value="Plant"/>
             <param name="vals" value="Aalborg East"/>
@@ -64,7 +64,7 @@
         </test>
         <!-- test NA values in metadata -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <param name="metadata_list" value="AalborgWWTPs-metadata_NA.list"/>
             <param name="var" value="Plant"/>
             <param name="vals" value="Aalborg East"/>
@@ -80,7 +80,7 @@
         </test>
         <!-- invert -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="var" value="Plant"/>
             <param name="vals" value="Aalborg East"/>

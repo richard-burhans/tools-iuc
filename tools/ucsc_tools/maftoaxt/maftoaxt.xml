@@ -24,42 +24,39 @@
             '$out'
             $stripDb
         ]]></command>
-        <inputs>
-            <param name="in_maf" format="maf" type="data" label="MAF dataset" />
-
-            <conditional name="tar_seq">
-                <param name="tarSeq" type="select" label="Select target sequence" optional="false" help="Which sequence from the MAF file should be used as the target sequence. ">
-                    <option value="" selected="true">Use the first sequence of the block as the target</option>
-                    <option value="customTar">Specify the target sequence by name</option>
-                </param>
-                <when value="customTar">
-                    <param optional="false" name="targetSeq" type="text" label="Name of sequence that should be used as target sequence" help="Must be present in the MAF file." />
-                </when>
-                <when value="" />
-            </conditional>
-
-            <param name="querySeq" type="text" optional="false" label="Name of sequence that should be used as the query sequence" help="Must be present in the MAF file." />
-            <param argument="-stripDb" type="boolean" truevalue="-stripDb" falsevalue="" label="Strip names from start to the first period" help="'hg38.chr19' becomes 'chr19'" />
-
-        </inputs>
-        <outputs>
-            <data name="out" format="axt" />
-        </outputs>
-        <tests>
-            <test>
-                <param name="in_maf" value="1.maf"/>
-                <param name="querySeq" value="panTro1"/>
-                <output name="out" file="1.axt"/>
-            </test>
-            <test>
-                <param name="in_maf" value="1.maf"/>
-                <param name="tarSeq" value="customTar"/>
-                <param name="targetSeq" value="panTro1"/>
-                <param name="querySeq" value="rn3"/>
-                <output name="out" file="2.axt"/>
-            </test>
-        </tests>
-        <help><![CDATA[
+    <inputs>
+        <param name="in_maf" format="maf" type="data" label="MAF dataset"/>
+        <conditional name="tar_seq">
+            <param name="tarSeq" type="select" label="Select target sequence" optional="false" help="Which sequence from the MAF file should be used as the target sequence. ">
+                <option value="" selected="true">Use the first sequence of the block as the target</option>
+                <option value="customTar">Specify the target sequence by name</option>
+            </param>
+            <when value="customTar">
+                <param optional="false" name="targetSeq" type="text" label="Name of sequence that should be used as target sequence" help="Must be present in the MAF file."/>
+            </when>
+            <when value=""/>
+        </conditional>
+        <param name="querySeq" type="text" optional="false" label="Name of sequence that should be used as the query sequence" help="Must be present in the MAF file."/>
+        <param argument="-stripDb" type="boolean" truevalue="-stripDb" falsevalue="" label="Strip names from start to the first period" help="'hg38.chr19' becomes 'chr19'"/>
+    </inputs>
+    <outputs>
+        <data name="out" format="axt"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="in_maf" value="1.maf"/>
+            <param name="querySeq" value="panTro1"/>
+            <output name="out" file="1.axt"/>
+        </test>
+        <test>
+            <param name="in_maf" value="1.maf"/>
+            <param name="tarSeq" value="customTar"/>
+            <param name="targetSeq" value="panTro1"/>
+            <param name="querySeq" value="rn3"/>
+            <output name="out" file="2.axt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
     **What it does**
 
     `mafToAxt`_ is a tool to convert `MAF`_ dataset to `axt`_ format. Depending on parameters and the number of alignments in the MAF file this can be a full conversion or data extraction.
@@ -71,7 +68,7 @@
     .. _MAF: https://genome.ucsc.edu/FAQ/FAQformat.html#format5
     .. _source code: https://github.com/ucscGenomeBrowser/kent/blob/master/src/hg/mouseStuff/mafToAxt/mafToAxt.c
         ]]>    </help>
-        <citations>
-            <citation type="doi">10.1093/bib/bbs038</citation>
-        </citations>
-    </tool>
+    <citations>
+        <citation type="doi">10.1093/bib/bbs038</citation>
+    </citations>
+</tool>

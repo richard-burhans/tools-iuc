@@ -46,22 +46,19 @@ $iprlookup
     ]]></command>
     <inputs>
         <param argument="--input" type="data" format="fasta" label="Protein FASTA File"/>
-
         <param argument="--seqtype" type="select" label="Type of the input sequences" help="">
             <option value="p" selected="true">Protein</option>
             <option value="n">DNA / RNA</option>
         </param>
-
         <param name="database" label="InterProScan database" type="select">
             <options from_data_table="interproscan">
-                <column name="value" index="0" />
-                <column name="name" index="1" />
-                <column name="path" index="3" />
-                <filter type="sort_by" column="0" />
-                <filter type="static_value" column="2" value="@TOOL_VERSION@" />
+                <column name="value" index="0"/>
+                <column name="name" index="1"/>
+                <column name="path" index="3"/>
+                <filter type="sort_by" column="0"/>
+                <filter type="static_value" column="2" value="@TOOL_VERSION@"/>
             </options>
         </param>
-
         <param name="applications" type="select" multiple="True" label="Applications to run" help="Select your program">
             <option value="TIGRFAM" selected="true">TIGRFAM: protein families based on hidden Markov models (HMMs)</option>
             <option value="FunFam" selected="true">FunFam: Prediction of functional annotations for novel, uncharacterized sequences.</option>
@@ -82,13 +79,12 @@ $iprlookup
             <option value="MobiDBLite" selected="true">MobiDBLite: Prediction of intrinsically disordered regions in proteins</option>
             <option value="PIRSF" selected="true">PIRSF: non-overlapping clustering of UniProtKB sequences into a hierarchical order (evolutionary relationships)</option>
         </param>
-
         <conditional name="licensed">
-            <param name="use" type="select" label="Use applications with restricted license, only for non-commercial use?" help="The corresponding tools must be installed manually by the administrator of this Galaxy instance" >
+            <param name="use" type="select" label="Use applications with restricted license, only for non-commercial use?" help="The corresponding tools must be installed manually by the administrator of this Galaxy instance">
                 <option value="false" selected="true">No</option>
                 <option value="true">Yes</option>
             </param>
-            <when value="false" />
+            <when value="false"/>
             <when value="true">
                 <param name="applications_licensed" type="select" multiple="True" label="Applications to run" help="Select your programm.">
                     <option value="Phobius" selected="true">Phobius: combined transmembrane topology and signal peptide predictor</option>
@@ -99,14 +95,9 @@ $iprlookup
                 </param>
             </when>
         </conditional>
-
-        <param argument="--pathways" truevalue="--pathways" falsevalue="" checked="True" type="boolean" label="Include pathway information"
-            help="Option that provides mappings from matches to pathway information, which is based on the matched manually curated InterPro entries."/>
-        <param argument="--goterms" truevalue="--goterms" falsevalue="" checked="True" type="boolean" label="Include Gene Ontology (GO) mappings"
-            help="Look up of corresponding Gene Ontology annotation. Implies -iprlookup option."/>
-        <param argument="--iprlookup" truevalue="--iprlookup" falsevalue="" checked="False" type="boolean"
-            label="Provide additional mappings" help="Provide mappings from matched member database signatures to the InterPro entries that they are integrated into"/>
-
+        <param argument="--pathways" truevalue="--pathways" falsevalue="" checked="True" type="boolean" label="Include pathway information" help="Option that provides mappings from matches to pathway information, which is based on the matched manually curated InterPro entries."/>
+        <param argument="--goterms" truevalue="--goterms" falsevalue="" checked="True" type="boolean" label="Include Gene Ontology (GO) mappings" help="Look up of corresponding Gene Ontology annotation. Implies -iprlookup option."/>
+        <param argument="--iprlookup" truevalue="--iprlookup" falsevalue="" checked="False" type="boolean" label="Provide additional mappings" help="Provide mappings from matched member database signatures to the InterPro entries that they are integrated into"/>
         <param name="oformat" type="select" multiple="true" label="Output format" help="Please select a output format (JSON output can be visualised on https://www.ebi.ac.uk/interpro/result/InterProScan/).">
             <option value="TSV" selected="true">Tab-separated values format (TSV)</option>
             <option value="GFF3">GFF3</option>
@@ -114,7 +105,6 @@ $iprlookup
             <option value="JSON">JSON</option>
         </param>
     </inputs>
-
     <outputs>
         <data format="tabular" name="outfile_tsv" from_work_dir="output.tsv" label="InterProScan on ${on_string} (tsv)">
             <filter>oformat and 'TSV' in oformat</filter>
@@ -129,115 +119,113 @@ $iprlookup
             <filter>oformat and 'JSON' in oformat</filter>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="prots.fa" />
-            <param name="seqtype" value="p" />
-            <param name="database" value="@TOOL_VERSION@" />
-            <param name="applications" value="MobiDBLite" />
-            <param name="oformat" value="TSV" />
+            <param name="input" value="prots.fa"/>
+            <param name="seqtype" value="p"/>
+            <param name="database" value="@TOOL_VERSION@"/>
+            <param name="applications" value="MobiDBLite"/>
+            <param name="oformat" value="TSV"/>
             <output name="outfile_tsv">
                 <assert_contents>
-                    <has_text text="FUN_000011-T1" />
-                    <has_text text="ea9924e11f7decc417e8d9ed8b9c682e" />
-                    <has_text text="FUN_000012-T1" />
-                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071" />
+                    <has_text text="FUN_000011-T1"/>
+                    <has_text text="ea9924e11f7decc417e8d9ed8b9c682e"/>
+                    <has_text text="FUN_000012-T1"/>
+                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="4">
-            <param name="input" value="prots.fa" />
-            <param name="seqtype" value="p" />
-            <param name="database" value="@TOOL_VERSION@" />
-            <param name="applications" value="MobiDBLite" />
-            <param name="oformat" value="TSV,GFF3,XML,JSON" />
+            <param name="input" value="prots.fa"/>
+            <param name="seqtype" value="p"/>
+            <param name="database" value="@TOOL_VERSION@"/>
+            <param name="applications" value="MobiDBLite"/>
+            <param name="oformat" value="TSV,GFF3,XML,JSON"/>
             <output name="outfile_tsv">
                 <assert_contents>
-                    <has_text text="FUN_000011-T1" />
-                    <has_text text="ea9924e11f7decc417e8d9ed8b9c682e" />
-                    <has_text text="FUN_000012-T1" />
-                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071" />
+                    <has_text text="FUN_000011-T1"/>
+                    <has_text text="ea9924e11f7decc417e8d9ed8b9c682e"/>
+                    <has_text text="FUN_000012-T1"/>
+                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071"/>
                 </assert_contents>
             </output>
             <output name="outfile_xml">
                 <assert_contents>
-                    <has_text text="mobidblite-location" />
-                    <has_text text="Polyampholyte" />
-                    <has_text text="consensus disorder prediction" />
-                    <has_text text="FUN_000011-T1 FUN_000011" />
+                    <has_text text="mobidblite-location"/>
+                    <has_text text="Polyampholyte"/>
+                    <has_text text="consensus disorder prediction"/>
+                    <has_text text="FUN_000011-T1 FUN_000011"/>
                 </assert_contents>
             </output>
             <output name="outfile_gff3">
                 <assert_contents>
-                    <has_text text="protein_match" />
-                    <has_text text="ID=FUN_000011-T1;md5=" />
-                    <has_text text="MobiDBLite" />
+                    <has_text text="protein_match"/>
+                    <has_text text="ID=FUN_000011-T1;md5="/>
+                    <has_text text="MobiDBLite"/>
                 </assert_contents>
             </output>
             <output name="outfile_json">
                 <assert_contents>
-                    <has_text text="signatureLibraryRelease" />
-                    <has_text text="disorder_prediction" />
-                    <has_text text="Polyampholyte" />
+                    <has_text text="signatureLibraryRelease"/>
+                    <has_text text="disorder_prediction"/>
+                    <has_text text="Polyampholyte"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="4">
-            <param name="input" value="transcripts.fa" />
-            <param name="seqtype" value="n" />
-            <param name="database" value="@TOOL_VERSION@" />
-            <param name="applications" value="MobiDBLite" />
-            <param name="oformat" value="TSV,GFF3,XML,JSON" />
+            <param name="input" value="transcripts.fa"/>
+            <param name="seqtype" value="n"/>
+            <param name="database" value="@TOOL_VERSION@"/>
+            <param name="applications" value="MobiDBLite"/>
+            <param name="oformat" value="TSV,GFF3,XML,JSON"/>
             <output name="outfile_tsv">
                 <assert_contents>
-                    <has_text text="FUN_000018-T1_orf336" />
-                    <has_text text="0b28fe115d4cc09260b038b19fb0b21d" />
-                    <has_text text="FUN_000012-T1_orf133" />
-                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071" />
+                    <has_text text="FUN_000018-T1_orf336"/>
+                    <has_text text="0b28fe115d4cc09260b038b19fb0b21d"/>
+                    <has_text text="FUN_000012-T1_orf133"/>
+                    <has_text text="01beedc2fbf8012cba37f0c0d39aa071"/>
                 </assert_contents>
             </output>
             <output name="outfile_xml">
                 <assert_contents>
-                    <has_text text="mobidblite-location" />
-                    <has_text text="Polyampholyte" />
-                    <has_text text="consensus disorder prediction" />
-                    <has_text text="orf355" />
+                    <has_text text="mobidblite-location"/>
+                    <has_text text="Polyampholyte"/>
+                    <has_text text="consensus disorder prediction"/>
+                    <has_text text="orf355"/>
                 </assert_contents>
             </output>
             <output name="outfile_gff3">
                 <assert_contents>
-                    <has_text text="protein_match" />
-                    <has_text text="ID=FUN_000012-T1;" />
-                    <has_text text="MobiDBLite" />
+                    <has_text text="protein_match"/>
+                    <has_text text="ID=FUN_000012-T1;"/>
+                    <has_text text="MobiDBLite"/>
                 </assert_contents>
             </output>
             <output name="outfile_json">
                 <assert_contents>
-                    <has_text text="signatureLibraryRelease" />
-                    <has_text text="disorder_prediction" />
-                    <has_text text="Polyampholyte" />
+                    <has_text text="signatureLibraryRelease"/>
+                    <has_text text="disorder_prediction"/>
+                    <has_text text="Polyampholyte"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_failure="true" expect_num_outputs="1">
-            <param name="input" value="prots.fa" />
-            <param name="seqtype" value="p" />
-            <param name="database" value="@TOOL_VERSION@" />
-            <param name="applications" value="MobiDBLite" />
+            <param name="input" value="prots.fa"/>
+            <param name="seqtype" value="p"/>
+            <param name="database" value="@TOOL_VERSION@"/>
+            <param name="applications" value="MobiDBLite"/>
             <conditional name="licensed">
-                <param name="use" value="true" />
-                <param name="applications_licensed" value="Phobius,TMHMM" />
+                <param name="use" value="true"/>
+                <param name="applications_licensed" value="Phobius,TMHMM"/>
             </conditional>
-            <param name="oformat" value="TSV" />
+            <param name="oformat" value="TSV"/>
             <assert_stdout>
                 <!-- expected to be "deactivated" as they are not installed by default -->
-                <has_text text="Analysis Phobius does not exist or is deactivated" />
-                <has_text text="Analysis TMHMM does not exist or is deactivated" />
+                <has_text text="Analysis Phobius does not exist or is deactivated"/>
+                <has_text text="Analysis TMHMM does not exist or is deactivated"/>
             </assert_stdout>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What it does**
@@ -332,6 +320,5 @@ The GFF3 format is a flat tab-delimited file, which is much richer then the TSV 
   AKRLERIETINREIIDMAGGAGSSNGTGGMLTKIKAATIATESGVPVYICS
 
 ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

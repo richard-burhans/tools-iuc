@@ -220,10 +220,8 @@
             [ \$rc == 0 ];
         ]]>
     </command>
-
     <inputs>
-        <param name="bcfile" type="data" format="tabular" label="Barcode File" help="Tab-delimited text file where the first column is a sample ID and subsequent columns are barcodes.  Note, files with indexes/barcode sequences must be supplied in the same order as the barcode columns in this file and their 'Read Type' must have 'Index'." />
-
+        <param name="bcfile" type="data" format="tabular" label="Barcode File" help="Tab-delimited text file where the first column is a sample ID and subsequent columns are barcodes.  Note, files with indexes/barcode sequences must be supplied in the same order as the barcode columns in this file and their 'Read Type' must have 'Index'."/>
         <conditional name="runinterface">
             <param label="Run Type" name="run_type" type="select">
                 <option value="single" selected="true">Single-End</option>
@@ -232,33 +230,32 @@
             </param>
             <when value="single">
                 <!-- Simplified interface for common use-case.  Can still use "Flexible" for alternative single-end options. -->
-                <param name="snglinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Read File" help="Typically, 'Read 1'." />
+                <param name="snglinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Read File" help="Typically, 'Read 1'."/>
                 <repeat name="idxfiles" title="Index File(s)" min="1" default="1">
-                    <param name="idxinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Index File" help="Typically, 'Read 2 Index'." />
+                    <param name="idxinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Index File" help="Typically, 'Read 2 Index'."/>
                     <param name="idxreadname" type="text" label="Index Name" help="E.g. index1, index2, etc..  Letters and numbers only.  No spaces.  Default is 'read-x' where 'x' is a number corresponding to the order in which the file was supplied (including the read file above).">
                         <sanitizer>
-                            <valid initial="string.ascii_letters,string.digits" />
+                            <valid initial="string.ascii_letters,string.digits"/>
                         </sanitizer>
                     </param>
                 </repeat>
             </when>
             <when value="paired">
                 <!-- No embedded index allowed in the forward/reverse reads for simplicity.  Can still use "Flexible" for that. -->
-                <param name="fwdinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Forward Read File" help="Typically, 'Read 1'." />
-                <param name="revinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Reverse Read File" help="Typically, 'Read 3'." />
-
+                <param name="fwdinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Forward Read File" help="Typically, 'Read 1'."/>
+                <param name="revinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Reverse Read File" help="Typically, 'Read 3'."/>
                 <repeat name="idxfiles" title="Index Files" min="0" default="1">
-                    <param name="idxinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Index File" help="Typically, 'Read 2 Index' or 'Read 4 Index'." />
+                    <param name="idxinput" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Index File" help="Typically, 'Read 2 Index' or 'Read 4 Index'."/>
                     <param name="idxreadname" type="text" label="Index Name" help="E.g. index1, index2, etc..  Letters and numbers only.  No spaces.  Default is 'read-x' where 'x' is a number corresponding to the order in which the file was supplied (including the forward and reverse files).">
                         <sanitizer>
-                            <valid initial="string.ascii_letters,string.digits" />
+                            <valid initial="string.ascii_letters,string.digits"/>
                         </sanitizer>
                     </param>
                 </repeat>
             </when>
             <when value="flexible">
                 <repeat name="seqfiles" title="Read Files" min="1" default="1">
-                    <param name="input" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Read File" help="Forward or single-end read files are typically named 'Read 1'.  Index files are typically named 'Read 2 Index' or 'Read 4 Index'.  Reverse read files are typically named 'Read 3'." />
+                    <param name="input" type="data" format="fastq,fastqsanger,fastqsolexa,fastqillumina" label="Read File" help="Forward or single-end read files are typically named 'Read 1'.  Index files are typically named 'Read 2 Index' or 'Read 4 Index'.  Reverse read files are typically named 'Read 3'."/>
                     <conditional name="nameinterface">
                         <param name="readtype" type="select" label="Read Type" help="E.g. If one file is 'Forward' and one is 'Reverse', split reads from those files will appear in an output paired collection.  If your file has reads with barcodes embedded in them, select their 'with index' variant, e.g. 'Forward with Index'.">
                             <option value="single" selected="true">Single-End</option>
@@ -272,7 +269,7 @@
                         <when value="single">
                             <param name="readname" type="text" label="Read Name" help="E.g. index1, index2, etc..  Ignored for paired-collections.  Letters and numbers only.  No spaces.  Default is 'read-x' where 'x' is a number corresponding to the order in which the file was supplied.">
                                 <sanitizer>
-                                    <valid initial="string.ascii_letters,string.digits" />
+                                    <valid initial="string.ascii_letters,string.digits"/>
                                 </sanitizer>
                             </param>
                         </when>
@@ -281,14 +278,14 @@
                         <when value="index">
                             <param name="readname" type="text" label="Read Name" help="E.g. index1, index2, etc..  Ignored for paired-collections.  Letters and numbers only.  No spaces.  Default is 'read-x' where 'x' is a number corresponding to the order in which the file was supplied.">
                                 <sanitizer>
-                                    <valid initial="string.ascii_letters,string.digits" />
+                                    <valid initial="string.ascii_letters,string.digits"/>
                                 </sanitizer>
                             </param>
                         </when>
                         <when value="singleindex">
                             <param name="readname" type="text" label="Read Name" help="E.g. index1, index2, etc..  Ignored for paired-collections.  Letters and numbers only.  No spaces.  Default is 'read-x' where 'x' is a number corresponding to the order in which the file was supplied.">
                                 <sanitizer>
-                                    <valid initial="string.ascii_letters,string.digits" />
+                                    <valid initial="string.ascii_letters,string.digits"/>
                                 </sanitizer>
                             </param>
                         </when>
@@ -298,434 +295,423 @@
                 </repeat>
             </when>
         </conditional>
-
-        <param name="mismatches" type="integer" value="1" max="2" min="0" label="Number of allowed mismatches" help="An integer between 0 and 2 (inclusive).  Warning: Make sure all your barcodes differ by at least double this value plus 1, otherwise sequences that match both barcodes equally well will be discarded as 'multimatched' reads." />
-        <param argument="--barcodes_at_end" type="boolean" truevalue="--barcodes_at_end" falsevalue="" checked="false" label="Barcodes are at the end of all index sequences" help="Default is the beginning of all sequences" />
-        <param argument="--split_all" type="boolean" truevalue="--split_all" falsevalue="" checked="false" label="Split index files too" help="This creates an output collection for split files whose selected 'Read Type' is 'Index'." />
+        <param name="mismatches" type="integer" value="1" max="2" min="0" label="Number of allowed mismatches" help="An integer between 0 and 2 (inclusive).  Warning: Make sure all your barcodes differ by at least double this value plus 1, otherwise sequences that match both barcodes equally well will be discarded as 'multimatched' reads."/>
+        <param argument="--barcodes_at_end" type="boolean" truevalue="--barcodes_at_end" falsevalue="" checked="false" label="Barcodes are at the end of all index sequences" help="Default is the beginning of all sequences"/>
+        <param argument="--split_all" type="boolean" truevalue="--split_all" falsevalue="" checked="false" label="Split index files too" help="This creates an output collection for split files whose selected 'Read Type' is 'Index'."/>
     </inputs>
-
     <outputs>
-        <data format="tabular" name="summary" label="${tool.name} on ${on_string}: Summary" />
+        <data format="tabular" name="summary" label="${tool.name} on ${on_string}: Summary"/>
         <!-- Collection for single-end split reads, regardless of run_type -->
         <collection name="split_output_single" type="list" format_source="runinterface|input" label="${tool.name} on ${on_string}: single-end">
             <!-- run_type is single OR flexible and there's only 1 output read type -->
             <filter>str(runinterface['run_type']) == "single" or (str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']) != "index", runinterface['seqfiles']))) == 1)</filter>
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+)\ \S+\ (single|forward|reverse) 0\.(?P&lt;ext&gt;.*)" directory="split" visible="false" />
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+)\ \S+\ (single|forward|reverse) 0\.(?P&lt;ext&gt;.*)" directory="split" visible="false"/>
         </collection>
         <!-- Collection for paired-end split reads, regardless of run_type -->
         <collection name="split_output_paired" type="list:paired" format_source="runinterface|input" label="${tool.name} on ${on_string}: paired-end">
             <!-- run_type is paired OR flexible and there's 1 forward and 1 reverse readtype -->
             <filter>str(runinterface['run_type']) == "paired" or (str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('forward'), runinterface['seqfiles']))) == 1 and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('reverse'), runinterface['seqfiles']))) == 1)</filter>
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+)\ \S+\ (?P&lt;identifier_1&gt;forward|reverse) 1\.(?P&lt;ext&gt;.*)" directory="split" visible="false" />
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+)\ \S+\ (?P&lt;identifier_1&gt;forward|reverse) 1\.(?P&lt;ext&gt;.*)" directory="split" visible="false"/>
         </collection>
         <!-- Collection for single-end split reads that sit alongside a paired-end collection -->
         <collection name="split_output_paired_other" type="list" format_source="runinterface|input" label="${tool.name} on ${on_string}: other-end">
             <!-- run_type is flexible, there are single-end reads, and there's a single valid read pair -->
-            <filter>str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('single'), runinterface['seqfiles']))) > 0 and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('forward'), runinterface['seqfiles']))) == 1 and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('reverse'), runinterface['seqfiles']))) == 1</filter>
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+\ \S+)\ single 1\.(?P&lt;ext&gt;.*)" directory="split" visible="false" />
+            <filter>str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('single'), runinterface['seqfiles']))) &gt; 0 and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('forward'), runinterface['seqfiles']))) == 1 and len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('reverse'), runinterface['seqfiles']))) == 1</filter>
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+\ \S+)\ single 1\.(?P&lt;ext&gt;.*)" directory="split" visible="false"/>
         </collection>
         <!-- Collection for multi-end split reads -->
         <collection name="split_output_multi" type="list" format_source="runinterface|input" label="${tool.name} on ${on_string}: multi-end">
             <!-- run_type is flexible, there are multiple output split readtypes, and there's not a single valid read pair -->
-            <filter>str(runinterface['run_type']) == "flexible" and (len(runinterface['seqfiles']) - len(list(filter(lambda x: str(x['nameinterface']['readtype']) == "index", runinterface['seqfiles'])))) > 1 and (len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('forward'), runinterface['seqfiles']))) != 1 or len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('reverse'), runinterface['seqfiles']))) != 1)</filter>
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+ \S+) (single (0|1)|(forward|reverse) 0)\.(?P&lt;ext&gt;.*)" directory="split" visible="false" />
+            <filter>str(runinterface['run_type']) == "flexible" and (len(runinterface['seqfiles']) - len(list(filter(lambda x: str(x['nameinterface']['readtype']) == "index", runinterface['seqfiles'])))) &gt; 1 and (len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('forward'), runinterface['seqfiles']))) != 1 or len(list(filter(lambda x: str(x['nameinterface']['readtype']).startswith('reverse'), runinterface['seqfiles']))) != 1)</filter>
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;\S+ \S+) (single (0|1)|(forward|reverse) 0)\.(?P&lt;ext&gt;.*)" directory="split" visible="false"/>
         </collection>
         <!-- Collection for split_all index-only reads -->
         <collection name="index_only" type="list" format_source="runinterface|input" label="${tool.name} on ${on_string}: indexes">
             <!-- split_all is true and ((run_type is not flexible and there are index only files) or (run_type is flexible and there are index only files)) -->
-            <filter>split_all and ((str(runinterface['run_type']) != "flexible" and len(runinterface['idxfiles']) > 0) or (str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']) == "index", runinterface['seqfiles']))) > 0))</filter>
-            <discover_datasets pattern="(?P&lt;identifier_0&gt;.*?) index (0|1)\.(?P&lt;ext&gt;.*)" directory="split" visible="false" />
+            <filter>split_all and ((str(runinterface['run_type']) != "flexible" and len(runinterface['idxfiles']) &gt; 0) or (str(runinterface['run_type']) == "flexible" and len(list(filter(lambda x: str(x['nameinterface']['readtype']) == "index", runinterface['seqfiles']))) &gt; 0))</filter>
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;.*?) index (0|1)\.(?P&lt;ext&gt;.*)" directory="split" visible="false"/>
         </collection>
     </outputs>
-
     <tests>
         <test expect_num_outputs="2">
             <!-- single end with 1 index -->
-            <param name="bcfile" value="barcode_splitter_barcodes.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="false" />
+            <param name="bcfile" value="barcode_splitter_barcodes.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="false"/>
             <conditional name="runinterface">
-                <param name="run_type" value="single" />
-                <param name="snglinput" value="barcode_splitter1.fastq" ftype="fastq" />
+                <param name="run_type" value="single"/>
+                <param name="snglinput" value="barcode_splitter1.fastq" ftype="fastq"/>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="read" />
+                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="read"/>
                 </repeat>
             </conditional>
-            <output name="summary" file="test_1_summary.out" />
+            <output name="summary" file="test_1_summary.out"/>
             <output_collection name="split_output_single" type="list">
-                <element name="BC1" ftype="fastq" file="test_1_BC1-read-1.out" />
-                <element name="BC2" ftype="fastq" file="test_1_BC2-read-1.out" />
-                <element name="BC3" ftype="fastq" file="test_1_BC3-read-1.out" />
-                <element name="BC4" ftype="fastq" file="test_1_BC4-read-1.out" />
-                <element name="unmatched" ftype="fastq" file="test_1_unmatched-read-1.out" />
-                <element name="multimatched" ftype="fastq" file="test_1_multimatched-read-1.out" />
+                <element name="BC1" ftype="fastq" file="test_1_BC1-read-1.out"/>
+                <element name="BC2" ftype="fastq" file="test_1_BC2-read-1.out"/>
+                <element name="BC3" ftype="fastq" file="test_1_BC3-read-1.out"/>
+                <element name="BC4" ftype="fastq" file="test_1_BC4-read-1.out"/>
+                <element name="unmatched" ftype="fastq" file="test_1_unmatched-read-1.out"/>
+                <element name="multimatched" ftype="fastq" file="test_1_multimatched-read-1.out"/>
             </output_collection>
         </test>
         <test expect_num_outputs="3">
             <!-- single end with 1 index and split all -->
-            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="true" />
+            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="true"/>
             <conditional name="runinterface">
-                <param name="run_type" value="single" />
-                <param name="snglinput" value="barcode_splitter1.fastq" ftype="fastq" />
+                <param name="run_type" value="single"/>
+                <param name="snglinput" value="barcode_splitter1.fastq" ftype="fastq"/>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="index1" />
+                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="index1"/>
                 </repeat>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index_2.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="index2" />
+                    <param name="idxinput" value="barcode_splitter_index_2.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="index2"/>
                 </repeat>
             </conditional>
-            <output name="summary" file="test_2_summary.out" />
+            <output name="summary" file="test_2_summary.out"/>
             <output_collection name="split_output_single" type="list">
-                <element name="BC1" ftype="fastq" file="test_2_BC1-read-1.fastq" />
-                <element name="BC2" ftype="fastq" file="test_2_BC2-read-1.fastq" />
-                <element name="BC3" ftype="fastq" file="test_2_BC3-read-1.fastq" />
-                <element name="BC4" ftype="fastq" file="test_2_BC4-read-1.fastq" />
-                <element name="unmatched" ftype="fastq" file="test_2_unmatched-read-1.fastq" />
-                <element name="multimatched" ftype="fastq" file="test_2_multimatched-read-1.fastq" />
+                <element name="BC1" ftype="fastq" file="test_2_BC1-read-1.fastq"/>
+                <element name="BC2" ftype="fastq" file="test_2_BC2-read-1.fastq"/>
+                <element name="BC3" ftype="fastq" file="test_2_BC3-read-1.fastq"/>
+                <element name="BC4" ftype="fastq" file="test_2_BC4-read-1.fastq"/>
+                <element name="unmatched" ftype="fastq" file="test_2_unmatched-read-1.fastq"/>
+                <element name="multimatched" ftype="fastq" file="test_2_multimatched-read-1.fastq"/>
             </output_collection>
             <output_collection name="index_only" type="list">
-                <element name="BC1 index1" ftype="fastq" file="test_2_BC1_index1.fastq" />
-                <element name="BC2 index1" ftype="fastq" file="test_2_BC2_index1.fastq" />
-                <element name="BC3 index1" ftype="fastq" file="test_2_BC3_index1.fastq" />
-                <element name="BC4 index1" ftype="fastq" file="test_2_BC4_index1.fastq" />
-                <element name="unmatched index1" ftype="fastq" file="test_2_unmatched_index1.fastq" />
-                <element name="multimatched index1" ftype="fastq" file="test_2_multimatched_index1.fastq" />
-                <element name="BC1 index2" ftype="fastq" file="test_2_BC1_index2.fastq" />
-                <element name="BC2 index2" ftype="fastq" file="test_2_BC2_index2.fastq" />
-                <element name="BC3 index2" ftype="fastq" file="test_2_BC3_index2.fastq" />
-                <element name="BC4 index2" ftype="fastq" file="test_2_BC4_index2.fastq" />
-                <element name="unmatched index2" ftype="fastq" file="test_2_unmatched_index2.fastq" />
-                <element name="multimatched index2" ftype="fastq" file="test_2_multimatched_index2.fastq" />
+                <element name="BC1 index1" ftype="fastq" file="test_2_BC1_index1.fastq"/>
+                <element name="BC2 index1" ftype="fastq" file="test_2_BC2_index1.fastq"/>
+                <element name="BC3 index1" ftype="fastq" file="test_2_BC3_index1.fastq"/>
+                <element name="BC4 index1" ftype="fastq" file="test_2_BC4_index1.fastq"/>
+                <element name="unmatched index1" ftype="fastq" file="test_2_unmatched_index1.fastq"/>
+                <element name="multimatched index1" ftype="fastq" file="test_2_multimatched_index1.fastq"/>
+                <element name="BC1 index2" ftype="fastq" file="test_2_BC1_index2.fastq"/>
+                <element name="BC2 index2" ftype="fastq" file="test_2_BC2_index2.fastq"/>
+                <element name="BC3 index2" ftype="fastq" file="test_2_BC3_index2.fastq"/>
+                <element name="BC4 index2" ftype="fastq" file="test_2_BC4_index2.fastq"/>
+                <element name="unmatched index2" ftype="fastq" file="test_2_unmatched_index2.fastq"/>
+                <element name="multimatched index2" ftype="fastq" file="test_2_multimatched_index2.fastq"/>
             </output_collection>
         </test>
         <test expect_num_outputs="2">
             <!-- paired end with one index -->
-            <param name="bcfile" value="barcode_splitter_barcodes.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="false" />
+            <param name="bcfile" value="barcode_splitter_barcodes.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="false"/>
             <conditional name="runinterface">
-                <param name="run_type" value="paired" />
-                <param name="fwdinput" value="barcode_splitter1.fastq" ftype="fastq" />
-                <param name="revinput" value="barcode_splitter_index_2.fastq" ftype="fastq" />
+                <param name="run_type" value="paired"/>
+                <param name="fwdinput" value="barcode_splitter1.fastq" ftype="fastq"/>
+                <param name="revinput" value="barcode_splitter_index_2.fastq" ftype="fastq"/>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="index" />
+                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="index"/>
                 </repeat>
             </conditional>
-            <output name="summary" file="test_1_summary.out" />
+            <output name="summary" file="test_1_summary.out"/>
             <output_collection name="split_output_paired" type="list:paired">
                 <element name="BC1">
-                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq"/>
                 </element>
                 <element name="BC2">
-                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq"/>
                 </element>
                 <element name="BC3">
-                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq"/>
                 </element>
                 <element name="BC4">
-                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq"/>
                 </element>
                 <element name="unmatched">
-                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq"/>
                 </element>
                 <element name="multimatched">
-                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq"/>
                 </element>
             </output_collection>
         </test>
         <test expect_num_outputs="3">
             <!-- paired end 2 indexes and split_all -->
-            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="true" />
+            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="true"/>
             <conditional name="runinterface">
-                <param name="run_type" value="paired" />
-                <param name="fwdinput" value="barcode_splitter1.fastq" ftype="fastq" />
-                <param name="revinput" value="barcode_splitter_index_2.fastq" ftype="fastq" />
+                <param name="run_type" value="paired"/>
+                <param name="fwdinput" value="barcode_splitter1.fastq" ftype="fastq"/>
+                <param name="revinput" value="barcode_splitter_index_2.fastq" ftype="fastq"/>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="index1" />
+                    <param name="idxinput" value="barcode_splitter_index.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="index1"/>
                 </repeat>
                 <repeat name="idxfiles">
-                    <param name="idxinput" value="barcode_splitter_index_2.fastq" ftype="fastq" />
-                    <param name="idxreadname" value="index2" />
+                    <param name="idxinput" value="barcode_splitter_index_2.fastq" ftype="fastq"/>
+                    <param name="idxreadname" value="index2"/>
                 </repeat>
             </conditional>
-            <output name="summary" file="test_2_summary.out" />
+            <output name="summary" file="test_2_summary.out"/>
             <output_collection name="split_output_paired" type="list:paired">
                 <element name="BC1">
-                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq"/>
                 </element>
                 <element name="BC2">
-                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq"/>
                 </element>
                 <element name="BC3">
-                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq"/>
                 </element>
                 <element name="BC4">
-                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq"/>
                 </element>
                 <element name="unmatched">
-                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq"/>
                 </element>
                 <element name="multimatched">
-                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq"/>
                 </element>
             </output_collection>
             <output_collection name="index_only" type="list">
-                <element name="BC1 index1" ftype="fastq" file="test_2_BC1_index1.fastq" />
-                <element name="BC2 index1" ftype="fastq" file="test_2_BC2_index1.fastq" />
-                <element name="BC3 index1" ftype="fastq" file="test_2_BC3_index1.fastq" />
-                <element name="BC4 index1" ftype="fastq" file="test_2_BC4_index1.fastq" />
-                <element name="unmatched index1" ftype="fastq" file="test_2_unmatched_index1.fastq" />
-                <element name="multimatched index1" ftype="fastq" file="test_2_multimatched_index1.fastq" />
-                <element name="BC1 index2" ftype="fastq" file="test_2_BC1_index2.fastq" />
-                <element name="BC2 index2" ftype="fastq" file="test_2_BC2_index2.fastq" />
-                <element name="BC3 index2" ftype="fastq" file="test_2_BC3_index2.fastq" />
-                <element name="BC4 index2" ftype="fastq" file="test_2_BC4_index2.fastq" />
-                <element name="unmatched index2" ftype="fastq" file="test_2_unmatched_index2.fastq" />
-                <element name="multimatched index2" ftype="fastq" file="test_2_multimatched_index2.fastq" />
+                <element name="BC1 index1" ftype="fastq" file="test_2_BC1_index1.fastq"/>
+                <element name="BC2 index1" ftype="fastq" file="test_2_BC2_index1.fastq"/>
+                <element name="BC3 index1" ftype="fastq" file="test_2_BC3_index1.fastq"/>
+                <element name="BC4 index1" ftype="fastq" file="test_2_BC4_index1.fastq"/>
+                <element name="unmatched index1" ftype="fastq" file="test_2_unmatched_index1.fastq"/>
+                <element name="multimatched index1" ftype="fastq" file="test_2_multimatched_index1.fastq"/>
+                <element name="BC1 index2" ftype="fastq" file="test_2_BC1_index2.fastq"/>
+                <element name="BC2 index2" ftype="fastq" file="test_2_BC2_index2.fastq"/>
+                <element name="BC3 index2" ftype="fastq" file="test_2_BC3_index2.fastq"/>
+                <element name="BC4 index2" ftype="fastq" file="test_2_BC4_index2.fastq"/>
+                <element name="unmatched index2" ftype="fastq" file="test_2_unmatched_index2.fastq"/>
+                <element name="multimatched index2" ftype="fastq" file="test_2_multimatched_index2.fastq"/>
             </output_collection>
         </test>
         <test expect_num_outputs="2">
             <!-- flexible with single end containing index -->
-            <param name="bcfile" value="barcode_splitter_barcodes.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="false" />
-
+            <param name="bcfile" value="barcode_splitter_barcodes.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="false"/>
             <conditional name="runinterface">
-                <param name="run_type" value="flexible" />
+                <param name="run_type" value="flexible"/>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="singleindex" />
-                        <param name="readname" value="read" />
+                        <param name="readtype" value="singleindex"/>
+                        <param name="readname" value="read"/>
                     </conditional>
                 </repeat>
             </conditional>
-
-            <output name="summary" file="test_5_summary.out" />
+            <output name="summary" file="test_5_summary.out"/>
             <output_collection name="split_output_single" type="list">
-                <element name="BC1" ftype="fastq" file="test_1_BC1-read-1.out" />
-                <element name="BC2" ftype="fastq" file="test_1_BC2-read-1.out" />
-                <element name="BC3" ftype="fastq" file="test_1_BC3-read-1.out" />
-                <element name="BC4" ftype="fastq" file="test_5_BC4-read-1.out" />
-                <element name="unmatched" ftype="fastq" file="test_5_unmatched-read-1.out" />
-                <element name="multimatched" ftype="fastq" file="test_1_multimatched-read-1.out" />
+                <element name="BC1" ftype="fastq" file="test_1_BC1-read-1.out"/>
+                <element name="BC2" ftype="fastq" file="test_1_BC2-read-1.out"/>
+                <element name="BC3" ftype="fastq" file="test_1_BC3-read-1.out"/>
+                <element name="BC4" ftype="fastq" file="test_5_BC4-read-1.out"/>
+                <element name="unmatched" ftype="fastq" file="test_5_unmatched-read-1.out"/>
+                <element name="multimatched" ftype="fastq" file="test_1_multimatched-read-1.out"/>
             </output_collection>
         </test>
         <test expect_num_outputs="3">
             <!-- flexible with first single end no index, second containing index, 1 separate index, and split all -->
-            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="true" />
-
+            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="true"/>
             <conditional name="runinterface">
-                <param name="run_type" value="flexible" />
+                <param name="run_type" value="flexible"/>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="single" />
-                        <param name="readname" value="read1" />
+                        <param name="readtype" value="single"/>
+                        <param name="readname" value="read1"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="singleindex" />
-                        <param name="readname" value="read2" />
+                        <param name="readtype" value="singleindex"/>
+                        <param name="readname" value="read2"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="index" />
-                        <param name="readname" value="index2" />
+                        <param name="readtype" value="index"/>
+                        <param name="readname" value="index2"/>
                     </conditional>
                 </repeat>
             </conditional>
-
-            <output name="summary" file="test_6_summary.out" />
+            <output name="summary" file="test_6_summary.out"/>
             <output_collection name="split_output_multi" type="list">
-                <element name="BC1 read1" ftype="fastq" file="test_6_BC1_read1.fastq" />
-                <element name="BC2 read1" ftype="fastq" file="test_6_BC2_read1.fastq" />
-                <element name="BC3 read1" ftype="fastq" file="test_6_BC3_read1.fastq" />
-                <element name="BC4 read1" ftype="fastq" file="test_6_BC4_read1.fastq" />
-                <element name="unmatched read1" ftype="fastq" file="test_6_unmatched_read1.fastq" />
-                <element name="multimatched read1" ftype="fastq" file="test_6_multimatched_read1.fastq" />
-                <element name="BC1 read2" ftype="fastq" file="test_6_BC1_read2.fastq" />
-                <element name="BC2 read2" ftype="fastq" file="test_6_BC2_read2.fastq" />
-                <element name="BC3 read2" ftype="fastq" file="test_6_BC3_read2.fastq" />
-                <element name="BC4 read2" ftype="fastq" file="test_6_BC4_read2.fastq" />
-                <element name="unmatched read2" ftype="fastq" file="test_6_unmatched_read2.fastq" />
-                <element name="multimatched read2" ftype="fastq" file="test_6_multimatched_read2.fastq" /> <!-- FAILS -->
+                <element name="BC1 read1" ftype="fastq" file="test_6_BC1_read1.fastq"/>
+                <element name="BC2 read1" ftype="fastq" file="test_6_BC2_read1.fastq"/>
+                <element name="BC3 read1" ftype="fastq" file="test_6_BC3_read1.fastq"/>
+                <element name="BC4 read1" ftype="fastq" file="test_6_BC4_read1.fastq"/>
+                <element name="unmatched read1" ftype="fastq" file="test_6_unmatched_read1.fastq"/>
+                <element name="multimatched read1" ftype="fastq" file="test_6_multimatched_read1.fastq"/>
+                <element name="BC1 read2" ftype="fastq" file="test_6_BC1_read2.fastq"/>
+                <element name="BC2 read2" ftype="fastq" file="test_6_BC2_read2.fastq"/>
+                <element name="BC3 read2" ftype="fastq" file="test_6_BC3_read2.fastq"/>
+                <element name="BC4 read2" ftype="fastq" file="test_6_BC4_read2.fastq"/>
+                <element name="unmatched read2" ftype="fastq" file="test_6_unmatched_read2.fastq"/>
+                <element name="multimatched read2" ftype="fastq" file="test_6_multimatched_read2.fastq"/>
+                <!-- FAILS -->
             </output_collection>
             <output_collection name="index_only" type="list">
-                <element name="BC1 index2" ftype="fastq" file="test_6_BC1_index2.fastq" />
-                <element name="BC2 index2" ftype="fastq" file="test_6_BC2_index2.fastq" />
-                <element name="BC3 index2" ftype="fastq" file="test_6_BC3_index2.fastq" />
-                <element name="BC4 index2" ftype="fastq" file="test_6_BC4_index2.fastq" />
-                <element name="unmatched index2" ftype="fastq" file="test_6_unmatched_index2.fastq" />
-                <element name="multimatched index2" ftype="fastq" file="test_6_multimatched_index2.fastq" />
+                <element name="BC1 index2" ftype="fastq" file="test_6_BC1_index2.fastq"/>
+                <element name="BC2 index2" ftype="fastq" file="test_6_BC2_index2.fastq"/>
+                <element name="BC3 index2" ftype="fastq" file="test_6_BC3_index2.fastq"/>
+                <element name="BC4 index2" ftype="fastq" file="test_6_BC4_index2.fastq"/>
+                <element name="unmatched index2" ftype="fastq" file="test_6_unmatched_index2.fastq"/>
+                <element name="multimatched index2" ftype="fastq" file="test_6_multimatched_index2.fastq"/>
             </output_collection>
         </test>
         <test expect_num_outputs="2">
             <!-- flexible with paired end with one index and no split all -->
-            <param name="bcfile" value="barcode_splitter_barcodes.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="false" />
-
+            <param name="bcfile" value="barcode_splitter_barcodes.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="false"/>
             <conditional name="runinterface">
-                <param name="run_type" value="flexible" />
+                <param name="run_type" value="flexible"/>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="forward" />
+                        <param name="readtype" value="forward"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="index" />
-                        <param name="readname" value="index" />
+                        <param name="readtype" value="index"/>
+                        <param name="readname" value="index"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="reverse" />
+                        <param name="readtype" value="reverse"/>
                     </conditional>
                 </repeat>
             </conditional>
-
-            <output name="summary" file="test_1_summary.out" />
+            <output name="summary" file="test_1_summary.out"/>
             <output_collection name="split_output_paired" type="list:paired">
                 <element name="BC1">
-                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq"/>
                 </element>
                 <element name="BC2">
-                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq"/>
                 </element>
                 <element name="BC3">
-                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq"/>
                 </element>
                 <element name="BC4">
-                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq"/>
                 </element>
                 <element name="unmatched">
-                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq"/>
                 </element>
                 <element name="multimatched">
-                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq"/>
                 </element>
             </output_collection>
         </test>
         <test expect_num_outputs="3">
             <!-- flexible with paired end with reverseindex, single end, separate index, and no split all -->
-            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt" />
-            <param name="mismatches" value="2" />
-            <param name="barcodes_at_end" value="false" />
-            <param name="split_all" value="false" />
-
+            <param name="bcfile" value="barcode_splitter_barcodes_dual.txt"/>
+            <param name="mismatches" value="2"/>
+            <param name="barcodes_at_end" value="false"/>
+            <param name="split_all" value="false"/>
             <conditional name="runinterface">
-                <param name="run_type" value="flexible" />
+                <param name="run_type" value="flexible"/>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="forward" />
+                        <param name="readtype" value="forward"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter1.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="single" />
-                        <param name="readname" value="read" />
+                        <param name="readtype" value="single"/>
+                        <param name="readname" value="read"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="index" />
-                        <param name="readname" value="index" />
+                        <param name="readtype" value="index"/>
+                        <param name="readname" value="index"/>
                     </conditional>
                 </repeat>
                 <repeat name="seqfiles">
-                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq" />
+                    <param name="input" ftype="fastq" value="barcode_splitter_index_2.fastq"/>
                     <conditional name="nameinterface">
-                        <param name="readtype" value="reverseindex" />
+                        <param name="readtype" value="reverseindex"/>
                     </conditional>
                 </repeat>
             </conditional>
-
-            <output name="summary" file="test_2_summary.out" />
+            <output name="summary" file="test_2_summary.out"/>
             <output_collection name="split_output_paired" type="list:paired">
                 <element name="BC1">
-                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC1-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC1-reverse.fastq"/>
                 </element>
                 <element name="BC2">
-                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC2-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC2-reverse.fastq"/>
                 </element>
                 <element name="BC3">
-                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC3-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC3-reverse.fastq"/>
                 </element>
                 <element name="BC4">
-                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_BC4-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_BC4-reverse.fastq"/>
                 </element>
                 <element name="unmatched">
-                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_unmatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_unmatched-reverse.fastq"/>
                 </element>
                 <element name="multimatched">
-                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq" />
-                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq" />
+                    <element name="forward" ftype="fastq" file="test_3_multimatched-forward.fastq"/>
+                    <element name="reverse" ftype="fastq" file="test_3_multimatched-reverse.fastq"/>
                 </element>
             </output_collection>
             <output_collection name="split_output_paired_other" type="list">
-                <element name="BC1 read" ftype="fastq" file="test_1_BC1-read-1.out" />
-                <element name="BC2 read" ftype="fastq" file="test_1_BC2-read-1.out" />
-                <element name="BC3 read" ftype="fastq" file="test_1_BC3-read-1.out" />
-                <element name="BC4 read" ftype="fastq" file="test_1_BC4-read-1.out" />
-                <element name="unmatched read" ftype="fastq" file="test_1_unmatched-read-1.out" />
-                <element name="multimatched read" ftype="fastq" file="test_1_multimatched-read-1.out" />
+                <element name="BC1 read" ftype="fastq" file="test_1_BC1-read-1.out"/>
+                <element name="BC2 read" ftype="fastq" file="test_1_BC2-read-1.out"/>
+                <element name="BC3 read" ftype="fastq" file="test_1_BC3-read-1.out"/>
+                <element name="BC4 read" ftype="fastq" file="test_1_BC4-read-1.out"/>
+                <element name="unmatched read" ftype="fastq" file="test_1_unmatched-read-1.out"/>
+                <element name="multimatched read" ftype="fastq" file="test_1_multimatched-read-1.out"/>
             </output_collection>
         </test>
     </tests>
-
     <help>
         <![CDATA[
 **What it does**

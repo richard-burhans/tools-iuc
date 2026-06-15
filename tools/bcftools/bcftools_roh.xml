@@ -4,9 +4,9 @@
         <token name="@EXECUTABLE@">roh</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $section = $sec_restrict
@@ -75,42 +75,41 @@ ${section.viterbi_training}
 ]]>
     </command>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_target_restrict" />
-            <expand macro="macro_samples" />
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_target_restrict"/>
+            <expand macro="macro_samples"/>
         </section>
         <section name="sec_general" expanded="true" title="Roh General Options">
-            <expand macro="macro_sample" />
-            <param name="AF_tag" type="text" value="" label="AF TAG"  optional="True" 
-                   help="Use the specified INFO tag TAG as an allele frequency estimate instead of the defaul AC and AN tags. Sites which do not have TAG will be skipped." />
-            <param name="AF_dflt" type="float" value="" min="0." max="1." label="AF Default" optional="True" help="If AF is not known, use this allele frequency" />
-            <expand macro="macro_AF_file" />
-            <expand macro="macro_estimate_AF" />
-            <param name="GTs_only" type="float" label="Gts Only" optional="True" help="Use GTs, ignore PLs, use &lt;float&gt; for PL of unseen genotypes. Safe value to use is 30 to account for GT errors." />
-            <param name="skip_indels" type="boolean" truevalue="--skip-indels" falsevalue="" label="Skip Indels" help="Skip indels as their genotypes are enriched for errors" />
-            <param name="genetic_map" type="data" format="data" label="Genetic Map" optional="True" help="Genetic map in IMPUTE2 format, single file or mask, where string &quot;{CHROM}&quot; is replaced with chromosome name" />
-            <param name="rec_rate" type="float" label="Rec Rate" optional="True" help="Constant recombination rate per bp" />
+            <expand macro="macro_sample"/>
+            <param name="AF_tag" type="text" value="" label="AF TAG" optional="True" help="Use the specified INFO tag TAG as an allele frequency estimate instead of the defaul AC and AN tags. Sites which do not have TAG will be skipped."/>
+            <param name="AF_dflt" type="float" value="" min="0." max="1." label="AF Default" optional="True" help="If AF is not known, use this allele frequency"/>
+            <expand macro="macro_AF_file"/>
+            <expand macro="macro_estimate_AF"/>
+            <param name="GTs_only" type="float" label="Gts Only" optional="True" help="Use GTs, ignore PLs, use &lt;float&gt; for PL of unseen genotypes. Safe value to use is 30 to account for GT errors."/>
+            <param name="skip_indels" type="boolean" truevalue="--skip-indels" falsevalue="" label="Skip Indels" help="Skip indels as their genotypes are enriched for errors"/>
+            <param name="genetic_map" type="data" format="data" label="Genetic Map" optional="True" help="Genetic map in IMPUTE2 format, single file or mask, where string &quot;{CHROM}&quot; is replaced with chromosome name"/>
+            <param name="rec_rate" type="float" label="Rec Rate" optional="True" help="Constant recombination rate per bp"/>
             <param name="buffer_size" type="integer" label="Sliding Buffer Size" optional="True">
-                <help>
+                <help><![CDATA[
 Use when the entire many-sample file cannot fit into memory. 
 The number of sites to keep in memory. 
 If negative, it is interpreted as the maximum memory to use, in MB.
-                </help>
+                ]]></help>
             </param>
             <param name="buffer_overlap" type="integer" min="0" label="Sliding Buffer Overlap" optional="True">
-                <help>
+                <help><![CDATA[
 The number of overlapping sites for the sliding buffer. The default overlap is set to roughly 1% of the buffer size. 
-                </help>
+                ]]></help>
             </param>
-            <param argument="--ignore-homref" type="boolean" truevalue="--ignore-homref" falsevalue="" checked="false" label="Ignore homo-ref" help="skip hom-ref genotypes (0/0)" />
-            <param argument="--include-noalt" type="boolean" truevalue="--include-noalt" falsevalue="" checked="false" label="Include sites with no ALT allele" help="Ignored by default" />
+            <param argument="--ignore-homref" type="boolean" truevalue="--ignore-homref" falsevalue="" checked="false" label="Ignore homo-ref" help="skip hom-ref genotypes (0/0)"/>
+            <param argument="--include-noalt" type="boolean" truevalue="--include-noalt" falsevalue="" checked="false" label="Include sites with no ALT allele" help="Ignored by default"/>
         </section>
         <section name="sec_hmm" expanded="true" title="HMM Options">
-            <param name="hw_to_az" type="float" label="Hw To Az" value="6.7e-8" optional="True" help="P(AZ|HW) transition probability from HW (Hardy-Weinberg) to AZ (autozygous) state" />
-            <param name="az_to_hw" type="float" label="Az To Hw" value="5e-9" optional="True" help="P(HW|AZ) transition probability from AZ to HW state" />
-            <param name="viterbi_training" type="boolean" truevalue="--viterbi-training" falsevalue="" label="Viterbi Training" help="Perform Viterbi training to estimate transition probabilities" />
+            <param name="hw_to_az" type="float" label="Hw To Az" value="6.7e-8" optional="True" help="P(AZ|HW) transition probability from HW (Hardy-Weinberg) to AZ (autozygous) state"/>
+            <param name="az_to_hw" type="float" label="Az To Hw" value="5e-9" optional="True" help="P(HW|AZ) transition probability from AZ to HW state"/>
+            <param name="viterbi_training" type="boolean" truevalue="--viterbi-training" falsevalue="" label="Viterbi Training" help="Perform Viterbi training to estimate transition probabilities"/>
         </section>
         <param name="output_type" type="select" optional="true" label="limit output">
             <option value="s">s:per-site</option>
@@ -122,10 +121,10 @@ The number of overlapping sites for the sliding buffer. The default overlap is s
     </outputs>
     <tests>
         <test>
-            <param name="input_file" ftype="vcf" value="roh.vcf" />
+            <param name="input_file" ftype="vcf" value="roh.vcf"/>
             <section name="sec_general">
-                <param name="AF_dflt" value="0.4" />
-                <param name="GTs_only" value="30" />
+                <param name="AF_dflt" value="0.4"/>
+                <param name="GTs_only" value="30"/>
             </section>
             <output name="output_file">
                 <assert_contents>
@@ -135,12 +134,12 @@ The number of overlapping sites for the sliding buffer. The default overlap is s
             </output>
         </test>
         <test>
-            <param name="input_file" ftype="vcf" value="roh.vcf" />
+            <param name="input_file" ftype="vcf" value="roh.vcf"/>
             <section name="sec_general">
-                <param name="AF_dflt" value="0.4" />
-                <param name="GTs_only" value="30" />
+                <param name="AF_dflt" value="0.4"/>
+                <param name="GTs_only" value="30"/>
             </section>
-            <param name="output_type" value="r" />
+            <param name="output_type" value="r"/>
             <output name="output_file">
                 <assert_contents>
                     <not_has_text text="ST"/>
@@ -150,14 +149,14 @@ The number of overlapping sites for the sliding buffer. The default overlap is s
         </test>
         <!-- Test ignore homref and include noalt-->
         <test>
-            <param name="input_file" ftype="vcf" value="roh.vcf" />
+            <param name="input_file" ftype="vcf" value="roh.vcf"/>
             <section name="sec_general">
-                <param name="AF_dflt" value="0.4" />
-                <param name="GTs_only" value="30" />
+                <param name="AF_dflt" value="0.4"/>
+                <param name="GTs_only" value="30"/>
                 <param name="ignore_homref" value="true"/>
                 <param name="include_noalt" value="true"/>
             </section>
-            <param name="output_type" value="r" />
+            <param name="output_type" value="r"/>
             <output name="output_file">
                 <assert_contents>
                     <not_has_text text="ST"/>
@@ -165,22 +164,22 @@ The number of overlapping sites for the sliding buffer. The default overlap is s
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--ignore-homref" />
-                <has_text text="--include-noalt" />
+                <has_text text="--ignore-homref"/>
+                <has_text text="--include-noalt"/>
             </assert_command>
         </test>
         <!-- Test region overlap-->
         <test>
-            <param name="input_file" ftype="vcf" value="roh.vcf" />
+            <param name="input_file" ftype="vcf" value="roh.vcf"/>
             <section name="sec_general">
-                <param name="AF_dflt" value="0.4" />
-                <param name="GTs_only" value="30" />
+                <param name="AF_dflt" value="0.4"/>
+                <param name="GTs_only" value="30"/>
             </section>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="1" />
+                        <param name="chrom" value="1"/>
                     </repeat>
                 </conditional>
             </section>
@@ -191,7 +190,7 @@ The number of overlapping sites for the sliding buffer. The default overlap is s
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--regions-overlap" />
+                <has_text text="--regions-overlap"/>
             </assert_command>
         </test>
     </tests>
@@ -210,5 +209,5 @@ HMM model for detecting runs of autozygosity.
 @BCFTOOLS_HOWTOS@
 ]]>
    </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

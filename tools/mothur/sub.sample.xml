@@ -180,21 +180,23 @@ echo 'sub.sample(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with list -->
+        <test>
+            <!-- test with list -->
             <param name="format" value="list"/>
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <output_collection name="list_out" count="36">
                 <element name="0.20" ftype="mothur.list">
                     <assert_contents>
-                       <has_text text="label"/>
-                       <has_text text="numOtus"/>
-                   </assert_contents>
+                        <has_text text="label"/>
+                        <has_text text="numOtus"/>
+                    </assert_contents>
                 </element>
             </output_collection>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with list and group file and label select-->
+        <test>
+            <!-- test with list and group file and label select-->
             <param name="format" value="list"/>
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="to_filter" value="yes"/>
@@ -206,19 +208,20 @@ echo 'sub.sample(
                     <assert_contents>
                         <has_text text="label"/>
                         <has_text text="numOtus"/>
-                   </assert_contents>
+                    </assert_contents>
                 </element>
             </output_collection>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with fasta and taxonomy -->
+        <test>
+            <!-- test with fasta and taxonomy -->
             <param name="format" value="fasta"/>
             <param name="otu" value="amazon.fasta" ftype="fasta"/>
             <param name="taxonomy" value="amazon.wang.wang.taxonomy" ftype="mothur.seq.taxonomy"/>
             <output name="fasta_out" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">U"/>
+                    <has_text text="&gt;U"/>
                 </assert_contents>
             </output>
             <output name="taxonomy_out" ftype="mothur.seq.taxonomy">
@@ -229,7 +232,8 @@ echo 'sub.sample(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with fasta and group file and name file -->
+        <test>
+            <!-- test with fasta and group file and name file -->
             <param name="format" value="fasta"/>
             <param name="otu" value="amazon.fasta" ftype="fasta"/>
             <param name="to_filter" value="yes"/>
@@ -238,7 +242,7 @@ echo 'sub.sample(
             <param name="name_in" value="amazon1.names" ftype="mothur.names"/>
             <output name="fasta_out" ftype="fasta">
                 <assert_contents>
-                    <has_text_matching expression=">U[0-9]+"/>
+                    <has_text_matching expression="&gt;U[0-9]+"/>
                 </assert_contents>
             </output>
             <output name="group_out" ftype="mothur.groups">
@@ -254,7 +258,8 @@ echo 'sub.sample(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared -->
+        <test>
+            <!-- test with shared -->
             <param name="format" value="shared"/>
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="label" value="unique,0.20"/>
@@ -272,7 +277,8 @@ echo 'sub.sample(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with rabund -->
+        <test>
+            <!-- test with rabund -->
             <param name="format" value="rabund"/>
             <param name="otu" value="amazon.an.rabund" ftype="mothur.rabund"/>
             <output name="rabund_out" ftype="mothur.rabund">
@@ -284,7 +290,8 @@ echo 'sub.sample(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with sabund -->
+        <test>
+            <!-- test with sabund -->
             <param name="format" value="sabund"/>
             <param name="otu" value="amazon.an.sabund" ftype="mothur.sabund"/>
             <output name="sabund_out" ftype="mothur.sabund">
@@ -296,7 +303,8 @@ echo 'sub.sample(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with count file -->
+        <test>
+            <!-- test with count file -->
             <param name="format" value="fasta"/>
             <param name="otu" value="amazon.unique.fasta" ftype="fasta"/>
             <param name="count" value="amazon.count_table" ftype="mothur.count_table"/>

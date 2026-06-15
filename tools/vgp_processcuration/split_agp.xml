@@ -12,20 +12,15 @@
             -o './'
     ]]></command>
     <inputs>
-        <param name="fasta" type="data" format="fasta,fasta.gz" label="Assembly FASTA file"
-            help="Input assembly FASTA file containing both haplotypes." />
-        <param name="agp" type="data" format="tabular" label="Curated AGP file"
-            help="Input curated AGP file created in PretextView with haplotype markers (Hap_1/H1 and Hap_2/H2)." />
+        <param name="fasta" type="data" format="fasta,fasta.gz" label="Assembly FASTA file" help="Input assembly FASTA file containing both haplotypes."/>
+        <param name="agp" type="data" format="tabular" label="Curated AGP file" help="Input curated AGP file created in PretextView with haplotype markers (Hap_1/H1 and Hap_2/H2)."/>
     </inputs>
     <outputs>
-        <data name="corrected_agp" format="tabular" from_work_dir="corrected.agp"
-            label="${tool.name} on ${on_string}: Corrected AGP"/>
-
+        <data name="corrected_agp" format="tabular" from_work_dir="corrected.agp" label="${tool.name} on ${on_string}: Corrected AGP"/>
         <!-- Haplotype 1 outputs -->
         <data name="hap1_agp" format="tabular" from_work_dir="Hap_1/hap1.agp" label="${tool.name} on ${on_string}: Hap1 AGP"/>
         <data name="hap1_unlocs_no_hapdups" format="tabular" from_work_dir="Hap_1/hap.unlocs.no_hapdups.agp" label="${tool.name} on ${on_string}: Hap1 Unlocs without haplotig AGP"/>
         <data name="hap1_haplotigs" format="tabular" from_work_dir="Hap_1/haplotigs.agp" label="${tool.name} on ${on_string}: Hap1 Haplotigs AGP"/>
-
         <!-- Haplotype 2 outputs -->
         <data name="hap2_agp" format="tabular" from_work_dir="Hap_2/hap2.agp" label="${tool.name} on ${on_string}: Hap2 AGP"/>
         <data name="hap2_unlocs_no_hapdups" format="tabular" from_work_dir="Hap_2/hap.unlocs.no_hapdups.agp" label="${tool.name} on ${on_string}: Hap2 Unlocs without haplotigs AGP"/>

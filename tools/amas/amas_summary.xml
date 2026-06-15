@@ -1,17 +1,13 @@
 <tool id="amas_summary" name="AMAS summary" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>summarise multiple alignments</description>
-    
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <xrefs>
         <xref type="bio.tools">amas</xref>
     </xrefs>
-
-    <expand macro="requirements" />
-    <expand macro="version_command" />
-
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         #import re
         set -eu;
@@ -32,36 +28,30 @@
         --cores "\${GALAXY_SLOTS:-1}"
         $check_align
     ]]></command>
-
     <inputs>
-        <param name="input_files" type="data" format="fasta,phylip,nex" label="Sequence(s) to summarise" multiple="true" 
-               help="Provide pre-aligned FASTA/PHYLIP/NEXUS files (DNA or protein); mixes of unaligned reads or contigs will produce meaningless results." />
-        <param argument="--by-taxon" type="boolean" label="Also emit per-taxon summaries" checked="false" truevalue="--by-taxon" falsevalue="" />
-        <expand macro="data_type" />
-        <expand macro="check_align" />
+        <param name="input_files" type="data" format="fasta,phylip,nex" label="Sequence(s) to summarise" multiple="true" help="Provide pre-aligned FASTA/PHYLIP/NEXUS files (DNA or protein); mixes of unaligned reads or contigs will produce meaningless results."/>
+        <param argument="--by-taxon" type="boolean" label="Also emit per-taxon summaries" checked="false" truevalue="--by-taxon" falsevalue=""/>
+        <expand macro="data_type"/>
+        <expand macro="check_align"/>
     </inputs>
-
     <outputs>
-        <data name="summary_out" from_work_dir="summary.txt" format="txt" label="${tool.name} on ${on_string}: Alignment summary" />
-
+        <data name="summary_out" from_work_dir="summary.txt" format="txt" label="${tool.name} on ${on_string}: Alignment summary"/>
         <collection name="taxon_summaries" type="list" label="${tool.name} on ${on_string}: Per-taxon summaries">
-            <discover_datasets pattern="(?P&lt;name&gt;.+-seq-summary)\.txt" format="txt" />
+            <discover_datasets pattern="(?P&lt;name&gt;.+-seq-summary)\.txt" format="txt"/>
         </collection>
     </outputs>
-
     <tests>
         <test expect_num_outputs="2">
-            <param name="input_files" value="inputs/fasta1.fas" />
-            <param name="by_taxon" value="true" />
-            <param name="data_type" value="dna" />
-            <param name="check_align" value="false" />
-            <output name="summary_out" file="outputs/expected_summary.txt" />
+            <param name="input_files" value="inputs/fasta1.fas"/>
+            <param name="by_taxon" value="true"/>
+            <param name="data_type" value="dna"/>
+            <param name="check_align" value="false"/>
+            <output name="summary_out" file="outputs/expected_summary.txt"/>
             <output_collection name="taxon_summaries" type="list">
-                <element name="fasta1.fas-seq-summary" file="outputs/expected_taxa_summary.txt" ftype="txt" />
+                <element name="fasta1.fas-seq-summary" file="outputs/expected_taxa_summary.txt" ftype="txt"/>
             </output_collection>
         </test>
     </tests>
-
     <help><![CDATA[
         **What it does**
 
@@ -100,6 +90,5 @@
 
         @AMAS_SHARED_HELP@
     ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

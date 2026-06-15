@@ -5,9 +5,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         python ${__tool_directory__}/scikit_bio_diversity_beta_diversity.py
         --input "${input_abundance}"
@@ -88,10 +88,10 @@
             <when value="sokalsneath"/>
             <when value="wminkowski"/>
             <when value="unweighted_unifrac">
-                <expand macro="params_tree" />
+                <expand macro="params_tree"/>
             </when>
             <when value="weighted_unifrac">
-                <expand macro="params_tree" />
+                <expand macro="params_tree"/>
             </when>
         </conditional>
     </inputs>
@@ -119,5 +119,5 @@ Calculates beta diversity using the selected metric.
 
         ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

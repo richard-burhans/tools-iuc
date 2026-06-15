@@ -32,21 +32,21 @@ filter_otus_from_otu_table.py
     #end if
     ]]></command>
     <inputs>
-        <param argument="--input_fp" type="data" format="biom1" optional="false" label="Input OTU table" help="The input otu table filepath in biom format"  />
-        <param argument="--min_count" type="integer" value="0" optional="true" label="Minimum total observation count of an otu for that otu to be retained" />
-        <param argument="--min_count_fraction" type="float" value="0.0" optional="true" label="Fraction of the total observation (sequence) count to apply as the minimum total observation count of an otu for that otu to be retained" help="This is a fraction (float), not a percentage, so if you want to filter to 1%, you need to use 0.01 as value here" />
-        <param argument="--max_count" type="integer" value="" optional="true" label="Maximum total observation count of an otu for that otu to be retained" />
-        <param argument="--min_samples" type="integer" value="0" optional="true" label="Minimum number of samples an OTU must be observed in for that otu to be retained" />
-        <param argument="--max_samples" type="integer" value="" optional="true" label="Maximum number of samples an OTU must be observed in for that otu to be retained" />
+        <param argument="--input_fp" type="data" format="biom1" optional="false" label="Input OTU table" help="The input otu table filepath in biom format"/>
+        <param argument="--min_count" type="integer" value="0" optional="true" label="Minimum total observation count of an otu for that otu to be retained"/>
+        <param argument="--min_count_fraction" type="float" value="0.0" optional="true" label="Fraction of the total observation (sequence) count to apply as the minimum total observation count of an otu for that otu to be retained" help="This is a fraction (float), not a percentage, so if you want to filter to 1%, you need to use 0.01 as value here"/>
+        <param argument="--max_count" type="integer" value="" optional="true" label="Maximum total observation count of an otu for that otu to be retained"/>
+        <param argument="--min_samples" type="integer" value="0" optional="true" label="Minimum number of samples an OTU must be observed in for that otu to be retained"/>
+        <param argument="--max_samples" type="integer" value="" optional="true" label="Maximum number of samples an OTU must be observed in for that otu to be retained"/>
         <conditional name="id_filtering_condition">
-            <param name="id_filtering_switch" type="select" label="Do you want to exclude a predefined list of OTUs from the OTU table?" >
+            <param name="id_filtering_switch" type="select" label="Do you want to exclude a predefined list of OTUs from the OTU table?">
                 <option value="no" selected="true">No</option>
                 <option value="yes">Yes</option>
             </param>
             <when value="no"/>
             <when value="yes">
-                <param argument="--otu_ids_to_exclude_fp" type="data" format="fasta,txt" label="Filtering by ID / Chimera filtering - Input text/Fasta file containing a list of OTU ids to exclude" help="The selected file can be a text file with one id per line, a text file where id is the first value in a tab-separated line, or can be a fasta file (extension must be .fna or .fasta)" />
-                <param argument="--negate_ids_to_exclude" type="boolean" truevalue="--negate_ids_to_exclude" falsevalue="" checked="false" label="Do you want to reverse the filtering by ID / Chimera filtering ?" help="When this parameter is set to yes, then only the OTUs listed in the file passed to the --otu_ids_to_exclude_fp parameters will be kept in the output biom file" />
+                <param argument="--otu_ids_to_exclude_fp" type="data" format="fasta,txt" label="Filtering by ID / Chimera filtering - Input text/Fasta file containing a list of OTU ids to exclude" help="The selected file can be a text file with one id per line, a text file where id is the first value in a tab-separated line, or can be a fasta file (extension must be .fna or .fasta)"/>
+                <param argument="--negate_ids_to_exclude" type="boolean" truevalue="--negate_ids_to_exclude" falsevalue="" checked="false" label="Do you want to reverse the filtering by ID / Chimera filtering ?" help="When this parameter is set to yes, then only the OTUs listed in the file passed to the --otu_ids_to_exclude_fp parameters will be kept in the output biom file"/>
             </when>
         </conditional>
     </inputs>
@@ -59,33 +59,33 @@ filter_otus_from_otu_table.py
         <!-- As a consequence, md5 checksums/SHA hash are not a valid comparison option either -->
         <!-- The following tests on output biom files are then based on a comparison of file sizes with a maximum delta of 0 bytes instead of the classic diff-based comparison -->
         <test expect_num_outputs="1">
-            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom" />
-            <param name="min_count" value="2" />
-            <param name="max_count" value="1000" />
-            <param name="min_samples" value="5" />
-            <param name="max_samples" value="350" />
+            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom"/>
+            <param name="min_count" value="2"/>
+            <param name="max_count" value="1000"/>
+            <param name="min_samples" value="5"/>
+            <param name="max_samples" value="350"/>
             <conditional name="id_filtering_condition">
                 <param name="id_filtering_switch" value="no"/>
             </conditional>
-            <output name="output_fp" file="filter_otus_from_otu_table/filtered_otu_table.biom" ftype="biom1" compare="sim_size" delta="200" />
+            <output name="output_fp" file="filter_otus_from_otu_table/filtered_otu_table.biom" ftype="biom1" compare="sim_size" delta="200"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom" />
+            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom"/>
             <conditional name="id_filtering_condition">
                 <param name="id_filtering_switch" value="yes"/>
                 <param name="otu_ids_to_exclude_fp" value="filter_otus_from_otu_table/chimeric_otus.txt"/>
                 <param name="negate_ids_to_exclude" value="False"/>
             </conditional>
-            <output name="output_fp" file="filter_otus_from_otu_table/chimera_filtered_otu_table.biom" ftype="biom1" compare="sim_size" delta="200" />
+            <output name="output_fp" file="filter_otus_from_otu_table/chimera_filtered_otu_table.biom" ftype="biom1" compare="sim_size" delta="200"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom" />
+            <param name="input_fp" value="filter_otus_from_otu_table/otu_table.biom"/>
             <conditional name="id_filtering_condition">
                 <param name="id_filtering_switch" value="yes"/>
                 <param name="otu_ids_to_exclude_fp" value="filter_otus_from_otu_table/chimeric_otus.txt"/>
                 <param name="negate_ids_to_exclude" value="True"/>
             </conditional>
-            <output name="output_fp" file="filter_otus_from_otu_table/chimera_picked_otu_table.biom" ftype="biom1" compare="sim_size" delta="200" />
+            <output name="output_fp" file="filter_otus_from_otu_table/chimera_picked_otu_table.biom" ftype="biom1" compare="sim_size" delta="200"/>
         </test>
     </tests>
     <help><![CDATA[

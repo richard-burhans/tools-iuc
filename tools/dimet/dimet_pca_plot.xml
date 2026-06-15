@@ -60,7 +60,6 @@
             </param>
         </section>
     </inputs>
-
     <outputs>
         <collection name="report" type="list">
             <discover_datasets pattern="__designation_and_ext__" directory="figures"/>
@@ -68,9 +67,9 @@
     </outputs>
     <tests>
         <test>
-            <param name="abundance_file" ftype="tabular" value="rawAbundances.csv" />
+            <param name="abundance_file" ftype="tabular" value="rawAbundances.csv"/>
             <param name="metadata_path" ftype="tabular" value="example2_metadata.csv"/>
-            <param name="conditions" value='Control,L-Cycloserine'/>
+            <param name="conditions" value="Control,L-Cycloserine"/>
             <section name="output_options">
                 <param name="figure_format" value="svg"/>
             </section>
@@ -237,5 +236,5 @@ You can also use the minimal data examples from https://zenodo.org/record/105798
 
  ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

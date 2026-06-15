@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -45,7 +45,7 @@
         @COMPRESS_TAF@
     ]]></command>
     <inputs>
-        <expand macro="input_taf"/> 
+        <expand macro="input_taf"/>
         <param argument="--maximumGapStringLength" type="integer" min="-1" value="50" label="Maximum gap string length to insert" help="Specify the maximum length of a gap to fill. Gaps longer than this will not be filled. A negative value (e.g., -1) means no limit"/>
         <conditional name="gapFill">
             <param name="source" type="select" label="Source of sequence to fill gaps">
@@ -55,11 +55,11 @@
                 <validator type="empty_field" message="You must select a source of the sequences to fill gaps"/>
             </param>
             <when value=""/>
-            <when value="hal">    
-                <expand macro="input_hal"/>  
+            <when value="hal">
+                <expand macro="input_hal"/>
             </when>
             <when value="fasta">
-                <expand macro="input_fasta"/>  
+                <expand macro="input_fasta"/>
             </when>
         </conditional>
         <expand macro="params_repeatCoordinatesEveryNColumns"/>
@@ -121,7 +121,6 @@
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 4: TAF input, HAL as source, compressed TAF output (.gz) -->
         <test expect_num_outputs="1">
             <param name="input_file" value="mr.taf"/>

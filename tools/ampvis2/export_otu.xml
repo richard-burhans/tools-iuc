@@ -1,12 +1,12 @@
 <tool id="ampvis2_export_otu" name="ampvis2 export otu" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="header"/>
     <command detect_errors="exit_code"><![CDATA[
         Rscript '$rscript' &&
-        mv tmp_otu.tsv $otu_long
+        mv tmp_otu.tsv '$otu_long'
     ]]></command>
     <configfiles>
         <configfile name="rscript"><![CDATA[
@@ -84,38 +84,38 @@
         </param>
     </inputs>
     <outputs>
-        <data name="otu_long" format="tabular" label="${tool.name}: Long OTU" >
-        <filter>"otu_long" in output_selection</filter>
+        <data name="otu_long" format="tabular" label="${tool.name}: Long OTU">
+            <filter>"otu_long" in output_selection</filter>
         </data>
         <data name="otu_short" format="tabular" label="${tool.name}: Short OTU">
-        <filter>"otu_short" in output_selection</filter>
+            <filter>"otu_short" in output_selection</filter>
         </data>
-        <data name="tax" format="tabular" label="${tool.name}: Taxonomy mapping" >
-        <filter>"tax" in output_selection</filter>
+        <data name="tax" format="tabular" label="${tool.name}: Taxonomy mapping">
+            <filter>"tax" in output_selection</filter>
         </data>
-        <data name="meta" format="tabular" label="${tool.name}: Metadata mapping" >
-        <filter>"meta" in output_selection</filter>
+        <data name="meta" format="tabular" label="${tool.name}: Metadata mapping">
+            <filter>"meta" in output_selection</filter>
         </data>
-        <data name="phyloseq" format="phyloseq" label="${tool.name}: Phyloseq object" >
-        <filter>"phyloseq" in output_selection</filter>
+        <data name="phyloseq" format="phyloseq" label="${tool.name}: Phyloseq object">
+            <filter>"phyloseq" in output_selection</filter>
         </data>
     </outputs>
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="3">
-            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/> 
-            <output name="otu_short" value="output_otu_short.tsv" ftype="tabular" />
-            <output name="tax" value="output_otu_taxonomy_mapping.tsv" ftype="tabular" />
-            <output name="meta" value="output_metadata.tsv" ftype="tabular" />
+            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/>
+            <output name="otu_short" value="output_otu_short.tsv" ftype="tabular"/>
+            <output name="tax" value="output_otu_taxonomy_mapping.tsv" ftype="tabular"/>
+            <output name="meta" value="output_metadata.tsv" ftype="tabular"/>
         </test>
         <test expect_num_outputs="5">
-            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/> 
-            <param name="output_selection" value="otu_long,otu_short,tax,meta,phyloseq" />
-            <output name="otu_long" value="output_otu_long.tsv" ftype="tabular" />
-            <output name="otu_short" value="output_otu_short.tsv" ftype="tabular" />
-            <output name="tax" value="output_otu_taxonomy_mapping.tsv" ftype="tabular" />
-            <output name="meta" value="output_metadata.tsv" ftype="tabular" />
-            <output name="phyloseq" ftype="phyloseq" >
+            <param name="data" value="AalborgWWTPs-complete.rds" ftype="ampvis2"/>
+            <param name="output_selection" value="otu_long,otu_short,tax,meta,phyloseq"/>
+            <output name="otu_long" value="output_otu_long.tsv" ftype="tabular"/>
+            <output name="otu_short" value="output_otu_short.tsv" ftype="tabular"/>
+            <output name="tax" value="output_otu_taxonomy_mapping.tsv" ftype="tabular"/>
+            <output name="meta" value="output_metadata.tsv" ftype="tabular"/>
+            <output name="phyloseq" ftype="phyloseq">
                 <assert_contents>
                     <has_size value="12684" delta="10"/>
                 </assert_contents>

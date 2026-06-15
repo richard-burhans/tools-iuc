@@ -29,26 +29,26 @@
               --diploid-parx-genome '$advanced_settings.diploid_parx_genome'
             #end if
     ]]></command>
-     <inputs>
-        <param name="input_segmented_file" type="data" format="cns" label="Segmented Copy Ratio Data File (cns file)" help="" />
+    <inputs>
+        <param name="input_segmented_file" type="data" format="cns" label="Segmented Copy Ratio Data File (cns file)" help=""/>
         <section name="advanced_settings" title="Advanced settings" expanded="false">
-            <param argument="--cnr" optional="true" type="data" format="cnr" label="Bin-level copy ratios (cnr)" help="" />
-            <param argument="--sample-id" type="text" label="Sample ID" help="Sample name to write in the genotype field of the output VCF file" />
-            <param argument="--ploidy" optional="true" type="integer" label="Ploidy" min="1" value="2" help="Ploidy of the sample cells. [Default: 2]" />
+            <param argument="--cnr" optional="true" type="data" format="cnr" label="Bin-level copy ratios (cnr)" help=""/>
+            <param argument="--sample-id" type="text" label="Sample ID" help="Sample name to write in the genotype field of the output VCF file"/>
+            <param argument="--ploidy" optional="true" type="integer" label="Ploidy" min="1" value="2" help="Ploidy of the sample cells. [Default: 2]"/>
             <expand macro="sample_sex"/>
-            <param argument="--male-reference" type="boolean" checked="false" truevalue="--male-reference" falsevalue="" label="MALE REFERENCE" help="Assume inputs were normalized to a male reference" />
-            <param argument="--diploid-parx-genome" type="text" label="Diploid Parx Genome" help="Considers the given human genome's PAR of chromosome X as autosomal. Example: 'grch38'" />
-        </section>  
-        </inputs>
+            <param argument="--male-reference" type="boolean" checked="false" truevalue="--male-reference" falsevalue="" label="MALE REFERENCE" help="Assume inputs were normalized to a male reference"/>
+            <param argument="--diploid-parx-genome" type="text" label="Diploid Parx Genome" help="Considers the given human genome's PAR of chromosome X as autosomal. Example: 'grch38'"/>
+        </section>
+    </inputs>
     <outputs>
-        <data name="CNVs_VCF" format="vcf" label="${tool.name} on ${on_string}: CNVs VCF file" from_work_dir="sample.cnv.vcf" />
+        <data name="CNVs_VCF" format="vcf" label="${tool.name} on ${on_string}: CNVs VCF file" from_work_dir="sample.cnv.vcf"/>
     </outputs>
-       <tests>
+    <tests>
         <test expect_num_outputs="1">
-            <param name="input_segmented_file" ftype="cns" value="sample.cns" />
-            <param name="sample_id" value="SampleID" />
-            <param name="sample_sex" value="Female" />
-            <output name="CNVs_VCF" file="sample.cnv.vcf" ftype="vcf" lines_diff="2" />
+            <param name="input_segmented_file" ftype="cns" value="sample.cns"/>
+            <param name="sample_id" value="SampleID"/>
+            <param name="sample_sex" value="Female"/>
+            <output name="CNVs_VCF" file="sample.cnv.vcf" ftype="vcf" lines_diff="2"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -92,9 +92,5 @@ Tabular file with smoothed, merged segments of stable copy number, derived from 
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>
-
-
-
- 

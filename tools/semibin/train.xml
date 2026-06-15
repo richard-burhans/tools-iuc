@@ -64,7 +64,7 @@ SemiBin2 train_semi
             </param>
             <when value="single">
                 <param argument="--input-fasta" type="data" format="fasta,fasta.gz,fasta.bz2" label="Contig sequences"/>
-                <param argument="--data" type="data"  format="csv" label="Train data"/>
+                <param argument="--data" type="data" format="csv" label="Train data"/>
                 <param argument="--data-split" type="data" format="csv" label="Split train data"/>
                 <param argument="--cannot-link" type="data" format="txt" label="Cannot-link constraints"/>
             </when>
@@ -95,7 +95,7 @@ SemiBin2 train_semi
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="2500" />
+                <param name="min_len" value="2500"/>
             </conditional>
             <param name="orf_finder" value="prodigal"/>
             <param name="random_seed" value="0"/>
@@ -103,7 +103,7 @@ SemiBin2 train_semi
             <param name="batch_size" value="2048"/>
             <output name="model" ftype="h5">
                 <assert_contents>
-                    <has_size value="3119000" delta="2000" />
+                    <has_size value="3119000" delta="2000"/>
                 </assert_contents>
             </output>
         </test>
@@ -117,7 +117,7 @@ SemiBin2 train_semi
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="2500" />
+                <param name="min_len" value="2500"/>
             </conditional>
             <param name="orf_finder" value="prodigal"/>
             <param name="random_seed" value="0"/>
@@ -125,7 +125,7 @@ SemiBin2 train_semi
             <param name="batch_size" value="2048"/>
             <output name="model" ftype="h5">
                 <assert_contents>
-                    <has_size value="3119000" delta="2000" />
+                    <has_size value="3119000" delta="2000"/>
                 </assert_contents>
             </output>
         </test>
@@ -139,7 +139,7 @@ SemiBin2 train_semi
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="2500" />
+                <param name="min_len" value="2500"/>
             </conditional>
             <param name="orf_finder" value="prodigal"/>
             <param name="random_seed" value="0"/>
@@ -147,7 +147,7 @@ SemiBin2 train_semi
             <param name="batch_size" value="2048"/>
             <output name="model" ftype="h5">
                 <assert_contents>
-                    <has_size value="3119000" delta="2000" />
+                    <has_size value="3119000" delta="2000"/>
                 </assert_contents>
             </output>
         </test>
@@ -161,7 +161,7 @@ SemiBin2 train_semi
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="ratio"/>
-                <param name="ratio" value="0.05" />
+                <param name="ratio" value="0.05"/>
             </conditional>
             <param name="orf_finder" value="prodigal"/>
             <param name="random_seed" value="0"/>
@@ -169,7 +169,7 @@ SemiBin2 train_semi
             <param name="batch_size" value="2048"/>
             <output name="model" ftype="h5">
                 <assert_contents>
-                    <has_size value="3119000" delta="2000" />
+                    <has_size value="3119000" delta="2000"/>
                 </assert_contents>
             </output>
         </test>

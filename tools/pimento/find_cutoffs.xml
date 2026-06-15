@@ -10,7 +10,7 @@
     ]]></command>
     <inputs>
         <param name="input_bcv" type="data" label="BCV input file" format="tsv"/>
-    </inputs>    
+    </inputs>
     <outputs>
         <data name="output" label="${tool.name} on ${on_string}: Predicted cutoff points" format="tsv" from_work_dir="sample_cutoffs.tsv"/>
     </outputs>
@@ -36,5 +36,5 @@
         cutoff points in the next and final step of the primer cutoff inference
         strategy. These potential cutoffs are saved to a TSV file.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

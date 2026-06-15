@@ -1,13 +1,11 @@
 <tool id="sam_to_bam" name="SAM-to-BAM" version="2.1.5" profile="@PROFILE@">
     <description>convert SAM to BAM</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <expand macro="stdio"/>
     <expand macro="version_command"/>
-
     <command><![CDATA[
         @ADDTHREADS@
         @ADDMEMORY@
@@ -25,7 +23,6 @@
             -o '$output1'
             -T "\${TMPDIR:-.}"
     ]]></command>
-
     <inputs>
         <param name="input" type="data" format="sam" label="SAM file to convert"/>
         <expand macro="mandatory_reference" argument="-t"/>
@@ -36,12 +33,12 @@
                 <conditional name="addref_cond.addref_select">
                     <when value="cached">
                         <action name="dbkey" type="metadata">
-                            <option name="input" param_attribute="dbkey" type="from_param" />
+                            <option name="input" param_attribute="dbkey" type="from_param"/>
                         </action>
                     </when>
                     <when value="history">
                         <action name="dbkey" type="metadata">
-                            <option name="addref_cond.ref" param_attribute="dbkey" type="from_param" />
+                            <option name="addref_cond.ref" param_attribute="dbkey" type="from_param"/>
                         </action>
                     </when>
                 </conditional>
@@ -51,44 +48,44 @@
     <tests>
         <test>
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" ftype="fasta" dbkey="equCab2" value="chr_m.fasta" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" ftype="fasta" dbkey="equCab2" value="chr_m.fasta"/>
             </conditional>
-            <param name="input" ftype="sam" value="sam_to_bam_in1.sam" />
+            <param name="input" ftype="sam" value="sam_to_bam_in1.sam"/>
             <output name="output1" ftype="bam" file="sam_to_bam_out1.bam" lines_diff="4"/>
         </test>
         <test>
             <conditional name="addref_cond">
-                <param name="addref_select" value="cached" />
-                <param name="ref" value="equCab2chrM" />
+                <param name="addref_select" value="cached"/>
+                <param name="ref" value="equCab2chrM"/>
             </conditional>
-            <param name="input" ftype="sam" dbkey="equCab2" value="sam_to_bam_in1.sam" />
+            <param name="input" ftype="sam" dbkey="equCab2" value="sam_to_bam_in1.sam"/>
             <output name="output1" ftype="bam" file="sam_to_bam_out2.bam" lines_diff="4"/>
         </test>
         <test>
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" ftype="fasta" dbkey="equCab2" value="chr_m.fasta" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" ftype="fasta" dbkey="equCab2" value="chr_m.fasta"/>
             </conditional>
-            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam" />
+            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam"/>
             <output name="output1" ftype="bam" file="sam_to_bam_out3.bam" lines_diff="4"/>
         </test>
         <test>
             <!-- Test direct use of bgzipped reference -->
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" ftype="fasta.gz" dbkey="equCab2" value="chr_m.bgzipped_fasta.gz" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" ftype="fasta.gz" dbkey="equCab2" value="chr_m.bgzipped_fasta.gz"/>
             </conditional>
-            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam" />
+            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam"/>
             <output name="output1" ftype="bam" file="sam_to_bam_out3.bam" lines_diff="4"/>
         </test>
         <test>
             <!-- Test with simple gzipped reference, which requires decompression -->
             <conditional name="addref_cond">
-                <param name="addref_select" value="history" />
-                <param name="ref" ftype="fasta.gz" dbkey="equCab2" value="chr_m.fasta.gz" />
+                <param name="addref_select" value="history"/>
+                <param name="ref" ftype="fasta.gz" dbkey="equCab2" value="chr_m.fasta.gz"/>
             </conditional>
-            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam" />
+            <param name="input" ftype="sam" value="sam_to_bam_noheader_in2.sam"/>
             <output name="output1" ftype="bam" file="sam_to_bam_out3.bam" lines_diff="4"/>
         </test>
     </tests>

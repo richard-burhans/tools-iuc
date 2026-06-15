@@ -173,7 +173,7 @@ seurat_obj<-SCTransform(
                         <param name="clip_max" type="float" optional="true" value="" label="Maximum value after standardisation" help="leave blank to use default, the square root of number of cells (clip.max)"/>
                         <param argument="nfeatures" type="integer" optional="true" value="2000" label="Number of features to select as top variable features"/>
                     </when>
-                    <when value="mean.var.plot"></when>
+                    <when value="mean.var.plot"/>
                     <when value="dispersion">
                         <param argument="nfeatures" type="integer" optional="true" value="2000" label="Number of features to select as top variable features"/>
                     </when>
@@ -191,8 +191,7 @@ seurat_obj<-SCTransform(
                     <when value="true">
                         <expand macro="set_topN"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
             </when>
             <when value="ScaleData">
@@ -213,8 +212,7 @@ seurat_obj<-SCTransform(
                         </param>
                         <param name="use_umi" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Regress on UMI count data" help="recommended if regression model is not linear (use.umi)"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <conditional name="scale_features">
                     <param name="scale_features" type="select" label="Features to scale">
@@ -222,10 +220,8 @@ seurat_obj<-SCTransform(
                         <option value="all_genes">All Features</option>
                         <option value="list_genes">Enter a list of features</option>
                     </param>
-                    <when value="variable_features">
-                    </when>
-                    <when value="all_genes">
-                    </when>
+                    <when value="variable_features"/>
+                    <when value="all_genes"/>
                     <when value="list_genes">
                         <param name="features_to_scale" type="data" format="txt,tabular" label="List of features to scale" help="text file with one feature on each line"/>
                     </when>
@@ -273,8 +269,7 @@ seurat_obj<-SCTransform(
                     <when value="true">
                         <expand macro="set_topN"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <param name="vars_to_regress" type="text" optional="true" value="" label="Variable(s) to regress out" help="comma-separated list e.g. percent.mt, nCount_RNA (vars.to.regress)">
                     <expand macro="valid_list"/>
@@ -299,7 +294,7 @@ seurat_obj<-SCTransform(
                         <when value="FALSE">
                             <param name="return_only_var_genes" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Only return variable genes in scale.data matrices" help="(return.only.var.genes)"/>
                         </when>
-                        <when value="TRUE"></when>
+                        <when value="TRUE"/>
                     </conditional>
                 </section>
             </when>
@@ -375,7 +370,7 @@ seurat_obj<-SCTransform(
             <conditional name="method">
                 <param name="method" value="ScaleData"/>
                 <conditional name="scale_features">
-                <param name="scale_features" value="all_genes"/>
+                    <param name="scale_features" value="all_genes"/>
                 </conditional>
             </conditional>
             <section name="advanced_common">

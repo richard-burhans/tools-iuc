@@ -1,13 +1,12 @@
-<?xml version="1.0" ?>
 <tool id="tbvcfreport" name="TB Variant Report" version="@TOOL_VERSION@+galaxy0" profile="23.0" license="AGPL-3.0-or-later">
-  <description>- generate HTML report from SnpEff annotated M.tb VCF(s)</description>
-  <macros>
-    <token name="@TOOL_VERSION@">1.0.1</token>
-  </macros>
-  <requirements>
-    <requirement type="package" version="@TOOL_VERSION@">tbvcfreport</requirement>
-  </requirements>
-  <command detect_errors="exit_code">
+    <description>- generate HTML report from SnpEff annotated M.tb VCF(s)</description>
+    <macros>
+        <token name="@TOOL_VERSION@">1.0.1</token>
+    </macros>
+    <requirements>
+        <requirement type="package" version="@TOOL_VERSION@">tbvcfreport</requirement>
+    </requirements>
+    <command detect_errors="exit_code">
     <![CDATA[
     #if $adv.database_uri
         export DATABASE_URI='${adv.database_uri}' &&
@@ -59,46 +58,46 @@
     #end if
     ]]>
   </command>
-  <inputs>
-    <param name="input_vcf" type="data" format="vcf" label="Input SnpEff annotated M.tuberculosis VCF(s)" />
-    <param name="tbprofiler_json" type="data" format="json" optional="true" label="TBProfiler Drug Resistance Report (Optional)" help="--tbprofiler-report" />
-    <param argument="--filter-udi" type="boolean" truevalue="--filter-udi" falsevalue="--no-filter-udi" checked="true" label="Filter UPSTREAM, DOWNSTREAM and INTERGENIC variants" />
-    <section name="adv" title="Advanced options" expanded="false">
-      <param name="database_uri" type="text" optional="true" value="neodb.sanbi.ac.za" label="Specify COMBAT-TB-NeoDB URI" help="For people with their own deployment of COMBAT-TB-NeoDB" />
-    </section>
-  </inputs>
-  <outputs>
-    <data name="variants_report_html" format="html" label="${tool.name} variants report (html) on ${on_string}" />
-    <data name="variants_report_txt" format="txt" label="${tool.name} variants report (text) on ${on_string}" />
-    <data name="drug_resistance_report_html" format="html" label="${tool.name} drug resistance report (html) on ${on_string}">
-      <filter>tbprofiler_json</filter>
-    </data>
-    <data name="drug_resistance_report_txt" format="txt" label="${tool.name} drug resistance report (text) on ${on_string}">
-      <filter>tbprofiler_json</filter>
-    </data>
-  </outputs>
-  <tests>
-    <test expect_num_outputs="2">
-      <param name="input_vcf" value="rif_resistant.vcf" ftype="vcf" />
-      <output name="variants_report_html" compare="diff" lines_diff="2" file="rif_resistant_variants_report.html" ftype="html" />
-      <output name="variants_report_txt" compare="diff" lines_diff="2" file="rif_resistant_variants_report.txt" ftype="txt" />
-    </test>
-    <test expect_num_outputs="4">
-      <param name="input_vcf" value="rif_resistant.vcf" ftype="vcf" />
-      <param name="tbprofiler_json" value="rif_resistant.results.json" ftype="json" />
-      <output name="variants_report_html" compare="diff" lines_diff="2" file="rif_resistant_variants_report_with_lineage.html" ftype="html" />
-      <output name="variants_report_txt" compare="diff" lines_diff="2" file="rif_resistant_variants_report_with_lineage.txt" ftype="txt" />
-      <output name="drug_resistance_report_html" file="rif_resistant_drug_resistance_report.html" lines_diff="2" ftype="html" />
-      <output name="drug_resistance_report_txt" compare="diff" lines_diff="2" file="rif_resistant_drug_resistance_report.txt" ftype="txt" />
-    </test>
-    <test expect_num_outputs="2">
-      <!-- test for bug fixed in 0.1.9 onwards: a gene with no protein product -->
-      <param name="input_vcf" value="vcf_with_no_protein.vcf" ftype="vcf" />
-      <output name="variants_report_html" compare="diff" lines_diff="2" file="vcf_with_no_protein_report.html" ftype="html" />
-      <output name="variants_report_txt" compare="diff" lines_diff="2" file="vcf_with_no_protein_report.txt" ftype="txt" />      
-    </test>
-  </tests>
-  <help>
+    <inputs>
+        <param name="input_vcf" type="data" format="vcf" label="Input SnpEff annotated M.tuberculosis VCF(s)"/>
+        <param name="tbprofiler_json" type="data" format="json" optional="true" label="TBProfiler Drug Resistance Report (Optional)" help="--tbprofiler-report"/>
+        <param argument="--filter-udi" type="boolean" truevalue="--filter-udi" falsevalue="--no-filter-udi" checked="true" label="Filter UPSTREAM, DOWNSTREAM and INTERGENIC variants"/>
+        <section name="adv" title="Advanced options" expanded="false">
+            <param name="database_uri" type="text" optional="true" value="neodb.sanbi.ac.za" label="Specify COMBAT-TB-NeoDB URI" help="For people with their own deployment of COMBAT-TB-NeoDB"/>
+        </section>
+    </inputs>
+    <outputs>
+        <data name="variants_report_html" format="html" label="${tool.name} variants report (html) on ${on_string}"/>
+        <data name="variants_report_txt" format="txt" label="${tool.name} variants report (text) on ${on_string}"/>
+        <data name="drug_resistance_report_html" format="html" label="${tool.name} drug resistance report (html) on ${on_string}">
+            <filter>tbprofiler_json</filter>
+        </data>
+        <data name="drug_resistance_report_txt" format="txt" label="${tool.name} drug resistance report (text) on ${on_string}">
+            <filter>tbprofiler_json</filter>
+        </data>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="2">
+            <param name="input_vcf" value="rif_resistant.vcf" ftype="vcf"/>
+            <output name="variants_report_html" compare="diff" lines_diff="2" file="rif_resistant_variants_report.html" ftype="html"/>
+            <output name="variants_report_txt" compare="diff" lines_diff="2" file="rif_resistant_variants_report.txt" ftype="txt"/>
+        </test>
+        <test expect_num_outputs="4">
+            <param name="input_vcf" value="rif_resistant.vcf" ftype="vcf"/>
+            <param name="tbprofiler_json" value="rif_resistant.results.json" ftype="json"/>
+            <output name="variants_report_html" compare="diff" lines_diff="2" file="rif_resistant_variants_report_with_lineage.html" ftype="html"/>
+            <output name="variants_report_txt" compare="diff" lines_diff="2" file="rif_resistant_variants_report_with_lineage.txt" ftype="txt"/>
+            <output name="drug_resistance_report_html" file="rif_resistant_drug_resistance_report.html" lines_diff="2" ftype="html"/>
+            <output name="drug_resistance_report_txt" compare="diff" lines_diff="2" file="rif_resistant_drug_resistance_report.txt" ftype="txt"/>
+        </test>
+        <test expect_num_outputs="2">
+            <!-- test for bug fixed in 0.1.9 onwards: a gene with no protein product -->
+            <param name="input_vcf" value="vcf_with_no_protein.vcf" ftype="vcf"/>
+            <output name="variants_report_html" compare="diff" lines_diff="2" file="vcf_with_no_protein_report.html" ftype="html"/>
+            <output name="variants_report_txt" compare="diff" lines_diff="2" file="vcf_with_no_protein_report.txt" ftype="txt"/>
+        </test>
+    </tests>
+    <help>
     <![CDATA[
     **tbvcfreport - @TOOL_VERSION@**
 
@@ -135,8 +134,8 @@
     For more on **COMBAT-TB-NeoDB**, see https://github.com/COMBAT-TB/combat-tb-neodb.
     ]]>
   </help>
-  <citations>
-    <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
 @misc{githubtbvcfreport,
   author = {COMBAT-TB},
   year = {2019},
@@ -145,5 +144,5 @@
   journal = {GitHub repository},
   url = {https://github.com/COMBAT-TB/tbvcfreport},
 }</citation>
-  </citations>
+    </citations>
 </tool>

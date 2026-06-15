@@ -59,8 +59,7 @@
             <when value="maf_selector">
                 <param name="ref_level" type="text" value="" label="Reference genome" help="Specify one of the Input Genomes as the reference level. This must match the label used in 'Genome Label'."/>
             </when>
-            <when value="ah_selector">
-            </when>
+            <when value="ah_selector"/>
             <when value="vg_selector">
                 <param name="ref_level" type="text" value="" label="Reference genome" help="Specify one of the Input Genomes as the reference level. This must match the label used in 'Genome Label'."/>
             </when>

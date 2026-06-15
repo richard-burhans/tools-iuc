@@ -143,16 +143,16 @@
         </section>
     </inputs>
     <outputs>
-        <data name="constructs" format="xml" label="Constructs" />
+        <data name="constructs" format="xml" label="Constructs"/>
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical outputs are produced with default parameters  -->
-            <param name="genes_file" value="genes_lycopene.csv" />
-            <output name="constructs" >
+            <!-- test 1: check if identical outputs are produced with default parameters  -->
+            <param name="genes_file" value="genes_lycopene.csv"/>
+            <output name="constructs">
                 <assert_contents>
-                    <is_valid_xml />
-                    <has_text text='rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:sbol="http://sbols.org/v2#" xmlns:xsd1="http://www.w3.org/2001/XMLSchema#dateTime/" xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/" xmlns:synbiohub="http://synbiohub.org#" xmlns:sbh="http://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:sybio="http://www.sybio.ncl.ac.uk#" xmlns:ncbi="http://www.ncbi.nlm.nih.gov#" xmlns:igem="http://wiki.synbiohub.org/wiki/Terms/igem#" xmlns:genbank="http://www.ncbi.nlm.nih.gov/genbank#" xmlns:gbconv="http://sbols.org/genBankConversion#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:obo="http://purl.obolibrary.org/obo/"'/>
+                    <is_valid_xml/>
+                    <has_text text="rdf:RDF xmlns:owl=&quot;http://www.w3.org/2002/07/owl#&quot; xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot; xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema#&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:prov=&quot;http://www.w3.org/ns/prov#&quot; xmlns:sbol=&quot;http://sbols.org/v2#&quot; xmlns:xsd1=&quot;http://www.w3.org/2001/XMLSchema#dateTime/&quot; xmlns:om=&quot;http://www.ontology-of-units-of-measure.org/resource/om-2/&quot; xmlns:synbiohub=&quot;http://synbiohub.org#&quot; xmlns:sbh=&quot;http://wiki.synbiohub.org/wiki/Terms/synbiohub#&quot; xmlns:sybio=&quot;http://www.sybio.ncl.ac.uk#&quot; xmlns:ncbi=&quot;http://www.ncbi.nlm.nih.gov#&quot; xmlns:igem=&quot;http://wiki.synbiohub.org/wiki/Terms/igem#&quot; xmlns:genbank=&quot;http://www.ncbi.nlm.nih.gov/genbank#&quot; xmlns:gbconv=&quot;http://sbols.org/genBankConversion#&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:obo=&quot;http://purl.obolibrary.org/obo/&quot;"/>
                 </assert_contents>
             </output>
         </test>

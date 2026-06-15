@@ -42,7 +42,7 @@
             <output name="outFile" file="picard_AddCommentsToBam_test1.bam" ftype="bam"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -58,6 +58,6 @@ Adds one or more comments (@CO) to the header of a specified BAM dataset.
   C=String          Comments to add to the BAM file  This option may be specified 0 or more times.
 
 @more_info@
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

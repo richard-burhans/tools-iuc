@@ -19,7 +19,7 @@
             #if str($section.genotypes.novel_rate_ins):
               #silent $novel_rate.append(str($section.genotypes.novel_rate_ins))
             #end if
-            #if len($novel_rate) > 0:
+            #if len($novel_rate) &gt; 0:
                --novel-rate '#echo ','.join($novel_rate)#'
             #end if
         </token>
@@ -130,7 +130,7 @@ ${section.variants_only}
                             <option value="trio">trio - call genotypes given the father-mother-child constraint</option>
                         </param>
                         <when value="none">
-                            <expand macro="macro_target_restrict_simple" />
+                            <expand macro="macro_target_restrict_simple"/>
                         </when>
                         <when value="alleles">
                             <expand macro="macro_restrictions_file" type="target" label_type="Target"/>
@@ -167,7 +167,7 @@ For example: --prior-freqs REF_AN,REF_AC
                             <expand macro="macro_novel_rate"/>
                         </when>
                     </conditional>
-                    <expand macro="macro_target_restrict_simple" />
+                    <expand macro="macro_target_restrict_simple"/>
                     <param argument="--pval-threshold" type="float" value="0.5" optional="true" label="Pval Threshold" help="Accept variant if P(ref|D)&lt;FLOAT"/>
                 </when>
             </conditional>
@@ -318,9 +318,9 @@ For example: --prior-freqs REF_AN,REF_AC
             <param name="output_type" value="v"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="17" />
+                        <param name="chrom" value="17"/>
                     </repeat>
                 </conditional>
             </section>

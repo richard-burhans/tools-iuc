@@ -19,22 +19,22 @@
             <param name="name" type="text" optional="False" label="Header name">
                 <sanitizer>
                     <valid initial="string.printable">
-                        <remove value="&apos;"/>
+                        <remove value="'"/>
                     </valid>
                     <mapping initial="none">
-                        <add source="&apos;" target="&apos;&quot;&apos;&quot;&apos;"/>
+                        <add source="'" target="'&quot;'&quot;'"/>
                     </mapping>
                 </sanitizer>
             </param>
         </repeat>
-        <param name="keep_columns" type="boolean" truevalue="--keep" falsevalue="" checked="False" label="Keep named columns" help="When enabled revert the tool's action and drop all columns that are NOT selected above." />
+        <param name="keep_columns" type="boolean" truevalue="--keep" falsevalue="" checked="False" label="Keep named columns" help="When enabled revert the tool's action and drop all columns that are NOT selected above."/>
         <param name="strip_characters" type="text" optional="False" label="Characters to strip when doing name comparison in first column" value="#" help="Removes characters from the left of the first column only.">
             <sanitizer>
                 <valid initial="string.printable">
-                    <remove value="&apos;"/>
+                    <remove value="'"/>
                 </valid>
                 <mapping initial="none">
-                    <add source="&apos;" target="&apos;&quot;&apos;&quot;&apos;"/>
+                    <add source="'" target="'&quot;'&quot;'"/>
                 </mapping>
             </sanitizer>
         </param>
@@ -67,6 +67,5 @@ Hint: If any of the column names you would like to specify contains special
 (non-ASCII) characters, you can specify these using their Unicode escape
 sequences.
     ]]></help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

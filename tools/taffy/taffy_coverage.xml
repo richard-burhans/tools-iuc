@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -53,7 +53,7 @@
             </when>
         </conditional>
         <conditional name="genomeNames">
-            <param name="parsing" type="select" label="Genome name parsing" help="Genome names are auto-detected by taking the prefix before the first dot (e.g. 'hg38.chr1' -> 'hg38'). All sequences with the same genome name are pooled for coverage calculation. If your genome names contain dots (e.g. 'E.coli'), provide a genome list to prevent incorrect parsing specifically for them">
+            <param name="parsing" type="select" label="Genome name parsing" help="Genome names are auto-detected by taking the prefix before the first dot (e.g. 'hg38.chr1' -&gt; 'hg38'). All sequences with the same genome name are pooled for coverage calculation. If your genome names contain dots (e.g. 'E.coli'), provide a genome list to prevent incorrect parsing specifically for them">
                 <option value="" selected="true">Auto-detect all (default)</option>
                 <option value="specific">Provide genome list (--genomeNames)</option>
             </param>
@@ -107,9 +107,9 @@
                 <assert_contents>
                     <has_text text="_Sex_Chroms_" negate="true"/>
                     <has_text text="_Autosomes_" negate="true"/>
-                    <has_text text="Anc0.Anc0refChr0&#009;4151" n="9"/>
+                    <has_text text="Anc0.Anc0refChr0&#9;4151" n="9"/>
                     <has_text text="_Total_" n="9"/>
-                    <has_text text="&#009;simCow_chr6&#009;"/>
+                    <has_text text="&#9;simCow_chr6&#9;"/>
                     <has_n_lines n="19"/>
                 </assert_contents>
             </output>
@@ -123,8 +123,8 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_text text="Anc2.Anc2refChr1&#009;4655"/>
-                    <has_text text="Anc0.Anc0refChr0&#009;4151" negate="true"/>
+                    <has_text text="Anc2.Anc2refChr1&#9;4655"/>
+                    <has_text text="Anc0.Anc0refChr0&#9;4151" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -138,7 +138,7 @@
             <output name="out_file" ftype="tabular">
                 <assert_contents>
                     <has_text text="simCow_chr6.simCow"/>
-                    <has_text text="&#009;simCow_chr6&#009;" negate="true"/>
+                    <has_text text="&#9;simCow_chr6&#9;" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -151,9 +151,9 @@
             </conditional>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_text text="_Total_&#009;100"/>
-                    <has_text text="_Total_&#009;1000"/>
-                    <has_text text="_Total_&#009;10000"/>
+                    <has_text text="_Total_&#9;100"/>
+                    <has_text text="_Total_&#9;1000"/>
+                    <has_text text="_Total_&#9;10000"/>
                 </assert_contents>
             </output>
         </test>
@@ -177,9 +177,9 @@
                 <assert_contents>
                     <has_text text="_Sex_Chroms_" negate="true"/>
                     <has_text text="_Autosomes_" negate="true"/>
-                    <has_text text="Anc0.Anc0refChr0&#009;4151" n="9"/>
+                    <has_text text="Anc0.Anc0refChr0&#9;4151" n="9"/>
                     <has_text text="_Total_" n="9"/>
-                    <has_text text="&#009;simCow_chr6&#009;"/>
+                    <has_text text="&#9;simCow_chr6&#9;"/>
                     <has_n_lines n="19"/>
                 </assert_contents>
             </output>

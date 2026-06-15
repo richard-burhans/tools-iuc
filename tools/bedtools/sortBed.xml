@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 sortBed
 -i '$input'
@@ -14,7 +14,7 @@ $option
 > '$output'
     ]]></command>
     <inputs>
-        <param name="input" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="Sort the following @STD_BEDTOOLS_INPUT_LABEL@ file" />
+        <param name="input" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="Sort the following @STD_BEDTOOLS_INPUT_LABEL@ file"/>
         <param name="option" type="select" label="Sort by">
             <!-- sort -k 1,1 -k2,2 -n a.bed -->
             <option value="">chromosome, then by start position (asc)</option>
@@ -25,30 +25,30 @@ $option
             <option value="-chrThenScoreA">chromosome, then by score (asc).</option>
             <option value="-chrThenScoreD">chromosome, then by score (desc).</option>
         </param>
-        <expand macro="input_conditional_genome_file" optional="true" help="Sort according to the chromosomes declared in a genome file" />
+        <expand macro="input_conditional_genome_file" optional="true" help="Sort according to the chromosomes declared in a genome file"/>
     </inputs>
     <outputs>
         <data name="output" format_source="input" metadata_source="input" label="SortBed on ${input.name}"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="sortBed1.bed" ftype="bed" />
-            <param name="option" value="" />
-            <output name="output" file="sortBed_result1.bed" ftype="bed" />
+            <param name="input" value="sortBed1.bed" ftype="bed"/>
+            <param name="option" value=""/>
+            <output name="output" file="sortBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="sortBed2.bed" ftype="bed" />
-            <param name="option" value="" />
-            <output name="output" file="sortBed_result2.bed" ftype="bed" />
+            <param name="input" value="sortBed2.bed" ftype="bed"/>
+            <param name="option" value=""/>
+            <output name="output" file="sortBed_result2.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="sortBed2.bed" ftype="bed" />
-            <param name="option" value="" />
+            <param name="input" value="sortBed2.bed" ftype="bed"/>
+            <param name="option" value=""/>
             <conditional name="genome_file_opts">
-                <param name="genome_file_opts_selector" value="hist" />
-                <param name="genome" value="mm9.len" ftype="bed" />
+                <param name="genome_file_opts_selector" value="hist"/>
+                <param name="genome" value="mm9.len" ftype="bed"/>
             </conditional>
-            <output name="output" file="sortBed_result3.bed" ftype="bed" />
+            <output name="output" file="sortBed_result3.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -65,5 +65,5 @@ by chromosome then by start position in the following manner: sort -k 1,1 -k2,2 
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

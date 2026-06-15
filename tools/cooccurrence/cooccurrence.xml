@@ -30,8 +30,7 @@
     --term-type '$term_type'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="json" label="NLP-annotated JSON"
-            help="JSON output from spaCy or Stanza NLP tools"/>
+        <param name="input" type="data" format="json" label="NLP-annotated JSON" help="JSON output from spaCy or Stanza NLP tools"/>
         <param name="term_type" type="select" label="Term representation">
             <option value="lemma" selected="true">Lemma (recommended — reduces sparsity)</option>
             <option value="text">Surface form (original text)</option>
@@ -45,14 +44,12 @@
             </param>
             <when value="sentence"/>
             <when value="window">
-                <param name="window_size" type="integer" value="5" min="2" max="50"
-                    label="Window size" help="Number of tokens in the sliding window"/>
+                <param name="window_size" type="integer" value="5" min="2" max="50" label="Window size" help="Number of tokens in the sliding window"/>
             </when>
             <when value="dependency"/>
         </conditional>
         <section name="filter" title="Filtering Options" expanded="true">
-            <param name="pos_tags" type="select" label="Restrict to POS tags" multiple="true" optional="true"
-                help="Only include tokens with these POS tags. Leave empty for all.">
+            <param name="pos_tags" type="select" label="Restrict to POS tags" multiple="true" optional="true" help="Only include tokens with these POS tags. Leave empty for all.">
                 <option value="NOUN">NOUN</option>
                 <option value="PROPN">PROPN (proper noun)</option>
                 <option value="VERB">VERB</option>
@@ -60,23 +57,13 @@
                 <option value="ADV">ADV (adverb)</option>
                 <option value="NUM">NUM (numeral)</option>
             </param>
-            <param name="remove_stop" type="boolean" truevalue="--remove-stop" falsevalue=""
-                checked="true" label="Remove stop words"
-                help="Requires is_stop field in JSON (spaCy output). For Stanza, use POS filtering instead."/>
-            <param name="alpha_only" type="boolean" truevalue="--alpha-only" falsevalue=""
-                checked="true" label="Alphabetic tokens only"
-                help="Exclude punctuation and numbers"/>
-            <param name="entities_only" type="boolean" truevalue="--entities-only" falsevalue=""
-                checked="false" label="Named entities only"
-                help="Only count co-occurrence among named entity spans"/>
-            <param name="stopword_file" type="data" format="txt" optional="true"
-                label="Custom stop word list" help="One word per line (optional)"/>
+            <param name="remove_stop" type="boolean" truevalue="--remove-stop" falsevalue="" checked="true" label="Remove stop words" help="Requires is_stop field in JSON (spaCy output). For Stanza, use POS filtering instead."/>
+            <param name="alpha_only" type="boolean" truevalue="--alpha-only" falsevalue="" checked="true" label="Alphabetic tokens only" help="Exclude punctuation and numbers"/>
+            <param name="entities_only" type="boolean" truevalue="--entities-only" falsevalue="" checked="false" label="Named entities only" help="Only count co-occurrence among named entity spans"/>
+            <param name="stopword_file" type="data" format="txt" optional="true" label="Custom stop word list" help="One word per line (optional)"/>
         </section>
-        <param name="min_count" type="integer" value="1" min="1"
-            label="Minimum co-occurrence count" help="Only output pairs with at least this many co-occurrences"/>
-        <param name="matrix_output_flag" type="boolean" truevalue="true" falsevalue=""
-            checked="false" label="Also output co-occurrence matrix"
-            help="Produces a full term-by-term matrix in tabular format (can be large)"/>
+        <param name="min_count" type="integer" value="1" min="1" label="Minimum co-occurrence count" help="Only output pairs with at least this many co-occurrences"/>
+        <param name="matrix_output_flag" type="boolean" truevalue="true" falsevalue="" checked="false" label="Also output co-occurrence matrix" help="Produces a full term-by-term matrix in tabular format (can be large)"/>
     </inputs>
     <outputs>
         <data name="pairs_output" format="tabular" label="Co-occurrence pairs from ${on_string}"/>

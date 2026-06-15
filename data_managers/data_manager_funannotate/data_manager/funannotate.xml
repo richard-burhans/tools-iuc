@@ -55,7 +55,7 @@
             <output name="output_file">
                 <assert_contents>
                     <has_text text="Funannotate database "/>
-                    <has_text text='"format_version":"1.0"'/>
+                    <has_text text="&quot;format_version&quot;:&quot;1.0&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -65,7 +65,7 @@
             <output name="output_file">
                 <assert_contents>
                     <has_text text="Funannotate database "/>
-                    <has_text text='"format_version":"1.0"'/>
+                    <has_text text="&quot;format_version&quot;:&quot;1.0&quot;"/>
                 </assert_contents>
             </output>
         </test>

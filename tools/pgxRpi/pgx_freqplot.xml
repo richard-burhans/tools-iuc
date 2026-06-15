@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro='requirements'>
+    <expand macro="requirements">
         <requirement type="package" version="1.58.0">bioconductor-genomicranges</requirement>
     </expand>
     <command detect_errors="exit_code"><![CDATA[
@@ -11,7 +11,7 @@
         Rscript '$run_pgxFreqplot'
     ]]></command>
     <configfiles>
-        <configfile name='run_pgxFreqplot'><![CDATA[
+        <configfile name="run_pgxFreqplot"><![CDATA[
 
             @R_INIT@
 
@@ -56,68 +56,66 @@
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param type='data' name='freqdata' format='txt' label='CNV frequency data' help='CNV frequency data returned by pgxLodaer'/>
-
+        <param type="data" name="freqdata" format="txt" label="CNV frequency data" help="CNV frequency data returned by pgxLodaer"/>
         <conditional name="plot_type">
             <param name="selector" type="select" label="Plot type">
                 <option value="genome">Genome-wide plot</option>
                 <option value="chromosome">Chromosome-specific plot</option>
             </param>
             <when value="chromosome">
-                <param name="chrom" type="text" optional='false' label="Chromosomes to Plot" help="Use commas to separate multiple chromosomes (e.g., 1,3,5)." />
-                <param name="nrows" type="integer" value="1" label="Number of rows in plot" />
-                <param name="ncols" type="integer" value="1" label="Number of columns in plot" />
+                <param name="chrom" type="text" optional="false" label="Chromosomes to Plot" help="Use commas to separate multiple chromosomes (e.g., 1,3,5)."/>
+                <param name="nrows" type="integer" value="1" label="Number of rows in plot"/>
+                <param name="ncols" type="integer" value="1" label="Number of columns in plot"/>
             </when>
             <when value="genome">
-                <param name="chrom" type="hidden" value="" />
-                <param name="nrows" type="hidden" value="1" />
-                <param name="ncols" type="hidden" value="1" />
+                <param name="chrom" type="hidden" value=""/>
+                <param name="nrows" type="hidden" value="1"/>
+                <param name="ncols" type="hidden" value="1"/>
             </when>
         </conditional>
-        
-        <param name='filters' type='select' optional='false' label='Filter to plot' help="Specify the cohort to plot. The available values are extracted from the 'group_id' column in the input file." >
-            <options from_dataset="freqdata" >
+        <param name="filters" type="select" optional="false" label="Filter to plot" help="Specify the cohort to plot. The available values are extracted from the 'group_id' column in the input file.">
+            <options from_dataset="freqdata">
                 <column name="name" index="1"/>
                 <column name="value" index="1"/>
-                <filter type="unique_value" column="1" />
-                <filter type="remove_value" value="group_id" />
+                <filter type="unique_value" column="1"/>
+                <filter type="remove_value" value="group_id"/>
             </options>
         </param>
-        <param name='assembly' type='select' label='Genome assembly version'>
+        <param name="assembly" type="select" label="Genome assembly version">
             <option value="hg38" selected="true">hg38</option>
             <option value="hg19">hg19</option>
         </param>
-        <param name='plotwidth' type='integer' value='20' label='Width of the plot (cm)' />
-        <param name='plotheight' type='integer' value='10' label='Height of the plot (cm)' />
+        <param name="plotwidth" type="integer" value="20" label="Width of the plot (cm)"/>
+        <param name="plotheight" type="integer" value="10" label="Height of the plot (cm)"/>
     </inputs>
     <outputs>
-        <data name='pgxplot' format='pdf' label='CNV frequency plot'/>
+        <data name="pgxplot" format="pdf" label="CNV frequency plot"/>
     </outputs>
     <tests>
         <test>
-            <param name='freqdata' value='cnv-frequency.txt'/>
+            <param name="freqdata" value="cnv-frequency.txt"/>
             <conditional name="plot_type">
-                <param name="selector" value="genome" />
+                <param name="selector" value="genome"/>
             </conditional>
             <param name="filters" value="NCIT:C3058"/>
-            <output name="pgxplot" file="cnv-genome-frequency.pdf" />
+            <output name="pgxplot" file="cnv-genome-frequency.pdf"/>
         </test>
         <test>
-            <param name='freqdata' value='cnv-frequency.txt'/>
+            <param name="freqdata" value="cnv-frequency.txt"/>
             <conditional name="plot_type">
-                <param name="selector" value="chromosome" />
+                <param name="selector" value="chromosome"/>
                 <param name="chrom" value="1,7,8"/>
                 <param name="nrows" value="3"/>
                 <param name="ncols" value="1"/>
             </conditional>
             <param name="filters" value="NCIT:C3512"/>
-            <param name='plotwidth' value="10"/>
-            <param name='plotheight' value="15"/>
-            <output name="pgxplot" file="cnv-chromsome-frequency.pdf" />
+            <param name="plotwidth" value="10"/>
+            <param name="plotheight" value="15"/>
+            <output name="pgxplot" file="cnv-chromsome-frequency.pdf"/>
         </test>
     </tests>
     <help><![CDATA[
        This function plots the CNV frequency loaded from pgx_loader.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

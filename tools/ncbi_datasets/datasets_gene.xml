@@ -1,4 +1,4 @@
-<tool id="datasets_download_gene" name="NCBI Datasets Gene" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="@LICENSE@" >
+<tool id="datasets_download_gene" name="NCBI Datasets Gene" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="@LICENSE@">
     <description>download gene sequences and metadata</description>
     <macros>
         <import>macros.xml</import>
@@ -452,7 +452,6 @@ dataformat
                 <has_text text="include-flanks-bp 100"/>
             </assert_command>
         </test>
-
         <!-- 10: datasets download gene accession NP_000483.3 NP_001035835.1 include protein,rna -->
         <test expect_num_outputs="3">
             <conditional name="query|subcommand">
@@ -489,7 +488,6 @@ dataformat
                 <has_text text="'NP_000483.3' 'NP_001035835.1'"/>
             </assert_command>
         </test>
-
         <!-- 11: multiple human gene symbols -->
         <test expect_num_outputs="3">
             <conditional name="query|subcommand">
@@ -526,7 +524,6 @@ dataformat
                 </assert_contents>
             </output>
         </test>
-
         <!-- 12: fly (non-human) NP_ protein accessions -->
         <test expect_num_outputs="3">
             <conditional name="query|subcommand">
@@ -563,7 +560,6 @@ dataformat
                 <has_text text="'NP_524625.1' 'NP_524660.1'"/>
             </assert_command>
         </test>
-
         <!-- 13: datasets download gene taxon human   -->
         <test expect_num_outputs="1">
             <conditional name="query|subcommand">
@@ -609,7 +605,7 @@ dataformat
             </output>
             <output name="protein_fasta">
                 <assert_contents>
-                    <has_text text=">" n="1" />
+                    <has_text text="&gt;" n="1"/>
                 </assert_contents>
             </output>
         </test>

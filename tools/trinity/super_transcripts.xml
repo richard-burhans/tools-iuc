@@ -19,18 +19,17 @@
     <tests>
         <test>
             <param name="assembly" value="raw/Trinity.fasta" ftype="fasta"/>
-            <output name="seqs" file="supertranscripts/trinity_genes.fasta" sort="True" />
-            <output name="annotation" file="supertranscripts/trinity_genes.gtf" sort="True" />
-            <output name="malign" file="supertranscripts/trinity_genes.malign" />
+            <output name="seqs" file="supertranscripts/trinity_genes.fasta" sort="True"/>
+            <output name="annotation" file="supertranscripts/trinity_genes.gtf" sort="True"/>
+            <output name="malign" file="supertranscripts/trinity_genes.malign"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
         SuperTranscripts provide a gene-like view of the transcriptional complexity of a gene. SuperTranscripts were originally defined by Nadia Davidson, Anthony Hawkins, and Alicia Oshlack as described in their publication "SuperTranscripts: a data driven reference for analysis and visualisation of transcriptomes" Genome Biology, 2017. SuperTranscripts are useful in the context of genome-free de novo transcriptome assembly in that they provide a genome-like reference for studying aspects of the gene including differential transcript usage (aka. differential exon usage) and as a substrate for mapping reads and identifying allelic polymorphisms.
 
         A SuperTranscript is constructed by collapsing unique and common sequence regions among splicing isoforms into a single linear sequence.
 
         .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
-    </help>
-
-    <expand macro="citation" />
+    ]]></help>
+    <expand macro="citation"/>
 </tool>

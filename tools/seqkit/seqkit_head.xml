@@ -37,11 +37,11 @@
             <output name="output" file="head_output2.fasta.gz" ftype="fasta.gz"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Prints first N FASTA/Q records,
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

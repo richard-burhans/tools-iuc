@@ -1,5 +1,5 @@
 <tool id="ampvis2_mergereplicates" name="ampvis2 merge replicates" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -38,8 +38,8 @@
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="merge_var" value="Period"/>
             <output name="ampvis" value="AalborgWWTPs-mergereplicates.rds" ftype="ampvis2" compare="sim_size"/>
             <output name="metadata_list_out">
@@ -52,8 +52,8 @@
         </test>
         <!-- defaults -->
         <test expect_num_outputs="2">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="merge_var" value="Period"/>
             <param name="round" value="up"/>
             <output name="ampvis" value="AalborgWWTPs-mergereplicates.rds" ftype="ampvis2" compare="sim_size"/>

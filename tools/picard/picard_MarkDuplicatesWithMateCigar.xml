@@ -70,7 +70,7 @@
             <output name="outFile" file="picard_MarkDuplicatesWithMateCigar_test1.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -136,6 +136,6 @@ alignments that have large gaps or reference skips, which happens frequently in 
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

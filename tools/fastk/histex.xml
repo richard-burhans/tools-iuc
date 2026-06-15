@@ -13,14 +13,14 @@
         #end if
         $select_output_format > output.hist
     ]]></command>
-    <inputs>      
+    <inputs>
         <param name="input_hist" type="data" format="fastk_hist" label="Input .hist file" help="Input a .hist file obtained from FASTK"/>
         <param name="range_count_start" type="integer" min="1" label="Output histogram of counts in range given (Start)" optional="true" help="Enter the starting range for histogram of counts"/>
         <param name="range_count_end" type="integer" max="100" label="Output histogram of counts in range given (End)" optional="true" help="Enter the ending range for histogram of counts"/>
         <param name="select_output_format" label="Select the output format for Histogram" type="select">
             <option value="-k">Output histogram of k-mer instance counts vs. unique k-mers (-k)</option>
             <option value="-A">Output in simple tab-delimited ASCII format (-A)</option>
-            <option value="-G">Output an ASCII format histogram especially for GeneScope.FK (-G)</option>   
+            <option value="-G">Output an ASCII format histogram especially for GeneScope.FK (-G)</option>
         </param>
     </inputs>
     <outputs>

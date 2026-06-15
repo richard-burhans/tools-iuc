@@ -32,8 +32,8 @@
         <param argument="--use-bootstrap" type="boolean" truevalue="Yes" falsevalue="No" checked="true" label="Use bootstrap weights to respect well supported clades" help="Use bootstrap weights to respect well supported clades."/>
     </inputs>
     <outputs>
-        <data name="sm19_output" format="hyphy_results.json" label="SM2019 results on ${on_string}" />
-        <data name="sm19_md_report" format="markdown" from_work_dir="sm19_stdout.md" label="SM2019 Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="sm19_output" format="hyphy_results.json" label="SM2019 results on ${on_string}"/>
+        <data name="sm19_md_report" format="markdown" from_work_dir="sm19_stdout.md" label="SM2019 Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -51,8 +51,8 @@
             <param name="use_bootstrap" value="Yes"/>
             <output name="sm19_output">
                 <assert_contents>
-                    <has_text text='"compartments":2'/>
-                    <has_text text='"leaf-count":50'/>
+                    <has_text text="&quot;compartments&quot;:2"/>
+                    <has_text text="&quot;leaf-count&quot;:50"/>
                 </assert_contents>
             </output>
             <output name="sm19_md_report">
@@ -76,8 +76,8 @@
             <param name="use_bootstrap" value="Yes"/>
             <output name="sm19_output">
                 <assert_contents>
-                    <has_text text='"compartments":2'/>
-                    <has_text text='"leaf-count":64'/>
+                    <has_text text="&quot;compartments&quot;:2"/>
+                    <has_text text="&quot;leaf-count&quot;:64"/>
                 </assert_contents>
             </output>
             <output name="sm19_md_report">

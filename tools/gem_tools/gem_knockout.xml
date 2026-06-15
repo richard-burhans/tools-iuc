@@ -7,7 +7,7 @@
     </macros>
     <expand macro="requirements"/>
     <expand macro="version_command_cobra"/>
-    <command>
+    <command><![CDATA[
         python '$__tool_directory__/gem_knockout.py'
         --cb_model_location '${cb_model_location}'
         --output '${output}'
@@ -18,7 +18,7 @@
         #if $uptake_constraints_file:
             --uptake_constraints_file '${uptake_constraints_file}'
         #end if
-    </command>
+    ]]></command>
     <inputs>
         <expand macro="input_model"/>
         <param name="knockout_type" type="select" label="Type of knockout analysis">

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         ## prepare reference genome and mapped reads input
         @PREPARE_REF@
@@ -106,140 +106,104 @@
         && echo $filter_control.filter_type
     ]]></command>
     <inputs>
-        <param type="data" name="reads" format="bam" label="Input reads in BAM format" />
-        <expand macro="reference_interface" />
+        <param type="data" name="reads" format="bam" label="Input reads in BAM format"/>
+        <expand macro="reference_interface"/>
         <conditional name="regions">
-            <param name="restrict_to_region" type="select"
-            label="Call variants across">
+            <param name="restrict_to_region" type="select" label="Call variants across">
                 <option value="genome">Whole reference</option>
                 <option value="regions_from_file">Regions specified in BED</option>
             </param>
-            <when value="genome" />
+            <when value="genome"/>
             <when value="regions_from_file">
-                <param argument="--bed" type="data" format="bed"
-                label="BED dataset with regions to examine" />
+                <param argument="--bed" type="data" format="bed" label="BED dataset with regions to examine"/>
             </when>
         </conditional>
-        <param name="variant_types" type="select"
-        label="Types of variants to call"
-        help="Note: To have indels included in the called variants you HAVE to preprocess your input data using lofreq indelqual to include indel qualities. In addition, it is highly recommended that you calculate and make use of indel alignment qualities. See the detailed tool help below.">
+        <param name="variant_types" type="select" label="Types of variants to call" help="Note: To have indels included in the called variants you HAVE to preprocess your input data using lofreq indelqual to include indel qualities. In addition, it is highly recommended that you calculate and make use of indel alignment qualities. See the detailed tool help below.">
             <option value="--call-indels">SNVs and indels</option>
             <option value="" selected="True">Only SNVs</option>
             <option value="--call-indels --only-indels">Only indels</option>
         </param>
         <conditional name="call_control">
-            <param name="set_call_options" type="select"
-            label="Variant calling parameters">
+            <param name="set_call_options" type="select" label="Variant calling parameters">
                 <option value="no">Use default settings</option>
                 <option value="yes">Configure settings</option>
             </param>
-            <when value="no" />
+            <when value="no"/>
             <when value="yes">
                 <section name="coverage" title="Coverage" expanded="true">
-                    <param argument="--min-cov" type="integer" value="1" min="1"
-                    label="Minimal coverage"
-                    help="Do not attempt variant calling at sites that are not covered by at least this number of reads (default: 1)" />
-                    <param argument="--max-depth" type="integer" value="1000000" min="1"
-                    label="Coverage cap"
-                    help="For efficiency, don not consider more than this number of reads at any site (default: 1,000,000)" />
+                    <param argument="--min-cov" type="integer" value="1" min="1" label="Minimal coverage" help="Do not attempt variant calling at sites that are not covered by at least this number of reads (default: 1)"/>
+                    <param argument="--max-depth" type="integer" value="1000000" min="1" label="Coverage cap" help="For efficiency, don not consider more than this number of reads at any site (default: 1,000,000)"/>
                 </section>
                 <section name="pe" title="Paired reads" expanded="true">
-                    <param argument="--use-orphan" type="boolean" truevalue="--use-orphan" falsevalue="" checked="False"
-                    label="Use reads from anomalously mapped pairs"
-                    help="Applies to paired-end reads only. If set to true, reads from pairs that are flagged as non-proper pairs (SAM/BAM FLAG field 2) will be used in variant calling. The default is to ignore such reads." />
+                    <param argument="--use-orphan" type="boolean" truevalue="--use-orphan" falsevalue="" checked="False" label="Use reads from anomalously mapped pairs" help="Applies to paired-end reads only. If set to true, reads from pairs that are flagged as non-proper pairs (SAM/BAM FLAG field 2) will be used in variant calling. The default is to ignore such reads."/>
                 </section>
                 <section name="bc_quals" title="Base-calling quality" expanded="true">
-                    <param argument="--min-bq" type="integer" value="6"
-                    label="Minimum baseQ"
-                    help="For variant calling at any given site, do not consider reads for which the base at that site has a base quality less than this value (default: 6)" />
-                    <param argument="--min-alt-bq" type="integer" min="0" value="6"
-                    label="Minimum baseQ for alternate bases"
-                    help="For variant calling at any given site, do not consider reads that support a non-reference allele at the site if that base has a base quality less than this value (default: 6). Note: this setting will have no effect if the specified value is less than the general Minimum baseQ above." />
+                    <param argument="--min-bq" type="integer" value="6" label="Minimum baseQ" help="For variant calling at any given site, do not consider reads for which the base at that site has a base quality less than this value (default: 6)"/>
+                    <param argument="--min-alt-bq" type="integer" min="0" value="6" label="Minimum baseQ for alternate bases" help="For variant calling at any given site, do not consider reads that support a non-reference allele at the site if that base has a base quality less than this value (default: 6). Note: this setting will have no effect if the specified value is less than the general Minimum baseQ above."/>
                     <conditional name="alt_bq">
-                        <param name="modify" type="select"
-                        label="Base quality to use for alternate bases"
-                        help="After filtering reads according to the Minimum baseQ settings above, you can choose to modify the base qualities of the non-reference bases in the surviving reads before performing further calculations.">
+                        <param name="modify" type="select" label="Base quality to use for alternate bases" help="After filtering reads according to the Minimum baseQ settings above, you can choose to modify the base qualities of the non-reference bases in the surviving reads before performing further calculations.">
                             <option value="">Use original base qualities</option>
                             <option value="avg">Use the median of the reference base qualities at the site</option>
                             <option value="custom">Use a fixed custom value</option>
                         </param>
-                        <when value="" />
+                        <when value=""/>
                         <when value="avg">
-                            <param name="def_alt_bq" type="hidden" value="-1" />
+                            <param name="def_alt_bq" type="hidden" value="-1"/>
                         </when>
                         <when value="custom">
-                            <param argument="--def-alt-bq" type="integer" min="1" value="1"
-                                label="Overwrite original base qualities with this value" />
+                            <param argument="--def-alt-bq" type="integer" min="1" value="1" label="Overwrite original base qualities with this value"/>
                         </when>
                     </conditional>
                 </section>
-                <section name="align_quals" title="Base alignment quality" expanded="true"
-                help="Choose here whether you want to incorporate base and/or indel alignment qualities into lofreq's joint quality model. If you have previously computed and stored (using lofreq alnqual) any of these quality scores into your input dataset, you can tell the tool to reuse them. Alternatively, the tool can calculate the necessary scores on the fly.">
+                <section name="align_quals" title="Base alignment quality" expanded="true" help="Choose here whether you want to incorporate base and/or indel alignment qualities into lofreq's joint quality model. If you have previously computed and stored (using lofreq alnqual) any of these quality scores into your input dataset, you can tell the tool to reuse them. Alternatively, the tool can calculate the necessary scores on the fly.">
                     <conditional name="alnqual">
-                        <param name="use_alnqual" type="select"
-                            label="Consider base/indel alignment qualities during variant calling?">
+                        <param name="use_alnqual" type="select" label="Consider base/indel alignment qualities during variant calling?">
                             <option value="">Yes, and prefer existing alignment qualities encoded in input</option>
                             <option value="--del-baq">Yes, (re)calculate alignment qualities on the fly and use them (--del-baq)</option>
                             <option value="-A -B">No, don't make use of alignment qualities (-A -B)</option>
                         </param>
                         <when value="">
-                            <expand macro="handle_existing_alnqual" />
+                            <expand macro="handle_existing_alnqual"/>
                         </when>
                         <when value="--del-baq">
-                            <expand macro="handle_alnqual" mode="Add and use" />
+                            <expand macro="handle_alnqual" mode="Add and use"/>
                         </when>
-                        <when value="-A -B" />
+                        <when value="-A -B"/>
                     </conditional>
                 </section>
                 <section name="map_quals" title="Mapping quality" expanded="true">
-                    <param argument="--min-mq" type="integer" value="0"
-                    label="Minimum mapping quality"
-                    help="For variant calling at any given site, do not consider reads with a mapping quality (MAPQ) less than this value (default: 0 = do not filter on read mapping quality)." />
+                    <param argument="--min-mq" type="integer" value="0" label="Minimum mapping quality" help="For variant calling at any given site, do not consider reads with a mapping quality (MAPQ) less than this value (default: 0 = do not filter on read mapping quality)."/>
                     <conditional name="use_mq">
-                        <param argument="--no-mq" type="select"
-                        label="Consider mapping quality during variant calling?">
+                        <param argument="--no-mq" type="select" label="Consider mapping quality during variant calling?">
                             <option value="">Yes, incorporate MAPQ into joint quality score</option>
                             <option value="--no-mq">No, ignore MAPQ scores during variant calling</option>
                         </param>
                         <when value="">
-                            <param argument="--max-mq" type="integer" value="255"
-                            label="Maximum mapping quality"
-                            help="For the joint quality model at any site, cap the mapping quality of reads at this value (default: 255 = do not cap mapping qualities). Notes: 1) You cannot cap mapping qualities at less than the minimum MAPQ defined above. If you try, MAPQs will be capped at that minimum quality instead. 2) The special MAPQ value 255 is used by many tools to indicate undefined mapping quality, and lofreq call will ignore such reads during variant calling. Capping, however, will turn 255 into a regular MAPQ score. Thus, if you need to avoid using such reads, you should filter out MAPQ 255 reads from your input data with other tools before using lofreq call with MAPQ capping."/>
+                            <param argument="--max-mq" type="integer" value="255" label="Maximum mapping quality" help="For the joint quality model at any site, cap the mapping quality of reads at this value (default: 255 = do not cap mapping qualities). Notes: 1) You cannot cap mapping qualities at less than the minimum MAPQ defined above. If you try, MAPQs will be capped at that minimum quality instead. 2) The special MAPQ value 255 is used by many tools to indicate undefined mapping quality, and lofreq call will ignore such reads during variant calling. Capping, however, will turn 255 into a regular MAPQ score. Thus, if you need to avoid using such reads, you should filter out MAPQ 255 reads from your input data with other tools before using lofreq call with MAPQ capping."/>
                         </when>
                         <when value="--no-mq">
-                            <param name="max_mq" type="hidden" value="" />
+                            <param name="max_mq" type="hidden" value=""/>
                         </when>
                     </conditional>
                 </section>
                 <section name="source_qual" title="Source quality" expanded="true">
                     <conditional name="use_src_qual">
-                        <param argument="--src-qual" type="select"
-                        label="Compute source quality and consider it during variant calling">
+                        <param argument="--src-qual" type="select" label="Compute source quality and consider it during variant calling">
                             <option value="">No, don't incorporate source quality into joint quality score</option>
                             <option value="--src-qual">Yes, compute source quality and merge it into joint quality score</option>
                         </param>
-                        <when value="" />
+                        <when value=""/>
                         <when value="--src-qual">
-                            <param argument="--def-nm-q" type="integer" min="-1" value="-1"
-                            label="Replace non-match base qualities with this value"
-                            help="For the calculation of the source quality, replace all base qualities of non-match bases with this value (default: -1 = use original base qualities)." />
-                            <param argument="--ign-vcf" type="data" format="vcf,vcf_bgzip" optional="true" multiple="true"
-                            label="VCF input(s) with variants to ignore for source quality computation"
-                            help="Mismatches caused by known true variants in your samples should not lower the source quality estimate. If any read in your input has a base that is non-reference, but supports one of the known variants in the specified VCF datasets, that base will not be treated as a mismatch." />
+                            <param argument="--def-nm-q" type="integer" min="-1" value="-1" label="Replace non-match base qualities with this value" help="For the calculation of the source quality, replace all base qualities of non-match bases with this value (default: -1 = use original base qualities)."/>
+                            <param argument="--ign-vcf" type="data" format="vcf,vcf_bgzip" optional="true" multiple="true" label="VCF input(s) with variants to ignore for source quality computation" help="Mismatches caused by known true variants in your samples should not lower the source quality estimate. If any read in your input has a base that is non-reference, but supports one of the known variants in the specified VCF datasets, that base will not be treated as a mismatch."/>
                         </when>
                     </conditional>
                 </section>
                 <section name="joint_qual" title="Joint quality" expanded="true">
-                    <param argument="--min-jq" type="integer" min="0" value="0"
-                    label="Minimum joinedQ"
-                    help="At any site, do not use reads for variant calling, if their calculated joint quality at that site is lower than this value (default: 0 = do not filter based on joint quality)" />
-                    <param argument="--min-alt-jq" type="integer" min="0" value="0"
-                    label="Minimum joinedQ for alternate bases"
-                    help="At any site, do not use reads for variant calling, if they support a non-reference allele at that site and their calculated joint quality at the site is lower than this value (default: 0 = do not filter based on joint quality). Note: this setting has no effect if the specified value is smaller than the general Minimum joinedQ set above." />
+                    <param argument="--min-jq" type="integer" min="0" value="0" label="Minimum joinedQ" help="At any site, do not use reads for variant calling, if their calculated joint quality at that site is lower than this value (default: 0 = do not filter based on joint quality)"/>
+                    <param argument="--min-alt-jq" type="integer" min="0" value="0" label="Minimum joinedQ for alternate bases" help="At any site, do not use reads for variant calling, if they support a non-reference allele at that site and their calculated joint quality at the site is lower than this value (default: 0 = do not filter based on joint quality). Note: this setting has no effect if the specified value is smaller than the general Minimum joinedQ set above."/>
                     <!-- def-alt-jq==-1, though documented, is currently not implemented -->
-                    <param argument="--def-alt-jq" type="integer" min="0" value="0"
-                    label="Overwrite joinedQs of alternate bases with this value"
-                    help="After filtering according to the Minimum joinedQ settings above, set the joint quality values for all reads surviving filtering and supporting a non-reference allele to this value (default: 0 = use the original calculated joint quality)." />
+                    <param argument="--def-alt-jq" type="integer" min="0" value="0" label="Overwrite joinedQs of alternate bases with this value" help="After filtering according to the Minimum joinedQ settings above, set the joint quality values for all reads surviving filtering and supporting a non-reference allele to this value (default: 0 = use the original calculated joint quality)."/>
                 </section>
             </when>
         </conditional>
@@ -251,37 +215,37 @@
                 <option value="set_custom">Custom filter settings/combinations</option>
             </param>
             <when value="set_all_off">
-                <param name="sig" type="hidden" value="1" />
-                <param name="bonf" type="hidden" value="1" />
-                <param name="others" type="hidden" value="--no-default-filter" />
+                <param name="sig" type="hidden" value="1"/>
+                <param name="bonf" type="hidden" value="1"/>
+                <param name="others" type="hidden" value="--no-default-filter"/>
             </when>
             <when value="set_no_default">
-                <param name="sig" type="hidden" value="0.01" />
-                <param name="bonf" type="hidden" value="dynamic" />
-                <param name="others" type="hidden" value="--no-default-filter" />
+                <param name="sig" type="hidden" value="0.01"/>
+                <param name="bonf" type="hidden" value="dynamic"/>
+                <param name="others" type="hidden" value="--no-default-filter"/>
             </when>
             <when value="set_lofreq_standard">
-                <param name="sig" type="hidden" value="0.01" />
-                <param name="bonf" type="hidden" value="dynamic" />
-                <param name="others" type="hidden" value="" />
+                <param name="sig" type="hidden" value="0.01"/>
+                <param name="bonf" type="hidden" value="dynamic"/>
+                <param name="others" type="hidden" value=""/>
             </when>
             <when value="set_custom">
                 <param argument="--sig" type="float" value="0.01" min="0" max="1" label="Significance threshold for calls"/>
-                <param argument="--bonf" type="integer" value="0" min="0" label="Bonferroni correction factor for multiple testing" help="Set to zero to determine dynamically from actual number of variant tests performed. Dynamic detection will calculate separate correction factors for SNVs and indels" />
-                <param argument="--no-default-filter" name="others" type="boolean" truevalue="" falsevalue="--no-default-filter" checked="true" label="Apply default coverage and strand-bias filter?" help="--no-default-filter" />
+                <param argument="--bonf" type="integer" value="0" min="0" label="Bonferroni correction factor for multiple testing" help="Set to zero to determine dynamically from actual number of variant tests performed. Dynamic detection will calculate separate correction factors for SNVs and indels"/>
+                <param argument="--no-default-filter" name="others" type="boolean" truevalue="" falsevalue="--no-default-filter" checked="true" label="Apply default coverage and strand-bias filter?" help="--no-default-filter"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="variants" from_work_dir="variants.vcf" format="vcf" />
+        <data name="variants" from_work_dir="variants.vcf" format="vcf"/>
     </outputs>
     <tests>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <!-- lines_diff="4" should be sufficient, but https://github.com/CSB5/lofreq/issues/131 -->
-            <output name="variants" file="call-out1.vcf" lines_diff="6" />
+            <output name="variants" file="call-out1.vcf" lines_diff="6"/>
             <assert_command>
                 <has_text text="--sig 0.01"/>
                 <has_text text="--bonf dynamic"/>
@@ -289,50 +253,50 @@
             </assert_command>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="call_control">
-                <param name="set_call_options" value="yes" />
+                <param name="set_call_options" value="yes"/>
             </conditional>
             <!-- lines_diff="4" should be sufficient, but https://github.com/CSB5/lofreq/issues/131 -->
-            <output name="variants" file="call-out1.vcf" lines_diff="6" />
+            <output name="variants" file="call-out1.vcf" lines_diff="6"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="call_control">
-                <param name="set_call_options" value="yes" />
+                <param name="set_call_options" value="yes"/>
                 <section name="source_qual">
                     <conditional name="use_src_qual">
-                        <param name="src_qual" value="--src-qual" />
-                        <param name="def_nm_q" value="40" />
-                        <param name="ign_vcf" ftype="vcf" value="call-out1.vcf" />
+                        <param name="src_qual" value="--src-qual"/>
+                        <param name="def_nm_q" value="40"/>
+                        <param name="ign_vcf" ftype="vcf" value="call-out1.vcf"/>
                     </conditional>
                 </section>
             </conditional>
             <!-- lines_diff="4" should be sufficient, but https://github.com/CSB5/lofreq/issues/131 -->
-            <output name="variants" file="call-out1.vcf" lines_diff="6" />
+            <output name="variants" file="call-out1.vcf" lines_diff="6"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="filter_control">
-                <param name="filter_type" value="set_all_off" />
+                <param name="filter_type" value="set_all_off"/>
             </conditional>
-            <output name="variants" file="call-out2.vcf" lines_diff="4" />
+            <output name="variants" file="call-out2.vcf" lines_diff="4"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="indelqual-out3.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
-            <param name="variant_types" value="--call-indels --only-indels" />
+            <param name="reads" ftype="bam" value="indelqual-out3.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
+            <param name="variant_types" value="--call-indels --only-indels"/>
             <conditional name="filter_control">
-                <param name="filter_type" value="set_all_off" />
+                <param name="filter_type" value="set_all_off"/>
             </conditional>
-            <output name="variants" file="indel-call-out.vcf" lines_diff="4" />
+            <output name="variants" file="indel-call-out.vcf" lines_diff="4"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -442,5 +406,5 @@ output.
 Lets you define your own QUAL-based significance filter and, optionally,
 combine it with the default starnd-bias and coverage filters.
 ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

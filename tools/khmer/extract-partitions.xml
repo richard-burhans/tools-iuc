@@ -5,9 +5,9 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version"/>
     <command><![CDATA[
 mkdir -p output &&
 cd output &&
@@ -22,16 +22,13 @@ output
 ]]>
     </command>
     <inputs>
-        <expand macro="input_sequences_filenames" />
-        <param argument="--max-size" type="integer" label="Max group size" value="1000000"
-            help="No more than this many number of sequences will be stored in each output"/>
-        <param name="min_partition_size" type="integer" label="Min partition size" value="5"
-            help="The minimum partition size worth keeping (--min-partition-size/-m)" />
-        <param name="output_unassigned" type="boolean" checked="false" truevalue="--output-unassigned" falsevalue=""
-            label="Output unassigned sequences" help="(--output-unassigned/-U)" />
+        <expand macro="input_sequences_filenames"/>
+        <param argument="--max-size" type="integer" label="Max group size" value="1000000" help="No more than this many number of sequences will be stored in each output"/>
+        <param name="min_partition_size" type="integer" label="Min partition size" value="5" help="The minimum partition size worth keeping (--min-partition-size/-m)"/>
+        <param name="output_unassigned" type="boolean" checked="false" truevalue="--output-unassigned" falsevalue="" label="Output unassigned sequences" help="(--output-unassigned/-U)"/>
     </inputs>
     <outputs>
-        <data name="distribution" format="txt" from_work_dir="output/output.dist" label="${tool.name} on ${on_string}: Partition size distribution" />
+        <data name="distribution" format="txt" from_work_dir="output/output.dist" label="${tool.name} on ${on_string}: Partition size distribution"/>
         <collection name="groups_of_partitions" type="list" format="fasta">
             <discover_datasets pattern="__name__" directory="output" format="fasta"/>
         </collection>
@@ -45,10 +42,9 @@ output
                 </assert_contents>
             </output>
             <output_collection name="groups_of_partitions">
-                <element name="output.group0000.fa" file="random-20-a.part.extract.fa" />
+                <element name="output.group0000.fa" file="random-20-a.part.extract.fa"/>
             </output_collection>
         </test>
-
     </tests>
     <help><![CDATA[
 Separate sequences that are annotated with partitions into grouped files.
@@ -57,7 +53,7 @@ Separate sequences that are annotated with partitions into grouped files.
 ]]>
     </help>
     <citations>
-        <expand macro="software-citation" />
-        <expand macro="graph-citation" />
+        <expand macro="software-citation"/>
+        <expand macro="graph-citation"/>
     </citations>
 </tool>

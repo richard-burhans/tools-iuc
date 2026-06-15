@@ -40,7 +40,7 @@
             <output name="outFile" file="picard_ReplaceSamHeader_test1.bam" ftype="bam"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -53,6 +53,6 @@ Replace the SAMFileHeader in a SAM/BAM dataset with the given header. Validation
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

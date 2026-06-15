@@ -12,15 +12,15 @@
         <param name="dbkey" type="select" label="Species aligned against">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="nexus" type="text" label="FTP path to nexus file on UCSC." help="The MAF paths will be computed from this" />
-        <param name="name" type="text" label="Display name for this multi-alignment" />
+        <param name="nexus" type="text" label="FTP path to nexus file on UCSC." help="The MAF paths will be computed from this"/>
+        <param name="name" type="text" label="Display name for this multi-alignment"/>
     </inputs>
     <outputs>
-        <data name="output" format="data_manager_json" metadata_source="dbkey" />
+        <data name="output" format="data_manager_json" metadata_source="dbkey"/>
     </outputs>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 This data manager fetches a multiple alignment from UCSC's FTP server and indexes it with bx-python.
-    </help>
+    ]]></help>
 </tool>

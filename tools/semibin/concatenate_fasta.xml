@@ -32,7 +32,7 @@ SemiBin2 concatenate_fasta
         <expand macro="concat_min_len"/>
     </inputs>
     <outputs>
-        <data name="fasta" format="fasta" from_work_dir="output/concatenated.fa" />
+        <data name="fasta" format="fasta" from_work_dir="output/concatenated.fa"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -41,9 +41,9 @@ SemiBin2 concatenate_fasta
             <param name="min_len" value="0"/>
             <output name="fasta" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">input_single_fasta:g1k_0"/>
-                    <has_text text=">input_single_3_fasta:g4k_7"/>
-                    <has_text text=">input_single_2_fasta:g1k_0"/>
+                    <has_text text="&gt;input_single_fasta:g1k_0"/>
+                    <has_text text="&gt;input_single_3_fasta:g4k_7"/>
+                    <has_text text="&gt;input_single_2_fasta:g1k_0"/>
                 </assert_contents>
             </output>
         </test>

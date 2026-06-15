@@ -72,7 +72,7 @@
                 <param name="bloom_size" value="100000"/>
             </conditional>
             <output name="output_index" ftype="kmindex">
-                <extra_files name="index.json" > 
+                <extra_files name="index.json">
                     <assert_contents>
                         <has_json_property_with_value property="bloom_size" value="100096"/>
                     </assert_contents>
@@ -92,7 +92,7 @@
                 <param name="bitw" value="4"/>
             </conditional>
             <output name="output_index" ftype="kmindex">
-                <extra_files name="index.json" >
+                <extra_files name="index.json">
                     <assert_contents>
                         <has_json_property_with_value property="bloom_size" value="100096"/>
                     </assert_contents>

@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="version" />
+    <expand macro="requirements"/>
+    <expand macro="version"/>
     <command detect_errors="exit_code">
     <![CDATA[
         python '$__tool_directory__/data_manager_fetch_mapseq_db.py' 
@@ -16,7 +16,7 @@
     </command>
     <inputs>
         <!-- <param name="test_data_manager" type="hidden" /> -->
-        <param name="test_data_manager_v5" type="boolean" truevalue="--test" falsevalue="" checked="False" label="Download minimal test DB and create mock data table entry for v5." />
+        <param name="test_data_manager_v5" type="boolean" truevalue="--test" falsevalue="" checked="False" label="Download minimal test DB and create mock data table entry for v5."/>
         <conditional name="select_version">
             <param argument="--version" type="select" label="Select MGnify version">
                 <option value="5.0">v5.0</option>
@@ -42,27 +42,27 @@
         </conditional>
     </inputs>
     <outputs>
-        <data format="data_manager_json" name="out_file" />
+        <data format="data_manager_json" name="out_file"/>
     </outputs>
     <tests>
-    <test expect_num_outputs="1">
-        <param name="test_data_manager_v5" value="true"/>
-        <conditional name="select_version">
-            <param name="version" value="5.0"/>
-            <param name="database_type" value="mgnify_v5_lsu"/>
-        </conditional>
-        <output name="out_file">
-            <assert_contents>
-                <has_text text="mgnify_v5_lsu"/>
-                <has_text text="5.0.7"/>
-            </assert_contents>
-        </output>
-    </test>
+        <test expect_num_outputs="1">
+            <param name="test_data_manager_v5" value="true"/>
+            <conditional name="select_version">
+                <param name="version" value="5.0"/>
+                <param name="database_type" value="mgnify_v5_lsu"/>
+            </conditional>
+            <output name="out_file">
+                <assert_contents>
+                    <has_text text="mgnify_v5_lsu"/>
+                    <has_text text="5.0.7"/>
+                </assert_contents>
+            </output>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
     Downloads preformatted DBs form MGnify that can be used for mapseq. 
     The download paths were taken from: https://github.com/EBI-Metagenomics/pipeline-v5/
-    </help>
-    <expand macro="citations" />
-    <expand macro="creator" />
+    ]]></help>
+    <expand macro="citations"/>
+    <expand macro="creator"/>
 </tool>

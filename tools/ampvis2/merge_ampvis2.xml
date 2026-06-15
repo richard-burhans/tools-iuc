@@ -1,5 +1,5 @@
 <tool id="ampvis2_merge_ampvis2" name="ampvis2 merge ampvis2 data sets" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -31,7 +31,7 @@
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.2010.rds,AalborgWWTPs.2011.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.2010.rds,AalborgWWTPs.2011.rds" ftype="ampvis2"/>
             <output name="output" ftype="ampvis2">
                 <assert_contents>
                     <has_size value="70888" delta="1000"/>

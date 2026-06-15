@@ -14,10 +14,10 @@
     </requirements>
     <stdio>
         <!-- Anything other than zero is an error -->
-        <exit_code range="1:" />
+        <exit_code range="1:"/>
         <!-- In case the return code has not been set propery check stderr too -->
-        <regex match="Error:" />
-        <regex match="Exception:" />
+        <regex match="Error:"/>
+        <regex match="Exception:"/>
     </stdio>
     <version_command>ABYSS --version | head -n 1</version_command>
     <command><![CDATA[
@@ -140,7 +140,6 @@ k=$k
 
 #echo " ".join($libraries)
     ]]></command>
-
     <inputs>
         <repeat name="libs" title="Libraries" min="1" help="Add one or more paired end, single end, mate pair, or long read library. For paired end and mate pairs libraries are given as elements of a paired collection. For single end and long reads multiple data sets can be given (also as collection).">
             <conditional name="lib_type_cond">
@@ -151,36 +150,36 @@ k=$k
                     <option value="long">Long sequences</option>
                 </param>
                 <when value="lib">
-                    <param name="reads" argument="lib" type="data_collection" collection_type="list:paired" format="@SEQUENCE_FILE_TYPES@" label="Paired reads" />
+                    <param name="reads" argument="lib" type="data_collection" collection_type="list:paired" format="@SEQUENCE_FILE_TYPES@" label="Paired reads"/>
                 </when>
                 <when value="se">
-                    <param name="reads" argument="se" type="data" multiple="true" format="@SEQUENCE_FILE_TYPES@" label="Single-end reads" />
+                    <param name="reads" argument="se" type="data" multiple="true" format="@SEQUENCE_FILE_TYPES@" label="Single-end reads"/>
                 </when>
                 <when value="mp">
-                    <param name="reads" argument="mp" type="data_collection" collection_type="list:paired" format="@SEQUENCE_FILE_TYPES@" label="Mate pairs" />
+                    <param name="reads" argument="mp" type="data_collection" collection_type="list:paired" format="@SEQUENCE_FILE_TYPES@" label="Mate pairs"/>
                 </when>
                 <when value="long">
-                    <param name="reads" argument="long" type="data" multiple="true" format="@SEQUENCE_FILE_TYPES@" label="Long sequences" help="Long sequence libraries are used only for rescaffolding and do not contribute towards the consensus sequence" />
+                    <param name="reads" argument="long" type="data" multiple="true" format="@SEQUENCE_FILE_TYPES@" label="Long sequences" help="Long sequence libraries are used only for rescaffolding and do not contribute towards the consensus sequence"/>
                 </when>
             </conditional>
         </repeat>
-        <param argument="k" type="integer" value="41" label="K-mer length (in bp)" help="The length of a k-mer (when -K is not set) or the span of a k-mer pair (when K is set)" />
-        <param argument="K" type="integer" value="" optional="true" label="The length (in bp) of a single k-mer in a k-mer pair" help="Optional" />
-        <param argument="q" type="integer" value="3" max="40" optional="true" label="Minimum base quality when trimming" help="Trim bases from the ends of reads whose quality is less than this value" />
-        <param argument="Q" type="integer" value="0" max="40" optional="true" label="Minimum base quality" help="Mask all bases of reads whose quality is less than this value as 'N'" />
-        <param argument="e" type="integer" value="" min="0" optional="true" label="Minimum erosion k-mer coverage" help="Erode bases at the ends of blunt contigs with coverage less than this value. Defaults to round(sqrt(median))" />
-        <param argument="E" type="integer" value="" min="0" optional="true" label="Minimum erosion k-mer coverage per strand" help="Erode bases at the ends of blunt contigs with coverage less than this value on either strand. Defaults to 1 if sqrt(median) &gt; 2 else 0" />
-        <param argument="t" type="integer" value="" optional="true" label="Maximum length of blunt contigs to trim" help="Defaults to the value of k" />
-        <param argument="c" type="float" value="" optional="true" label="Minimum mean k-mer coverage of a unitig" help="Defaults to sqrt(median)" />
-        <param argument="b" type="integer" value="" optional="true" label="Maximum length of a bubble (in bp)" help="abyss-pe has two bubble popping stages. The default limits are 3*k bp for ABYSS and 10000 bp for PopBubbles" />
-        <param argument="SS" type="boolean" label="Assemble in strand-specific mode" help="Requires that all libraries are strand-specific RNA-Seq libraries. Assumes that the first read in a read pair is reveresed with respect to the transcripts sequenced" />
-        <param argument="m" type="integer" value="" min="0" optional="true" label="Minimum overlap of two unitigs (in bp)" help="Defaults to 0 (interpreted as k - 1) if mate-pair libraries are provided or if k&lt;=50, otherwise 50" />
-        <param argument="p" type="float" value="0.9" optional="true" label="Minimum sequence identity of a bubble" />
-        <param argument="a" type="integer" value="2" min="0" optional="true" label="Maximum number of branches of a bubble" />
-        <param argument="l" type="integer" value="" min="1"  optional="true" label="Minimum alignment length of a read (in bp)" help="Defaults to the value of k" />
-        <param argument="s" type="integer" value="200" min="0" optional="true" label="Minimum unitig length required for building contigs (in bp)" help="The seed length should be at least twice the value of k. If more sequence is assembled than the expected genome size, try increasing this value" />
-        <param argument="n" type="integer" value="10" min="0" optional="true" label="Minimum number of pairs required for building contigs" />
-        <param argument="d" type="integer" value="6" min="0" optional="true" label="Allowable error of a distance estimate (in bp)" />
+        <param argument="k" type="integer" value="41" label="K-mer length (in bp)" help="The length of a k-mer (when -K is not set) or the span of a k-mer pair (when K is set)"/>
+        <param argument="K" type="integer" value="" optional="true" label="The length (in bp) of a single k-mer in a k-mer pair" help="Optional"/>
+        <param argument="q" type="integer" value="3" max="40" optional="true" label="Minimum base quality when trimming" help="Trim bases from the ends of reads whose quality is less than this value"/>
+        <param argument="Q" type="integer" value="0" max="40" optional="true" label="Minimum base quality" help="Mask all bases of reads whose quality is less than this value as 'N'"/>
+        <param argument="e" type="integer" value="" min="0" optional="true" label="Minimum erosion k-mer coverage" help="Erode bases at the ends of blunt contigs with coverage less than this value. Defaults to round(sqrt(median))"/>
+        <param argument="E" type="integer" value="" min="0" optional="true" label="Minimum erosion k-mer coverage per strand" help="Erode bases at the ends of blunt contigs with coverage less than this value on either strand. Defaults to 1 if sqrt(median) &gt; 2 else 0"/>
+        <param argument="t" type="integer" value="" optional="true" label="Maximum length of blunt contigs to trim" help="Defaults to the value of k"/>
+        <param argument="c" type="float" value="" optional="true" label="Minimum mean k-mer coverage of a unitig" help="Defaults to sqrt(median)"/>
+        <param argument="b" type="integer" value="" optional="true" label="Maximum length of a bubble (in bp)" help="abyss-pe has two bubble popping stages. The default limits are 3*k bp for ABYSS and 10000 bp for PopBubbles"/>
+        <param argument="SS" type="boolean" label="Assemble in strand-specific mode" help="Requires that all libraries are strand-specific RNA-Seq libraries. Assumes that the first read in a read pair is reveresed with respect to the transcripts sequenced"/>
+        <param argument="m" type="integer" value="" min="0" optional="true" label="Minimum overlap of two unitigs (in bp)" help="Defaults to 0 (interpreted as k - 1) if mate-pair libraries are provided or if k&lt;=50, otherwise 50"/>
+        <param argument="p" type="float" value="0.9" optional="true" label="Minimum sequence identity of a bubble"/>
+        <param argument="a" type="integer" value="2" min="0" optional="true" label="Maximum number of branches of a bubble"/>
+        <param argument="l" type="integer" value="" min="1" optional="true" label="Minimum alignment length of a read (in bp)" help="Defaults to the value of k"/>
+        <param argument="s" type="integer" value="200" min="0" optional="true" label="Minimum unitig length required for building contigs (in bp)" help="The seed length should be at least twice the value of k. If more sequence is assembled than the expected genome size, try increasing this value"/>
+        <param argument="n" type="integer" value="10" min="0" optional="true" label="Minimum number of pairs required for building contigs"/>
+        <param argument="d" type="integer" value="6" min="0" optional="true" label="Allowable error of a distance estimate (in bp)"/>
         <param argument="S" type="text" value="" label="Minimum contig size required for building scaffolds (in bp)" help="It can be an interval. Defaults to 100-5000">
             <validator type="regex" message="Must be a an integer or an interval">^([0-9]+(-[0-9]+)?)?$</validator>
         </param>
@@ -188,9 +187,8 @@ k=$k
             <validator type="regex" message="Must be a an integer or an interval">^([0-9]+(-[0-9]+)?)?$</validator>
         </param>
     </inputs>
-
     <outputs>
-        <data name="unitigs" format="fasta" label="${tool.name} on ${on_string}: unitigs" from_work_dir="abyss-unitigs.fa" />
+        <data name="unitigs" format="fasta" label="${tool.name} on ${on_string}: unitigs" from_work_dir="abyss-unitigs.fa"/>
         <data name="contigs_outfile" format="fasta" label="${tool.name} on ${on_string}: contigs" from_work_dir="abyss-contigs.fa">
             <filter>len([ l for l in libs if l['lib_type_cond']['lib_type'] == "lib"])</filter>
         </data>
@@ -200,64 +198,63 @@ k=$k
         <data name="long_scaffolds" format="fasta" label="${tool.name} on ${on_string}: long scaffolds" from_work_dir="abyss-long-scaffs.fa">
             <filter>len([ l for l in libs if l['lib_type_cond']['lib_type'] == "long"])</filter>
         </data>
-        <data name="indels" format="fasta" label="${tool.name} on ${on_string}: indels" from_work_dir="abyss-indel.fa" />
-        <data name="stats" format="tabular" label="${tool.name} on ${on_string}: stats" from_work_dir="abyss-stats.tab" />
+        <data name="indels" format="fasta" label="${tool.name} on ${on_string}: indels" from_work_dir="abyss-indel.fa"/>
+        <data name="stats" format="tabular" label="${tool.name} on ${on_string}: stats" from_work_dir="abyss-stats.tab"/>
     </outputs>
-
     <tests>
         <test expect_num_outputs="5">
             <repeat name="libs">
                 <conditional name="lib_type_cond">
-                    <param name="lib_type" value="lib" />
+                    <param name="lib_type" value="lib"/>
                     <param name="reads">
                         <collection type="list:paired">
                             <element name="assembly_sample">
                                 <collection type="paired">
-                                    <element name="forward" value="assembly_sample-R1.fastq.gz" />
-                                    <element name="reverse" value="assembly_sample-R2.fastq.gz" />
+                                    <element name="forward" value="assembly_sample-R1.fastq.gz"/>
+                                    <element name="reverse" value="assembly_sample-R2.fastq.gz"/>
                                 </collection>
                             </element>
                         </collection>
                     </param>
                 </conditional>
             </repeat>
-            <param name="k" value="50" />
-            <output name="unitigs" file="abyss-unitigs1.fa" />
-            <output name="contigs_outfile" file="abyss-contigs1.fa" />
-            <output name="scaffolds" file="abyss-scaffolds1.fa" />
-            <output name="indels" file="empty_file.fasta" />
-            <output name="stats" file="abyss-stats1.tab" />
+            <param name="k" value="50"/>
+            <output name="unitigs" file="abyss-unitigs1.fa"/>
+            <output name="contigs_outfile" file="abyss-contigs1.fa"/>
+            <output name="scaffolds" file="abyss-scaffolds1.fa"/>
+            <output name="indels" file="empty_file.fasta"/>
+            <output name="stats" file="abyss-stats1.tab"/>
         </test>
         <test expect_num_outputs="3">
             <repeat name="libs">
                 <conditional name="lib_type_cond">
-                    <param name="lib_type" value="se" />
-                    <param name="reads" ftype="fastqsanger.gz" value="assembly_sample-R1.fastq.gz,assembly_sample-R2.fastq.gz" />
+                    <param name="lib_type" value="se"/>
+                    <param name="reads" ftype="fastqsanger.gz" value="assembly_sample-R1.fastq.gz,assembly_sample-R2.fastq.gz"/>
                 </conditional>
             </repeat>
-            <param name="k" value="50" />
-            <output name="unitigs" file="abyss-unitigs2.fa" />
-            <output name="indels" file="empty_file.fasta" />
-            <output name="stats" file="abyss-stats2.tab" />
+            <param name="k" value="50"/>
+            <output name="unitigs" file="abyss-unitigs2.fa"/>
+            <output name="indels" file="empty_file.fasta"/>
+            <output name="stats" file="abyss-stats2.tab"/>
         </test>
         <test expect_num_outputs="4">
             <repeat name="libs">
                 <conditional name="lib_type_cond">
-                    <param name="lib_type" value="se" />
-                    <param name="reads" ftype="fasta" value="assembly_sample-R1.fasta,assembly_sample-R2.fasta" />
+                    <param name="lib_type" value="se"/>
+                    <param name="reads" ftype="fasta" value="assembly_sample-R1.fasta,assembly_sample-R2.fasta"/>
                 </conditional>
             </repeat>
             <repeat name="libs">
                 <conditional name="lib_type_cond">
-                    <param name="lib_type" value="long" />
-                    <param name="reads" ftype="fasta" value="assembly_sample-R2.fasta" />
+                    <param name="lib_type" value="long"/>
+                    <param name="reads" ftype="fasta" value="assembly_sample-R2.fasta"/>
                 </conditional>
             </repeat>
-            <param name="k" value="50" />
-            <output name="unitigs" file="abyss-unitigs3.fa" />
-            <output name="long_scaffolds" file="abyss-long-scaffolds3.fa" />
-            <output name="indels" file="empty_file.fasta" />
-            <output name="stats" file="abyss-stats3.tab" />
+            <param name="k" value="50"/>
+            <output name="unitigs" file="abyss-unitigs3.fa"/>
+            <output name="long_scaffolds" file="abyss-long-scaffolds3.fa"/>
+            <output name="indels" file="empty_file.fasta"/>
+            <output name="stats" file="abyss-stats3.tab"/>
         </test>
     </tests>
     <help><![CDATA[

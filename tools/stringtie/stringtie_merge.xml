@@ -6,9 +6,9 @@
     <xrefs>
         <xref type="bio.tools">stringtie</xref>
     </xrefs>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         stringtie --merge
         ## --merge transcript ordering/IDs are non-deterministic with multiple threads; pin to 1 for reproducible output
@@ -48,7 +48,7 @@
         </test>
         <test>
             <param name="input_gtf" ftype="gtf" value="stringtie_merge_in1.gtf,stringtie_merge_in2.gtf"/>
-            <param name="guide_gff" ftype="gtf" value="stringtie_merge_in3.gtf" />
+            <param name="guide_gff" ftype="gtf" value="stringtie_merge_in3.gtf"/>
             <output name="out_gtf" file="stringtie_merge_out2.gtf" ftype="gtf" lines_diff="4"/>
         </test>
         <test>
@@ -69,5 +69,5 @@ If a reference annotation is provided, StringTie will assemble the transfrags fr
 
 .. _StringTie: http://ccb.jhu.edu/software/stringtie/
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

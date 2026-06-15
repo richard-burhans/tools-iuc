@@ -23,20 +23,20 @@
             -o ./
     ]]></command>
     <inputs>
-        <param argument="--input" type="data" multiple="true" format="json" label="Phenopacket JSON files" help="" />
+        <param argument="--input" type="data" multiple="true" format="json" label="Phenopacket JSON files" help=""/>
     </inputs>
     <outputs>
-        <data name="BFF_JSON_File" format="json" label="${tool.name} on ${on_string}: BFF_JSON_File" from_work_dir="individuals.json" />
+        <data name="BFF_JSON_File" format="json" label="${tool.name} on ${on_string}: BFF_JSON_File" from_work_dir="individuals.json"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" ftype="json" value="EGAF00005572750.json,EGAF00005572753.json,EGAF00005572884.json,EGAF00005572893.json,EGAF00005572727.json,EGAF00005572756.json,EGAF00005572721.json,EGAF00005572902.json,EGAF00005572759.json,EGAF00005572881.json,EGAF00005572896.json,EGAF00005572890.json,EGAF00005572861.json,EGAF00005572899.json,EGAF00005572762.json,EGAF00005572887.json,EGAF00005572724.json,EGAF00005572747.json" />
-            <output name="BFF_JSON_File" file="individuals.json" />
+            <param name="input" ftype="json" value="EGAF00005572750.json,EGAF00005572753.json,EGAF00005572884.json,EGAF00005572893.json,EGAF00005572727.json,EGAF00005572756.json,EGAF00005572721.json,EGAF00005572902.json,EGAF00005572759.json,EGAF00005572881.json,EGAF00005572896.json,EGAF00005572890.json,EGAF00005572861.json,EGAF00005572899.json,EGAF00005572762.json,EGAF00005572887.json,EGAF00005572724.json,EGAF00005572747.json"/>
+            <output name="BFF_JSON_File" file="individuals.json"/>
         </test>
     </tests>
     <help><![CDATA[
       The tool combines different Phenopacket JSON files into one JSON file. The Phenopacket Schema represents an open standard for sharing disease and phenotype information to
       improve our ability to understand, diagnose, and treat both rare and common diseases. The generated file will be ready to be stored on the MongoDB instance as MongoDB works directly with JSON files.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

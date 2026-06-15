@@ -51,10 +51,9 @@
                 </param>
             </when>
             <when value="history">
-                <param name="primer_input" label="Select history item" type="data" format="bed" />
-                <param name="primer_name" label="Name for this primer scheme" type="text" 
-                       help="Characters that are not word characters or - will be removed from primer scheme name and spaces replaced with underscore (_)" />
-                <param name="primer_description" label="Description for primer scheme" type="text" />
+                <param name="primer_input" label="Select history item" type="data" format="bed"/>
+                <param name="primer_name" label="Name for this primer scheme" type="text" help="Characters that are not word characters or - will be removed from primer scheme name and spaces replaced with underscore (_)"/>
+                <param name="primer_description" label="Description for primer scheme" type="text"/>
             </when>
         </conditional>
     </inputs>
@@ -63,31 +62,31 @@
     </outputs>
     <tests>
         <test>
-            <param name="input_type" value="network" />
+            <param name="input_type" value="network"/>
             <param name="primers" value="SARS-CoV-2-ARTICv1,SARS-CoV-2-ARTICv2,SARS-CoV-2-ARTICv3,SARS-CoV-2-ARTICv4,VarSkip-V1a,Midnight-v1"/>
-            <output name="output_file" value="data_manager_primer_scheme_bedfiles.json.template" compare="re_match" />
+            <output name="output_file" value="data_manager_primer_scheme_bedfiles.json.template" compare="re_match"/>
         </test>
         <test>
-            <param name="input_type" value="history" />
-            <param name="primer_input" ftype="bed" value="sample1.bed" />
-            <param name="primer_name" value="sample_primer" />
-            <param name="primer_description" value="sample primer scheme" />
+            <param name="input_type" value="history"/>
+            <param name="primer_input" ftype="bed" value="sample1.bed"/>
+            <param name="primer_name" value="sample_primer"/>
+            <param name="primer_description" value="sample primer scheme"/>
             <output name="output_file">
                 <assert_contents>
                     <has_text text="sample_primer"/>
                 </assert_contents>
-            </output>        
+            </output>
         </test>
         <test>
-            <param name="input_type" value="history" />
-            <param name="primer_input" ftype="bed" value="sample1.bed" />
-            <param name="primer_name" value="sample^primer" />
-            <param name="primer_description" value="sample primer scheme" />
+            <param name="input_type" value="history"/>
+            <param name="primer_input" ftype="bed" value="sample1.bed"/>
+            <param name="primer_name" value="sample^primer"/>
+            <param name="primer_description" value="sample primer scheme"/>
             <output name="output_file">
                 <assert_contents>
                     <has_text text="sampleprimer"/>
                 </assert_contents>
-            </output>        
+            </output>
         </test>
     </tests>
     <help><![CDATA[
@@ -112,6 +111,6 @@
         .. here_: https://gist.github.com/pvanheus/8403813b77e44cbd18e3fb1b3ca1b624
     ]]></help>
     <citations>
-      <citation type="doi">10.1186/s13059-018-1618-7</citation>
+        <citation type="doi">10.1186/s13059-018-1618-7</citation>
     </citations>
 </tool>

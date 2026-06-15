@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #import json
         @COMMAND_LINK@
@@ -62,11 +62,9 @@
             mv OUT_cell_thresholds.tsv '$out_thresh'
     ]]></command>
     <inputs>
-        <expand macro="input_types" />
+        <expand macro="input_types"/>
         <expand macro="fastq_barcode_extraction_options_macro"/>
-
-        <param argument="--method" type="select" label="Count reads or UMIs"
-               help="Many published protocols rank CBs by the number of reads the CBs appear in. However you could also use the number of unique UMIs a CB is associated with. Note that this is still and approximation to the number of transcripts captured because the same UMI could be associated with two different transcripts and be counted as independent" >
+        <param argument="--method" type="select" label="Count reads or UMIs" help="Many published protocols rank CBs by the number of reads the CBs appear in. However you could also use the number of unique UMIs a CB is associated with. Note that this is still and approximation to the number of transcripts captured because the same UMI could be associated with two different transcripts and be counted as independent">
             <option value="reads" selected="true">Reads</option>
             <option value="umis">UMIs</option>
         </param>
@@ -75,29 +73,28 @@
             <option value="distance" selected="true">Distance</option>
             <option value="density">Density</option>
         </param>
-        <param argument="--subset-reads" type="integer" min="0" value="0" label="Use the first N reads to automatically identify the true cell barcodes" />
-        <param argument="--allow-threshold-error" type="boolean" truevalue="--allow-threshold-error" falsevalue="" label="Don't select a threshold" help="Will still output the plots if requested"/> 
+        <param argument="--subset-reads" type="integer" min="0" value="0" label="Use the first N reads to automatically identify the true cell barcodes"/>
+        <param argument="--allow-threshold-error" type="boolean" truevalue="--allow-threshold-error" falsevalue="" label="Don't select a threshold" help="Will still output the plots if requested"/>
         <param argument="--ed-above-threshold" type="select" optional="true" label="Detect and correct CBs above the threshold" help="which may be sequence errors from another CB">
             <option value="correct">Correct</option>
             <option value="discard">Discard</option>
         </param>
-        <conditional name="celloptions" >
-            <param name="use_cell_opts" type="select" label="Cell parameters" >
+        <conditional name="celloptions">
+            <param name="use_cell_opts" type="select" label="Cell parameters">
                 <option value="defaults" selected="True">Use Defaults</option>
                 <option value="advanced">Advanced Options</option>
             </param>
             <when value="defaults"/>
             <when value="advanced">
-                <param argument="--set-cell-number" type="integer" min="0" optional="true" label="Specify the number of cell barcodes to accept" />
-                <param argument="--expect-cells" type="integer" min="0" optional="true" label="Prior expectation on the upper limit on the number of cells sequenced" />
-                <param argument="--error-correct-threshold" type="integer" min="0" value="1" label="Hamming distance for correction of barcodes to whitelist barcodes. Set to zero to generate no error correcting metrics" />
+                <param argument="--set-cell-number" type="integer" min="0" optional="true" label="Specify the number of cell barcodes to accept"/>
+                <param argument="--expect-cells" type="integer" min="0" optional="true" label="Prior expectation on the upper limit on the number of cells sequenced"/>
+                <param argument="--error-correct-threshold" type="integer" min="0" value="1" label="Hamming distance for correction of barcodes to whitelist barcodes. Set to zero to generate no error correcting metrics"/>
             </when>
         </conditional>
         <expand macro="log_input_macro"/>
     </inputs>
     <outputs>
         <data name="out_whitelist" format="tabular" label="${tool.name} on ${on_string}: Whitelist"/>
-        
         <data name="filtered_out" format_source="input_read1" label="${tool.name} on ${on_string}: Forward reads not matching regex pattern">
             <filter>extract_method_cond['extract_method'] == 'regex' and extract_method_cond['filtered_out_bool'] and input_type_cond['input_type'] in ['single', 'paired']</filter>
         </data>
@@ -105,93 +102,93 @@
             <filter>extract_method_cond['extract_method'] == 'regex' and extract_method_cond['filtered_out_bool'] and input_type_cond['input_type'] == 'paired'</filter>
         </data>
         <collection name="filtered_out_paired_collection" type="paired" label="${tool.name} on ${on_string}: Reads not matching regex pattern">
-            <data name="forward" format_source="input_readpair" />
-            <data name="reverse" format_source="input_readpair" />
+            <data name="forward" format_source="input_readpair"/>
+            <data name="reverse" format_source="input_readpair"/>
             <filter>extract_method_cond['extract_method'] == 'regex' and extract_method_cond['filtered_out_bool'] and input_type_cond['input_type'] == 'paired_collection'</filter>
         </collection>
         <expand macro="log_output_macro"/>
-        <data name="out_html_report" format="html" label="${tool.name} on ${on_string}: Webpage" />
-        <data name="out_thresh" format="tabular" label="${tool.name} on ${on_string}: TSV Cell Thresholds" />
+        <data name="out_html_report" format="html" label="${tool.name} on ${on_string}: Webpage"/>
+        <data name="out_thresh" format="tabular" label="${tool.name} on ${on_string}: TSV Cell Thresholds"/>
     </outputs>
     <tests>
         <test expect_num_outputs="3">
-            <conditional name="input_type_cond" >
-                <param name="input_type" value="single" />
-                <param name="input_read1" value="t_R2.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="CCCCCCCCNNNNNNNN" />
+            <conditional name="input_type_cond">
+                <param name="input_type" value="single"/>
+                <param name="input_read1" value="t_R2.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="CCCCCCCCNNNNNNNN"/>
             </conditional>
             <conditional name="extract_method_cond">
-                <param name="prime3" value="true" />
+                <param name="prime3" value="true"/>
             </conditional>
-            <param name="method" value="reads" />
+            <param name="method" value="reads"/>
             <param name="knee_method" value="density"/>
-            <output name="out_whitelist" file="out_wl_single.txt" lines_diff="40" />
-            <output name="out_thresh" file="out_wl_single.tresh.tab" />
-            <output name="out_html_report" file="out_wl_single.html" />
+            <output name="out_whitelist" file="out_wl_single.txt" lines_diff="40"/>
+            <output name="out_thresh" file="out_wl_single.tresh.tab"/>
+            <output name="out_html_report" file="out_wl_single.html"/>
         </test>
         <test expect_num_outputs="4">
-            <conditional name="input_type_cond" >
-                <param name="input_type" value="paired" />
-                <param name="input_read1" value="t_R1.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="input_read2" value="t_R2.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="CCCNNNNNNNNXXXXX" />
+            <conditional name="input_type_cond">
+                <param name="input_type" value="paired"/>
+                <param name="input_read1" value="t_R1.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="input_read2" value="t_R2.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="CCCNNNNNNNNXXXXX"/>
                 <!-- <param name="bc_pattern2" value="CCCCCCCCNNNNNNNN" /> -->
             </conditional>
-            <param name="method" value="reads" />
+            <param name="method" value="reads"/>
             <conditional name="extract_method_cond">
-                <param name="prime3" value="false" />
+                <param name="prime3" value="false"/>
             </conditional>
-            <param name="celloptions|use_cell_opts" value="advanced" />
-            <param name="celloptions|expect_cells" value="5" />
-            <param name="celloptions|error_correct_threshold" value="3" />
+            <param name="celloptions|use_cell_opts" value="advanced"/>
+            <param name="celloptions|expect_cells" value="5"/>
+            <param name="celloptions|error_correct_threshold" value="3"/>
             <param name="knee_method" value="density"/>
-            <param name="log" value="true" />
-            <output name="out_whitelist" file="out_wl_paired.txt" />
-            <output name="out_log" file="out_wl_paired.log" lines_diff="50" />
-            <output name="out_html_report" file="out_wl_paired.html" />
-            <output name="out_thresh" file="out_wl_paired.tresh.tab" />
+            <param name="log" value="true"/>
+            <output name="out_whitelist" file="out_wl_paired.txt"/>
+            <output name="out_log" file="out_wl_paired.log" lines_diff="50"/>
+            <output name="out_html_report" file="out_wl_paired.html"/>
+            <output name="out_thresh" file="out_wl_paired.tresh.tab"/>
         </test>
-        <test expect_num_outputs="4"> <!-- As previous, identical outputs but paired collection input -->
-            <conditional name="input_type_cond" >
-                <param name="input_type" value="paired_collection" />
-                <param name="input_readpair" >
+        <test expect_num_outputs="4">
+            <!-- As previous, identical outputs but paired collection input -->
+            <conditional name="input_type_cond">
+                <param name="input_type" value="paired_collection"/>
+                <param name="input_readpair">
                     <collection type="paired">
-                        <element name="forward" ftype="fastqsanger.gz" value="t_R1.fastq.gz" />
-                        <element name="reverse" ftype="fastqsanger.gz" value="t_R2.fastq.gz" />
+                        <element name="forward" ftype="fastqsanger.gz" value="t_R1.fastq.gz"/>
+                        <element name="reverse" ftype="fastqsanger.gz" value="t_R2.fastq.gz"/>
                     </collection>
                 </param>
-                <param name="bc_pattern"  value="CCCNNNNNNNNXXXXX" />
+                <param name="bc_pattern" value="CCCNNNNNNNNXXXXX"/>
                 <!-- <param name="bc_pattern2" value="CCCCCCCCNNNNNNNN" /> -->
             </conditional>
-            <param name="method" value="reads" />
+            <param name="method" value="reads"/>
             <conditional name="extract_method_cond">
-                <param name="prime3" value="false" />
+                <param name="prime3" value="false"/>
             </conditional>
             <param name="knee_method" value="density"/>
-            <param name="celloptions|use_cell_opts" value="advanced" />
-            <param name="celloptions|expect_cells" value="5" />
-            <param name="celloptions|error_correct_threshold" value="3" />
-            <param name="log" value="true" />
-            <output name="out_whitelist" file="out_wl_paired.txt" />
-            <output name="out_log" file="out_wl_paired.log" lines_diff="50" />
-            <output name="out_html_report" file="out_wl_paired.html" />
-            <output name="out_thresh" file="out_wl_paired.tresh.tab" />
+            <param name="celloptions|use_cell_opts" value="advanced"/>
+            <param name="celloptions|expect_cells" value="5"/>
+            <param name="celloptions|error_correct_threshold" value="3"/>
+            <param name="log" value="true"/>
+            <output name="out_whitelist" file="out_wl_paired.txt"/>
+            <output name="out_log" file="out_wl_paired.log" lines_diff="50"/>
+            <output name="out_html_report" file="out_wl_paired.html"/>
+            <output name="out_thresh" file="out_wl_paired.tresh.tab"/>
         </test>
         <!-- Error report on not accepting regex and lt and gt symbols -->
         <test expect_num_outputs="4">
-            <conditional name="input_type_cond" >
-                <param name="input_type" value="single" />
-                <param name="input_read1" value="testYYY.40k.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="bc_pattern" value="(?P&#60;cell_1&#62;.{8,10})(?P&#60;discard_1&#62;ACTGGCCTGCGA){s&#60;=3}(?P&#60;cell_2&#62;.{9})(?P&#60;discard_2&#62;GGTAGCGGTGACA){s&#60;=3}(?P&#60;cell_3&#62;.{9})(?P&#60;umi_1&#62;.{8})T{3}.*" />
+            <conditional name="input_type_cond">
+                <param name="input_type" value="single"/>
+                <param name="input_read1" value="testYYY.40k.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="bc_pattern" value="(?P&lt;cell_1&gt;.{8,10})(?P&lt;discard_1&gt;ACTGGCCTGCGA){s&lt;=3}(?P&lt;cell_2&gt;.{9})(?P&lt;discard_2&gt;GGTAGCGGTGACA){s&lt;=3}(?P&lt;cell_3&gt;.{9})(?P&lt;umi_1&gt;.{8})T{3}.*"/>
             </conditional>
-            <param name="extract_method_cond|extract_method" value="regex" />
+            <param name="extract_method_cond|extract_method" value="regex"/>
             <param name="extract_method_cond|filtered_out_bool" value="true"/>
-            <param name="method" value="umis" />
+            <param name="method" value="umis"/>
             <param name="knee_method" value="density"/>
-
-            <output name="out_whitelist" file="out_wl_user.single.txt" />
-            <output name="out_thresh" file="out_wl_user.single.tresh.tab" />
-            <output name="out_html_report" file="out_wl_user.single.html" />
+            <output name="out_whitelist" file="out_wl_user.single.txt"/>
+            <output name="out_thresh" file="out_wl_user.single.tresh.tab"/>
+            <output name="out_html_report" file="out_wl_user.single.html"/>
             <output name="filtered_out">
                 <assert_contents>
                     <has_text text="@A00250:74:HFMFVDSXX:2:1101:1027:1016 1:N:0:GTAGAGGA"/>
@@ -243,5 +240,5 @@ If --error-correct-threshold is set to 0, columns 2 and 4 will be empty.
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

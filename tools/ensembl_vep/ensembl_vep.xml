@@ -6,12 +6,12 @@
         <token name="@DB_VERSION@">108</token>
         <xml name="vcf_input">
             <param type="data" name="input1" label="VCF input file" format="vcf">
-                <validator type="unspecified_build" />
-                <yield />
+                <validator type="unspecified_build"/>
+                <yield/>
             </param>
         </xml>
         <xml name="vcf_input_validation">
-            <validator type="dataset_metadata_in_data_table" table_name="vep_versioned_annotation_cache" metadata_name="dbkey" metadata_column="1" message="No annotation caches are available for the specified build" />
+            <validator type="dataset_metadata_in_data_table" table_name="vep_versioned_annotation_cache" metadata_name="dbkey" metadata_column="1" message="No annotation caches are available for the specified build"/>
         </xml>
     </macros>
     <requirements>
@@ -87,11 +87,11 @@
             </param>
             <when value="restricted">
                 <expand macro="vcf_input">
-                    <expand macro="vcf_input_validation" />
+                    <expand macro="vcf_input_validation"/>
                 </expand>
                 <param name="cache_file" type="select" label="Select annotation cache file" help="If the annotation data of interest is not listed, have a look at all available cache files regardless of their version number or contact your Galaxy admin.">
                     <options from_data_table="vep_versioned_annotation_cache">
-                        <filter type="static_value" value="@DB_VERSION@" column="2" />
+                        <filter type="static_value" value="@DB_VERSION@" column="2"/>
                         <filter type="sort_by" column="4"/>
                     </options>
                     <validator type="no_options" message="No annotation caches are available"/>
@@ -99,7 +99,7 @@
             </when>
             <when value="unrestricted">
                 <expand macro="vcf_input">
-                    <expand macro="vcf_input_validation" />
+                    <expand macro="vcf_input_validation"/>
                 </expand>
                 <param name="cache_file" type="select" label="Select annotation cache file" help="If the annotation data of interest is not listed, contact your Galaxy admin.">
                     <options from_data_table="vep_versioned_annotation_cache">
@@ -109,8 +109,8 @@
                 </param>
             </when>
             <when value="custom">
-                <expand macro="vcf_input" />
-                <param name="custom_annotation" type="data" format="gff,gtf" label="Select GFF or GTF annotation file from history" help="Choosing this option requires that you also supply a Fasta file as reference genome." />
+                <expand macro="vcf_input"/>
+                <param name="custom_annotation" type="data" format="gff,gtf" label="Select GFF or GTF annotation file from history" help="Choosing this option requires that you also supply a Fasta file as reference genome."/>
             </when>
         </conditional>
         <conditional name="ref_seq">
@@ -119,16 +119,16 @@
                 <option value="cached">Locally cached</option>
                 <option value="history">History</option>
             </param>
-            <when value="no_ref" />
+            <when value="no_ref"/>
             <when value="cached">
                 <param name="ref" type="select" label="Select reference sequence">
                     <options from_data_table="fasta_indexes">
-                        <validator type="no_options" message="A built-in reference genome is not available for the build associated with the selected input file" />
+                        <validator type="no_options" message="A built-in reference genome is not available for the build associated with the selected input file"/>
                     </options>
                 </param>
             </when>
             <when value="history">
-                <param name="ref" type="data" format="fasta" label="Select reference sequence" />
+                <param name="ref" type="data" format="fasta" label="Select reference sequence"/>
             </when>
         </conditional>
         <section name="out_opt" title="Output options">
@@ -167,7 +167,7 @@
                 </when>
             </conditional>
             <param name="cell_type" type="text" optional="true" label="Report only regulatory regions that are found in the given cell type(s):" help="Recommended for advanced users only. Can be a single cell type or a comma-separated list. The functional type in each cell type is reported under CELL_TYPE in the output. (--cell_type)"/>
-            <param name="individual" type="text" optional="true" label="Consider only alternate alleles present in the genotypes of the specified individual(s):" help="Enter the individual's IDs as comma-separated list. Individual variant combinations homozygous for the given reference allele will not be reported. Each individual and variant combination is given on a separate line of output. Only works with VCF files containing individual genotype data. (--individual [ind list])" />
+            <param name="individual" type="text" optional="true" label="Consider only alternate alleles present in the genotypes of the specified individual(s):" help="Enter the individual's IDs as comma-separated list. Individual variant combinations homozygous for the given reference allele will not be reported. Each individual and variant combination is given on a separate line of output. Only works with VCF files containing individual genotype data. (--individual [ind list])"/>
             <conditional name="vcf_info_type">
                 <param name="vcf_info_type_selector" type="select" label="Change name of the consequences INFO column in VCF output" help="Default: CSQ. Use ANN for compatibility with other tools such as snpEff (--vcf_info_field [CSQ|ANN|(other)])">
                     <option value="csq" selected="true">CSQ</option>
@@ -196,12 +196,12 @@
                     <option value="--shift_hgvs 0 --shift_3prime 1">Right align all variants relative to their associated transcripts prior to consequence calculation (--shift_3prime 1)</option>
                     <option value="--shift_hgvs 0 --shift_genomic 1">Right align all variants, including intergenic variants, before consequence calculation and update the Location field (--shift_genomic 1)</option>
                 </param>
-                <when value="" />
-                <when value="--shift_hgvs 1" />
+                <when value=""/>
+                <when value="--shift_hgvs 1"/>
                 <when value="--shift_hgvs 0 --shift_3prime 1">
                     <param name="shift_length" type="boolean" truevalue="--shift_length" falsevalue="" label="Report the distance each variant has been shifted"/>
                 </when>
-                <when value="--shift_hgvs 0 --shift_genomic 1" />
+                <when value="--shift_hgvs 0 --shift_genomic 1"/>
             </conditional>
             <param name="out_opt_checkboxes" type="select" optional="true" display="checkboxes" multiple="true" label="Output option flags">
                 <option value="--variant_class">Ouput variant class (--variant_class)</option>
@@ -264,15 +264,15 @@
             </param>
         </section>
         <section name="plugins" title="VEP Plugins">
-            <param name="carol" type="boolean" label="Enable Carol plugin" truevalue="--plugin Carol" falsevalue="" help="This plugin calculates the Combined Annotation scoRing toOL (CAROL) score for a missense mutation and adds it to VEP's output. Both the SIFT and PolyPhen-2 scores are required for the calculation, so these two have to be activated in the output options section." />
-            <param name="condel" type="boolean" label="Enable Condel plugin" truevalue="--plugin Condel" falsevalue="" help="This plugin calculates the Consensus Deleteriousness (Condel) score for a missense mutation and adds it to VEP's output. Both the SIFT and PolyPhen-2 scores are required for the calculation, so these two have to be activated in the output options section." />
-            <param name="exacpli_file" type="data" format="txt" optional="true" label="Enable ExACpLI plugin by selecting an ExACpLI_values text file" help="This plugin calculates the probabililty of a gene being loss-of-function intolerant (pLI) and adds it to VEP's output. The closer pLI is to 1, the more likely the gene is loss-of-function (LoF) intolerant. An ExACpLI_values.txt file is required for usage and it is recommended to use the one provided in the VEP_plugins GitHub repository: https://github.com/Ensembl/VEP_plugins" />
-            <param name="loftool_file" type="data" format="txt" optional="true" label="Enable LoFtool plugin by selecting a LoFtool_scores text file" help="This plugin calculates LoFtool scores and adds them to VEP's output. LoFtool provides a rank of genic intolerance and consequent susceptibility to disease based on the ratio of Loss-of-function (LoF) to synonymous mutations for each gene in 60,706 individuals from ExAC, adjusting for the gene de novo mutation rate and evolutionary protein conservation. The lower the LoFtool gene score percentile the most intolerant is the gene to functional variation. A LoFtool_scores.txt file is required for usage and it is recommended to use the one provided in the VEP_plugins GitHub repository: https://github.com/Ensembl/VEP_plugins" />
+            <param name="carol" type="boolean" label="Enable Carol plugin" truevalue="--plugin Carol" falsevalue="" help="This plugin calculates the Combined Annotation scoRing toOL (CAROL) score for a missense mutation and adds it to VEP's output. Both the SIFT and PolyPhen-2 scores are required for the calculation, so these two have to be activated in the output options section."/>
+            <param name="condel" type="boolean" label="Enable Condel plugin" truevalue="--plugin Condel" falsevalue="" help="This plugin calculates the Consensus Deleteriousness (Condel) score for a missense mutation and adds it to VEP's output. Both the SIFT and PolyPhen-2 scores are required for the calculation, so these two have to be activated in the output options section."/>
+            <param name="exacpli_file" type="data" format="txt" optional="true" label="Enable ExACpLI plugin by selecting an ExACpLI_values text file" help="This plugin calculates the probabililty of a gene being loss-of-function intolerant (pLI) and adds it to VEP's output. The closer pLI is to 1, the more likely the gene is loss-of-function (LoF) intolerant. An ExACpLI_values.txt file is required for usage and it is recommended to use the one provided in the VEP_plugins GitHub repository: https://github.com/Ensembl/VEP_plugins"/>
+            <param name="loftool_file" type="data" format="txt" optional="true" label="Enable LoFtool plugin by selecting a LoFtool_scores text file" help="This plugin calculates LoFtool scores and adds them to VEP's output. LoFtool provides a rank of genic intolerance and consequent susceptibility to disease based on the ratio of Loss-of-function (LoF) to synonymous mutations for each gene in 60,706 individuals from ExAC, adjusting for the gene de novo mutation rate and evolutionary protein conservation. The lower the LoFtool gene score percentile the most intolerant is the gene to functional variation. A LoFtool_scores.txt file is required for usage and it is recommended to use the one provided in the VEP_plugins GitHub repository: https://github.com/Ensembl/VEP_plugins"/>
         </section>
     </inputs>
     <outputs>
-        <data name="output1" format="vcf" from_work_dir="MainOutput.vcf" />
-        <data name="output2" format="txt" label="${tool.name} on ${on_string} TXT Summary" from_work_dir="MainOutput.vcf_summary.txt" />
+        <data name="output1" format="vcf" from_work_dir="MainOutput.vcf"/>
+        <data name="output2" format="txt" label="${tool.name} on ${on_string} TXT Summary" from_work_dir="MainOutput.vcf_summary.txt"/>
     </outputs>
     <tests>
         <!-- Note: need to use source: unrestricted in all tests involving a
@@ -284,82 +284,82 @@
         with run time info, which are dropped from the test files.
         => always expect a two lines diff -->
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <output name="output1" file="output_test1.vcf" ftype="vcf" lines_diff="2" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <output name="output1" file="output_test1.vcf" ftype="vcf" lines_diff="2"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="custom" />
-            <param name="input1" dbkey="hg19" value="input_test2.vcf" ftype="vcf" />
-            <param name="custom_annotation" dbkey="hg19" value="test.gtf" ftype="gtf" />
-            <param name="ref_source" value="history" />
-            <param name="ref" dbkey="hg19" value="test.fa" ftype="fasta" />
-            <output name="output1" file="output_test2.vcf" ftype="vcf" lines_diff="2" />
+            <param name="source" value="custom"/>
+            <param name="input1" dbkey="hg19" value="input_test2.vcf" ftype="vcf"/>
+            <param name="custom_annotation" dbkey="hg19" value="test.gtf" ftype="gtf"/>
+            <param name="ref_source" value="history"/>
+            <param name="ref" dbkey="hg19" value="test.fa" ftype="fasta"/>
+            <output name="output1" file="output_test2.vcf" ftype="vcf" lines_diff="2"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <param name="vcf_info_field" value="ANN" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <param name="vcf_info_field" value="ANN"/>
             <output name="output1">
                 <assert_contents>
-                    <has_text text="##INFO=&lt;ID=ANN" />
-                    <has_n_lines n="6" />
+                    <has_text text="##INFO=&lt;ID=ANN"/>
+                    <has_n_lines n="6"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <param name="terms" value="display" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <param name="terms" value="display"/>
             <output name="output1">
                 <assert_contents>
-                    <has_text text="|DOWNSTREAM|" />
-                    <not_has_text text="|downstream_gene_variant|" />
-                    <has_text text="|UPSTREAM|" />
-                    <not_has_text text="|upstream_gene_variant|" />
-                    <has_n_lines n="6" />
+                    <has_text text="|DOWNSTREAM|"/>
+                    <not_has_text text="|downstream_gene_variant|"/>
+                    <has_text text="|UPSTREAM|"/>
+                    <not_has_text text="|upstream_gene_variant|"/>
+                    <has_n_lines n="6"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <param name="out_opt_checkboxes" value="--overlaps,--allele_number" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <param name="out_opt_checkboxes" value="--overlaps,--allele_number"/>
             <output name="output1">
                 <assert_contents>
-                    <has_text text="|OverlapBP|OverlapPC" />
-                    <has_text text="|ALLELE_NUM" />
-                    <has_n_lines n="6" />
+                    <has_text text="|OverlapBP|OverlapPC"/>
+                    <has_text text="|ALLELE_NUM"/>
+                    <has_n_lines n="6"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <param name="ident_checkboxes" value="--uniprot,--biotype" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <param name="ident_checkboxes" value="--uniprot,--biotype"/>
             <output name="output1">
                 <assert_contents>
-                    <has_text text="|SWISSPROT|TREMBL|UNIPARC|UNIPROT_ISOFORM" />
-                    <has_text text="|BIOTYPE" />
-                    <has_n_lines n="6" />
+                    <has_text text="|SWISSPROT|TREMBL|UNIPARC|UNIPROT_ISOFORM"/>
+                    <has_text text="|BIOTYPE"/>
+                    <has_n_lines n="6"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
-            <param name="source" value="unrestricted" />
-            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf" />
-            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32" />
-            <param name="colo_var_checkboxes" value="--max_af,--pubmed" />
+            <param name="source" value="unrestricted"/>
+            <param name="input1" dbkey="dm6" value="input_test1.vcf" ftype="vcf"/>
+            <param name="cache_file" value="drosophila_melanogaster_vep_106_BDGP6.32"/>
+            <param name="colo_var_checkboxes" value="--max_af,--pubmed"/>
             <output name="output1">
                 <assert_contents>
-                    <has_text text="|MAX_AF|MAX_AF_POPS" />
-                    <has_text text="|PUBMED" />
-                    <has_n_lines n="6" />
+                    <has_text text="|MAX_AF|MAX_AF_POPS"/>
+                    <has_text text="|PUBMED"/>
+                    <has_n_lines n="6"/>
                 </assert_contents>
             </output>
         </test>

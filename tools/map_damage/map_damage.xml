@@ -95,12 +95,9 @@
             #end if
             
     ]]></command>
-
     <inputs>
-
         <!--INPUT FILES-->
         <param name="sbam_file" argument="--input" type="data" format="sam,bam" label="SAM / BAM input file of aligned reads to be analyzed." help="Must contain a valid header."/>
-
         <conditional name="reference">
             <param name="ref_source" type="select" label="Use a built-in FASTA reference or retrieve one from your history?">
                 <option value="builtin" selected="true">Built-in reference FASTA file</option>
@@ -108,17 +105,15 @@
             </param>
             <when value="builtin">
                 <param name="builtin_reference" type="select" label="FASTA genome to use as a reference in order to assess DNA damage" help="Contact your Galaxy team in order to add a reference">
-                    <options from_data_table="all_fasta"></options>
-                        <validator type="no_options" message="No FASTA references are available, please contact your Galaxy administrators."/>
+                    <options from_data_table="all_fasta"/>
+                    <validator type="no_options" message="No FASTA references are available, please contact your Galaxy administrators."/>
                 </param>
             </when>
             <when value="history">
                 <param name="history_reference" type="data" format="fasta" label="FASTA genome to use as a reference in order to use DNA damage"/>
             </when>
         </conditional>
-
         <!--GENERAL OPTIONS-->
-
         <param argument="--merge-reference-sequences" type="boolean" truevalue="--merge-reference-sequences" falsevalue="" label="Merge reference sequences in result files?" help="Useful for memory usage."/>
         <param argument="--min-basequal" type="integer" min="0" max="93" value="0" label="Minimum PHRED score for base to be considered" help="(assumes PHRED+33 score)"/>
         <param argument="--fasta" type="boolean" checked="false" truevalue="--fasta" falsevalue="" label="Output alignments in FASTA format?"/>
@@ -132,7 +127,7 @@
                 <when value="no_downsampling"/>
                 <when value="p">
                     <param argument="--downsample" type="float" min="0" max="1" value="0.8" label="Percentage of reads to sample" help="Must be between 0 and 1 (0 and 1 not included)">
-                        <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Percentage of reads to downsample must be > 0 and &lt; 1"/>
+                        <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Percentage of reads to downsample must be &gt; 0 and &lt; 1"/>
                     </param>
                     <param argument="--downsample-seed" type="integer" optional="true" label="Downsampling seed" help="Seed (integer) used to randomly select reads for downsampling. Useful for reproducibility."/>
                 </when>
@@ -146,15 +141,13 @@
             <param argument="--length" type="integer" min="1" value="70" label="Number of nucleotides to process, starting from 5p and 3p end of read" help="(Bases which are located further than this from one of the two read ends will not be analyzed)"/>
             <param argument="--around" type="integer" min="0" value="10" label="Number of nucleotides to retrieve before and after read" help="(This is used in order to look at purine enrichment before strand breaks)"/>
         </section>
-
         <!--GRAPHICS OPTIONS-->
-
         <section name="graphics" title="Graphics Options">
             <param argument="--ymax" type="float" min="0" max="1" value="0.3" label="Graphical y-axis limit for nucleotide misincorporation frequency" help="(Bottom plot in the Fragmisincorporation_plot.pdf file)">
-                <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="false" message="--ymax must be > 0 and &lt;= 1"/>
+                <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="false" message="--ymax must be &gt; 0 and &lt;= 1"/>
             </param>
             <param argument="--readplot" type="integer" min="0" value="25" label="Number of bases to plot from 5p and 3p ends (x-axis)" help="(Bottom plot in the Fragmisincorporation_plot.pdf file) // Must be inferior or equal to --length !">
-                <validator type="in_range" min="0" exclude_min="true" message="--readplot must be > 0"/>
+                <validator type="in_range" min="0" exclude_min="true" message="--readplot must be &gt; 0"/>
             </param>
             <param argument="--refplot" type="integer" min="0" value="10" label="Number of upstream and downstream nucleotides to plot for the composition plots" help="(Top four plots in the Fragmisincorporation_plot.pdf file) // Must be inferior or equal to --around !"/>
             <param argument="--title" type="text" optional="true" label="Plot title" help="Title to give to the plots in the pdf files"/>
@@ -163,9 +156,7 @@
                 <option value="--theme-bw">bw (--theme-bw)</option>
             </param>
         </section>
-
         <!--STATISTICS OPTIONS-->
-
         <section name="statistics" title="Statistical Estimation Options">
             <conditional name="stats">
                 <param argument="--no-stats" type="select" label="Enable statistical estimations?">
@@ -205,9 +196,7 @@
                 <when value="--no-stats"/>
             </conditional>
         </section>
-
         <!--RESCALING OPTIONS-->
-
         <section name="rescale" title="Rescaling options">
             <conditional name="rescaling">
                 <param argument="--rescale" type="select" label="Perform rescaling of base quality according to DNA damage level?" help="This is helpful for downstream analyses, as damaged bases create less noise.">
@@ -221,15 +210,11 @@
                 <when value=""/>
             </conditional>
         </section>
-
     </inputs>
-
     <outputs>
         <!--RUNTIME LOG FILE-->
         <data name="runtime_log" format="txt" from_work_dir="mapDamage_results/Runtime_log.txt" label="${tool.name} on ${on_string}: Runtime_log.txt"/>
-
         <!--RESULT FILES THAT DESCRIBE DNA DAMAGE OBSERVED ON READS-->
-
         <collection name="damage_visualisation" type="list" label="${tool.name} on ${on_string}: Data description files and plots">
             <data name="dnacomp" format="txt" from_work_dir="mapDamage_results/dnacomp.txt" label="${tool.name} on ${on_string}: dnacomp.txt"/>
             <data name="misincorporation" format="txt" from_work_dir="mapDamage_results/misincorporation.txt" label="${tool.name} on ${on_string}: misincorporation.txt"/>
@@ -239,9 +224,7 @@
             <data name="lgdistribution" format="txt" from_work_dir="mapDamage_results/lgdistribution.txt" label="${tool.name} on ${on_string}: lgdistribution.txt"/>
             <data name="Length_plot" format="pdf" from_work_dir="mapDamage_results/Length_plot.pdf" label="${tool.name} on ${on_string}: Length_plot.pdf"/>
         </collection>
-
         <!--RESULT FILES THAT DESCRIBE STATISTICAL ESTIMATIONS OF DAMAGE PARAMETERS-->
-
         <collection name="statistical_estimation" type="list" label="${tool.name} on ${on_string}: Statistical estimation files and plots">
             <data name="dnacomp_genome" format="csv" from_work_dir="mapDamage_results/dnacomp_genome.csv" label="${tool.name} on ${on_string}: dnacomp_genome.csv"/>
             <data name="Stats_out_MCMC_iter_summ_stat" format="csv" from_work_dir="mapDamage_results/Stats_out_MCMC_iter_summ_stat.csv" label="${tool.name} on ${on_string}: Stats_out_MCMC_iter_summ_stat.csv"/>
@@ -252,9 +235,7 @@
             <data name="Stats_out_MCMC_post_pred" format="pdf" from_work_dir="mapDamage_results/Stats_out_MCMC_post_pred.pdf" label="${tool.name} on ${on_string}: Stats_out_MCMC_post_pred.pdf"/>
             <filter>statistics['stats']['no_stats'] == ''</filter>
         </collection>
-
         <!--OPTIONAL ALIGNMENT OUTPUT FILES-->
-
         <data name="rescaled_bam" format="bam" from_work_dir="mapDamage_results/alignment.rescaled.bam" label="${tool.name} on ${on_string}: Rescaled .bam file">
             <filter>rescale['rescaling']['rescale'] == '--rescale'</filter>
         </data>
@@ -262,12 +243,10 @@
             <filter>fasta</filter>
         </data>
     </outputs>
-
     <tests>
-
         <!--GENERAL TESTS-->
         <!--NB: only data_visualisation files are tested, as the statistical estimation process is stochastic and files will always be different-->
-            <!--SAM input-->
+        <!--SAM input-->
         <test expect_num_outputs="17" expect_exit_code="0">
             <param name="sbam_file" value="test_align.sam" ftype="sam"/>
             <conditional name="reference">
@@ -279,7 +258,6 @@
                 <element name="lgdistribution" file="reference_lgdistribution.txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
-
         <!--BAM input-->
         <test expect_num_outputs="17" expect_exit_code="0">
             <param name="sbam_file" value="test_align.bam" ftype="bam"/>
@@ -292,7 +270,6 @@
                 <element name="lgdistribution" file="reference_lgdistribution.txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
-
         <!--TEST TO VERIFY BUILT-IN REFERENCE GENOMES WORK AS INTENDED-->
         <test expect_num_outputs="9" expect_exit_code="0">
             <param name="sbam_file" value="test_align.bam" ftype="bam"/>
@@ -310,7 +287,6 @@
                 <element name="lgdistribution" file="reference_lgdistribution.txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
-
         <!--TEST TO VERIFY no_stats OPTION WORKS AS INTENDED-->
         <test expect_num_outputs="9" expect_exit_code="0">
             <param name="sbam_file" value="test_align.sam" ftype="sam"/>
@@ -328,7 +304,6 @@
                 <element name="lgdistribution" file="reference_lgdistribution.txt" compare="diff" lines_diff="2"/>
             </output_collection>
         </test>
-
         <!--TEST TO VERIFY fasta OPTION WORKS AS INTENDED-->
         <test expect_num_outputs="10" expect_exit_code="0">
             <param name="sbam_file" value="test_align.sam" ftype="sam"/>
@@ -348,10 +323,9 @@
             </output_collection>
             <output name="fasta_alignment" file="alignment.fa" compare="diff" count="1"/>
         </test>
-
         <!--TEST TO VERIFY rescale OPTION WORKS AS INTENDED-->
         <!--BAM file is not compared, as it depends on the stochastic statistical estimations, and may therefore differ (though perhaps not with this dataset)-->
-        <test expect_num_outputs="18" expect_exit_code="0">    
+        <test expect_num_outputs="18" expect_exit_code="0">
             <param name="sbam_file" value="test_align.sam" ftype="sam"/>
             <conditional name="reference">
                 <param name="ref_source" value="history"/>
@@ -368,7 +342,6 @@
             </output_collection>
         </test>
     </tests>
-
     <help><![CDATA[
     **Overview**:
 
@@ -505,10 +478,8 @@ Some options may lack a detailed explanation (statistics related options in part
 
 	If the fit looks correct, the rescaled BAM file can be confidently used, and the values of the damage parameters described in the *Stats_out_MCMC_iter_summ_stat.csv* may be used for comparison across samples.
     ]]></help>
-
     <citations>
         <citation type="doi">10.1093/bioinformatics/btt193</citation>
         <citation type="doi">10.1093/bioinformatics/btr347</citation>
     </citations>
-
 </tool>

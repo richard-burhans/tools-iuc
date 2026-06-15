@@ -1,5 +1,5 @@
 <tool id="vsnp_add_zero_coverage" name="vSNP: add zero coverage" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -50,8 +50,8 @@ python '$__tool_directory__/vsnp_add_zero_coverage.py'
         </conditional>
     </inputs>
     <outputs>
-        <data name="output_vcf" format="vcf"  label="${tool.name} on ${on_string} (filtered VCF)"/>
-        <data name="output_metrics" format="tabular"  label="${tool.name} on ${on_string} (metrics)"/>
+        <data name="output_vcf" format="vcf" label="${tool.name} on ${on_string} (filtered VCF)"/>
+        <data name="output_metrics" format="tabular" label="${tool.name} on ${on_string} (metrics)"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -90,7 +90,7 @@ python '$__tool_directory__/vsnp_add_zero_coverage.py'
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts a combination of single BAM and associated VCF files (or associated collections of each) to produce a VCF file for each
@@ -103,7 +103,6 @@ total zero coverage, zero coverage percent and quality SNPs.
 **Required Options**
 
  * **Choose the source for the reference genome** - select "locally cached" if the reference associated with the BAM and VCF files is available within the Galaxy environment or "from history" to select the reference from the current history.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

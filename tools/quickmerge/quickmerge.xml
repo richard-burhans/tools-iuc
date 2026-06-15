@@ -1,26 +1,17 @@
-<tool
-  id="quickmerge"
-  name="QuickMerge"
-  version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@"
-  profile="21.05"
->
-  <description>merge long-read and hybrid genome assemblies to increase contiguity</description>
-
-  <macros>
-    <token name="@TOOL_VERSION@">0.3</token>
-    <token name="@VERSION_SUFFIX@">0</token>
-  </macros>
-
-  <xrefs>
-    <xref type="bio.tools">quickmerge</xref>
-  </xrefs>
-
-  <requirements>
-    <requirement type="package" version="@TOOL_VERSION@">quickmerge</requirement>
-    <requirement type="package" version="0.1.4">fastkit</requirement>
-  </requirements>
-
-  <command detect_errors="exit_code"><![CDATA[
+<tool id="quickmerge" name="QuickMerge" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="21.05">
+    <description>merge long-read and hybrid genome assemblies to increase contiguity</description>
+    <macros>
+        <token name="@TOOL_VERSION@">0.3</token>
+        <token name="@VERSION_SUFFIX@">0</token>
+    </macros>
+    <xrefs>
+        <xref type="bio.tools">quickmerge</xref>
+    </xrefs>
+    <requirements>
+        <requirement type="package" version="@TOOL_VERSION@">quickmerge</requirement>
+        <requirement type="package" version="0.1.4">fastkit</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
 
 ## Strip spaces from FASTA header
 fastkit format --strip-header-space '$input_ref' > input.ref.fasta
@@ -61,221 +52,86 @@ out.delta > out.rq.delta
   -ml $advanced.ml
 
   ]]></command>
-
-  <inputs>
-    <param
-      name="input_query"
-      type="data"
-      format="fasta,fasta.gz"
-      label="Query (hybrid) assembly"
-      help="A hydrid or long-read assembly."
-    />
-    <param
-      name="input_ref"
-      type="data"
-      format="fasta,fasta.gz"
-      label="Reference assembly"
-      help="The self assembly - this can also be a long-read assembly."
-    />
-
-    <section name="advanced" title="Advanced parameters" expanded="false">
-      <param
-        name="nucmer_match_protocol"
-        type="select"
-        display="radio"
-        label="Anchor matching protocol"
-        help="By default, nucmer will include anchor matches that are unique
-          in the reference but not necessarily unique in the query. You can
-          change the protocol to include all matches, or only those unique to
-          both the reference and query sequence."
-      >
-        <option value="" selected="true">
+    <inputs>
+        <param name="input_query" type="data" format="fasta,fasta.gz" label="Query (hybrid) assembly" help="A hydrid or long-read assembly."/>
+        <param name="input_ref" type="data" format="fasta,fasta.gz" label="Reference assembly" help="The self assembly - this can also be a long-read assembly."/>
+        <section name="advanced" title="Advanced parameters" expanded="false">
+            <param name="nucmer_match_protocol" type="select" display="radio" label="Anchor matching protocol" help="By default, nucmer will include anchor matches that are unique           in the reference but not necessarily unique in the query. You can           change the protocol to include all matches, or only those unique to           both the reference and query sequence.">
+                <option value="" selected="true">
           Default (unique in reference only)
         </option>
-        <option value="--mum">
+                <option value="--mum">
           Include matches that are unique to both reference and query
         </option>
-        <option value="--maxmatch">
+                <option value="--maxmatch">
           Include all matches
         </option>
-      </param>
-
-      <param
-        name="nucmer_min_len"
-        type="integer"
-        label="Nucmer -l"
-        help="Minimum length for a single match (nt)"
-        value="20"
-        min="0"
-      />
-
-      <param
-        name="delta_min_len"
-        type="integer"
-        label="Delta-filter -l"
-        help="Minimum alignment length (nt)"
-        value="0"
-        min="0"
-      />
-
-      <param
-        name="delta_map_ref"
-        type="boolean"
-        truevalue="-r"
-        falsevalue=""
-        checked="true"
-        label="Delta-filter -r"
-        help="Maps each position of each reference to its best hit in the
-          query, allowing for query overlaps."
-      />
-
-      <param
-        name="delta_map_query"
-        type="boolean"
-        truevalue="-q"
-        falsevalue=""
-        checked="true"
-        label="Delta-filter -q"
-        help="Maps each position of each query to its best hit in the
-          reference, allowing for reference overlaps."
-      />
-
-      <param
-        type="integer"
-        argument="-l"
-        help="Minimum seed contig length to be merged (nt). A good rule of
-          thumb is to start with the N50 of the self assembly."
-        value="0"
-        min="0"
-      />
-
-      <param
-        type="integer"
-        argument="-ml"
-        help="Set the merging length cutoff (nt). This is especially helpful
-          for repeat-rich genomes, where a higher minimum length can reduce
-          errors arising from long repeats."
-        value="5000"
-        min="0"
-      />
-
-      <param
-        type="float"
-        argument="-hco"
-        help="Controls the overlap cutoff used in selection of anchor contigs.
-          Increasing this will raise stringency, resulting in fewer joins but
-          higher confidence."
-        value="5.0"
-        min="0.0"
-      />
-
-      <param
-        type="float"
-        argument="-c"
-        help="Controls the overlap cutoff for contigs used for extension of
-          the anchor contig. Increasing this will raise stringency,
-          resulting in fewer joins but higher confidence."
-        value="1.5"
-        min="0.0"
-      />
-    </section>
-
-    <section name="output" title="Optional outputs" expanded="true">
-      <param
-        name="check_align_summary"
-        type="boolean"
-        label="Alignment summary table"
-      />
-      <param
-        name="check_anchor_summary"
-        type="boolean"
-        label="Anchor summary table"
-      />
-      <param
-        name="check_param_summary"
-        type="boolean"
-        label="Parameter summary table"
-      />
-    </section>
-  </inputs>
-
-  <outputs>
-    <data
-      name="merged_fasta"
-      format="fasta"
-      from_work_dir="merged_out.fasta"
-      label="${tool.name} on ${on_string}: Merged assembly"
-    />
-
-    <data
-      name="align_summary"
-      format="tabular"
-      from_work_dir="aln_summary_out.tsv"
-      label="${tool.name} on ${on_string}: Alignment summary"
-    >
-      <filter>output['check_align_summary']</filter>
-    </data>
-
-    <data
-      name="anchor_summary"
-      format="tabular"
-      from_work_dir="anchor_summary_out.txt"
-      label="${tool.name} on ${on_string}: Anchor summary"
-    >
-      <filter>output['check_anchor_summary']</filter>
-    </data>
-
-    <data
-      name="param_summary"
-      format="tabular"
-      from_work_dir="param_summary_out.txt"
-      label="${tool.name} on ${on_string}: Parameter summary"
-    >
-      <filter>output['check_param_summary']</filter>
-    </data>
-  </outputs>
-
-  <tests>
-    <!-- Standard run -->
-    <test expect_num_outputs="1">
-      <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta" />
-      <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta" />
-      <output name="merged_fasta" ftype="fasta" file="merged.fasta" />
-    </test>
-
-    <!-- Standard run with additional outputs -->
-    <test expect_num_outputs="4">
-      <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta" />
-      <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta" />
-      <param name="check_align_summary" value="true" />
-      <param name="check_anchor_summary" value="true" />
-      <param name="check_param_summary" value="true" />
-      <output name="merged_fasta" ftype="fasta" file="merged.fasta" />
-      <output name="align_summary" ftype="tabular" file="2_aln_summary_out.tsv" />
-      <output name="anchor_summary" ftype="tabular" file="2_anchor_summary_out.txt" />
-      <output name="param_summary" ftype="tabular" file="2_param_summary_out.txt" />
-    </test>
-
-    <!-- Standard run with advanced params set -->
-    <test expect_num_outputs="1">
-      <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta" />
-      <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta" />
-      <section name="advanced">
-        <param name="nucmer_min_len" value="21" />
-        <param name="delta_min_len" value="1" />
-        <param name="hco" value="0" />
-        <param name="l" value="150" />
-        <param name="ml" value="4999" />
-        <param name="c" value="1.6" />
-      </section>
-      <output name="merged_fasta" ftype="fasta" file="merged.fasta" />
-      <assert_command>
-        <has_text text="-hco 0"/>
-      </assert_command>
-    </test>
-  </tests>
-
-  <help><![CDATA[
+            </param>
+            <param name="nucmer_min_len" type="integer" label="Nucmer -l" help="Minimum length for a single match (nt)" value="20" min="0"/>
+            <param name="delta_min_len" type="integer" label="Delta-filter -l" help="Minimum alignment length (nt)" value="0" min="0"/>
+            <param name="delta_map_ref" type="boolean" truevalue="-r" falsevalue="" checked="true" label="Delta-filter -r" help="Maps each position of each reference to its best hit in the           query, allowing for query overlaps."/>
+            <param name="delta_map_query" type="boolean" truevalue="-q" falsevalue="" checked="true" label="Delta-filter -q" help="Maps each position of each query to its best hit in the           reference, allowing for reference overlaps."/>
+            <param type="integer" argument="-l" help="Minimum seed contig length to be merged (nt). A good rule of           thumb is to start with the N50 of the self assembly." value="0" min="0"/>
+            <param type="integer" argument="-ml" help="Set the merging length cutoff (nt). This is especially helpful           for repeat-rich genomes, where a higher minimum length can reduce           errors arising from long repeats." value="5000" min="0"/>
+            <param type="float" argument="-hco" help="Controls the overlap cutoff used in selection of anchor contigs.           Increasing this will raise stringency, resulting in fewer joins but           higher confidence." value="5.0" min="0.0"/>
+            <param type="float" argument="-c" help="Controls the overlap cutoff for contigs used for extension of           the anchor contig. Increasing this will raise stringency,           resulting in fewer joins but higher confidence." value="1.5" min="0.0"/>
+        </section>
+        <section name="output" title="Optional outputs" expanded="true">
+            <param name="check_align_summary" type="boolean" label="Alignment summary table"/>
+            <param name="check_anchor_summary" type="boolean" label="Anchor summary table"/>
+            <param name="check_param_summary" type="boolean" label="Parameter summary table"/>
+        </section>
+    </inputs>
+    <outputs>
+        <data name="merged_fasta" format="fasta" from_work_dir="merged_out.fasta" label="${tool.name} on ${on_string}: Merged assembly"/>
+        <data name="align_summary" format="tabular" from_work_dir="aln_summary_out.tsv" label="${tool.name} on ${on_string}: Alignment summary">
+            <filter>output['check_align_summary']</filter>
+        </data>
+        <data name="anchor_summary" format="tabular" from_work_dir="anchor_summary_out.txt" label="${tool.name} on ${on_string}: Anchor summary">
+            <filter>output['check_anchor_summary']</filter>
+        </data>
+        <data name="param_summary" format="tabular" from_work_dir="param_summary_out.txt" label="${tool.name} on ${on_string}: Parameter summary">
+            <filter>output['check_param_summary']</filter>
+        </data>
+    </outputs>
+    <tests>
+        <!-- Standard run -->
+        <test expect_num_outputs="1">
+            <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta"/>
+            <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta"/>
+            <output name="merged_fasta" ftype="fasta" file="merged.fasta"/>
+        </test>
+        <!-- Standard run with additional outputs -->
+        <test expect_num_outputs="4">
+            <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta"/>
+            <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta"/>
+            <param name="check_align_summary" value="true"/>
+            <param name="check_anchor_summary" value="true"/>
+            <param name="check_param_summary" value="true"/>
+            <output name="merged_fasta" ftype="fasta" file="merged.fasta"/>
+            <output name="align_summary" ftype="tabular" file="2_aln_summary_out.tsv"/>
+            <output name="anchor_summary" ftype="tabular" file="2_anchor_summary_out.txt"/>
+            <output name="param_summary" ftype="tabular" file="2_param_summary_out.txt"/>
+        </test>
+        <!-- Standard run with advanced params set -->
+        <test expect_num_outputs="1">
+            <param name="input_query" value="ecoli_nanopore.fasta" ftype="fasta"/>
+            <param name="input_ref" value="ecoli_illumina.fasta" ftype="fasta"/>
+            <section name="advanced">
+                <param name="nucmer_min_len" value="21"/>
+                <param name="delta_min_len" value="1"/>
+                <param name="hco" value="0"/>
+                <param name="l" value="150"/>
+                <param name="ml" value="4999"/>
+                <param name="c" value="1.6"/>
+            </section>
+            <output name="merged_fasta" ftype="fasta" file="merged.fasta"/>
+            <assert_command>
+                <has_text text="-hco 0"/>
+            </assert_command>
+        </test>
+    </tests>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -350,7 +206,7 @@ For both ``hco`` and ``c``, bigger the number, more stringent is the criteria fo
 Quickmerge was wrapped by the Galaxy Australia team.
 
   ]]></help>
-  <citations>
-    <citation type="doi">https://doi.org/10.1093/nar/gkw654</citation>
-  </citations>
+    <citations>
+        <citation type="doi">https://doi.org/10.1093/nar/gkw654</citation>
+    </citations>
 </tool>

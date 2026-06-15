@@ -1,5 +1,4 @@
-<tool id="freyja_boot" name="Freyja: Bootstrapping" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@"
-      profile="@PROFILE@">
+<tool id="freyja_boot" name="Freyja: Bootstrapping" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>
         method
     </description>
@@ -27,24 +26,15 @@ freyja boot
         <param name="variants_file" type="data" format="tabular" label="Variants file"/>
         <expand macro="demixing_common_options"/>
         <param argument="--nb" type="integer" optional="true" label="Number of bootstraps"/>
-        <param name="boxplot_pdf" argument="--boxplot pdf" type="boolean" truevalue="--boxplot pdf"
-               falsevalue=""
-               checked="false" label="Generate boxplot"/>
+        <param name="boxplot_pdf" argument="--boxplot pdf" type="boolean" truevalue="--boxplot pdf" falsevalue="" checked="false" label="Generate boxplot"/>
     </inputs>
     <outputs>
-        <data name="boot_lineages" format="csv" label="${tool.name} on ${on_string}: Lineages"
-              from_work_dir="boot_output_lineages.csv"/>
-        <data name="boot_summarized" format="csv" label="${tool.name} on ${on_string}: Summarized"
-              from_work_dir="boot_output_summarized.csv">
-        </data>
-        <data name="boot_lineages_plot" format="pdf"
-              label="${tool.name} on ${on_string}: Lineages boxplot"
-              from_work_dir="boot_output_lineages.pdf">
+        <data name="boot_lineages" format="csv" label="${tool.name} on ${on_string}: Lineages" from_work_dir="boot_output_lineages.csv"/>
+        <data name="boot_summarized" format="csv" label="${tool.name} on ${on_string}: Summarized" from_work_dir="boot_output_summarized.csv"/>
+        <data name="boot_lineages_plot" format="pdf" label="${tool.name} on ${on_string}: Lineages boxplot" from_work_dir="boot_output_lineages.pdf">
             <filter>boxplot_pdf</filter>
         </data>
-        <data name="boot_summarized_plot" format="pdf"
-              label="${tool.name} on ${on_string}: Summarized boxplot"
-              from_work_dir="boot_output_summarized.pdf">
+        <data name="boot_summarized_plot" format="pdf" label="${tool.name} on ${on_string}: Summarized boxplot" from_work_dir="boot_output_summarized.pdf">
             <filter>boxplot_pdf</filter>
         </data>
     </outputs>
@@ -80,7 +70,6 @@ freyja boot
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 02: test VCF input file -->
         <test expect_num_outputs="2">
             <conditional name="usher_update_option">
@@ -102,7 +91,6 @@ freyja boot
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 03: Test Custom Usher Barcode file -->
         <test expect_num_outputs="4">
             <conditional name="usher_update_option">
@@ -135,7 +123,7 @@ freyja boot
                 </assert_contents>
             </output>
         </test>
-</tests>
+    </tests>
     <help><![CDATA[
 @HELP_HEADER@
 

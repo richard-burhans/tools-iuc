@@ -12,8 +12,7 @@
     <command detect_errors="exit_code"><![CDATA[
         abricate --list > '$report'
     ]]></command>
-    <inputs>
-    </inputs>
+    <inputs/>
     <outputs>
         <data name="report" format="txt" label="${tool.name} - list of databases"/>
     </outputs>

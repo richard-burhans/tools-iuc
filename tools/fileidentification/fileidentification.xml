@@ -1,6 +1,8 @@
 <tool id="fileidentification" name="File Format Identification" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="24.1">
     <description>Check multimedia files if they are corrupt or duplicated</description>
-    <macros><import>macros.xml</import></macros>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 unzip '$input' -d input_dir &&

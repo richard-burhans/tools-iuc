@@ -94,8 +94,8 @@
                 <option value="single">Single</option>
             </param>
             <when value="paired">
-                <param name="left_input" argument="--left" type="data" format="fasta,fastqsanger,fastqsanger.gz" label="Left/Forward strand reads" />
-                <param name="right_input" argument="--right" type="data" format="fasta,fastqsanger,fastqsanger.gz" label="Right/Reverse strand reads" />
+                <param name="left_input" argument="--left" type="data" format="fasta,fastqsanger,fastqsanger.gz" label="Left/Forward strand reads"/>
+                <param name="right_input" argument="--right" type="data" format="fasta,fastqsanger,fastqsanger.gz" label="Right/Reverse strand reads"/>
                 <conditional name="strand">
                     <param name="is_strand_specific" type="select" label="Strand specific data">
                         <option value="false">No</option>
@@ -128,7 +128,6 @@
                 </conditional>
             </when>
         </conditional>
-
         <conditional name="method">
             <param type="select" argument="--est_method" label="Abundance estimation method">
                 <option value="RSEM">RSEM</option>
@@ -144,16 +143,15 @@
             <when value="salmon"/>
             <when value="kallisto"/>
         </conditional>
-
         <section name="additional_params" title="Additional Options" expanded="False">
             <conditional name="gene_map">
                 <param name="has_gene_map" type="select" label="Trinity assembly?" help="If the transcripts were not assembled by trinity, additional information is needed">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </param>
-                <when value="yes" />
+                <when value="yes"/>
                 <when value="no">
-                    <param argument="--gene_trans_map" type="data" format="tabular" label="Gene to transcript correspondence ('gene(tab)transcript' lines)" />
+                    <param argument="--gene_trans_map" type="data" format="tabular" label="Gene to transcript correspondence ('gene(tab)transcript' lines)"/>
                 </when>
             </conditional>
         </section>
@@ -171,7 +169,6 @@
         <data format="tabular" name="genes_counts_salmon" label="${tool.name} on ${on_string}: genes counts (Salmon)" from_work_dir="output/quant.sf.genes">
             <filter>method['est_method'] == "salmon"</filter>
         </data>
-
         <data format="tabular" name="isoforms_counts_kallisto" label="${tool.name} on ${on_string}: isoforms counts (Kallisto)" from_work_dir="output/abundance.tsv">
             <filter>method['est_method'] == "kallisto"</filter>
         </data>
@@ -189,17 +186,17 @@
             <param name="est_method" value="RSEM"/>
             <param name="aln_method" value="bowtie"/>
             <param name="has_gene_map" value="yes"/>
-            <param name="gene_trans_map" value="raw/Trinity.map" />
+            <param name="gene_trans_map" value="raw/Trinity.map"/>
             <output name="isoforms_counts_rsem">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN0_c0_g1_i1&#009;.*" />
-                    <has_n_columns n="8" />
+                    <has_line_matching expression="TRINITY_DN0_c0_g1_i1&#9;.*"/>
+                    <has_n_columns n="8"/>
                 </assert_contents>
             </output>
             <output name="genes_counts_rsem">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN0_c0_g1&#009;.*" />
-                    <has_n_columns n="7" />
+                    <has_line_matching expression="TRINITY_DN0_c0_g1&#9;.*"/>
+                    <has_n_columns n="7"/>
                 </assert_contents>
             </output>
         </test>
@@ -212,17 +209,17 @@
             <param name="est_method" value="RSEM"/>
             <param name="aln_method" value="bowtie2"/>
             <param name="has_gene_map" value="yes"/>
-            <param name="gene_trans_map" value="raw/Trinity.map" />
+            <param name="gene_trans_map" value="raw/Trinity.map"/>
             <output name="isoforms_counts_rsem">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN0_c0_g1_i1&#009;.*" />
-                    <has_n_columns n="8" />
+                    <has_line_matching expression="TRINITY_DN0_c0_g1_i1&#9;.*"/>
+                    <has_n_columns n="8"/>
                 </assert_contents>
             </output>
             <output name="genes_counts_rsem">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN0_c0_g1&#009;.*" />
-                    <has_n_columns n="7" />
+                    <has_line_matching expression="TRINITY_DN0_c0_g1&#9;.*"/>
+                    <has_n_columns n="7"/>
                 </assert_contents>
             </output>
         </test>
@@ -235,17 +232,17 @@
             <param name="est_method" value="salmon"/>
             <param name="aln_method" value="bowtie"/>
             <param name="has_gene_map" value="yes"/>
-            <param name="gene_trans_map" value="raw/Trinity.map" />
+            <param name="gene_trans_map" value="raw/Trinity.map"/>
             <output name="isoforms_counts_salmon">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN2_c3_g1_i1&#009;.*" />
-                    <has_n_columns n="5" />
+                    <has_line_matching expression="TRINITY_DN2_c3_g1_i1&#9;.*"/>
+                    <has_n_columns n="5"/>
                 </assert_contents>
             </output>
             <output name="genes_counts_salmon">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1.*" />
-                    <has_n_columns n="5" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1.*"/>
+                    <has_n_columns n="5"/>
                 </assert_contents>
             </output>
         </test>
@@ -257,17 +254,17 @@
             <param name="library_type" value="RF"/>
             <param name="est_method" value="kallisto"/>
             <param name="has_gene_map" value="yes"/>
-            <param name="gene_trans_map" value="raw/Trinity.map" />
+            <param name="gene_trans_map" value="raw/Trinity.map"/>
             <output name="isoforms_counts_kallisto">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN1_c0_g1_i1&#009;.*" />
-                    <has_n_columns n="5" />
+                    <has_line_matching expression="TRINITY_DN1_c0_g1_i1&#9;.*"/>
+                    <has_n_columns n="5"/>
                 </assert_contents>
             </output>
             <output name="genes_counts_kallisto">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN1_c0_g1&#009;.*" />
-                    <has_n_columns n="5" />
+                    <has_line_matching expression="TRINITY_DN1_c0_g1&#9;.*"/>
+                    <has_n_columns n="5"/>
                 </assert_contents>
             </output>
         </test>
@@ -300,6 +297,5 @@ This tool will produce 2 tabular files, with counts for isoforms and genes respe
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 ]]>
     </help>
-
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

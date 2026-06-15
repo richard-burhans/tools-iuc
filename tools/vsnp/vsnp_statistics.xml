@@ -1,5 +1,5 @@
 <tool id="vsnp_statistics" name="vSNP: statistics" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -120,14 +120,13 @@ python '$__tool_directory__/vsnp_statistics.py'
             <output name="output" file="statistics_output3.tabular" ftype="tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts fastq samples and SeqKit stats and fx2tab files produced from the samples and extracts information from them to produce a tabular
 file containing statistics for each sample.  The samples can be a single read, a single set of paired reads in separate datasets or a
 collection of paired reas.  The output statistics include file size, read count, sum / avg / max read length, Q1, Q2, Q3, sum gap, N50,
 reads passing Q20 / Q30, and average read quality.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

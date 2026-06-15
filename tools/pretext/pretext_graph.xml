@@ -1,4 +1,4 @@
-<tool id="pretext_graph" name="Pretextgraph"  version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+<tool id="pretext_graph" name="Pretextgraph" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Embed bedgraph formatted data inside a Pretext contact map.</description>
     <macros>
         <token name="@TOOL_VERSION@">0.0.9</token>
@@ -39,13 +39,13 @@
             <param name="name" value="testing"/>
             <output name="graph_out" file="output_4.pretext"/>
         </test>
-            <!-- BEDGRAPH TEST -->
-            <test expect_num_outputs="1">
-                <param name="input" value="input_graph.bgr" ftype="bedgraph"/>
-                <param name="pretext" value="input_graph.pretext" ftype="pretext"/>
-                <param name="name" value="testing_2"/>
-                <output name="graph_out" file="output_5.pretext"/>
-            </test>
+        <!-- BEDGRAPH TEST -->
+        <test expect_num_outputs="1">
+            <param name="input" value="input_graph.bgr" ftype="bedgraph"/>
+            <param name="pretext" value="input_graph.pretext" ftype="pretext"/>
+            <param name="name" value="testing_2"/>
+            <output name="graph_out" file="output_5.pretext"/>
+        </test>
     </tests>
     <help><![CDATA[
         Adds additional data onto existing pretextmap files.
@@ -53,12 +53,12 @@
         Sequence names in the Pretext file must match sequence names in the bedgraph data; although relative sort order is unimportant.
         The chosen name acts as a lable on the graph.
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{Harry_et_al,
                 Author={Harry, E},
                 title={Paired REad TEXTure Graph: Embeds bedgraph data into Pretext contact maps.},
                 url = {https://github.com/wtsi-hpag/PretextGraph},}
             </citation>
-        </citations>
+    </citations>
 </tool>

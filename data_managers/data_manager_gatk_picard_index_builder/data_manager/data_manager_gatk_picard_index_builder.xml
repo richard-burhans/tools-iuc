@@ -5,28 +5,27 @@
         <requirement type="package" version="1.56.0">picard</requirement>
         <requirement type="package" version="3.8.3">python</requirement>
     </requirements>
-    <command detect_errors="exit_code">
+    <command detect_errors="exit_code"><![CDATA[
         python '$__tool_directory__/data_manager_gatk_picard_index_builder.py' '${out_file}'
             --jar "\$JAVA_JAR_PATH/CreateSequenceDictionary.jar"
             --fasta_filename '${all_fasta_source.fields.path}'
             --fasta_dbkey '${all_fasta_source.fields.dbkey}'
             --fasta_description '${all_fasta_source.fields.name}'
             --data_table_name gatk_picard_indexes
-    </command>
+    ]]></command>
     <inputs>
         <param name="all_fasta_source" type="select" label="Source FASTA Sequence">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence"/>
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json"/>
     </outputs>
-
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **Notice:** If you leave name, description, or id blank, it will be generated automatically. 
-    </help>
+    ]]></help>
 </tool>

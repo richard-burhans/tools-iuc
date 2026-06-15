@@ -1,5 +1,5 @@
 <tool id="enasearch_retrieve_taxons" name="Retrieve ENA taxon data" version="@WRAPPER_VERSION@.0">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
         <import>search_macros.xml</import>
@@ -54,10 +54,10 @@ enasearch
             </conditional>
             <output name="output" ftype="xml">
                 <assert_contents>
-                    <has_text text="taxon scientificName=&quot;Felis catus&quot;" />
-                    <has_text text="taxon scientificName=&quot;Homo sapiens&quot;" />
-                    <has_text text="taxon scientificName=&quot;Mus&quot;" />
-                    <has_text text="taxon scientificName=&quot;Danio rerio&quot;" />
+                    <has_text text="taxon scientificName=&quot;Felis catus&quot;"/>
+                    <has_text text="taxon scientificName=&quot;Homo sapiens&quot;"/>
+                    <has_text text="taxon scientificName=&quot;Mus&quot;"/>
+                    <has_text text="taxon scientificName=&quot;Danio rerio&quot;"/>
                 </assert_contents>
             </output>
         </test>

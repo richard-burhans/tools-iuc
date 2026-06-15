@@ -76,27 +76,23 @@ $longest
             <option value="23">23 Peritrich nuclear</option>
         </param>
         <param name="out_files" type="select" label="Select outputs" help="DNA, RNA, and Peptide options will produce FASTA outputs" multiple="true" display="checkboxes">
-          <option value="BED" selected="true">BED</option>
-          <option value="BED12">BED12</option>
-          <option value="DNA">DNA</option>
-          <option value="RNA">RNA</option>
-          <option value="PEP">Peptides</option>
+            <option value="BED" selected="true">BED</option>
+            <option value="BED12">BED12</option>
+            <option value="DNA">DNA</option>
+            <option value="RNA">RNA</option>
+            <option value="PEP">Peptides</option>
         </param>
         <param argument="--strand" type="select" label="Select strand" help="Identify ORFs on which strand" display="radio">
             <option value="b" selected="true">Both</option>
             <option value="f">Forward</option>
             <option value="r">Reverse</option>
         </param>
-        <param argument="--min" type="integer" min="0" optional="true" label="Minimum length of ORFs"
-               help="No ORFs below this value will be reported. All ORFs will be reported if this parameter is not set. Default is 30"/>
-        <param argument="--max" type="integer" min="0" optional="true" label="Maximum length of ORFs"
-               help="This value doesn't take in account the STOP codon. No ORFs over this value will be reported. Default is 1.000.000.000."/>
-        <param argument="--start" type="text" optional="true" label="Start codon(s) to use"
-               help="A comma-separated list without spaces. Only ATCG and comma are allowed">
+        <param argument="--min" type="integer" min="0" optional="true" label="Minimum length of ORFs" help="No ORFs below this value will be reported. All ORFs will be reported if this parameter is not set. Default is 30"/>
+        <param argument="--max" type="integer" min="0" optional="true" label="Maximum length of ORFs" help="This value doesn't take in account the STOP codon. No ORFs over this value will be reported. Default is 1.000.000.000."/>
+        <param argument="--start" type="text" optional="true" label="Start codon(s) to use" help="A comma-separated list without spaces. Only ATCG and comma are allowed">
             <validator type="regex" message="Only 'ATCGatcg' and ',' are allowed in this field">^[ATGCatcg,]*$</validator>
         </param>
-        <param argument="--stop" type="text" optional="true" label="Stop codon(s) to use"
-               help="A commma separated list without spaces. Only ATCG and comma are allowed">
+        <param argument="--stop" type="text" optional="true" label="Stop codon(s) to use" help="A commma separated list without spaces. Only ATCG and comma are allowed">
             <validator type="regex" message="Only 'ATCGatcg' and ',' are allowed in this field">^[ATGCatcg,]*$</validator>
         </param>
         <param argument="--ignore-case" type="boolean" truevalue="--ignore-case" falsevalue="" label="Ignore case?" help="Ignore case and find ORFs in lower case sequences too. NO = do not ignore (use upper case only). YES = ignore" display="radio"/>

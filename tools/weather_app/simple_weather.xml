@@ -28,8 +28,8 @@ curl --retry 10 'http://wttr.in/$place$units' | sh '$__tool_directory__/ansi2htm
             <param name="place" value="Moon@1986-Oct-06"/>
             <output name="out_file1">
                 <assert_contents>
-                    <has_text_matching expression="N.*e.*w.* .*M.*o.*o.*n.* .*\+" />
-                    <has_n_lines n="325" />
+                    <has_text_matching expression="N.*e.*w.* .*M.*o.*o.*n.* .*\+"/>
+                    <has_n_lines n="325"/>
                 </assert_contents>
             </output>
         </test>

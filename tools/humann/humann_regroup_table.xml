@@ -45,7 +45,7 @@ humann_regroup_table
             <when value="large">
                 <param name="grouping" type="select" label="Mapping to use for the grouping">
                     <options from_data_table="humann_utility_mapping">
-                        <validator message="No utility mapping is available" type="no_options" />
+                        <validator message="No utility mapping is available" type="no_options"/>
                         <filter type="regexp" column="0" value=".*map.*(?!_name)" keep="true"/>
                     </options>
                 </param>
@@ -93,8 +93,8 @@ humann_regroup_table
             <param name="protected" value="Y"/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="GO:0000049|g__Bacteroides.s__Bacteroides_vulgatus" />
-                    <has_text text="GO:0003866|g__Bacteroides.s__Bacteroides_vulgatus" />
+                    <has_text text="GO:0000049|g__Bacteroides.s__Bacteroides_vulgatus"/>
+                    <has_text text="GO:0003866|g__Bacteroides.s__Bacteroides_vulgatus"/>
                 </assert_contents>
             </output>
         </test>
@@ -111,8 +111,8 @@ humann_regroup_table
             <param name="protected" value="Y"/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="GO:0000049|g__Bacteroides.s__Bacteroides_vulgatus" />
-                    <has_text text="GO:0003866|g__Bacteroides.s__Bacteroides_vulgatus" />
+                    <has_text text="GO:0000049|g__Bacteroides.s__Bacteroides_vulgatus"/>
+                    <has_text text="GO:0003866|g__Bacteroides.s__Bacteroides_vulgatus"/>
                 </assert_contents>
             </output>
         </test>

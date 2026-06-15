@@ -1,13 +1,12 @@
 <tool id="snippy" name="snippy" version="@WRAPPER_VERSION@+galaxy@VERSION_SUFFIX@">
-  <description>
+    <description>
       Snippy finds SNPs between a haploid reference genome and your NGS sequence reads.
     </description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
-
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
 
         @REFERENCE_SOURCE_FILE@
@@ -62,9 +61,8 @@
         && cp -r '${dir_name}' out
         && tar -czf out.tgz '${dir_name}'
     ]]>    </command>
-
     <inputs>
-        <expand macro="reference_selector" />
+        <expand macro="reference_selector"/>
         <conditional name="fastq_input">
             <param name="fastq_input_selector" type="select" label="Input type" help="Select paired/single end raw read data or assembled contigs">
                 <option value="paired">Paired end reads</option>
@@ -89,19 +87,16 @@
             <when value="contigs">
                 <param name="fasta_input" type="data" format="fasta" label="Select fasta dataset" help="Specify dataset with assembled contigs"/>
             </when>
-
         </conditional>
-
         <section name="adv" title="Advanced parameters" expanded="false">
-            <param name="mapqual" type="integer" value="60" label="Minimum mapping quality" help="Minimum mapping quality to allow" />
-            <param name="mincov" type="integer" value="10" label="Minimum coverage" help="Minimum coverage to call a snp" />
-            <param name="minfrac" type="float" value="0.9" label="Minumum proportion for variant evidence" help="Minumum proportion for variant evidence" />
-            <param name="minqual" type="float" value="100.0" label="Minumum QUALITY in VCF column 6" help="Minumum QUALITY in VCF column 6" />
-            <param name="rgid" type="text" value="" label="Bam header @RG ID" help="Use this @RG ID: in the BAM header" />
-            <param name="bwaopt" type="text" value="" label="Extra BWA MEM options" help="Extra BWA MEM options, eg. -x pacbio" />
-            <param name="rename_cons" type="boolean" truevalue="rename_cons" falsevalue="" help="When producing an output of the reference genome with variants instantiated, edit the header so that it is named after the input VCF" />
+            <param name="mapqual" type="integer" value="60" label="Minimum mapping quality" help="Minimum mapping quality to allow"/>
+            <param name="mincov" type="integer" value="10" label="Minimum coverage" help="Minimum coverage to call a snp"/>
+            <param name="minfrac" type="float" value="0.9" label="Minumum proportion for variant evidence" help="Minumum proportion for variant evidence"/>
+            <param name="minqual" type="float" value="100.0" label="Minumum QUALITY in VCF column 6" help="Minumum QUALITY in VCF column 6"/>
+            <param name="rgid" type="text" value="" label="Bam header @RG ID" help="Use this @RG ID: in the BAM header"/>
+            <param name="bwaopt" type="text" value="" label="Extra BWA MEM options" help="Extra BWA MEM options, eg. -x pacbio"/>
+            <param name="rename_cons" type="boolean" truevalue="rename_cons" falsevalue="" help="When producing an output of the reference genome with variants instantiated, edit the header so that it is named after the input VCF"/>
         </section>
-
         <param name="outputs" type="select" multiple="true" display="checkboxes" label="Output selection">
             <option value="outvcf" selected="True">The final annotated variants in VCF format</option>
             <option value="outgff" selected="False">The variants in GFF3 format</option>
@@ -113,11 +108,8 @@
             <option value="outbam" selected="False">The alignments in BAM format. Note that multi-mapping and unmapped reads are not present.</option>
             <option value="outzip" selected="True">Zipped files needed for input into snippy-core</option>
         </param>
-
     </inputs>
-
     <outputs>
-
         <data format="vcf" name="snpvcf" label="${tool.name} on ${on_string} snps vcf file" from_work_dir="out/snps.vcf">
             <filter>outputs and 'outvcf' in outputs</filter>
         </data>
@@ -145,107 +137,103 @@
         <data format="zip" name="outdir" label="${tool.name} on ${on_string} dir for snippy core" from_work_dir="out.tgz">
             <filter>outputs and 'outzip' in outputs</filter>
         </data>
-
     </outputs>
-
     <tests>
-
-        <test>            <!-- test 0 - fasta ref no snps -->
+        <test>
+            <!-- test 0 - fasta ref no snps -->
             <!-- <param name="ref" value="reference.fasta" ftype="fasta" /> -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" value="reference.fasta" ftype="fasta"/>
             </conditional>
-            <param name="fastq_input_selector" value="paired" />
-            <param name="fastq_input1" ftype="fastqsanger.gz" value="a_1.fastq.gz" />
-            <param name="fastq_input2" ftype="fastqsanger.gz" value="a_2.fastq.gz" />
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="a_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8" />
+            <param name="fastq_input_selector" value="paired"/>
+            <param name="fastq_input1" ftype="fastqsanger.gz" value="a_1.fastq.gz"/>
+            <param name="fastq_input2" ftype="fastqsanger.gz" value="a_2.fastq.gz"/>
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="a_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8"/>
             <output name="snpgff" ftype="gff3" file="a_fna_ref_mincov_2_minqual_60.snps.gff" lines_diff="2"/>
         </test>
-
-        <test>            <!-- test 1 - fasta ref one snp -->
+        <test>
+            <!-- test 1 - fasta ref one snp -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" value="reference.fasta" ftype="fasta"/>
             </conditional>
-            <param name="fastq_input_selector" value="paired" />
-            <param name="fastq_input1" ftype="fastqsanger" value="b_1.fastq" />
-            <param name="fastq_input2" ftype="fastqsanger" value="b_2.fastq" />
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8" />
+            <param name="fastq_input_selector" value="paired"/>
+            <param name="fastq_input1" ftype="fastqsanger" value="b_1.fastq"/>
+            <param name="fastq_input2" ftype="fastqsanger" value="b_2.fastq"/>
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8"/>
             <output name="snpgff" ftype="gff3" file="b_fna_ref_mincov_2_minqual_60.snps.gff" lines_diff="2"/>
         </test>
-
-        <test>            <!-- test 2 - fasta ref one snp paired_collection -->
+        <test>
+            <!-- test 2 - fasta ref one snp paired_collection -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" value="reference.fasta" ftype="fasta"/>
             </conditional>
-            <param name="fastq_input_selector" value="paired_collection" />
+            <param name="fastq_input_selector" value="paired_collection"/>
             <param name="fastq_input">
                 <collection type="paired">
-                    <element name="forward" ftype="fastqsanger" value="b_1.fastq" />
-                    <element name="reverse" ftype="fastqsanger" value="b_2.fastq" />
+                    <element name="forward" ftype="fastqsanger" value="b_1.fastq"/>
+                    <element name="reverse" ftype="fastqsanger" value="b_2.fastq"/>
                 </collection>
             </param>
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8" />
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8"/>
             <output name="snpgff" ftype="gff3" file="b_fna_ref_mincov_2_minqual_60.snps.gff" lines_diff="2"/>
         </test>
-
-        <test>            <!-- test 3 - fasta ref one snp single -->
+        <test>
+            <!-- test 3 - fasta ref one snp single -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" value="reference.fasta" ftype="fasta"/>
             </conditional>
-            <param name="fastq_input_selector" value="single" />
-            <param name="fastq_input_single" value="b_2.fastq" ftype="fastqsanger" />
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8" />
+            <param name="fastq_input_selector" value="single"/>
+            <param name="fastq_input_single" value="b_2.fastq" ftype="fastqsanger"/>
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8"/>
             <output name="snpgff" ftype="gff3" file="b_2_fna_ref_mincov_2_minqual_60.snps.gff" lines_diff="2"/>
         </test>
-
-        <test>            <!-- test 4 - reference source as cached -->
+        <test>
+            <!-- test 4 - reference source as cached -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="cached"/>
                 <param name="ref_file" value="test_id"/>
             </conditional>
-            <param name="fastq_input_selector" value="single" />
-            <param name="fastq_input_single" value="b_2.fastq" ftype="fastqsanger" />
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8" />
+            <param name="fastq_input_selector" value="single"/>
+            <param name="fastq_input_single" value="b_2.fastq" ftype="fastqsanger"/>
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="b_fna_ref_mincov_2_minqual_60.snps.txt" lines_diff="8"/>
             <output name="snpgff" ftype="gff3" file="b_2_fna_ref_mincov_2_minqual_60.snps.gff" lines_diff="2"/>
         </test>
-
-        <test>            <!-- test 5 - fasta ref one snp single -->
+        <test>
+            <!-- test 5 - fasta ref one snp single -->
             <conditional name="reference_source">
                 <param name="reference_source_selector" value="history"/>
                 <param name="ref_file" value="reference.fasta" ftype="fasta"/>
             </conditional>
             <conditional name="fastq_input">
-                <param name="fastq_input_selector" value="contigs" />
-                <param name="fasta_input" value="contigs.fasta" ftype="fasta" />
+                <param name="fastq_input_selector" value="contigs"/>
+                <param name="fasta_input" value="contigs.fasta" ftype="fasta"/>
             </conditional>
-            <param name="mincov" value="2" />
-            <param name="minqual" value="60" />
-            <param name="outputs" value="outgff,outsum" />
-            <output name="snpsum" ftype="tabular" file="d_fna_ref_mincov_1_minqual_60.snps.txt" lines_diff="6" />
+            <param name="mincov" value="2"/>
+            <param name="minqual" value="60"/>
+            <param name="outputs" value="outgff,outsum"/>
+            <output name="snpsum" ftype="tabular" file="d_fna_ref_mincov_1_minqual_60.snps.txt" lines_diff="6"/>
             <output name="snpgff" ftype="gff3" file="d_fna_ref_mincov_1_minqual_60.snps.gff" lines_diff="2"/>
         </test>
     </tests>
-
-
     <help><![CDATA[
 
 **Snippy @VERSION@**
@@ -283,5 +271,4 @@ If the reference file is supplied in genbank format, snpeff will be called to de
 
     ]]>    </help>
     <expand macro="citations"/>
-
 </tool>

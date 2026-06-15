@@ -1,8 +1,7 @@
 <tool id="filter_tabular" name="Filter Tabular" version="3.3.1">
-    <description></description>
-
+    <description/>
     <macros>
-         <import>macros.xml</import>
+        <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
@@ -24,10 +23,10 @@
     <inputs>
         <param name="input" type="data" format="tabular" label="Tabular Dataset to filter"/>
         <param name="comment_char" type="boolean" truevalue="--comment_char '#'" falsevalue="" checked="true" label="exclude lines starting with #"/>
-        <expand macro="macro_line_filters" />
+        <expand macro="macro_line_filters"/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test>
@@ -102,7 +101,6 @@
             </repeat>
             <output name="output" file="filtered_pets_results.tsv"/>
         </test>
-
         <test>
             <param name="input" ftype="tabular" value="customers.tsv"/>
             <repeat name="linefilters">
@@ -200,5 +198,5 @@ Filter Tabular
 @LINEFILTERS_HELP_EXAMPLE@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

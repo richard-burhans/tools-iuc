@@ -22,11 +22,11 @@
         --counts ${counts}
     ]]></command>
     <inputs>
-        <param name='list_reads' argument="-r" multiple="true" format="fasta,fasta.gz,fastq,fastq.gz" type="data" label="Reads file" />
-        <param argument="-k" type="integer" value="41" label="K-mer length" />
-        <param argument="-c" type="integer" value="2" label="K-mers present strictly less than this number of times in the dataset will be discarded (integer value required)" />
-        <param argument="-C" type="float" value="0.05" label="Edges with relative coverage below this number are removed (value in [0,1) required)" />
-        <param argument="--output-context" type="boolean" checked="false" truevalue="--output-context" falsevalue="" label="Output the maximum non-ambiguous context of each event" />
+        <param name="list_reads" argument="-r" multiple="true" format="fasta,fasta.gz,fastq,fastq.gz" type="data" label="Reads file"/>
+        <param argument="-k" type="integer" value="41" label="K-mer length"/>
+        <param argument="-c" type="integer" value="2" label="K-mers present strictly less than this number of times in the dataset will be discarded (integer value required)"/>
+        <param argument="-C" type="float" value="0.05" label="Edges with relative coverage below this number are removed (value in [0,1) required)"/>
+        <param argument="--output-context" type="boolean" checked="false" truevalue="--output-context" falsevalue="" label="Output the maximum non-ambiguous context of each event"/>
         <param argument="--counts" type="select" label="Selecting how the counts will be reported">
             <option value="0">Total counts</option>
             <option value="1">Counts on junctions</option>
@@ -57,15 +57,15 @@
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="list_reads" value="kissplice/reads1.gz,kissplice/reads2.gz" ftype="fasta.gz" />
+            <param name="list_reads" value="kissplice/reads1.gz,kissplice/reads2.gz" ftype="fasta.gz"/>
             <param name="k" value="25"/>
-            <param name="output_option" value="alternative_file" />
+            <param name="output_option" value="alternative_file"/>
             <output name="type1" file="kissplice/alternative_splicing.fa"/>
         </test>
         <test expect_num_outputs="6">
-            <param name="list_reads" value="kissplice/reads1.gz,kissplice/reads2.gz" ftype="fasta.gz" />
+            <param name="list_reads" value="kissplice/reads1.gz,kissplice/reads2.gz" ftype="fasta.gz"/>
             <param name="k" value="25"/>
-            <param name="output_option" value="all_files" />
+            <param name="output_option" value="all_files"/>
             <output name="type0a">
                 <assert_contents>
                     <has_n_lines n="0"/>
@@ -115,5 +115,4 @@ References, documentation and FAQ here_.
     <expand macro="citations">
         <citation type="doi">10.1186/1471-2105-13-S6-S5</citation>
     </expand>
-
 </tool>

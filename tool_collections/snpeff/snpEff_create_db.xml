@@ -4,11 +4,11 @@
         <import>snpEff_macros.xml</import>
     </macros>
     <requirements>
-        <expand macro="requirement" />
+        <expand macro="requirement"/>
         <requirement type="package" version="1.84">biopython</requirement>
     </requirements>
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         #if str($input_type.input_type_selector) == "gb" and str($input_type.fasta) == "yes":
             python3 '$__tool_directory__/gbk2fa.py' '${input_type.input}' '${output_fasta}' ${input_type.remove_version} &&
@@ -55,15 +55,15 @@
         <param name="genome_version" type="text" value="" label="Name for the database" help="For E. coli K12, for example, you may want to use 'EcK12'. Note: Spaces are not allowed in the name and will get converted to underscores.">
             <sanitizer>
                 <valid initial="string.ascii_letters,string.digits">
-                    <add value="_" />
-                    <add value="." />
-                    <add value="-" />
+                    <add value="_"/>
+                    <add value="."/>
+                    <add value="-"/>
                 </valid>
                 <mapping>
-                    <add source=" " target="_" />
+                    <add source=" " target="_"/>
                 </mapping>
             </sanitizer>
-            <validator type="empty_field" message="A genome version name is required" />
+            <validator type="empty_field" message="A genome version name is required"/>
         </param>
         <conditional name="input_type">
             <param name="input_type_selector" type="select" display="radio" label="Input annotations are in" help="Specify format for annotations you are using to create SnpEff database">
@@ -74,18 +74,18 @@
             <when value="gb">
                 <param name="input" type="data" format="genbank,genbank.gz" label="Genbank dataset to build database from" help="This Genbank file will be used to generate snpEff database"/>
                 <param name="fasta" type="select" display="radio" label="Parse Genbank into Fasta" help="This will generate an additional dataset containing all sequences from Genbank file in FASTA format">
-                        <option value="yes" selected="true">Yes</option>
-                        <option value="no">No</option>
+                    <option value="yes" selected="true">Yes</option>
+                    <option value="no">No</option>
                 </param>
-                <param argument="--remove_version" type="boolean" truevalue="--remove_version" falsevalue="" checked="true" label="Remove sequence version label?" help="Genbank sequences have version numbers such as B000564.2. This option removes them leaving only B000564" />
+                <param argument="--remove_version" type="boolean" truevalue="--remove_version" falsevalue="" checked="true" label="Remove sequence version label?" help="Genbank sequences have version numbers such as B000564.2. This option removes them leaving only B000564"/>
             </when>
             <when value="gff">
                 <param name="input" type="data" format="gff3" label="GFF dataset to build database from" help="This GFF file will be used to generate snpEff database"/>
-                <expand macro="ref_select" />
+                <expand macro="ref_select"/>
             </when>
             <when value="gtf">
                 <param name="input" type="data" format="gtf" label="GTF dataset to build database from" help="This GTF file will be used to generate snpEff database"/>
-                <expand macro="ref_select" />
+                <expand macro="ref_select"/>
             </when>
         </conditional>
         <param name="codon_table" type="select" label="Select genetic code for this sequence" help="If this sequence uses non-standard genetic code, select one from these options">
@@ -128,11 +128,11 @@
             <param name="genome_version" value="pBR322"/>
             <conditional name="input_type">
                 <param name="input_type_selector" value="gb"/>
-                <param name="input" value="pBR322.gbk" />
+                <param name="input" value="pBR322.gbk"/>
             </conditional>
             <output name="snpeff_output">
                 <assert_contents>
-                    <has_text text="pBR322" />
+                    <has_text text="pBR322"/>
                 </assert_contents>
             </output>
             <output name="output_fasta" value="pBR322_test1.fna"/>
@@ -141,11 +141,11 @@
             <param name="genome_version" value="pBR322"/>
             <conditional name="input_type">
                 <param name="input_type_selector" value="gb"/>
-                <param name="input" value="pBR322.gbk.gz" />
+                <param name="input" value="pBR322.gbk.gz"/>
             </conditional>
             <output name="snpeff_output">
                 <assert_contents>
-                    <has_text text="pBR322" />
+                    <has_text text="pBR322"/>
                 </assert_contents>
             </output>
             <output name="output_fasta" value="pBR322_test1.fna"/>
@@ -157,12 +157,12 @@
                 <param name="input" value="pBR322.gff3"/>
                 <conditional name="reference_source">
                     <param name="reference_source_selector" value="history"/>
-                    <param name="input_fasta" value="pBR322_test2.fna" />
+                    <param name="input_fasta" value="pBR322_test2.fna"/>
                 </conditional>
             </conditional>
             <output name="snpeff_output">
                 <assert_contents>
-                    <has_text text="pBR322" />
+                    <has_text text="pBR322"/>
                 </assert_contents>
             </output>
         </test>
@@ -173,12 +173,12 @@
                 <param name="input" value="pBR322.gff3"/>
                 <conditional name="reference_source">
                     <param name="reference_source_selector" value="history"/>
-                    <param name="input_fasta" value="pBR322_test2.fna.gz" />
+                    <param name="input_fasta" value="pBR322_test2.fna.gz"/>
                 </conditional>
             </conditional>
             <output name="snpeff_output">
                 <assert_contents>
-                    <has_text text="pBR322" />
+                    <has_text text="pBR322"/>
                 </assert_contents>
             </output>
         </test>
@@ -186,15 +186,15 @@
             <param name="genome_version" value="Saccharomyces_mito"/>
             <conditional name="input_type">
                 <param name="input_type_selector" value="gtf"/>
-                <param name="input" value="Saccharomyces_mito.gtf" />
+                <param name="input" value="Saccharomyces_mito.gtf"/>
                 <conditional name="reference_source">
                     <param name="reference_source_selector" value="history"/>
-                    <param name="input_fasta" value="Saccharomyces_mito.fa.gz" />
+                    <param name="input_fasta" value="Saccharomyces_mito.fa.gz"/>
                 </conditional>
             </conditional>
             <output name="snpeff_output">
                 <assert_contents>
-                    <has_text text="Saccharomyces_mito" />
+                    <has_text text="Saccharomyces_mito"/>
                 </assert_contents>
             </output>
         </test>
@@ -265,5 +265,5 @@ The following example also uses *E. coli* K-12 MG1655:
 @EXTERNAL_DOCUMENTATION@
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

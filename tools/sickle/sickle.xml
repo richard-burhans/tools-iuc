@@ -128,7 +128,6 @@ $compressed
     2>&1 | tee '${log}'
 #end if
     ]]></command>
-
     <inputs>
         <conditional name="readtype">
             <param name="single_or_paired" type="select" label="Single-end or paired-end reads?" help="Note: Sickle will infer the quality type of the file from its datatype.  I.e., if the datatype is fastqsanger, then the quality type is sanger. The default is fastqsanger.">
@@ -137,70 +136,55 @@ $compressed
                 <option value="pe_sep">Paired-end (two separate input files)</option>
                 <option value="pe_collection">Paired-end (as collection)</option>
             </param>
-
             <when value="se">
                 <param format="fastq,fastq.gz" name="input_single" type="data" label="Single-end FASTQ reads" help="(-f)"/>
             </when>
-
             <when value="pe_combo">
                 <param format="fastq,fastq.gz" name="input_combo" type="data" label="Paired-end interleaved FASTQ reads" help="(-c)"/>
                 <param name="output_n" type="boolean" label="Output only one file with all reads" help="This will output only one file with all the reads, where the reads that did not pass filter will be replaced with a single 'N', rather than discarded."/>
             </when>
-
             <when value="pe_sep">
                 <param format="fastq,fastq.gz" name="input_paired1" type="data" label="Paired-end forward strand FASTQ reads" help="(-f)"/>
                 <param format="fastq,fastq.gz" name="input_paired2" type="data" label="Paired-end reverse strand FASTQ reads" help="(-r)"/>
             </when>
-
             <when value="pe_collection">
                 <param format="fastq,fastq.gz" name="input_paired" type="data_collection" collection_type="paired" label="Paired-end FASTQ reads as paired collection"/>
             </when>
         </conditional>
-
         <param name="qual_threshold" value="20" min="0" type="integer" optional="true" label="Quality threshold" help="Threshold for trimming based on average quality in a window (-q)"/>
         <param name="length_threshold" value="20" min="0" type="integer" optional="true" label="Length threshold" help="Threshold to keep a read based on length after trimming (-l)"/>
         <param name="no_five_prime" type="boolean" label="Don't do 5' trimming" help="(-x)"/>
         <param name="trunc_n" type="boolean" label="Truncate sequences with Ns at first N position" help="(-n)"/>
         <param name="log_out" type="boolean" label="Output log file?" truevalue="yes" falsevalue="no"/>
     </inputs>
-
     <outputs>
         <data name="output_single" format_source="input_single" label="Single-end output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'se'</filter>
         </data>
-
         <data name="output_combo" format_source="input_combo" label="Paired-end interleaved output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_combo'</filter>
         </data>
-
         <data name="output_combo_single" format_source="input_combo" label="Singletons from paired-end interleaved output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_combo' and not readtype['output_n']</filter>
         </data>
-
         <data name="output_paired1" format_source="input_paired1" label="Paired-end forward strand output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_sep'</filter>
         </data>
-
         <data name="output_paired2" format_source="input_paired2" label="Paired-end reverse strand output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_sep'</filter>
         </data>
-
         <data name="output_paired_single" format_source="input_paired1" label="Singletons from paired-end output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_sep'</filter>
         </data>
-
         <collection name="output_paired_coll" type="paired" structured_like="input_paired" inherit_format="true" label="Paired-end output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_collection'</filter>
         </collection>
-
         <data name="output_paired_coll_single" format_source="input_paired['forward']" label="Singletons from paired-end collection output of ${tool.name} on ${on_string}">
             <filter>readtype['single_or_paired'] == 'pe_collection'</filter>
         </data>
-
         <data name="log" format="txt" label="${tool.name} on ${on_string}: Output Log">
             <filter>log_out</filter>
         </data>
-
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -226,7 +210,8 @@ $compressed
             <output name="output_paired2" ftype="fastqillumina" file="output.r.fastq"/>
             <output name="output_paired_single" ftype="fastqillumina" file="output.s.fastq"/>
         </test>
-        <test expect_num_outputs="3"> <!-- as above, but gzipped -->
+        <test expect_num_outputs="3">
+            <!-- as above, but gzipped -->
             <param name="single_or_paired" value="pe_sep"/>
             <param name="input_paired1" ftype="fastqillumina.gz" value="test.f.fastq.gz"/>
             <param name="input_paired2" ftype="fastqillumina.gz" value="test.r.fastq.gz"/>
@@ -250,7 +235,8 @@ $compressed
             </output_collection>
             <output name="output_paired_coll_single" ftype="fastqillumina" file="output.s.fastq"/>
         </test>
-        <test expect_num_outputs="4"> <!-- as above, but gzipped -->
+        <test expect_num_outputs="4">
+            <!-- as above, but gzipped -->
             <param name="single_or_paired" value="pe_collection"/>
             <param name="input_paired">
                 <collection type="paired">
@@ -275,7 +261,7 @@ $compressed
             <output name="log" file="sickle.log" ftype="txt"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **What it does**
 
@@ -368,7 +354,7 @@ It is then still subject to the length threshold.
 Copyright: Nikhil Joshi
 
 http://github.com/najoshi/sickle
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
             @unpublished{sickle_link,

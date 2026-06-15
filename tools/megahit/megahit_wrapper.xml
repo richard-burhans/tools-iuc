@@ -66,32 +66,32 @@ megahit
                 <option value="paired_collection">Paired-end collection</option>
             </param>
             <when value="single">
-                <param name="single_files" argument="-r" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz,fastq.bz2" multiple="true" label="Single-end file(s)" help="Accepts fasta (.fasta, .fa) and fastq (.fastq) formats as well as gzip (.gz) and gzip2 (.bz2) files" />
+                <param name="single_files" argument="-r" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz,fastq.bz2" multiple="true" label="Single-end file(s)" help="Accepts fasta (.fasta, .fa) and fastq (.fastq) formats as well as gzip (.gz) and gzip2 (.bz2) files"/>
             </when>
             <when value="interleaved">
-                <param name="interleaved_file" argument="--12" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz,fastq.bz2" multiple="true" label="Interleaved-paired-end file(s)" help="Accepts fasta (.fasta, .fa) and fastq (.fastq) formats as well as gzip (.gz) and gzip2 (.bz2) files" />
+                <param name="interleaved_file" argument="--12" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz,fastq.bz2" multiple="true" label="Interleaved-paired-end file(s)" help="Accepts fasta (.fasta, .fa) and fastq (.fastq) formats as well as gzip (.gz) and gzip2 (.bz2) files"/>
             </when>
             <when value="paired">
                 <param name="fastq_input1" argument="-1" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" multiple="true" label="Mate 1 input reads"/>
                 <param name="fastq_input2" argument="-2" type="data" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" multiple="true" label="Mate 2 input reads"/>
             </when>
             <when value="paired_collection">
-              <conditional name="batchmode">
-                <param name="processmode" type="select" label="Run in batch mode?" help="Selecting individual mode will generate one assembly dataset for each fastq pair-end dataset. Selecting the merge option will produce one assembly dataset for all input fastq pair-end datasets" display="radio">
-                  <option value="individual" selected="true">Run individually</option>
-                  <option value="merge">Merge all fastq pair-end</option>
-                </param>
-                <when value="individual">
-                  <param name="pair_input" type="data_collection" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" collection_type="paired" label="Select a paired collection"/>
-                </when>
-                <when value="merge">
-                  <param name="pair_input_list" type="data_collection" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" collection_type="list:paired" label="Select a paired collection"/>
-                </when>
-              </conditional>
+                <conditional name="batchmode">
+                    <param name="processmode" type="select" label="Run in batch mode?" help="Selecting individual mode will generate one assembly dataset for each fastq pair-end dataset. Selecting the merge option will produce one assembly dataset for all input fastq pair-end datasets" display="radio">
+                        <option value="individual" selected="true">Run individually</option>
+                        <option value="merge">Merge all fastq pair-end</option>
+                    </param>
+                    <when value="individual">
+                        <param name="pair_input" type="data_collection" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" collection_type="paired" label="Select a paired collection"/>
+                    </when>
+                    <when value="merge">
+                        <param name="pair_input_list" type="data_collection" format="fastq,fastqsanger,fasta,fastq.gz,fastqsanger.gz" collection_type="list:paired" label="Select a paired collection"/>
+                    </when>
+                </conditional>
             </when>
         </conditional>
         <section name="basic_section" title="Basic assembly options" expanded="True">
-            <param argument="--min-count" type="integer" value="2" label="minimum multiplicity for filtering (k_min+1)-mers" help="(kmin+1)-mer with multiplicity lower than d (default 2, specified by --min-count option) will be discarded. You should be cautious to set d less than 2, which will lead to a much larger and noisy graph. We recommend using the default value 2 for metagenomics assembly. If you want to use MEGAHIT to do generic assemblies, please change this value according to the sequencing depth. (recommend --min-count 3 for >40x)."/>
+            <param argument="--min-count" type="integer" value="2" label="minimum multiplicity for filtering (k_min+1)-mers" help="(kmin+1)-mer with multiplicity lower than d (default 2, specified by --min-count option) will be discarded. You should be cautious to set d less than 2, which will lead to a much larger and noisy graph. We recommend using the default value 2 for metagenomics assembly. If you want to use MEGAHIT to do generic assemblies, please change this value according to the sequencing depth. (recommend --min-count 3 for &gt;40x)."/>
             <conditional name="k_mer">
                 <param name="k_mer_method" type="select" label="K-mer specification method">
                     <option value="klist_method">Specify list</option>
@@ -100,7 +100,7 @@ megahit
                 <when value="klist_method">
                     <param argument="--k-list" type="text" value="21,29,39,59,79,99,119,141" label="Comma-separated list of kmer size" help="all must be odd, in the range 15-255, and with increments &lt;= 28"/>
                 </when>
-                <when value="klim_method"> 
+                <when value="klim_method">
                     <param argument="--k-min" type="integer" value="21" label="Minimum kmer size" max="255" help="Must be odd number. For ultra complex metagenomics data such as soil, a larger kmin, say 27, is recommended to reduce the complexity of the de Bruijn graph. Quality trimming is also recommended. For high-depth generic data, large --k-min (25 to 31) is recommended. Smaller --k-step, say 10, is more friendly to low-coverage datasets."/>
                     <param argument="--k-max" type="integer" value="141" label="Maximum kmer size" max="255" help="must be odd number"/>
                     <param argument="--k-step" type="integer" value="12" label="Increment of kmer size of each iteration" max="28" help="must be even number"/>
@@ -108,28 +108,28 @@ megahit
             </conditional>
         </section>
         <section name="advanced_section" title="Advanced assembly options" expanded="False">
-            <param name="nomercy" type="boolean" checked="false" truevalue="--no-mercy" falsevalue="" label="Do not add mercy kmers" help="Mercy kmers are specially designed for metagenomics assembly to recover low coverage sequences. For generic dataset >= 30x, MEGAHIT may generate better results with no mercy kmers." />
-            <param argument="--bubble-level" type="integer" value="2" min="0" max="2" label="Intensity of bubble merging (0-2), 0 to disable" />
-            <param argument="--merge-level" type="text" value="20,0.95" label="Merge complex bubbles of length" />
-            <param argument="--prune-level" type="integer" value="2" min="0" max="3" label="Strength of low depth pruning" />
-            <param argument="--prune-depth" type="integer" value="2" min="0" label="Remove unitigs with avg kmer depth less than this value" />
-			<param argument="--disconnect-ratio" type="float" value="0.1" label="Disconnect unitigs if its depth is less than this ratio times the total depth of itself and its siblings" />
-            <param argument="--low-local-ratio" type="float" value="0.2" label="Remove unitigs if its depth is less than this ratio times the average depth of the neighborhoods" />
-			<param argument="--cleaning-rounds" type="integer" value="5" label="Number of rounds for graph cleanning" />	  
-            <param name="nolocal" type="boolean" checked="false" truevalue="--no-local" falsevalue="" label="Disable local assembly" />
-            <param name="kmin1pass" type="boolean" checked="false" truevalue="--kmin-1pass" falsevalue="" label="Use 1pass mode to build SdBG of k_min" />
+            <param name="nomercy" type="boolean" checked="false" truevalue="--no-mercy" falsevalue="" label="Do not add mercy kmers" help="Mercy kmers are specially designed for metagenomics assembly to recover low coverage sequences. For generic dataset &gt;= 30x, MEGAHIT may generate better results with no mercy kmers."/>
+            <param argument="--bubble-level" type="integer" value="2" min="0" max="2" label="Intensity of bubble merging (0-2), 0 to disable"/>
+            <param argument="--merge-level" type="text" value="20,0.95" label="Merge complex bubbles of length"/>
+            <param argument="--prune-level" type="integer" value="2" min="0" max="3" label="Strength of low depth pruning"/>
+            <param argument="--prune-depth" type="integer" value="2" min="0" label="Remove unitigs with avg kmer depth less than this value"/>
+            <param argument="--disconnect-ratio" type="float" value="0.1" label="Disconnect unitigs if its depth is less than this ratio times the total depth of itself and its siblings"/>
+            <param argument="--low-local-ratio" type="float" value="0.2" label="Remove unitigs if its depth is less than this ratio times the average depth of the neighborhoods"/>
+            <param argument="--cleaning-rounds" type="integer" value="5" label="Number of rounds for graph cleanning"/>
+            <param name="nolocal" type="boolean" checked="false" truevalue="--no-local" falsevalue="" label="Disable local assembly"/>
+            <param name="kmin1pass" type="boolean" checked="false" truevalue="--kmin-1pass" falsevalue="" label="Use 1pass mode to build SdBG of k_min"/>
         </section>
         <section name="output_section" title="Output options" expanded="True">
-            <param argument="--min-contig-len" type="integer" value="200" label="Minimum length of contigs to output" />
+            <param argument="--min-contig-len" type="integer" value="200" label="Minimum length of contigs to output"/>
             <param name="show_intermediate_contigs" type="boolean" checked="false" label="Return intermediate contigs?"/>
             <param name="log_file" type="boolean" label="Generate a log file" help="Generates a log file, which can be used as MultiQC input"/>
         </section>
     </inputs>
     <outputs>
-        <data format="fasta" name="output" from_work_dir="megahit_out/final.contigs.fa" label="Assembly with ${tool.name} on ${on_string}" />
+        <data format="fasta" name="output" from_work_dir="megahit_out/final.contigs.fa" label="Assembly with ${tool.name} on ${on_string}"/>
         <collection name="intermediate_contigs" type="list" label="Intermediate contigs from ${tool.name} on ${on_string}">
             <filter>output_section['show_intermediate_contigs']</filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;.*\d)\.contigs\.fa$" ext="fasta" directory="megahit_out/intermediate_contigs" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*\d)\.contigs\.fa$" ext="fasta" directory="megahit_out/intermediate_contigs"/>
         </collection>
         <data name="log_output" format="txt" label="${tool.name} on ${on_string} (Log file)" from_work_dir="megahit_out/log">
             <filter>output_section['log_file']</filter>
@@ -143,9 +143,9 @@ megahit
             </conditional>
             <param name="log_file" value="true"/>
             <output name="output">
-            <assert_contents>
-              <has_line_matching expression=">k21_0 flag=3 multi=1.0505 len=576" />
-            </assert_contents>
+                <assert_contents>
+                    <has_line_matching expression="&gt;k21_0 flag=3 multi=1.0505 len=576"/>
+                </assert_contents>
             </output>
             <output name="log_output">
                 <assert_contents>
@@ -157,7 +157,7 @@ megahit
             </output>
         </test>
         <test expect_num_outputs="1">
-             <conditional name="input_option">
+            <conditional name="input_option">
                 <param name="choice" value="interleaved"/>
                 <param name="interleaved_file" value="interleaved-fq.fa"/>
             </conditional>
@@ -178,12 +178,12 @@ megahit
                     <param name="processmode" value="merge"/>
                     <param name="pair_input_list">
                         <collection type="list:paired">
-                        <element name="Pair1">
-                          <collection type="paired">
-                            <element name="forward" value="paired-fq1.fa" ftype="fasta"/>
-                            <element name="reverse" value="paired-fq2.fa" ftype="fasta"/>
-                          </collection>
-                        </element>
+                            <element name="Pair1">
+                                <collection type="paired">
+                                    <element name="forward" value="paired-fq1.fa" ftype="fasta"/>
+                                    <element name="reverse" value="paired-fq2.fa" ftype="fasta"/>
+                                </collection>
+                            </element>
                         </collection>
                     </param>
                 </conditional>

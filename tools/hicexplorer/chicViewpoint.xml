@@ -4,7 +4,7 @@
         <token name="@BINARY@">chicViewpoint</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #import re
 
@@ -26,34 +26,32 @@
 
     ]]>    </command>
     <inputs>
-        <expand macro="matrix_h5_cooler_multiple_macro" />
-
-        <param argument="--referencePoints" type="data" format="interval" label="Reference points" help="Bed file contains all reference points which should be used to create viewpoints." />
-        <param name="rangeUpstream" type="integer" value="500000" label="Upstream range" help="Defines the region upstream of a reference point which should be considered in the analysis." />
-        <param name="rangeDownstream" type="integer" value="500000" label="Downstream range" help="Defines the region upstream of a reference point which should be considered in the analysis." />
-
-        <param argument="--backgroundModelFile" type="data" format="tabular" label="Background model" help="The background file computed by chicViewpointBackgroundModel" />
-        <param argument="--averageContactBin" type="integer" value="5" label="Average contacts window size" help="Average the contacts of n bins via a sliding window approach." />
-        <param argument="--fixateRange" type="integer" value="500000" label="Clip background distance" help="Fixate score of background model starting at distance x. E.g. all values greater 500kb are set to the value of the 500kb bin." />
+        <expand macro="matrix_h5_cooler_multiple_macro"/>
+        <param argument="--referencePoints" type="data" format="interval" label="Reference points" help="Bed file contains all reference points which should be used to create viewpoints."/>
+        <param name="rangeUpstream" type="integer" value="500000" label="Upstream range" help="Defines the region upstream of a reference point which should be considered in the analysis."/>
+        <param name="rangeDownstream" type="integer" value="500000" label="Downstream range" help="Defines the region upstream of a reference point which should be considered in the analysis."/>
+        <param argument="--backgroundModelFile" type="data" format="tabular" label="Background model" help="The background file computed by chicViewpointBackgroundModel"/>
+        <param argument="--averageContactBin" type="integer" value="5" label="Average contacts window size" help="Average the contacts of n bins via a sliding window approach."/>
+        <param argument="--fixateRange" type="integer" value="500000" label="Clip background distance" help="Fixate score of background model starting at distance x. E.g. all values greater 500kb are set to the value of the 500kb bin."/>
     </inputs>
     <outputs>
-        <data name="interactionFileNames" from_work_dir="interactionFiles.hdf5" format="h5" label="${tool.name} interaction file" />
+        <data name="interactionFileNames" from_work_dir="interactionFiles.hdf5" format="h5" label="${tool.name} interaction file"/>
     </outputs>
     <tests>
         <test>
-            <param name="matrix_h5_cooler_multiple" value="cHi-C/FL-E13-5_chr1.cool,cHi-C/MB-E10-5_chr1.cool" />
-            <param name="referencePoints" value="cHi-C/referencePoints_chicViewpoint.bed" />
-            <param name="backgroundModelFile" value="cHi-C/background.txt" />
-            <param name="fixateRange" value="500000" />
-            <param name="rangeUpstream" value="200000" />
-            <param name="rangeDownstream" value="200000" />
+            <param name="matrix_h5_cooler_multiple" value="cHi-C/FL-E13-5_chr1.cool,cHi-C/MB-E10-5_chr1.cool"/>
+            <param name="referencePoints" value="cHi-C/referencePoints_chicViewpoint.bed"/>
+            <param name="backgroundModelFile" value="cHi-C/background.txt"/>
+            <param name="fixateRange" value="500000"/>
+            <param name="rangeUpstream" value="200000"/>
+            <param name="rangeDownstream" value="200000"/>
             <output name="interactionFileNames" ftype="h5">
                 <assert_contents>
-                    <has_h5_attribute key="averageContactBin" value="5" />
-                    <has_h5_attribute key="fixateRange" value="500000" />
+                    <has_h5_attribute key="averageContactBin" value="5"/>
+                    <has_h5_attribute key="fixateRange" value="500000"/>
                     <!-- <has_h5_attribute key="range" value="200000,200000" /> -->
-                    <has_h5_attribute key="resolution" value="1000" />
-                    <has_h5_attribute key="type" value="interactions" />
+                    <has_h5_attribute key="resolution" value="1000"/>
+                    <has_h5_attribute key="type" value="interactions"/>
                 </assert_contents>
             </output>
         </test>
@@ -75,5 +73,5 @@ For more information about HiCExplorer please consider our documentation on read
 
 .. _readthedocs.io: http://hicexplorer.readthedocs.io/en/latest/index.html
 ]]>    </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -36,7 +36,7 @@
             <param name="input_paf" value="testPaf.paf"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;3&#009;43&#009;+&#009;simCow.chr6&#009;602619&#009;2&#009;42&#009;40&#009;40&#009;255&#009;AS:i:103043&#009;s1:i:0&#009;cg:Z:40M"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;3&#9;43&#9;+&#9;simCow.chr6&#9;602619&#9;2&#9;42&#9;40&#9;40&#9;255&#9;AS:i:103043&#9;s1:i:0&#9;cg:Z:40M"/>
                     <has_text text="cg:Z:40M2D83M1I16M1I183M4I33M1" negate="true"/>
                     <has_n_lines n="15175"/>
                 </assert_contents>
@@ -47,7 +47,7 @@
             <param name="input_paf" value="testPaf.paf.gz"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simDog.chr6&#009;593897&#009;3&#009;43&#009;+&#009;simCow.chr6&#009;602619&#009;2&#009;42&#009;40&#009;40&#009;255&#009;AS:i:103043&#009;s1:i:0&#009;cg:Z:40M"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;3&#9;43&#9;+&#9;simCow.chr6&#9;602619&#9;2&#9;42&#9;40&#9;40&#9;255&#9;AS:i:103043&#9;s1:i:0&#9;cg:Z:40M"/>
                     <has_text text="cg:Z:40M2D83M1I16M1I183M4I33M1" negate="true"/>
                     <has_n_lines n="15175"/>
                 </assert_contents>

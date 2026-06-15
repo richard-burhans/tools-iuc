@@ -19,15 +19,15 @@
                 <option value="new">New</option>
             </param>
             <when value="existing">
-                <param name="dbkey" type="genomebuild" label="DBKEY to assign to data" />
+                <param name="dbkey" type="genomebuild" label="DBKEY to assign to data"/>
             </when>
             <when value="new">
-                <param name="dbkey" type="text" value="" optional="false" label="dbkey" />
-                <param name="dbkey_name" type="text" value="" label="Display name for dbkey" />
+                <param name="dbkey" type="text" value="" optional="false" label="dbkey"/>
+                <param name="dbkey_name" type="text" value="" label="Display name for dbkey"/>
             </when>
         </conditional>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence"/>
         <conditional name="reference_source">
             <param name="reference_source_selector" type="select" label="Choose the source for the reference genome">
                 <option value="ucsc" selected="True">UCSC</option>
@@ -37,20 +37,20 @@
                 <option value="directory">Directory on Server</option>
             </param>
             <when value="ucsc">
-                <param name="requested_dbkey" type="text" value="" optional="false" label="UCSC's DBKEY for source FASTA" />
+                <param name="requested_dbkey" type="text" value="" optional="false" label="UCSC's DBKEY for source FASTA"/>
             </when>
             <when value="ncbi">
-                <param name="requested_identifier" type="text" value="" optional="false" label="NCBI identifier/accession" help="Identifiers (e.g 667699573) or accessions (e.g AC020606.7) may be used" />
+                <param name="requested_identifier" type="text" value="" optional="false" label="NCBI identifier/accession" help="Identifiers (e.g 667699573) or accessions (e.g AC020606.7) may be used"/>
             </when>
             <when value="url">
-                <param name="user_url" type="text" area="True" value="http://" optional="false" label="URLs" />
+                <param name="user_url" type="text" area="True" value="http://" optional="false" label="URLs"/>
             </when>
             <when value="history">
-                <param name="input_fasta" type="data" format="fasta" label="FASTA file" />
+                <param name="input_fasta" type="data" format="fasta" label="FASTA file"/>
             </when>
             <when value="directory">
-                <param name="fasta_filename" type="text" value="" optional="false" label="Full path to FASTA file on disk" />
-                <param name="create_symlink" type="boolean" truevalue="create_symlink" falsevalue="copy_file" label="Create symlink to original data instead of copying" />
+                <param name="fasta_filename" type="text" value="" optional="false" label="Full path to FASTA file on disk"/>
+                <param name="create_symlink" type="boolean" truevalue="create_symlink" falsevalue="copy_file" label="Create symlink to original data instead of copying"/>
             </when>
         </conditional>
         <conditional name="sorting">
@@ -60,12 +60,12 @@
                 <option value="gatk">GATK</option>
                 <option value="custom">Custom</option>
             </param>
-            <when value="as_is" />
-            <when value="lexicographical" />
-            <when value="gatk" />
+            <when value="as_is"/>
+            <when value="lexicographical"/>
+            <when value="gatk"/>
             <when value="custom">
                 <repeat name="sequence_identifiers" title="Sequence Identifiers" min="1" default="1">
-                    <param name="identifier" type="text" value="" optional="false" label="Sequence Identifier" />
+                    <param name="identifier" type="text" value="" optional="false" label="Sequence Identifier"/>
                 </repeat>
                 <param name="handle_not_listed_selector" type="select" label="How to handle non-specified Identifiers">
                     <option value="discard" selected="True">Discard</option>
@@ -102,7 +102,7 @@
             <output name="out_file" file="fetch_data_manager.2.data_manager_json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Fetches a reference genome from various sources (UCSC, NCBI, URL, Galaxy History, or a server directory) and populates the "all_fasta" data table.
@@ -112,5 +112,5 @@ Fetches a reference genome from various sources (UCSC, NCBI, URL, Galaxy History
 .. class:: infomark
 
 **Notice:** If you leave name, description, or id blank, it will be generated automatically.
-    </help>
+    ]]></help>
 </tool>

@@ -73,7 +73,6 @@
         <expand macro="correction_method"/>
         <param name="qualityDistanceOverSpan" type="float" min="-1.0" max="-0.1" value="-0.3" label="quality Distance Over Span" help="Default value is -0.3."/>
     </inputs>
-
     <outputs>
         <collection name="report" type="list">
             <discover_datasets pattern="__designation__" directory="tables" format="tabular"/>
@@ -81,7 +80,7 @@
     </outputs>
     <tests>
         <test>
-            <param name="data_input_selector" value="abundance" />
+            <param name="data_input_selector" value="abundance"/>
             <param name="abundance_file" ftype="tabular" value="rawAbundances.csv"/>
             <param name="metadata_path" ftype="tabular" value="example2_metadata.csv"/>
             <param name="correction_method" value="bonferroni"/>
@@ -94,9 +93,9 @@
             <repeat name="factor_list">
                 <param name="condition" value="L-Cycloserine"/>
             </repeat>
-            <param name="timepoint" value='T0,T2h'/>
-             <output_collection name="report" type="list" count="4">
-                <element file="abundance--cell-Control-T0-L-Cycloserine-T0-Tt.tsv"  name="abundance--cell-Control-T0-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
+            <param name="timepoint" value="T0,T2h"/>
+            <output_collection name="report" type="list" count="4">
+                <element file="abundance--cell-Control-T0-L-Cycloserine-T0-Tt.tsv" name="abundance--cell-Control-T0-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
                 <element file="abundance--cell-Control-T2h-L-Cycloserine-T2h-Tt.tsv" name="abundance--cell-Control-T2h-L-Cycloserine-T2h-Tt.tsv" ftype="tabular"/>
                 <element file="abundance--med-Control-T0-L-Cycloserine-T0-Tt.tsv" name="abundance--med-Control-T0-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
                 <element file="abundance--med-Control-T2h-L-Cycloserine-T2h-Tt.tsv" name="abundance--med-Control-T2h-L-Cycloserine-T2h-Tt.tsv" ftype="tabular"/>
@@ -303,5 +302,5 @@ You can also use the minimal data examples from https://zenodo.org/record/105798
 
  ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

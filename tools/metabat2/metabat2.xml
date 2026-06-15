@@ -66,7 +66,6 @@ metabat2
             <param argument="--pTNF" type="integer" value="0" label="TNF probability cutoff for building TNF graph" help="Use it to skip the preparation step (0:auto)"/>
             <param argument="--noAdd" type="boolean" truevalue="--noAdd" falsevalue="" checked="false" label="Turn off additional binning for lost or small contigs?"/>
             <param argument="--minRecruitingSize" type="integer" value="10" min="0" label="Minimum cluster size for recruiting of small and leftover  contigs" help="if not noAdd"/>
-            
             <param argument="--minCV" type="float" value="1.0" label="Minimum mean coverage of a contig in each library for binning"/>
             <param argument="--minCVSum" type="float" value="1.0" label="Minimum total effective mean coverage of a contig for binning" help="Sum of depth over minCV"/>
             <param argument="--seed" type="integer" value="0" label="For exact reproducibility." help="Zero value will use random seed"/>
@@ -128,15 +127,15 @@ metabat2
                 <element name="1" ftype="fasta">
                     <assert_contents>
                         <has_size value="333201"/>
-                        <has_text text=">MW127517.1"/>
-                        <has_text text=">MW127521.1"/>
+                        <has_text text="&gt;MW127517.1"/>
+                        <has_text text="&gt;MW127521.1"/>
                     </assert_contents>
                 </element>
                 <element name="2" ftype="fasta">
                     <assert_contents>
                         <has_size value="395091"/>
-                        <has_text text=">MT810119.1"/>
-                        <has_text text=">MW130867.1"/>
+                        <has_text text="&gt;MT810119.1"/>
+                        <has_text text="&gt;MW130867.1"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -152,8 +151,8 @@ metabat2
             </output>
             <output name="unbinned" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">NC_045512.2"/>
-                    <has_text text=">MW130872.1"/>
+                    <has_text text="&gt;NC_045512.2"/>
+                    <has_text text="&gt;MW130872.1"/>
                 </assert_contents>
             </output>
             <output name="process_log" ftype="txt">

@@ -4,7 +4,6 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
-
     <command detect_errors="exit_code"><![CDATA[
         mkdir out &&
         #import re, os
@@ -45,7 +44,7 @@
 
         #elif $mode.select_mode == "add":
             mkdir -p extracted_dir &&
-            ln -s $collection_dir collection_dir.tar.gz &&
+            ln -s '$collection_dir' collection_dir.tar.gz &&
             tar --strip-components=1 -xzf collection_dir.tar.gz -C extracted_dir &&
             panta add
                 #if $input_type.input_type_selector == "gff":
@@ -69,7 +68,6 @@
                 && cp -r extracted_dir/* out
             #end if
     ]]></command>
-
     <inputs>
         <conditional name="mode">
             <param label="Select mode" name="select_mode" type="select">
@@ -110,7 +108,6 @@
             <option value="protein">Protein</option>
         </param>
     </inputs>
-
     <outputs>
         <!--Basic PanTA main outputs -->
         <data format="json" name="annotated_clusters" label="${tool.name} on ${on_string} : Annotated Clusters" from_work_dir="out/annotated_clusters.json"/>
@@ -125,7 +122,6 @@
         <data format="fasta" name="representative" label="${tool.name} on ${on_string} : Representative FASTA" from_work_dir="out/representative.fasta"/>
         <data format="json" name="samples" label="${tool.name} on ${on_string} : Samples" from_work_dir="out/samples.json"/>
         <data format="txt" name="summary_statistics" label="${tool.name} on ${on_string} : Summary Statistics" from_work_dir="out/summary_statistics.txt"/>
-        
         <!--Alignment outputs -->
         <data format="fasta" name="core_gene_alignment" label="${tool.name} on ${on_string} : Core Gene Alignment" from_work_dir="out/core_gene_alignment.aln.gz">
             <filter> ['alignment'] != 'None' </filter>
@@ -134,7 +130,6 @@
             <filter> ['alignment'] != 'None' </filter>
         </data>
     </outputs>
-
     <tests>
         <!--Test 01: Basic PanTA main test for gff files: Tests the basic command for PanTA main -->
         <test expect_num_outputs="14">
@@ -156,74 +151,73 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="96508" delta='3'/>
+                    <has_n_lines n="96508" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="30680" delta='3'/>
+                    <has_n_lines n="30680" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="24266" delta='3'/>
+                    <has_n_lines n="24266" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="19712" delta='3'/>
+                    <has_n_lines n="19712" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="195" delta='3'/>
+                    <has_n_lines n="195" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="7682" delta='3'/>
+                    <has_n_lines n="7682" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="7682" delta='3'/>
+                    <has_n_lines n="7682" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="124180" delta='3'/>
+                    <has_n_lines n="124180" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="49014" delta='3'/>
+                    <has_n_lines n="49014" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="18795" delta='3'/>
+                    <has_n_lines n="18795" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="22" delta='3'/>
+                    <has_n_lines n="22" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
-        </test> 
-        
+        </test>
         <!--Test 2: PanTA main test for gff files: Tests the 'dont_split' parameter -->
         <test expect_num_outputs="14">
             <conditional name="mode">
@@ -245,74 +239,73 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="90588" delta='3'/>
+                    <has_n_lines n="90588" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="30680" delta='3'/>
+                    <has_n_lines n="30680" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="24266" delta='3'/>
+                    <has_n_lines n="24266" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="19712" delta='3'/>
+                    <has_n_lines n="19712" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="195" delta='3'/>
+                    <has_n_lines n="195" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="7089" delta='3'/>
+                    <has_n_lines n="7089" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="7089" delta='3'/>
+                    <has_n_lines n="7089" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="115793" delta='3'/>
+                    <has_n_lines n="115793" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="45624" delta='3'/>
+                    <has_n_lines n="45624" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="18795" delta='3'/>
+                    <has_n_lines n="18795" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="22" delta='3'/>
+                    <has_n_lines n="22" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
-        </test> 
-        
+        </test>
         <!--Test 3: PanTA main test for gff files: The 'alignment' parameter -->
         <test expect_num_outputs="14">
             <conditional name="mode">
@@ -334,85 +327,84 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="96508" delta='3'/>
+                    <has_n_lines n="96508" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="30680" delta='3'/>
+                    <has_n_lines n="30680" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="24266" delta='3'/>
+                    <has_n_lines n="24266" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="19712" delta='3'/>
+                    <has_n_lines n="19712" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="195" delta='3'/>
+                    <has_n_lines n="195" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="7681" delta='3'/>
+                    <has_n_lines n="7681" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="7681" delta='3'/>
+                    <has_n_lines n="7681" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="124180" delta='3'/>
+                    <has_n_lines n="124180" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="49014" delta='3'/>
+                    <has_n_lines n="49014" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="18795" delta='3'/>
+                    <has_n_lines n="18795" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="22" delta='3'/>
+                    <has_n_lines n="22" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
             <output name="core_gene_alignment" ftype="fasta">
                 <assert_contents>
-                    <has_n_lines n="96130" delta='3'/>
+                    <has_n_lines n="96130" delta="3"/>
                 </assert_contents>
             </output>
             <output name="pan_genome_reference" ftype="fasta">
                 <assert_contents>
                     <has_text text="AAAGGCGTTTGGTATATAACGATGCCAG"/>
-                    <has_n_lines n="84292" delta='3'/>
+                    <has_n_lines n="84292" delta="3"/>
                 </assert_contents>
             </output>
-        </test> 
-        
+        </test>
         <!--Test 4: Basic PanTA add test for gff files: Tests the basic command for PanTA add -->
         <test expect_num_outputs="14">
             <conditional name="mode">
@@ -420,7 +412,7 @@
                 <param name="collection_dir" location="https://zenodo.org/records/16568442/files/collection_dir.tar.gz" ftype="tar.gz"/>
             </conditional>
             <conditional name="input_type">
-                <param name="input_type_selector" value="gff"/> 
+                <param name="input_type_selector" value="gff"/>
                 <param name="input_gff">
                     <collection type="list">
                         <element name="GCA_021342735.1.gff" location="https://zenodo.org/records/16568442/files/GCA_021342735.1.gff"/>
@@ -433,74 +425,73 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="118811" delta='3'/>
+                    <has_n_lines n="118811" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="38245" delta='3'/>
+                    <has_n_lines n="38245" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="39790" delta='3'/>
+                    <has_n_lines n="39790" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="33564" delta='3'/>
+                    <has_n_lines n="33564" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="363" delta='3'/>
+                    <has_n_lines n="363" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="8523" delta='3'/>
+                    <has_n_lines n="8523" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="8523" delta='3'/>
+                    <has_n_lines n="8523" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="136572" delta='3'/>
+                    <has_n_lines n="136572" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="53952" delta='3'/>
+                    <has_n_lines n="53952" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="29001" delta='3'/>
+                    <has_n_lines n="29001" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="37" delta='3'/>
+                    <has_n_lines n="37" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
         </test>
-
         <!--Test 5: Basic PanTA add test for gff files: Tests the 'dont_split' parameter -->
         <test expect_num_outputs="14">
             <conditional name="mode">
@@ -508,7 +499,7 @@
                 <param name="collection_dir" location="https://zenodo.org/records/16568442/files/collection_dir.tar.gz" ftype="tar.gz"/>
             </conditional>
             <conditional name="input_type">
-                <param name="input_type_selector" value="gff"/> 
+                <param name="input_type_selector" value="gff"/>
                 <param name="input_gff">
                     <collection type="list">
                         <element name="GCA_021342735.1.gff" location="https://zenodo.org/records/16568442/files/GCA_021342735.1.gff"/>
@@ -522,74 +513,73 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="111811" delta='3'/>
+                    <has_n_lines n="111811" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="38245" delta='3'/>
+                    <has_n_lines n="38245" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="39790" delta='3'/>
+                    <has_n_lines n="39790" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="33564" delta='3'/>
+                    <has_n_lines n="33564" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="363" delta='3'/>
+                    <has_n_lines n="363" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="7825" delta='3'/>
+                    <has_n_lines n="7825" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="7825" delta='3'/>
+                    <has_n_lines n="7825" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="126631" delta='3'/>
+                    <has_n_lines n="126631" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="49946" delta='3'/>
+                    <has_n_lines n="49946" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="29001" delta='3'/>
+                    <has_n_lines n="29001" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="37" delta='3'/>
+                    <has_n_lines n="37" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
-        </test> 
-        
+        </test>
         <!--Test 6: Basic PanTA add test for gff files: Tests the 'alignment' parameter -->
         <test expect_num_outputs="14">
             <conditional name="mode">
@@ -597,7 +587,7 @@
                 <param name="collection_dir" location="https://zenodo.org/records/16568442/files/collection_dir.tar.gz" ftype="tar.gz"/>
             </conditional>
             <conditional name="input_type">
-                <param name="input_type_selector" value="gff"/> 
+                <param name="input_type_selector" value="gff"/>
                 <param name="input_gff">
                     <collection type="list">
                         <element name="GCA_021342735.1.gff" location="https://zenodo.org/records/16568442/files/GCA_021342735.1.gff"/>
@@ -611,73 +601,73 @@
             <output name="annotated_clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000093.1-5475-cds-WP_000557454.1"/>
-                    <has_n_lines n="118811" delta='3'/>
+                    <has_n_lines n="118811" delta="3"/>
                 </assert_contents>
             </output>
             <output name="blast_output" ftype="tsv">
                 <assert_contents>
                     <has_text text="GCA_021342655.1-NZ_JAJTPH010000101.1-3-cds-WP_233337042.1"/>
-                    <has_n_lines n="38245" delta='3'/>
+                    <has_n_lines n="38245" delta="3"/>
                 </assert_contents>
             </output>
             <output name="clusters" ftype="json">
                 <assert_contents>
                     <has_text text="GCA_021890555.1-NZ_JAKLOD010000002.1-4878-cds-L3T02_RS24235"/>
-                    <has_n_lines n="39790" delta='3'/>
+                    <has_n_lines n="39790" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_annotation" ftype="csv">
                 <assert_contents>
                     <has_text text="IclR family transcriptional regulator,6"/>
-                    <has_n_lines n="33564" delta='3'/>
+                    <has_n_lines n="33564" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_position" ftype="csv">
                 <assert_contents>
                     <has_text text="1-NZ_JAJTPH010000010.1-23-cds-LXO36_RS13380"/>
-                    <has_n_lines n="363" delta='3'/>
+                    <has_n_lines n="363" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence" ftype="csv">
                 <assert_contents>
-                    <has_n_lines n="8523" delta='3'/>
+                    <has_n_lines n="8523" delta="3"/>
                 </assert_contents>
             </output>
             <output name="gene_presence_absence_Rtab" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n="8523" delta='3'/>
+                    <has_n_lines n="8523" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_nucl" ftype="fasta">
                 <assert_contents>
                     <has_text text="GGTCTGCCCCACCGGCATCGACATTCGCGACGGCCTGCAGATCGAGTGCATTGGTTGCGC"/>
-                    <has_n_lines n="136572" delta='3'/>
+                    <has_n_lines n="136572" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative_clusters_prot" ftype="fasta">
                 <assert_contents>
                     <has_text text="GLPHRHRHSRRPADRVHWLRRLHRCLRQHHGQDGLPQGPDQLHNRTQSFRTEDPSAAPTP"/>
-                    <has_n_lines n="53952" delta='3'/>
+                    <has_n_lines n="53952" delta="3"/>
                 </assert_contents>
             </output>
             <output name="representative" ftype="fasta">
                 <assert_contents>
                     <has_text text="RIEGSVWPKSIRGSTPKVRGTCQIERAASESPHFMRFHVACPHCGEEQYLKFGDKETPFGLKWTPDDPSSVFYLCEHNACVIRQQELDFTDARYICEKTGIWTRDGILWFSSSGEEIEPPDSVTFHIWTAYSPFTTWVQIVKDWMKTKGDTGKRKTFVNTTLGETWEAKIGERPDAEVMAERKEHYSAPVPDRVAYLTAGIDSQLDRYEMRVWGWGPGEESWLIDRQIIMGRHDDEQTLLRVDEAINKTYTRRNGAEMS"/>
-                    <has_n_lines n="29001" delta='3'/>
+                    <has_n_lines n="29001" delta="3"/>
                 </assert_contents>
             </output>
             <output name="samples" ftype="json">
                 <assert_contents>
-                    <has_n_lines n="37" delta='3'/>
+                    <has_n_lines n="37" delta="3"/>
                 </assert_contents>
             </output>
             <output name="summary_statistics" ftype="txt">
                 <assert_contents>
                     <has_text text="Soft core genes"/>
-                    <has_n_lines n="6" delta='3'/>
+                    <has_n_lines n="6" delta="3"/>
                 </assert_contents>
             </output>
-        </test> 
+        </test>
     </tests>
     <help><![CDATA[
 

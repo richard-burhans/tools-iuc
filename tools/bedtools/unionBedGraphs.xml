@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 unionBedGraphs
 $header
@@ -37,12 +37,12 @@ $empty.empty_selector
                 <option value="custom">Enter custom name per file</option>
             </param>
             <when value="tag">
-                <param name="inputs" argument="-i" type="data" format="bedgraph" multiple="true" label="BedGraph files" />
+                <param name="inputs" argument="-i" type="data" format="bedgraph" multiple="true" label="BedGraph files"/>
             </when>
             <when value="custom">
                 <repeat name="bedgraphs" title="Add BedGraph files" min="2">
-                    <param name="input" argument="-i" type="data" format="bedgraph" multiple="true" label="BedGraph file" />
-                    <param name="custom_name" argument="-names" type="text" area="false" label="Custom sample name" />
+                    <param name="input" argument="-i" type="data" format="bedgraph" multiple="true" label="BedGraph file"/>
+                    <param name="custom_name" argument="-names" type="text" area="false" label="Custom sample name"/>
                 </repeat>
             </when>
         </conditional>
@@ -52,58 +52,56 @@ $empty.empty_selector
                 <option value="">No</option>
             </param>
             <when value="-empty">
-                <expand macro="input_conditional_genome_file" />
+                <expand macro="input_conditional_genome_file"/>
             </when>
-            <when value="" />
+            <when value=""/>
         </conditional>
-        <param argument="-filler" type="text" value="N/A"
-            label="Text to use for no-coverage value"
-            help="Can be 0.0, N/A, - or any other value" />
-        <expand macro="print_header" />
+        <param argument="-filler" type="text" value="N/A" label="Text to use for no-coverage value" help="Can be 0.0, N/A, - or any other value"/>
+        <expand macro="print_header"/>
     </inputs>
     <outputs>
-        <data name="output" format="bedgraph" />
+        <data name="output" format="bedgraph"/>
     </outputs>
     <tests>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph" />
-            <param name="empty|empty_selector" value="" />
-            <output name="output" file="unionBedGraphs_result1.bg" ftype="bedgraph" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph"/>
+            <param name="empty|empty_selector" value=""/>
+            <output name="output" file="unionBedGraphs_result1.bg" ftype="bedgraph"/>
         </test>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph" />
-            <param name="header" value="true" />
-            <param name="empty|empty_selector" value="" />
-            <output name="output" file="unionBedGraphs_result2.bg" ftype="bedgraph" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph"/>
+            <param name="header" value="true"/>
+            <param name="empty|empty_selector" value=""/>
+            <output name="output" file="unionBedGraphs_result2.bg" ftype="bedgraph"/>
         </test>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph" />
-            <param name="empty|empty_selector" value="-empty" />
-            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist" />
-            <param name="empty|genome_file_opts|genome" value="unionBedGraphs1.len" ftype="tabular" />
-            <output name="output" file="unionBedGraphs_result3.bg" ftype="bedgraph" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="unionBedGraphs1.bg,unionBedGraphs2.bg,unionBedGraphs3.bg" ftype="bedgraph"/>
+            <param name="empty|empty_selector" value="-empty"/>
+            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist"/>
+            <param name="empty|genome_file_opts|genome" value="unionBedGraphs1.len" ftype="tabular"/>
+            <output name="output" file="unionBedGraphs_result3.bg" ftype="bedgraph"/>
         </test>
         <test>
-            <param name="tag|tag_select" value="custom" />
+            <param name="tag|tag_select" value="custom"/>
             <repeat name="tag|bedgraphs">
-                <param name="input" value="unionBedGraphs1.bg" ftype="bedgraph" />
-                <param name="custom_name" value="first" />
+                <param name="input" value="unionBedGraphs1.bg" ftype="bedgraph"/>
+                <param name="custom_name" value="first"/>
             </repeat>
             <repeat name="tag|bedgraphs">
-                <param name="input" value="unionBedGraphs2.bg" ftype="bedgraph" />
-                <param name="custom_name" value="second" />
+                <param name="input" value="unionBedGraphs2.bg" ftype="bedgraph"/>
+                <param name="custom_name" value="second"/>
             </repeat>
             <repeat name="tag|bedgraphs">
-                <param name="input" value="unionBedGraphs3.bg" ftype="bedgraph" />
-                <param name="custom_name" value="third" />
+                <param name="input" value="unionBedGraphs3.bg" ftype="bedgraph"/>
+                <param name="custom_name" value="third"/>
             </repeat>
-            <param name="empty|empty_selector" value="-empty" />
-            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist" />
-            <param name="empty|genome_file_opts|genome" value="unionBedGraphs1.len" ftype="tabular" />
-            <output name="output" file="unionBedGraphs_result4.bg" ftype="bedgraph" />
+            <param name="empty|empty_selector" value="-empty"/>
+            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist"/>
+            <param name="empty|genome_file_opts|genome" value="unionBedGraphs1.len" ftype="tabular"/>
+            <output name="output" file="unionBedGraphs_result4.bg" ftype="bedgraph"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -230,5 +228,5 @@ Output Example::
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -1,5 +1,4 @@
 <tool id="data_manager_nextclade" name="nextclade data manager" version="0.0.1+galaxy0" tool_type="manage_data" profile="20.01">
-
     <requirements>
         <requirement type="package" version="3.8">python</requirement>
         <requirement type="package" version="2.3.0">nextclade</requirement>
@@ -56,8 +55,7 @@
                 <option value="latest" selected="true">Latest</option>
                 <option value="date_range">Date range</option>
             </param>
-            <when value="latest">
-            </when>
+            <when value="latest"/>
             <when value="date_range">
                 <param name="start_date" type="text" label="Start date (YYYY-MM-DD)" help="Don't download models older than this date" optional="true">
                     <validator type="regex" message="Dates are in YYYY-MM-DD format">\d{4}-\d{2}-\d{2}$</validator>
@@ -74,29 +72,29 @@
     <tests>
         <test expect_num_outputs="1">
             <conditional name="release">
-                <param name="which" value="date_range" />
-                <param name="start_date" value="2022-03-01" />
-                <param name="end_date" value="2022-04-01" />
+                <param name="which" value="date_range"/>
+                <param name="start_date" value="2022-03-01"/>
+                <param name="end_date" value="2022-04-01"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text='"database_name": "sars-cov-2"' />
-                    <has_text text='sars-cov-2_2022-03-31T12-00-00Z' />
-                    <has_text text='sars-cov-2_2022-03-24T12-00-00Z' />
-                    <has_text text='sars-cov-2_2022-03-14T12-00-00Z"' />
-                    <has_text text='"min_nextclade_version": "1.10.0"' />
+                    <has_text text="&quot;database_name&quot;: &quot;sars-cov-2&quot;"/>
+                    <has_text text="sars-cov-2_2022-03-31T12-00-00Z"/>
+                    <has_text text="sars-cov-2_2022-03-24T12-00-00Z"/>
+                    <has_text text="sars-cov-2_2022-03-14T12-00-00Z&quot;"/>
+                    <has_text text="&quot;min_nextclade_version&quot;: &quot;1.10.0&quot;"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
-            <param name="datasets" value="MPXV,hMPXV" />
+            <param name="datasets" value="MPXV,hMPXV"/>
             <conditional name="release">
-                <param name="which" value="latest" />
+                <param name="which" value="latest"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text='"database_name": "MPXV"' />
-                    <has_text text='"database_name": "hMPXV"' />
+                    <has_text text="&quot;database_name&quot;: &quot;MPXV&quot;"/>
+                    <has_text text="&quot;database_name&quot;: &quot;hMPXV&quot;"/>
                 </assert_contents>
             </output>
         </test>

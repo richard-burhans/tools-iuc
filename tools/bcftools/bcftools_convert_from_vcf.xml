@@ -252,9 +252,9 @@ $convert.sex_info.sex_info_lines.__str__.strip().replace(' ','\t')#slurp
             </conditional>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="X" />
+                        <param name="chrom" value="X"/>
                     </repeat>
                 </conditional>
             </section>

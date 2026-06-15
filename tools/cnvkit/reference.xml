@@ -70,120 +70,126 @@
                 <option value="yes">Reuse a copy number reference file</option>
             </param>
             <when value="no">
-                <expand macro="construct_CNV_ref_with_natural_expected_number" />
+                <expand macro="construct_CNV_ref_with_natural_expected_number"/>
                 <section name="advanced_settings" title="Advanced settings" expanded="false">
-                    <expand macro="reference_interface" />
-                    <expand macro="reference_optional" /> 
-                    <expand macro="sample_sex_condition" />
+                    <expand macro="reference_interface"/>
+                    <expand macro="reference_optional"/>
+                    <expand macro="sample_sex_condition"/>
                 </section>
                 <section name="disable_some_of_the_bias_corrections" title="Bias corrections settings" expanded="false">
-                    <expand macro="disable_specific_automatic_bias_corrections" />
+                    <expand macro="disable_specific_automatic_bias_corrections"/>
                 </section>
             </when>
             <when value="yes">
-                <param name="input_cnn_file" type="data" format="cnn" multiple="true" label="Sample Target/antitarget Coverage cnn file" help="" />
+                <param name="input_cnn_file" type="data" format="cnn" multiple="true" label="Sample Target/antitarget Coverage cnn file" help=""/>
                 <section name="advanced_settings" title="Advanced settings" expanded="false">
-                    <expand macro="reference_interface" />
-                    <expand macro="reference_optional" />
-                    <expand macro="sample_sex_condition" />
+                    <expand macro="reference_interface"/>
+                    <expand macro="reference_optional"/>
+                    <expand macro="sample_sex_condition"/>
                 </section>
                 <section name="disable_some_of_the_bias_corrections" title="Bias corrections settings" expanded="false">
-                    <expand macro="disable_specific_automatic_bias_corrections" />
+                    <expand macro="disable_specific_automatic_bias_corrections"/>
                 </section>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="out_referene_tas" format="cnn" label="${tool.name} on ${on_string}: TAS-on-target coverage" from_work_dir="ref-tas.cnn" />
+        <data name="out_referene_tas" format="cnn" label="${tool.name} on ${on_string}: TAS-on-target coverage" from_work_dir="ref-tas.cnn"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
             <conditional name="CNV_reference">
-                <param name="CNV_reference_availabel" value="yes" />
+                <param name="CNV_reference_availabel" value="yes"/>
                 <section name="advanced_settings">
                     <conditional name="reference_source">
                         <param name="ref_selector" value="history"/>
-                        <param name="fasta" ftype="fasta" value="genome.fasta" />
+                        <param name="fasta" ftype="fasta" value="genome.fasta"/>
                     </conditional>
                 </section>
-                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn" />
+                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn"/>
                 <section name="disable_some_of_the_bias_corrections">
-                    <param name="no_gc" value="1" />
+                    <param name="no_gc" value="1"/>
                 </section>
             </conditional>
-            <output name="out_referene_tas" file="ref-tas.cnn" /> 
+            <output name="out_referene_tas" file="ref-tas.cnn"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="CNV_reference">
-                <param name="CNV_reference_availabel" value="yes" />
+                <param name="CNV_reference_availabel" value="yes"/>
                 <section name="advanced_settings">
                     <conditional name="reference_source">
                         <param name="ref_selector" value="cached"/>
                         <param name="fasta" value="test_buildid"/>
                     </conditional>
                 </section>
-                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn" />
+                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn"/>
                 <section name="disable_some_of_the_bias_corrections">
-                    <param name="no_gc" value="1" />    
+                    <param name="no_gc" value="1"/>
                 </section>
             </conditional>
-            <output name="out_referene_tas" file="ref-tas.cnn" />
+            <output name="out_referene_tas" file="ref-tas.cnn"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="CNV_reference">
-                <param name="CNV_reference_availabel" value="yes" />
+                <param name="CNV_reference_availabel" value="yes"/>
                 <section name="advanced_settings">
                     <conditional name="reference_source">
                         <param name="ref_selector" value="cached"/>
                         <param name="fasta" value="test_buildid"/>
                     </conditional>
                 </section>
-                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn,test.targetcoverage.cnn" />
+                <param name="input_cnn_file" ftype="cnn" value="tumor.targetcoverage.cnn,test.targetcoverage.cnn"/>
                 <section name="disable_some_of_the_bias_corrections">
-                    <param name="no_gc" value="1" />
+                    <param name="no_gc" value="1"/>
                 </section>
             </conditional>
             <output name="out_referene_tas">
-                <assert_contents><has_text text="chromosome"/></assert_contents>
+                <assert_contents>
+                    <has_text text="chromosome"/>
+                </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="CNV_reference">
-                <param name="CNV_reference_availabel" value="no" />
+                <param name="CNV_reference_availabel" value="no"/>
                 <section name="advanced_settings">
                     <conditional name="reference_source">
                         <param name="ref_selector" value="cached"/>
                         <param name="fasta" value="test_buildid"/>
                     </conditional>
                 </section>
-                <param name="targets" ftype="bed" value="capture.target.bed" />
+                <param name="targets" ftype="bed" value="capture.target.bed"/>
                 <section name="disable_some_of_the_bias_corrections">
-                    <param name="no_gc" value="1" />
+                    <param name="no_gc" value="1"/>
                 </section>
             </conditional>
             <output name="out_referene_tas">
-                <assert_contents><has_text text="chromosome"/></assert_contents>
+                <assert_contents>
+                    <has_text text="chromosome"/>
+                </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
             <conditional name="CNV_reference">
-                <param name="CNV_reference_availabel" value="no" />
+                <param name="CNV_reference_availabel" value="no"/>
                 <section name="advanced_settings">
                     <conditional name="reference_source">
                         <param name="ref_selector" value="cached"/>
                         <param name="fasta" value="test_buildid"/>
                     </conditional>
                     <conditional name="Sample_sex">
-                        <param name="sex" value="no" />
+                        <param name="sex" value="no"/>
                     </conditional>
                 </section>
-                <param name="targets" ftype="bed" value="capture.target.bed" />
+                <param name="targets" ftype="bed" value="capture.target.bed"/>
                 <section name="disable_some_of_the_bias_corrections">
-                    <param name="no_gc" value="1" />
+                    <param name="no_gc" value="1"/>
                 </section>
             </conditional>
             <output name="out_referene_tas">
-                <assert_contents><has_text text="chromosome"/></assert_contents>
+                <assert_contents>
+                    <has_text text="chromosome"/>
+                </assert_contents>
             </output>
         </test>
     </tests>
@@ -223,5 +229,5 @@ Tabular file defining the reference baseline built from control samples (e.g., n
 - **Purpose:** Captures on-target sequencing depth.
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

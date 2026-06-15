@@ -219,7 +219,7 @@
                 <param argument="--trio-dual" type="boolean" truevalue="--trio-dual" falsevalue="" label="Utilize homology information to correct trio-phasing errors"/>
             </when>
         </conditional>
-        <param name="filter_bits" argument="-f" type="integer" min="0" value="37" label="Bits for bloom filter" help="A value of 0 disables the bloom filter"/>       
+        <param name="filter_bits" argument="-f" type="integer" min="0" value="37" label="Bits for bloom filter" help="A value of 0 disables the bloom filter"/>
         <conditional name="assembly_options">
             <param name="assembly_selector" type="select" label="Assembly options">
                 <option value="blank">Leave default</option>
@@ -281,7 +281,7 @@
             </param>
             <when value="blank"/>
             <when value="set">
-                <param argument="--ul" type="data" format="fastq,fastq.gz,fasta,fasta.gz" multiple="true" label="Ultra-long (>100kb) reads"/>
+                <param argument="--ul" type="data" format="fastq,fastq.gz,fasta,fasta.gz" multiple="true" label="Ultra-long (&gt;100kb) reads"/>
                 <param argument="--ul-rate" type="float" value="0.2" optional="true" label="error rate of ultra-long reads (default 0.2)"/>
                 <param argument="--ul-tip" type="integer" value="6" optional="true" label="remove tip unitigs composed of less than (INT) reads for the UL assembly (default 6)"/>
             </when>
@@ -300,8 +300,7 @@
                 <param name="correction_rounds" argument="-r" type="integer" value="3" label="Correction rounds"/>
                 <param argument="--min-hist-cnt" type="integer" min="0" value="" optional="true" label="Minimum count threshold" help="When analyzing the k-mer spectrum, ignore counts below this value"/>
                 <param argument="--max-kocc" type="integer" min="0" value="20000" label="Maximum k-mer ocurrence" help="Employ k-mers occurring less than INT times to rescue repetitive overlaps"/>
-                <param argument="--hg-size" type="text" value="" optional="true" label="Estimated haploid genome size"
-                       help="Estimated haploid genome size used for inferring read coverage. If not provided, this parameter will be infered by hifism. Common suffices are required, for example, 100m or 3g">
+                <param argument="--hg-size" type="text" value="" optional="true" label="Estimated haploid genome size" help="Estimated haploid genome size used for inferring read coverage. If not provided, this parameter will be infered by hifism. Common suffices are required, for example, 100m or 3g">
                     <sanitizer invalid_char="">
                         <valid initial="string.digits">
                             <add value="k"/>
@@ -328,8 +327,8 @@
                 <param argument="--scaf-gap" type="integer" min="1" value="3000000" optional="true" label="Max scaffolding gap size" help="Set the max gap size of scaffolds (default is 3,000,000)"/>
             </when>
         </conditional>
-        <param name="log_out" type="boolean" label="Output log file?" truevalue="yes" falsevalue="no"/> 
-        <param name="bins_out" type="boolean" label="Output .bin files (used for development and debugging)?" truevalue="yes" falsevalue="no"/> 
+        <param name="log_out" type="boolean" label="Output log file?" truevalue="yes" falsevalue="no"/>
+        <param name="bins_out" type="boolean" label="Output .bin files (used for development and debugging)?" truevalue="yes" falsevalue="no"/>
     </inputs>
     <outputs>
         <!--Standard and ONT mode-->
@@ -428,7 +427,7 @@
             </output>
         </test>
         <!--TEST 4: Test Hi-C reads-->
-        <test expect_num_outputs="6"> 
+        <test expect_num_outputs="6">
             <param name="reads" value="hifiasm-in1.fa.gz" ftype="fasta.gz"/>
             <param name="filter_bits" value="0"/>
             <param name="mode_selector" value="standard"/>
@@ -564,7 +563,7 @@
         <test expect_num_outputs="5">
             <param name="reads" value="hifiasm-in1.fa.gz" ftype="fasta.gz"/>
             <param name="mode_selector" value="standard"/>
-	    <param name="filter_bits" value="0"/>
+            <param name="filter_bits" value="0"/>
             <conditional name="ont_integration">
                 <param name="ont_integration_selector" value="set"/>
                 <param name="ul" value="nanopore.fasta.gz"/>
@@ -577,7 +576,7 @@
         <test expect_num_outputs="6">
             <param name="reads" value="hifiasm-in1.fa.gz" ftype="fasta.gz"/>
             <param name="mode_selector" value="standard"/>
-	    <param name="filter_bits" value="0"/>
+            <param name="filter_bits" value="0"/>
             <param name="log_out" value="yes"/>
             <conditional name="ont_integration">
                 <param name="ont_integration_selector" value="set"/>

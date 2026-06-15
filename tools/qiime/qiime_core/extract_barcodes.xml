@@ -58,12 +58,12 @@ extract_barcodes.py
             </when>
             <when value="barcode_paired_stitched">
                 <param argument="--switch_bc_order" type="boolean" truevalue="--switch_bc_order" falsevalue="" checked="False" label="Reverse barcode order written?"/>
-                <param argument="--bc2_len" type="integer" value="6" optional="true" label="Length, in base pairs, of barcode 2" help="This applies to the –fastq2 file and options 'barcode_paired_end', 'barcode_paired_stitched', and 'barcode_in_label' for the –input_type" />
+                <param argument="--bc2_len" type="integer" value="6" optional="true" label="Length, in base pairs, of barcode 2" help="This applies to the –fastq2 file and options 'barcode_paired_end', 'barcode_paired_stitched', and 'barcode_in_label' for the –input_type"/>
             </when>
             <when value="barcode_single_end"/>
             <when value="barcode_in_label">
                 <param argument="--fastq2" type="data" format="fastq,fastqsanger,fastqsolexa" optional="true" label="Input fastq filepath" help="This file is considered read 2"/>
-                <param argument="--bc2_len" type="integer" value="6" optional="true" label="Length, in base pairs, of barcode 2" help="This applies to the –fastq2 file and options 'barcode_paired_end', 'barcode_paired_stitched', and 'barcode_in_label' for the –input_type" />
+                <param argument="--bc2_len" type="integer" value="6" optional="true" label="Length, in base pairs, of barcode 2" help="This applies to the –fastq2 file and options 'barcode_paired_end', 'barcode_paired_stitched', and 'barcode_in_label' for the –input_type"/>
                 <param argument="--rev_comp_bc2" type="boolean" truevalue="--rev_comp_bc2" falsevalue="" checked="False" label="Reverse complement barcode 2 before writing?"/>
                 <param argument="--char_delineator" type="text" value=":" label="Character in fastq label that should immediately precede the barcode sequence" help="The length of the barcode is specified by the –bc1_len (and optionally –bc2_len if paired end files are used) parameter"/>
             </when>

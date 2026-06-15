@@ -119,8 +119,8 @@
         --ovs-run 1 \$((\${GALAXY_MEMORY_MB:-8192} * 9 / 10)) 12
     ]]></command>
     <inputs>
-        <param name="hifi" type="data" multiple="true" format="fastq,fastq.gz,fastqsanger,fastqsanger.gz" label="HiFi Reads Files" />
-        <param name="nano" type="data" multiple="true" optional="true" format="fastq,fastq.gz,fastqsanger,fastqsanger.gz" label="Oxford Nanopore Reads Files" />
+        <param name="hifi" type="data" multiple="true" format="fastq,fastq.gz,fastqsanger,fastqsanger.gz" label="HiFi Reads Files"/>
+        <param name="nano" type="data" multiple="true" optional="true" format="fastq,fastq.gz,fastqsanger,fastqsanger.gz" label="Oxford Nanopore Reads Files"/>
         <section name="algorithm" title="Algorithm parameters">
             <param argument="--no-correction" type="boolean" truevalue="--no-correction" falsevalue="" label="Do not perform Canu correction on HiFi reads"/>
             <conditional name="hap_kmer">
@@ -183,7 +183,7 @@
         </data>
     </outputs>
     <tests>
-    <!-- ALL TESTS SHOULD FAIL, there is no sample data small enough to run in our tests, so it's checking the command itself -->
+        <!-- ALL TESTS SHOULD FAIL, there is no sample data small enough to run in our tests, so it's checking the command itself -->
         <test expect_exit_code="1" expect_failure="true">
             <!-- Use nano, no haplotypes -->
             <param name="hifi" value="test1.fastq.gz,test2.fastq.gz"/>

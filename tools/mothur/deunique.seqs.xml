@@ -37,9 +37,7 @@ ln -s '$names' names.dat &&
                 <param name="names" type="data" format="mothur.names" label="provide a names file" help="A names file will generate a new faste file containing all the sequences."/>
             </when>
             <when value="countfile">
-                <param name="names" type="data" format="mothur.count_table" label="provide a count table"
-                    help="A counts table will generate a new faste file containing all the sequences.
-                    If the file contains group information, a group file will also be created."/>
+                <param name="names" type="data" format="mothur.count_table" label="provide a count table" help="A counts table will generate a new faste file containing all the sequences.                     If the file contains group information, a group file will also be created."/>
             </when>
         </conditional>
         <expand macro="param-savelog"/>
@@ -53,7 +51,8 @@ ln -s '$names' names.dat &&
         </data>
     </outputs>
     <tests>
-        <test><!-- test names file input -->
+        <test>
+            <!-- test names file input -->
             <param name="fasta" value="amazon.unique.fasta"/>
             <param name="intype" value="namesfile"/>
             <param name="names" value="amazon.unique.names"/>
@@ -61,7 +60,8 @@ ln -s '$names' names.dat &&
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test count file input with group file output -->
+        <test>
+            <!-- test count file input with group file output -->
             <param name="fasta" value="amazon.unique.fasta"/>
             <param name="intype" value="countfile"/>
             <param name="names" value="amazon_withgroups.count_table"/>
@@ -70,12 +70,14 @@ ln -s '$names' names.dat &&
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test count file input without group file output -->
+        <test>
+            <!-- test count file input without group file output -->
             <param name="fasta" value="amazon.unique.fasta"/>
             <param name="intype" value="countfile"/>
             <param name="names" value="amazon.count_table"/>
             <output name="out_fasta" md5="177f5cf92a84ab3aef0a665e06178bbe" ftype="fasta"/>
-            <output name="groups_file" md5="d41d8cd98f00b204e9800998ecf8427e" ftype="mothur.groups"/> <!--empty-->
+            <output name="groups_file" md5="d41d8cd98f00b204e9800998ecf8427e" ftype="mothur.groups"/>
+            <!--empty-->
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>

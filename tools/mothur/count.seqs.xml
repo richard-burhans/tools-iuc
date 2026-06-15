@@ -39,7 +39,7 @@ echo 'count.seqs(
             <when value="yes">
                 <param name="group" type="data" format="mothur.groups" label="group - Group file for the tree"/>
                 <param name="groups" type="select" label="groups - Groups to display" multiple="true">
-                    <help>All groups displayed if none are selected.</help>
+                    <help><![CDATA[All groups displayed if none are selected.]]></help>
                     <options>
                         <filter type="data_meta" ref="group" key="groups"/>
                     </options>
@@ -54,13 +54,15 @@ echo 'count.seqs(
         <data name="seq_count" format="mothur.count_table" from_work_dir="name*.count_table" label="${tool.name} on ${on_string}: count_table"/>
     </outputs>
     <tests>
-        <test><!-- test default params -->
+        <test>
+            <!-- test default params -->
             <param name="name" value="amazon.names"/>
             <output name="seq_count" file="amazon.count_table" ftype="mothur.count_table"/>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group file -->
+        <test>
+            <!-- test with group file -->
             <param name="name" value="amazon.names"/>
             <param name="use" value="yes"/>
             <param name="group" value="amazon.groups"/>
@@ -68,7 +70,8 @@ echo 'count.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test> <!-- test with group file and subset of groups -->
+        <test>
+            <!-- test with group file and subset of groups -->
             <param name="name" value="amazon.names"/>
             <param name="use" value="yes"/>
             <param name="group" value="amazon.groups" ftype="mothur.groups"/>
@@ -77,7 +80,8 @@ echo 'count.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test> <!-- test with group file and multiple groups -->
+        <test>
+            <!-- test with group file and multiple groups -->
             <param name="name" value="amazon.names"/>
             <param name="use" value="yes"/>
             <param name="group" value="amazon.groups" ftype="mothur.groups"/>

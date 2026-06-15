@@ -3,7 +3,7 @@
     <macros>
         <import>picard_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 @java_options@
 @symlink_element_identifier@
@@ -22,28 +22,28 @@ picard CollectHsMetrics
 --VERBOSITY ERROR
     ]]></command>
     <inputs>
-        <param name="inputFile" type="data" format="sam,bam" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset" />
-        <param name="baitFile" type="data" format="picard_interval_list" label="An interval list file that contains the locations of the baits used" help="If empty, upload or convert from BED" />
-        <param name="targetFile" type="data" format="picard_interval_list" label="An interval list file that contains the locations of the targets" help="If empty, upload or convert from BED" />
-        <param name="minimum_mapping_quality" type="integer" value="20" label="Minimum mapping quality for a read to contribute coverage" help="MINIMUM_MAPPING_QUALITY; default=20" />
-        <param name="minimum_base_quality" type="integer" value="20" label="Minimum base quality for a base to contribute coverage" help="MINIMUM_BASE_QUALITY; default=20" />
-        <param name="coverage_cap" type="integer" value="200" label="Treat bases with coverage exceeding this value as if they had coverage at this value" help="COVERAGE_CAP; default=200" />
-        <param name="clip_overlapping_reads" type="boolean" label="Clip overlapping reads" checked="true" truevalue="true" falsevalue="false" help="CLIP_OVERLAPPING_READS; default=true" />
-        <expand macro="VS" />
+        <param name="inputFile" type="data" format="sam,bam" label="Select SAM/BAM dataset or dataset collection" help="If empty, upload or import a SAM/BAM dataset"/>
+        <param name="baitFile" type="data" format="picard_interval_list" label="An interval list file that contains the locations of the baits used" help="If empty, upload or convert from BED"/>
+        <param name="targetFile" type="data" format="picard_interval_list" label="An interval list file that contains the locations of the targets" help="If empty, upload or convert from BED"/>
+        <param name="minimum_mapping_quality" type="integer" value="20" label="Minimum mapping quality for a read to contribute coverage" help="MINIMUM_MAPPING_QUALITY; default=20"/>
+        <param name="minimum_base_quality" type="integer" value="20" label="Minimum base quality for a base to contribute coverage" help="MINIMUM_BASE_QUALITY; default=20"/>
+        <param name="coverage_cap" type="integer" value="200" label="Treat bases with coverage exceeding this value as if they had coverage at this value" help="COVERAGE_CAP; default=200"/>
+        <param name="clip_overlapping_reads" type="boolean" label="Clip overlapping reads" checked="true" truevalue="true" falsevalue="false" help="CLIP_OVERLAPPING_READS; default=true"/>
+        <expand macro="VS"/>
     </inputs>
     <outputs>
-        <data name="outFile" format="txt" label="${tool.name} on ${on_string}: Summary data" />
+        <data name="outFile" format="txt" label="${tool.name} on ${on_string}: Summary data"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputFile" value="picard_CollectHsMetrics.bam" ftype="bam" />
-            <param name="baitFile" value="picard_CollectHsMetrics.baits" ftype="picard_interval_list" />
-            <param name="targetFile" value="picard_CollectHsMetrics.target" ftype="picard_interval_list" />
-            <param name="minimum_mapping_quality" value="20" />
-            <param name="minimum_base_quality" value="20" />
-            <param name="coverage_cap" value="200" />
-            <param name="clip_overlapping_reads" value="true" />
-            <output name="outFile" file="picard_CollectHsMetrics_test1.tab" lines_diff="6" />
+            <param name="inputFile" value="picard_CollectHsMetrics.bam" ftype="bam"/>
+            <param name="baitFile" value="picard_CollectHsMetrics.baits" ftype="picard_interval_list"/>
+            <param name="targetFile" value="picard_CollectHsMetrics.target" ftype="picard_interval_list"/>
+            <param name="minimum_mapping_quality" value="20"/>
+            <param name="minimum_base_quality" value="20"/>
+            <param name="coverage_cap" value="200"/>
+            <param name="clip_overlapping_reads" value="true"/>
+            <output name="outFile" file="picard_CollectHsMetrics_test1.tab" lines_diff="6"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -80,10 +80,11 @@ using Picard's **BedToIntervalList** tool, which will also add the required SAM 
   COVERAGE_CAP=Integer
   CAP=Integer                   Treat bases with coverage exceeding this value as if they had coverage at this value.
                                 Default value: 200.
+
   CLIP_OVERLAPPING_READS=Boolean
                                 If true, clip overlapping reads, false otherwise. Default value: true.
 
 @more_info@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

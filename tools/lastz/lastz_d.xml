@@ -1,7 +1,7 @@
 <tool id="lastz_d_wrapper" name="LASTZ_D" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>estimate substitution scores matrix</description>
     <macros>
-    	<import>lastz_macros.xml</import>
+        <import>lastz_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
     <expand macro="requirements"/>
@@ -21,30 +21,29 @@
         <expand macro="target_input"/>
         <param name="query" format="fasta,fastq,fasta.gz,fastq.gz,fastq.bz2" type="data" label="Select QUERY sequence(s)" help="These are the sequences that you are aligning against TARGET"/>
         <param name="score_file" type="data" format="txt" optional="true" label="Control file for inference" argument="--inferonly[=control_file]" help="Optional controf file. If nothing is selected, LASTZ_D uses default described in the manual"/>
-     </inputs>
+    </inputs>
     <outputs>
         <data format="txt" name="output" label="${tool.name} on ${on_string}: substitution matrix"/>
     </outputs>
     <tests>
         <test>
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" value="chrM_human.fa" />
+                <param name="ref_source" value="history"/>
+                <param name="target" value="chrM_human.fa"/>
             </conditional>
-            <param name="query" value="chrM_mouse.fa" />
-            <output name="output" value="lastz_d_test1.out" />
+            <param name="query" value="chrM_mouse.fa"/>
+            <output name="output" value="lastz_d_test1.out"/>
         </test>
         <test>
             <conditional name="source">
-                <param name="ref_source" value="history" />
-                <param name="target" value="chrM_human.fa" />
+                <param name="ref_source" value="history"/>
+                <param name="target" value="chrM_human.fa"/>
             </conditional>
-            <param name="query" value="chrM_mouse.fa" />
-            <param name="score_file" value="lastz_d_ctrl_file.txt" />
-            <output name="output" value="lastz_d_test2.out" />
+            <param name="query" value="chrM_mouse.fa"/>
+            <param name="score_file" value="lastz_d_ctrl_file.txt"/>
+            <output name="output" value="lastz_d_test2.out"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What is does**

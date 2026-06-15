@@ -1,17 +1,13 @@
 <tool id="qualifilter" name="QualiFilter" version="@TOOL_VERSION@@VERSION_SUFFIX@" profile="@PROFILE@">
-  <description>Report QC metrics and sample pass/fail based on user-defined thresholds</description>
-
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-
-  <requirements>
-      <requirement type="package" version="1.0.0">qualifilter</requirement>
-  </requirements>
-
-  <version_command>echo @TOOL_VERSION@</version_command>
-
-  <command detect_errors="exit_code" ><![CDATA[
+    <description>Report QC metrics and sample pass/fail based on user-defined thresholds</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <requirements>
+        <requirement type="package" version="1.0.0">qualifilter</requirement>
+    </requirements>
+    <version_command>echo @TOOL_VERSION@</version_command>
+    <command detect_errors="exit_code"><![CDATA[
   qualifilter 
       --input '$input_file'
       --attributes '$attributes'
@@ -24,68 +20,53 @@
       --outdir . 
       > qualifilter.log 2>&1
   ]]></command>
-
-  <inputs>
-    <param name="input_file" type="data" format="tabular" label="Input summary file" />
-
-    <param argument="--attributes" type="select" multiple="true" optional="true"
-           label="QC metrics to include"
-           help="Select which metrics to include in the output. Leave empty to include all.">
-        <option value="Sample">Sample</option>
-        <option value="Total_reads">Total reads</option>
-        <option value="Mapped_reads">Mapped reads</option>
-        <option value="Mapping_pct">Mapping %</option>
-        <option value="Median_depth">Median depth</option>
-        <option value="Coverage_gte_10x_pct">Coverage ≥10x %</option>
-        <option value="GC_pct">GC %</option>
-        <option value="Kraken_top1_pct">Kraken top1 %</option>
-        <option value="Kraken_unclassified_pct">Kraken unclassified %</option>
-        <option value="Contam_pct">Contamination %</option>
-        <option value="QC_status">QC status</option>
-        <option value="Total_reads_pass">Total reads pass</option>
-        <option value="Coverage_gte_10x_pct_pass">Coverage at ≥10x pass</option>
-        <option value="Contam_pct_pass">Contamination pass</option>
-        <option value="MTB_reads">MTB reads</option>
-        <option value="Unclassified_reads">Unclassified reads</option>
-    </param>
-
-    <param name="total_reads" type="float" value="1000000" min="0" label="Minimum total reads" help="Minimum number of sequencing reads required for a sample to pass QC (commonly ≥1M for microbial WGS)." />
-    <param name="coverage_gte_10x_pct" type="float" value="90" min="0" max="100" label="Minimum coverage pct at ≥10x depth" help="Percentage of the genome covered at ≥10x depth. Values ≥90% are generally considered good quality." />
-    <param name="contam_max" type="float" value="5" min="0" max="100" label="Maximum contamination %" help="Maximum proportion of reads not belonging to the target organism (typically ≤5%)." />
-    <param name="round" type="integer" value="2" min="0" label="Rounding precision" help="Number of decimal places used to round numeric values in the output." />
-
-    <param name="config" type="data" format="yaml" optional="true"
-       label="Optional config file"
-       help="Provide a YAML or JSON config file to override default allowed columns and rename map. Only advanced users need this." />
-
-    <param argument="--derive_reads" type="boolean"
-           truevalue="--derive_reads" falsevalue=""
-           label="Derive MTB/unclassified reads" />
-  </inputs>
-
-  <outputs>
-    <data name="qc_matrix_tsv" format="tsv" label="QC Matrix (TSV)" from_work_dir="QC_matrix.tsv" />
-    <data name="qc_matrix_csv" format="csv" label="QC Matrix (CSV)" from_work_dir="QC_matrix.csv" />
-    <data name="log" format="txt" label="QualiFilter Log" from_work_dir="qualifilter.log" />
-  </outputs>
-
-  <tests>
-    <test expect_num_outputs="3">
-      <param name="input_file" value="qc_matrix.tabular" ftype="tabular"/>
-      <param name="attributes" value="Sample,Total_reads,Mapped_reads,Mapping_pct,Median_depth,Coverage_gte_10x_pct,GC_pct,Kraken_top1_pct,Kraken_unclassified_pct,Contam_pct,QC_status,Total_reads_pass,Coverage_gte_10x_pct_pass,Contam_pct_pass,MTB_reads,Unclassified_reads" />
-      <param name="total_reads" value="1000000" />
-      <param name="coverage_gte_10x_pct" value="90" />
-      <param name="contam_max" value="5" />
-      <param name="round" value="2" />
-      <param name="derive_reads" value="true" />
-
-      <output name="qc_matrix_tsv" file="QC_matrix.tsv" />
-      <output name="qc_matrix_csv" file="QC_matrix.csv" />
-      <output name="log" file="qualifilter.log" />
-    </test>
-  </tests>
-
-  <help><![CDATA[
+    <inputs>
+        <param name="input_file" type="data" format="tabular" label="Input summary file"/>
+        <param argument="--attributes" type="select" multiple="true" optional="true" label="QC metrics to include" help="Select which metrics to include in the output. Leave empty to include all.">
+            <option value="Sample">Sample</option>
+            <option value="Total_reads">Total reads</option>
+            <option value="Mapped_reads">Mapped reads</option>
+            <option value="Mapping_pct">Mapping %</option>
+            <option value="Median_depth">Median depth</option>
+            <option value="Coverage_gte_10x_pct">Coverage ≥10x %</option>
+            <option value="GC_pct">GC %</option>
+            <option value="Kraken_top1_pct">Kraken top1 %</option>
+            <option value="Kraken_unclassified_pct">Kraken unclassified %</option>
+            <option value="Contam_pct">Contamination %</option>
+            <option value="QC_status">QC status</option>
+            <option value="Total_reads_pass">Total reads pass</option>
+            <option value="Coverage_gte_10x_pct_pass">Coverage at ≥10x pass</option>
+            <option value="Contam_pct_pass">Contamination pass</option>
+            <option value="MTB_reads">MTB reads</option>
+            <option value="Unclassified_reads">Unclassified reads</option>
+        </param>
+        <param name="total_reads" type="float" value="1000000" min="0" label="Minimum total reads" help="Minimum number of sequencing reads required for a sample to pass QC (commonly ≥1M for microbial WGS)."/>
+        <param name="coverage_gte_10x_pct" type="float" value="90" min="0" max="100" label="Minimum coverage pct at ≥10x depth" help="Percentage of the genome covered at ≥10x depth. Values ≥90% are generally considered good quality."/>
+        <param name="contam_max" type="float" value="5" min="0" max="100" label="Maximum contamination %" help="Maximum proportion of reads not belonging to the target organism (typically ≤5%)."/>
+        <param name="round" type="integer" value="2" min="0" label="Rounding precision" help="Number of decimal places used to round numeric values in the output."/>
+        <param name="config" type="data" format="yaml" optional="true" label="Optional config file" help="Provide a YAML or JSON config file to override default allowed columns and rename map. Only advanced users need this."/>
+        <param argument="--derive_reads" type="boolean" truevalue="--derive_reads" falsevalue="" label="Derive MTB/unclassified reads"/>
+    </inputs>
+    <outputs>
+        <data name="qc_matrix_tsv" format="tsv" label="QC Matrix (TSV)" from_work_dir="QC_matrix.tsv"/>
+        <data name="qc_matrix_csv" format="csv" label="QC Matrix (CSV)" from_work_dir="QC_matrix.csv"/>
+        <data name="log" format="txt" label="QualiFilter Log" from_work_dir="qualifilter.log"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="input_file" value="qc_matrix.tabular" ftype="tabular"/>
+            <param name="attributes" value="Sample,Total_reads,Mapped_reads,Mapping_pct,Median_depth,Coverage_gte_10x_pct,GC_pct,Kraken_top1_pct,Kraken_unclassified_pct,Contam_pct,QC_status,Total_reads_pass,Coverage_gte_10x_pct_pass,Contam_pct_pass,MTB_reads,Unclassified_reads"/>
+            <param name="total_reads" value="1000000"/>
+            <param name="coverage_gte_10x_pct" value="90"/>
+            <param name="contam_max" value="5"/>
+            <param name="round" value="2"/>
+            <param name="derive_reads" value="true"/>
+            <output name="qc_matrix_tsv" file="QC_matrix.tsv"/>
+            <output name="qc_matrix_csv" file="QC_matrix.csv"/>
+            <output name="log" file="qualifilter.log"/>
+        </test>
+    </tests>
+    <help><![CDATA[
   **What it does**
   
   This tool extracts sequencing quality control (QC) metrics from a MultiQC tabular summary (.tabular) file and generates a consolidated QC matrix containing only the metrics of interest. 
@@ -149,9 +130,8 @@
   - The tool generates a log file documenting the processing steps and any issues encountered
 
   ]]></help>
-
-  <citations>
-    <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
   @misc{bntozini2025,
     author = {Buhle Ntozini},
     year = {2025},
@@ -161,5 +141,5 @@
     url = {https://github.com/buhlentozini/QualiFilter}
   }
     </citation>
-  </citations>
+    </citations>
 </tool>

@@ -217,7 +217,7 @@ $fastq_merging_options.collapse_conservatively
         </param>
     </inputs>
     <outputs>
-        <data name="output_settings" format="txt"  label="${tool.name} on ${on_string} (settings)"/>
+        <data name="output_settings" format="txt" label="${tool.name} on ${on_string} (settings)"/>
         <data name="output_truncated" format="fastqsanger" label="${tool.name} on ${on_string} (truncated)">
             <filter>input_type_cond['input_type'] == 'single'</filter>
         </data>
@@ -265,7 +265,7 @@ $fastq_merging_options.collapse_conservatively
                     <has_text text="@read_150_1/1"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
         <!-- Test 02: Dataset pair input, all defaults -->
         <test expect_num_outputs="3">
             <conditional name="input_type_cond">
@@ -301,7 +301,7 @@ $fastq_merging_options.collapse_conservatively
                     <has_text text="@read_150_1/2"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
         <!-- Test 03: Dataset pair input, all defaults, interleaved output -->
         <test expect_num_outputs="2">
             <conditional name="input_type_cond">
@@ -326,7 +326,7 @@ $fastq_merging_options.collapse_conservatively
                     <has_text text="@read_150_1/1"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
         <!-- Test 04: Collection of dataset pairs input, all defaults -->
         <test expect_num_outputs="3">
             <conditional name="input_type_cond">
@@ -362,7 +362,7 @@ $fastq_merging_options.collapse_conservatively
                     <has_text text="@read_150_1/2"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
         <!-- Test 05: Dataset pair input, all defaults, all optional outputs checked -->
         <test expect_num_outputs="7">
             <conditional name="input_type_cond">
@@ -418,9 +418,9 @@ $fastq_merging_options.collapse_conservatively
                     <has_text text="@read_150_57/1"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Searches for and removes adapter sequences from high-throughput sequencing (HTS) data and optionally trims low quality
@@ -465,6 +465,6 @@ The following outputs, some of which are optional or are only produced under cer
  * **Output complete reads with an 'M\_' name prefix and trimmed reads with an 'MT\_' name prefix** - In paired-end mode, merge overlapping mates into a single and recalculate the quality scores. In single-end mode, attempt to identify templates for which the entire sequence is available. In both cases, complete "collapsed" reads are written with a 'M\_' name prefix, and "collapsed" reads which are trimmed due to quality settings are written with a 'MT\_' name prefix. The overlap needs to be at least --minalignmentlength nucleotides, with a maximum number of mismatches determined by --mm.
  * **Collapse deterministically** - Enable deterministic mode; currently only affects --collapse, different overlapping bases with equal quality are set to N quality 0, instead of being randomly sampled. Setting this option also sets --collapse.
  * **Collapse conservatively** - Alternative merging algorithm inspired by FASTQ-join: For matching overlapping bases, the highest quality score is used. For mismatching overlapping bases, the highest quality base is used and the quality is set to the absolute difference in Phred-score between the two bases. For mismatching bases with identical quality scores, the base is set to 'N' and the quality score to 0 (Phred-encoded). Setting this option also sets --collapse.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

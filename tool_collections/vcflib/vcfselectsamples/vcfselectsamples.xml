@@ -1,30 +1,30 @@
 <tool id="vcfselectsamples" name="VCFselectsamples:" version="@WRAPPER_VERSION@+galaxy0">
-  <description>Select samples from a VCF dataset</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <expand macro="requirements"/>
-  <expand macro="stdio" />
-  <command>vcfkeepsamples '${input1}' ${ ' '.join( map( lambda x:'"%s"' % ( x ), str($vcf_samples ).split(",") ) ) } > '${out_file1}'</command>
-  <inputs>
-    <param format="vcf" name="input1" type="data" label="Select VCF dataset"  />
-    <param name="vcf_samples" type="select" label="Check to keep samples; Uncheck to remove" display="checkboxes" multiple="true">
-      <options>
-        <filter type="data_meta" ref="input1" key="sample_names" />
-      </options>
-    </param>
-  </inputs>
-  <outputs>
-    <data format="vcf" name="out_file1" />
-  </outputs>
-  <tests>
-    <test>
-      <param name="vcf_samples" value="NA00001,NA00003"/>
-      <param name="input1" value="vcflib.vcf"/>
-      <output name="out_file1" file="vcfselectsamples-test1.vcf"/>
-    </test>
-   </tests>
-  <help>
+    <description>Select samples from a VCF dataset</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <command><![CDATA[vcfkeepsamples '${input1}' ${ ' '.join( map( lambda x:'"%s"' % ( x ), str($vcf_samples ).split(",") ) ) } > '${out_file1}']]></command>
+    <inputs>
+        <param format="vcf" name="input1" type="data" label="Select VCF dataset"/>
+        <param name="vcf_samples" type="select" label="Check to keep samples; Uncheck to remove" display="checkboxes" multiple="true">
+            <options>
+                <filter type="data_meta" ref="input1" key="sample_names"/>
+            </options>
+        </param>
+    </inputs>
+    <outputs>
+        <data format="vcf" name="out_file1"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="vcf_samples" value="NA00001,NA00003"/>
+            <param name="input1" value="vcflib.vcf"/>
+            <output name="out_file1" file="vcfselectsamples-test1.vcf"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 
 Allows to keep or remove samples from a VCF file.
 
@@ -48,6 +48,6 @@ will, obviously, remove *NA00002*::
 ----
 
 Vcfselectsamples is based on vcfkeepsamples/vcfremovesamples utilities from **VCFlib** toolkit developed by Erik Garrison (https://github.com/ekg/vcflib).
-</help>
-  <expand macro="citations" />
+]]></help>
+    <expand macro="citations"/>
 </tool>

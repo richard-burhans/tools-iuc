@@ -4,8 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements">
-    </expand>   
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="exit_code"><![CDATA[
 #import os
@@ -192,7 +191,7 @@ $skip_trnascan
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 @WHATITDOESHEADER@
@@ -214,6 +213,6 @@ This tool produces the following outputs.
  * Tabular files with tRNAs and rRNAs
 
 @WHATITDOESFOOTER@
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -4,9 +4,9 @@
         <import>macs2_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         @home_dir@
         macs2 refinepeak
@@ -19,15 +19,14 @@
             @buffer_size@
     ]]></command>
     <inputs>
-        <param name="infile" type="data" format="bam,bed" label="Sequencing alignment file" />
-        <param name="bed_infile" type="data" format="bed" label="Candidate peak file in BED format" />
+        <param name="infile" type="data" format="bam,bed" label="Sequencing alignment file"/>
+        <param name="bed_infile" type="data" format="bed" label="Candidate peak file in BED format"/>
         <param name="cutoff" type="float" label="Cutoff" value="5.0" help="default: 5.0 (--cutoff)"/>
-        <param name="winsize" type="integer" value="200" label="Scan window size on both side of the summit" help="default: 200bp (--window-size)" />
+        <param name="winsize" type="integer" value="200" label="Scan window size on both side of the summit" help="default: 200bp (--window-size)"/>
         <expand macro="buffer_size"/>
     </inputs>
-
     <outputs>
-        <data name="outfile" format="bed" label="${tool.name} on ${on_string}" />
+        <data name="outfile" format="bed" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
@@ -50,5 +49,5 @@ This is **refinepeak** utility from the MACS2_ Package. It is an experimental ut
 @citation@
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

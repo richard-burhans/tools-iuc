@@ -123,8 +123,7 @@
                 <param argument="--input-virus-properties" type="data" label="Configuration and data specific to a pathogen" format="json" optional="true" help="For more info on the virus properties JSON file, see the Nextclade documentation."/>
                 <param argument="--include-reference" truevalue="--include-reference" falsevalue="" type="boolean" label="Include reference sequence in FASTA alignment output" help="The FASTA alignment is an optional output of nextclade. Select this option to include the reference sequence in that alignment file"/>
             </when>
-            <when value="no">
-            </when>
+            <when value="no"/>
         </conditional>
     </inputs>
     <outputs>

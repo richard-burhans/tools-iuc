@@ -49,10 +49,9 @@ beta_diversity.py
                 <expand macro="param_level"/>
             </when>
         </conditional>
-
     </inputs>
     <outputs>
-        <data name="output" format="tabular" />
+        <data name="output" format="tabular"/>
     </outputs>
     <tests>
         <test>

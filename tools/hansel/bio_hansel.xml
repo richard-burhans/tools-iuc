@@ -5,7 +5,7 @@
     <xrefs>
         <xref type="bio.tools">Biohansel</xref>
     </xrefs>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #if $data_type.type == "paired":
             #if $data_type.fastq_input1.ext.endswith('.gz'):
@@ -88,7 +88,7 @@
                 <param name="fastq_input2" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" label="Reverse paired-end read file"/>
             </when>
             <when value="collection">
-                <param name="fastq_input1" type="data_collection" label="Paired-end reads collection" optional="false" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" collection_type="paired" />
+                <param name="fastq_input1" type="data_collection" label="Paired-end reads collection" optional="false" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" collection_type="paired"/>
             </when>
         </conditional>
         <conditional name="type_of_scheme">

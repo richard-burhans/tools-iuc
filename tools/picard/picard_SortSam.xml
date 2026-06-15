@@ -58,7 +58,7 @@
             <output name="outFile" file="picard_SortSam_test1.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -75,6 +75,6 @@ Sorts the input SAM or BAM.
 
  @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

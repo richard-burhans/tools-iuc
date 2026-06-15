@@ -34,6 +34,5 @@
         Specify the optional Identifier column parameter to make a column left-most; generally used for a Key column that should not be sorted within the other columns.
         ]]>
     </help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

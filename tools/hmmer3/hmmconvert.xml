@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="hmmer_hmmconvert" name="hmmconvert" version="@TOOL_VERSION@+galaxy0" profile="@PROFILE@">
     <description>convert profile file to a HMMER format</description>
     <macros>
@@ -12,36 +11,36 @@ $format
 '$hmmfile'
 > '$output'
   ]]></command>
-  <inputs>
-    <expand macro="input_hmm" />
-    <param name="format" type="select" label="Output Format">
-      <option value="-a" selected="true">output models in HMMER3 ASCII format</option>
-      <!--<option value="-b">output models in HMMER3 binary format</option>-->
-      <option value="-2">backward compatible HMMER2 ASCII format</option>
-    </param>
-  </inputs>
-  <outputs>
-    <data name="output" format="hmm3" label="$hmmfile.name">
-      <change_format>
-        <when input="format" value="-2" format="hmm2"/>
-      </change_format>
-    </data>
-  </outputs>
-  <tests>
-    <test>
-      <param name="hmmfile" value="globins4.hmm"/>
-      <param name="format" value="-2" ftype="hmm2"/>
-      <output name="output" file="globins4.hmm2" compare="sim_size">
-          <assert_contents>
-              <has_line_matching expression="HMMER2.*"/>
-              <has_line_matching expression="ALPH  Amino"/>
-              <has_line_matching expression="NSEQ  4"/>
-              <has_line_matching expression="//"/>
-          </assert_contents>
-      </output>
-    </test>
-  </tests>
-  <help><![CDATA[
+    <inputs>
+        <expand macro="input_hmm"/>
+        <param name="format" type="select" label="Output Format">
+            <option value="-a" selected="true">output models in HMMER3 ASCII format</option>
+            <!--<option value="-b">output models in HMMER3 binary format</option>-->
+            <option value="-2">backward compatible HMMER2 ASCII format</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output" format="hmm3" label="$hmmfile.name">
+            <change_format>
+                <when input="format" value="-2" format="hmm2"/>
+            </change_format>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="hmmfile" value="globins4.hmm"/>
+            <param name="format" value="-2" ftype="hmm2"/>
+            <output name="output" file="globins4.hmm2" compare="sim_size">
+                <assert_contents>
+                    <has_line_matching expression="HMMER2.*"/>
+                    <has_line_matching expression="ALPH  Amino"/>
+                    <has_line_matching expression="NSEQ  4"/>
+                    <has_line_matching expression="//"/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help><![CDATA[
 @HELP_PRE@
 
 The hmmconvert utility converts an input profile file to different HMMER formats.
@@ -52,5 +51,5 @@ current HMMER3 ASCII format.
 
 @ATTRIBUTION@
   ]]></help>
-  <expand macro="citation"/>
+    <expand macro="citation"/>
 </tool>

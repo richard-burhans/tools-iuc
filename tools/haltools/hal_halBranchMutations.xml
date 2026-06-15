@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halBranchMutations
@@ -28,7 +28,7 @@
         <param name="refGenome" type="text" value="" label="Reference genome" help="To be analyzed branch and its according parent. Must denote bottom node in a branch, and therefore cannot be the root itself">
             <expand macro="sanitizer_default"/>
             <expand macro="validator_trim"/>
-        </param> 
+        </param>
         <conditional name="support">
             <param name="file" type="select" label="Use a BED file for coordinates" help="Use a BED file to define intervals in the reference genome to process">
                 <option value="false" selected="true">No, don't use a BED file (default)</option>
@@ -64,17 +64,17 @@
             <param name="refGenome" value="Genome_1"/>
             <output name="output_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_1_seq&#009;1465&#009;1758&#009;I&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_1_seq&#009;4395&#009;4688&#009;P&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_1_seq&#9;1465&#9;1758&#9;I&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_1_seq&#9;4395&#9;4688&#9;P&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>
             <output name="output_parentFile" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_0_seq&#009;293&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_0_seq&#009;586&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_0_seq&#9;293&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_0_seq&#9;586&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="13"/>
                 </assert_contents>
             </output>
@@ -86,14 +86,14 @@
             <param name="length" value="500"/>
             <output name="output_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
             </output>
             <output name="output_parentFile" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_0_seq&#009;293&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_0_seq&#9;293&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="3"/>
                 </assert_contents>
             </output>
@@ -107,17 +107,17 @@
             </conditional>
             <output name="output_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_1_seq&#009;1465&#009;1758&#009;I&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_1_seq&#009;4395&#009;4688&#009;P&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_1_seq&#9;1465&#9;1758&#9;I&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_1_seq&#9;4395&#9;4688&#9;P&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>
             <output name="output_parentFile" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_0_seq&#009;293&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_0_seq&#009;586&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_0_seq&#9;293&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_0_seq&#9;586&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="13"/>
                 </assert_contents>
             </output>
@@ -131,17 +131,17 @@
             </conditional>
             <output name="output_file" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_1_seq&#009;1465&#009;1758&#009;I&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_1_seq&#009;4395&#009;4688&#009;P&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_1_seq&#9;1465&#9;1758&#9;I&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_1_seq&#9;4395&#9;4688&#9;P&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="5"/>
                 </assert_contents>
             </output>
             <output name="output_parentFile" ftype="bed">
                 <assert_contents>
-                    <has_line line="#Sequence&#009;Start&#009;End&#009;MutationID&#009;ParentGenome&#009;ChildGenome"/>
-                    <has_line line="Genome_0_seq&#009;586&#009;879&#009;U&#009;Genome_0&#009;Genome_1"/>
-                    <has_line line="Genome_0_seq&#009;1172&#009;1465&#009;U&#009;Genome_0&#009;Genome_1"/>
+                    <has_line line="#Sequence&#9;Start&#9;End&#9;MutationID&#9;ParentGenome&#9;ChildGenome"/>
+                    <has_line line="Genome_0_seq&#9;586&#9;879&#9;U&#9;Genome_0&#9;Genome_1"/>
+                    <has_line line="Genome_0_seq&#9;1172&#9;1465&#9;U&#9;Genome_0&#9;Genome_1"/>
                     <has_n_lines n="13"/>
                 </assert_contents>
             </output>

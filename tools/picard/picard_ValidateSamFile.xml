@@ -155,7 +155,7 @@
             <output name="outFile" file="picard_ValidateSamFile_test1.txt" ftype="txt"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -208,12 +208,12 @@ Reads a SAM/BAM dataset and report on its validity.
                                 values: {true, false}
 
   IS_BISULFITE_SEQUENCED=Boolean
-  BISULFITE=Boolean             Whether the SAM or BAM file consists of bisulfite sequenced reads. If so, C-&gt;T is not
+  BISULFITE=Boolean             Whether the SAM or BAM file consists of bisulfite sequenced reads. If so, C->T is not
                                 counted as an error in computing the value of the NM tag.  Default value: false. This
                                 option can be set to 'null' to clear the default value. Possible values: {true, false}
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

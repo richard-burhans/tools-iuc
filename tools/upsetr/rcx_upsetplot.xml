@@ -17,7 +17,7 @@
     <command detect_errors="exit_code"><![CDATA[
         Rscript '${run_script}'
         #if $export_R_script
-        && cat ${run_script} >> $script
+        && cat ${run_script} >> '$script'
         #end if
     ]]></command>
     <configfiles>

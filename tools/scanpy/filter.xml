@@ -353,7 +353,8 @@ sc.pp.scrublet(
                             <when value="text">
                                 <param name="filter" type="select" label="Filter">
                                     <option value="equal">equal to</option>
-                                    <option value="not_equal">not equal to</option></param>
+                                    <option value="not_equal">not equal to</option>
+                                </param>
                                 <param name="value" type="text" value="2500" label="Value"/>
                             </when>
                             <when value="boolean">
@@ -394,7 +395,7 @@ sc.pp.scrublet(
                 <param argument="compare_abs" type="boolean" truevalue="True" falsevalue="False" checked="false" label="If selected, compare absolute values of log fold change with min_fold_change"/>
             </when>
             <when value="pp.highly_variable_genes">
-                <conditional name='flavor'>
+                <conditional name="flavor">
                     <param argument="flavor" type="select" label="Choose the flavor for identifying highly variable genes" help="Expects logarithmized data, except when flavor='seurat_v3'/'seurat_v3_paper', in which count">
                         <option value="seurat" selected="true">Seurat</option>
                         <option value="cell_ranger">Cell Ranger</option>
@@ -447,7 +448,7 @@ sc.pp.scrublet(
                 <param argument="replace" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Sample the counts with replacement?"/>
             </when>
             <when value="filter_marker">
-                <param argument="markerfile" type="data" format="tabular" label="List of markers" help="This should be a tsv where row = group (e.g. celltypes) and columns = markers."></param>
+                <param argument="markerfile" type="data" format="tabular" label="List of markers" help="This should be a tsv where row = group (e.g. celltypes) and columns = markers."/>
                 <param name="header" type="boolean" truevalue="included" falsevalue="not_included" checked="true" label="Header is included in the list of markers?"/>
                 <param argument="thresh_mean" type="float" min="0.0" value="1.0" label="Minimal average count of all cells of a group (e.g., celltype) for a particular marker" help="Increasing the threshold will result in a smaller marker set."/>
                 <param argument="thresh_frac" type="float" min="0.0" max="1.0" value="0.1" label="Minimal fractions of cells that has a higher count than the average count of all cells of the group for the marker" help="Increasing this threshold might remove marker outliers."/>
@@ -467,7 +468,7 @@ sc.pp.scrublet(
             </when>
             <when value="pp.scrublet">
                 <param argument="batch_key" type="text" value="" optional="true" label="Batch key for the concatenate">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
                 <param argument="sim_doublet_ratio" type="float" value="2.0" label="Number of doublets to simulate relative to the number of observed transcriptomes"/>
                 <param argument="expected_doublet_rate" type="float" value="0.05" label="The estimated doublet rate for the experiment"/>
@@ -526,7 +527,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 2 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -556,7 +556,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 3 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -585,7 +584,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <test expect_num_outputs="1">
             <!-- test 4 -->
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -638,7 +636,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!--  test 6 -->
         <!-- Fails to write to anndata after tl.filter_rank_genes_groups
              Issue has been reported here: https://github.com/scverse/anndata/issues/726
@@ -671,7 +668,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 7 -->
         <test expect_num_outputs="2">
             <param name="adata" value="blobs.h5ad"/>
@@ -699,7 +695,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 8 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -730,7 +725,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 9 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -760,7 +754,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 10 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -790,7 +783,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 11 -->
         <test expect_num_outputs="2">
             <param name="adata" value="random-randint.h5ad"/>
@@ -817,7 +809,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 12 -->
         <test expect_num_outputs="2">
             <param name="adata" value="random-randint.h5ad"/>
@@ -846,7 +837,6 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 13 -->
         <test expect_num_outputs="2">
             <param name="adata" value="cosg.rank_genes_groups.newton-cg.pbmc68k_highly_reduced_1.h5ad"/>
@@ -876,12 +866,11 @@ sc.pp.scrublet(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 14 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
-            <param name="method" value="pp.scrublet"/>
+                <param name="method" value="pp.scrublet"/>
                 <param name="n_prin_comps" value="5"/>
             </conditional>
             <section name="advanced_common">

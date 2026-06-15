@@ -18,7 +18,7 @@ fimo
         #if str( $options_type.bgfile_type.bgfile_type_selector ) == 'motif_file':
             --bgfile --motif--
         #elif str( $options_type.bgfile_type.bgfile_type_selector ) == 'bgfile':
-            --bgfile $options_type.bgfile_type.bgfile
+            --bgfile '$options_type.bgfile_type.bgfile'
         #elif str( $options_type.bgfile_type.bgfile_type_selector ) == 'uniform_distr':
             --bgfile --uniform--
         #end if
@@ -36,12 +36,12 @@ fimo
         $options_type.parse_genomic_coords
         
         #if str( $options_type.psp_cond.psp_selector ) == 'yes':
-            --psp $options_type.psp_cond.input_psp
+            --psp '$options_type.psp_cond.input_psp'
             --alpha $options_type.psp_cond.alpha
         #end if
 
         #if str( $options_type.prior_dist_cond.prior_dist_selector ) == 'yes':
-            --prior-dist $options_type.prior_dist_cond.input_prior_dist
+            --prior-dist '$options_type.prior_dist_cond.input_prior_dist'
         #end if
     #end if
     '$input_motifs'
@@ -342,7 +342,7 @@ fimo
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: warningmark
 
@@ -361,7 +361,7 @@ For detailed information on FIMO, click here_, or view the license_.
 .. _here: http://meme-suite.org/doc/fimo.html?man_type=web
 .. _license: http://meme-suite.org/doc/copyright.html?man_type=web
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btr064</citation>
     </citations>

@@ -28,23 +28,23 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="sam,bam" label="Reads to deduplicate in SAM or BAM format" help="Please use the samtools sort tool to ensure a correct BAM input" />
-        <param name="wide_format_cell_counts" type="boolean" truevalue="--wide-format-cell-counts" falsevalue="" checked="true" label="Output a matrix of genes and cells, instead of a flat file" />
+        <param name="input" type="data" format="sam,bam" label="Reads to deduplicate in SAM or BAM format" help="Please use the samtools sort tool to ensure a correct BAM input"/>
+        <param name="wide_format_cell_counts" type="boolean" truevalue="--wide-format-cell-counts" falsevalue="" checked="true" label="Output a matrix of genes and cells, instead of a flat file"/>
         <expand macro="barcode_options_macro"/>
         <expand macro="umi_grouping_options_macro"/>
         <expand macro="sambam_options_macro"/>
         <expand macro="sc_options_macro"/>
         <expand macro="advanced_options_macro"/>
-        <conditional name="cond_extra" >
-            <param name="prepender" type="select" label="Prepend a label to all column headers" help="This preserves uniqueness when merging with other files with the same headers. Note: filename must not contain a '.' character" >
-                <option value="none" selected="true" >No modifications</option>
+        <conditional name="cond_extra">
+            <param name="prepender" type="select" label="Prepend a label to all column headers" help="This preserves uniqueness when merging with other files with the same headers. Note: filename must not contain a '.' character">
+                <option value="none" selected="true">No modifications</option>
                 <option value="string">Custom Label</option>
                 <option value="dataset name">Dataset Name</option>
             </param>
-            <when value="none"></when>
-            <when value="dataset name"></when>
+            <when value="none"/>
+            <when value="dataset name"/>
             <when value="string">
-                <param name="custom_label" type="text" label="Label to Prepend" >
+                <param name="custom_label" type="text" label="Label to Prepend">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
                             <add value="-"/>
@@ -58,134 +58,141 @@
         <expand macro="log_input_macro"/>
     </inputs>
     <outputs>
-        <data name="out_counts" format="tabular" />
+        <data name="out_counts" format="tabular"/>
         <expand macro="log_output_macro"/>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"><!--count_single_gene_tag:-->
-            <param name="input" value="chr19_gene_tags.bam" />
+        <test expect_num_outputs="1">
+            <!--count_single_gene_tag:-->
+            <param name="input" value="chr19_gene_tags.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="123456789" />
+                <param name="random_seed" value="123456789"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XF" />
-                <param name="skip_tags_regex" value="^[__|Unassigned]" />
-                <param name="per_cell" value="false" />
+                <param name="gene_tag" value="XF"/>
+                <param name="skip_tags_regex" value="^[__|Unassigned]"/>
+                <param name="per_cell" value="false"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="umis" />
+                <param name="extract_umi_method" value="umis"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="directional" />
+                <param name="method" value="directional"/>
             </section>
-            <param name="wide_format_cell_counts" value="false" />
-            <output name="out_counts" value="count_single_gene_tag.tsv" />
+            <param name="wide_format_cell_counts" value="false"/>
+            <output name="out_counts" value="count_single_gene_tag.tsv"/>
         </test>
-        <test expect_num_outputs="1"><!--count_single_gene_tag .. with sam input-->
-            <param name="input" value="chr19_gene_tags.sam" />
+        <test expect_num_outputs="1">
+            <!--count_single_gene_tag .. with sam input-->
+            <param name="input" value="chr19_gene_tags.sam"/>
             <section name="advanced">
-                <param name="random_seed" value="123456789" />
+                <param name="random_seed" value="123456789"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XF" />
-                <param name="skip_tags_regex" value="^[__|Unassigned]" />
-                <param name="per_cell" value="false" />
+                <param name="gene_tag" value="XF"/>
+                <param name="skip_tags_regex" value="^[__|Unassigned]"/>
+                <param name="per_cell" value="false"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="umis" />
+                <param name="extract_umi_method" value="umis"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="directional" />
+                <param name="method" value="directional"/>
             </section>
-            <param name="wide_format_cell_counts" value="false" />
-            <output name="out_counts" value="count_single_gene_tag.tsv" />
+            <param name="wide_format_cell_counts" value="false"/>
+            <output name="out_counts" value="count_single_gene_tag.tsv"/>
         </test>
-        <test expect_num_outputs="1"><!--count_single_cells_gene_tag:-->
-            <param name="input" value="chr19_gene_tags.bam" />
+        <test expect_num_outputs="1">
+            <!--count_single_cells_gene_tag:-->
+            <param name="input" value="chr19_gene_tags.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="123456789" />
+                <param name="random_seed" value="123456789"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XF" />
-                <param name="skip_tags_regex" value="^[__|Unassigned]" />
-                <param name="per_cell" value="true" />
+                <param name="gene_tag" value="XF"/>
+                <param name="skip_tags_regex" value="^[__|Unassigned]"/>
+                <param name="per_cell" value="true"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="umis" />
+                <param name="extract_umi_method" value="umis"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="directional" />
+                <param name="method" value="directional"/>
             </section>
-            <param name="wide_format_cell_counts" value="false" />
-            <output name="out_counts" value="count_single_cells_gene_tag.tsv" />
+            <param name="wide_format_cell_counts" value="false"/>
+            <output name="out_counts" value="count_single_cells_gene_tag.tsv"/>
         </test>
-        <test expect_num_outputs="1"><!--count_single_cells_wide_gene_tag:-->
-            <param name="input" value="chr19_gene_tags.bam" />
+        <test expect_num_outputs="1">
+            <!--count_single_cells_wide_gene_tag:-->
+            <param name="input" value="chr19_gene_tags.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="123456789" />
+                <param name="random_seed" value="123456789"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XF" />
-                <param name="skip_tags_regex" value="^[__|Unassigned]" />
-                <param name="per_cell" value="true" />
+                <param name="gene_tag" value="XF"/>
+                <param name="skip_tags_regex" value="^[__|Unassigned]"/>
+                <param name="per_cell" value="true"/>
             </section>
             <conditional name="bc">
-                <param name="extract_umi_method" value="umis" />
+                <param name="extract_umi_method" value="umis"/>
             </conditional>
             <section name="umi">
-                <param name="method" value="directional" />
+                <param name="method" value="directional"/>
             </section>
-            <param name="wide_format_cell_counts" value="true" />
-            <output name="out_counts" value="count_single_cells_gene_tag_wide.tsv" />
+            <param name="wide_format_cell_counts" value="true"/>
+            <output name="out_counts" value="count_single_cells_gene_tag_wide.tsv"/>
         </test>
-        <test expect_num_outputs="1"><!-- count ENSDARG00000019692, with defaults -->
-            <param name="input" value="fc.ENSDARG00000019692.bam" />
+        <test expect_num_outputs="1">
+            <!-- count ENSDARG00000019692, with defaults -->
+            <param name="input" value="fc.ENSDARG00000019692.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XT" />
-                <param name="per_cell" value="true" />
+                <param name="gene_tag" value="XT"/>
+                <param name="per_cell" value="true"/>
             </section>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <output name="out_counts" value="fc.ENSDARG00000019692.counts" />
+            <output name="out_counts" value="fc.ENSDARG00000019692.counts"/>
         </test>
-        <test expect_num_outputs="1"><!-- count ENSDARG00000019692, relabel string -->
-            <param name="input" value="fc.ENSDARG00000019692.bam" />
+        <test expect_num_outputs="1">
+            <!-- count ENSDARG00000019692, relabel string -->
+            <param name="input" value="fc.ENSDARG00000019692.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XT" />
-                <param name="per_cell" value="true" />
+                <param name="gene_tag" value="XT"/>
+                <param name="per_cell" value="true"/>
             </section>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <conditional name="cond_extra" >
-                <param name="prepender" value="string" />
-                <param name="custom_label" value="test" />
+            <conditional name="cond_extra">
+                <param name="prepender" value="string"/>
+                <param name="custom_label" value="test"/>
             </conditional>
-            <output name="out_counts" value="fc.ENSDARG00000019692.counts.test" />
+            <output name="out_counts" value="fc.ENSDARG00000019692.counts.test"/>
         </test>
-        <test expect_num_outputs="1"><!-- count ENSDARG00000019692, relabel filename -->
-            <param name="input" value="fc.ENSDARG00000019692.bam" />
+        <test expect_num_outputs="1">
+            <!-- count ENSDARG00000019692, relabel filename -->
+            <param name="input" value="fc.ENSDARG00000019692.bam"/>
             <section name="advanced">
-                <param name="random_seed" value="0" />
+                <param name="random_seed" value="0"/>
             </section>
             <section name="sc">
-                <param name="gene_tag" value="XT" />
-                <param name="per_cell" value="true" />
+                <param name="gene_tag" value="XT"/>
+                <param name="per_cell" value="true"/>
             </section>
             <section name="umi">
-                <param name="method" value="unique" />
+                <param name="method" value="unique"/>
             </section>
-            <conditional name="cond_extra" >
-                <param name="prepender" value="dataset name" />
+            <conditional name="cond_extra">
+                <param name="prepender" value="dataset name"/>
             </conditional>
-            <output name="out_counts" value="fc.ENSDARG00000019692.counts.name" />
+            <output name="out_counts" value="fc.ENSDARG00000019692.counts.name"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -222,5 +229,5 @@ is hardcoded on.
 @UMI_GROUPING_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

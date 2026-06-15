@@ -1,11 +1,9 @@
 <tool id="preseq_lc_extrap" name="Preseq lc_extrap" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>Yield Extrapolation</description>
-    
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
-
     <command detect_errors="exit_code"><![CDATA[
         ## 1. File Preparation: Symlink the input BAM to a standard name
 		ln -s '$input_bam' input.bam &&
@@ -18,18 +16,15 @@
             -s $step_size
             -o '$output_tsv' 
     ]]></command>
-
     <inputs>
-        <expand macro="macro_input_bam" />
+        <expand macro="macro_input_bam"/>
         <param argument="-e" name="extrap_limit" type="integer" value="10000000" label="Extrapolation Limit" help="Total number of reads to extrapolate to."/>
         <param argument="-s" name="step_size" type="integer" value="100000" label="Step Size" help="Step size for extrapolation."/>
-        <expand macro="macro_verbose" />
+        <expand macro="macro_verbose"/>
     </inputs>
-
     <outputs>
         <data name="output_tsv" format="tsv"/>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
             <param name="input_bam" value="test.bam" ftype="bam"/>
@@ -38,7 +33,6 @@
             <output name="output_tsv" file="test_lc_extrap.tsv" ftype="tsv" lines_diff="4"/>
         </test>
     </tests>
-
     <help><![CDATA[
 **Preseq: lc_extrap**
 
@@ -52,7 +46,5 @@ The `lc_extrap` tool from the Preseq package predicts the expected yield of dist
 
 - A tabular (TSV) file containing the extrapolated yield curve. This file is suitable for plotting and can be integrated into MultiQC reports.
     ]]></help>
-    
     <expand macro="citations"/>
-
 </tool>

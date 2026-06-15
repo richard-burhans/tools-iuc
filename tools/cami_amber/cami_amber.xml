@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code">
     <![CDATA[
 
@@ -109,96 +109,69 @@
     ]]>
     </command>
     <inputs>
-        <param argument="--gold_standard_file" format="tabular" type="data"
-            label="Mapping of contigs or reads"
-            help="Input the gold standard file here so amber know the correct IDs for each contig/read" />
-        <repeat name="input_files" title="Binning files and names "
-            help="Enter multiple binning files and names (names are optional). IMPORTANT: for each binning file you use in the program you need to state one label, this mean for example for 3 binning files you need 3 labels (3 slots) not more or less!">
-            <param name="binning_files" format="tabular" type="data"
-                label="Input bin files here" /> 
-            <param argument="--labels" type="text" value="" optional="true"
-                label="Name for bin" />
+        <param argument="--gold_standard_file" format="tabular" type="data" label="Mapping of contigs or reads" help="Input the gold standard file here so amber know the correct IDs for each contig/read"/>
+        <repeat name="input_files" title="Binning files and names " help="Enter multiple binning files and names (names are optional). IMPORTANT: for each binning file you use in the program you need to state one label, this mean for example for 3 binning files you need 3 labels (3 slots) not more or less!">
+            <param name="binning_files" format="tabular" type="data" label="Input bin files here"/>
+            <param argument="--labels" type="text" value="" optional="true" label="Name for bin"/>
         </repeat>
-        <param argument="--filter" type="integer" value="0" min="0"
-            label="Filter out the n smallest genome bins"
-            help="Optional filter for filter out the n smallest genome bins" />
-        <param argument="--min_length" type="integer" value="" optional="true"
-            label="Minimum length of sequences"
-            help="Input how long the sequences has to be" />
-        <param argument="--desc" type="text" value=""
-            label="HTML description"
-            help="Enter the HTML page description here" />
-        <section name="genome" title="Genome binning-specific options" >
-            <repeat name="thresholds" title="Min. completeness and max. contamination thresholds" 
-                help="Enter certain thresholds for min. completeness (Default %: 50,70,90) and certain thresholds for max. contamination (Default %: 5, 10), the program itself will transform it to %!" >
-                <param argument="--min_completeness" type="integer" value="" min="0" max="100" optional="true"
-                    label="Min. completeness threshold" />
-                <param argument="--max_contamination" type="integer" value="" min="0" max="100" optional="true"
-                    label="Max. contamination threshold" />
+        <param argument="--filter" type="integer" value="0" min="0" label="Filter out the n smallest genome bins" help="Optional filter for filter out the n smallest genome bins"/>
+        <param argument="--min_length" type="integer" value="" optional="true" label="Minimum length of sequences" help="Input how long the sequences has to be"/>
+        <param argument="--desc" type="text" value="" label="HTML description" help="Enter the HTML page description here"/>
+        <section name="genome" title="Genome binning-specific options">
+            <repeat name="thresholds" title="Min. completeness and max. contamination thresholds" help="Enter certain thresholds for min. completeness (Default %: 50,70,90) and certain thresholds for max. contamination (Default %: 5, 10), the program itself will transform it to %!">
+                <param argument="--min_completeness" type="integer" value="" min="0" max="100" optional="true" label="Min. completeness threshold"/>
+                <param argument="--max_contamination" type="integer" value="" min="0" max="100" optional="true" label="Max. contamination threshold"/>
             </repeat>
-            <param argument="--remove_genomes" type="data" format="tabular" optional="true" 
-                label="tsv file for genomes to remove"
-                help="Input a tsv file with binid and type in each line. In the help section is an example. WARNING: IF THE LIST CONTAIN ALL GENOME THE PROGRAM WILL FAIL!" />
+            <param argument="--remove_genomes" type="data" format="tabular" optional="true" label="tsv file for genomes to remove" help="Input a tsv file with binid and type in each line. In the help section is an example. WARNING: IF THE LIST CONTAIN ALL GENOME THE PROGRAM WILL FAIL!"/>
             <conditional name="remove">
-                <param name="is_select" type="select" label="Remove one or all genomes which are in the list?"
-                    help="Select yes and enter a keyword to remove certain type of genomes which are in the list. When all genomes in the list should remove also select yes and do not enter a keyword!">
+                <param name="is_select" type="select" label="Remove one or all genomes which are in the list?" help="Select yes and enter a keyword to remove certain type of genomes which are in the list. When all genomes in the list should remove also select yes and do not enter a keyword!">
                     <option value="yes" selected="false">Yes</option>
                     <option value="no" selected="true">No</option>
                 </param>
                 <when value="yes">
-                    <param argument="--keyword" type="text" value="" 
-                        label="Keyword for removing certain genomes"
-                        help="Input a keyword which should be match with binid giving in the file for removing genomes. When no keyword is giving the program remove all genomes which are in the list!" />
+                    <param argument="--keyword" type="text" value="" label="Keyword for removing certain genomes" help="Input a keyword which should be match with binid giving in the file for removing genomes. When no keyword is giving the program remove all genomes which are in the list!"/>
                 </when>
-                <when value="no" />
+                <when value="no"/>
             </conditional>
-            <param argument="--genome_coverage" type="data" format="tabular" optional="true"
-                label="Genome coverages tsv file"
-                help="Input a tsv file where the genome coverage is stated. Look at the help section to see how this file should look like!" />
+            <param argument="--genome_coverage" type="data" format="tabular" optional="true" label="Genome coverages tsv file" help="Input a tsv file where the genome coverage is stated. Look at the help section to see how this file should look like!"/>
         </section>
         <section name="tox" title="taxonomic binning-specific option">
             <conditional name="ncbi">
-                <param name="is_select" type="select" label="Want to use the NCBI database?"
-                    help="Select yes if you want to use the NCBI database to evaluate taxonomic binning">
+                <param name="is_select" type="select" label="Want to use the NCBI database?" help="Select yes if you want to use the NCBI database to evaluate taxonomic binning">
                     <option value="yes" selected="false">Yes</option>
                     <option value="no" selected="true">No</option>
                 </param>
-                <when value="yes"> 
+                <when value="yes">
                     <conditional name="input">
-                        <param name="is_select" type="select" label="Select how you want to use NCBI database"
-                            help="Either select manually input or data manager. For more help read the help of the type of the input you selected." >
+                        <param name="is_select" type="select" label="Select how you want to use NCBI database" help="Either select manually input or data manager. For more help read the help of the type of the input you selected.">
                             <option value="manually">Manually</option>
                             <option value="data">Data manager</option>
                         </param>
                         <when value="manually">
-                            <param argument="--ncbi_dir" format="tabular" type="data" multiple="true"
-                                label="Input .dmp files"
-                                help="To use the NCBI database we need to provide followed .dmp files: nodes.dmp, names.dmp and merged.dmp. You can get the via download of this file **ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz** and unzip it!" />
+                            <param argument="--ncbi_dir" format="tabular" type="data" multiple="true" label="Input .dmp files" help="To use the NCBI database we need to provide followed .dmp files: nodes.dmp, names.dmp and merged.dmp. You can get the via download of this file **ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz** and unzip it!"/>
                         </when>
-                        <when value="data" >  
-                            <param argument="--ncbi_dir" type="select"
-                                label="Assessing taxonomic binning"
-                                help="Include the NCBI taxonomy database. For this you can use the data manager data_manager_fetch_ncbi_taxonomy which can be install via galaxy. For more help look at the help section at the bottom!" >
+                        <when value="data">
+                            <param argument="--ncbi_dir" type="select" label="Assessing taxonomic binning" help="Include the NCBI taxonomy database. For this you can use the data manager data_manager_fetch_ncbi_taxonomy which can be install via galaxy. For more help look at the help section at the bottom!">
                                 <options from_data_table="ncbi_taxonomy">
                                     <validator message="No NCBI database is available" type="no_options"/>
                                 </options>
                             </param>
                         </when>
-                    </conditional> 
+                    </conditional>
                 </when>
                 <when value="no"/>
             </conditional>
         </section>
     </inputs>
     <outputs>
-        <data name="html" format="html" from_work_dir="output/index.html" label="${tool.name}: HTML" />
-        <data name="result" format="tabular" from_work_dir="output/results.tsv" label="${tool.name}: Results" />
-        <data name="metrics_genome" format="tabular" from_work_dir="output/genome_metrics_cami1.tsv" label="${tool.name}: Genome metrics" />
-        <data name="metrics_bin" format="tabular" from_work_dir="output/bin_metrics.tsv" label="${tool.name}: Bin metrics" />
+        <data name="html" format="html" from_work_dir="output/index.html" label="${tool.name}: HTML"/>
+        <data name="result" format="tabular" from_work_dir="output/results.tsv" label="${tool.name}: Results"/>
+        <data name="metrics_genome" format="tabular" from_work_dir="output/genome_metrics_cami1.tsv" label="${tool.name}: Genome metrics"/>
+        <data name="metrics_bin" format="tabular" from_work_dir="output/bin_metrics.tsv" label="${tool.name}: Bin metrics"/>
     </outputs>
     <tests>
         <test expect_num_outputs="4">
-            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular" />
+            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular"/>
             <repeat name="input_files">
                 <param name="binning_files" value="elated_franklin_0" ftype="tabular"/>
             </repeat>
@@ -210,70 +183,70 @@
             </repeat>
             <output name="metrics_bin">
                 <assert_contents>
-                    <has_text text="genome_id" n="1" />
-                    <has_text text="sample_id" n="1" />
+                    <has_text text="genome_id" n="1"/>
+                    <has_text text="sample_id" n="1"/>
                 </assert_contents>
-            </output> 
+            </output>
             <output name="metrics_genome">
                 <assert_contents>
-                    <has_text text="precision_seq" n="1" />
-                    <has_text text="total_length" n="1" />
+                    <has_text text="precision_seq" n="1"/>
+                    <has_text text="total_length" n="1"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="4">
-            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular" />
+            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular"/>
             <repeat name="input_files">
                 <param name="binning_files" value="elated_franklin_0" ftype="tabular"/>
-                <param name="labels" value="test1" />
+                <param name="labels" value="test1"/>
             </repeat>
             <repeat name="input_files">
                 <param name="binning_files" value="goofy_hypatia_2" ftype="tabular"/>
-                <param name="labels" value="test2" />
+                <param name="labels" value="test2"/>
             </repeat>
             <repeat name="input_files">
                 <param name="binning_files" value="naughty_carson_2" ftype="tabular"/>
-                <param name="labels" value="test3" />
+                <param name="labels" value="test3"/>
             </repeat>
-            <param name="filter" value="1" />
-            <param name="min_length" value="200" />
-            <section name="genome" >
-                <repeat name="thresholds" >
-                    <param name="max_contamination" value="2" />
-                    <param name="min_completeness" value="50" />
+            <param name="filter" value="1"/>
+            <param name="min_length" value="200"/>
+            <section name="genome">
+                <repeat name="thresholds">
+                    <param name="max_contamination" value="2"/>
+                    <param name="min_completeness" value="50"/>
                 </repeat>
-                <repeat name="thresholds" >
-                    <param name="min_completeness" value="70" />
+                <repeat name="thresholds">
+                    <param name="min_completeness" value="70"/>
                 </repeat>
-                <repeat name="thresholds" >
-                    <param name="min_completeness" value="90" />
+                <repeat name="thresholds">
+                    <param name="min_completeness" value="90"/>
                 </repeat>
-                <param name="genome_coverage" value="cami2_mouse_gut_average_genome_coverage.tsv" ftype="tabular" />
-                <param name="remove_genomes" value="unique_common.tsv" ftype="tabular" />
-                <conditional name="remove" >
-                    <param name="is_select" value="yes" />
-                    <param name="keyword" value="circular element" />
+                <param name="genome_coverage" value="cami2_mouse_gut_average_genome_coverage.tsv" ftype="tabular"/>
+                <param name="remove_genomes" value="unique_common.tsv" ftype="tabular"/>
+                <conditional name="remove">
+                    <param name="is_select" value="yes"/>
+                    <param name="keyword" value="circular element"/>
                 </conditional>
             </section>
             <section name="tox">
                 <conditional name="ncbi">
-                    <param name="is_select" value="yes" />
-                    <conditional name="input" >
-                        <param name="is_select" value="manually" />
-                        <param name="ncbi_dir" value="test-db/nodes.dmp,test-db/merged.dmp,test-db/names.dmp" ftype="tabular" />
-                    </conditional> 
+                    <param name="is_select" value="yes"/>
+                    <conditional name="input">
+                        <param name="is_select" value="manually"/>
+                        <param name="ncbi_dir" value="test-db/nodes.dmp,test-db/merged.dmp,test-db/names.dmp" ftype="tabular"/>
+                    </conditional>
                 </conditional>
-            </section> 
+            </section>
             <output name="result">
                 <assert_contents>
-                    <has_text text="test1" n="1" />
-                    <has_text text="test2" n="1" />
-                    <has_text text="test3" n="1" />
+                    <has_text text="test1" n="1"/>
+                    <has_text text="test2" n="1"/>
+                    <has_text text="test3" n="1"/>
                 </assert_contents>
-            </output> 
+            </output>
         </test>
         <test expect_num_outputs="4">
-            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular" />
+            <param name="gold_standard_file" value="gsa_mapping.binning" ftype="tabular"/>
             <repeat name="input_files">
                 <param name="binning_files" value="elated_franklin_0" ftype="tabular"/>
             </repeat>
@@ -283,23 +256,24 @@
             <repeat name="input_files">
                 <param name="binning_files" value="naughty_carson_2" ftype="tabular"/>
             </repeat>
-            <param name="desc" value="TEST FOR GALAXY" />
+            <param name="desc" value="TEST FOR GALAXY"/>
             <section name="tox">
                 <conditional name="ncbi">
-                    <param name="is_select" value="yes" />
-                    <conditional name="input" >
-                        <param name="is_select" value="data" />
-                        <param name="ncbi_dir" value="test-db-tox" />
-                    </conditional> 
+                    <param name="is_select" value="yes"/>
+                    <conditional name="input">
+                        <param name="is_select" value="data"/>
+                        <param name="ncbi_dir" value="test-db-tox"/>
+                    </conditional>
                 </conditional>
-            </section> 
+            </section>
             <output name="html">
                 <assert_contents>
-                    <has_text text="TEST FOR GALAXY" n="1" />
+                    <has_text text="TEST FOR GALAXY" n="1"/>
                 </assert_contents>
             </output>
-        </test><test expect_num_outputs="4">
-            <param name="gold_standard_file" value="test_gold.tsv" ftype="tabular" />
+        </test>
+        <test expect_num_outputs="4">
+            <param name="gold_standard_file" value="test_gold.tsv" ftype="tabular"/>
             <repeat name="input_files">
                 <param name="binning_files" value="test_binning.tsv" ftype="tabular"/>
             </repeat>
@@ -308,23 +282,23 @@
             </repeat>
             <section name="tox">
                 <conditional name="ncbi">
-                    <param name="is_select" value="yes" />
-                    <conditional name="input" >
-                        <param name="is_select" value="data" />
-                        <param name="ncbi_dir" value="test-db-tox" />
-                    </conditional> 
+                    <param name="is_select" value="yes"/>
+                    <conditional name="input">
+                        <param name="is_select" value="data"/>
+                        <param name="ncbi_dir" value="test-db-tox"/>
+                    </conditional>
                 </conditional>
-            </section> 
+            </section>
             <output name="metrics_bin">
                 <assert_contents>
-                    <has_text text="genome_id" n="1" />
-                    <has_text text="sample_id" n="1" />
+                    <has_text text="genome_id" n="1"/>
+                    <has_text text="sample_id" n="1"/>
                 </assert_contents>
-            </output> 
+            </output>
             <output name="metrics_genome">
                 <assert_contents>
-                    <has_text text="precision_seq" n="1" />
-                    <has_text text="total_length" n="1" />
+                    <has_text text="precision_seq" n="1"/>
+                    <has_text text="total_length" n="1"/>
                 </assert_contents>
             </output>
         </test>
@@ -462,5 +436,5 @@
         The package **Bokeh** will create warnings which can be ignored since the only tell you that certain functions in the code are swapped with the new functions. AMBER was tested with the stated version of **Bokeh** and with the newest version of it and both generate the same output!
     ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

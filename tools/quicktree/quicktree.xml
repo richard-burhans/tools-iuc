@@ -1,5 +1,5 @@
 <tool id="quicktree" name="Quicktree" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">2.5</token>
         <token name="@VERSION_SUFFIX@">1</token>
@@ -10,7 +10,8 @@
     </xrefs>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">quicktree</requirement>
-        <requirement type="package" version="3.4">hmmer</requirement> <!-- for file conversion with esl-reformat-->
+        <requirement type="package" version="3.4">hmmer</requirement>
+        <!-- for file conversion with esl-reformat-->
     </requirements>
     <version_command>quicktree -v</version_command>
     <command detect_errors="exit_code"><![CDATA[
@@ -51,10 +52,10 @@ input.quicktree
                 <option value="dist">Distance Matrix</option>
             </param>
             <when value="align">
-                <param name="input_file" type="data" format="fasta,stockholm,phylip,txt" label="Alignment file" />
+                <param name="input_file" type="data" format="fasta,stockholm,phylip,txt" label="Alignment file"/>
             </when>
             <when value="dist">
-                <param name="input_file" type="data" format="mothur.dist,mothur.lower.dist,mothur.square.dist,txt" label="Distance Matrix" help="A distance matrix in phylip format (see help below for details). Can be a square distance matrix or a lower triangle distance matrix." />
+                <param name="input_file" type="data" format="mothur.dist,mothur.lower.dist,mothur.square.dist,txt" label="Distance Matrix" help="A distance matrix in phylip format (see help below for details). Can be a square distance matrix or a lower triangle distance matrix."/>
             </when>
         </conditional>
         <param argument="-upgma" type="boolean" truevalue="-upgma" falsevalue="" checked="false" label="Use the UPGMA method to construct the tree" help="ignored for distance matrix outputs"/>
@@ -68,54 +69,61 @@ input.quicktree
     <outputs>
         <data name="output_file" format="newick" label="${tool.name} on ${on_string}: Tree">
             <change_format>
-                <when input="output_type" value="dist_out" format="mothur.dist" />
+                <when input="output_type" value="dist_out" format="mothur.dist"/>
             </change_format>
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"><!-- test 1: with fasta input (with reformat) -->
+        <test expect_num_outputs="1">
+            <!-- test 1: with fasta input (with reformat) -->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.009.AA.fasta" ftype="fasta"/>
             </conditional>
             <output name="output_file" file="example.009.AA.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 2: with stockholm input (no reformat)-->
+        <test expect_num_outputs="1">
+            <!-- test 2: with stockholm input (no reformat)-->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.009.AA.stockholm" ftype="stockholm"/>
             </conditional>
             <output name="output_file" file="example.009.AA.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 3: with clustalw input -->
+        <test expect_num_outputs="1">
+            <!-- test 3: with clustalw input -->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.011.AA.clw" ftype="txt"/>
             </conditional>
             <output name="output_file" file="example.011.AA.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 4: with phylip distance matrix input (lower triangle distance matrix) -->
+        <test expect_num_outputs="1">
+            <!-- test 4: with phylip distance matrix input (lower triangle distance matrix) -->
             <conditional name="input_type">
                 <param name="format" value="dist"/>
                 <param name="input_file" value="example.001.AA.dist.lt.phy" ftype="mothur.dist"/>
             </conditional>
             <output name="output_file" file="example.001.AA.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 5: with phylip distance matrix input (square distance matrix) -->
+        <test expect_num_outputs="1">
+            <!-- test 5: with phylip distance matrix input (square distance matrix) -->
             <conditional name="input_type">
                 <param name="format" value="dist"/>
                 <param name="input_file" value="example_dist_square_phylip.dist" ftype="mothur.dist"/>
             </conditional>
             <output name="output_file" file="example_dist_square_phylip.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 6: with phylip alignment input -->
+        <test expect_num_outputs="1">
+            <!-- test 6: with phylip alignment input -->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.011.AA.phy" ftype="phylip"/>
             </conditional>
             <output name="output_file" file="example.011.AA.align.newick" ftype="newick"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 7: with distance matrix output -->
+        <test expect_num_outputs="1">
+            <!-- test 7: with distance matrix output -->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.009.AA.fasta" ftype="fasta"/>
@@ -123,7 +131,8 @@ input.quicktree
             <param name="output_type" value="dist_out"/>
             <output name="output_file" file="example.009.AA.dist" ftype="mothur.dist"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 8: test with all parameters set -->
+        <test expect_num_outputs="1">
+            <!-- test 8: test with all parameters set -->
             <conditional name="input_type">
                 <param name="format" value="align"/>
                 <param name="input_file" value="example.011.AA.phy" ftype="phylip"/>

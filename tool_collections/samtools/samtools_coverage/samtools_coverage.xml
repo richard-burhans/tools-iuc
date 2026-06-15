@@ -47,103 +47,99 @@
     ]]></command>
     <inputs>
         <conditional name="condition_input">
-            <param name="input_pooling" type="select" label="Are you pooling bam files?" help="Calculate the coverage for multiple bam files" >
+            <param name="input_pooling" type="select" label="Are you pooling bam files?" help="Calculate the coverage for multiple bam files">
                 <option value="No" selected="True">No</option>
                 <option value="Yes">Yes</option>
             </param>
-            <when value="No" >
+            <when value="No">
                 <param name="input" type="data" format="bam" label="BAM file"/>
             </when>
             <when value="Yes">
                 <param name="input_bams" type="data" format="bam" multiple="true" label="BAM files to be pooled"/>
             </when>
         </conditional>
-
         <section name="additional_options" title="Additional Options" expanded="true">
-            <param name="min_read_length" argument="-l" type="integer" min="0" value="0" label="Minimum read length" help="Ignore reads shorter than INT base pairs (Default = 0)" />
-            <param name="min_mq" argument="-q" type="integer" min="0" value="0" label="Minimum mapping quality" help="Minimum mapping quality for an alignment to be used (Default = 0)" />
-            <param name="min_bq" argument="-Q" type="integer" min="0" value="0" label="Minimum base quality" help="Minimum base quality for a base to be considered (Default = 0)" />
-
+            <param name="min_read_length" argument="-l" type="integer" min="0" value="0" label="Minimum read length" help="Ignore reads shorter than INT base pairs (Default = 0)"/>
+            <param name="min_mq" argument="-q" type="integer" min="0" value="0" label="Minimum mapping quality" help="Minimum mapping quality for an alignment to be used (Default = 0)"/>
+            <param name="min_bq" argument="-Q" type="integer" min="0" value="0" label="Minimum base quality" help="Minimum base quality for a base to be considered (Default = 0)"/>
             <param name="required_flags" argument="--rf" type="select" multiple="True" label="Require that these flags are set">
-                <expand macro="flag_options" />
+                <expand macro="flag_options"/>
             </param>
-
             <param name="skipped_flags" argument="--ff" type="select" multiple="True" label="Exclude reads with any of the following flags set">
                 <expand macro="flag_options" s4="true" s256="true" s512="true" s1024="true"/>
             </param>
-            <param name="region" argument="-r" type="text" value="" label="Show specified region" help="Show specified region. Format: chr:start-end." >
+            <param name="region" argument="-r" type="text" value="" label="Show specified region" help="Show specified region. Format: chr:start-end.">
                 <sanitizer invalid_char="">
                     <valid initial="string.ascii_letters,string.digits">
-                        <add value=":" />
-                        <add value="-" />
-                        <add value="_" />
+                        <add value=":"/>
+                        <add value="-"/>
+                        <add value="_"/>
                     </valid>
                 </sanitizer>
             </param>
         </section>
-
         <conditional name="condition_histogram">
             <param name="histogram_select" argument="-m" type="select" label="Histogram" help="Show histogram instead of tabular output">
                 <option value="no" selected="true">No</option>
                 <option value="yes">Yes</option>
             </param>
             <when value="yes">
-                <param name="n_bins" argument="-w" type="integer" min="1" value="100" label="Number of bins in histogram" help="Number of bins in histogram" />
+                <param name="n_bins" argument="-w" type="integer" min="1" value="100" label="Number of bins in histogram" help="Number of bins in histogram"/>
             </when>
-            <when value="no" />
+            <when value="no"/>
         </conditional>
     </inputs>
-
     <outputs>
-        <data name="output" format="tabular" from_work_dir="outfile" label="${tool.name} on ${on_string}" />
+        <data name="output" format="tabular" from_work_dir="outfile" label="${tool.name} on ${on_string}"/>
     </outputs>
-
     <tests>
         <test>
             <conditional name="condition_input">
-                <param name="input" value="test_1.bam" ftype="bam" />
+                <param name="input" value="test_1.bam" ftype="bam"/>
             </conditional>
-            <output name="output" file="results_1.tabular" ftype="tabular" />
+            <output name="output" file="results_1.tabular" ftype="tabular"/>
         </test>
         <test>
             <conditional name="condition_input">
-                <param name="input" value="test_1.bam" ftype="bam" />
+                <param name="input" value="test_1.bam" ftype="bam"/>
             </conditional>
             <conditional name="condition_histogram">
-                <param name="histogram_select" value="yes" />
-                <param name="n_bins" value="50" />
+                <param name="histogram_select" value="yes"/>
+                <param name="n_bins" value="50"/>
             </conditional>
-            <output name="output" file="results_2.txt" ftype="tabular" />
+            <output name="output" file="results_2.txt" ftype="tabular"/>
         </test>
         <test>
             <conditional name="condition_input">
-                <param name="input_pooling" value="Yes" />
-                <param name="input_bams" value="test_1.bam,test_2.bam" ftype="bam" />
+                <param name="input_pooling" value="Yes"/>
+                <param name="input_bams" value="test_1.bam,test_2.bam" ftype="bam"/>
             </conditional>
             <conditional name="condition_histogram">
-                <param name="histogram_select" value="yes" />
-                <param name="n_bins" value="100" />
+                <param name="histogram_select" value="yes"/>
+                <param name="n_bins" value="100"/>
             </conditional>
-            <output name="output" file="results_3.txt" ftype="tabular" />
+            <output name="output" file="results_3.txt" ftype="tabular"/>
         </test>
-        <test><!-- test with a region (requires index) -->
+        <test>
+            <!-- test with a region (requires index) -->
             <conditional name="condition_input">
-                <param name="input" value="test_1.bam" ftype="bam" />
+                <param name="input" value="test_1.bam" ftype="bam"/>
             </conditional>
             <section name="additional_options">
-                <param name="region" value="ref1" />
+                <param name="region" value="ref1"/>
             </section>
-            <output name="output" file="results_4.tabular" ftype="tabular" />
+            <output name="output" file="results_4.tabular" ftype="tabular"/>
         </test>
-        <test><!-- test with pooled BAMs and a region -->
+        <test>
+            <!-- test with pooled BAMs and a region -->
             <conditional name="condition_input">
-                <param name="input_pooling" value="Yes" />
-                <param name="input_bams" value="test_1.bam,test_2.bam" ftype="bam" />
+                <param name="input_pooling" value="Yes"/>
+                <param name="input_bams" value="test_1.bam,test_2.bam" ftype="bam"/>
             </conditional>
             <section name="additional_options">
-                <param name="region" value="ref2" />
+                <param name="region" value="ref2"/>
             </section>
-            <output name="output" file="results_5.tabular" ftype="tabular" />
+            <output name="output" file="results_5.tabular" ftype="tabular"/>
         </test>
     </tests>
     <help><![CDATA[

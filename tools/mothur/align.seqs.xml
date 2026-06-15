@@ -94,9 +94,7 @@ echo 'align.seqs(
                 <option value="yes">Yes values</option>
             </param>
             <when value="yes">
-                <param argument="threshold" type="float" value="0.5" min="0.0" max="1.0"
-                    label="threshold - Cutoff (0. - 1.) at which an alignment is deemed 'bad' and the reverse complement may be tried."
-                    help="The default for the threshold parameter is 0.50, meaning at least 50% of the bases must remain or the sequence is reported as potentially reversed"/>
+                <param argument="threshold" type="float" value="0.5" min="0.0" max="1.0" label="threshold - Cutoff (0. - 1.) at which an alignment is deemed 'bad' and the reverse complement may be tried." help="The default for the threshold parameter is 0.50, meaning at least 50% of the bases must remain or the sequence is reported as potentially reversed"/>
             </when>
             <when value="no"/>
         </conditional>
@@ -160,7 +158,7 @@ echo 'align.seqs(
             <param name="mismatch" value="-15"/>
             <param name="gapopen" value="-6"/>
             <param name="gapextend" value="-3"/>
-            <output name="out_align"  ftype="mothur.align">
+            <output name="out_align" ftype="mothur.align">
                 <assert_contents>
                     <expand macro="test-align-format"/>
                     <has_text text="M00967_43_000000000-A3JHG_1_1101_19936_3208"/>
@@ -175,7 +173,8 @@ echo 'align.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test blast -->
+        <test>
+            <!-- test blast -->
             <param name="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.fasta"/>
             <param name="source" value="history"/>
             <param name="reference" value="HMP_MOCK.v35.align"/>
@@ -198,7 +197,8 @@ echo 'align.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test accno file recovery with flip set to true -->
+        <test>
+            <!-- test accno file recovery with flip set to true -->
             <param name="fasta" value="amazon.fasta"/>
             <param name="source" value="history"/>
             <param name="reference" value="HMP_MOCK.v35.align"/>
@@ -250,8 +250,8 @@ on the secondary structure.
 
     ]]></help>
     <expand macro="citations">
-         <citation type="doi">10.1093/nar/gkl244</citation>
-         <citation type="doi">10.1371/journal.pone.0008230</citation>
-         <citation type="doi">10.1371/journal.pcbi.1000844</citation>
+        <citation type="doi">10.1093/nar/gkl244</citation>
+        <citation type="doi">10.1371/journal.pone.0008230</citation>
+        <citation type="doi">10.1371/journal.pcbi.1000844</citation>
     </expand>
 </tool>

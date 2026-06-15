@@ -43,11 +43,9 @@
                 <option value="basic" selected="True">Basic</option>
                 <option value="advanced">Advanced</option>
             </param>
-            <when value="basic">
-            </when>
+            <when value="basic"/>
             <when value="advanced">
-                <param type="boolean" argument="--compress" truevalue="--compress" falsevalue="" label="Compress FASTA files" 
-                    help="Compress downloaded FASTA files (with gzip). Limits compatibility with tools expecting uncompressed FASTA."/>
+                <param type="boolean" argument="--compress" truevalue="--compress" falsevalue="" label="Compress FASTA files" help="Compress downloaded FASTA files (with gzip). Limits compatibility with tools expecting uncompressed FASTA."/>
             </when>
         </conditional>
         <param argument="--pin_date" type="hidden" value="NO" help="Used for testing"/>
@@ -59,7 +57,7 @@
         <test>
             <param name="division_names" value="plastid"/>
             <param name="mol_types" value="protein"/>
-            <param name="pin_date" value="2018-03-14"/>            
+            <param name="pin_date" value="2018-03-14"/>
             <param name="advanced_selector" value="basic"/>
             <output name="output_file">
                 <assert_contents>
@@ -71,9 +69,9 @@
         <test>
             <param name="division_names" value="plastid"/>
             <param name="mol_types" value="protein"/>
-            <param name="pin_date" value="2018-03-14"/>            
+            <param name="pin_date" value="2018-03-14"/>
             <param name="advanced_selector" value="advanced"/>
-            <param name="compress" value="" />
+            <param name="compress" value=""/>
             <output name="output_file">
                 <assert_contents>
                     <has_text text="2018-03-14"/>
@@ -81,7 +79,6 @@
                 </assert_contents>
             </output>
         </test>
-
     </tests>
     <help><![CDATA[
 This data manager fetches FASTA format collections of proteins, nucleotides (genomic DNA) and RNA

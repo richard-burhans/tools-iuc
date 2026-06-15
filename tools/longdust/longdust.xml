@@ -22,7 +22,7 @@
         <param argument="-g" type="float" label="Genome-wide GC content" value="0.5" help="Specify genome-wide GC content"/>
         <param argument="-t" type="float" label="Score threshold" value="0.6" help="Score threshold"/>
         <param argument="-e" type="integer" label="Extension X-drop length" value="50" help="Extension X-drop length (0 to disable)"/>
-        <param argument="-f" type="boolean" label="Forward strand only" truevalue="-f" falsevalue="" checked="false" help="Limit analysis to forward strand only" />
+        <param argument="-f" type="boolean" label="Forward strand only" truevalue="-f" falsevalue="" checked="false" help="Limit analysis to forward strand only"/>
         <param argument="-a" type="boolean" label="Enable Guaranteed O(Lw) Algorithm" truevalue="-a" falsevalue="" checked="false" help="Use the guaranteed O(Lw) algorithm with increased approximation for faster runtime on large genomes. This mode evaluates only the smallest candidate start per position, reducing runtime to a strict O(Lw) but may miss ~5-10% of low-complexity regions compared to the default."/>
     </inputs>
     <outputs>

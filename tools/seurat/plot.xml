@@ -642,7 +642,7 @@ ggsave('plot.eps',
                     <expand macro="valid_list"/>
                 </param>
                 <param argument="idents" type="text" optional="true" value="" label="Ident classes to display on plot" help="as category on x-axis, defauts to all">
-                <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
                 <param argument="sort" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Sort identity classes by average expression"/>
                 <section name="plot" title="Plot Formatting Options">
@@ -672,10 +672,10 @@ ggsave('plot.eps',
             </when>
             <when value="FeatureScatter">
                 <param argument="feature1" type="text" value="nCount_RNA" label="First feature to plot" help="on x-axis">
-                <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
                 <param argument="feature2" type="text" value="nFeature_RNA" label="Second feature to plot" help="on y-axis">
-                <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
                 <section name="plot" title="Plot Formatting Options">
                     <expand macro="plot_cols"/>
@@ -725,8 +725,7 @@ ggsave('plot.eps',
                     <when value="true">
                         <expand macro="set_topN"/>
                     </when>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                 </conditional>
                 <section name="plot" title="Plot Formatting Options">
                     <param name="cols_1" type="select" label="Colour for non-variable genes">
@@ -791,8 +790,7 @@ ggsave('plot.eps',
                             <param name="label_box" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Put a box around each label" help="(label.box)"/>
                             <param argument="repel" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Repel labels"/>
                         </when>
-                        <when value="FALSE">
-                        </when>
+                        <when value="FALSE"/>
                     </conditional>
                     <conditional name="highlight">
                         <param name="highlight" type="select" label="Highlight group(s) of cells">
@@ -814,8 +812,7 @@ ggsave('plot.eps',
                             </param>
                             <param name="sizes_highlight" type="integer" value="1" label="Size of highlighted cells" help="(sizes.highlight)"/>
                         </when>
-                        <when value="false">
-                        </when>
+                        <when value="false"/>
                     </conditional>
                     <expand macro="plot_na_value"/>
                 </section>
@@ -941,8 +938,7 @@ ggsave('plot.eps',
                             </param>
                             <param argument="repel" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Repel labels"/>
                         </when>
-                        <when value="FALSE">
-                        </when>
+                        <when value="FALSE"/>
                     </conditional>
                     <param name="coord_fixed" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Plot cartesian coordinates with fixed aspect ratio" help="(coord.fixed)"/>
                     <expand macro="plot_ncol"/>
@@ -1035,7 +1031,7 @@ ggsave('plot.eps',
                             <option value="TRUE" selected="true">No</option>
                             <option value="FALSE">Yes</option>
                         </param>
-                        <when value="FALSE"></when>
+                        <when value="FALSE"/>
                         <when value="TRUE">
                             <param name="scale_by" type="select" label="Scale by" help="(scale.by)">
                                 <option value="radius" selected="true">radius</option>

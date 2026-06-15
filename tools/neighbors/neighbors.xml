@@ -32,8 +32,8 @@
                 <param name="db_table" type="select" label="Neighbors database">
                     <options from_data_table="marker_discovery_neighbors_db">
                         <filter type="static_value" value="1" column="version"/>
-                        <filter type="sort_by" column="1" />
-                        <validator type="no_options" message="No Neighbors database is available" />
+                        <filter type="sort_by" column="1"/>
+                        <validator type="no_options" message="No Neighbors database is available"/>
                     </options>
                 </param>
             </when>
@@ -45,8 +45,8 @@
             <validator type="regex" message="Use comma-separated integers only">^[0-9]+(,[0-9]+)*$</validator>
         </param>
         <section name="output_options" title="Output options" expanded="false">
-            <param name="genome_sequences_only" argument="-g" type="boolean" truevalue="-g" falsevalue="" checked="false" label="Show only taxa with genomes" />
-            <param name="output_only_targets" argument="-o" type="boolean" truevalue="-o" falsevalue="" checked="false" label="Report targets only" />
+            <param name="genome_sequences_only" argument="-g" type="boolean" truevalue="-g" falsevalue="" checked="false" label="Show only taxa with genomes"/>
+            <param name="output_only_targets" argument="-o" type="boolean" truevalue="-o" falsevalue="" checked="false" label="Report targets only"/>
             <param name="assembly_levels" type="select" multiple="true" display="checkboxes" optional="true" label="Assembly levels" help="Leave empty to accept any assembly level. Multiple selections are combined with commas for -L.">
                 <option value="complete">complete</option>
                 <option value="chromosome">chromosome</option>
@@ -58,7 +58,7 @@
     <outputs>
         <data name="output" format="tabular" from_work_dir="output.tsv">
             <actions>
-                <action type="metadata" name="column_names" default="Sample,Accession,Taxid" />
+                <action type="metadata" name="column_names" default="Sample,Accession,Taxid"/>
             </actions>
         </data>
     </outputs>

@@ -44,6 +44,5 @@
 
     ]]>
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

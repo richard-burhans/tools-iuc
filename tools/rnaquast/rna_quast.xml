@@ -3,10 +3,10 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro='xrefs'/>
-    <expand macro='requirements'/>
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
     <stdio>
-        <regex match="Traceback " source="both" level="fatal" description="rnaQuast failed" />
+        <regex match="Traceback " source="both" level="fatal" description="rnaQuast failed"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
     mkdir -p './complete_reports/' &&
@@ -91,7 +91,7 @@
         && for file_name in ./results/*txt; do printf "\n************ \$file_name ************\n" >> stats.txt 
         && sed 's/^ ==.*/&\n/' \$file_name | tail -q -n +2 "\$file_name" >> stats.txt; 
         done
-        && cat stats.txt > $stats
+        && cat stats.txt > '$stats'
         #if $gene_coordinates.selector == 'true' and $reference
             && mv ./results/*fasta ./fasta_files/
         #end if
@@ -110,9 +110,9 @@
         && printf "************ COMPARISON METRICS ***************\n" > stats.txt
         && for file_name in ./outputdir/comparison_output/*txt; do printf "\n************ \$file_name ************\n" >> stats.txt 
         && sed 's/^ ==.*/&\n/' \$file_name | tail -q -n +2 "\$file_name" >> stats.txt; done
-        && cat stats.txt > $stats
+        && cat stats.txt > '$stats'
     #end if
-    ]]>    </command>
+        ]]></command>
     <inputs>
         <param argument="--transcripts" type="data" format="fasta" multiple="true" label="Transcripts" help="File(s) with transcripts in FASTA format."/>
         <conditional name="reads_option">
@@ -126,79 +126,76 @@
                 <param format="fastqsanger,fastqsanger.gz" name="single_reads" type="data" label="RNA-Seq FASTQ file"/>
             </when>
             <when value="paired">
-                <param name="paired_reads" type="data_collection" collection_type="paired" format="fastqsanger,fastqsanger.gz" label="Paired RNA-Seq FASTQ data"/> 
+                <param name="paired_reads" type="data_collection" collection_type="paired" format="fastqsanger,fastqsanger.gz" label="Paired RNA-Seq FASTQ data"/>
             </when>
         </conditional>
-        <param argument="--reference" type="data" format="fasta" label="Reference genome"  multiple="true" optional="true" help="File with reference genome containing all chromosomes/scaffolds in FASTA forma." />
+        <param argument="--reference" type="data" format="fasta" label="Reference genome" multiple="true" optional="true" help="File with reference genome containing all chromosomes/scaffolds in FASTA forma."/>
         <conditional name="gene_coordinates">
             <param name="selector" type="select" label="Genome annotation" help="Genome annotation file. We recommend to use files downloaded from GENCODE or Ensembl.">
                 <option value="true">Enabled</option>
                 <option value="false" selected="true">Disabled</option>
             </param>
             <when value="true">
-                <param argument="--gtf" type="data" format="gtf,gff,gff3" multiple="true" label="GTF/GFF file" />
-                <param argument="--disable_infer_genes" type="boolean" truevalue="--disable_infer_genes" falsevalue="" checked="false" label=" Disable infer genes" 
-                    help="Use this option if your GTF file already contains genes records, otherwise gffutils will fix it. Note that gffutils may work for quite a long time"/>
+                <param argument="--gtf" type="data" format="gtf,gff,gff3" multiple="true" label="GTF/GFF file"/>
+                <param argument="--disable_infer_genes" type="boolean" truevalue="--disable_infer_genes" falsevalue="" checked="false" label=" Disable infer genes" help="Use this option if your GTF file already contains genes records, otherwise gffutils will fix it. Note that gffutils may work for quite a long time"/>
                 <param argument="--disable_infer_transcripts" type="boolean" truevalue="--disable_infer_transcripts" falsevalue="" checked="false" label="Disable infer transcripts" help="Is option if your GTF file already contains transcripts records, otherwise gffutils will fix it."/>
             </when>
-            <when value="false">
+            <when value="false"/>
+        </conditional>
+        <param argument="--reads_alignment" type="data" format="sam" label="Aligned reads to reference genome" optional="true" help="File with read alignments to the reference genome"/>
+        <conditional name="use_busco">
+            <param argument="selector" type="select" label="Run BUSCO" help="BUSCO allows to detect core genes in the assembled transcripts">
+                <option value="false">Disabled</option>
+                <option value="true">Enabled</option>
+            </param>
+            <when value="false"/>
+            <when value="true">
+                <conditional name="lineage_conditional">
+                    <param name="selector" type="select" label="Lineage data source">
+                        <option value="download">Download lineage data</option>
+                        <option value="cached" selected="true">Use cached lineage data</option>
+                    </param>
+                    <when value="cached">
+                        <param name="cached_db" label="Cached database with lineage" type="select">
+                            <options from_data_table="busco_database">
+                                <validator message="No BUSCO database is available" type="no_options"/>
+                            </options>
+                        </param>
+                    </when>
+                    <when value="download">
+                        <param name="lineage" type="select" label="Lineage" help="Select a lineage for using BUSCO">
+                            <option value="metazoa">Metazoa</option>
+                            <option value="eukaryota">Eukaryota</option>
+                            <option value="arthropoda">Arthropoda</option>
+                            <option value="vertebrata">Vertebrata</option>
+                            <option value="fungi">Fungi</option>
+                            <option value="bacteria">Bacteria</option>
+                        </param>
+                    </when>
+                </conditional>
             </when>
         </conditional>
-        <param argument="--reads_alignment" type="data" format="sam" label="Aligned reads to reference genome" optional="true" help="File with read alignments to the reference genome" />
-        <conditional name="use_busco">
-          <param argument="selector" type="select" label="Run BUSCO" help="BUSCO allows to detect core genes in the assembled transcripts">
-              <option value="false">Disabled</option>
-              <option value="true">Enabled</option>
-          </param>
-          <when value="false"/>
-          <when value="true">
-            <conditional name="lineage_conditional">
-                <param name="selector" type="select" label="Lineage data source">
-                    <option value="download">Download lineage data</option>
-                    <option value="cached" selected="true">Use cached lineage data</option>
-                </param>
-                <when value="cached">
-                    <param name="cached_db" label="Cached database with lineage" type="select">
-                        <options from_data_table="busco_database">
-                            <validator message="No BUSCO database is available" type="no_options" />
-                        </options>
-                    </param>
-                </when>
-                <when value="download">
-                    <param name="lineage" type="select" label="Lineage" help="Select a lineage for using BUSCO">
-                        <option value="metazoa">Metazoa</option>
-                        <option value="eukaryota">Eukaryota</option>
-                        <option value="arthropoda">Arthropoda</option>
-                        <option value="vertebrata">Vertebrata</option>
-                        <option value="fungi">Fungi</option>
-                        <option value="bacteria">Bacteria</option>
-                    </param>
-                </when>
-            </conditional>
-          </when>
-        </conditional>
-        <section name="advanced_options" title="Advaced options" >
-            <param name="strand_specific" argument="-ss" type="boolean" truevalue="-ss" falsevalue="" checked="false" label="Strand-specific RNA-seq data" 
-                help="Set if transcripts were assembled using strand-specific RNA-Seq data in order to benefit from knowing whether the transcript originated from the + or - strand"/>
+        <section name="advanced_options" title="Advaced options">
+            <param name="strand_specific" argument="-ss" type="boolean" truevalue="-ss" falsevalue="" checked="false" label="Strand-specific RNA-seq data" help="Set if transcripts were assembled using strand-specific RNA-Seq data in order to benefit from knowing whether the transcript originated from the + or - strand"/>
             <param argument="--min_alignment" type="integer" min="0" value="50" label="Minimal alignment length to be used" help="Default value is 50"/>
-            <param argument="--blat" type="boolean" truevalue="--blat" falsevalue="" checked="false" label="Run with BLAT instead of GMAP" help="BALT is especially useful for aligning long sequences and gapped mapping, which cannot be performed properly by other fast sequence mappers designed for short reads. " />
+            <param argument="--blat" type="boolean" truevalue="--blat" falsevalue="" checked="false" label="Run with BLAT instead of GMAP" help="BALT is especially useful for aligning long sequences and gapped mapping, which cannot be performed properly by other fast sequence mappers designed for short reads. "/>
             <!-- GeneMarkST is not in Bioconda -->
             <!--param argument="-\-gene_mark" type="boolean" truevalue="-\-gene_mark" falsevalue="" checked="false" label="Run with GeneMarkS-T gene prediction tool?" 
                 help="GeneMarkS-T allows to predict genes in the assembled transcripts without reference genome"/-->
-            <param argument="--meta" type="boolean" truevalue="--meta" falsevalue="" checked="false" label="Meta Transcriptome" help="Run quality asessment for meta-transcriptome assemblies" />
-            <param argument="--lower_threshold" type="integer" value="50" label="Lower threshold for x-assembled/covered/matched metrics." />
-            <param argument="--upper_threshold" type="integer" value="95" label="Upper threshold for x-assembled/covered/matched metrics." />
+            <param argument="--meta" type="boolean" truevalue="--meta" falsevalue="" checked="false" label="Meta Transcriptome" help="Run quality asessment for meta-transcriptome assemblies"/>
+            <param argument="--lower_threshold" type="integer" value="50" label="Lower threshold for x-assembled/covered/matched metrics."/>
+            <param argument="--upper_threshold" type="integer" value="95" label="Upper threshold for x-assembled/covered/matched metrics."/>
             <param argument="--prokaryote" type="boolean" truevalue="--prokaryote" falsevalue="" checked="false" label="Prokararyotic organism(s)" help="Use this option if the genome is prokaryotic"/>
         </section>
         <section name="output_options" title="Output options" expanded="true">
-            <param name="out_sr" type="select" multiple="true"  display="checkboxes" label="Short report formats">
+            <param name="out_sr" type="select" multiple="true" display="checkboxes" label="Short report formats">
                 <option value="tabular">Tabular</option>
                 <option value="tex">TeX</option>
                 <option value="pdf" selected="true">PDF</option>
             </param>
             <param name="out_add" type="select" label="Additional outputs" multiple="true" display="checkboxes">
                 <option value="complete">Complete report</option>
-                <option value="fasta" >FASTA files</option>
+                <option value="fasta">FASTA files</option>
                 <option value="logs">Logs</option>
                 <option value="gz">Compressed output folder</option>
             </param>
@@ -209,11 +206,11 @@
             <filter>output_options['out_add'] and "complete" in  output_options['out_add']</filter>
         </data>
         <collection name="list_logs" type="list" label="${tool.name} on ${on_string}: logs">
-            <discover_datasets ext="txt" pattern="(?P&lt;name&gt;.+)\.log" directory="outputdir/logs" visible="false" />
+            <discover_datasets ext="txt" pattern="(?P&lt;name&gt;.+)\.log" directory="outputdir/logs" visible="false"/>
             <filter>output_options['out_add'] and "logs" in  output_options['out_add']</filter>
         </collection>
         <collection name="fasta_files" type="list" label="${tool.name} on ${on_string}: FASTA files">
-            <discover_datasets ext="fasta" pattern="(?P&lt;name&gt;.+)\.fasta" directory="fasta_files" visible="false" />
+            <discover_datasets ext="fasta" pattern="(?P&lt;name&gt;.+)\.fasta" directory="fasta_files" visible="false"/>
             <filter>output_options['out_add'] and "fasta" in  output_options['out_add']</filter>
             <filter>gene_coordinates['selector'] == 'true'</filter>
             <filter>reference</filter>
@@ -252,7 +249,7 @@
             </conditional>
             <output name="short_report_tabular">
                 <assert_contents>
-                    <has_text text="Transcripts" />
+                    <has_text text="Transcripts"/>
                     <has_size value="95" delta="5"/>
                 </assert_contents>
             </output>
@@ -288,7 +285,7 @@
             </conditional>
             <output name="short_report_tabular">
                 <assert_contents>
-                    <has_text text="Transcripts" />
+                    <has_text text="Transcripts"/>
                     <has_size value="140" delta="5"/>
                 </assert_contents>
             </output>
@@ -304,7 +301,7 @@
                 <param name="out_sr" value="tabular"/>
             </section>
             <conditional name="reads_option">
-                <param name="selector" value='paired'/>
+                <param name="selector" value="paired"/>
                 <param name="paired_reads">
                     <collection type="paired">
                         <element name="forward" value="input_F.fastqsanger" ftype="fastqsanger"/>
@@ -314,7 +311,7 @@
             </conditional>
             <output name="short_report_tabular">
                 <assert_contents>
-                    <has_text text="Transcripts" />
+                    <has_text text="Transcripts"/>
                     <has_size value="140" delta="5"/>
                 </assert_contents>
             </output>
@@ -327,7 +324,7 @@
                 <param name="gtf" value="reference.gtf"/>
             </conditional>
             <conditional name="reads_option">
-                <param name="selector" value='paired'/>
+                <param name="selector" value="paired"/>
                 <param name="paired_reads">
                     <collection type="paired">
                         <element name="forward" value="input_F.fastqsanger" ftype="fastqsanger"/>
@@ -347,7 +344,7 @@
             </conditional>
             <output name="short_report_tabular">
                 <assert_contents>
-                    <has_text text="Transcripts" />
+                    <has_text text="Transcripts"/>
                     <has_size value="140" delta="5"/>
                 </assert_contents>
             </output>
@@ -361,7 +358,7 @@
             </conditional>
             <param name="reference" value="reference.fasta"/>
             <conditional name="reads_option">
-                <param name="selector" value='paired'/>
+                <param name="selector" value="paired"/>
                 <param name="paired_reads">
                     <collection type="paired">
                         <element name="forward" value="input_F.fastqsanger" ftype="fastqsanger"/>
@@ -391,7 +388,7 @@
                     <has_archive_member path="./outputdir/logs/.*" n="10" delta="0"/>
                     <has_archive_member path="./outputdir/transcriptome01_output/.*" n="45" delta="0"/>
                 </assert_contents>
-            </output>         
+            </output>
         </test>
         <!-- Test 08: Multiple inputs-->
         <test expect_num_outputs="6">
@@ -420,7 +417,7 @@
             </conditional>
             <output name="short_report_tabular" value="test_08_short_report.tab" ftype="tabular"/>
             <output name="short_report_pdf" value="test_08_short_report.pdf" ftype="pdf" compare="sim_size" delta_frac="0.1"/>
-            <output name="stats" value="test_08_complete_report.tab" ftype="txt"  lines_diff="6" />
+            <output name="stats" value="test_08_complete_report.tab" ftype="txt" lines_diff="6"/>
             <output_collection name="fasta_files" type="list" count="14">
                 <element name="transcriptome01.paralogs" file="test_08_paralogs.fasta" ftype="fasta"/>
             </output_collection>
@@ -471,7 +468,7 @@
             </conditional>
             <output name="short_report_tabular" value="test_08_short_report.tab" ftype="tabular"/>
             <output name="short_report_pdf" value="test_08_short_report.pdf" ftype="pdf" compare="sim_size" delta_frac="0.1"/>
-            <output name="stats" value="test_08_complete_report.tab" ftype="txt"  lines_diff="6" />
+            <output name="stats" value="test_08_complete_report.tab" ftype="txt" lines_diff="6"/>
             <output_collection name="fasta_files" type="list" count="14">
                 <element name="transcriptome01.paralogs" file="test_08_paralogs.fasta" ftype="fasta"/>
             </output_collection>

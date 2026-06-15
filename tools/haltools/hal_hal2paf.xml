@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         hal2paf
@@ -21,7 +21,7 @@
     <inputs>
         <expand macro="input_hal"/>
         <expand macro="params_rootGenome_optional"/>
-        <expand macro="params_onlySequenceNames"/>     
+        <expand macro="params_onlySequenceNames"/>
         <conditional name="compression">
             <param name="type" type="select" label="Compress output file">
                 <option value="" selected="true">Don't compress output file (default)</option>
@@ -43,9 +43,9 @@
             <param name="input_hal" value="halTest.hal"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_line line="Genome_1.Genome_1_seq&#009;5472&#009;0&#009;1465&#009;+&#009;Genome_0.Genome_0_seq&#009;1758&#009;0&#009;1465&#009;1465&#009;1465&#009;255&#009;cg:Z:1465M"/>   
-                    <has_line line="Genome_2.Genome_2_seq&#009;4270&#009;2051&#009;2344&#009;+&#009;Genome_0.Genome_0_seq&#009;1758&#009;293&#009;586&#009;293&#009;293&#009;255&#009;cg:Z:293M"/>    
-                    <has_line line="Genome_3.Genome_3_seq&#009;6139&#009;3809&#009;4688&#009;+&#009;Genome_0.Genome_0_seq&#009;1758&#009;586&#009;1465&#009;879&#009;879&#009;255&#009;cg:Z:879M"/>    
+                    <has_line line="Genome_1.Genome_1_seq&#9;5472&#9;0&#9;1465&#9;+&#9;Genome_0.Genome_0_seq&#9;1758&#9;0&#9;1465&#9;1465&#9;1465&#9;255&#9;cg:Z:1465M"/>
+                    <has_line line="Genome_2.Genome_2_seq&#9;4270&#9;2051&#9;2344&#9;+&#9;Genome_0.Genome_0_seq&#9;1758&#9;293&#9;586&#9;293&#9;293&#9;255&#9;cg:Z:293M"/>
+                    <has_line line="Genome_3.Genome_3_seq&#9;6139&#9;3809&#9;4688&#9;+&#9;Genome_0.Genome_0_seq&#9;1758&#9;586&#9;1465&#9;879&#9;879&#9;255&#9;cg:Z:879M"/>
                     <has_n_lines n="25"/>
                 </assert_contents>
             </output>
@@ -63,9 +63,9 @@
             <param name="onlySequenceNames" value="true"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_line line="Genome_1_seq&#009;5472&#009;0&#009;1465&#009;+&#009;Genome_0_seq&#009;1758&#009;0&#009;1465&#009;1465&#009;1465&#009;255&#009;cg:Z:1465M"/>   
-                    <has_line line="Genome_2_seq&#009;4270&#009;2051&#009;2344&#009;+&#009;Genome_0_seq&#009;1758&#009;293&#009;586&#009;293&#009;293&#009;255&#009;cg:Z:293M"/>    
-                    <has_line line="Genome_3_seq&#009;6139&#009;3809&#009;4688&#009;+&#009;Genome_0_seq&#009;1758&#009;586&#009;1465&#009;879&#009;879&#009;255&#009;cg:Z:879M"/>    
+                    <has_line line="Genome_1_seq&#9;5472&#9;0&#9;1465&#9;+&#9;Genome_0_seq&#9;1758&#9;0&#9;1465&#9;1465&#9;1465&#9;255&#9;cg:Z:1465M"/>
+                    <has_line line="Genome_2_seq&#9;4270&#9;2051&#9;2344&#9;+&#9;Genome_0_seq&#9;1758&#9;293&#9;586&#9;293&#9;293&#9;255&#9;cg:Z:293M"/>
+                    <has_line line="Genome_3_seq&#9;6139&#9;3809&#9;4688&#9;+&#9;Genome_0_seq&#9;1758&#9;586&#9;1465&#9;879&#9;879&#9;255&#9;cg:Z:879M"/>
                     <has_n_lines n="25"/>
                 </assert_contents>
             </output>

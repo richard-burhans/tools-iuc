@@ -1,5 +1,4 @@
-<tool id="freyja_demix" name="Freyja: Demix" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@"
-      profile="@PROFILE@">
+<tool id="freyja_demix" name="Freyja: Demix" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>
         lineage abundances
     </description>
@@ -38,12 +37,9 @@ freyja demix
 sed 's/$in_file/$sn/' abundances_raw.tsv > abundances.tsv
     ]]></command>
     <inputs>
-        <param name="variants_in" type="data" format="tabular"
-               label="Dataset with input variant calls"
-               help="This can be a VCF dataset, or the tabular calls output of freayja call or ivar variants."/>
+        <param name="variants_in" type="data" format="tabular" label="Dataset with input variant calls" help="This can be a VCF dataset, or the tabular calls output of freayja call or ivar variants."/>
         <conditional name="sample_name">
-            <param name="source" type="select" label="Set sample name"
-                   help="Select autodetect to have the dataset or collection element name used as the sample name, or, for a single input dataset, provide an explicit sample name.">
+            <param name="source" type="select" label="Set sample name" help="Select autodetect to have the dataset or collection element name used as the sample name, or, for a single input dataset, provide an explicit sample name.">
                 <option value="auto">Autodetect sample name</option>
                 <option value="manual">Specify sample name explicitly</option>
             </param>
@@ -53,15 +49,10 @@ sed 's/$in_file/$sn/' abundances_raw.tsv > abundances.tsv
             </when>
         </conditional>
         <expand macro="demixing_common_options"/>
-        <param name="depth_cutoff" argument="--covcut" type="integer" min="0" value="10"
-               multiple="true"
-               label="Depth cutoff for coverage estimate"
-               help="In the result file the coverage value will provide the 10x coverage estimate (percent of sites with 10 or greater reads- 10 is the default but can be modfied in this field. "/>
+        <param name="depth_cutoff" argument="--covcut" type="integer" min="0" value="10" multiple="true" label="Depth cutoff for coverage estimate" help="In the result file the coverage value will provide the 10x coverage estimate (percent of sites with 10 or greater reads- 10 is the default but can be modfied in this field. "/>
     </inputs>
     <outputs>
-        <data name="abundances" format="tabular"
-              label="${tool.name} on ${on_string}: Lineages abundances summary"
-              from_work_dir="abundances.tsv"/>
+        <data name="abundances" format="tabular" label="${tool.name} on ${on_string}: Lineages abundances summary" from_work_dir="abundances.tsv"/>
     </outputs>
     <tests>
         <!-- Test 01: manual name sample -->
@@ -77,7 +68,7 @@ sed 's/$in_file/$sn/' abundances_raw.tsv > abundances.tsv
             </conditional>
             <output name="abundances">
                 <assert_contents>
-                    <has_n_columns n="2" />
+                    <has_n_columns n="2"/>
                     <has_text text="AY.48"/>
                 </assert_contents>
             </output>
@@ -94,7 +85,7 @@ sed 's/$in_file/$sn/' abundances_raw.tsv > abundances.tsv
             </conditional>
             <output name="abundances">
                 <assert_contents>
-                    <has_n_columns n="2" />
+                    <has_n_columns n="2"/>
                     <has_text text="AY.48"/>
                 </assert_contents>
             </output>

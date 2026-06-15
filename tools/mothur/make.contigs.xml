@@ -77,7 +77,7 @@ echo 'make.contigs(
                 <param name="paired_collection" type="data_collection" format="fastq" collection_type="paired" label="Fastq pair (collection)" help="Dataset collection made from a single pair of fastq files (forward + reverse)"/>
             </when>
             <when value="list_collection">
-                <param name="list_paired_collection" type="data_collection" format="fastq" collection_type="list:paired" label="Fastq pairs (collection)" help="Dataset collection made from multiple pairs of fastq files" />
+                <param name="list_paired_collection" type="data_collection" format="fastq" collection_type="list:paired" label="Fastq pairs (collection)" help="Dataset collection made from multiple pairs of fastq files"/>
             </when>
         </conditional>
         <param name="align" type="select" label="align - Select a pairwise alignment method" help="">
@@ -92,8 +92,7 @@ echo 'make.contigs(
             </param>
             <when value="no"/>
             <when value="yes">
-                <param name="oligos" type="data" format="mothur.oligos" optional="true" label="oligos - barcodes and primers"
-                    help="a file that can contain the sequences of the forward and reverse primers and barcodes and their sample identifier. Each line of the oligos file can start with the key words &quot;forward&quot;, &quot;reverse&quot; and &quot;barcode&quot; or it can start with a &quot;#&quot; to tell mothur to ignore that line of the oligos file"/>
+                <param name="oligos" type="data" format="mothur.oligos" optional="true" label="oligos - barcodes and primers" help="a file that can contain the sequences of the forward and reverse primers and barcodes and their sample identifier. Each line of the oligos file can start with the key words &quot;forward&quot;, &quot;reverse&quot; and &quot;barcode&quot; or it can start with a &quot;#&quot; to tell mothur to ignore that line of the oligos file"/>
                 <param name="bdiffs" type="integer" value="0" min="0" label="bdiffs - number of differences to allow in the barcode (default 0)"/>
                 <param name="pdiffs" type="integer" value="0" min="0" label="pdiffs - number of differences to allow in the primer (default 0)"/>
                 <param name="tdiffs" type="integer" value="0" min="0" label="tdiffs - total number of differences to allow in primer and barcode (default 0)"/>
@@ -105,9 +104,7 @@ echo 'make.contigs(
         <param name="mismatch" type="integer" value="-1" label="mismatch - Pairwise alignment penalty for a mismatch"/>
         <param name="gapopen" type="integer" value="-2" label="gapopen - Pairwise alignment penalty for opening a gap"/>
         <param name="gapextend" type="integer" value="-1" label="gapextend - Pairwise alignment penalty for extending a gap"/>
-        <param name="rename" type="boolean" checked="true" truevalue="True" falsevalue="False" label="Renames sequences"
-            help="reduce file sizes and greatly reduce the size of the column formatted distance matrix downstream.
-            Uses the rename.seqs command to rename which creates a map file so you can revert to original names at any time"/>
+        <param name="rename" type="boolean" checked="true" truevalue="True" falsevalue="False" label="Renames sequences" help="reduce file sizes and greatly reduce the size of the column formatted distance matrix downstream.             Uses the rename.seqs command to rename which creates a map file so you can revert to original names at any time"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -142,8 +139,8 @@ echo 'make.contigs(
                 <param name="type" value="simple_collection"/>
                 <param name="paired_collection">
                     <collection type="paired">
-                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq" />
-                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq" />
+                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq"/>
+                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq"/>
                     </collection>
                 </param>
             </conditional>
@@ -160,8 +157,8 @@ echo 'make.contigs(
                 <param name="type" value="simple_collection"/>
                 <param name="paired_collection">
                     <collection type="paired">
-                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq" />
-                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq" />
+                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq"/>
+                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq"/>
                     </collection>
                 </param>
             </conditional>
@@ -172,17 +169,17 @@ echo 'make.contigs(
             <param name="gapextend" value="-2"/>
             <output name="fasta" md5="48e32c65bd9f064c5c0b4ea7695cabe9" ftype="fasta">
                 <assert_contents>
-    	    	    <has_text text=">M00967_43_000000000-A3JHG_1_1101_19936_3208" />
+                    <has_text text="&gt;M00967_43_000000000-A3JHG_1_1101_19936_3208"/>
                 </assert_contents>
             </output>
             <output name="qual" md5="1e7778cee0d86bfa2759a07bb4356165" ftype="qual">
                 <assert_contents>
-    	    	    <has_text text=">M00967_43_000000000-A3JHG_1_1101_19936_3208" />
+                    <has_text text="&gt;M00967_43_000000000-A3JHG_1_1101_19936_3208"/>
                 </assert_contents>
             </output>
             <output name="report" md5="5274725ef45890fd6da4650d5d536173" ftype="txt">
                 <assert_contents>
-    	    	    <has_line line="M00967_43_000000000-A3JHG_1_1101_19936_3208&#009;253&#009;249&#009;2&#009;251&#009;0&#009;0" />
+                    <has_line line="M00967_43_000000000-A3JHG_1_1101_19936_3208&#9;253&#9;249&#9;2&#9;251&#9;0&#9;0"/>
                 </assert_contents>
             </output>
             <param name="savelog" value="true"/>
@@ -195,24 +192,24 @@ echo 'make.contigs(
                 <param name="type" value="simple_collection"/>
                 <param name="paired_collection">
                     <collection type="paired">
-                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq" />
-                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq" />
+                        <element name="forward" value="Mock_S280_L001_R1_001_small.fastq"/>
+                        <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq"/>
                     </collection>
                 </param>
             </conditional>
             <output name="fasta" md5="addcc2f4233df75ab9e5feacadb6850f" ftype="fasta">
                 <assert_contents>
-    	    	    <has_text text=">1" />
+                    <has_text text="&gt;1"/>
                 </assert_contents>
             </output>
             <output name="qual" md5="476932c0236a672c0c99cada2b114fe7" ftype="qual">
                 <assert_contents>
-    	    	    <has_text text=">1" />
+                    <has_text text="&gt;1"/>
                 </assert_contents>
             </output>
             <output name="report" md5="7634bcab8db8907f80087da03259012a" ftype="txt">
                 <assert_contents>
-    	    	    <has_line line="1&#009;253&#009;249&#009;2&#009;251&#009;0&#009;0" />
+                    <has_line line="1&#9;253&#9;249&#9;2&#9;251&#9;0&#9;0"/>
                 </assert_contents>
             </output>
             <param name="savelog" value="true"/>
@@ -227,14 +224,14 @@ echo 'make.contigs(
                     <collection type="list:paired">
                         <element name="Pair1">
                             <collection type="paired">
-                                <element name="forward" value="Mock_S280_L001_R1_001_small.fastq" />
-                                <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq" />
+                                <element name="forward" value="Mock_S280_L001_R1_001_small.fastq"/>
+                                <element name="reverse" value="Mock_S280_L001_R2_001_small.fastq"/>
                             </collection>
                         </element>
                         <element name="Pair2">
                             <collection type="paired">
-                                <element name="forward" value="test_forward.fastq" />
-                                <element name="reverse" value="test_reverse.fastq" />
+                                <element name="forward" value="test_forward.fastq"/>
+                                <element name="reverse" value="test_reverse.fastq"/>
                             </collection>
                         </element>
                     </collection>

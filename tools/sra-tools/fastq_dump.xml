@@ -107,14 +107,14 @@
                 <option value="redacted">redacted</option>
             </param>
             <param name="spotgroups" type="text" label="Filter by spot-groups" optional="true" argument="--spot-groups"/>
-            <param type="boolean" truevalue="--clip" falsevalue="" argument="--clip" label="Apply left and right clips" />
+            <param type="boolean" truevalue="--clip" falsevalue="" argument="--clip" label="Apply left and right clips"/>
             <param type="boolean" truevalue="--skip-technical" falsevalue="" checked="False" label="Dump only biological reads" argument="--skip-technical"/>
             <param label="Table name within cSRA object" type="text" value="" optional="true" help="For SRA of noisy long-reads put SEQUENCE" argument="--table"/>
         </section>
     </inputs>
     <outputs>
         <collection name="list_paired" type="list:paired" label="Paired-end data (fastq-dump)">
-        <!-- Use named regex group to grab pattern
+            <!-- Use named regex group to grab pattern
              <identifier_0>_<identifier_1>.fq. Here identifier_0 is the list
              identifier in the nested collection and identifier_1 is either
              forward or reverse (for instance samp1_forward.fq).
@@ -123,10 +123,10 @@
             <discover_datasets pattern="(?P&lt;identifier_0&gt;[^_]+)_\d+.fastq.gz_(?P&lt;identifier_1&gt;[^_]+)\.fastqsanger.gz" ext="fastqsanger.gz" directory="output"/>
             <discover_datasets pattern="(?P&lt;identifier_0&gt;[^_]+)_\d+.fastq.bz2_(?P&lt;identifier_1&gt;[^_]+)\.fastqsanger.bz2" ext="fastqsanger.bz2" directory="output"/>
         </collection>
-        <collection name="list_single" type='list' label="Single-end data (fastq-dump)">
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq__single\.fastqsanger" directory="output" ext='fastqsanger'/>
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq.gz__single\.fastqsanger.gz" directory="output" ext='fastqsanger.gz'/>
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq.bz2__single\.fastqsanger.bz2" directory="output" ext='fastqsanger.bz2'/>
+        <collection name="list_single" type="list" label="Single-end data (fastq-dump)">
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq__single\.fastqsanger" directory="output" ext="fastqsanger"/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq.gz__single\.fastqsanger.gz" directory="output" ext="fastqsanger.gz"/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)_\d+.fastq.bz2__single\.fastqsanger.bz2" directory="output" ext="fastqsanger.bz2"/>
         </collection>
     </outputs>
     <tests>
@@ -191,7 +191,7 @@
                     <element name="reverse" file="ERR027433_reverse.fastqsanger"/>
                 </element>
             </output_collection>
-        </test>      
+        </test>
         <test expect_num_outputs="2">
             <param name="input_select" value="file_list"/>
             <param name="outputformat" value="fastqsanger"/>

@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="xrefs" />
-    <expand macro="requirements" />
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
     <version_command>SeqSero2_package.py -v</version_command>
     <command detect_errors="exit_code"><![CDATA[
     #import re
@@ -88,21 +88,21 @@
             <when value="paired">
                 <param name="read1" type="data" format="fastqsanger,fastqsanger.gz" label="Forward reads (R1)" help="The file of forward reads in FASTQ format"/>
                 <param name="read2" type="data" format="fastqsanger,fastqsanger.gz" label="Reverse reads (R2)" help="The file of reverse reads in FASTQ format"/>
-                <expand macro="select_workflow_type" />
+                <expand macro="select_workflow_type"/>
             </when>
             <when value="collection">
                 <param name="input_collection" format="fastqsanger,fastqsanger.gz" type="data_collection" collection_type="paired" label="Paired collection"/>
-                <expand macro="select_workflow_type" />
+                <expand macro="select_workflow_type"/>
             </when>
             <when value="single">
-                <param name="read1" type="data" format="fastqsanger,fastqsanger.gz" multiple="false" label="Interleaved" />
-                <expand macro="select_workflow_type" />
+                <param name="read1" type="data" format="fastqsanger,fastqsanger.gz" multiple="false" label="Interleaved"/>
+                <expand macro="select_workflow_type"/>
             </when>
             <when value="nanopore">
-                <param name="read1" type="data" format="fasta" multiple="false" label="Nanopore reads" />
+                <param name="read1" type="data" format="fasta" multiple="false" label="Nanopore reads"/>
             </when>
             <when value="assembly">
-                <param name="read1" type="data" format="fasta" multiple="false" label="Contigs/genomes" />
+                <param name="read1" type="data" format="fasta" multiple="false" label="Contigs/genomes"/>
             </when>
         </conditional>
         <section name="output_options" title="Output options">
@@ -117,71 +117,71 @@
     </outputs>
     <tests>
         <test expect_num_outputs="2">
-            <param name="input_type" value="assembly" />
-            <param name="read1" value="CP009102.1.fasta" ftype="fasta" />
-            <param name="logfile" value="true" />
+            <param name="input_type" value="assembly"/>
+            <param name="read1" value="CP009102.1.fasta" ftype="fasta"/>
+            <param name="logfile" value="true"/>
             <output name="results">
                 <assert_contents>
-                    <has_text text="Salmonella enterica subspecies enterica (subspecies I)" />
-                    <has_text text="Typhimurium" />
+                    <has_text text="Salmonella enterica subspecies enterica (subspecies I)"/>
+                    <has_text text="Typhimurium"/>
                 </assert_contents>
             </output>
             <output name="log">
                 <assert_contents>
-                    <has_n_lines n="103" />
-                    <has_text text="O_scores" />
-                    <has_text text="H_scores" />
-                    <has_text text="Special_scores" />
+                    <has_n_lines n="103"/>
+                    <has_text text="O_scores"/>
+                    <has_text text="H_scores"/>
+                    <has_text text="Special_scores"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_type" value="paired" />
-            <param name="workflow" value="a" />
-            <param name="read1" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz" />
-            <param name="read2" value="SRR10859038_R2.fastq.gz" ftype="fastqsanger.gz" />
+            <param name="input_type" value="paired"/>
+            <param name="workflow" value="a"/>
+            <param name="read1" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz"/>
+            <param name="read2" value="SRR10859038_R2.fastq.gz" ftype="fastqsanger.gz"/>
             <output name="results">
                 <assert_contents>
-                    <has_text text="The input genome cannot be identified as Salmonella." />
+                    <has_text text="The input genome cannot be identified as Salmonella."/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_type" value="collection" />
-            <param name="workflow" value="k" />
+            <param name="input_type" value="collection"/>
+            <param name="workflow" value="k"/>
             <param name="input_collection">
                 <collection type="paired">
-                    <element name="forward" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz" />
-                    <element name="reverse" value="SRR10859038_R2.fastq.gz" ftype="fastqsanger.gz" />
+                    <element name="forward" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz"/>
+                    <element name="reverse" value="SRR10859038_R2.fastq.gz" ftype="fastqsanger.gz"/>
                 </collection>
             </param>
             <output name="results">
                 <assert_contents>
-                    <has_text text="The input genome cannot be identified as Salmonella." />
+                    <has_text text="The input genome cannot be identified as Salmonella."/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_type" value="single" />
-            <param name="workflow" value="a" />
-            <param name="read1" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz" />
+            <param name="input_type" value="single"/>
+            <param name="workflow" value="a"/>
+            <param name="read1" value="SRR10859038_R1.fastq.gz" ftype="fastqsanger.gz"/>
             <output name="results">
                 <assert_contents>
-                    <has_text text="The input genome cannot be identified as Salmonella" />
+                    <has_text text="The input genome cannot be identified as Salmonella"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_type" value="nanopore" />
-            <param name="read1" value="CP009102.1.fasta" ftype="fasta" />
+            <param name="input_type" value="nanopore"/>
+            <param name="read1" value="CP009102.1.fasta" ftype="fasta"/>
             <output name="results">
                 <assert_contents>
-                    <has_text text="Salmonella enterica subspecies enterica (subspecies I)" />
-                    <has_text text="Typhimurium" />
+                    <has_text text="Salmonella enterica subspecies enterica (subspecies I)"/>
+                    <has_text text="Typhimurium"/>
                 </assert_contents>
             </output>
         </test>
-     </tests>
+    </tests>
     <help><![CDATA[
     **What is SeqSero2**
 

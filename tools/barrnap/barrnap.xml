@@ -1,6 +1,6 @@
 <tool id="barrnap" name="barrnap" version="1.2.2">
     <description>Locate ribosomal RNA's in a fasta file. (GFF output)</description>
-   <xrefs>
+    <xrefs>
         <xref type="bio.tools">barrnap</xref>
     </xrefs>
     <requirements>
@@ -28,57 +28,57 @@
         > '$gff'
     ]]>
     </command>
-
     <inputs>
-        <param name="fasta_file" type="data" format="fasta" label="Fasta file" help="Fasta file to look for rRNA's in" />
+        <param name="fasta_file" type="data" format="fasta" label="Fasta file" help="Fasta file to look for rRNA's in"/>
         <param name="kingdom" type="select" label="Kingdom">
             <option value="bac" selected="true">Bacteria</option>
             <option value="euk">Eukaryote</option>
             <option value="mito">Mitochondria</option>
             <option value="arc">Archaea</option>
         </param>
-        <param name="reject" type="float" value="0.5" label="Reject length threshold" help="Proportional length threshold to reject prediction" />
-        <param name="lencutoff" type="float" value="0.8" label="Length cutoff" help="Proportional length threshold to tag a find as pseudo" />
-        <param name="evalue" type="float" value="1e-06" label="e-value" help="Similarity e-value cutoff" />
-        <param name="incseq" type="boolean" label="Include Sequences in GFF" help="Include the fasta sequences in the GFF output file" />
-        <param name="outseq" type="boolean" label="Save rRNA hit seqs as FASTA" help="Produce an output file of the rRNA sequences found in FASTA format." />
+        <param name="reject" type="float" value="0.5" label="Reject length threshold" help="Proportional length threshold to reject prediction"/>
+        <param name="lencutoff" type="float" value="0.8" label="Length cutoff" help="Proportional length threshold to tag a find as pseudo"/>
+        <param name="evalue" type="float" value="1e-06" label="e-value" help="Similarity e-value cutoff"/>
+        <param name="incseq" type="boolean" label="Include Sequences in GFF" help="Include the fasta sequences in the GFF output file"/>
+        <param name="outseq" type="boolean" label="Save rRNA hit seqs as FASTA" help="Produce an output file of the rRNA sequences found in FASTA format."/>
     </inputs>
-
     <outputs>
         <data name="gff" format="gff3" label="${tool.name} on ${on_string}: rRNA GFF"/>
         <data name="fasta_out" format="fasta" label="${tool.name} on ${on_string}: rRNA Sequences">
             <filter>outseq</filter>
         </data>
     </outputs>
-
     <tests>
-        <test expect_num_outputs="1"><!-- Test 1 -->
-            <param name="fasta_file" value="bacteria.fna" ftype="fasta" />
-            <param name="kingdom" value="bac" />
-            <output name="gff" value="test_1.gff" ftype="gff3" />
+        <test expect_num_outputs="1">
+            <!-- Test 1 -->
+            <param name="fasta_file" value="bacteria.fna" ftype="fasta"/>
+            <param name="kingdom" value="bac"/>
+            <output name="gff" value="test_1.gff" ftype="gff3"/>
         </test>
-        <test expect_num_outputs="1"> <!-- Test 2 -->
-            <param name="fasta_file" value="small.fna" ftype="fasta" />
-            <param name="kingdom" value="bac" />
-            <param name="incseq" value="true" />
-            <output name="gff" value="test_2.gff" ftype="gff3" />
+        <test expect_num_outputs="1">
+            <!-- Test 2 -->
+            <param name="fasta_file" value="small.fna" ftype="fasta"/>
+            <param name="kingdom" value="bac"/>
+            <param name="incseq" value="true"/>
+            <output name="gff" value="test_2.gff" ftype="gff3"/>
         </test>
-        <test expect_num_outputs="1"> <!-- Test 3 -->
-            <param name="fasta_file" value="small.fna" ftype="fasta" />
-            <param name="kingdom" value="bac" />
-            <param name="evalue" value="0.00000001" />
-            <output name="gff" value="test_3.gff" ftype="gff3" />
+        <test expect_num_outputs="1">
+            <!-- Test 3 -->
+            <param name="fasta_file" value="small.fna" ftype="fasta"/>
+            <param name="kingdom" value="bac"/>
+            <param name="evalue" value="0.00000001"/>
+            <output name="gff" value="test_3.gff" ftype="gff3"/>
         </test>
-        <test expect_num_outputs="2"><!-- Test 4 -->
-            <param name="fasta_file" value="small.fna" ftype="fasta" />
-            <param name="outseq" value="true" />
-            <param name="kingdom" value="bac" />
-            <output name="gff" value="test_4.gff" ftype="gff3" />
-            <output name="fasta_out" value="test_4.fna" ftype="fasta" />
+        <test expect_num_outputs="2">
+            <!-- Test 4 -->
+            <param name="fasta_file" value="small.fna" ftype="fasta"/>
+            <param name="outseq" value="true"/>
+            <param name="kingdom" value="bac"/>
+            <output name="gff" value="test_4.gff" ftype="gff3"/>
+            <output name="fasta_out" value="test_4.fna" ftype="fasta"/>
         </test>
     </tests>
-
-<help>
+    <help><![CDATA[
 
 **barrnap**
 
@@ -105,13 +105,13 @@ The name Barrnap is derived from BActerial Ribosomal RNA Predictor. It was spawn
 
 *Include Sequences in GFF*: This includes the original fasta sequence in the GFF file below the #FASTA tag
 
-</help>
-<citations>
-  <citation type="bibtex">@UNPUBLISHED{Seemann2013,
+]]></help>
+    <citations>
+        <citation type="bibtex">@UNPUBLISHED{Seemann2013,
     author = "Torsten Seemann",
     title = "barrnap 0.8 : rapid ribosomal RNA prediction",
     year = "2013",
     note = "https://github.com/tseemann/barrnap"}
   </citation>
-</citations>
+    </citations>
 </tool>

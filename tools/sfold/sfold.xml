@@ -249,18 +249,18 @@
                 </element>
             </output_collection>
             <output_collection name="sfold_cluster_ct" type="list">
-                    <element name="c01.ccentroid">
-                        <assert_contents>
-                            <has_n_lines n="78"/>
-                            <has_text text="Length:  76"/>
-                        </assert_contents>
-                    </element>
-                    <element name="c02.ccentroid">
-                        <assert_contents>
-                            <has_n_lines n="78"/>
-                            <has_text text="Length:  76"/>
-                        </assert_contents>
-                    </element>
+                <element name="c01.ccentroid">
+                    <assert_contents>
+                        <has_n_lines n="78"/>
+                        <has_text text="Length:  76"/>
+                    </assert_contents>
+                </element>
+                <element name="c02.ccentroid">
+                    <assert_contents>
+                        <has_n_lines n="78"/>
+                        <has_text text="Length:  76"/>
+                    </assert_contents>
+                </element>
             </output_collection>
         </test>
         <test expect_num_outputs="4">
@@ -282,7 +282,7 @@
                 <element name="c02.ccentroid">
                     <assert_contents>
                         <has_text text="Structure 1"/>
-                        </assert_contents>
+                    </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="sfold_bp" type="list">
@@ -291,7 +291,7 @@
                         <has_text text="1 72"/>
                     </assert_contents>
                 </element>
-            </output_collection>    
+            </output_collection>
         </test>
     </tests>
     <help><![CDATA[
@@ -331,5 +331,5 @@ files contain a header section that defines the formats and meanings of the data
 Important: The program usage is restricted to non-commercial and academic research.
     ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

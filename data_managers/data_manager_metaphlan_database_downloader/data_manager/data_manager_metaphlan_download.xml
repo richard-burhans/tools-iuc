@@ -1,5 +1,5 @@
 <tool id="data_manager_metaphlan_download" name="Download and build MetaPhlAn database" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="22.05">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">4.0.6</token>
         <token name="@VERSION_SUFFIX@">5</token>
@@ -15,7 +15,7 @@
         metaphlan --install --index '$index' --bowtie2db '$out_file.extra_files_path/$index' &&
         cp '$dmjson' '$out_file'
     ]]></command>
-     <configfiles>
+    <configfiles>
         <configfile name="dmjson"><![CDATA[
 #from datetime import date
 {
@@ -57,12 +57,12 @@
             <param name="index" value="mpa_vJan21_TOY_CHOCOPhlAnSGB_202103"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"metaphlan_database_versioned":'/>
-                    <has_text text='"db_version": "SGB"'/>
-                    <has_text text='"dbkey": "mpa_vJan21_TOY_CHOCOPhlAnSGB_202103"'/>
-                    <has_text_matching expression='"value": "mpa_vJan21_TOY_CHOCOPhlAnSGB_202103-[0-9]{8}"'/>
-                    <has_text text='"name": "MetaPhlAn clade-specific marker genes (mpa_vJan21_TOY_CHOCOPhlAnSGB_202103)"'/>
-                    <has_text_matching expression='.*"path": ".*/mpa_vJan21_TOY_CHOCOPhlAnSGB_202103".*'/>
+                    <has_text text="&quot;metaphlan_database_versioned&quot;:"/>
+                    <has_text text="&quot;db_version&quot;: &quot;SGB&quot;"/>
+                    <has_text text="&quot;dbkey&quot;: &quot;mpa_vJan21_TOY_CHOCOPhlAnSGB_202103&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;mpa_vJan21_TOY_CHOCOPhlAnSGB_202103-[0-9]{8}&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;MetaPhlAn clade-specific marker genes (mpa_vJan21_TOY_CHOCOPhlAnSGB_202103)&quot;"/>
+                    <has_text_matching expression=".*&quot;path&quot;: &quot;.*/mpa_vJan21_TOY_CHOCOPhlAnSGB_202103&quot;.*"/>
                 </assert_contents>
             </output>
         </test>

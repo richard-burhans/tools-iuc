@@ -16,7 +16,7 @@
     ]]>
     </command>
     <inputs>
-        <param name="input_file" type="data" format="tabular,txt" label="File input"/> 
+        <param name="input_file" type="data" format="tabular,txt" label="File input"/>
     </inputs>
     <outputs>
         <data name="output_file" format="tabular" label="${tool.name}: kmer statistics"/>

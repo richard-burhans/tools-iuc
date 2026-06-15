@@ -69,7 +69,7 @@ split_libraries_fastq.py
         <param argument="--store_qual_scores" type="boolean" truevalue="--store_qual_scores" falsevalue="" checked="false" label="Store quality strings in files?"/>
         <param argument="--sample_ids" type="text" optional="true" label="Comma-separated list of samples ids to be applied to all sequences" help="It must be one per input file path (used when data is not multiplexed)"/>
         <param argument="--store_demultiplexed_fastq" type="boolean" truevalue="--store_demultiplexed_fastq" falsevalue="" checked="false" label="Write demultiplexed fastq files?"/>
-        <param argument="--retain_unassigned_reads" type="boolean" truevalue="--retain_unassigned_reads" falsevalue="" checked="false"  label="Retain sequences which don’t map to a barcode in the mapping file?" help="Sample ID will be 'Unassigned'"/>
+        <param argument="--retain_unassigned_reads" type="boolean" truevalue="--retain_unassigned_reads" falsevalue="" checked="false" label="Retain sequences which don’t map to a barcode in the mapping file?" help="Sample ID will be 'Unassigned'"/>
         <param argument="--max_bad_run_length" type="integer" value="3" label="Maximum number of consecutive low quality base calls allowed before truncating a read"/>
         <param argument="--min_per_read_length_fraction" type="float" value="0.75" label="Minimum number of consecutive high quality base calls to include a read (per single end read) as a fraction of the input read length"/>
         <param argument="--sequence_max_n" type="integer" value="0" label="Maximum number of N characters allowed in a sequence to retain it" help="This is applied after quality trimming, and is total over combined paired end reads if applicable"/>
@@ -135,26 +135,26 @@ split_libraries_fastq.py
             <param name="phred_offset" value=""/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Median sequence length: 151.00"></has_text>
-                    <has_text text="s41"></has_text>
-                    <has_text text="s122"></has_text>
+                    <has_text text="Median sequence length: 151.00"/>
+                    <has_text text="s41"/>
+                    <has_text text="s122"/>
                 </assert_contents>
             </output>
             <output name="seqs" ftype="fasta">
                 <assert_contents>
-                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"></has_text>
-                    <has_text text="s26_84 M00176:17:000000000-A0CNA:1:1:18075:1844 1:N:0:0 orig_bc=AGGGTTCCAGTT new_bc=AGGGTTCCAGTT bc_diffs=0"></has_text>
+                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"/>
+                    <has_text text="s26_84 M00176:17:000000000-A0CNA:1:1:18075:1844 1:N:0:0 orig_bc=AGGGTTCCAGTT new_bc=AGGGTTCCAGTT bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="histograms">
                 <assert_contents>
-                    <has_text text="Length"></has_text>
-                    <has_text text="127.0"></has_text>
-                    <has_text text="157.0"></has_text>
+                    <has_text text="Length"/>
+                    <has_text text="127.0"/>
+                    <has_text text="157.0"/>
                 </assert_contents>
             </output>
         </test>
-        <test  expect_num_outputs="5">
+        <test expect_num_outputs="5">
             <param name="sequence_read_fps" value="split_libraries_fastq/lane1_read1.fastq.gz"/>
             <param name="mapping_fps" value="split_libraries_fastq/map.txt"/>
             <param name="barcode_read_fps" value="split_libraries_fastq/lane1_barcode.fastq.gz"/>
@@ -176,38 +176,38 @@ split_libraries_fastq.py
             <param name="phred_offset" value=""/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Median sequence length: 151.00"></has_text>
-                    <has_text text="s41"></has_text>
-                    <has_text text="s122"></has_text>
+                    <has_text text="Median sequence length: 151.00"/>
+                    <has_text text="s41"/>
+                    <has_text text="s122"/>
                 </assert_contents>
             </output>
             <output name="seqs" ftype="fasta">
                 <assert_contents>
-                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"></has_text>
-                    <has_text text="s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"></has_text>
+                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"/>
+                    <has_text text="s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="seqs_fastq" ftype="fastq">
                 <assert_contents>
-                    <has_text text="@s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"></has_text>
-                    <has_text text="@s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"></has_text>
+                    <has_text text="@s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"/>
+                    <has_text text="@s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="seqs_qual" ftype="qual">
                 <assert_contents>
-                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"></has_text>
-                    <has_text text="s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"></has_text>
+                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"/>
+                    <has_text text="s107_6 M00176:17:000000000-A0CNA:1:1:15276:1779 1:N:0:0 orig_bc=ATCTCCTCTCCA new_bc=ATCTCCTCTCCA bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="histograms">
                 <assert_contents>
-                    <has_text text="Length"></has_text>
-                    <has_text text="127.0"></has_text>
-                    <has_text text="157.0"></has_text>
+                    <has_text text="Length"/>
+                    <has_text text="127.0"/>
+                    <has_text text="157.0"/>
                 </assert_contents>
             </output>
         </test>
-        <test  expect_num_outputs="3">
+        <test expect_num_outputs="3">
             <param name="sequence_read_fps" value="split_libraries_fastq/lane1_read1.fastq.gz,split_libraries_fastq/lane2_read1.fastq.gz"/>
             <param name="mapping_fps" value="split_libraries_fastq/map.txt,split_libraries_fastq/map.txt"/>
             <param name="barcode_read_fps" value="split_libraries_fastq/lane1_barcode.fastq.gz,split_libraries_fastq/lane2_barcode.fastq.gz"/>
@@ -229,26 +229,26 @@ split_libraries_fastq.py
             <param name="phred_offset" value=""/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Median sequence length: 151.00"></has_text>
-                    <has_text text="s41"></has_text>
-                    <has_text text="s122"></has_text>
+                    <has_text text="Median sequence length: 151.00"/>
+                    <has_text text="s41"/>
+                    <has_text text="s122"/>
                 </assert_contents>
             </output>
             <output name="seqs" ftype="fasta">
                 <assert_contents>
-                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"></has_text>
-                    <has_text text="s26_84 M00176:17:000000000-A0CNA:1:1:18075:1844 1:N:0:0 orig_bc=AGGGTTCCAGTT new_bc=AGGGTTCCAGTT bc_diffs=0"></has_text>
+                    <has_text text="s161_0 M00176:17:000000000-A0CNA:1:1:16738:1773 1:N:0:0 orig_bc=CTCGCTTCACTT new_bc=CTCGCTTCACTT bc_diffs=0"/>
+                    <has_text text="s26_84 M00176:17:000000000-A0CNA:1:1:18075:1844 1:N:0:0 orig_bc=AGGGTTCCAGTT new_bc=AGGGTTCCAGTT bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="histograms">
                 <assert_contents>
-                    <has_text text="Length"></has_text>
-                    <has_text text="127.0"></has_text>
-                    <has_text text="157.0"></has_text>
+                    <has_text text="Length"/>
+                    <has_text text="127.0"/>
+                    <has_text text="157.0"/>
                 </assert_contents>
             </output>
         </test>
-        <test  expect_num_outputs="3">
+        <test expect_num_outputs="3">
             <param name="sequence_read_fps" value="split_libraries_fastq/lane1_read1.fastq.gz"/>
             <param name="store_qual_scores" value=""/>
             <param name="sample_ids" value="my.sample.1"/>
@@ -268,26 +268,26 @@ split_libraries_fastq.py
             <param name="phred_offset" value=""/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Median sequence length: 151.00"></has_text>
-                    <has_text text="my.sample.1"></has_text>
-                    <has_text text="Total number seqs written"></has_text>
+                    <has_text text="Median sequence length: 151.00"/>
+                    <has_text text="my.sample.1"/>
+                    <has_text text="Total number seqs written"/>
                 </assert_contents>
             </output>
             <output name="seqs" ftype="fasta">
                 <assert_contents>
-                    <has_text text="my.sample.1_0 M00176:17:000000000-A0CNA:1:1:15487:1773 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"></has_text>
-                    <has_text text="my.sample.1_12 M00176:17:000000000-A0CNA:1:1:14889:1778 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"></has_text>
+                    <has_text text="my.sample.1_0 M00176:17:000000000-A0CNA:1:1:15487:1773 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"/>
+                    <has_text text="my.sample.1_12 M00176:17:000000000-A0CNA:1:1:14889:1778 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="histograms">
                 <assert_contents>
-                    <has_text text="Length"></has_text>
-                    <has_text text="124.0"></has_text>
-                    <has_text text="154.0"></has_text>
+                    <has_text text="Length"/>
+                    <has_text text="124.0"/>
+                    <has_text text="154.0"/>
                 </assert_contents>
             </output>
         </test>
-        <test  expect_num_outputs="3">
+        <test expect_num_outputs="3">
             <param name="sequence_read_fps" value="split_libraries_fastq/lane1_read1.fastq.gz,split_libraries_fastq/lane2_read1.fastq.gz"/>
             <param name="store_qual_scores" value=""/>
             <param name="sample_ids" value="my.sample.1,my.sample.2"/>
@@ -307,22 +307,22 @@ split_libraries_fastq.py
             <param name="phred_offset" value=""/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Median sequence length: 151.00"></has_text>
-                    <has_text text="my.sample.1"></has_text>
-                    <has_text text="Total number seqs written"></has_text>
+                    <has_text text="Median sequence length: 151.00"/>
+                    <has_text text="my.sample.1"/>
+                    <has_text text="Total number seqs written"/>
                 </assert_contents>
             </output>
             <output name="seqs" ftype="fasta">
                 <assert_contents>
-                    <has_text text="my.sample.1_0 M00176:17:000000000-A0CNA:1:1:15487:1773 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"></has_text>
-                    <has_text text="my.sample.1_12 M00176:17:000000000-A0CNA:1:1:14889:1778 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"></has_text>
+                    <has_text text="my.sample.1_0 M00176:17:000000000-A0CNA:1:1:15487:1773 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"/>
+                    <has_text text="my.sample.1_12 M00176:17:000000000-A0CNA:1:1:14889:1778 1:N:0:0 orig_bc=AAAAAAAAAAAA new_bc=AAAAAAAAAAAA bc_diffs=0"/>
                 </assert_contents>
             </output>
             <output name="histograms">
                 <assert_contents>
-                    <has_text text="Length"></has_text>
-                    <has_text text="124.0"></has_text>
-                    <has_text text="154.0"></has_text>
+                    <has_text text="Length"/>
+                    <has_text text="124.0"/>
+                    <has_text text="154.0"/>
                 </assert_contents>
             </output>
         </test>

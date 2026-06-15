@@ -154,10 +154,8 @@ heatmap.2(linput, dendrogram=dendrogramtoplot, Colv=reorder_cols, Rowv=reorder_r
 dev.off()
         ]]></configfile>
     </configfiles>
-
     <inputs>
-        <param name="input1" type="data" format="tabular"
-               label="Input should have column headers - these will be the columns that are plotted and row names."/>
+        <param name="input1" type="data" format="tabular" label="Input should have column headers - these will be the columns that are plotted and row names."/>
         <param name="title" type="text" format="txt" label="Plot title"/>
         <param name="key" type="text" format="txt" label="key title"/>
         <param name="transform" type="select" label="Data transformation">
@@ -174,7 +172,7 @@ dev.off()
                 <option value="cols">Compute on columns</option>
             </param>
             <when value="none">
-                <param name="scale" type="select" label="Scale data on the plot (after clustering)" >
+                <param name="scale" type="select" label="Scale data on the plot (after clustering)">
                     <option value="none" selected="true">Do not scale my data</option>
                     <option value="row">Scale my data by row</option>
                     <option value="column">Scale my data by column</option>
@@ -194,7 +192,7 @@ dev.off()
                     <option value="row">Cluster rows and not columns</option>
                     <option value="column">Cluster columns and not rows</option>
                 </param>
-                <param name="distance" type="select" label="Distance method" help="The method used to compute the distance (dissimilarity) between both rows and columns. Default: Euclidean" >
+                <param name="distance" type="select" label="Distance method" help="The method used to compute the distance (dissimilarity) between both rows and columns. Default: Euclidean">
                     <option value="euclidean" selected="true">Euclidean</option>
                     <option value="maximum">Maximum</option>
                     <option value="manhattan">Manhattan</option>
@@ -204,7 +202,7 @@ dev.off()
                     <option value="pearson_correlation">Pearson's correlation (1 - correlation coefficient)</option>
                     <option value="spearmann_correlation">Spearmann's correlation (1 - correlation coefficient)</option>
                 </param>
-                <param name="clustering" type="select" label="Clustering method" help="The method used to compute the hierarchical clustering. Default: Complete" >
+                <param name="clustering" type="select" label="Clustering method" help="The method used to compute the hierarchical clustering. Default: Complete">
                     <option value="complete" selected="true">Complete</option>
                     <option value="average">Average (= UPGMA)</option>
                     <option value="ward.D">ward.D</option>
@@ -217,7 +215,7 @@ dev.off()
             </when>
             <when value="no"/>
         </conditional>
-        <param name="labels" type="select" label="Labeling columns and rows" >
+        <param name="labels" type="select" label="Labeling columns and rows">
             <option value="both" selected="true">Label my columns and rows</option>
             <option value="rows">Label rows and not columns</option>
             <option value="columns">Label columns and not rows</option>
@@ -261,13 +259,13 @@ dev.off()
                 </param>
             </when>
             <when value="two">
-                <param name="color1" type="color" value="#ffffff" label="First color" />
-                <param name="color2" type="color" value="#ff0000" label="Second color" />
+                <param name="color1" type="color" value="#ffffff" label="First color"/>
+                <param name="color2" type="color" value="#ff0000" label="Second color"/>
             </when>
             <when value="three">
-                <param name="color1" type="color" value="#0000ff" label="First color" />
-                <param name="color2" type="color" value="#ffffff" label="Second color" />
-                <param name="color3" type="color" value="#ff0000" label="Third color" />
+                <param name="color1" type="color" value="#0000ff" label="First color"/>
+                <param name="color2" type="color" value="#ffffff" label="Second color"/>
+                <param name="color3" type="color" value="#ff0000" label="Third color"/>
             </when>
         </conditional>
         <param name="image_file_format" type="select" label="Output format">
@@ -278,7 +276,7 @@ dev.off()
     <outputs>
         <data name="output1" format="pdf">
             <change_format>
-                <when input="image_file_format" value="png" format="png" />
+                <when input="image_file_format" value="png" format="png"/>
             </change_format>
         </data>
     </outputs>
@@ -293,7 +291,7 @@ dev.off()
             <param name="input1" value="mtcars.txt"/>
             <param name="cluster" value="no"/>
             <param name="image_file_format" value="png"/>
-            <output name="output1" file="result2.png" compare="image_diff" />
+            <output name="output1" file="result2.png" compare="image_diff"/>
         </test>
         <test>
             <param name="input1" value="mtcars.txt"/>
@@ -317,7 +315,7 @@ dev.off()
             <param name="zscore" value="rows"/>
             <param name="type" value="three"/>
             <param name="image_file_format" value="png"/>
-            <output name="output1" file="result4.png" compare="image_diff" />
+            <output name="output1" file="result4.png" compare="image_diff"/>
         </test>
         <test>
             <param name="input1" value="mtcars.txt"/>
@@ -326,7 +324,7 @@ dev.off()
             <param name="scale" value="row"/>
             <param name="type" value="three"/>
             <param name="image_file_format" value="png"/>
-            <output name="output1" file="result5.png" compare="image_diff" />
+            <output name="output1" file="result5.png" compare="image_diff"/>
         </test>
         <test>
             <param name="input1" value="mtcars.txt"/>
@@ -335,7 +333,7 @@ dev.off()
             <param name="scale" value="column"/>
             <param name="type" value="three"/>
             <param name="image_file_format" value="png"/>
-            <output name="output1" file="result6.png" compare="image_diff" />
+            <output name="output1" file="result6.png" compare="image_diff"/>
         </test>
         <test>
             <param name="input1" value="mtcars.txt"/>
@@ -346,7 +344,7 @@ dev.off()
             <param name="type" value="palettes"/>
             <param name="name" value="YlOrBr"/>
             <param name="image_file_format" value="png"/>
-            <output name="output1" file="result7.png" compare="image_diff" />
+            <output name="output1" file="result7.png" compare="image_diff"/>
         </test>
     </tests>
     <help><![CDATA[

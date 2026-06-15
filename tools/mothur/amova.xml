@@ -29,8 +29,7 @@ echo 'amova(
     ]]></command>
     <inputs>
         <param argument="phylip" type="data" format="mothur.dist,mothur.lower.dist,mothur.square.dist" label="phylip - Distance Matrix"/>
-        <param argument="design" type="data" format="mothur.design" label="design - assign groups to new grouping"
-            help="design has 2 TAB-separated columns: group and grouping (Tool: Make_Design)"/>
+        <param argument="design" type="data" format="mothur.design" label="design - assign groups to new grouping" help="design has 2 TAB-separated columns: group and grouping (Tool: Make_Design)"/>
         <param argument="alpha" type="float" optional="true" min="0" value="0.05" label="alpha - acceptable stopping precision" help="default: 0.05"/>
         <param argument="iters" type="integer" value="1000" min="0" label="iters - Number of random configuration to try" help="default: 1000"/>
         <param name="sets" type="text" label="sets - Which of the sets in your design file you would like to analyze?" help="separate sets by dashes or commas, e.g. set1,set2 or set1-set2-set3"/>
@@ -64,7 +63,8 @@ echo 'amova(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with sets specified -->
+        <test>
+            <!-- test with sets specified -->
             <param name="phylip" value="amazon.dist"/>
             <param name="design" value="amazon.design"/>
             <param name="sets" value="A,B"/>

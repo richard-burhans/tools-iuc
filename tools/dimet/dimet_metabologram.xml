@@ -76,17 +76,16 @@
         <expand macro="input_parameters_metabologram"/>
         <expand macro="deg_list"/>
         <expand macro="compartments_metabologram"/>
-
         <param name="correction_method" type="select" value="bonferroni" display="radio" label="Select multiple test correction to apply" help="Please enter at max 1 method">
-                <option value="bonferroni">bonferroni</option>
-                <option value="holm-sidak">holm-sidak</option>
-                <option value="holm">holm</option>
-                <option value="simes-hochberg">simes-hochberg</option>
-                <option value="hommel">hommel</option>
-                <option value="fdr_bh">fdr_bh</option>
-                <option value="fdr_by">fdr_by</option>
-                <option value="fdr_tsbh">fdr_tsbh</option>
-                <option value="fdr_tsbky">fdr_tsbky</option>
+            <option value="bonferroni">bonferroni</option>
+            <option value="holm-sidak">holm-sidak</option>
+            <option value="holm">holm</option>
+            <option value="simes-hochberg">simes-hochberg</option>
+            <option value="hommel">hommel</option>
+            <option value="fdr_bh">fdr_bh</option>
+            <option value="fdr_by">fdr_by</option>
+            <option value="fdr_tsbh">fdr_tsbh</option>
+            <option value="fdr_tsbky">fdr_tsbky</option>
         </param>
         <param name="qualityDistanceOverSpan" type="float" min="-1.0" max="-0.1" value="-0.3" label="quality Distance Over Span" help="Default value is -0.3."/>
         <section name="output_options" title="Output options">
@@ -94,18 +93,12 @@
                 <option value="pdf">Pdf</option>
                 <option value="svg">Svg</option>
             </param>
-            <param name="write_values" type="boolean" value="false" label="Write the values alongside the metabolites and genes names (e.g. L-Alanine: -0.44)"
-                   help="Default value is false."/>
-            <param name="fig_width" type="integer" min="5" max="20" value="7" label="width of figures"
-                   help="Default value is 7."/>
-            <param name="fig_height" type="integer" min="5" max="20" value="7" label="heigt of each figure"
-                   help="Default value is 7."/>
-            <param name="font_size" type="integer" min="1" max="20" value="12" label=" figure font size"
-                   help="Default value is 12."/>
+            <param name="write_values" type="boolean" value="false" label="Write the values alongside the metabolites and genes names (e.g. L-Alanine: -0.44)" help="Default value is false."/>
+            <param name="fig_width" type="integer" min="5" max="20" value="7" label="width of figures" help="Default value is 7."/>
+            <param name="fig_height" type="integer" min="5" max="20" value="7" label="heigt of each figure" help="Default value is 7."/>
+            <param name="font_size" type="integer" min="1" max="20" value="12" label=" figure font size" help="Default value is 12."/>
         </section>
     </inputs>
-
-
     <outputs>
         <collection name="report" type="list">
             <discover_datasets pattern="__designation_and_ext__" directory="figures"/>
@@ -113,7 +106,6 @@
     </outputs>
     <tests>
         <test>
-
             <param name="path_kegg_metabolites" ftype="tabular" value="pathways_kegg_metabolites.csv"/>
             <param name="path_kegg_transcripts" ftype="tabular" value="pathways_kegg_transcripts.csv"/>
             <param name="abundance_file" ftype="tabular" value="rawAbundances.csv"/>
@@ -124,7 +116,7 @@
                 <param name="input" ftype="tabular" value="DEG_comparison_1.csv"/>
                 <param name="idcol" ftype="integer" value="2"/>
                 <param name="valuecol" ftype="integer" value="3"/>
-                <param name="timepoint" value='T0'/>
+                <param name="timepoint" value="T0"/>
                 <repeat name="factor_list">
                     <param name="condition" value="L-Cycloserine"/>
                 </repeat>
@@ -352,5 +344,5 @@ You can also use the minimal data examples from https://zenodo.org/record/105798
 
  ]]>
     </help>
-    <expand macro="citations" />
-</tool> 
+    <expand macro="citations"/>
+</tool>

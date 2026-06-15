@@ -20,7 +20,7 @@
     </command>
     <inputs>
         <param format="interval" name="input1" label="Interval File" type="data">
-            <validator type="unspecified_build" />
+            <validator type="unspecified_build"/>
         </param>
         <conditional name="maf_source_type">
             <param name="maf_source" type="select" label="MAF Source">
@@ -30,9 +30,9 @@
             <when value="user">
                 <param format="maf" name="input2" label="Choose alignments" type="data">
                     <options>
-                        <filter type="data_meta" ref="input1" key="dbkey" />
+                        <filter type="data_meta" ref="input1" key="dbkey"/>
                     </options>
-                    <validator type="dataset_ok_validator" />
+                    <validator type="dataset_ok_validator"/>
                 </param>
             </when>
             <when value="cached">
@@ -41,8 +41,8 @@
                         <column name="name" index="0"/>
                         <column name="value" index="1"/>
                         <column name="indexed_for" index="2"/>
-                        <column name="exists_in_maf" index="3" />
-                        <column name="path" index="4" />
+                        <column name="exists_in_maf" index="3"/>
+                        <column name="path" index="4"/>
                     </options>
                 </param>
             </when>
@@ -55,7 +55,7 @@
     <outputs>
         <data format="interval" name="out_file1" metadata_source="input1">
             <change_format>
-                <when input="summary" value="true" format="tabular" />
+                <when input="summary" value="true" format="tabular"/>
             </change_format>
         </data>
     </outputs>
@@ -75,7 +75,7 @@
             <param name="summary" value="true"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 This tool takes an MAF file and an interval file and relates coverage information by interval for each species.
@@ -110,7 +110,7 @@ Alternatively, you can request only summary information for a set of intervals:
     ========  ===========  ========
 
 where **coverage** is the number of nucleotides divided by the total length of the intervals provided in the BED file.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btr398</citation>
     </citations>

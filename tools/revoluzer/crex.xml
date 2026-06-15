@@ -39,13 +39,13 @@
             <when value="--crex1">
                 <param argument="--prinobp" type="boolean" truevalue="" falsevalue="--prinobp" checked="true" label="Compute breakpoint scenario for prime nodes"/>
             </when>
-            <when value="--bp"></when>
+            <when value="--bp"/>
         </conditional>
     </inputs>
     <outputs>
         <data name="out" format="tabular">
             <actions>
-                <action name="column_names" type="metadata" default="Source gene order,Target Gene order,Rearrangement,Breakpoints" />
+                <action name="column_names" type="metadata" default="Source gene order,Target Gene order,Rearrangement,Breakpoints"/>
             </actions>
         </data>
     </outputs>
@@ -54,7 +54,7 @@
             <param name="f" value="test.fas"/>
             <param name="linear" value="true"/>
             <output name="out">
-                <metadata name="column_names" value="Source gene order,Target Gene order,Rearrangement,Breakpoints" />
+                <metadata name="column_names" value="Source gene order,Target Gene order,Rearrangement,Breakpoints"/>
                 <assert_contents>
                     <has_n_lines n="7"/>
                     <has_n_columns n="4"/>

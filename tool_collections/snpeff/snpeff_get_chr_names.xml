@@ -8,8 +8,8 @@
             <requirement type="package" version="5.0.1">gawk</requirement>
         </expand>
     </requirements>
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
       snpEff @JAVA_OPTIONS@ dump
       #if $snpDb.genomeSrc == 'cached':
@@ -40,28 +40,28 @@
             </param>
             <when value="cached">
                 <param name="genomeVersion" type="select" label="Genome">
-                    <help>This can only be used on built-in databases manually configured by your galaxy admin.</help>
+                    <help><![CDATA[This can only be used on built-in databases manually configured by your galaxy admin.]]></help>
                     <options from_data_table="snpeffv_genomedb">
-                        <filter type="regexp" column="1" value="@COMPATIBLE_DB_VERSIONS_REGEX@" />
-                        <filter type="unique_value" column="2" />
+                        <filter type="regexp" column="1" value="@COMPATIBLE_DB_VERSIONS_REGEX@"/>
+                        <filter type="unique_value" column="2"/>
                     </options>
                 </param>
             </when>
             <when value="history">
                 <param name="snpeff_db" type="data" format="snpeffdb" label="@SNPEFF_VERSION@ Genome Data">
-                    <help>This can only be used on databases in your history that were downloaded using the snpEff download tool.</help>
+                    <help><![CDATA[This can only be used on databases in your history that were downloaded using the snpEff download tool.]]></help>
                     <validator type="expression" message="This version of SnpEff will only work with @COMPATIBLE_DB_VERSIONS_STRING@ genome databases">value.metadata.snpeff_version in @COMPATIBLE_DB_VERSIONS@</validator>
                 </param>
             </when>
             <when value="named">
                 <param name="genome_version" type="text" value="" label="Snpff Genome Version Name (e.g. GRCh38.86)">
-                    <help>The list of available databases can be obtained with 'SnpEff databases' tool. If the database name is not found, locate a database here and download it in your history.</help>
+                    <help><![CDATA[The list of available databases can be obtained with 'SnpEff databases' tool. If the database name is not found, locate a database here and download it in your history.]]></help>
                     <validator type="regex" message="A genome version name is required">\S+</validator>
                 </param>
             </when>
             <when value="custom">
                 <param name="snpeff_db" type="data" format="snpeffdb" label="@SNPEFF_VERSION@ Genome Data">
-                    <help>This can only be used on databases in your history that were created using the snpEff build tool.</help>
+                    <help><![CDATA[This can only be used on databases in your history that were created using the snpEff build tool.]]></help>
                     <validator type="expression" message="This version of SnpEff will only work with @COMPATIBLE_DB_VERSIONS_STRING@ genome databases">value.metadata.snpeff_version in @COMPATIBLE_DB_VERSIONS@</validator>
                 </param>
             </when>
@@ -78,8 +78,8 @@
             </conditional>
             <output name="chr_names">
                 <assert_contents>
-                    <has_text text="KJ660346" />
-                    <has_text text="18959" />
+                    <has_text text="KJ660346"/>
+                    <has_text text="18959"/>
                 </assert_contents>
             </output>
         </test>
@@ -115,5 +115,5 @@ Suppose you want to use snpEff to annotate a VCF file that was generated using a
     #. Use **SnpEff eff** and supply the edited VCF file.
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

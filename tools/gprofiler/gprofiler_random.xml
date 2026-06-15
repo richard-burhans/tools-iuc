@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
 <tool id="gprofiler_random" name="gProfiler Random" version="@VERSION@">
     <description>generates a gene list</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"></expand>
-    <expand macro="version_command" />
-    <command detect_errors="aggressive">Rscript $script_file</command>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
+    <command detect_errors="aggressive"><![CDATA[Rscript $script_file]]></command>
     <configfiles>
         <configfile name="script_file"><![CDATA[
 
@@ -27,21 +26,20 @@ write.table(response, file='${output}', quote=FALSE, sep='\t', row.names = FALSE
         ]]></configfile>
     </configfiles>
     <inputs>
-        <expand macro="organism" />
+        <expand macro="organism"/>
     </inputs>
     <outputs>
-        <data name="output" format="tabular" label="${tool.name}" />
+        <data name="output" format="tabular" label="${tool.name}"/>
     </outputs>
     <tests>
         <test>
             <output name="output">
                 <assert_contents>
-                    <has_n_columns n="1" />
+                    <has_n_columns n="1"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **What it does**
@@ -54,5 +52,5 @@ write.table(response, file='${output}', quote=FALSE, sep='\t', row.names = FALSE
 @REFERENCES@
 
     ]]></help>
-    <expand macro="citations"></expand>
+    <expand macro="citations"/>
 </tool>

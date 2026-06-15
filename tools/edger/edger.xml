@@ -257,11 +257,9 @@ cp '$outReport.files_path'/*.tsv output_dir/
         </section>
         <!-- Output Options -->
         <section name="out" expanded="false" title="Output Options">
-            <param name="normCounts" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output Normalised Counts Table?" help="Output a file containing the normalised counts, these are in log2 counts per million (logCPM). Default: No">
-            </param>
+            <param name="normCounts" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output Normalised Counts Table?" help="Output a file containing the normalised counts, these are in log2 counts per million (logCPM). Default: No"/>
             <param name="rscript" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Output Rscript?" help="If this option is set to Yes, the Rscript used will be provided as a text file in the output. Default: No"/>
-            <param name="rdaOption" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output RData file?" help="Output all the data used by R to construct the plots and tables, can be loaded into R. A link to the RData file will be provided in the HTML report. Default: No">
-            </param>
+            <param name="rdaOption" type="boolean" truevalue="1" falsevalue="0" checked="false" label="Output RData file?" help="Output all the data used by R to construct the plots and tables, can be loaded into R. A link to the RData file will be provided in the HTML report. Default: No"/>
         </section>
         <!-- Advanced Options -->
         <section name="adv" expanded="false" title="Advanced Options">

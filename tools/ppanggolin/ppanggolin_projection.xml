@@ -5,7 +5,6 @@
     </macros>
     <expand macro="xrefs"/>
     <expand macro="requirements"/>
-
     <command detect_errors="exit_code"><![CDATA[
         #import re
         
@@ -92,18 +91,12 @@
         && cat './tmp_ppanggolin/projection/summary_projection.tsv' > '${summary_projection}'
         
     ]]></command>
-    
     <inputs>
-    
         <expand macro="inputs_pangenome"/>
-
-        <expand macro="inputs_genomes" />
-        
+        <expand macro="inputs_genomes"/>
         <expand macro="inputs_identity_coverage_do_defrag"/>
-        
         <expand macro="inputs_soft_core"/>
-        
-        <param name="advanced_pangenome_optional_files" type="select" label="Add the following output files in the Galaxy history" multiple="true" optional="true" display="checkboxes" >
+        <param name="advanced_pangenome_optional_files" type="select" label="Add the following output files in the Galaxy history" multiple="true" optional="true" display="checkboxes">
             <option value="output_gene_to_gene_family" selected="true">gene_to_gene_family.tsv: provide the mapping of genes to gene families of the pangenome</option>
             <option value="output_input_genome_rgp_to_spot" selected="true">input_genome_rgp_to_spot.tsv: provide information about the association between RGPs and insertion spots in the input genome</option>
             <option value="output_modules_in_input_genome" selected="true">modules_in_input_genome.tsv: list the modules that have been found in the input genome</option>
@@ -114,11 +107,8 @@
             <option value="output_sequences_partition_projection" selected="true">sequences_partition_projection.tsv: map the input genes to its partition (Persistent, Shell or Cloud)</option>
             <option value="output_specific_genes" selected="true">specific_genes.tsv: list the gene of the input genomes that do not align to any gene of the pangenome. These genes are assigned to Cloud parititon</option>
         </param>
-        
     </inputs>
-    
     <outputs>
-    
         <collection name="gene_to_gene_family" type="list" label="PPanGGOLiN projection on ${on_string}: Gene to gene family">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)_gene_to_gene_family.tsv" format="tabular" directory="./tmp_ppanggolin/projection"/>
             <filter>advanced_pangenome_optional_files and "output_gene_to_gene_family" in advanced_pangenome_optional_files</filter>
@@ -158,11 +148,8 @@
             <discover_datasets pattern="(?P&lt;designation&gt;.+)_specific_genes.tsv" format="tabular" directory="./tmp_ppanggolin/projection"/>
             <filter>advanced_pangenome_optional_files and "output_specific_genes" in advanced_pangenome_optional_files</filter>
         </collection>
-        
-        <data name="summary_projection" format="tabular" label="PPanGGOLiN projection on ${on_string}: Global summary projection" />
-    
+        <data name="summary_projection" format="tabular" label="PPanGGOLiN projection on ${on_string}: Global summary projection"/>
     </outputs>
-        
     <tests>
         <test expect_num_outputs="11">
             <param name="pangenome_h5" value="h5/test_data.h5" ftype="h5"/>
@@ -173,176 +160,176 @@
             <output_collection name="gene_to_gene_family" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0062" />
+                        <has_text text="CDS_0062"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0093" />
+                        <has_text text="CDS_0093"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0152" />
+                        <has_text text="CDS_0152"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="input_genome_rgp_to_spot" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="modules_in_input_genome" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_gff" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_tsv" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_proksee" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="projection_summary" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="regions_of_genomic_plasticity" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="sequences_partition_projection" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="specific_genes" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0112" />
+                        <has_text text="CDS_0112"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0137" />
+                        <has_text text="CDS_0137"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.fasta.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="CDS_0017" />
+                        <has_text text="CDS_0017"/>
                     </assert_contents>
                 </element>
             </output_collection>
-            <output name="summary_projection" >
+            <output name="summary_projection">
                 <assert_contents>
-                    <has_text text="Genome_name" />
+                    <has_text text="Genome_name"/>
                 </assert_contents>
             </output>
         </test>
@@ -355,164 +342,163 @@
             <output_collection name="gene_to_gene_family" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="TKY121527_11890" />
+                        <has_text text="TKY121527_11890"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="OTU47_07365" />
+                        <has_text text="OTU47_07365"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="ODS73_05675" />
+                        <has_text text="ODS73_05675"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="input_genome_rgp_to_spot" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="modules_in_input_genome" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="module_id" />
+                        <has_text text="module_id"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_gff" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="gff">
                     <assert_contents>
-                        <has_text text="sequence-region" />
+                        <has_text text="sequence-region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_tsv" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="gene" />
+                        <has_text text="gene"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="genome_proksee" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="json">
                     <assert_contents>
-                        <has_text text="cgview" />
+                        <has_text text="cgview"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="projection_summary" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="yaml">
                     <assert_contents>
-                        <has_text text="Projection_summary" />
+                        <has_text text="Projection_summary"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="regions_of_genomic_plasticity" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="region" />
+                        <has_text text="region"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="sequences_partition_projection" type="list" count="3">
                 <element name="PROJECT1_984801_1194801.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT5_1290693_1440693.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
                 <element name="PROJECT8_1022972_1232972.gb.gz" ftype="tabular">
                     <assert_contents>
-                        <has_text text="shell" />
+                        <has_text text="shell"/>
                     </assert_contents>
                 </element>
             </output_collection>
-            <output name="summary_projection" >
+            <output name="summary_projection">
                 <assert_contents>
-                    <has_text text="Genome_name" />
+                    <has_text text="Genome_name"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-            
     <help><![CDATA[
     
         PPanGGOLiN_ (Gautreau et al. 2020) is a software suite used to create and manipulate prokaryotic pangenomes from a set of either assembled 
@@ -530,9 +516,5 @@
         .. _documentation: https://ppanggolin.readthedocs.io/en/latest/user/projection.html#projection
         
     ]]></help>
-
     <expand macro="citation"/>
-    
 </tool>
-
-

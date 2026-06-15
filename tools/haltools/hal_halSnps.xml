@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         set -o pipefail; ## Sets the pipeline’s exit code to halSnps on failure.
@@ -25,8 +25,8 @@
             | tr ' ' '\t' ## Pipes specific output to replace space with tabs. Output is mostly numerical, and Genome names should not contain spaces
             >> '$out_file'
     ]]></command>
-    <inputs>        
-        <expand macro="input_hal"/> 
+    <inputs>
+        <expand macro="input_hal"/>
         <expand macro="params_refGenome"/>
         <expand macro="params_targetGenomes"/>
         <conditional name="mode">
@@ -44,11 +44,11 @@
         <param argument="--noDupes" type="boolean" truevalue="--noDupes" falsevalue="" checked="false" label="No duplicates" help="Do not consider paralogies while mapping"/>
         <param argument="--tsv" type="boolean" truevalue="--tsv" falsevalue="" checked="false" label="Detailed SNPs file" help="Create a detailed file containing base assignments for each genome at SNP locations"/>
         <param argument="--minSpeciesForSnp" type="integer" min="1" value="1" label="Minimum number of species" help="Minimum number of species that must have a different base than the reference for a SNP to be reported in the output"/>
-        <param argument="--unique" type="boolean" truevalue="--unique" falsevalue="" checked="false" label="Unique" help="Whether to ignore columns that are not canonical on the reference genome"/> 
+        <param argument="--unique" type="boolean" truevalue="--unique" falsevalue="" checked="false" label="Unique" help="Whether to ignore columns that are not canonical on the reference genome"/>
     </inputs>
     <outputs>
         <data name="out_file" format="tabular" label="${tool.name} on ${on_string}"/>
-        <data name="out_file_detail" format="tabular"  label="${tool.name} on ${on_string}: Detailed SNPs file">
+        <data name="out_file_detail" format="tabular" label="${tool.name} on ${on_string}: Detailed SNPs file">
             <filter>tsv</filter>
         </data>
     </outputs>
@@ -59,9 +59,9 @@
             <param name="targetGenomes" value="Genome_0,Genome_1,Genome_2"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="targetGenome&#009;totalSnps&#009;totalCleanOrthologousPairs"/>   
-                    <has_line line="Genome_0&#009;0&#009;1758"/>    
-                    <has_line line="Genome_2&#009;0&#009;586"/>
+                    <has_line line="targetGenome&#9;totalSnps&#9;totalCleanOrthologousPairs"/>
+                    <has_line line="Genome_0&#9;0&#9;1758"/>
+                    <has_line line="Genome_2&#9;0&#9;586"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -73,9 +73,9 @@
             <param name="noDupes" value="true"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="targetGenome&#009;totalSnps&#009;totalCleanOrthologousPairs"/>   
-                    <has_line line="Genome_0&#009;0&#009;0"/>    
-                    <has_line line="Genome_2&#009;0&#009;1465"/>
+                    <has_line line="targetGenome&#9;totalSnps&#9;totalCleanOrthologousPairs"/>
+                    <has_line line="Genome_0&#9;0&#9;0"/>
+                    <has_line line="Genome_2&#9;0&#9;1465"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -88,9 +88,9 @@
             <param name="length" value="50"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="targetGenome&#009;totalSnps&#009;totalCleanOrthologousPairs"/>   
-                    <has_line line="Genome_0&#009;0&#009;50"/>    
-                    <has_line line="Genome_2&#009;0&#009;50"/>
+                    <has_line line="targetGenome&#9;totalSnps&#9;totalCleanOrthologousPairs"/>
+                    <has_line line="Genome_0&#9;0&#9;50"/>
+                    <has_line line="Genome_2&#9;0&#9;50"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -107,9 +107,9 @@
             <param name="length" value="500"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="targetGenome&#009;totalSnps&#009;totalCleanOrthologousPairs"/>   
-                    <has_line line="Genome_0&#009;0&#009;500"/>    
-                    <has_line line="Genome_2&#009;0&#009;283"/>
+                    <has_line line="targetGenome&#9;totalSnps&#9;totalCleanOrthologousPairs"/>
+                    <has_line line="Genome_0&#9;0&#9;500"/>
+                    <has_line line="Genome_2&#9;0&#9;283"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -121,16 +121,16 @@
             <param name="tsv" value="true"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="targetGenome&#009;totalSnps&#009;totalCleanOrthologousPairs"/>   
-                    <has_line line="Genome_1&#009;0&#009;0"/>    
-                    <has_line line="Insert&#009;32&#009;586"/>
+                    <has_line line="targetGenome&#9;totalSnps&#9;totalCleanOrthologousPairs"/>
+                    <has_line line="Genome_1&#9;0&#9;0"/>
+                    <has_line line="Insert&#9;32&#9;586"/>
                     <has_n_lines n="3"/>
                 </assert_contents>
             </output>
             <output name="out_file_detail" ftype="tabular">
                 <assert_contents>
-                    <has_line line="refSequence&#009;refPosition&#009;Genome_0&#009;Genome_1&#009;Insert"/>  
-                    <has_line line="Genome_0_seq&#009;10&#009;G&#009;&#009;C"/>  
+                    <has_line line="refSequence&#9;refPosition&#9;Genome_0&#9;Genome_1&#9;Insert"/>
+                    <has_line line="Genome_0_seq&#9;10&#9;G&#9;&#9;C"/>
                     <has_n_lines n="33"/>
                 </assert_contents>
             </output>

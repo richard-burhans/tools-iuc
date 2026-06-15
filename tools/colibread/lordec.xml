@@ -40,62 +40,62 @@
                 <option value="stats">Lordec Statistics</option>
             </param>
             <when value="correct">
-                <expand macro="lordec_inputs" />
+                <expand macro="lordec_inputs"/>
                 <conditional name="advanced_options">
                     <param name="advanced_options_selector" type="select" label="Lordec correct advanced options">
                         <option value="default" selected="true">Default</option>
                         <option value="advanced">Advanced</option>
                     </param>
-                    <when value="default"></when>
+                    <when value="default"/>
                     <when value="advanced">
-                        <param argument="-t" type="integer" label="Number of target k-mers" value="5" />
-                        <param argument="-b" type="integer" label="Maximum number of branches to explore" value="200" />
-                        <param argument="-e" type="float" label="Maximum error rate" value="0.4" />
+                        <param argument="-t" type="integer" label="Number of target k-mers" value="5"/>
+                        <param argument="-b" type="integer" label="Maximum number of branches to explore" value="200"/>
+                        <param argument="-e" type="float" label="Maximum error rate" value="0.4"/>
                     </when>
                 </conditional>
             </when>
             <when value="trim">
-                <param argument="-i" type="data" format="fasta,fasta.gz,fastq,fastq.gz" label="Long read FASTA/Q file" help="PacBio reads files" />
-                <param name="split" type="boolean" label="Use the split option" help="Trim all weak regions and split the reads on inner weak regions" />
+                <param argument="-i" type="data" format="fasta,fasta.gz,fastq,fastq.gz" label="Long read FASTA/Q file" help="PacBio reads files"/>
+                <param name="split" type="boolean" label="Use the split option" help="Trim all weak regions and split the reads on inner weak regions"/>
             </when>
             <when value="stats">
-                <expand macro="lordec_inputs" />
+                <expand macro="lordec_inputs"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data format="fasta" name="corrected_read_file" label="${tool.name} on ${on_string}: Corrected long reads" >
+        <data format="fasta" name="corrected_read_file" label="${tool.name} on ${on_string}: Corrected long reads">
             <filter>program_type_choice['program_type'] == 'correct'</filter>
         </data>
-        <data format="fasta" name="trimmed_reads_file" label="${tool.name} on ${on_string}: Trimmed reads" >
+        <data format="fasta" name="trimmed_reads_file" label="${tool.name} on ${on_string}: Trimmed reads">
             <filter>program_type_choice['program_type'] == 'trim'</filter>
         </data>
-        <data format="tabular" name="stat_file" label="${tool.name} on ${on_string}: Stats" >
+        <data format="tabular" name="stat_file" label="${tool.name} on ${on_string}: Stats">
             <filter>program_type_choice['program_type'] == 'stats'</filter>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
             <conditional name="program_type_choice">
-                <param name="program_type" value="correct" />
+                <param name="program_type" value="correct"/>
                 <param name="inputs" value="lordec/ill-test-5K-1.fa.gz,lordec/ill-test-5K-2.fa.gz" ftype="fasta.gz"/>
-                <param name="i" value="lordec/coli-pacbio-test-mini.fa.gz" />
-                <param name="k" value="31" />
+                <param name="i" value="lordec/coli-pacbio-test-mini.fa.gz"/>
+                <param name="k" value="31"/>
             </conditional>
             <output name="corrected_read_file" file="lordec/corrected_reads.fa"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="program_type_choice">
-                <param name="program_type" value="trim" />
+                <param name="program_type" value="trim"/>
                 <param name="i" value="lordec/corrected_reads.fa" ftype="fasta"/>
             </conditional>
             <output name="trimmed_reads_file" file="lordec/trimmed_reads.fa"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="program_type_choice">
-                <param name="program_type" value="stats" />
-                <param name="inputs" value="lordec/ill-test-5K-1.fa.gz,lordec/ill-test-5K-2.fa.gz" />
-                <param name="i" value="lordec/coli-pacbio-test-mini.fa.gz" />
+                <param name="program_type" value="stats"/>
+                <param name="inputs" value="lordec/ill-test-5K-1.fa.gz,lordec/ill-test-5K-2.fa.gz"/>
+                <param name="i" value="lordec/coli-pacbio-test-mini.fa.gz"/>
             </conditional>
             <output name="stat_file" file="lordec/stat_file.txt" compare="sim_size" delta="10"/>
         </test>

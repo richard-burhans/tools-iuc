@@ -80,18 +80,18 @@ bcftools @EXECUTABLE@
 		max-width:100% !important;
 		page-break-inside: avoid;
 	}
-  </style>' > $output_plots;
+  </style>' > '$output_plots';
   for plot in $output_dir/*.png; do
     [ -f "\$plot" ] || break;
-    echo '<div><img src="data:image/png;base64,' >> $output_plots;
-    python -m base64 \$plot >> $output_plots;
-    echo '" /></div><hr>' >> $output_plots;
+    echo '<div><img src="data:image/png;base64,' >> '$output_plots';
+    python -m base64 \$plot >> '$output_plots';
+    echo '" /></div><hr>' >> '$output_plots';
   done;
-  echo '</body></html>' >> $output_plots;)
+  echo '</body></html>' >> '$output_plots';)
 #end if
 
-]]>
-    </command>
+
+    ]]></command>
     <inputs>
         <expand macro="macro_input"/>
         <param argument="-s" name="query_sample" type="text" label="Query Sample" optional="True" help="The name (as used in the input) of the query sample in the input. Can be ommitted if, and only if, there is only one sample in the input."/>
@@ -151,16 +151,16 @@ bcftools @EXECUTABLE@
             </conditional>
             <param argument="--err-prob" type="float" value="1e-4" label="Err Prob" help="Uniform error probability"/>
             <param argument="--same-prob" type="float" value="0.5" min="0" max="1" label="Same Prob">
-                <help>
+                <help><![CDATA[
                     The prior probability of the query and the control sample being the same. 
                     Setting to 0 calls both independently, setting to 1 forces the same copy number state in both. (default: 0.5)
-                </help>
+                ]]></help>
             </param>
             <param argument="--xy-prob" type="float" min="0." max="1." label="Xy Prob" value="1e-9">
-                <help>
+                <help><![CDATA[
                     The HMM probability of transition to another copy number state. 
                     Increasing this value leads to smaller and more frequent calls. 
-                </help>
+                ]]></help>
             </param>
         </section>
     </inputs>
@@ -206,12 +206,12 @@ bcftools @EXECUTABLE@
             <param name="input_file" ftype="vcf" value="cnv.vcf"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="10" />
+                        <param name="chrom" value="10"/>
                     </repeat>
                     <repeat name="region_specs">
-                        <param name="chrom" value="11" />
+                        <param name="chrom" value="11"/>
                     </repeat>
                 </conditional>
             </section>

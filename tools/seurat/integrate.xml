@@ -152,8 +152,8 @@
                     </param>
                     <when value="CCAIntegration">
                         <section name="adv" title="Advanced Options">
-                        <param name="k_filter" type="integer" optional="true" value="" label="Number of anchors to filter" help="leave blank to use all (k.filter)"/>
-                        <expand macro="integration_inputs"/>
+                            <param name="k_filter" type="integer" optional="true" value="" label="Number of anchors to filter" help="leave blank to use all (k.filter)"/>
+                            <expand macro="integration_inputs"/>
                         </section>
                     </when>
                     <when value="HarmonyIntegration">
@@ -186,7 +186,7 @@
                     <expand macro="valid_name"/>
                 </param>
                 <param name="new_reduction" type="text" value="integrated.dr" label="Name for new dimensional reduction" help="(new.reduction)">
-                   <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
                 <expand macro="select_assay"/>
                 <param argument="features" type="data" format="txt,tabular" optional="true" label="List of features to use for integration" help="text file with one feature on each line"/>
@@ -200,12 +200,12 @@
             </when>
             <when value="JoinLayers">
                 <param argument="assay" type="text" value="RNA" label="Name of assay to join">
-                   <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
             </when>
             <when value="PrepSCTFindMarkers">
                 <param argument="assay" type="text" value="SCT" label="Name of Assay where SCT objects are stored">
-                   <expand macro="valid_name"/>
+                    <expand macro="valid_name"/>
                 </param>
             </when>
         </conditional>
@@ -214,7 +214,7 @@
     <outputs>
         <expand macro="seurat_outputs"/>
     </outputs>
-   <tests>
+    <tests>
         <test expect_num_outputs="2">
             <!-- test1:  SplitLayers -->
             <param name="seurat_rds" location="https://zenodo.org/records/13732784/files/added_metadata.rds"/>

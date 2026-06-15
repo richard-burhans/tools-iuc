@@ -5,8 +5,8 @@
     </macros>
     <expand macro="bio_tools"/>
     <expand macro="requirements"/>
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         @home_dir@
         macs2 predictd
@@ -29,26 +29,23 @@
         Rscript predictd
     ]]></command>
     <inputs>
-        <param name="infiles" type="data" format="bam,bed" multiple="True"
-               label="ChIP-seq alignment file"
-               help="If multiple files are given, then they will all be read and combined. Note that pair-end data is not supposed to work with this command. (-i)" />
-        <expand macro="conditional_effective_genome_size" />
-        <expand macro="tag_size" />
-        <expand macro="band_width" />
-        <expand macro="mfold_options" />
+        <param name="infiles" type="data" format="bam,bed" multiple="True" label="ChIP-seq alignment file" help="If multiple files are given, then they will all be read and combined. Note that pair-end data is not supposed to work with this command. (-i)"/>
+        <expand macro="conditional_effective_genome_size"/>
+        <expand macro="tag_size"/>
+        <expand macro="band_width"/>
+        <expand macro="mfold_options"/>
         <expand macro="fragment_size"/>
         <expand macro="buffer_size"/>
     </inputs>
-
     <outputs>
-        <data name="outfile" format="txt" label="${tool.name} on ${on_string} - d value" />
-        <data name="outfile_image" from_work_dir="predictd_model.pdf" format="pdf" label="${tool.name} on ${on_string} - X-correlation image" />
+        <data name="outfile" format="txt" label="${tool.name} on ${on_string} - d value"/>
+        <data name="outfile_image" from_work_dir="predictd_model.pdf" format="pdf" label="${tool.name} on ${on_string} - X-correlation image"/>
     </outputs>
     <tests>
         <test>
-            <param name="infiles" value="Control_200K.bed,ChIP_200K.bed" ftype="bed" />
-            <param name="effective_genome_size_options_selector" value="user_defined" />
-            <param name="gsize" value="3300000000" />
+            <param name="infiles" value="Control_200K.bed,ChIP_200K.bed" ftype="bed"/>
+            <param name="effective_genome_size_options_selector" value="user_defined"/>
+            <param name="gsize" value="3300000000"/>
             <param name="tsize" value=""/>
             <param name="band_width" value="300"/>
             <param name="lower" value="5"/>
@@ -59,7 +56,7 @@
             </assert_command>
             <output name="outfile">
                 <assert_contents>
-                    <has_line line="# predicted fragment length is 284 bps" />
+                    <has_line line="# predicted fragment length is 284 bps"/>
                 </assert_contents>
             </output>
             <output name="outfile_image" file="predictd_on_ChIP_200K_and_Control_200K.pdf" compare="sim_size" ftype="pdf"/>
@@ -77,5 +74,5 @@ This is **predictd** utility from the MACS2_ Package. It predicts the *d* value 
 ]]>
 
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

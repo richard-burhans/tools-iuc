@@ -1,7 +1,7 @@
 <tool id="bamtools_split_ref" name="Split BAM by reference" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>into a dataset list collection</description>
     <macros>
-          <import>macros.xml</import>
+        <import>macros.xml</import>
     </macros>
     <expand macro="xrefs"/>
     <expand macro="requirements"/>
@@ -22,7 +22,7 @@
     <environment_variables>
         <environment_variable name="REFS_FROM_BAM_METADATA">#import re
 ## need to extract ref names from Galaxy's safe string representation
-#set $ref_list = [$re.sub('^.*__sq__(.+)__sq__.*$','\\1',n) if n.find('__sq__') >= 0 else n for n in str($input_bam.metadata.reference_names).split(',')]
+#set $ref_list = [$re.sub('^.*__sq__(.+)__sq__.*$','\\1',n) if n.find('__sq__') &gt;= 0 else n for n in str($input_bam.metadata.reference_names).split(',')]
 #if str($refs) != 'None'
 #set $refs_selected = set(str($refs).split(","))
 ## sort the selected refs by their order in the bam metadata
@@ -46,40 +46,40 @@
     </configfiles>
     <inputs>
         <param name="input_bam" type="data" format="bam" label="BAM dataset to split by reference"/>
-        <param name="refs" type="select" optional="True" multiple="True" label="Select references (chromosomes and contigs) you would like to restrict bam to" >
+        <param name="refs" type="select" optional="True" multiple="True" label="Select references (chromosomes and contigs) you would like to restrict bam to">
             <help><![CDATA[Click and type in the box above to see options. You can select multiple entries.
                   If "No options available" is displayed, you need to re-detect metadata on the input dataset.
             ]]></help>
             <options>
-                <filter type="data_meta" ref="input_bam" key="reference_names" />
+                <filter type="data_meta" ref="input_bam" key="reference_names"/>
             </options>
         </param>
     </inputs>
     <outputs>
         <collection name="output_bams" type="list">
-            <discover_datasets from_provided_metadata="true" ext="bam" visible="false" />
+            <discover_datasets from_provided_metadata="true" ext="bam" visible="false"/>
         </collection>
     </outputs>
     <tests>
         <test>
-            <param name="input_bam" ftype="bam" value="bamtools-input2.bam" />
+            <param name="input_bam" ftype="bam" value="bamtools-input2.bam"/>
             <output_collection name="output_bams" type="list" count="25">
-                <element name="bamtools-input2.bam: chrM"  file="bamtools_input2.header.bam" ftype="bam" />
-                <element name="bamtools-input2.bam: chr1"  file="bamtools_input2.chr1" ftype="bam" />
-                <element name="bamtools-input2.bam: chr21"  file="bamtools_input2.chr21.bam" ftype="bam" />
+                <element name="bamtools-input2.bam: chrM" file="bamtools_input2.header.bam" ftype="bam"/>
+                <element name="bamtools-input2.bam: chr1" file="bamtools_input2.chr1" ftype="bam"/>
+                <element name="bamtools-input2.bam: chr21" file="bamtools_input2.chr21.bam" ftype="bam"/>
             </output_collection>
         </test>
         <test>
-            <param name="input_bam" ftype="bam" value="bamtools-input2.bam" />
-            <param name="refs" value="chrM,chr1,chr21" />
+            <param name="input_bam" ftype="bam" value="bamtools-input2.bam"/>
+            <param name="refs" value="chrM,chr1,chr21"/>
             <output_collection name="output_bams" type="list" count="3">
-                <element name="bamtools-input2.bam: chrM"  file="bamtools_input2.header.bam" ftype="bam" />
-                <element name="bamtools-input2.bam: chr1"  file="bamtools_input2.chr1" ftype="bam" />
-                <element name="bamtools-input2.bam: chr21"  file="bamtools_input2.chr21.bam" ftype="bam" />
+                <element name="bamtools-input2.bam: chrM" file="bamtools_input2.header.bam" ftype="bam"/>
+                <element name="bamtools-input2.bam: chr1" file="bamtools_input2.chr1" ftype="bam"/>
+                <element name="bamtools-input2.bam: chr21" file="bamtools_input2.chr21.bam" ftype="bam"/>
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What is does**
 
 BAMTools split is a utility for splitting BAM files. It is based on the BAMtools suite of tools by Derek Barnett (https://github.com/pezmaster31/bamtools).
@@ -102,7 +102,7 @@ In cases of unfinished genomes with very large number of reference sequences (sc
 
 Additional information about BAMtools can be found at https://github.com/pezmaster31/bamtools/wiki
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btr174</citation>
     </citations>

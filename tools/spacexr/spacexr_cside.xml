@@ -215,7 +215,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="cell_type_threshold" value="10"/>
             <param name="gene_threshold" value="0.001"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rscript" />
+            <param name="output_selector" value="rscript"/>
             <output_collection name="de_results" type="list">
                 <element name="Astrocytes" ftype="tabular">
                     <assert_contents>
@@ -244,7 +244,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="cell_type_threshold" value="10"/>
             <param name="gene_threshold" value="0.001"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rds,rscript,plots,log" />
+            <param name="output_selector" value="rds,rscript,plots,log"/>
             <output_collection name="de_results" type="list">
                 <element name="Astrocytes" ftype="tabular">
                     <assert_contents>
@@ -289,7 +289,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="cell_type_threshold" value="10"/>
             <param name="gene_threshold" value="0.001"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rscript,log" />
+            <param name="output_selector" value="rscript,log"/>
             <output_collection name="de_results" type="list">
                 <element name="Astrocytes" ftype="tabular">
                     <assert_contents>
@@ -323,7 +323,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="cell_type_threshold" value="10"/>
             <param name="gene_threshold" value="0.001"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rscript,log" />
+            <param name="output_selector" value="rscript,log"/>
             <output_collection name="de_results" type="list">
                 <element name="Astrocytes" ftype="tabular">
                     <assert_contents>
@@ -359,7 +359,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="cell_type_threshold" value="10"/>
             <param name="gene_threshold" value="0.001"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rscript,log" />
+            <param name="output_selector" value="rscript,log"/>
             <output_collection name="de_results" type="list">
                 <element name="Astrocytes" ftype="tabular">
                     <assert_contents>
@@ -384,7 +384,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
                 </assert_contents>
             </output>
         </test>
-       <!-- test custom -->
+        <!-- test custom -->
         <test expect_num_outputs="3">
             <param name="rctd" location="https://zenodo.org/records/14642119/files/myRCTD_merfish.rds"/>
             <param name="de_type" value="custom"/>
@@ -394,7 +394,7 @@ saveRDS(myRCTD, file = 'results/cside_results.rds')
             <param name="gene_threshold" value="0.001"/>
             <param name="cell_type_threshold" value="10"/>
             <param name="fdr" value="0.25"/>
-            <param name="output_selector" value="rscript,log" />
+            <param name="output_selector" value="rscript,log"/>
             <output_collection name="de_results" type="list">
                 <element name="Inhibitory" ftype="tabular">
                     <assert_contents>
@@ -438,5 +438,5 @@ The explanatory variable can be defined in several ways:
 * Define X or Y axis: This method uses the X or Y axis to explain the differential expression. The user should specify the axis and the number on the axis to discriminate two spatial regions.
 * Custom spatial locations: This method uses custom spatial locations to explain the differential expression. The user should specify at least 3 regions containing at least 2 spatial barcodes.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -192,7 +192,7 @@ $extra_pars_spr
             <conditional name="cmdtype">
                 <param name="command" type="select" label="Analysis type">
                     <option value="--check">CHECK alignment correctness</option>
-                <!-- disabled until 2.1  <option value="-parse">PARSE: Convert alignment to a compressed binary format (RBA)</option> -->
+                    <!-- disabled until 2.1  <option value="-parse">PARSE: Convert alignment to a compressed binary format (RBA)</option> -->
                     <option value="--start">START: Generate parsimony and/or random starting trees</option>
                     <option value="--search">SEARCH: Adaptive ML tree search</option>
                     <option value="--fast">FAST: Simple ML tree search</option>
@@ -200,7 +200,7 @@ $extra_pars_spr
                     <option value="--allfast" selected="true">ALLFAST: Simple ML tree search with predicted branch support</option>
                     <option value="--evaluate">EVALUATE: Optimize branches and model parameters on a fixed topology</option>
                     <option value="--bsref">BSREF: Compute branch support on a fixed reference topology</option>
-               <!-- disabled until 2.1   <option value="-bootstrap">BOOTSTRAP: Generate a bunch of bootstrap replicate trees</option> -->
+                    <!-- disabled until 2.1   <option value="-bootstrap">BOOTSTRAP: Generate a bunch of bootstrap replicate trees</option> -->
                     <option value="--support">BSMAP: Map branch support from existing set of bootstrap trees</option>
                     <option value="--bsconverge">BSCONVERGE: Test bootstrap convergerge a posteriori</option>
                     <option value="--sitelh">SITELH: Print per-site log-likelihoods</option>
@@ -221,8 +221,8 @@ $extra_pars_spr
                 <when value="--start">
                     <expand macro="m_raxmlng_msa"/>
                     <expand macro="m_raxmlng_model"/>
-                    <param name="tree_pars_count" type="integer" value="10" optional="true" label="Number of PARSIMONY starting trees" />
-                    <param name="tree_rand_count" type="integer" value="10" optional="true" label="Number of RANDOM starting trees" />
+                    <param name="tree_pars_count" type="integer" value="10" optional="true" label="Number of PARSIMONY starting trees"/>
+                    <param name="tree_rand_count" type="integer" value="10" optional="true" label="Number of RANDOM starting trees"/>
                 </when>
                 <when value="--search">
                     <expand macro="m_raxmlng_msa"/>
@@ -253,7 +253,7 @@ $extra_pars_spr
                     <expand macro="m_raxmlng_bsmetric"/>
                     <param argument="--opt-topology" type="hidden" value="off"/>
                 </when>
-<!--                <when value="-bootstrap">
+                <!--                <when value="-bootstrap">
                     <expand macro="m_raxmlng_msa"/>
                     <expand macro="m_raxmlng_model"/>
                     <expand macro="m_raxmlng_bsmetric_bootstrap"/>
@@ -292,7 +292,7 @@ $extra_pars_spr
                 <when value="--terrace">
                     <expand macro="m_raxmlng_msa"/>
                     <expand macro="m_raxmlng_tree"/>
-                    <param name="part_file" type="data" format="txt" label="Partitioned model file" help="Help: https://codeberg.org/amkozlov/raxml-ng/wiki/Input-data#multiple-models" />
+                    <param name="part_file" type="data" format="txt" label="Partitioned model file" help="Help: https://codeberg.org/amkozlov/raxml-ng/wiki/Input-data#multiple-models"/>
                 </when>
                 <when value="--pythia">
                     <expand macro="m_raxmlng_msa"/>
@@ -315,19 +315,19 @@ $extra_pars_spr
             </conditional>
         </section>
         <section name="tree_opts" expanded="false" title="Tree options">
-            <param name="tree_file" type="data" format="nhx" optional="true" label="User starting trees (NEWICK file)" />
-            <param name="tree_pars_count" type="integer" value="" optional="true" label="Number of PARSIMONY starting trees" />
-            <param name="tree_rand_count" type="integer" value="" optional="true" label="Number of RANDOM starting trees" />
+            <param name="tree_file" type="data" format="nhx" optional="true" label="User starting trees (NEWICK file)"/>
+            <param name="tree_pars_count" type="integer" value="" optional="true" label="Number of PARSIMONY starting trees"/>
+            <param name="tree_rand_count" type="integer" value="" optional="true" label="Number of RANDOM starting trees"/>
             <param name="outgroup_name" argument="--outgroup" type="text" value="" optional="true" label="Root a tree: Outgroup taxon name(s)" help="E.g. Mouse or Mouse,Rat. No spaces between taxon names are allowed"/>
             <param name="constraint_file" argument="--tree-constraint" type="data" format="txt" optional="true" label="Constraint tree" help="Topological constraint in NEWICK format (can be partial)"/>
-            <param name="extra_pars_spr" argument="--extra pars-spr" type="boolean" truevalue="--extra pars-spr" falsevalue="" label="Starting trees: Apply parsimony SPR moves" help="Default: OFF (fast mode: ON)" />
-            <param name="extra_brlen_start_fixed" type="boolean" checked="true"  truevalue="" falsevalue="--extra brlen-start-fixed" label="Starting trees: Use parsimony-based branch length estimate" help="Default: ON" />
+            <param name="extra_pars_spr" argument="--extra pars-spr" type="boolean" truevalue="--extra pars-spr" falsevalue="" label="Starting trees: Apply parsimony SPR moves" help="Default: OFF (fast mode: ON)"/>
+            <param name="extra_brlen_start_fixed" type="boolean" checked="true" truevalue="" falsevalue="--extra brlen-start-fixed" label="Starting trees: Use parsimony-based branch length estimate" help="Default: ON"/>
         </section>
         <section name="bootstrap_opts" expanded="false" title="Bootstrapping options">
             <expand macro="m_raxmlng_bsmetric"/>
-            <param name="bs_reps" type="integer" value="1000" min="1" max="10000" label="Number of replicates" />
-            <param name="bs_mre" type="boolean" checked="true" label="Use bootstopping (autoMRE convergence test)" />
-            <param name="bs_cutoff" type="float" value="0.03" min="0" max="1" label="Bootstopping cutoff" help="Cutoff threshold for the MRE-based convergence  test" />
+            <param name="bs_reps" type="integer" value="1000" min="1" max="10000" label="Number of replicates"/>
+            <param name="bs_mre" type="boolean" checked="true" label="Use bootstopping (autoMRE convergence test)"/>
+            <param name="bs_cutoff" type="float" value="0.03" min="0" max="1" label="Bootstopping cutoff" help="Cutoff threshold for the MRE-based convergence  test"/>
         </section>
         <section name="moose_opts" expanded="false" title="Model selection options">
             <conditional name="moose">
@@ -335,22 +335,21 @@ $extra_pars_spr
                     <option value="auto" selected="true">Default</option>
                     <option value="custom">Custom</option>
                 </param>
-                <when value="auto">
-                </when>
+                <when value="auto"/>
                 <when value="custom">
                     <param name="criterion" type="select" display="radio" label="Information criterion">
                         <option value="aic">AIC</option>
                         <option value="aicc">AICc</option>
                         <option value="bic" selected="true">BIC</option>
                     </param>
-                    <param name="ic_delta" type="float" value="10." min="0.1" max="100" label="Significance threshold for IC score difference" />
-                    <param name="matrix_string" type="text" value="" optional="true" label="List of substitution matrices to test (comma-separated)" help="E.g., 'LG,WAG,Q.BIRD' (AA) or 'GTR,HKY,JC' (DNA)" >
+                    <param name="ic_delta" type="float" value="10." min="0.1" max="100" label="Significance threshold for IC score difference"/>
+                    <param name="matrix_string" type="text" value="" optional="true" label="List of substitution matrices to test (comma-separated)" help="E.g., 'LG,WAG,Q.BIRD' (AA) or 'GTR,HKY,JC' (DNA)">
                         <sanitizer invalid_char="">
                             <valid initial="string.ascii_letters,string.digits">
-                               <add value="."/>
-                               <add value=","/>
-                               <add value="-"/>
-                               <add value="_"/>
+                                <add value="."/>
+                                <add value=","/>
+                                <add value="-"/>
+                                <add value="_"/>
                             </valid>
                         </sanitizer>
                     </param>
@@ -363,9 +362,9 @@ $extra_pars_spr
                         <option value="I+R" selected="true">Inv+FreeRate</option>
                     </param>
                     <param name="freerate_categories" type="text" optional="true" value="2-10" label="Range of FreeRate categories to test">
-                       <sanitizer invalid_char="">
+                        <sanitizer invalid_char="">
                             <valid initial="string.digits">
-                               <add value="-"/>
+                                <add value="-"/>
                             </valid>
                         </sanitizer>
                     </param>
@@ -374,7 +373,7 @@ $extra_pars_spr
                         <option value="freerate" selected="true">FreeRate</option>
                     </param>
                 </when>
-            </conditional> 
+            </conditional>
         </section>
         <section name="output_opts" expanded="false" title="Output options">
             <param name="log_level" argument="--log" type="select" optional="true" label="Log verbosity">
@@ -387,20 +386,20 @@ $extra_pars_spr
                 <option value="debug">DEBUG</option>
             </param>
             <param argument="--precision" type="integer" value="" optional="true" label="Number of decimal places to print" help="Default: 6"/>
-            <param argument="--nofiles" type="boolean" truevalue="--nofiles" falsevalue="" label="Do not create any output files (dry run)" help="Default: OFF" />
+            <param argument="--nofiles" type="boolean" truevalue="--nofiles" falsevalue="" label="Do not create any output files (dry run)" help="Default: OFF"/>
             <param name="keep_interim_files" type="select" multiple="true" display="checkboxes" label="Keep additional result files">
-<!--                 <option value="rba">Raxml Binary Alignment (RBA)</option> -->
-                 <option value="startTree">Starting trees</option>
-                 <option value="mlTrees">Per-search ML trees</option>
-                 <option value="bootstrapTrees">Bootstrap trees</option>
-                 <option value="bestTreeCollapsed">Multifurcating ML tree (with near-zero branches collapsed)</option>
+                <!--                 <option value="rba">Raxml Binary Alignment (RBA)</option> -->
+                <option value="startTree">Starting trees</option>
+                <option value="mlTrees">Per-search ML trees</option>
+                <option value="bootstrapTrees">Bootstrap trees</option>
+                <option value="bestTreeCollapsed">Multifurcating ML tree (with near-zero branches collapsed)</option>
             </param>
         </section>
         <section name="safety_opts" expanded="false" title="Safety checks">
             <param argument="--force" type="select" multiple="true" display="checkboxes" label="Disable safety checks (use with CAUTION!)">
-                 <option value="perf">Performance-related (e.g. number of threads)</option>
-                 <option value="msa">MSA-related (e.g. duplicate or gap-only sequences) </option>
-                 <option value="model">Model-related (e,g, invalid state frequencies)</option>
+                <option value="perf">Performance-related (e.g. number of threads)</option>
+                <option value="msa">MSA-related (e.g. duplicate or gap-only sequences) </option>
+                <option value="model">Model-related (e,g, invalid state frequencies)</option>
             </param>
             <param name="extra_seq_dup" type="select" label="What to do with duplicate sequences?" optional="true" help="Default: KEEP">
                 <option value="keep">KEEP: Report but preserve for the tree search </option>
@@ -415,7 +414,7 @@ $extra_pars_spr
             </param>
         </section>
         <section name="advanced_opts" expanded="false" title="Advanced options">
-            <param name="random_seed" argument="--seed" type="integer" value="1" label="Random seed" />
+            <param name="random_seed" argument="--seed" type="integer" value="1" label="Random seed"/>
             <param argument="--opt-topology" type="select" label="Topology optimization method" optional="true">
                 <option value="adaptive">Adaptive</option>
                 <option value="classic">Classic (raxml-ng 1.x)</option>
@@ -440,138 +439,138 @@ $extra_pars_spr
             <param argument="--lh-epsilon-triplet" type="float" value="" optional="true" label="Log-likelihood epsilon for branch length triplet optimization" help="Default: 1000"/>
             <param argument="--blmin" type="float" value="" optional="true" label="MIN branch length" help="Default: 10^-6"/>
             <param argument="--blmax" type="float" value="" optional="true" label="MAX branch length" help="Default: 100"/>
-            <param name="pat_comp" type="boolean" truevalue="--pat-comp off" falsevalue="" label="Disable alignment pattern compression" help="Default: NO" />
-            <param name="site_repeats" type="boolean" truevalue="--site-repeats off" falsevalue="" label="Disable site repeats optimization" help="Default: NO" />
-            <param name="rate_scalers" type="boolean" truevalue="--rate-scalers on" falsevalue="" label="ALWAYS use individual CLV scalers for each rate category" help="Default: use if MSA has >2000 taxa" />
-            <param argument="--site-weights" type="data" format="txt" optional="true" label="File with custom MSA column weights (positive integers only!)" />
+            <param name="pat_comp" type="boolean" truevalue="--pat-comp off" falsevalue="" label="Disable alignment pattern compression" help="Default: NO"/>
+            <param name="site_repeats" type="boolean" truevalue="--site-repeats off" falsevalue="" label="Disable site repeats optimization" help="Default: NO"/>
+            <param name="rate_scalers" type="boolean" truevalue="--rate-scalers on" falsevalue="" label="ALWAYS use individual CLV scalers for each rate category" help="Default: use if MSA has &gt;2000 taxa"/>
+            <param argument="--site-weights" type="data" format="txt" optional="true" label="File with custom MSA column weights (positive integers only!)"/>
         </section>
     </inputs>
     <outputs>
-       <data format="txt" name="log" from_work_dir="galaxy.raxml.log" label="${tool.name} on ${on_string}: Log">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-       </data>
- <!--      <data format="binary" name="rba" from_work_dir="galaxy.raxml.rba" label="${tool.name} on ${on_string}: RAxML Binary Alignment">
+        <data format="txt" name="log" from_work_dir="galaxy.raxml.log" label="${tool.name} on ${on_string}: Log">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+        </data>
+        <!--      <data format="binary" name="rba" from_work_dir="galaxy.raxml.rba" label="${tool.name} on ${on_string}: RAxML Binary Alignment">
             <filter>
                general_opts['cmdtype']['command'] == "-parse" or (general_opts['cmdtype']['command'] in ["-search", "-fast", "-all", "-allfast", "-evaluate", "-moose"] and "rba" in output_opts['keep_interim_files']
             </filter>
        </data>
 -->
-       <data format="nhx" name="bestTree" from_work_dir="galaxy.raxml.bestTree" label="${tool.name} on ${on_string}: Best-scoring ML Tree">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"] </filter>
-       </data>
-       <data format="nhx" name="bestTreeCollapsed" from_work_dir="galaxy.raxml.bestTreeCollapsed" label="${tool.name} on ${on_string}: Best-scoring ML Tree (collapsed)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"] and output_opts['keep_interim_files'] and ("bestTreeCollapsed" in output_opts['keep_interim_files'])</filter>
-       </data>
-       <data format="nhx" name="supportTree" from_work_dir="galaxy.raxml.support" label="${tool.name} on ${on_string}: ML Tree with branch support values (FBP)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "fbp" in general_opts['cmdtype']['bs_metric']</filter>
-       </data>
-       <data format="nhx" name="supportTreeTBE" from_work_dir="galaxy.raxml.supportTBE" label="${tool.name} on ${on_string}: ML Tree with branch support values (TBE)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "tbe" in general_opts['cmdtype']['bs_metric']</filter>
-       </data>
-       <data format="nhx" name="supportTreeEBG" from_work_dir="galaxy.raxml.supportEBG" label="${tool.name} on ${on_string}: ML Tree with branch support values (EBG)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--allfast", "--ebg"] or (general_opts['cmdtype']['command'] in ["--all"] and "ebg" in general_opts['cmdtype']['bs_metric']) </filter>
-       </data>
-       <data format="nhx" name="supportTreeRBS" from_work_dir="galaxy.raxml.supportRBS" label="${tool.name} on ${on_string}: ML Tree with branch support values (RBS)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "rbs" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreeSH" from_work_dir="galaxy.raxml.supportSH" label="${tool.name} on ${on_string}: ML Tree with branch support values (SH-aLRT)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "sh" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreePS" from_work_dir="galaxy.raxml.supportPS" label="${tool.name} on ${on_string}: ML Tree with branch support values (PS)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ps" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreePBS" from_work_dir="galaxy.raxml.supportPBS" label="${tool.name} on ${on_string}: ML Tree with branch support values (PBS)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "pbs" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreeIC1" from_work_dir="galaxy.raxml.supportIC1" label="${tool.name} on ${on_string}: ML Tree with branch support values (IC1)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ic1" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreeICA" from_work_dir="galaxy.raxml.supportICA" label="${tool.name} on ${on_string}: ML Tree with branch support values (ICA)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ica" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="supportTreeGCF" from_work_dir="galaxy.raxml.supportGCF" label="${tool.name} on ${on_string}: ML Tree with branch support values (gCF)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "gcf" in general_opts['cmdtype']['bs_metric'] </filter>
-       </data>
-       <data format="nhx" name="bootstrapTrees" from_work_dir="galaxy.raxml.bootstraps" label="${tool.name} on ${on_string}: Bootstrap trees">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--bootstrap" or (general_opts['cmdtype']['command'] in ["--all"] and output_opts['keep_interim_files'] and "bootstrapTrees" in output_opts['keep_interim_files']) </filter>
-       </data>
-       <data format="txt" name="bestModel" from_work_dir="galaxy.raxml.bestModel" label="${tool.name} on ${on_string}: Optimized model parameters">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"]</filter>
-       </data>
-       <data format="nhx" name="startTree" from_work_dir="galaxy.raxml.startTree" label="${tool.name} on ${on_string}: Starting trees">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--start" or (general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast"] and output_opts['keep_interim_files'] and "startTree" in output_opts['keep_interim_files']) </filter>
-       </data>
-       <data format="nhx" name="mlTrees" from_work_dir="galaxy.raxml.mlTrees" label="${tool.name} on ${on_string}: Per-search ML trees">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] in ["--search", "--all"] and output_opts['keep_interim_files'] and ("mlTrees" in output_opts['keep_interim_files'])</filter>
-       </data>
-       <data format="txt" name="siteLH" from_work_dir="galaxy.raxml.siteLH" label="${tool.name} on ${on_string}: Per-site log-likelihoods">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--sitelh"</filter>
-       </data>
-       <data format="txt" name="rfDistances" from_work_dir="galaxy.raxml.rfDistances" label="${tool.name} on ${on_string}: Pair-wise RF distances">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--rfdist"</filter>
-       </data>
-       <data format="txt" name="terrace" from_work_dir="galaxy.raxml.terrace" label="${tool.name} on ${on_string}: Terrace">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--terrace"</filter>
-       </data>
-       <data format="nhx" name="consensusTreeSTRICT" from_work_dir="galaxy.raxml.consensusTreeSTRICT" label="${tool.name} on ${on_string}: Consensus Tree (strict)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "strict"  </filter>
-       </data>
-       <data format="nhx" name="consensusTreeMR" from_work_dir="galaxy.raxml.consensusTreeMR" label="${tool.name} on ${on_string}: Consensus Tree (MR)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "mr"  </filter>
-       </data>
-       <data format="nhx" name="consensusTreeMRE" from_work_dir="galaxy.raxml.consensusTreeMRE" label="${tool.name} on ${on_string}: Consensus Tree (MRE)">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "mre"  </filter>
-       </data>
-       <data format="nhx" name="ancestralTree" from_work_dir="galaxy.raxml.ancestralTree" label="${tool.name} on ${on_string}: Ancestral Node-labeled Tree">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
-       </data>
-       <data format="txt" name="ancestralStates" from_work_dir="galaxy.raxml.ancestralStates" label="${tool.name} on ${on_string}: Ancestral Sequences">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
-       </data>
-       <data format="txt" name="ancestralProbs" from_work_dir="galaxy.raxml.ancestralProbs" label="${tool.name} on ${on_string}: Ancestral Marginal Probabilities">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
-       </data>
-       <data format="nhx" name="mutationMapTree" from_work_dir="galaxy.raxml.mutationMapTree" label="${tool.name} on ${on_string}: Mutation Node-labeled Tree">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--mutmap" </filter>
-       </data>
-       <data format="txt" name="mutationMapList" from_work_dir="galaxy.raxml.mutationMapList" label="${tool.name} on ${on_string}: Mutation Branch-mapped List">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--mutmap" </filter>
-       </data>
-       <data format="txt" name="mooseBestModel" from_work_dir="galaxy.raxml.moose.bestModel" label="${tool.name} on ${on_string}: MOOSE: Best-fit model">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--moose" </filter>
-       </data>
-       <data format="json" name="mooseJson" from_work_dir="galaxy.raxml.moose.json" label="${tool.name} on ${on_string}: MOOSE: Model testing results">
-           <expand macro="m_raxmlng_nofiles_filter"/>
-           <filter>general_opts['cmdtype']['command'] == "--moose" </filter>
-       </data>
+        <data format="nhx" name="bestTree" from_work_dir="galaxy.raxml.bestTree" label="${tool.name} on ${on_string}: Best-scoring ML Tree">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"] </filter>
+        </data>
+        <data format="nhx" name="bestTreeCollapsed" from_work_dir="galaxy.raxml.bestTreeCollapsed" label="${tool.name} on ${on_string}: Best-scoring ML Tree (collapsed)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"] and output_opts['keep_interim_files'] and ("bestTreeCollapsed" in output_opts['keep_interim_files'])</filter>
+        </data>
+        <data format="nhx" name="supportTree" from_work_dir="galaxy.raxml.support" label="${tool.name} on ${on_string}: ML Tree with branch support values (FBP)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "fbp" in general_opts['cmdtype']['bs_metric']</filter>
+        </data>
+        <data format="nhx" name="supportTreeTBE" from_work_dir="galaxy.raxml.supportTBE" label="${tool.name} on ${on_string}: ML Tree with branch support values (TBE)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "tbe" in general_opts['cmdtype']['bs_metric']</filter>
+        </data>
+        <data format="nhx" name="supportTreeEBG" from_work_dir="galaxy.raxml.supportEBG" label="${tool.name} on ${on_string}: ML Tree with branch support values (EBG)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--allfast", "--ebg"] or (general_opts['cmdtype']['command'] in ["--all"] and "ebg" in general_opts['cmdtype']['bs_metric']) </filter>
+        </data>
+        <data format="nhx" name="supportTreeRBS" from_work_dir="galaxy.raxml.supportRBS" label="${tool.name} on ${on_string}: ML Tree with branch support values (RBS)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "rbs" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreeSH" from_work_dir="galaxy.raxml.supportSH" label="${tool.name} on ${on_string}: ML Tree with branch support values (SH-aLRT)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "sh" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreePS" from_work_dir="galaxy.raxml.supportPS" label="${tool.name} on ${on_string}: ML Tree with branch support values (PS)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ps" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreePBS" from_work_dir="galaxy.raxml.supportPBS" label="${tool.name} on ${on_string}: ML Tree with branch support values (PBS)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "pbs" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreeIC1" from_work_dir="galaxy.raxml.supportIC1" label="${tool.name} on ${on_string}: ML Tree with branch support values (IC1)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ic1" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreeICA" from_work_dir="galaxy.raxml.supportICA" label="${tool.name} on ${on_string}: ML Tree with branch support values (ICA)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "ica" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="supportTreeGCF" from_work_dir="galaxy.raxml.supportGCF" label="${tool.name} on ${on_string}: ML Tree with branch support values (gCF)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--all", "--support", "--bsref"] and "gcf" in general_opts['cmdtype']['bs_metric'] </filter>
+        </data>
+        <data format="nhx" name="bootstrapTrees" from_work_dir="galaxy.raxml.bootstraps" label="${tool.name} on ${on_string}: Bootstrap trees">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--bootstrap" or (general_opts['cmdtype']['command'] in ["--all"] and output_opts['keep_interim_files'] and "bootstrapTrees" in output_opts['keep_interim_files']) </filter>
+        </data>
+        <data format="txt" name="bestModel" from_work_dir="galaxy.raxml.bestModel" label="${tool.name} on ${on_string}: Optimized model parameters">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast", "--evaluate"]</filter>
+        </data>
+        <data format="nhx" name="startTree" from_work_dir="galaxy.raxml.startTree" label="${tool.name} on ${on_string}: Starting trees">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--start" or (general_opts['cmdtype']['command'] in ["--search", "--fast", "--all", "--allfast"] and output_opts['keep_interim_files'] and "startTree" in output_opts['keep_interim_files']) </filter>
+        </data>
+        <data format="nhx" name="mlTrees" from_work_dir="galaxy.raxml.mlTrees" label="${tool.name} on ${on_string}: Per-search ML trees">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] in ["--search", "--all"] and output_opts['keep_interim_files'] and ("mlTrees" in output_opts['keep_interim_files'])</filter>
+        </data>
+        <data format="txt" name="siteLH" from_work_dir="galaxy.raxml.siteLH" label="${tool.name} on ${on_string}: Per-site log-likelihoods">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--sitelh"</filter>
+        </data>
+        <data format="txt" name="rfDistances" from_work_dir="galaxy.raxml.rfDistances" label="${tool.name} on ${on_string}: Pair-wise RF distances">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--rfdist"</filter>
+        </data>
+        <data format="txt" name="terrace" from_work_dir="galaxy.raxml.terrace" label="${tool.name} on ${on_string}: Terrace">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--terrace"</filter>
+        </data>
+        <data format="nhx" name="consensusTreeSTRICT" from_work_dir="galaxy.raxml.consensusTreeSTRICT" label="${tool.name} on ${on_string}: Consensus Tree (strict)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "strict"  </filter>
+        </data>
+        <data format="nhx" name="consensusTreeMR" from_work_dir="galaxy.raxml.consensusTreeMR" label="${tool.name} on ${on_string}: Consensus Tree (MR)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "mr"  </filter>
+        </data>
+        <data format="nhx" name="consensusTreeMRE" from_work_dir="galaxy.raxml.consensusTreeMRE" label="${tool.name} on ${on_string}: Consensus Tree (MRE)">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--consense" and general_opts['cmdtype']['consensus_type'] == "mre"  </filter>
+        </data>
+        <data format="nhx" name="ancestralTree" from_work_dir="galaxy.raxml.ancestralTree" label="${tool.name} on ${on_string}: Ancestral Node-labeled Tree">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
+        </data>
+        <data format="txt" name="ancestralStates" from_work_dir="galaxy.raxml.ancestralStates" label="${tool.name} on ${on_string}: Ancestral Sequences">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
+        </data>
+        <data format="txt" name="ancestralProbs" from_work_dir="galaxy.raxml.ancestralProbs" label="${tool.name} on ${on_string}: Ancestral Marginal Probabilities">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--ancestral" </filter>
+        </data>
+        <data format="nhx" name="mutationMapTree" from_work_dir="galaxy.raxml.mutationMapTree" label="${tool.name} on ${on_string}: Mutation Node-labeled Tree">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--mutmap" </filter>
+        </data>
+        <data format="txt" name="mutationMapList" from_work_dir="galaxy.raxml.mutationMapList" label="${tool.name} on ${on_string}: Mutation Branch-mapped List">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--mutmap" </filter>
+        </data>
+        <data format="txt" name="mooseBestModel" from_work_dir="galaxy.raxml.moose.bestModel" label="${tool.name} on ${on_string}: MOOSE: Best-fit model">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--moose" </filter>
+        </data>
+        <data format="json" name="mooseJson" from_work_dir="galaxy.raxml.moose.json" label="${tool.name} on ${on_string}: MOOSE: Model testing results">
+            <expand macro="m_raxmlng_nofiles_filter"/>
+            <filter>general_opts['cmdtype']['command'] == "--moose" </filter>
+        </data>
     </outputs>
     <!--              TESTS                -->
     <tests>
@@ -639,8 +638,8 @@ $extra_pars_spr
                     <conditional name="model">
                         <param name="model_type" value="single_gui"/>
                         <conditional name="single_model">
-                           <param name="seq_type" value="nucleotide"/>
-                           <param name="subst_matrix" value="HKY"/>
+                            <param name="seq_type" value="nucleotide"/>
+                            <param name="subst_matrix" value="HKY"/>
                         </conditional>
                     </conditional>
                 </conditional>
@@ -899,7 +898,7 @@ $extra_pars_spr
                 </assert_contents>
             </output>
         </test>
-       <!-- MUTMAP -->
+        <!-- MUTMAP -->
         <test expect_num_outputs="3">
             <section name="general_opts">
                 <conditional name="cmdtype">
@@ -971,8 +970,8 @@ $extra_pars_spr
             </output>
             <output name="mooseJson">
                 <assert_contents>
-                    <has_json_property_with_text property="$version" text="1" />
-                    <has_json_property_with_value property="num_partitions" value="3" />
+                    <has_json_property_with_text property="$version" text="1"/>
+                    <has_json_property_with_value property="num_partitions" value="3"/>
                 </assert_contents>
             </output>
         </test>

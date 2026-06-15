@@ -187,7 +187,7 @@ pick_otus.py
                 <param argument="--optimal_uclust" type="boolean" truevalue="--optimal_uclust" falsevalue="" checked="false" label="Pass the –optimal flag to uclust?"/>
                 <param argument="--exact_uclust" type="boolean" truevalue="--exact_uclust" falsevalue="" checked="false" label="Pass the –exact flag to uclust?"/>
                 <param argument="--user_sort" type="boolean" truevalue="--user_sort" falsevalue="" checked="false" label="Pass the -user_sort flag to uclust?"/>
-                <expand macro="pick_otus_max"/>                
+                <expand macro="pick_otus_max"/>
                 <expand macro="pick_otus_stepwords"/>
                 <expand macro="pick_otus_word_length"/>
                 <param argument="--suppress_uclust_stable_sort" type="boolean" truevalue="--suppress_uclust_stable_sort" falsevalue="" checked="false" label="Don't pass –stable-sort to uclust?"/>
@@ -215,7 +215,7 @@ pick_otus.py
         <test expect_num_outputs="2">
             <param name="input_seqs_filepath" value="pick_otus/seqs.fna"/>
             <param name="otu_picking_method" value="uclust"/>
-            <param name="similarity" value="0.97" />
+            <param name="similarity" value="0.97"/>
             <param name="denovo_otu_id_prefix" value="denovo"/>
             <param name="enable_rev_strand_match" value=""/>
             <param name="suppress_presort_by_abundance_uclust" value=""/>
@@ -282,7 +282,7 @@ pick_otus.py
             <param name="similarity" value="0.97"/>
             <param name="enable_rev_strand_match" value=""/>
             <param name="suppress_presort_by_abundance_uclust" value=""/>
-            <param name="suppress_new_clusters" value="" />
+            <param name="suppress_new_clusters" value=""/>
             <param name="max_accepts" value="1"/>
             <param name="max_rejects" value="8"/>
             <param name="stepwords" value="8"/>
@@ -337,7 +337,7 @@ pick_otus.py
             <param name="exact_uclust" value=""/>
             <param name="user_sort" value=""/>
             <param name="max_accepts" value="1"/>
-            <param name="max_rejects" value="8"/>               
+            <param name="max_rejects" value="8"/>
             <param name="stepwords" value="8"/>
             <param name="word_length" value="8"/>
             <param name="suppress_uclust_stable_sort" value=""/>

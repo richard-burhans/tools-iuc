@@ -18,14 +18,14 @@
         '$out'
     ]]></command>
     <inputs>
-        <param name="in_net" format="ucsc.net" type="data" label="Input net" />
+        <param name="in_net" format="ucsc.net" type="data" label="Input net"/>
     </inputs>
     <outputs>
-        <data name="out" format="ucsc.net" />
+        <data name="out" format="ucsc.net"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="in_net" value="input1.ucsc.net" />
+            <param name="in_net" value="input1.ucsc.net"/>
             <output name="out" file="out1.ucsc.net"/>
         </test>
     </tests>

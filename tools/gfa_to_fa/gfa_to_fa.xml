@@ -15,10 +15,10 @@ for line in sys.stdin:
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="in_gfa" type="data" format="tabular,gfa1" label="Input GFA file" />
+        <param name="in_gfa" type="data" format="tabular,gfa1" label="Input GFA file"/>
     </inputs>
     <outputs>
-        <data name="out_fa" format="fasta" label="${tool.name} on ${on_string}: Fasta file" />
+        <data name="out_fa" format="fasta" label="${tool.name} on ${on_string}: Fasta file"/>
     </outputs>
     <tests>
         <test>
@@ -34,4 +34,3 @@ More information about the GFA file format can be found here_
 .. _here: http://gfa-spec.github.io/GFA-spec/GFA1.html
     ]]></help>
 </tool>
-

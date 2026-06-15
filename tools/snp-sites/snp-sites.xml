@@ -1,14 +1,13 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<tool id='snp_sites' name='Finds SNP sites' version='@TOOL_VERSION@+galaxy0'>
-   <description>from a multi-FASTA alignment file</description>	
-   <macros>
-      <token name="@TOOL_VERSION@">2.5.1</token>
-   </macros>
-   <requirements>
-      <requirement type='package' version='@TOOL_VERSION@'>snp-sites</requirement>
-   </requirements>
-   <version_command>snp-sites -V</version_command>
-   <command detect_errors='aggressive'><![CDATA[
+<tool id="snp_sites" name="Finds SNP sites" version="@TOOL_VERSION@+galaxy0">
+    <description>from a multi-FASTA alignment file</description>
+    <macros>
+        <token name="@TOOL_VERSION@">2.5.1</token>
+    </macros>
+    <requirements>
+        <requirement type="package" version="@TOOL_VERSION@">snp-sites</requirement>
+    </requirements>
+    <version_command>snp-sites -V</version_command>
+    <command detect_errors="aggressive"><![CDATA[
 #if str($out_type.ot_select) == "alignment"
     #if str($out_type.formats) == 'None'
         echo "Error, no output format specified" >&2 && exit 1 ;
@@ -30,7 +29,7 @@ snp-sites
     '$input_fasta'
 
 #if str($out_type.ot_select) == "counts"
-   && mv output $output_counts
+   && mv output '$output_counts'
 #else if ',' in str($out_type.formats)
    #if '-m' in str($out_type.formats)
       && mv 'output.snp_sites.aln' '$output_fasta'
@@ -51,93 +50,89 @@ snp-sites
    #end if
 #end if
 ]]></command>
-   <inputs>
-
-        <param name='input_fasta' format='fasta' type='data' label='FASTA file' />
+    <inputs>
+        <param name="input_fasta" format="fasta" type="data" label="FASTA file"/>
         <conditional name="out_type" label="Output type">
             <param type="select" name="ot_select" label="Output">
                 <option value="alignment" selected="true">Sequence alignment / VCF</option>
                 <option value="counts">Constant site count (suitable for IQ-TREE -fconst)</option>
             </param>
-        <when value="alignment">
-            <param type='select' multiple='true' name='formats' label='Output formats' help='Output format to use if not counting constant sites'>
-            <option value="-m"  selected="true">Multi-FASTA alignment file</option>
-            <option value="-v">VCF</option>
-            <option value="-p">Phylip</option>
-            </param>
-            <param argument="-b" label="Output constant sites (suitable for use in BEAST)" truevalue="-b" falsevalue="" 
-            type="boolean" help="Output monomorphic (constant) as opposed to polymorphic (variable) sites"/>
-            <param argument="-c" label="Only output columns containing exclusively ACTG" truevalue="-c" falsevalue=""
-            type="boolean" help="Ignore columns containing ambiguous characters and gaps"/>
-        </when>
-        <when value="counts">
-        </when>
+            <when value="alignment">
+                <param type="select" multiple="true" name="formats" label="Output formats" help="Output format to use if not counting constant sites">
+                    <option value="-m" selected="true">Multi-FASTA alignment file</option>
+                    <option value="-v">VCF</option>
+                    <option value="-p">Phylip</option>
+                </param>
+                <param argument="-b" label="Output constant sites (suitable for use in BEAST)" truevalue="-b" falsevalue="" type="boolean" help="Output monomorphic (constant) as opposed to polymorphic (variable) sites"/>
+                <param argument="-c" label="Only output columns containing exclusively ACTG" truevalue="-c" falsevalue="" type="boolean" help="Ignore columns containing ambiguous characters and gaps"/>
+            </when>
+            <when value="counts"/>
         </conditional>
-   </inputs>
-   <outputs>
-      <data name='output_fasta' format='fasta' label='${tool.name} on ${on_string}: FASTA'>
-	      <!-- this becomes a catch-all for when no format is specified. if no format is specified the job ends with an error but shows 1 red dataset output -->
-         <filter>(out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-m' in out_type["formats"]) or (out_type["ot_select"] == "alignment" and out_type.formats is None)</filter>
-      </data>
-      <data name='output_vcf' format='vcf' label='${tool.name} on ${on_string}: VCF' from_work_dir='output.vcf'>
-         <filter>out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-v' in out_type["formats"]</filter>
-      </data>
-      <data name='output_phylip' format='phylip' label='${tool.name} on ${on_string}: phylip'>
-         <filter>out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-p' in out_type["formats"]</filter>
-      </data>
-      <data name='output_counts' format='tabular' label='${tool.name} on ${on_string}: constant site counts'>
-         <filter>out_type["ot_select"] == "counts"</filter>
-      </data>
-   </outputs>
-   <tests>
-      <test expect_num_outputs="3">
-         <param name='input_fasta' value='input.fasta' ftype='fasta' />
-         <conditional name="out_type">
-            <param name="ot_select" value="alignment" />
-            <param name='formats' value='-m,-p,-v' />
-         </conditional>
-        <output name='output_fasta' value='output.fasta' ftype='fasta' />
-        <output name='output_vcf' value='output.vcf' ftype='vcf' />
-        <output name='output_phylip' value='output.phylip' ftype='phylip' />
-      </test>
-      <test expect_num_outputs="1">
-         <param name='input_fasta' value='input.fasta' ftype='fasta' />
-         <conditional name="out_type">
-            <param name="ot_select" value="alignment" />
-            <param name='formats' value='-m' />
-            <param name='b' value='True' />
-         </conditional>
-         <output name='output_fasta' value='output_monomorphic.fasta' ftype='fasta' />
-      </test>
-      <test expect_num_outputs="1">
-         <param name='input_fasta' value='input.fasta' ftype='fasta' />
-         <conditional name="out_type">
-            <param name="ot_select" value="alignment" />
-            <param name='formats' value='-m' />
-            <param name='c' value='True' />
-         </conditional>
-         <output name='output_fasta' value='output_actg.fasta' ftype='fasta' />
-      </test>
-      <test expect_num_outputs="1">
-         <param name='input_fasta' value='input.fasta' ftype='fasta' />
-         <conditional name="out_type">
-            <param name="ot_select" value="alignment" />
-            <param name='formats' value='-m' />
-            <param name='b' value='True' />
-            <param name="c" value="True" />
-         </conditional>
-         <output name='output_fasta' value='output_monomorphic_actg.fasta' ftype='fasta' />
-      </test>
-      <test expect_num_outputs="1">
-         <param name='input_fasta' value='input.fasta' ftype='fasta' />
-         <conditional name="out_type">
-            <param name="ot_select" value="counts" />
-            <param name='C' value='True' />
-         </conditional>
-         <output name='output_counts' value='output_counts.tabular' ftype='tabular' />
-      </test>
-   </tests>
-   <help>
+    </inputs>
+    <outputs>
+        <data name="output_fasta" format="fasta" label="${tool.name} on ${on_string}: FASTA">
+            <!-- this becomes a catch-all for when no format is specified. if no format is specified the job ends with an error but shows 1 red dataset output -->
+            <filter>(out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-m' in out_type["formats"]) or (out_type["ot_select"] == "alignment" and out_type.formats is None)</filter>
+        </data>
+        <data name="output_vcf" format="vcf" label="${tool.name} on ${on_string}: VCF" from_work_dir="output.vcf">
+            <filter>out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-v' in out_type["formats"]</filter>
+        </data>
+        <data name="output_phylip" format="phylip" label="${tool.name} on ${on_string}: phylip">
+            <filter>out_type["ot_select"] == "alignment" and out_type["formats"] is not None and '-p' in out_type["formats"]</filter>
+        </data>
+        <data name="output_counts" format="tabular" label="${tool.name} on ${on_string}: constant site counts">
+            <filter>out_type["ot_select"] == "counts"</filter>
+        </data>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="input_fasta" value="input.fasta" ftype="fasta"/>
+            <conditional name="out_type">
+                <param name="ot_select" value="alignment"/>
+                <param name="formats" value="-m,-p,-v"/>
+            </conditional>
+            <output name="output_fasta" value="output.fasta" ftype="fasta"/>
+            <output name="output_vcf" value="output.vcf" ftype="vcf"/>
+            <output name="output_phylip" value="output.phylip" ftype="phylip"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input_fasta" value="input.fasta" ftype="fasta"/>
+            <conditional name="out_type">
+                <param name="ot_select" value="alignment"/>
+                <param name="formats" value="-m"/>
+                <param name="b" value="True"/>
+            </conditional>
+            <output name="output_fasta" value="output_monomorphic.fasta" ftype="fasta"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input_fasta" value="input.fasta" ftype="fasta"/>
+            <conditional name="out_type">
+                <param name="ot_select" value="alignment"/>
+                <param name="formats" value="-m"/>
+                <param name="c" value="True"/>
+            </conditional>
+            <output name="output_fasta" value="output_actg.fasta" ftype="fasta"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input_fasta" value="input.fasta" ftype="fasta"/>
+            <conditional name="out_type">
+                <param name="ot_select" value="alignment"/>
+                <param name="formats" value="-m"/>
+                <param name="b" value="True"/>
+                <param name="c" value="True"/>
+            </conditional>
+            <output name="output_fasta" value="output_monomorphic_actg.fasta" ftype="fasta"/>
+        </test>
+        <test expect_num_outputs="1">
+            <param name="input_fasta" value="input.fasta" ftype="fasta"/>
+            <conditional name="out_type">
+                <param name="ot_select" value="counts"/>
+                <param name="C" value="True"/>
+            </conditional>
+            <output name="output_counts" value="output_counts.tabular" ftype="tabular"/>
+        </test>
+    </tests>
+    <help>
    <![CDATA[
    
 **SNP-sites**
@@ -207,7 +202,7 @@ Thus the tool identified three variations (SNPs): in 2nd, 5th, and 8th positions
 
 	]]>
     </help>
-	<citations>
+    <citations>
         <citation type="doi">10.1099/mgen.0.000056</citation>
     </citations>
 </tool>

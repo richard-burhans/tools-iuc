@@ -12,7 +12,7 @@
     <command detect_errors="exit_code"><![CDATA[
     export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-8192}/1024)) &&
     mkdir  -p ./temp_db/ &&
-    tar -xmf $input_meryldb_02 --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
+    tar -xmf '$input_meryldb_02' --use-compress-program="pigz -p \${GALAXY_SLOTS:-1}" -C ./temp_db/ &&
     mv ./temp_db/* tmp.meryl &&
     meryl histogram tmp.meryl > read-db.hist
     ]]></command>
@@ -28,13 +28,13 @@
             <output name="read_db_hist" file="output_24.read-db.hist"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
 **Purpose**
 
 Meryl is the k-mer counter. This tool determines a k-mer frequency histogram.
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>

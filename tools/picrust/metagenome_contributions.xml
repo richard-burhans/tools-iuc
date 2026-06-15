@@ -16,7 +16,7 @@
     <inputs>
         <param name="input_data" type="data" format="biom1,h5" label="Input file" help="Biom file, which should be the output of the normalize_by_copy_number command."/>
         <expand macro="otu-reference-precalculated"/>
-        <param name="limit_gene" type="text" format="txt" label="Function ids" help="Limit to specified function ids (e.g. K00500). If limiting to multiple ids then separate them by commas with no spaces between them." />
+        <param name="limit_gene" type="text" format="txt" label="Function ids" help="Limit to specified function ids (e.g. K00500). If limiting to multiple ids then separate them by commas with no spaces between them."/>
     </inputs>
     <outputs>
         <data name="contrib_table" format="tabular"/>

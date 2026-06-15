@@ -21,29 +21,29 @@ java -jar '$__tool_directory__/PEHistogram.jar'
 1>/dev/null
     ]]></command>
     <inputs>
-        <param name="input_bam" type="data" format="bam" label="BAM file" />
+        <param name="input_bam" type="data" format="bam" label="BAM file"/>
         <param name="lower_limit" type="integer" value="" optional="true" min="0" label="Lower bp limit (optional)" help="The lower bp limit on insert size for calculating the histogram."/>
-        <param name="upper_limit" type="integer" value="" optional="true" min="0" label="Upper bp limit (optional)" help="The upper bp limit on insert size for calculating the histogram." />
+        <param name="upper_limit" type="integer" value="" optional="true" min="0" label="Upper bp limit (optional)" help="The upper bp limit on insert size for calculating the histogram."/>
     </inputs>
     <outputs>
         <data name="output1" format="png" label="${tool.name} on ${on_string}: Plot"/>
-        <data name="output2" format="tabular" label="${tool.name} on ${on_string}: Table" />
+        <data name="output2" format="tabular" label="${tool.name} on ${on_string}: Table"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_bam" value="input.bam" ftype="bam" />
-            <output name="output1" file="output1.png" ftype="png" compare="sim_size" />
-            <output name="output2" file="output1.tabular" ftype="tabular" compare="contains" />
+            <param name="input_bam" value="input.bam" ftype="bam"/>
+            <output name="output1" file="output1.png" ftype="png" compare="sim_size"/>
+            <output name="output2" file="output1.tabular" ftype="tabular" compare="contains"/>
         </test>
         <test>
-            <param name="input_bam" value="input.bam" ftype="bam" />
-            <param name="lower_limit" value="200" />
-            <param name="upper_limit" value="300" />
-            <output name="output1" file="output2.png" ftype="png" compare="sim_size" />
-            <output name="output2" file="output2.tabular" ftype="tabular" compare="contains" />
+            <param name="input_bam" value="input.bam" ftype="bam"/>
+            <param name="lower_limit" value="200"/>
+            <param name="upper_limit" value="300"/>
+            <output name="output1" file="output2.png" ftype="png" compare="sim_size"/>
+            <output name="output2" file="output2.tabular" ftype="tabular" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **What it does**
 
@@ -59,7 +59,7 @@ Produces an insert size histogram and basic statistics for a paired-end BAM file
 * **Lower bp limit** - the lower bp limit on insert size for calculating the histogram.
 * **Upper bp limit** - the upper bp limit on insert size for calculating the histogram.
 
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
             @unpublished{None,

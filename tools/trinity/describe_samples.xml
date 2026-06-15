@@ -14,8 +14,8 @@ $sample.condition	$sample.name
     </configfiles>
     <inputs>
         <repeat name="samples" title="Samples">
-            <param name="name" type="text" label="Full sample name" help="e.g. CondA_replicate1" />
-            <param name="condition" type="text" label="Condition" help="e.g. ConditionA" />
+            <param name="name" type="text" label="Full sample name" help="e.g. CondA_replicate1"/>
+            <param name="condition" type="text" label="Condition" help="e.g. ConditionA"/>
         </repeat>
     </inputs>
     <outputs>
@@ -24,20 +24,20 @@ $sample.condition	$sample.name
     <tests>
         <test>
             <repeat name="samples">
-                <param name="condition" value="ConditionA" />
-                <param name="name" value="CondA_replicate1" />
+                <param name="condition" value="ConditionA"/>
+                <param name="name" value="CondA_replicate1"/>
             </repeat>
             <repeat name="samples">
-                <param name="condition" value="ConditionA" />
-                <param name="name" value="CondA_replicate2" />
+                <param name="condition" value="ConditionA"/>
+                <param name="name" value="CondA_replicate2"/>
             </repeat>
             <repeat name="samples">
-                <param name="condition" value="ConditionB" />
-                <param name="name" value="CondB_replicate1" />
+                <param name="condition" value="ConditionB"/>
+                <param name="name" value="CondB_replicate1"/>
             </repeat>
             <repeat name="samples">
-                <param name="condition" value="ConditionB" />
-                <param name="name" value="CondB_replicate2" />
+                <param name="condition" value="ConditionB"/>
+                <param name="name" value="CondB_replicate2"/>
             </repeat>
             <output name="output" file="samples.tsv"/>
         </test>

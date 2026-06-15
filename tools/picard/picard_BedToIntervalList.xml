@@ -62,8 +62,7 @@
         <param format="bed" name="inputFile" type="data" label="Select coordinate dataset or dataset collection" help="This can be a bed or interval dataset"/>
     </inputs>
     <outputs>
-        <data name="outFile" format="picard_interval_list" label="${tool.name} on ${on_string}: Picard interval list">
-    </data>
+        <data name="outFile" format="picard_interval_list" label="${tool.name} on ${on_string}: Picard interval list"/>
     </outputs>
     <tests>
         <test>
@@ -73,7 +72,7 @@
             <output name="outFile" file="picard_BedToIntervalList_test1.pif" ftype="picard_interval_list" lines_diff="8"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -92,6 +91,6 @@ Convert coordinate data (such as BED or Galaxy Interval) into Picard Interval Fo
 
 
 @more_info@
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

@@ -54,7 +54,7 @@
             <output name="outFile" file="picard_EstimateLibraryComplexity_test1.tab" ftype="tabular" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -69,7 +69,7 @@ Unpaired reads are ignored in this computation.
 The algorithm attempts to detect optical duplicates separately from PCR duplicates and excludes these in the calculation of library size.
 
 Also, since there is no alignment to screen out technical reads one further filter is applied on the data. After examining all reads a Histogram
-is built of [#reads in duplicate set -&gt; #of duplicate sets]; all bins that contain exactly one duplicate set are then removed from the Histogram
+is built of [#reads in duplicate set -> #of duplicate sets]; all bins that contain exactly one duplicate set are then removed from the Histogram
 as outliers before library size is estimated.
 
 @dataset_collections@
@@ -113,6 +113,6 @@ as outliers before library size is estimated.
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

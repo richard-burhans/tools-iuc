@@ -168,13 +168,13 @@ $advanced.oligo
             </when>
         </conditional>
         <conditional name="background">
-            <param name="use" type="select" label="Will you use a background model?" >
-                <option value="none" selected="true" >No background model</option>
-                <option value="model" >Background model with regions removed from target Peak file</option>
-                <option value="withbg" >Background model with regions not removed from target Peak file</option>
-                <option value="chopify" >Chop large background model regions to the average size of target Peak file regions</option>
+            <param name="use" type="select" label="Will you use a background model?">
+                <option value="none" selected="true">No background model</option>
+                <option value="model">Background model with regions removed from target Peak file</option>
+                <option value="withbg">Background model with regions not removed from target Peak file</option>
+                <option value="chopify">Chop large background model regions to the average size of target Peak file regions</option>
             </param>
-            <when value="none"></when>
+            <when value="none"/>
             <when value="model">
                 <param argument="-bg" type="data" format="bed,encodepeak,tabular" label="Background Peak file"/>
             </when>
@@ -182,7 +182,7 @@ $advanced.oligo
                 <param argument="-bg" type="data" format="bed,encodepeak,tabular" label="Background Peak file"/>
             </when>
             <when value="chopify">
-                <param argument="-bg" type="data" format="bed,encodepeak,tabular" label="Background Peak file" />
+                <param argument="-bg" type="data" format="bed,encodepeak,tabular" label="Background Peak file"/>
             </when>
         </conditional>
         <param argument="-len" type="text" value="8,10,12" label="comma-separated motif lengths" help="values greater 12 may cause the program to run out of memory - in these cases decrease the number of sequences analyzed (-N), or try analyzing shorter sequence regions (i.e. -size 100)">
@@ -288,12 +288,11 @@ $advanced.oligo
                     <!-- <has_text text="Jaspar"/> -->
                 </assert_contents>
             </output>
-            <output_collection name="output_collection_known" type="list" count="0">
-            </output_collection>
+            <output_collection name="output_collection_known" type="list" count="0"/>
             <output_collection name="output_collection_de_novo" type="list">
                 <element name="motif1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -321,14 +320,14 @@ $advanced.oligo
             <output_collection name="output_collection_known" type="list">
                 <element name="known1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="output_collection_de_novo" type="list">
                 <element name="motif1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -358,14 +357,14 @@ $advanced.oligo
             <output_collection name="output_collection_known" type="list">
                 <element name="known1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
             <output_collection name="output_collection_de_novo" type="list">
                 <element name="motif1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -386,8 +385,7 @@ $advanced.oligo
                     <has_text text="Total Target Sequences = 24"/>
                 </assert_contents>
             </output>
-            <output_collection name="output_collection_known" type="list" count="0">
-            </output_collection>
+            <output_collection name="output_collection_known" type="list" count="0"/>
         </test>
         <!-- background tests -->
         <test expect_num_outputs="2">
@@ -397,8 +395,8 @@ $advanced.oligo
                 <param name="all_fasta_source" value="phiX174"/>
             </conditional>
             <conditional name="background">
-                <param name="use" value="withbg" />
-                <param name="bg" value="fake_phix_peaks.subset.bed" />
+                <param name="use" value="withbg"/>
+                <param name="bg" value="fake_phix_peaks.subset.bed"/>
             </conditional>
             <output name="html_homer_file">
                 <assert_contents>
@@ -409,7 +407,7 @@ $advanced.oligo
             <output_collection name="output_collection_de_novo" type="list">
                 <element name="motif1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -421,8 +419,8 @@ $advanced.oligo
                 <param name="all_fasta_source" value="phiX174"/>
             </conditional>
             <conditional name="background">
-                <param name="use" value="chopify" />
-                <param name="bg" value="fake_phix_peaks.subset.bed" />
+                <param name="use" value="chopify"/>
+                <param name="bg" value="fake_phix_peaks.subset.bed"/>
             </conditional>
             <output name="html_homer_file">
                 <assert_contents>
@@ -433,7 +431,7 @@ $advanced.oligo
             <output_collection name="output_collection_de_novo" type="list">
                 <element name="motif1">
                     <assert_contents>
-                        <has_text text=">"/>
+                        <has_text text="&gt;"/>
                     </assert_contents>
                 </element>
             </output_collection>

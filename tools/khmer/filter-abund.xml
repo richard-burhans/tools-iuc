@@ -7,9 +7,9 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version"/>
     <command><![CDATA[
 set -u &&
 @LINK_SEQUENCES@
@@ -23,39 +23,34 @@ ${input_countgraph_filename}
 ]]>
     </command>
     <inputs>
-        <expand macro="input_sequences_filenames" />
-        <param argument="--variable_coverage" type="boolean" checked="false" truevalue="--variable-coverage" falsevalue=""
-            label="Variable coverage"
-            help="Only trim when a sequence has high enough coverage; median abundance > 20" />
-        <param argument="--cutoff" type="integer" value="2" label="Cutoff"
-            help="Trim at k-mers below this abundance" />
-        <expand macro="input_countgraph_filename" />
+        <expand macro="input_sequences_filenames"/>
+        <param argument="--variable_coverage" type="boolean" checked="false" truevalue="--variable-coverage" falsevalue="" label="Variable coverage" help="Only trim when a sequence has high enough coverage; median abundance &gt; 20"/>
+        <param argument="--cutoff" type="integer" value="2" label="Cutoff" help="Trim at k-mers below this abundance"/>
+        <expand macro="input_countgraph_filename"/>
     </inputs>
     <outputs>
         <expand macro="output_sequences" extension="abundfilt"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputs" value="test-abund-read-2.fa" />
-            <param name="input_countgraph_filename"
-                value="test-abund-read-2.oxlicg" ftype="oxlicg" />
+            <param name="inputs" value="test-abund-read-2.fa"/>
+            <param name="input_countgraph_filename" value="test-abund-read-2.oxlicg" ftype="oxlicg"/>
             <output_collection name="sequences" type="list">
                 <element name="test-abund-read-2.fa">
                     <assert_contents>
-                        <has_text text="GGTTGACGGGGCTCAGGG" />
+                        <has_text text="GGTTGACGGGGCTCAGGG"/>
                     </assert_contents>
                 </element>
             </output_collection>
         </test>
         <test>
-            <param name="inputs" value="test-abund-read-2.fa" />
-            <param name="input_countgraph_filename"
-                value="test-abund-read-2.oxlicg" ftype="oxlicg" />
-            <param name="cutoff" value="1" />
+            <param name="inputs" value="test-abund-read-2.fa"/>
+            <param name="input_countgraph_filename" value="test-abund-read-2.oxlicg" ftype="oxlicg"/>
+            <param name="cutoff" value="1"/>
             <output_collection name="sequences" type="list">
                 <element name="test-abund-read-2.fa">
                     <assert_contents>
-                        <has_text text="GGTTGACGGGGCTCAGGG" />
+                        <has_text text="GGTTGACGGGGCTCAGGG"/>
                     </assert_contents>
                 </element>
             </output_collection>
@@ -71,7 +66,7 @@ If the input sequences are from RNAseq or metagenome sequencing then
 ]]>
     </help>
     <citations>
-        <expand macro="software-citation" />
-        <expand macro="counting-citation" />
+        <expand macro="software-citation"/>
+        <expand macro="counting-citation"/>
     </citations>
 </tool>

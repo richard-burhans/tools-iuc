@@ -39,18 +39,18 @@ $seq_hash
         <param argument="--alphabet" type="boolean" truevalue="--alphabet" falsevalue="" checked="false" label="Output alphabet letters?"/>
         <param argument="--avg_qual" type="boolean" truevalue="--avg-qual" falsevalue="" checked="false" label="Output average quality of the read?"/>
         <param argument="-B" type="select" multiple="true" label="Append a precentage column of the selected bases">
-            <option value="A"></option>
-            <option value="G"></option>
-            <option value="C"></option>
-            <option value="T"></option>
-            <option value="N"></option>
+            <option value="A"/>
+            <option value="G"/>
+            <option value="C"/>
+            <option value="T"/>
+            <option value="N"/>
         </param>
         <param argument="-C" type="select" multiple="true" label="Append a count column of the selected bases">
-            <option value="A"></option>
-            <option value="G"></option>
-            <option value="C"></option>
-            <option value="T"></option>
-            <option value="N"></option>
+            <option value="A"/>
+            <option value="G"/>
+            <option value="C"/>
+            <option value="T"/>
+            <option value="N"/>
         </param>
         <param argument="--gc" type="boolean" truevalue="--gc" falsevalue="" checked="false" label="Output GC content?"/>
         <param argument="--gc_skew" type="boolean" truevalue="--gc-skew" falsevalue="" checked="false" label="Output GC-Skew?"/>
@@ -99,12 +99,12 @@ $seq_hash
             <output name="output" file="fx2tab_output4.tabular" ftype="tabular"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Converts FASTA/Q to tabular format and adds columns for sequence length and GC content/GC skew.  The output
 consists of 3 columns; id, sequence and quality unless one of the options to output only names or to eliminate
 qualities is selected or additional columns (e.g., md5 sequence hash) are requested.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

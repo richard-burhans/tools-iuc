@@ -46,14 +46,16 @@ echo 'summary.seqs(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test names input -->
+        <test>
+            <!-- test names input -->
             <param name="fasta" value="amazon.unique.fasta"/>
             <param name="name" value="amazon.names"/>
             <output name="out_summary" md5="b8a53926f64434291d232d2736da8293" ftype="mothur.summary"/>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test count input -->
+        <test>
+            <!-- test count input -->
             <param name="fasta" value="amazon.unique.fasta"/>
             <param name="count" value="amazon.count_table"/>
             <output name="out_summary" md5="b8a53926f64434291d232d2736da8293" ftype="mothur.summary"/>

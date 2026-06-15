@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <tool id="repmatch_gff3" name="RepMatch" version="@WRAPPER_VERSION@.3">
     <description>Match paired peaks from two or more replicates</description>
     <macros>
         <import>repmatch_gff3_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="aggressive"><![CDATA[
 python '$__tool_directory__/repmatch_gff3.py'
 #for $i in $input:
@@ -30,23 +29,23 @@ python '$__tool_directory__/repmatch_gff3.py'
 #end if
     ]]></command>
     <inputs>
-        <param  name="input" type="data" format="gff" multiple="True" min="2" label="Match paired peaks on" />
+        <param name="input" type="data" format="gff" multiple="True" min="2" label="Match paired peaks on"/>
         <param name="method" type="select" label="Method of finding match">
             <option value="closest" selected="True">Closest</option>
             <option value="largest">Largest</option>
             <option value="all">All</option>
         </param>
-        <param name="distance" type="integer" value="50" min="0" label="Maximum distance between peaks in different replicates to allow merging" />
-        <param name="replicates" type="integer" value="2" min="2" label="Minimum number of replicates that must be matched for merging to occur" />
+        <param name="distance" type="integer" value="50" min="0" label="Maximum distance between peaks in different replicates to allow merging"/>
+        <param name="replicates" type="integer" value="2" min="2" label="Minimum number of replicates that must be matched for merging to occur"/>
         <conditional name="output_files_cond">
-            <param name="output_files" type="select" label="Select output" help="Statistics will always be generated." >
+            <param name="output_files" type="select" label="Select output" help="Statistics will always be generated.">
                 <option value="all" selected="True">everything</option>
                 <option value="matched_peaks">matched paired peaks only</option>
                 <option value="matched_peaks_unmatched_peaks">matched paired peaks and unmatched paired peaks only</option>
             </param>
-            <when value="matched_peaks" />
-            <when value="matched_peaks_unmatched_peaks" />
-            <when value="all" />
+            <when value="matched_peaks"/>
+            <when value="matched_peaks_unmatched_peaks"/>
+            <when value="all"/>
         </conditional>
         <conditional name="advanced_options_cond">
             <param name="advanced_options" type="select" label="Advanced options">
@@ -54,46 +53,46 @@ python '$__tool_directory__/repmatch_gff3.py'
                 <option value="on">Display advanced options</option>
             </param>
             <when value="on">
-                <param name="step" type="integer" value="0" min="0" label="Step size" help="Distance for each iteration" />
-                <param name="low_limit" type="integer" value="-1000" label="Lower limit for Crick-Watson distance filter" />
-                <param name="up_limit" type="integer" value="1000" label="Upper limit for Crick-Watson distance filter" />
+                <param name="step" type="integer" value="0" min="0" label="Step size" help="Distance for each iteration"/>
+                <param name="low_limit" type="integer" value="-1000" label="Lower limit for Crick-Watson distance filter"/>
+                <param name="up_limit" type="integer" value="1000" label="Upper limit for Crick-Watson distance filter"/>
             </when>
-            <when value="off" />
+            <when value="off"/>
         </conditional>
     </inputs>
     <outputs>
         <data name="output_statistics_table" format="tabular" label="Statistics Table: ${tool.name} on ${on_string}">
             <filter>output_files_cond["output_files"] == "all"</filter>
-       </data>
+        </data>
         <data name="output_statistics_histogram" format="pdf" label="Statistics Histogram: ${tool.name} on ${on_string}">
             <filter>output_files_cond["output_files"] == "all"</filter>
-       </data>
+        </data>
         <data name="output_detail" format="tabular" label="Data D: ${tool.name} on ${on_string}">
             <filter>output_files_cond["output_files"] == "all"</filter>
-       </data>
+        </data>
         <data name="output_unmatched_peaks" format="tabular" label="Data UP: ${tool.name} on ${on_string}">
             <filter>output_files_cond["output_files"] in ["all", "matched_peaks_unmatched_peaks"]</filter>
         </data>
-        <data name="output_matched_peaks" format="gff" label="Data MP: ${tool.name} on ${on_string}" />
+        <data name="output_matched_peaks" format="gff" label="Data MP: ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="closest_matched_pairs_input1.gff,largest_matched_pairs_input1.gff" ftype="gff" />
-            <param name="method" value="closest" />
-            <param name="distance" value="50" />
-            <param name="replicates" value="2" />
-            <param name="output_files" value="all" />
-            <param name="step" value="0" />
-            <param name="low_limit" value="-1000" />
-            <param name="up_limit" value="1000" />
-            <output name="output_statistics_table" file="statistics_table_out1.tabular" ftype="tabular" />
-            <output name="output_statistics_histogram" file="magic.pdf" ftype="pdf" compare="contains" />
-            <output name="output_detail" file="detail_out1.tabular" ftype="tabular" />
-            <output name="output_unmatched_peaks" file="unmatched_peaks_out1.tabular" ftype="tabular" />
-            <output name="output_matched_peaks" file="matched_peaks_out1.gff" ftype="gff" />
+            <param name="input" value="closest_matched_pairs_input1.gff,largest_matched_pairs_input1.gff" ftype="gff"/>
+            <param name="method" value="closest"/>
+            <param name="distance" value="50"/>
+            <param name="replicates" value="2"/>
+            <param name="output_files" value="all"/>
+            <param name="step" value="0"/>
+            <param name="low_limit" value="-1000"/>
+            <param name="up_limit" value="1000"/>
+            <output name="output_statistics_table" file="statistics_table_out1.tabular" ftype="tabular"/>
+            <output name="output_statistics_histogram" file="magic.pdf" ftype="pdf" compare="contains"/>
+            <output name="output_detail" file="detail_out1.tabular" ftype="tabular"/>
+            <output name="output_unmatched_peaks" file="unmatched_peaks_out1.tabular" ftype="tabular"/>
+            <output name="output_matched_peaks" file="matched_peaks_out1.gff" ftype="gff"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 RepMatch accepts two or more input datasets (in gff format https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md), and starts by defining peak-pair midpoints in the first dataset.  It then
@@ -157,6 +156,6 @@ used to replace that earlier replicate.  Sequencing replicates represent additio
 in order to obtain more reads should the analysis require it.  The reads from individual sequencing replicates are usually
 merged without need for separate analysis.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

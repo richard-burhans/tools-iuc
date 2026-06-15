@@ -56,8 +56,8 @@ python '$__tool_directory__/data_manager_build_amrfinderplus.py'
                     <has_n_lines n="1"/>
                     <has_text text="{&quot;data_tables&quot;"/>
                     <has_text text="amrfinderplus_versioned_database"/>
-                    <has_text text='"name": "V4.2-2026-05-15.1"'/>
-                    <has_text text='"db_version": "4.2"'/>
+                    <has_text text="&quot;name&quot;: &quot;V4.2-2026-05-15.1&quot;"/>
+                    <has_text text="&quot;db_version&quot;: &quot;4.2&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -73,8 +73,8 @@ python '$__tool_directory__/data_manager_build_amrfinderplus.py'
                     <has_n_lines n="1"/>
                     <has_text text="{&quot;data_tables&quot;"/>
                     <has_text text="amrfinderplus_versioned_database"/>
-                    <has_text text='"name": "V3.12-2024-01-31.1"'/>
-                    <has_text text='"db_version": "3.12"'/>
+                    <has_text text="&quot;name&quot;: &quot;V3.12-2024-01-31.1&quot;"/>
+                    <has_text text="&quot;db_version&quot;: &quot;3.12&quot;"/>
                 </assert_contents>
             </output>
         </test>
@@ -90,8 +90,8 @@ python '$__tool_directory__/data_manager_build_amrfinderplus.py'
                     <has_n_lines n="1"/>
                     <has_text text="{&quot;data_tables&quot;"/>
                     <has_text text="amrfinderplus_versioned_database"/>
-                    <has_text text='"name": "V4.0-2025-07-16.1"'/>
-                    <has_text text='"db_version": "4.0"'/>
+                    <has_text text="&quot;name&quot;: &quot;V4.0-2025-07-16.1&quot;"/>
+                    <has_text text="&quot;db_version&quot;: &quot;4.0&quot;"/>
                 </assert_contents>
             </output>
         </test>

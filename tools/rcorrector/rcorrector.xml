@@ -37,11 +37,11 @@
                 <option value="paired" selected="True">paired</option>
             </param>
             <when value="single">
-                <param type="data" name="input1" label="FastQ file" format="fastq,fastqsanger" />
+                <param type="data" name="input1" label="FastQ file" format="fastq,fastqsanger"/>
             </when>
             <when value="paired">
-                <param type="data" name="input1" label="FastQ file R1 (left)" format="fastq,fastqsanger" />
-                <param type="data" name="input2" label="FastQ file R2 (right)" format="fastq,fastqsanger" />
+                <param type="data" name="input1" label="FastQ file R1 (left)" format="fastq,fastqsanger"/>
+                <param type="data" name="input2" label="FastQ file R2 (right)" format="fastq,fastqsanger"/>
                 <param name="filter" type="boolean" checked="false" truevalue="TRUE" falsevalue="FALSE" label="Filter uncorrectable reads" help="This will run FilterUncorrectabledPEfastq and remove uncorrectable reads."/>
             </when>
         </conditional>
@@ -78,7 +78,7 @@
             <filter>library['lib'] == 'paired' and library['filter']</filter>
         </data>
     </outputs>
-	<tests>
+    <tests>
         <test>
             <conditional name="library">
                 <param name="lib" value="paired"/>

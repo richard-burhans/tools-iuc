@@ -39,7 +39,6 @@
     <inputs>
         <param argument="--matrix" format="tabular" type="data" label="Expression matrix" help="output of Build expression matrix - matrix of raw read counts (not normalized!)"/>
         <param argument="--samples_file" format="tabular" type="data" label="Sample description" help="file describing samples and replicates"/>
-
         <conditional name="method_choice">
             <param type="select" argument="--method" label="Differential analysis method">
                 <option value="edgeR">edgeR</option>
@@ -48,16 +47,15 @@
                 <option value="ROTS">ROTS</option>
             </param>
             <when value="edgeR">
-                <param argument="--dispersion" type="float" value="0.1" label="edgeR dispersion value" help="Read edgeR manual to guide your value choice" />
+                <param argument="--dispersion" type="float" value="0.1" label="edgeR dispersion value" help="Read edgeR manual to guide your value choice"/>
             </when>
             <when value="ROTS">
-                <param name="rots_b" argument="--ROTS_B" type="integer" value="500" label="Number of bootstraps and permutation resampling" />
-                <param name="rots_k" argument="--ROTS_K" type="integer" value="5000" label="Largest top genes size" />
+                <param name="rots_b" argument="--ROTS_B" type="integer" value="500" label="Number of bootstraps and permutation resampling"/>
+                <param name="rots_k" argument="--ROTS_K" type="integer" value="5000" label="Largest top genes size"/>
             </when>
             <when value="voom"/>
-            <when value="DESeq2" />
+            <when value="DESeq2"/>
         </conditional>
-
         <section name="additional_params" title="Additional Options" expanded="False">
             <param name="min_cpm" type="integer" value="1" label="Minimum count per replicate" help="Only those rows of matrix meeting requirement will be tested"/>
             <param name="min_reps" type="integer" value="2" label="Minimum number of replicates meeting minimum count per replicate" help="Only those rows of matrix meeting requirement will be tested"/>
@@ -67,13 +65,13 @@
     </inputs>
     <outputs>
         <collection name="DE_results" type="list" label="Differential expression results on ${on_string}">
-            <discover_datasets pattern="(?P&lt;name&gt;.+)\.DE_results$" ext="tabular" directory="results" />
+            <discover_datasets pattern="(?P&lt;name&gt;.+)\.DE_results$" ext="tabular" directory="results"/>
         </collection>
         <collection name="count_matrices" type="list" label="Count matrices generated for differential expression on ${on_string}">
-            <discover_datasets pattern="(?P&lt;name&gt;.+)\.count_matrix$" ext="tabular" directory="results" />
+            <discover_datasets pattern="(?P&lt;name&gt;.+)\.count_matrix$" ext="tabular" directory="results"/>
         </collection>
         <collection name="PDF_results" type="list" label="Differential expression plots on ${on_string}">
-            <discover_datasets pattern="(?P&lt;name&gt;.+)\.pdf$" ext="pdf" directory="results" />
+            <discover_datasets pattern="(?P&lt;name&gt;.+)\.pdf$" ext="pdf" directory="results"/>
         </collection>
     </outputs>
     <tests>
@@ -174,6 +172,5 @@ The names in column 2 must match the names given in the tool 'Build expression m
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 ]]>
     </help>
-
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

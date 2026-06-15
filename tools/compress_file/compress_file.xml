@@ -3,7 +3,7 @@
         <requirement type="package" version="1.11">gzip</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        gzip -cf ${input} > output_file.gz
+        gzip -cf '${input}' > output_file.gz
     ]]></command>
     <inputs>
         <param name="input" type="data" format="data" label="Select data to compress"/>

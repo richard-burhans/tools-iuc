@@ -55,10 +55,10 @@ summarize_taxa_through_plots.py
     </inputs>
     <outputs>
         <collection name="otu_table" type="list" label="${tool.name} on ${on_string}: OTU tables for the different taxonomic levels">
-            <discover_datasets pattern=".*_L(?P&lt;designation&gt;.+)\.txt" format="txt" directory="output/" />
+            <discover_datasets pattern=".*_L(?P&lt;designation&gt;.+)\.txt" format="txt" directory="output/"/>
         </collection>
         <collection name="biom_otu_table" type="list" label="${tool.name} on ${on_string}: BIOM OTU tables for the different taxonomic levels">
-            <discover_datasets pattern=".*_L(?P&lt;designation&gt;.+)\.biom" format="biom1" directory="output/" />
+            <discover_datasets pattern=".*_L(?P&lt;designation&gt;.+)\.biom" format="biom1" directory="output/"/>
         </collection>
         <data name="bar_charts_html_report" format="html" label="${tool.name} on ${on_string}: Bar charts"/>
         <data name="area_charts_html_report" format="html" label="${tool.name} on ${on_string}: Area charts"/>
@@ -78,14 +78,14 @@ summarize_taxa_through_plots.py
                 <element name="6" file="summarize_taxa_through_plots/mapping/otu_table_L6.txt"/>
             </output_collection>
             <output_collection name="biom_otu_table" type="list">
-                <element name="2" file="summarize_taxa_through_plots/mapping/otu_table_L2_json.biom" compare="sim_size" />
-                <element name="3" file="summarize_taxa_through_plots/mapping/otu_table_L3_json.biom" compare="sim_size" />
-                <element name="4" file="summarize_taxa_through_plots/mapping/otu_table_L4_json.biom" compare="sim_size" />
-                <element name="5" file="summarize_taxa_through_plots/mapping/otu_table_L5_json.biom" compare="sim_size" />
-                <element name="6" file="summarize_taxa_through_plots/mapping/otu_table_L6_json.biom" compare="sim_size" />
+                <element name="2" file="summarize_taxa_through_plots/mapping/otu_table_L2_json.biom" compare="sim_size"/>
+                <element name="3" file="summarize_taxa_through_plots/mapping/otu_table_L3_json.biom" compare="sim_size"/>
+                <element name="4" file="summarize_taxa_through_plots/mapping/otu_table_L4_json.biom" compare="sim_size"/>
+                <element name="5" file="summarize_taxa_through_plots/mapping/otu_table_L5_json.biom" compare="sim_size"/>
+                <element name="6" file="summarize_taxa_through_plots/mapping/otu_table_L6_json.biom" compare="sim_size"/>
             </output_collection>
-            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping/bar_charts.html" compare="sim_size" />
-            <output name="area_charts_html_report" file="summarize_taxa_through_plots/mapping/area_charts.html" compare="sim_size" />
+            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping/bar_charts.html" compare="sim_size"/>
+            <output name="area_charts_html_report" file="summarize_taxa_through_plots/mapping/area_charts.html" compare="sim_size"/>
         </test>
         <test expect_num_outputs="4">
             <param name="otu_table_fp" value="summarize_taxa_through_plots/otu_table.biom"/>
@@ -102,14 +102,14 @@ summarize_taxa_through_plots.py
                 <element name="6" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L6.txt"/>
             </output_collection>
             <output_collection name="biom_otu_table" type="list">
-                <element name="2" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L2_json.biom" compare="sim_size" />
-                <element name="3" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L3_json.biom" compare="sim_size" />
-                <element name="4" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L4_json.biom" compare="sim_size" />
-                <element name="5" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L5_json.biom" compare="sim_size" />
-                <element name="6" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L6_json.biom" compare="sim_size" />
+                <element name="2" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L2_json.biom" compare="sim_size"/>
+                <element name="3" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L3_json.biom" compare="sim_size"/>
+                <element name="4" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L4_json.biom" compare="sim_size"/>
+                <element name="5" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L5_json.biom" compare="sim_size"/>
+                <element name="6" file="summarize_taxa_through_plots/mapping_categories/Treatment_otu_table_L6_json.biom" compare="sim_size"/>
             </output_collection>
-            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping_categories/bar_charts.html" compare="sim_size" />
-            <output name="area_charts_html_report"  file="summarize_taxa_through_plots/mapping_categories/area_charts.html" compare="sim_size" />
+            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping_categories/bar_charts.html" compare="sim_size"/>
+            <output name="area_charts_html_report" file="summarize_taxa_through_plots/mapping_categories/area_charts.html" compare="sim_size"/>
         </test>
         <test expect_num_outputs="4">
             <param name="otu_table_fp" value="summarize_taxa_through_plots/otu_table.biom"/>
@@ -126,14 +126,14 @@ summarize_taxa_through_plots.py
                 <element name="6" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L6.txt"/>
             </output_collection>
             <output_collection name="biom_otu_table" type="list">
-                <element name="2" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L2_json.biom" compare="sim_size" />
-                <element name="3" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L3_json.biom" compare="sim_size" />
-                <element name="4" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L4_json.biom" compare="sim_size" />
-                <element name="5" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L5_json.biom" compare="sim_size" />
-                <element name="6" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L6_json.biom" compare="sim_size" />
+                <element name="2" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L2_json.biom" compare="sim_size"/>
+                <element name="3" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L3_json.biom" compare="sim_size"/>
+                <element name="4" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L4_json.biom" compare="sim_size"/>
+                <element name="5" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L5_json.biom" compare="sim_size"/>
+                <element name="6" file="summarize_taxa_through_plots/mapping_sort/otu_table_sorted_L6_json.biom" compare="sim_size"/>
             </output_collection>
-            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping_sort/bar_charts.html" compare="sim_size" />
-            <output name="area_charts_html_report"  file="summarize_taxa_through_plots/mapping_sort/area_charts.html" compare="sim_size" />
+            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/mapping_sort/bar_charts.html" compare="sim_size"/>
+            <output name="area_charts_html_report" file="summarize_taxa_through_plots/mapping_sort/area_charts.html" compare="sim_size"/>
         </test>
         <test expect_num_outputs="4">
             <param name="otu_table_fp" value="summarize_taxa_through_plots/otu_table.biom"/>
@@ -148,14 +148,14 @@ summarize_taxa_through_plots.py
                 <element name="6" file="summarize_taxa_through_plots/without_mapping/otu_table_L6.txt"/>
             </output_collection>
             <output_collection name="biom_otu_table" type="list">
-                <element name="2" file="summarize_taxa_through_plots/without_mapping/otu_table_L2_json.biom" compare="sim_size" />
-                <element name="3" file="summarize_taxa_through_plots/without_mapping/otu_table_L3_json.biom" compare="sim_size" />
-                <element name="4" file="summarize_taxa_through_plots/without_mapping/otu_table_L4_json.biom" compare="sim_size" />
-                <element name="5" file="summarize_taxa_through_plots/without_mapping/otu_table_L5_json.biom" compare="sim_size" />
-                <element name="6" file="summarize_taxa_through_plots/without_mapping/otu_table_L6_json.biom" compare="sim_size" />
+                <element name="2" file="summarize_taxa_through_plots/without_mapping/otu_table_L2_json.biom" compare="sim_size"/>
+                <element name="3" file="summarize_taxa_through_plots/without_mapping/otu_table_L3_json.biom" compare="sim_size"/>
+                <element name="4" file="summarize_taxa_through_plots/without_mapping/otu_table_L4_json.biom" compare="sim_size"/>
+                <element name="5" file="summarize_taxa_through_plots/without_mapping/otu_table_L5_json.biom" compare="sim_size"/>
+                <element name="6" file="summarize_taxa_through_plots/without_mapping/otu_table_L6_json.biom" compare="sim_size"/>
             </output_collection>
-            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/without_mapping/bar_charts.html" compare="sim_size" />
-            <output name="area_charts_html_report"  file="summarize_taxa_through_plots/without_mapping/area_charts.html" compare="sim_size" />
+            <output name="bar_charts_html_report" file="summarize_taxa_through_plots/without_mapping/bar_charts.html" compare="sim_size"/>
+            <output name="area_charts_html_report" file="summarize_taxa_through_plots/without_mapping/area_charts.html" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[

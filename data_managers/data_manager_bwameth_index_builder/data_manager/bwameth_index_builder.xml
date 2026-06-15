@@ -38,7 +38,7 @@
     </configfiles>
     <inputs>
         <param name="all_fasta_source" type="select" label="Source FASTA Sequence">
-            <options from_data_table="all_fasta" />
+            <options from_data_table="all_fasta"/>
         </param>
         <param name="sequence_id" type="text" value="" label="ID for index" help="If not specified, the value from the fasta file is used"/>
         <param name="sequence_name" type="text" value="" label="Displayed description for sequence" help="If not specified, the value from the fasta file is used"/>

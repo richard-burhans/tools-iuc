@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #if $strategy.selector == 'dindel'
             #set $reference_source = $strategy.reference_source
@@ -20,47 +20,47 @@
                 --uniform $strategy.insertions
             #end if
         #end if
-        -o output.bam $reads
+        -o output.bam '$reads'
     ]]></command>
     <inputs>
-        <param type="data" name="reads" format="bam" label="Reads" />
+        <param type="data" name="reads" format="bam" label="Reads"/>
         <conditional name="strategy">
             <param name="selector" type="select" label="Indel calculation approach">
                 <option value="uniform">Uniform</option>
                 <option value="dindel">Dindel</option>
             </param>
             <when value="uniform">
-                <param name="insertions" type="integer" value="30" label="Indel quality to add" help="Should probably not be left at the default value" />
-                <param name="deletions" type="integer" optional="true" label="Separate deletion quality" help="Leave blank to use the same values for insertions and deletions" />
+                <param name="insertions" type="integer" value="30" label="Indel quality to add" help="Should probably not be left at the default value"/>
+                <param name="deletions" type="integer" optional="true" label="Separate deletion quality" help="Leave blank to use the same values for insertions and deletions"/>
             </when>
             <when value="dindel">
-                <expand macro="reference_interface" />
+                <expand macro="reference_interface"/>
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data name="output" format="bam" from_work_dir="output.bam" label="Add indel qualities to data ${reads.dataset.hid}" />
+        <data name="output" format="bam" from_work_dir="output.bam" label="Add indel qualities to data ${reads.dataset.hid}"/>
     </outputs>
     <tests>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="selector" value="uniform" />
-            <param name="insertions" value="20" />
-            <param name="deletions" value="30" />
-            <output name="output" file="indelqual-out1.bam" ftype="bam" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="selector" value="uniform"/>
+            <param name="insertions" value="20"/>
+            <param name="deletions" value="30"/>
+            <output name="output" file="indelqual-out1.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="selector" value="dindel" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
-            <output name="output" file="indelqual-out2.bam" ftype="bam" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="selector" value="dindel"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
+            <output name="output" file="indelqual-out2.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="selector" value="uniform" />
-            <param name="insertions" value="20" />
-            <output name="output" file="indelqual-out3.bam" ftype="bam" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="selector" value="uniform"/>
+            <param name="insertions" value="20"/>
+            <output name="output" file="indelqual-out3.bam" ftype="bam"/>
         </test>
     </tests>
     <help><![CDATA[

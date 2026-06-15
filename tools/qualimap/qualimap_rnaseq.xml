@@ -3,8 +3,8 @@
         <import>qualimap_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         @SET_JAVA_OPTS@ &&
 
@@ -33,106 +33,92 @@
     ]]></command>
     <inputs>
         <conditional name="seq_info">
-            <param argument="-pe" name="treat_as_pe" type="select"
-            label="Counting mode"
-            help="You will usually want to choose 'Count fragments' for paired-end data. For single-end data, choose 'Count reads'. See tool help below.">
+            <param argument="-pe" name="treat_as_pe" type="select" label="Counting mode" help="You will usually want to choose 'Count fragments' for paired-end data. For single-end data, choose 'Count reads'. See tool help below.">
                 <option value="">Count reads</option>
                 <option value="--paired">Count fragments</option>
             </param>
             <when value="">
-                <param argument="-bam" name="input" type="data" format="bam"
-                label="Mapped reads input dataset" />
-                <param name="sorted" type="hidden" value="" />
+                <param argument="-bam" name="input" type="data" format="bam" label="Mapped reads input dataset"/>
+                <param name="sorted" type="hidden" value=""/>
             </when>
             <when value="--paired">
-                <param argument="-bam" name="input" type="data" format="qname_sorted.bam"
-                label="Mapped reads input dataset" />
-                <param name="sorted" type="hidden" value="--sorted" />
+                <param argument="-bam" name="input" type="data" format="qname_sorted.bam" label="Mapped reads input dataset"/>
+                <param name="sorted" type="hidden" value="--sorted"/>
             </when>
         </conditional>
-        <param argument="-gtf" name="features" type="data" format="gtf"
-        label="Genome annotation data" />
+        <param argument="-gtf" name="features" type="data" format="gtf" label="Genome annotation data"/>
         <conditional name="counts_out">
-            <param argument="-oc" name="report_counts" type="select"
-            label="Keep the per-gene counts data?"
-            help="The resulting dataset can, for example, serve as input to QualiMap Counts QC for further assessment.">
+            <param argument="-oc" name="report_counts" type="select" label="Keep the per-gene counts data?" help="The resulting dataset can, for example, serve as input to QualiMap Counts QC for further assessment.">
                 <option value="">No, just report statistics</option>
                 <option value="-oc counts.txt">Yes, generate separate counts output</option>
             </param>
-            <when value="" />
+            <when value=""/>
             <when value="-oc counts.txt">
-                <param name="ccol_name" type="text"
-                label="Name to use for the counts column"
-                help="Consider using the name of the analyzed sample here. Default: Name of the mapped reads input dataset in the history" />
+                <param name="ccol_name" type="text" label="Name to use for the counts column" help="Consider using the name of the analyzed sample here. Default: Name of the mapped reads input dataset in the history"/>
             </when>
         </conditional>
         <section name="read_filtering" title="Read selection for counting" expanded="true">
-            <param argument="-p" name="library_type" type="select" display="radio"
-            label="Strandedness">
+            <param argument="-p" name="library_type" type="select" display="radio" label="Strandedness">
                 <option value="non-strand-specific">Count reads/fragments independent of strandedness</option>
                 <option value="strand-specific-forward">Count only reads/fragments expected in forward-stranded data</option>
                 <option value="strand-specific-reverse">Count only reads/fragments expected in reverse-stranded data</option>
             </param>
-            <param argument="-a" name="treat_multimappers" type="select" display="radio"
-            label="Multimapping reads">
+            <param argument="-a" name="treat_multimappers" type="select" display="radio" label="Multimapping reads">
                 <option value="uniquely-mapped-reads">Count uniquely mapped reads only</option>
                 <option value="proportional">Count also multimapping reads</option>
             </param>
         </section>
     </inputs>
     <outputs>
-        <data name="output_html" format="html"
-        label="${tool.name} report on ${on_string}" />
-        <data name="output_counts" format="tsv"
-        label="${tool.name} counts on ${on_string}">
+        <data name="output_html" format="html" label="${tool.name} report on ${on_string}"/>
+        <data name="output_counts" format="tsv" label="${tool.name} counts on ${on_string}">
             <filter>str(counts_out['report_counts'])</filter>
         </data>
-        <collection name="raw_data" type="list"
-        label="Raw data for ${tool.name} on ${on_string}">
-            <data name="rnaseq_qc_results" format="txt" from_work_dir="results/summary_report.txt" />
-            <data name="coverage_profile_along_genes_high" format="tsv" from_work_dir="results/coverage_profile_along_genes_high.txt" />
-            <data name="coverage_profile_along_genes_low" format="tsv" from_work_dir="results/coverage_profile_along_genes_low.txt" />
-            <data name="coverage_profile_along_genes_total" format="tsv" from_work_dir="results/coverage_profile_along_genes_total.txt" />
+        <collection name="raw_data" type="list" label="Raw data for ${tool.name} on ${on_string}">
+            <data name="rnaseq_qc_results" format="txt" from_work_dir="results/summary_report.txt"/>
+            <data name="coverage_profile_along_genes_high" format="tsv" from_work_dir="results/coverage_profile_along_genes_high.txt"/>
+            <data name="coverage_profile_along_genes_low" format="tsv" from_work_dir="results/coverage_profile_along_genes_low.txt"/>
+            <data name="coverage_profile_along_genes_total" format="tsv" from_work_dir="results/coverage_profile_along_genes_total.txt"/>
         </collection>
     </outputs>
     <tests>
         <test expect_num_outputs="6">
             <conditional name="seq_info">
-                <param name="treat_as_pe" value="" />
-                <param name="input" value="test_mapped_reads.bam" />
+                <param name="treat_as_pe" value=""/>
+                <param name="input" value="test_mapped_reads.bam"/>
             </conditional>
-            <param name="features" value="features.gtf" />
+            <param name="features" value="features.gtf"/>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: RNA Seq QC" />
+                    <has_text text="Qualimap report: RNA Seq QC"/>
                 </assert_contents>
             </output>
             <output_collection name="raw_data" type="list">
-                <element name="rnaseq_qc_results" file="rnaseq_qc_results_default.txt" ftype="txt" compare="diff" lines_diff="4" />
+                <element name="rnaseq_qc_results" file="rnaseq_qc_results_default.txt" ftype="txt" compare="diff" lines_diff="4"/>
             </output_collection>
         </test>
         <test expect_num_outputs="7">
             <conditional name="seq_info">
-                <param name="treat_as_pe" value="--paired" />
-                <param name="input" value="test_mapped_reads.bam" />
+                <param name="treat_as_pe" value="--paired"/>
+                <param name="input" value="test_mapped_reads.bam"/>
             </conditional>
-            <param name="features" value="features.gtf" />
+            <param name="features" value="features.gtf"/>
             <conditional name="counts_out">
-                <param name="report_counts" value="-oc counts.txt" />
-                <param name="ccol_name" value="try_this" />
+                <param name="report_counts" value="-oc counts.txt"/>
+                <param name="ccol_name" value="try_this"/>
             </conditional>
             <section name="read_filtering">
-                <param name="library_type" value="strand-specific-forward" />
-                <param name="treat_multimappers" value="proportional" />
+                <param name="library_type" value="strand-specific-forward"/>
+                <param name="treat_multimappers" value="proportional"/>
             </section>
             <output name="output_html" ftype="html">
                 <assert_contents>
-                    <has_text text="Qualimap report: RNA Seq QC" />
+                    <has_text text="Qualimap report: RNA Seq QC"/>
                 </assert_contents>
             </output>
-            <output name="output_counts" file="rnaseq_qc_counts_custom.txt" ftype="tsv" />
+            <output name="output_counts" file="rnaseq_qc_counts_custom.txt" ftype="tsv"/>
             <output_collection name="raw_data" type="list">
-                <element name="rnaseq_qc_results" file="rnaseq_qc_results_custom.txt" ftype="txt" compare="diff" lines_diff="4" />
+                <element name="rnaseq_qc_results" file="rnaseq_qc_results_custom.txt" ftype="txt" compare="diff" lines_diff="4"/>
             </output_collection>
         </test>
     </tests>

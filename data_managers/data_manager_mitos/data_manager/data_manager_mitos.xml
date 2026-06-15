@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="data_manager_mitos" name="MITOS" tool_type="manage_data" version="0.0.3" profile="23.0">
     <description>reference data downloader</description>
     <requirements>
@@ -37,7 +36,7 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
@@ -55,7 +54,7 @@
             <output name="out_file" file="mitos2_refseq63.json"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This data manager downloads MITOS and MITOS2 reference data for use in Galaxy.
 
 For MITOS the reference data includes 
@@ -82,7 +81,7 @@ The reference data sets contain:
 - in addition for Metazoa Release 63 also hidden markov models are available as described in Al Arab et al. 2017
 
 Data is downloaded from https://zenodo.org/record/4284483.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1016/j.ympev.2012.08.023</citation>
         <citation type="doi">10.1093/nar/gkr1131</citation>
@@ -90,4 +89,3 @@ Data is downloaded from https://zenodo.org/record/4284483.
         <citation type="doi">10.1093/nar/gkz833</citation>
     </citations>
 </tool>
-

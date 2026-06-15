@@ -388,15 +388,15 @@ mmseqs createtsv
             <section name="database">
                 <conditional name="database_type">
                     <param name="type" value="amino_acid_tax"/>
-                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025" />
+                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025"/>
                 </conditional>
             </section>
             <section name="filtertaxseqdb">
-                <param name="taxon_list" value="2" />
+                <param name="taxon_list" value="2"/>
             </section>
             <section name="taxonomy">
                 <section name="prefilter">
-                    <param name="mask_n_repeat" value="1" />
+                    <param name="mask_n_repeat" value="1"/>
                 </section>
             </section>
             <conditional name="krona_report">
@@ -404,7 +404,7 @@ mmseqs createtsv
             </conditional>
             <output name="output_taxonomy_tsv" ftype="tabular">
                 <assert_contents>
-                    <has_line line="MYSTERY.64&#009;119060&#009;family&#009;Burkholderiaceae&#009;1&#009;1&#009;1&#009;1.000"/>
+                    <has_line line="MYSTERY.64&#9;119060&#9;family&#9;Burkholderiaceae&#9;1&#9;1&#9;1&#9;1.000"/>
                     <has_n_columns n="8"/>
                 </assert_contents>
             </output>
@@ -423,7 +423,7 @@ mmseqs createtsv
             <section name="database">
                 <conditional name="database_type">
                     <param name="type" value="amino_acid_tax"/>
-                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025" />
+                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025"/>
                 </conditional>
             </section>
             <conditional name="kraken_report">
@@ -431,8 +431,8 @@ mmseqs createtsv
             </conditional>
             <output name="output_taxonomy_tsv" ftype="tabular">
                 <assert_contents>
-                    <has_line line="MYSTERY.222&#009;1236&#009;class&#009;Gammaproteobacteria&#009;1&#009;1&#009;1&#009;1.000"/>
-                    <has_line line="MYSTERY.64&#009;119060&#009;family&#009;Burkholderiaceae&#009;1&#009;1&#009;1&#009;1.000"/>
+                    <has_line line="MYSTERY.222&#9;1236&#9;class&#9;Gammaproteobacteria&#9;1&#9;1&#9;1&#9;1.000"/>
+                    <has_line line="MYSTERY.64&#9;119060&#9;family&#9;Burkholderiaceae&#9;1&#9;1&#9;1&#9;1.000"/>
                     <has_n_columns n="8"/>
                 </assert_contents>
             </output>
@@ -450,13 +450,13 @@ mmseqs createtsv
             <section name="database">
                 <conditional name="database_type">
                     <param name="type" value="amino_acid_tax"/>
-                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025" />
+                    <param name="mmseqs2_db_select" value="UniProtKB/Swiss-Prot-15.6f452-10022025"/>
                 </conditional>
             </section>
             <output name="output_taxonomy_tsv" ftype="tabular">
                 <assert_contents>
-                    <has_line line="MYSTERY.222&#009;1236&#009;class&#009;Gammaproteobacteria&#009;1&#009;1&#009;1&#009;1.000"/>
-                    <has_line line="MYSTERY.64&#009;119060&#009;family&#009;Burkholderiaceae&#009;1&#009;1&#009;1&#009;1.000"/>
+                    <has_line line="MYSTERY.222&#9;1236&#9;class&#9;Gammaproteobacteria&#9;1&#9;1&#9;1&#9;1.000"/>
+                    <has_line line="MYSTERY.64&#9;119060&#9;family&#9;Burkholderiaceae&#9;1&#9;1&#9;1&#9;1.000"/>
                     <has_n_columns n="8"/>
                 </assert_contents>
             </output>

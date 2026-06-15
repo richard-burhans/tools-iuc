@@ -6,11 +6,11 @@
             1.0
         </token>
         <xml name="insert_size">
-            <param argument="--minins" type="integer" min="0" value="0" label="Min insert sizes for mate pairs" />
-            <param argument="--maxins" type="integer" min="0" value="500" label="Max insert sizes for mate pairs" />
+            <param argument="--minins" type="integer" min="0" value="0" label="Min insert sizes for mate pairs"/>
+            <param argument="--maxins" type="integer" min="0" value="500" label="Max insert sizes for mate pairs"/>
         </xml>
         <xml name="orientation">
-            <param argument="--orientation" type="select" label="Orientation of the mates" >
+            <param argument="--orientation" type="select" label="Orientation of the mates">
                 <option value="fr">fr: mate 1 appears upstream of the reverse complement of mate 2 or mate 2 appears upstream of the reverse
                 complement of mate 1</option>
                 <option value="rf">rf: reverse-complemented mate 1 is upstream and forward-oriented mate 2 is downstream</option>
@@ -101,8 +101,8 @@ valet.py
     ]]></command>
     <inputs>
         <repeat name="assembly" title="Candidate assemblies">
-            <param name="assembly_fasta" argument="--assembly-fasta" type="data" format="fasta" label="Candidate assembly file" />
-            <param name="assembly_names" argument="--assembly-names" type="text" value="" label="Name of the assembly">
+            <param argument="--assembly-fasta" type="data" format="fasta" label="Candidate assembly file"/>
+            <param argument="--assembly-names" type="text" value="" label="Name of the assembly">
                 <validator type="empty_field" message="A name is required"/>
             </param>
         </repeat>
@@ -113,16 +113,16 @@ valet.py
                 <option value="paired_collection">Paired-collection</option>
             </param>
             <when value="single">
-              <conditional name="single_input_reads">
+                <conditional name="single_input_reads">
                     <param name="type" type="select" label="Input format">
                         <option value="--fasta">Fasta</option>
                         <option value="--fastq">FastQ</option>
                     </param>
                     <when value="--fasta">
-                        <param argument="--reads" type="data" format="fasta" label="Assembly input reads" />
+                        <param argument="--reads" type="data" format="fasta" label="Assembly input reads"/>
                     </when>
                     <when value="--fastq">
-                        <param argument="--reads" type="data" format="fastq" label="Assembly input reads" />
+                        <param argument="--reads" type="data" format="fastq" label="Assembly input reads"/>
                     </when>
                 </conditional>
             </when>
@@ -134,15 +134,15 @@ valet.py
                     </param>
                     <when value="--fasta">
                         <repeat name="paired_reads" title="Mate pair reads">
-                            <param name="mate_1" argument="--1" type="data" format="fasta" label="Assembly input first mate reads" />
-                            <param name="mate_2" argument="--2" type="data" format="fasta" label="Assembly input second mate reads" />
+                            <param name="mate_1" argument="--1" type="data" format="fasta" label="Assembly input first mate reads"/>
+                            <param name="mate_2" argument="--2" type="data" format="fasta" label="Assembly input second mate reads"/>
                             <expand macro="insert_size"/>
                         </repeat>
                     </when>
                     <when value="--fastq">
                         <repeat name="paired_reads" title="Mate pair reads">
-                            <param name="mate_1" argument="--1" type="data" format="fastq" label="Assembly input first mate reads" />
-                            <param name="mate_2" argument="--2" type="data" format="fastq" label="Assembly input second mate reads" />
+                            <param name="mate_1" argument="--1" type="data" format="fastq" label="Assembly input first mate reads"/>
+                            <param name="mate_2" argument="--2" type="data" format="fastq" label="Assembly input second mate reads"/>
                             <expand macro="insert_size"/>
                         </repeat>
                     </when>
@@ -157,13 +157,13 @@ valet.py
                     </param>
                     <when value="--fasta">
                         <repeat name="paired_collection_reads" title="Mate paired read collections">
-                            <param name="input" format="fasta" type="data_collection" collection_type="paired" label="Assembly input reads" />
+                            <param name="input" format="fasta" type="data_collection" collection_type="paired" label="Assembly input reads"/>
                             <expand macro="insert_size"/>
                         </repeat>
                     </when>
                     <when value="--fastq">
                         <repeat name="paired_collection_reads" title="Mate paired read collections">
-                            <param name="input" format="fastq" type="data_collection" collection_type="paired" label="Assembly input reads" />
+                            <param name="input" format="fastq" type="data_collection" collection_type="paired" label="Assembly input reads"/>
                             <expand macro="insert_size"/>
                         </repeat>
                     </when>
@@ -171,18 +171,18 @@ valet.py
                 <expand macro="orientation"/>
             </when>
         </conditional>
-        <param name="window_size" argument="--window-size" type="integer" min="0" value="501" label="Sliding window size when determining misassemblies" />
-        <param name="max_alignments" argument="--max-alignments" type="integer" min="0" value="10000" label="Bowtie2 parameter to set the max number of alignments" />
-        <param name="min_coverage" argument="--min-coverage" type="integer" min="0" value="0" label="Minimum average coverage to run misassembly detection" />
-        <param name="coverage_multiplier" argument="--coverage-multiplier" type="float" min="0" value="0" label="When binning by coverage, the new high = high + high * multiplier" />
-        <param name="min_suspicious" argument="--min-suspicious" type="integer" min="0" value="2" label="Minimum number of overlapping flagged miassemblies to mark region as suspicious" />
-        <param name="suspicious_flank_size" argument="--suspicious-flank-size" type="integer" min="0" value="2000" label="Mark region as suspicious if multiple signatures occur within this window size" />
-        <param name="min_contig_length" argument="--min-contig-length" type="integer" min="0" value="1000" label="Ignore contigs smaller than this length" />
-        <param name="ignore_ends" argument="--ignore-ends" type="integer" min="0" value="0" label="Ignore flagged regions within b bps from the ends of the contigs" />
-        <param name="breakpoint_bin" argument="--breakpoint-bin" type="integer" min="0" value="50" label="Bin sized used to find breakpoints" />
-        <param name="kmer" argument="--kmer" type="integer" min="0" value="15" label="Kmer length used for abundance estimation" />
-        <param name="coverage_file" argument="--coverage-file" type="data" format="tabular,txt" optional="true" label="Assembly created per-contig coverage file" />
-        <param name="orf_file" argument="--orf-file" type="data" format="gff,gtf" optional="true" label="File containing ORFs" />
+        <param argument="--window-size" type="integer" min="0" value="501" label="Sliding window size when determining misassemblies"/>
+        <param argument="--max-alignments" type="integer" min="0" value="10000" label="Bowtie2 parameter to set the max number of alignments"/>
+        <param argument="--min-coverage" type="integer" min="0" value="0" label="Minimum average coverage to run misassembly detection"/>
+        <param argument="--coverage-multiplier" type="float" min="0" value="0" label="When binning by coverage, the new high = high + high * multiplier"/>
+        <param argument="--min-suspicious" type="integer" min="0" value="2" label="Minimum number of overlapping flagged miassemblies to mark region as suspicious"/>
+        <param argument="--suspicious-flank-size" type="integer" min="0" value="2000" label="Mark region as suspicious if multiple signatures occur within this window size"/>
+        <param argument="--min-contig-length" type="integer" min="0" value="1000" label="Ignore contigs smaller than this length"/>
+        <param argument="--ignore-ends" type="integer" min="0" value="0" label="Ignore flagged regions within b bps from the ends of the contigs"/>
+        <param argument="--breakpoint-bin" type="integer" min="0" value="50" label="Bin sized used to find breakpoints"/>
+        <param argument="--kmer" type="integer" min="0" value="15" label="Kmer length used for abundance estimation"/>
+        <param argument="--coverage-file" type="data" format="tabular,txt" optional="true" label="Assembly created per-contig coverage file"/>
+        <param argument="--orf-file" type="data" format="gff,gtf" optional="true" label="File containing ORFs"/>
     </inputs>
     <outputs>
         <collection name="flagged" type="list" label="${tool.name} on ${on_string}: Flagged regions">
@@ -194,112 +194,112 @@ valet.py
         <collection name="summary" type="list" label="${tool.name} on ${on_string}: Summary">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)_summary.tsv" format="tabular" directory="output"/>
         </collection>
-        <data name="comparison_plot" format="pdf" from_work_dir="output/comparison_plots.pdf" label="${tool.name} on ${on_string}: Comparison plot" />
+        <data name="comparison_plot" format="pdf" from_work_dir="output/comparison_plots.pdf" label="${tool.name} on ${on_string}: Comparison plot"/>
     </outputs>
     <tests>
         <test>
-          <repeat name="assembly">
-              <param name="assembly_fasta" value="c_rudii_reference.fna"/>
-              <param name="assembly_names" value="reference"/>
-          </repeat>
-          <repeat name="assembly">
-              <param name="assembly_fasta" value="c_rudii_dup.fna"/>
-              <param name="assembly_names" value="duplication"/>
-          </repeat>
-          <repeat name="assembly">
-              <param name="assembly_fasta" value="c_rudii_relocation.fna"/>
-              <param name="assembly_names" value="relocation"/>
-          </repeat>
-          <repeat name="assembly">
-              <param name="assembly_fasta" value="c_rudii_reloc_dup.fna"/>
-              <param name="assembly_names" value="reloc-dup"/>
-          </repeat>
-          <conditional name="input_reads">
-              <param name="type" value="paired"/>
-              <conditional name="paired_input_reads">
-                  <param name="type" value="--fastq"/>
-                  <repeat name="paired_reads">
-                      <param name="mate_1" value="lib1.1.fastq" />
-                      <param name="mate_2" value="lib1.2.fastq" />
-                      <param name="minins" value="0"/>
-                      <param name="maxins" value="500" />
-                  </repeat>
-              </conditional>
-              <param name="orientation" value="fr" />
-          </conditional>
-          <param name="window_size" value="501"/>
-          <param name="max_alignments" value="10000"/>
-          <param name="min_coverage" value="0" />
-          <param name="coverage_multiplier" value="0"/>
-          <param name="min_suspicious" value="2" />
-          <param name="suspicious_flank_size" value="2000" />
-          <param name="min_contig_length" value="1000"/>
-          <param name="ignore_ends" value="0"/>
-          <param name="breakpoint_bin" value="50" />
-          <param name="kmer" value="15" />
-          <param name="coverage_file" value="carsonella_asm.cvg" />
-          <output_collection name="flagged" type="list">
-              <element name="reference" ftype="bed" file="flagged_reference.bed"/>
-              <element name="duplication" ftype="bed" file="flagged_duplication.bed"/>
-              <element name="relocation" ftype="bed" file="flagged_relocation.bed"/>
-              <element name="reloc-dup" ftype="bed" file="flagged_reloc-dup.bed"/>
-          </output_collection>
-          <output_collection name="suspicious" type="list">
-              <element name="reference" ftype="bed" file="suspicious_reference.bed"/>
-              <element name="duplication" ftype="bed" file="suspicious_duplication.bed"/>
-              <element name="relocation" ftype="bed" file="suspicious_relocation.bed"/>
-              <element name="reloc-dup" ftype="bed" file="suspicious_reloc-dup.bed"/>
-          </output_collection>
-          <output_collection name="summary" type="list">
-              <element name="reference" ftype="tabular" file="summary_reference.tabular"/>
-              <element name="duplication" ftype="tabular" file="summary_duplication.tabular"/>
-              <element name="relocation" ftype="tabular" file="summary_relocation.tabular"/>
-              <element name="reloc-dup" ftype="tabular" file="summary_reloc-dup.tabular"/>
-          </output_collection>
-          <output name="comparison_plot" file="test1_comparison_plot.pdf" compare="sim_size"/>
+            <repeat name="assembly">
+                <param name="assembly_fasta" value="c_rudii_reference.fna"/>
+                <param name="assembly_names" value="reference"/>
+            </repeat>
+            <repeat name="assembly">
+                <param name="assembly_fasta" value="c_rudii_dup.fna"/>
+                <param name="assembly_names" value="duplication"/>
+            </repeat>
+            <repeat name="assembly">
+                <param name="assembly_fasta" value="c_rudii_relocation.fna"/>
+                <param name="assembly_names" value="relocation"/>
+            </repeat>
+            <repeat name="assembly">
+                <param name="assembly_fasta" value="c_rudii_reloc_dup.fna"/>
+                <param name="assembly_names" value="reloc-dup"/>
+            </repeat>
+            <conditional name="input_reads">
+                <param name="type" value="paired"/>
+                <conditional name="paired_input_reads">
+                    <param name="type" value="--fastq"/>
+                    <repeat name="paired_reads">
+                        <param name="mate_1" value="lib1.1.fastq"/>
+                        <param name="mate_2" value="lib1.2.fastq"/>
+                        <param name="minins" value="0"/>
+                        <param name="maxins" value="500"/>
+                    </repeat>
+                </conditional>
+                <param name="orientation" value="fr"/>
+            </conditional>
+            <param name="window_size" value="501"/>
+            <param name="max_alignments" value="10000"/>
+            <param name="min_coverage" value="0"/>
+            <param name="coverage_multiplier" value="0"/>
+            <param name="min_suspicious" value="2"/>
+            <param name="suspicious_flank_size" value="2000"/>
+            <param name="min_contig_length" value="1000"/>
+            <param name="ignore_ends" value="0"/>
+            <param name="breakpoint_bin" value="50"/>
+            <param name="kmer" value="15"/>
+            <param name="coverage_file" value="carsonella_asm.cvg"/>
+            <output_collection name="flagged" type="list">
+                <element name="reference" ftype="bed" file="flagged_reference.bed"/>
+                <element name="duplication" ftype="bed" file="flagged_duplication.bed"/>
+                <element name="relocation" ftype="bed" file="flagged_relocation.bed"/>
+                <element name="reloc-dup" ftype="bed" file="flagged_reloc-dup.bed"/>
+            </output_collection>
+            <output_collection name="suspicious" type="list">
+                <element name="reference" ftype="bed" file="suspicious_reference.bed"/>
+                <element name="duplication" ftype="bed" file="suspicious_duplication.bed"/>
+                <element name="relocation" ftype="bed" file="suspicious_relocation.bed"/>
+                <element name="reloc-dup" ftype="bed" file="suspicious_reloc-dup.bed"/>
+            </output_collection>
+            <output_collection name="summary" type="list">
+                <element name="reference" ftype="tabular" file="summary_reference.tabular"/>
+                <element name="duplication" ftype="tabular" file="summary_duplication.tabular"/>
+                <element name="relocation" ftype="tabular" file="summary_relocation.tabular"/>
+                <element name="reloc-dup" ftype="tabular" file="summary_reloc-dup.tabular"/>
+            </output_collection>
+            <output name="comparison_plot" file="test1_comparison_plot.pdf" compare="sim_size"/>
         </test>
         <test>
-          <repeat name="assembly">
-              <param name="assembly_fasta" value="c_rudii_dup.fna"/>
-              <param name="assembly_names" value="duplication"/>
-          </repeat>
-          <conditional name="input_reads">
-              <param name="type" value="paired_collection"/>
-              <conditional name="paired_coll_input_reads">
-                  <param name="type" value="--fastq"/>
-                  <repeat name="paired_collection_reads">
-                      <param name="input">
-                          <collection type="paired">
-                              <element name="forward" value="lib1.1.fastq" ftype="fastq" />
-                              <element name="reverse" value="lib1.2.fastq" ftype="fastq" />
-                          </collection>
-                      </param>
-                      <param name="minins" value="0"/>
-                      <param name="maxins" value="500" />
-                  </repeat>
-              </conditional>
-              <param name="orientation" value="fr" />
-          </conditional>
-          <param name="window_size" value="501"/>
-          <param name="max_alignments" value="10000"/>
-          <param name="min_coverage" value="0" />
-          <param name="coverage_multiplier" value="0"/>
-          <param name="min_suspicious" value="2" />
-          <param name="suspicious_flank_size" value="2000" />
-          <param name="min_contig_length" value="1000"/>
-          <param name="ignore_ends" value="0"/>
-          <param name="breakpoint_bin" value="50" />
-          <param name="kmer" value="15" />
-          <output_collection name="flagged" type="list">
-              <element name="duplication" ftype="bed" file="flagged_duplication.bed"/>
-          </output_collection>
-          <output_collection name="suspicious" type="list">
-            <element name="duplication" ftype="bed" file="suspicious_duplication.bed"/>
-          </output_collection>
-          <output_collection name="summary" type="list">
-            <element name="duplication" ftype="tabular" file="summary_duplication.tabular"/>
-          </output_collection>
-          <output name="comparison_plot" file="test2_comparison_plot.pdf" compare="sim_size"/>
+            <repeat name="assembly">
+                <param name="assembly_fasta" value="c_rudii_dup.fna"/>
+                <param name="assembly_names" value="duplication"/>
+            </repeat>
+            <conditional name="input_reads">
+                <param name="type" value="paired_collection"/>
+                <conditional name="paired_coll_input_reads">
+                    <param name="type" value="--fastq"/>
+                    <repeat name="paired_collection_reads">
+                        <param name="input">
+                            <collection type="paired">
+                                <element name="forward" value="lib1.1.fastq" ftype="fastq"/>
+                                <element name="reverse" value="lib1.2.fastq" ftype="fastq"/>
+                            </collection>
+                        </param>
+                        <param name="minins" value="0"/>
+                        <param name="maxins" value="500"/>
+                    </repeat>
+                </conditional>
+                <param name="orientation" value="fr"/>
+            </conditional>
+            <param name="window_size" value="501"/>
+            <param name="max_alignments" value="10000"/>
+            <param name="min_coverage" value="0"/>
+            <param name="coverage_multiplier" value="0"/>
+            <param name="min_suspicious" value="2"/>
+            <param name="suspicious_flank_size" value="2000"/>
+            <param name="min_contig_length" value="1000"/>
+            <param name="ignore_ends" value="0"/>
+            <param name="breakpoint_bin" value="50"/>
+            <param name="kmer" value="15"/>
+            <output_collection name="flagged" type="list">
+                <element name="duplication" ftype="bed" file="flagged_duplication.bed"/>
+            </output_collection>
+            <output_collection name="suspicious" type="list">
+                <element name="duplication" ftype="bed" file="suspicious_duplication.bed"/>
+            </output_collection>
+            <output_collection name="summary" type="list">
+                <element name="duplication" ftype="tabular" file="summary_duplication.tabular"/>
+            </output_collection>
+            <output name="comparison_plot" file="test2_comparison_plot.pdf" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[

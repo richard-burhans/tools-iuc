@@ -9,7 +9,6 @@
         Rscript '$rscript' &&
         mv 'adjust_batch_diagnostic.pdf' '$diagnostic_plot_output' 
     ]]></command>
-    
     <configfiles>
         <configfile name="rscript"><![CDATA[
         
@@ -68,38 +67,35 @@
         write.table(result\$feature_abd_adj, file="$output", quote = FALSE, sep="\t", col.names=NA)
 
     ]]></configfile>
-        </configfiles>
- 
+    </configfiles>
     <inputs>
         <param name="input_data" type="data" format="tabular" label="Abundance (or features) file" help="TSV file where columns represent samples and rows include abundance values for features such as taxa, genes, or other biological entities across those samples."/>
         <param name="input_metadata" type="data" format="tabular" label="Metadata file" help="TSV file with sample metadata, where columns represent attributes and rows include attribute values for a sample"/>
-        <param argument="batch_input" type="data_column" data_ref="input_metadata" use_header_names="true"  label="Batch identifier column" help="Select the column in your metadata file that contains the batch identifier (e.g., studyID, batchID) used to group samples for batch correction."/>
-        <param argument="covariates_input" type="data_column" data_ref="input_metadata" use_header_names="true" multiple="true" optional="true" label="Covariates Column(s)" help="Select the column(s) in your metadata file that contain covariates (e.g., age, gender, or environmental factors) to be included in the batch correction process." />
+        <param argument="batch_input" type="data_column" data_ref="input_metadata" use_header_names="true" label="Batch identifier column" help="Select the column in your metadata file that contains the batch identifier (e.g., studyID, batchID) used to group samples for batch correction."/>
+        <param argument="covariates_input" type="data_column" data_ref="input_metadata" use_header_names="true" multiple="true" optional="true" label="Covariates Column(s)" help="Select the column(s) in your metadata file that contain covariates (e.g., age, gender, or environmental factors) to be included in the batch correction process."/>
         <section name="additional_options" title="Additional Options" expanded="true">
-            <param argument="zero_inflation" type="boolean" truevalue="zero_inflation TRUE" falsevalue="zero_inflation FALSE" checked="true" label="Run zero-inflated model"/>            
-            <param argument="pseudo_count" type="float" optional="true" label="Pseudo_count" help="Pseudo count to add feature_abd before the methods' log transformation. Default to the half of the minimal non-zero values in feature_abd" />
-            <param argument="conv" type="float" value="0.0001"  min="0.000001" max="0.001" optional="true" label="Convergence threshold" help="Convergence threshold for the method's iterative algorithm for shrinking batch effect parameters."/>
+            <param argument="zero_inflation" type="boolean" truevalue="zero_inflation TRUE" falsevalue="zero_inflation FALSE" checked="true" label="Run zero-inflated model"/>
+            <param argument="pseudo_count" type="float" optional="true" label="Pseudo_count" help="Pseudo count to add feature_abd before the methods' log transformation. Default to the half of the minimal non-zero values in feature_abd"/>
+            <param argument="conv" type="float" value="0.0001" min="0.000001" max="0.001" optional="true" label="Convergence threshold" help="Convergence threshold for the method's iterative algorithm for shrinking batch effect parameters."/>
             <param argument="maxit" type="float" optional="true" value="1000" label="Maximum number of iterations" help="Maximum number of iterations allowed for the method's iterative algorithm. Default to 1000"/>
-            <param argument="verbose" type="hidden" value="False" label="Print verbose information"/> 
-            <param argument="diagnostic_plot" type="boolean" truevalue="diagnostic_plot TRUE" falsevalue="diagnostic_plot FALSE" checked="true"  label="Generate diagnostic figure file"/>
-         </section>
+            <param argument="verbose" type="hidden" value="False" label="Print verbose information"/>
+            <param argument="diagnostic_plot" type="boolean" truevalue="diagnostic_plot TRUE" falsevalue="diagnostic_plot FALSE" checked="true" label="Generate diagnostic figure file"/>
+        </section>
     </inputs>
-
     <outputs>
-          <data name="output" format="tabular"  label="Adjusted abundance table"/>
-          <data name="diagnostic_plot_output" format="pdf" label="diagnostic figure file">
-              <filter>
+        <data name="output" format="tabular" label="Adjusted abundance table"/>
+        <data name="diagnostic_plot_output" format="pdf" label="diagnostic figure file">
+            <filter>
                    additional_options['diagnostic_plot'] is True
               </filter>
-          </data>
-   </outputs>
-
+        </data>
+    </outputs>
     <tests>
         <test expect_num_outputs="2">
             <param name="input_data" value="CRC_abd.tsv"/>
             <param name="input_metadata" value="CRC_meta.tsv"/>
-            <param name="batch_input" value="29"/> 
-            <param name="covariates_input" value="4"/> 
+            <param name="batch_input" value="29"/>
+            <param name="covariates_input" value="4"/>
             <section name="additional_options">
                 <param name="zero_inflation" value="True"/>
                 <param name="pseudo_count" value="3"/>
@@ -108,12 +104,12 @@
                 <param name="diagnostic_plot" value="True"/>
             </section>
             <output name="output" file="CRC_abd_corrected.tsv" ftype="tabular"/>
-            <output name="diagnostic_plot_output" file="diagnostic.pdf" ftype="pdf"/>          
+            <output name="diagnostic_plot_output" file="diagnostic.pdf" ftype="pdf"/>
         </test>
         <test expect_num_outputs="2">
             <param name="input_data" value="CRC_abd.tsv"/>
             <param name="input_metadata" value="CRC_meta.tsv"/>
-            <param name="batch_input" value="7"/> 
+            <param name="batch_input" value="7"/>
             <section name="additional_options">
                 <param name="zero_inflation" value="True"/>
                 <param name="pseudo_count" value="3"/>
@@ -122,13 +118,13 @@
                 <param name="diagnostic_plot" value="True"/>
             </section>
             <output name="output" file="CRC_abd_corrected2.tsv" ftype="tabular"/>
-            <output name="diagnostic_plot_output" file="diagnostic2.pdf" ftype="pdf"/>          
+            <output name="diagnostic_plot_output" file="diagnostic2.pdf" ftype="pdf"/>
         </test>
         <test expect_num_outputs="2">
             <param name="input_data" value="CRC_abd.tsv"/>
             <param name="input_metadata" value="CRC_meta.tsv"/>
             <param name="batch_input" value="29"/>
-            <param name="covariates_input" value="4,6"/> 
+            <param name="covariates_input" value="4,6"/>
             <section name="additional_options">
                 <param name="zero_inflation" value="True"/>
                 <param name="pseudo_count" value="3"/>
@@ -137,7 +133,7 @@
                 <param name="diagnostic_plot" value="True"/>
             </section>
             <output name="output" file="CRC_abd_corrected3.tsv" ftype="tabular"/>
-            <output name="diagnostic_plot_output" file="diagnostic3.pdf" ftype="pdf"/>          
+            <output name="diagnostic_plot_output" file="diagnostic3.pdf" ftype="pdf"/>
         </test>
     </tests>
     <help><![CDATA[ 

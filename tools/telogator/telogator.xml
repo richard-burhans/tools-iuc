@@ -107,12 +107,10 @@
     ]]></command>
     <inputs>
         <param name="input_reads" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz,bam" multiple="true" label="Input reads" help="Long-read sequencing data in FASTA, FASTQ or BAM format. Multiple files can be selected."/>
-
         <param name="read_type" type="select" label="Read type" help="Sequencing platform type">
             <option value="ont">Oxford Nanopore (ONT)</option>
             <option value="hifi" selected="true">PacBio HiFi</option>
         </param>
-
         <section name="basic_params" title="Basic Parameters" expanded="true">
             <param name="min_read_length" argument="-l" type="integer" value="4000" min="0" label="Minimum read length" help="Minimum read length in base pairs"/>
             <param name="min_canonical_hits" argument="-c" type="integer" value="8" min="0" label="Minimum canonical kmer hits" help="Minimum hits to tandem canonical kmer"/>
@@ -126,12 +124,10 @@
             <param name="downsample" argument="-d" type="integer" optional="true" value="" label="Downsample telomere reads" help="Downsample to N telomere reads (optional)"/>
             <param name="random_seed" argument="--rng" type="integer" optional="true" value="" label="Random seed" help="Random seed value for reproducibility (optional)"/>
         </section>
-
         <section name="reference_opts" title="Reference Options" expanded="false">
             <param name="custom_reference" argument="-t" type="data" format="fasta" optional="true" label="Custom reference FASTA" help="Optional custom telogator reference FASTA file. If not provided, built-in human T2T reference will be used."/>
             <param name="kmer_file" argument="-k" type="data" format="tsv" optional="true" label="Telomere kmers file" help="Optional telomere k-mers file. If omitted, a built-in human telomere k-mers file is used."/>
         </section>
-
         <conditional name="aligner">
             <param name="aligner_choice" type="select" label="Alignment tool" help="Select which aligner to use">
                 <option value="minimap2" selected="true">minimap2</option>
@@ -144,7 +140,6 @@
             </when>
             <when value="pbmm2"/>
         </conditional>
-
         <section name="advanced" title="Advanced Parameters" expanded="false">
             <section name="filtering" title="Filtering Thresholds" expanded="true">
                 <param argument="--filt-tel" type="integer" value="400" min="0" label="Minimum terminating telomere" help="Minimum terminating telomere length in bp"/>
@@ -153,7 +148,6 @@
                 <param argument="--collapse-hom" type="integer" value="1000" min="0" label="Collapse homologous alleles" help="Merge alleles within this distance in bp"/>
                 <param argument="--fast-aln" type="boolean" truevalue="--fast-aln" falsevalue="" checked="false" label="Use fast alignment" help="Use faster but less accurate pairwise alignment"/>
             </section>
-
             <section name="clustering" title="Hierarchical Clustering (TREECUT) Parameters" expanded="false">
                 <param argument="-t0" type="float" value="0.200" min="0" max="1" label="TVR clustering iteration 0" help="Threshold for TVR clustering in iteration 0"/>
                 <param argument="-t1" type="float" value="0.150" min="0" max="1" label="TVR clustering iteration 1" help="Threshold for TVR clustering in iteration 1"/>
@@ -162,7 +156,6 @@
                 <param argument="-ts" type="float" value="0.200" min="0" max="1" label="Subtel cluster refinement" help="Threshold for subtelomere cluster refinement"/>
                 <param argument="-th" type="float" value="0.050" min="0" max="1" label="Collapsing aligned alleles" help="Threshold for collapsing aligned alleles"/>
             </section>
-
             <section name="plotting" title="Plot Customization" expanded="false">
                 <param argument="-afa-x" type="integer" value="15000" min="0" label="All alleles plot X-axis max" help="Maximum X-axis value for all final alleles plot"/>
                 <param argument="-afa-t" type="integer" value="1000" min="0" label="All alleles plot tick steps" help="Tick step size for all final alleles plot"/>

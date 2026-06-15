@@ -1,5 +1,5 @@
 <tool id="ampvis2_alpha_diversity" name="ampvis2 alpha diversity" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -78,8 +78,8 @@
             </output>
         </test>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="measure" value="uniqueotus,shannon"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="measure" value="uniqueotus,shannon"/>
             <param name="richness" value="true"/>
             <param name="rarefy" value="500"/>
             <param name="group_by" value="Plant"/>

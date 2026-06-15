@@ -36,12 +36,12 @@
     </inputs>
     <outputs>
         <collection name="reports" type="list" label="Quality check result files on ${on_string}">
-            <discover_datasets pattern="__name__" ext="pdf" directory="out_pdf" />
+            <discover_datasets pattern="__name__" ext="pdf" directory="out_pdf"/>
         </collection>
     </outputs>
     <tests>
         <test>
-            <param name="matrix" value="count/qcheck/matrix.counts.matrix" ftype="tabular" />
+            <param name="matrix" value="count/qcheck/matrix.counts.matrix" ftype="tabular"/>
             <param name="samples" value="count/samples.txt" ftype="tabular"/>
             <output_collection name="reports">
                 <element name="input.matrix.CPM.log2.prcomp.principal_components.pdf" compare="sim_size" delta="100" file="count/qcheck/input.matrix.CPM.log2.prcomp.principal_components.pdf"/>
@@ -92,6 +92,5 @@ This tool will produce several PDF files, see the following page for more inform
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 ]]>
     </help>
-
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

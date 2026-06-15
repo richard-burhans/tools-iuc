@@ -83,7 +83,7 @@ $nascent_mode
 $adv.disable_trimming
 $adv.multi_mapping
 #if $adv.point_features
-    --ptf $adv.point_features
+    --ptf '$adv.point_features'
 #end if
 #if $adv.abundance_estimation:
     -A '$gene_abundance_estimation'

@@ -47,7 +47,7 @@
     </outputs>
     <tests>
         <test>
-            <param name="input_bam" value="covid19/PC00101P_sub.trimmed.sorted.bam" />
+            <param name="input_bam" value="covid19/PC00101P_sub.trimmed.sorted.bam"/>
             <output name="consensus" file="covid19/PC00101P_sub.fa" ftype="fasta" compare="contains" lines_diff="1"/>
         </test>
     </tests>
@@ -77,5 +77,5 @@
       - Use an ``N``, or
       - Use a ``-`` to represent the position
     ]]>    </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

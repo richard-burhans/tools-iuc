@@ -28,7 +28,7 @@
         @ERRORS@
     ]]></command>
     <inputs>
-        <expand macro="inputs" />
+        <expand macro="inputs"/>
         <conditional name="datatype">
             <param name="value" type="select" label="Type of data">
                 <option value="nucleotide">Nucleotide</option>
@@ -37,10 +37,10 @@
             </param>
             <when value="nucleotide"/>
             <when value="amino-acid">
-                <expand macro="substitution" argument="--baseline_model" />
+                <expand macro="substitution" argument="--baseline_model"/>
             </when>
             <when value="codon">
-                <expand macro="gencode" />
+                <expand macro="gencode"/>
             </when>
         </conditional>
         <expand macro="branches"/>
@@ -53,8 +53,8 @@
         </section>
     </inputs>
     <outputs>
-        <data name="bgm_output" format="hyphy_results.json" />
-        <data name="bgm_md_report" format="markdown" from_work_dir="bgm_stdout.md" label="BGM Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="bgm_output" format="hyphy_results.json"/>
+        <data name="bgm_md_report" format="markdown" from_work_dir="bgm_stdout.md" label="BGM Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -86,8 +86,8 @@
             </conditional>
             <output name="bgm_output">
                 <assert_contents>
-                     <has_text text='"samples":100'/>
-                     <has_text text="Probability that sites 1 and 2 are not conditionally independent"/>
+                    <has_text text="&quot;samples&quot;:100"/>
+                    <has_text text="Probability that sites 1 and 2 are not conditionally independent"/>
                 </assert_contents>
             </output>
             <output name="bgm_md_report">
@@ -105,14 +105,14 @@
             </conditional>
             <output name="bgm_output">
                 <assert_contents>
-                     <has_text text='"samples":100'/>
-                     <has_text text="Probability that sites 1 and 2 are not conditionally independent"/>
+                    <has_text text="&quot;samples&quot;:100"/>
+                    <has_text text="Probability that sites 1 and 2 are not conditionally independent"/>
                 </assert_contents>
             </output>
             <output name="bgm_md_report">
                 <assert_contents>
-                     <has_text text=">type => nucleotide"/>
-                     <has_text text="BGM analysis summary on 24 sites each with at least 1 substitutions"/>
+                    <has_text text="&gt;type =&gt; nucleotide"/>
+                    <has_text text="BGM analysis summary on 24 sites each with at least 1 substitutions"/>
                 </assert_contents>
             </output>
         </test>

@@ -4,9 +4,9 @@
         <import>macs2_macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         @home_dir@
         macs2 bdgcmp
@@ -20,9 +20,8 @@
             -o '${ outfile }'
     ]]></command>
     <inputs>
-        <param name="infile_treatment" type="data" format="bedgraph" label="Treatment bedGraph file" />
-        <param name="infile_control" type="data" format="bedgraph" label="Control bedGraph file" />
-
+        <param name="infile_treatment" type="data" format="bedgraph" label="Treatment bedGraph file"/>
+        <param name="infile_control" type="data" format="bedgraph" label="Control bedGraph file"/>
         <conditional name="bdgcmp_options">
             <param name="bdgcmp_options_selector" type="select" label="Method to use while calculating a score in any bin by comparing treatment value and control value" help="Available choices are: ppois, qpois, subtract, logFE, logLR, and slogLR. They represent Poisson Pvalue (-log10(pvalue) form) using control as lambda and treatment as observation, q-value through a BH process for poisson pvalues, subtraction from treatment, linear scale fold enrichment, log10 fold enrichment(need to set pseudocount), log10 likelihood between ChIP-enriched model and open chromatin model(need to set pseudocount), symmetric log10 likelihood between two ChIP-enrichment models, or maximum value between the two tracks. Default=ppois (--method).">
                 <option value="ppois" selected="true">Poisson pvalue (-log10) using control as lambda and treatment as observation (ppois)</option>
@@ -49,7 +48,7 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="outfile" format="bedgraph" label="${tool.name} on ${on_string}" />
+        <data name="outfile" format="bedgraph" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test>
@@ -70,5 +69,5 @@ This is **bdgcmp** utility from the MACS2_ Package. It is designed to deduct noi
 @citation@
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

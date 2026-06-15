@@ -315,7 +315,7 @@ lowthresh=$error_det_params.lowthresh
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 BBNorm downsamples a provided sequencing output, while paying attention to potential heteregeneities in sequencing depth obtained from the wet-lab workflow. The reads corresponding to regions with low coverage will be kept as is, whereas some of the reads contributing to an above-threshold coverage depth will be subsampled. The resulting data set is expected to be smaller in size, whereas the genome regions with low coverage levels will still be represented in the subsampled dataset. This provides a more uniform coverage depth against all genomic coordinates while the computational resources needed for subsequent steps such as assembly can be substantially reduced without losing coverage anywhere.
@@ -385,6 +385,6 @@ BBNorm is mainly intended for use in assembly pipelines out of short reads. It m
 * You want to do variant discovery. Reduction of sequencing depth might bias significance levels, or even obscure the existence of rare variants altogether.
 * The sequencing platform has a very high error rate (ex: ONT) that might mislead this algorithm.
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

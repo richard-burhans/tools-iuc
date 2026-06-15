@@ -20,23 +20,23 @@
     <inputs>
         <param name="packaged_data" type="select" label="Annotation data package to load">
             <options from_data_table="packaged_annotation_data">
-                <column name="name" index="6" />
-                <column name="value" index="5" />
-                <column name="path" index="7" />
-                <column name="dbkey" index="1" />
-                <filter type="unique_value" column="value" />
-                <filter type="sort_by" column="name" />
-                <validator type="no_options" message="No annotation paackage available" />
+                <column name="name" index="6"/>
+                <column name="value" index="5"/>
+                <column name="path" index="7"/>
+                <column name="dbkey" index="1"/>
+                <filter type="unique_value" column="value"/>
+                <filter type="sort_by" column="name"/>
+                <validator type="no_options" message="No annotation paackage available"/>
             </options>
         </param>
         <param name="annotation" type="select" multiple="true" optional="false" label="Packaged annotations to load into collection">
             <options from_data_table="packaged_annotation_data">
-                <column name="name" index="2" />
-                <column name="value" index="3" />
-                <column name="format" index="4" />
-                <column name="package_id" index="5" />
-                <filter type="param_value" ref="packaged_data" column="package_id" />
-                <validator type="no_options" message="No annotation data available" />
+                <column name="name" index="2"/>
+                <column name="value" index="3"/>
+                <column name="format" index="4"/>
+                <column name="package_id" index="5"/>
+                <filter type="param_value" ref="packaged_data" column="package_id"/>
+                <validator type="no_options" message="No annotation data available"/>
             </options>
         </param>
         <param name="retrieve_meta" type="select" label="Retrieve annotation sources metadata as separate dataset?">
@@ -47,79 +47,79 @@
     </inputs>
     <outputs>
         <collection name="list_output" type="list" label="Output List">
-            <discover_datasets from_provided_metadata="true" visible="false" />
+            <discover_datasets from_provided_metadata="true" visible="false"/>
         </collection>
         <data name="meta_out" format="tabular" label="Loaded annotations metadata" from_work_dir="meta.out">
             <filter>bool(str(retrieve_meta))</filter>
             <change_format>
-                <when input="retrieve_meta" value="yaml" format="yaml" />
+                <when input="retrieve_meta" value="yaml" format="yaml"/>
             </change_format>
         </data>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16" />
-            <param name="annotation" value="hotspots.data.test" />
+            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16"/>
+            <param name="annotation" value="hotspots.data.test"/>
             <output_collection name="list_output" type="list" count="1">
                 <element name="hotspots.data.test" ftype="bed" file="test-annotation-data/hotspots.data.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
             </output_collection>
         </test>
         <test expect_num_outputs="1">
-            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16" />
-            <param name="annotation" value="hotspots.data.test,civic.variants.test" />
+            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16"/>
+            <param name="annotation" value="hotspots.data.test,civic.variants.test"/>
             <output_collection name="list_output" type="list" count="2">
                 <element name="hotspots.data.test" ftype="bed" file="test-annotation-data/hotspots.data.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
                 <element name="civic.variants.test" ftype="bed" file="test-annotation-data/civic.variants.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
             </output_collection>
         </test>
         <test expect_num_outputs="2">
-            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16" />
-            <param name="annotation" value="hotspots.data.test,civic.variants.test" />
-            <param name="retrieve_meta" value="yaml" />
+            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16"/>
+            <param name="annotation" value="hotspots.data.test,civic.variants.test"/>
+            <param name="retrieve_meta" value="yaml"/>
             <output_collection name="list_output" type="list" count="2">
                 <element name="hotspots.data.test" ftype="bed" file="test-annotation-data/hotspots.data.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
                 <element name="civic.variants.test" ftype="bed" file="test-annotation-data/civic.variants.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
             </output_collection>
-            <output name="meta_out" ftype="yaml" file="test-annotation-data/meta.yml" />
+            <output name="meta_out" ftype="yaml" file="test-annotation-data/meta.yml"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16" />
-            <param name="annotation" value="hotspots.data.test,civic.variants.test" />
-            <param name="retrieve_meta" value="tab" />
+            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16"/>
+            <param name="annotation" value="hotspots.data.test,civic.variants.test"/>
+            <param name="retrieve_meta" value="tab"/>
             <output_collection name="list_output" type="list" count="2">
                 <element name="hotspots.data.test" ftype="bed" file="test-annotation-data/hotspots.data.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
                 <element name="civic.variants.test" ftype="bed" file="test-annotation-data/civic.variants.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
             </output_collection>
             <output name="meta_out" ftype="tabular" file="anno-version.tsv"/>
         </test>
         <test expect_num_outputs="2">
-            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16" />
-            <param name="annotation" value="civic.variants.test" />
-            <param name="retrieve_meta" value="tab" />
+            <param name="packaged_data" value="Cancer_variant_data__hg19__1__2021-12-16"/>
+            <param name="annotation" value="civic.variants.test"/>
+            <param name="retrieve_meta" value="tab"/>
             <output_collection name="list_output" type="list" count="1">
                 <element name="civic.variants.test" ftype="bed" file="test-annotation-data/civic.variants.test">
-                    <metadata name="dbkey" value="hg19" />
+                    <metadata name="dbkey" value="hg19"/>
                 </element>
             </output_collection>
             <output name="meta_out" ftype="tabular">
                 <assert_contents>
-                    <has_n_lines n="2" />
-                    <has_line line="Annotation&#009;Version" />
-                    <has_line line="CIViC variants&#009;01-Feb-2019" />
+                    <has_n_lines n="2"/>
+                    <has_line line="Annotation&#9;Version"/>
+                    <has_line line="CIViC variants&#9;01-Feb-2019"/>
                 </assert_contents>
             </output>
         </test>

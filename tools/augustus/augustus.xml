@@ -7,8 +7,8 @@
         <xref type="bio.tools">augustus</xref>
     </xrefs>
     <expand macro="requirements"/>
-    <command detect_errors="aggressive">
-<![CDATA[
+    <command detect_errors="aggressive"><![CDATA[
+
         #if $model.augustus_mode == 'history'
 
             ## Using an augustus model from history, we need to unzip it and let augustus find it
@@ -61,31 +61,19 @@
         #if 'protein' in str($outputs).split(',') or 'codingseq' in str($outputs).split(','):
             | python $__tool_directory__/extract_features.py
                 #if 'protein' in str($outputs).split(','):
-                    --protein $protein_output
+                    --protein '$protein_output'
                 #end if
                 #if 'codingseq' in str($outputs).split(','):
-                    --codingseq $codingseq_output
+                    --codingseq '$codingseq_output'
                 #end if
         #end if
-]]>
-    </command>
+
+    ]]></command>
     <inputs>
         <param name="input_genome" type="data" format="fasta,fasta.gz" label="Genome Sequence"/>
-        <param argument="--noInFrameStop" type="boolean"
-            label="Don't report transcripts with in-frame stop codons"
-            truevalue="--noInFrameStop=true" falsevalue="--noInFrameStop=false" checked="false"
-            help="Otherwise, intron-spanning stop codons could occur." />
-        <param type="boolean" argument="--singlestrand"
-            label="Predict genes independently on each strand"
-            help="This allows overlapping genes on opposite strands."
-            truevalue="--singlestrand=true" falsevalue="--singlestrand=false" checked="false" />
-
-        <param name="utr" type="boolean" argument="--UTR"
-            label="Predict the untranslated regions in addition to the coding sequence"
-            truevalue="--UTR=on" falsevalue="--UTR=off" checked="false"
-            help="This currently works only for human, galdieria, toxoplasma and caenorhabditis." />
-
-
+        <param argument="--noInFrameStop" type="boolean" label="Don't report transcripts with in-frame stop codons" truevalue="--noInFrameStop=true" falsevalue="--noInFrameStop=false" checked="false" help="Otherwise, intron-spanning stop codons could occur."/>
+        <param type="boolean" argument="--singlestrand" label="Predict genes independently on each strand" help="This allows overlapping genes on opposite strands." truevalue="--singlestrand=true" falsevalue="--singlestrand=false" checked="false"/>
+        <param name="utr" type="boolean" argument="--UTR" label="Predict the untranslated regions in addition to the coding sequence" truevalue="--UTR=on" falsevalue="--UTR=off" checked="false" help="This currently works only for human, galdieria, toxoplasma and caenorhabditis."/>
         <conditional name="model">
             <param name="augustus_mode" type="select" label="Trainingset">
                 <option value="builtin">Run Augustus with a predefined trainingset</option>
@@ -95,7 +83,7 @@
                 <param name="custom_model" argument="--species" type="data" format="augustus" label="Augustus model" help="Archive created with the 'Train Augustus' tool"/>
             </when>
             <when value="builtin">
-                <param name="organism" argument="--species" label="Model Organism" type="select" multiple="false" format="txt" help="Choose a specialised trainingset. If model name is different than species name it is shown in parentheses." >
+                <param name="organism" argument="--species" label="Model Organism" type="select" multiple="false" format="txt" help="Choose a specialised trainingset. If model name is different than species name it is shown in parentheses.">
                     <!-- If you update this list, please also update it in maker and busco tools (../maker/maker.xml and ../busco/busco.xml) -->
                     <!-- Current list for AUGUSTUS (3.5.0) for i in $(ls ~/miniforge3/envs/__busco@5.8.0/config/species/); do echo \<option value=\"$i\"\>$(echo $i | sed 's/_/ /g')\</option\>; done -->
                     <option value="adorsata">Apis dorsata (adorsata)</option>
@@ -267,15 +255,13 @@
                 </param>
             </when>
         </conditional>
-
-        <param type="boolean" argument="--softmasking" label="Softmasking" truevalue="1" falsevalue="0" checked="true" help="If this option is enabled, lowercase letters are considered as repeated regions." />
+        <param type="boolean" argument="--softmasking" label="Softmasking" truevalue="1" falsevalue="0" checked="true" help="If this option is enabled, lowercase letters are considered as repeated regions."/>
         <param type="select" argument="--strand" label="Predict genes on specific strands">
             <option value="both">both</option>
             <option value="forward">forward</option>
             <option value="backward">backward</option>
         </param>
-        <param argument="--genemodel" label="Gene Model" type="select"
-            help="Gene Model to predict, for more information please refer to the help.">
+        <param argument="--genemodel" label="Gene Model" type="select" help="Gene Model to predict, for more information please refer to the help.">
             <option value="complete">complete</option>
             <option value="partial">partial</option>
             <option value="intronless">intronless</option>
@@ -288,29 +274,23 @@
                 <option value="T">Yes</option>
             </param>
             <when value="T">
-                <param argument="--hintsfile" label="Select hints file from history" type="data" format="gff"
-                    help="A file containing hints in gff format"/>
-                <param name="extrinsiccfg" argument="--extrinsicCfgFile" label="Select extrinsic configuration file from history" type="data" format="txt"
-                    help="A .cfg file listing hint sources and their boni and mali"/>
+                <param argument="--hintsfile" label="Select hints file from history" type="data" format="gff" help="A file containing hints in gff format"/>
+                <param name="extrinsiccfg" argument="--extrinsicCfgFile" label="Select extrinsic configuration file from history" type="data" format="txt" help="A .cfg file listing hint sources and their boni and mali"/>
             </when>
-            <when value="F">
-            </when>
-    	</conditional>
+            <when value="F"/>
+        </conditional>
         <conditional name="range">
             <param name="userange" label="Specify prediction sequence range?" type="select" display="radio">
                 <option value="F">No</option>
                 <option value="T">Yes</option>
             </param>
             <when value="T">
-                <param name="start" argument="--predictionStart" label="Starting position" type="integer" value=""
-                    help="The beginning of the search range"/>
-                <param name="stop" argument="--predictionEnd" label="Ending position" type="integer" value=""
-                    help="The end of the search range; must be greater than starting position"/>
+                <param name="start" argument="--predictionStart" label="Starting position" type="integer" value="" help="The beginning of the search range"/>
+                <param name="stop" argument="--predictionEnd" label="Ending position" type="integer" value="" help="The end of the search range; must be greater than starting position"/>
             </when>
-            <when value="F">
-            </when>
+            <when value="F"/>
         </conditional>
-        <param name="gff" argument="--gff3" type="boolean" label="GFF formated output" help="Standard output is GTF." truevalue="--gff3=on" falsevalue="--gff3=off" checked="false" />
+        <param name="gff" argument="--gff3" type="boolean" label="GFF formated output" help="Standard output is GTF." truevalue="--gff3=on" falsevalue="--gff3=off" checked="false"/>
         <param name="outputs" type="select" optional="true" multiple="true" label="Output options">
             <option value="protein" selected="true">predicted protein sequences (--protein)</option>
             <option value="codingseq" selected="true">coding sequence as comment in the output file (--codingseq)</option>
@@ -323,7 +303,7 @@
     <outputs>
         <data format="gtf" name="output" label="${tool.name} on ${on_string}: GTF/GFF">
             <change_format>
-                <when input="gff" value="--gff3=on" format="gff3" />
+                <when input="gff" value="--gff3=on" format="gff3"/>
             </change_format>
         </data>
         <data format="fasta" name="protein_output" label="${tool.name} on ${on_string}: Protein sequence">
@@ -335,93 +315,91 @@
     </outputs>
     <tests>
         <test expect_num_outputs="3">
-            <param name="input_genome" value="human_augustus.fa.gz" ftype="fasta.gz" />
+            <param name="input_genome" value="human_augustus.fa.gz" ftype="fasta.gz"/>
             <conditional name="model">
-                <param name="organism" value="human" />
+                <param name="organism" value="human"/>
             </conditional>
-            <param name="utr" value="True" />
+            <param name="utr" value="True"/>
             <param name="softmasking" value="False"/>
             <output name="output" file="human_augustus_utr-on.gtf" ftype="gtf" lines_diff="6"/>
         </test>
         <test expect_num_outputs="3">
-            <param name="input_genome" value="human_augustus.fa" ftype="fasta" />
+            <param name="input_genome" value="human_augustus.fa" ftype="fasta"/>
             <conditional name="model">
-                <param name="organism" value="human" />
+                <param name="organism" value="human"/>
             </conditional>
-            <param name="utr" value="True" />
-            <param name="gff" value="True" />
+            <param name="utr" value="True"/>
+            <param name="gff" value="True"/>
             <param name="softmasking" value="False"/>
             <output name="output" file="human_augustus_utr-on.gff" ftype="gff3" lines_diff="6"/>
         </test>
         <test expect_num_outputs="3">
-            <param name="input_genome" value="human_augustus.fa" ftype="fasta" />
+            <param name="input_genome" value="human_augustus.fa" ftype="fasta"/>
             <conditional name="model">
-                <param name="organism" value="human" />
+                <param name="organism" value="human"/>
             </conditional>
-            <param name="outputs" value="protein,codingseq,introns,cds,start,stop" />
+            <param name="outputs" value="protein,codingseq,introns,cds,start,stop"/>
             <param name="softmasking" value="False"/>
             <output name="output" file="human_augustus_protein_codingseq_introns_cds_main.gtf" ftype="gtf" lines_diff="6"/>
-            <output name="codingseq_output" file="human_augustus_protein_codingseq_introns_cds_codingseq.fasta" ftype="fasta" />
-            <output name="protein_output" file="human_augustus_protein_codingseq_introns_cds_protein.fasta" ftype="fasta" />
+            <output name="codingseq_output" file="human_augustus_protein_codingseq_introns_cds_codingseq.fasta" ftype="fasta"/>
+            <output name="protein_output" file="human_augustus_protein_codingseq_introns_cds_protein.fasta" ftype="fasta"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input_genome" value="chr2R.truncated.fa" ftype="fasta" />
+            <param name="input_genome" value="chr2R.truncated.fa" ftype="fasta"/>
             <conditional name="model">
-                <param name="organism" value="fly" />
+                <param name="organism" value="fly"/>
             </conditional>
             <conditional name="hints">
-                <param name="usehints" value="T" />
-                <param name="hintsfile" value="hints.truncated.adjusted.gff" />
-                <param name="extrinsiccfg" value="extrinsic.truncated.cfg" />
+                <param name="usehints" value="T"/>
+                <param name="hintsfile" value="hints.truncated.adjusted.gff"/>
+                <param name="extrinsiccfg" value="extrinsic.truncated.cfg"/>
             </conditional>
-            <param name="outputs" value_json="null" />
+            <param name="outputs" value_json="null"/>
             <param name="softmasking" value="False"/>
             <param name="outputs" value=""/>
             <output name="output" file="augustus.hints.output.gtf" ftype="gtf" lines_diff="12">
                 <assert_contents>
-                    <has_text_matching expression="chr2R\tAUGUSTUS\tgene\t7560\t9303\t0\.(7[8-9]|8[0-5])\t-\t.\tchr2R.g1" />
-                    <has_text_matching expression="chr2R\tAUGUSTUS\ttranscript\t7560\t9303\t0\.(7[8-9]|8[0-5])\t-\t.\tchr2R.g1.t1" />
+                    <has_text_matching expression="chr2R\tAUGUSTUS\tgene\t7560\t9303\t0\.(7[8-9]|8[0-5])\t-\t.\tchr2R.g1"/>
+                    <has_text_matching expression="chr2R\tAUGUSTUS\ttranscript\t7560\t9303\t0\.(7[8-9]|8[0-5])\t-\t.\tchr2R.g1.t1"/>
                 </assert_contents>
             </output>
-
         </test>
         <test expect_num_outputs="1">
-            <param name="input_genome" value="chr2R.truncated.fa" ftype="fasta" />
+            <param name="input_genome" value="chr2R.truncated.fa" ftype="fasta"/>
             <conditional name="model">
-                <param name="organism" value="fly" />
+                <param name="organism" value="fly"/>
             </conditional>
             <conditional name="hints">
-                <param name="usehints" value="T" />
-                <param name="hintsfile" value="hints.truncated.adjusted.gff" />
-                <param name="extrinsiccfg" value="extrinsic.truncated.cfg" />
+                <param name="usehints" value="T"/>
+                <param name="hintsfile" value="hints.truncated.adjusted.gff"/>
+                <param name="extrinsiccfg" value="extrinsic.truncated.cfg"/>
             </conditional>
             <conditional name="range">
-                <param name="userange" value="T" />
-                <param name="start" value="7000" />
-                <param name="stop" value="9000" />
+                <param name="userange" value="T"/>
+                <param name="start" value="7000"/>
+                <param name="stop" value="9000"/>
             </conditional>
-            <param name="outputs" value_json="null" />
+            <param name="outputs" value_json="null"/>
             <param name="softmasking" value="False"/>
-            <param name="outputs"  value_json="null"/>
+            <param name="outputs" value_json="null"/>
             <output name="output" file="augustus.hints_and_range.output.gtf" ftype="gtf" lines_diff="12">
                 <assert_contents>
-                    <has_text_matching expression="chr2R\tAUGUSTUS\tgene\t7560\t8931\t0.8[2-5]\t-\t.\tchr2R.g1" />
-                    <has_text_matching expression="chr2R\tAUGUSTUS\ttranscript\t7560\t8931\t0.8[2-5]\t-\t.\tchr2R.g1.t1" />
+                    <has_text_matching expression="chr2R\tAUGUSTUS\tgene\t7560\t8931\t0.8[2-5]\t-\t.\tchr2R.g1"/>
+                    <has_text_matching expression="chr2R\tAUGUSTUS\ttranscript\t7560\t8931\t0.8[2-5]\t-\t.\tchr2R.g1.t1"/>
                 </assert_contents>
             </output>
         </test>
         <!-- Test softmasking parameter-->
         <test expect_num_outputs="1">
-            <param name="input_genome" value="human_augustus.fa" ftype="fasta" />
+            <param name="input_genome" value="human_augustus.fa" ftype="fasta"/>
             <conditional name="model">
-                <param name="organism" value="human" />
+                <param name="organism" value="human"/>
             </conditional>
-            <param name="utr" value="True" />
+            <param name="utr" value="True"/>
             <param name="softmasking" value="True"/>
             <param name="outputs" value_json="null"/>
             <output name="output" file="human_augustus_utr-on_softmasking.gtf" ftype="gtf" lines_diff="6"/>
         </test>
-
     </tests>
     <help>
 <![CDATA[

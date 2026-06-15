@@ -141,9 +141,9 @@ plot_out <- gg_hm
         <expand macro="title"/>
         <!-- Advanced Options  -->
         <section name="adv" title="Advanced Options" expanded="false">
-            <expand macro="transform" />
-            <param name="cluster" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Enable data clustering" />
-            <param name="colorscheme" type="select" label="Heatmap colorscheme" >
+            <expand macro="transform"/>
+            <param name="cluster" type="boolean" truevalue="true" falsevalue="false" checked="false" label="Enable data clustering"/>
+            <param name="colorscheme" type="select" label="Heatmap colorscheme">
                 <option value="whrd" selected="true">White to red</option>
                 <option value="whblu">White to blue</option>
                 <option value="blwhre">Blue to white to red</option>
@@ -151,11 +151,11 @@ plot_out <- gg_hm
         </section>
         <!-- Output Options  -->
         <section name="out" title="Output Options" expanded="true">
-            <expand macro="dimensions" />
+            <expand macro="dimensions"/>
         </section>
     </inputs>
     <outputs>
-         <expand macro="additional_output" />
+        <expand macro="additional_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">

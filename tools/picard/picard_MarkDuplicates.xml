@@ -97,7 +97,7 @@
             <output name="outFile" file="picard_MarkDuplicates_test2.bam" ftype="bam" lines_diff="4"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -143,6 +143,6 @@ Examines aligned records in the supplied SAM or BAM dataset to locate duplicate 
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

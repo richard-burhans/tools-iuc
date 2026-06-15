@@ -1,5 +1,5 @@
 <tool id="gtdbtk_database_installer" name="GTDB-Tk Database Installer" tool_type="manage_data" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">226</token>
         <token name="@VERSION_SUFFIX@">1</token>
@@ -18,8 +18,8 @@ python '$__tool_directory__/gtdbtk_database_installer.py'
     ]]>
     </command>
     <inputs>
-	    <param name="meta" type="boolean" truevalue="--meta" falsevalue="" checked="false" label="Only store GTDBTK metadata in a dedicated data table. " />
-        <param name="test" type="hidden" value="" checked="false" label="Run a dry test run!" />
+        <param name="meta" type="boolean" truevalue="--meta" falsevalue="" checked="false" label="Only store GTDBTK metadata in a dedicated data table. "/>
+        <param name="test" type="hidden" value="" checked="false" label="Run a dry test run!"/>
         <param name="release" type="select" multiple="false" label="GTDB Release">
             <option value="202">202</option>
             <option value="207">207</option>
@@ -69,11 +69,11 @@ python '$__tool_directory__/gtdbtk_database_installer.py'
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This data manager downloads the DB required for GTDB-Tk tools such as 
 the `gtdbtk classify_wf`. The meta options allows downloading only the metadata for the 
 corresponding DB, which is used by tools like `gtdb_to_taxdump`.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">doi.org/10.1038/s41587-020-0501-8</citation>
         <citation type="doi">dx.doi.org/10.1038/nbt.4229</citation>

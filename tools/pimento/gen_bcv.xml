@@ -15,7 +15,7 @@
             <option value="R">Reverse</option>
             <option value="FR">Forward and reverse</option>
         </param>
-    </inputs>    
+    </inputs>
     <outputs>
         <data name="output" label="${tool.name} on ${on_string}: Base-conservation vector(s)" format="tsv" from_work_dir="sample_bcv.tsv"/>
     </outputs>
@@ -41,5 +41,5 @@
         conservation vector for input reads. Users can choose to perform this
         computation for either forward or reverse strands of the reads, or both.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

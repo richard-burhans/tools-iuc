@@ -266,9 +266,9 @@ $atomization
             <param name="output_type" value="v"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="1" />
+                        <param name="chrom" value="1"/>
                     </repeat>
                 </conditional>
             </section>

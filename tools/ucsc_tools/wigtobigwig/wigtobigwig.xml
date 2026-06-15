@@ -62,7 +62,7 @@
             </param>
             <when value="preset"/>
             <when value="full">
-                <param argument="-blockSize" type="integer" value="256" label="Items to bundle in r-tree" />
+                <param argument="-blockSize" type="integer" value="256" label="Items to bundle in r-tree"/>
                 <param argument="-itemsPerSlot" type="integer" value="1024" label="Data points bundled at lowest level"/>
                 <param argument="-clip" type="boolean" truevalue="-clip" falsevalue="" checked="True" label="Clip chromosome positions" help="Issue warning messages rather than dying if wig file contains items off end of chromosome."/>
                 <param argument="-unc" type="boolean" truevalue="-unc" falsevalue="" checked="False" label="Do not use compression"/>
@@ -92,8 +92,8 @@
         <test expect_num_outputs="1">
             <conditional name="hist_or_builtin">
                 <param name="genome_type_select" value="indexed"/>
-                <param name="input1" value="1.wig" dbkey="hg17" />
-                <param name="index" value="hg17" />
+                <param name="input1" value="1.wig" dbkey="hg17"/>
+                <param name="index" value="hg17"/>
             </conditional>
             <conditional name="settings">
                 <param name="settingsType" value="preset"/>

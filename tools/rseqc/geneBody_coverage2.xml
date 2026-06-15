@@ -3,43 +3,34 @@
     <macros>
         <import>rseqc_macros.xml</import>
     </macros>
-
     <expand macro="bio_tools"/>
-
-    <expand macro="requirements" />
-
-    <expand macro="stdio" />
-
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <version_command><![CDATA[geneBody_coverage2.py --version]]></version_command>
-
     <command><![CDATA[
         geneBody_coverage2.py -i '${input}' -r '${refgene}' -o output
         ]]>
     </command>
-
     <inputs>
-        <param name="input" type="data" label="Input bigwig file" format="bigwig" />
-        <expand macro="refgene_param" />
-        <expand macro="rscript_output_param" />
+        <param name="input" type="data" label="Input bigwig file" format="bigwig"/>
+        <expand macro="refgene_param"/>
+        <expand macro="rscript_output_param"/>
     </inputs>
-
     <outputs>
-        <expand macro="pdf_output_data" filename="output.geneBodyCoverage.pdf" />
-        <data name="outputtxt" format="txt" from_work_dir="output.geneBodyCoverage.txt" label="${tool.name} on ${on_string} (text)" />
-        <expand macro="rscript_output_data" filename="output.geneBodyCoverage_plot.r" />
+        <expand macro="pdf_output_data" filename="output.geneBodyCoverage.pdf"/>
+        <data name="outputtxt" format="txt" from_work_dir="output.geneBodyCoverage.txt" label="${tool.name} on ${on_string} (text)"/>
+        <expand macro="rscript_output_data" filename="output.geneBodyCoverage_plot.r"/>
     </outputs>
-
     <tests>
         <test expect_num_outputs="3">
-            <param name="input" value="pairend_strandspecific_51mer_hg19_chr1_1-100000.bigwig" />
+            <param name="input" value="pairend_strandspecific_51mer_hg19_chr1_1-100000.bigwig"/>
             <param name="refgene" value="hg19_RefSeq_chr1_1-100000.bed" ftype="bed12"/>
-            <param name="rscript_output" value="true" />
-            <output name="outputpdf" file="output.geneBodyCoverage2.curves.pdf" compare="sim_size" />
-            <output name="outputr" file="output.geneBodyCoverage2_r" />
-            <output name="outputtxt" file="output.geneBodyCoverage2.txt" />
+            <param name="rscript_output" value="true"/>
+            <output name="outputpdf" file="output.geneBodyCoverage2.curves.pdf" compare="sim_size"/>
+            <output name="outputr" file="output.geneBodyCoverage2_r"/>
+            <output name="outputtxt" file="output.geneBodyCoverage2.txt"/>
         </test>
     </tests>
-
     <help><![CDATA[
 geneBody_coverage2.py
 +++++++++++++++++++++
@@ -73,7 +64,5 @@ Example output:
 
 ]]>
     </help>
-
-    <expand macro="citations" />
-
+    <expand macro="citations"/>
 </tool>

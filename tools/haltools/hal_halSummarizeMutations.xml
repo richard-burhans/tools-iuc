@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         set -o pipefail; ## Sets the pipeline’s exit code to halSummarizeMutations’s on failure.
@@ -47,8 +47,8 @@
             <param name="input_hal" value="halTest.hal"/>
             <output name="output_file" ftype="tabular">
                 <assert_contents>
-                    <has_text text="GenomeName&#009;ParentName&#009;BranchLength"/>
-                    <has_line line="Total&#009;&#009;3&#009;15881&#009;5274&#009;0&#009;0&#009;0&#009;12929&#009;0&#009;0&#009;0&#009;0&#009;6&#009;1304&#009;0&#009;0&#009;0&#009;0&#009;28&#009;8827&#009;3&#009;879&#009;0"/>
+                    <has_text text="GenomeName&#9;ParentName&#9;BranchLength"/>
+                    <has_line line="Total&#9;&#9;3&#9;15881&#9;5274&#9;0&#9;0&#9;0&#9;12929&#9;0&#9;0&#9;0&#9;0&#9;6&#9;1304&#9;0&#9;0&#9;0&#9;0&#9;28&#9;8827&#9;3&#9;879&#9;0"/>
                     <has_n_lines n="8"/>
                 </assert_contents>
             </output>
@@ -61,9 +61,9 @@
             </conditional>
             <param name="justSubs" value="true"/>
             <output name="output_file" ftype="tabular">
-                 <assert_contents>
-                    <has_text text="GenomeName&#009;ParentName&#009;BranchLength"/>
-                    <has_line line="Total&#009;&#009;3&#009;17639&#009;5274&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0&#009;0"/>
+                <assert_contents>
+                    <has_text text="GenomeName&#9;ParentName&#9;BranchLength"/>
+                    <has_line line="Total&#9;&#9;3&#9;17639&#9;5274&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0&#9;0"/>
                     <has_n_lines n="9"/>
                 </assert_contents>
             </output>

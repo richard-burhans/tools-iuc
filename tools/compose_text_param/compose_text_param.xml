@@ -22,17 +22,17 @@
                         <sanitizer sanitize="false"/>
                     </param>
                 </when>
-                 <when value="integer">
+                <when value="integer">
                     <param name="component_value" value="" type="integer" label="Enter integer that should be part of the computed value"/>
                 </when>
-                 <when value="float">
+                <when value="float">
                     <param name="component_value" value="" type="float" label="Enter float that should be part of the computed value"/>
                 </when>
             </conditional>
         </repeat>
     </inputs>
     <outputs>
-        <output type="text" name="out1" from="output" />
+        <output type="text" name="out1" from="output"/>
     </outputs>
     <tests>
         <test>

@@ -103,7 +103,8 @@ echo 'pcr.seqs(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with position method -->
+        <test>
+            <!-- test with position method -->
             <param name="fasta" value="amazon.align_head" ftype="mothur.align"/>
             <param name="keepdots" value=""/>
             <param name="method" value="position"/>
@@ -115,7 +116,8 @@ echo 'pcr.seqs(
             <output name="pcr_fasta" md5="4f9c3a835bbba51c64fbf86c8a467d0e" ftype="mothur.align"/>
             <output name="scrap_fasta" md5="d41d8cd98f00b204e9800998ecf8427e" ftype="mothur.align"/>
         </test>
-        <test><!-- test with reference method -->
+        <test>
+            <!-- test with reference method -->
             <param name="fasta" value="amazon.align_head" ftype="mothur.align"/>
             <param name="keepdots" value="keepdots=false,"/>
             <param name="method" value="reference"/>
@@ -128,7 +130,8 @@ echo 'pcr.seqs(
             <output name="scrap_fasta" md5="d41d8cd98f00b204e9800998ecf8427e" ftype="mothur.align"/>
             <output name="name_out" md5="0c58174137c2ecabf7da9ab492ea46fc" ftype="mothur.names"/>
         </test>
-        <test><!-- test with oligos and all outputs -->
+        <test>
+            <!-- test with oligos and all outputs -->
             <param name="fasta" value="amazon.align_head" ftype="mothur.align"/>
             <param name="method" value="oligos"/>
             <param name="oligos" value="GQY1XT001.oligos" ftype="mothur.oligos"/>

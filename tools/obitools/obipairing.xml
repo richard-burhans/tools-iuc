@@ -43,7 +43,7 @@
         <param name="alignement_mode" type="select" label="Select a mode of alignement" optional="false">
             <option value="basic_mode" selected="true">Default</option>
             <option value="exact_mode">Run an exact alignment algorithm based</option>
-            <option value="fast_absolute">Compute absolute fast score</option> 
+            <option value="fast_absolute">Compute absolute fast score</option>
         </param>
         <expand macro="compress_bool_macro"/>
     </inputs>
@@ -105,6 +105,5 @@ Obipairing aligns the forward sequence record with the reverse complement of the
 
 ]]>
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

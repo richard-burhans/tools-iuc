@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="bax2bam" name="bax2bam" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>converts PacBio basecall format (bax.h5) into BAM</description>
     <macros>
@@ -6,10 +5,12 @@
         <token name="@VERSION_SUFFIX@">0</token>
     </macros>
     <edam_topics>
-        <edam_topic>topic_3168</edam_topic> <!-- Topic - Laboratory techniques - Sequencing -->
+        <edam_topic>topic_3168</edam_topic>
+        <!-- Topic - Laboratory techniques - Sequencing -->
     </edam_topics>
     <edam_operations>
-        <edam_operation>operation_3434</edam_operation> <!-- Operation - Conversion -->
+        <edam_operation>operation_3434</edam_operation>
+        <!-- Operation - Conversion -->
     </edam_operations>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">bax2bam</requirement>
@@ -70,7 +71,6 @@ $internal
     </outputs>
     <tests>
         <!-- test data source https://github.com/PacificBiosciences/PacBioTestData/tree/master/data/HdfSubreadSet/Analysis_Results/ -->
-
         <!-- #1 subread, default -->
         <test expect_num_outputs="2">
             <param name="files" value="set.3.bax.h5,set.2.bax.h5,set.1.bax.h5"/>

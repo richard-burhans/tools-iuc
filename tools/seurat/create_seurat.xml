@@ -293,9 +293,9 @@ seurat_obj[['$method.col_name']]<-PercentageFeatureSet(
                                 <option value="false" selected="true">No</option>
                                 <option value="true">Yes</option>
                             </param>
-                            <when value="false"></when>
+                            <when value="false"/>
                             <when value="true">
-                                <param name="citeseq_table" type="data" format ="tsv,tabular" label="CITE-Seq data to add"/>
+                                <param name="citeseq_table" type="data" format="tsv,tabular" label="CITE-Seq data to add"/>
                             </when>
                         </conditional>
                     </when>
@@ -306,9 +306,9 @@ seurat_obj[['$method.col_name']]<-PercentageFeatureSet(
                         <param argument="cell_centroids" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Load cell centroids" help=""/>
                         <param argument="molecule_coordinates" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Load molecule coordinates" help=""/>
                         <param name="segmentations" type="select" label="Load either cell segmentations, nucleus segmentations or neither">
-                        <option value="cell">Cell</option>
-                        <option value="nucleus">Nucleus</option>
-                        <option value="" selected="true" >NULL</option>
+                            <option value="cell">Cell</option>
+                            <option value="nucleus">Nucleus</option>
+                            <option value="" selected="true">NULL</option>
                         </param>
                         <param argument="flip_xy" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Flip X and Y coordinates" help="Flip X and Y spatial coordinates (default: FALSE)"/>
                     </when>
@@ -324,8 +324,7 @@ seurat_obj[['$method.col_name']]<-PercentageFeatureSet(
                         <option value="false" selected="true">No</option>
                         <option value="true">Yes</option>
                     </param>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                     <when value="true">
                         <param argument="pattern" type="text" value="^MT-" label="Pattern/regex to match in gene names" help="e.g. the default '^MT-' matches gene names starting with 'MT-' which are human mitochondrial genes"/>
                     </when>
@@ -363,8 +362,7 @@ seurat_obj[['$method.col_name']]<-PercentageFeatureSet(
                         <option value="false" selected="true">No</option>
                         <option value="true">Yes</option>
                     </param>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                     <when value="true">
                         <param name="other_variable" type="text" value="" label="Enter name of cell metric to filter" help="e.g. percent.ribo or other metrics calculated using 'Add QC Metrics'"/>
                         <param name="minimum" type="float" optional="true" value="" label="Minimum"/>
@@ -533,7 +531,7 @@ seurat_obj[['$method.col_name']]<-PercentageFeatureSet(
                     <has_text_matching expression="subset"/>
                 </assert_contents>
             </output>
-            <output name="rds_out" ftype="rds" >
+            <output name="rds_out" ftype="rds">
                 <assert_contents>
                     <has_size size="335700" delta="33570"/>
                 </assert_contents>

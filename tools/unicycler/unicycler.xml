@@ -1,5 +1,5 @@
 <tool id="unicycler" name="Create assemblies with Unicycler" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="20.09">
-<description>pipeline for bacterial genomes</description>
+    <description>pipeline for bacterial genomes</description>
     <macros>
         <token name="@TOOL_VERSION@">0.5.1</token>
         <token name="@VERSION_SUFFIX@">0</token>
@@ -143,20 +143,16 @@ $lr_align.no_simple_bridges
                 <option value="none">None</option>
             </param>
             <when value="paired">
-                <param name="fastq_input1" argument="-1" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz"
-                    label="Select first set of reads" help="Specify dataset with forward reads"/>
-                <param name="fastq_input2" argument="-2" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz"
-                    label="Select second set of reads" help="Specify dataset with reverse reads"/>
+                <param name="fastq_input1" argument="-1" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" label="Select first set of reads" help="Specify dataset with forward reads"/>
+                <param name="fastq_input2" argument="-2" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" label="Select second set of reads" help="Specify dataset with reverse reads"/>
             </when>
             <when value="paired_collection">
-                <param name="fastq_input1" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" type="data_collection" collection_type="paired" label="Select a paired collection" />
+                <param name="fastq_input1" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" type="data_collection" collection_type="paired" label="Select a paired collection"/>
             </when>
             <when value="single">
-                <param name="fastq_input1" argument="-s" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz"
-                    label="Select unpaired reads" help="Specify dataset with unpaired reads"/>
+                <param name="fastq_input1" argument="-s" type="data" format="fastqsanger,fastqsanger.gz,fastq,fastq.gz" label="Select unpaired reads" help="Specify dataset with unpaired reads"/>
             </when>
-            <when value="none">
-            </when>
+            <when value="none"/>
         </conditional>
         <param argument="--long" optional="true" type="data" format="fastqsanger,fastqsanger.gz,fasta,fastq,fastq.gz" label="Select long reads. If there are no long reads, leave this empty"/>
         <param argument="--mode" type="select" label="Select Bridging mode">
@@ -167,43 +163,31 @@ $lr_align.no_simple_bridges
         <param argument="--min_fasta_length" type="integer" value="100" label="Exclude contigs from the FASTA file which are shorter than this length (bp)"/>
         <param argument="--linear_seqs" type="integer" value="0" label="The expected number of linear (i.e. non-circular) sequences in the assembly"/>
         <param argument="--min_anchor_seg_len" type="integer" min="0" optional="true" label="Unicycler will not use segments shorter than this as scaffolding anchors"/>
-        <section name="spades" expanded="False" title="SPAdes options"
-            help="Unicycler uses SPAdes to construct assembly graphs. You can modify some of the SPAdes settings here. Use this ONLY if you know what you are doing!">
-            <param argument="--min_kmer_frac" type="float" min="0" max="1" value="0.2"
-                label="Lowest k-mer size for SPAdes assembly, expressed as a fraction of the read length"/>
-            <param argument="--max_kmer_frac" type="float" min="0" max="1" value="0.95"
-                label="Highest k-mer size for SPAdes assembly, expressed as a fraction of the read length"/>
+        <section name="spades" expanded="False" title="SPAdes options" help="Unicycler uses SPAdes to construct assembly graphs. You can modify some of the SPAdes settings here. Use this ONLY if you know what you are doing!">
+            <param argument="--min_kmer_frac" type="float" min="0" max="1" value="0.2" label="Lowest k-mer size for SPAdes assembly, expressed as a fraction of the read length"/>
+            <param argument="--max_kmer_frac" type="float" min="0" max="1" value="0.95" label="Highest k-mer size for SPAdes assembly, expressed as a fraction of the read length"/>
             <param argument="--kmers" type="text" value="" optional="true" label="Exact k-mers to use for SPAdes assembly, comma-separated">
                 <validator type="regex" message="Kmers must be comma-separated odd integers (no repitition) without space in the range of 11 to 127 (inclusive)">^(\d*[13579],)*(\d*[13579])$</validator>
             </param>
             <param argument="--kmer_count" type="integer" min="0" value="10" label="Number of k-mer steps to use in SPAdes assembly"/>
-            <param argument="--depth_filter" type="float" min="0" max="1" value="0.25"
-                label="Filter out contigs lower than this fraction of the chromosomal depth" help="It is done if does not result in graph dead ends"/>
-            <param argument="--largest_component" type="boolean" checked="false"
-                label="Only keep the largest connected component of the assembly graph"/>
+            <param argument="--depth_filter" type="float" min="0" max="1" value="0.25" label="Filter out contigs lower than this fraction of the chromosomal depth" help="It is done if does not result in graph dead ends"/>
+            <param argument="--largest_component" type="boolean" checked="false" label="Only keep the largest connected component of the assembly graph"/>
         </section>
-        <section name="rotation" expanded="false" title="Rotation options"
-            help="These options control the rotation of completed circular sequence near the end of the Unicycler pipeline. Use this ONLY if you know what you are doing!">
-            <param argument="--no_rotate" type="boolean" checked="false" truevalue="--no_rotate" falsevalue=""
-                label="Do not rotate completed replicons to start at a standard gene." help="Unicycler uses TBLASTN to search for dnaA or repA alleles in each completed replicon. If one is found, the sequence is rotated and/or flipped so that it begins with that gene encoded on the forward strand. This provides consistently oriented assemblies and reduces the risk that a gene will be split across the start and end of the sequence."/>
-            <param argument="--start_genes" optional="true" type="data" format="fasta" label="FASTA file of genes for start point of rotated replicons" />
+        <section name="rotation" expanded="false" title="Rotation options" help="These options control the rotation of completed circular sequence near the end of the Unicycler pipeline. Use this ONLY if you know what you are doing!">
+            <param argument="--no_rotate" type="boolean" checked="false" truevalue="--no_rotate" falsevalue="" label="Do not rotate completed replicons to start at a standard gene." help="Unicycler uses TBLASTN to search for dnaA or repA alleles in each completed replicon. If one is found, the sequence is rotated and/or flipped so that it begins with that gene encoded on the forward strand. This provides consistently oriented assemblies and reduces the risk that a gene will be split across the start and end of the sequence."/>
+            <param argument="--start_genes" optional="true" type="data" format="fasta" label="FASTA file of genes for start point of rotated replicons"/>
             <param argument="--start_gene_id" type="float" min="0" max="100" value="90" label="The minimum required BLAST percent identity for a start gene search"/>
             <param argument="--start_gene_cov" type="float" min="0" max="100" value="95" label="The minimum required BLAST percent coverage for a start gene search"/>
         </section>
-        <section name="graph_clean" expanded="false" title="Graph cleaning options"
-            help="These options control the removal of small leftover sequences after bridging is complete.">
-            <param argument="--min_component_size" type="integer" min="0" value="1000"
-                label="Unbridged graph components smaller than this size will be removed from the final graph" />
-            <param argument="--min_dead_end_size" type="integer" min="0" value="1000"
-                label="Graph dead ends smaller than this size will be removed from the final graph"/>
+        <section name="graph_clean" expanded="false" title="Graph cleaning options" help="These options control the removal of small leftover sequences after bridging is complete.">
+            <param argument="--min_component_size" type="integer" min="0" value="1000" label="Unbridged graph components smaller than this size will be removed from the final graph"/>
+            <param argument="--min_dead_end_size" type="integer" min="0" value="1000" label="Graph dead ends smaller than this size will be removed from the final graph"/>
         </section>
         <section name="lr_align" expanded="false" title="Long read alignment parameters" help="These options control the alignment of long reads to the assembly graph.">
-            <param argument="--contamination" optional="true" type="data" format="fasta"
-                label="FASTA file of known contamination in long reads, e.g. lambda, phiXm or puc18 spike-ins." />
+            <param argument="--contamination" optional="true" type="data" format="fasta" label="FASTA file of known contamination in long reads, e.g. lambda, phiXm or puc18 spike-ins."/>
             <param argument="--scores" type="text" value="3,-6,-5,-2" label="Comma-delimited string of alignment scores: match, mismatch, gap open, gap extend"/>
-            <param argument="--low_score" optional="true" type="integer" value=""
-                label="Score threshold - alignments below this are considered poor" help="default = set automatically"/>
-            <param argument="--no_simple_bridges" type="boolean" truevalue="--no_simple_bridges" falsevalue="" checked="false" label="Simple long-read bridging" help="Default: No" />
+            <param argument="--low_score" optional="true" type="integer" value="" label="Score threshold - alignments below this are considered poor" help="default = set automatically"/>
+            <param argument="--no_simple_bridges" type="boolean" truevalue="--no_simple_bridges" falsevalue="" checked="false" label="Simple long-read bridging" help="Default: No"/>
         </section>
         <param argument="--keep" type="select" label="Outputs to keep" help="Level of file retention. Default: 1">
             <option value="0">0: only keep final files</option>
@@ -220,7 +204,7 @@ $lr_align.no_simple_bridges
         </repeat>
     </inputs>
     <outputs>
-        <data name="assembly_graph" format="gfa1" from_work_dir="assembly.gfa" label="${tool.name} on ${on_string}: Final Assembly Graph" />
+        <data name="assembly_graph" format="gfa1" from_work_dir="assembly.gfa" label="${tool.name} on ${on_string}: Final Assembly Graph"/>
         <data name="assembly" format="fasta" from_work_dir="assembly.fasta" label="${tool.name} on ${on_string}: Final Assembly"/>
         <collection name="spades_collection" type="list" label="${tool.name} on ${on_string}: SPAdes graphs">
             <discover_datasets pattern="(?P&lt;designation&gt;.*)\.gfa" format="gfa1" directory="spades_graphs"/>
@@ -233,11 +217,11 @@ $lr_align.no_simple_bridges
     <tests>
         <test expect_num_outputs="2">
             <conditional name="paired_unpaired">
-                <param name="fastq_input_selector" value="paired" />
-                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger" />
-                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger" />
+                <param name="fastq_input_selector" value="paired"/>
+                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger"/>
             </conditional>
-            <param name="mode" value="normal" />
+            <param name="mode" value="normal"/>
             <param name="min_fasta_length" value="100"/>
             <param name="linear_seqs" value="0"/>
             <section name="spades">
@@ -266,7 +250,7 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
         </test>
@@ -283,12 +267,12 @@ $lr_align.no_simple_bridges
         -->
         <test expect_num_outputs="2">
             <conditional name="paired_unpaired">
-                <param name="fastq_input_selector" value="paired" />
-                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger.gz" />
-                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger.gz" />
+                <param name="fastq_input_selector" value="paired"/>
+                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger.gz"/>
+                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger.gz"/>
             </conditional>
-            <param name="long" value="onp.fa" ftype="fasta" />
-            <param name="mode" value="normal" />
+            <param name="long" value="onp.fa" ftype="fasta"/>
+            <param name="mode" value="normal"/>
             <param name="min_fasta_length" value="100"/>
             <param name="linear_seqs" value="0"/>
             <section name="spades">
@@ -317,7 +301,7 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
         </test>
@@ -326,12 +310,12 @@ $lr_align.no_simple_bridges
                 <param name="fastq_input_selector" value="paired_collection"/>
                 <param name="fastq_input1">
                     <collection type="paired">
-                        <element name="forward" value="phix_f.fq.gz" ftype="fastqsanger" />
-                        <element name="reverse" value="phix_r.fq.gz" ftype="fastqsanger" />
+                        <element name="forward" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                        <element name="reverse" value="phix_r.fq.gz" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
-            <param name="mode" value="normal" />
+            <param name="mode" value="normal"/>
             <param name="min_fasta_length" value="100"/>
             <param name="linear_seqs" value="0"/>
             <section name="spades">
@@ -360,7 +344,7 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
         </test>
@@ -372,16 +356,16 @@ $lr_align.no_simple_bridges
             <section name="spades">
                 <param name="kmers" value="21,23"/>
             </section>
-            <param name="long" value="only_long.fasta" ftype="fasta" />
+            <param name="long" value="only_long.fasta" ftype="fasta"/>
             <param name="keep" value="0"/>
             <output name="assembly_graph" ftype="gfa1">
                 <assert_contents>
-                    <has_text text="S" />
+                    <has_text text="S"/>
                 </assert_contents>
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">1" />
+                    <has_text text="&gt;1"/>
                 </assert_contents>
             </output>
         </test>
@@ -392,12 +376,12 @@ $lr_align.no_simple_bridges
                 <param name="fastq_input_selector" value="paired_collection"/>
                 <param name="fastq_input1">
                     <collection type="paired">
-                        <element name="forward" value="phix_f.fq.gz" ftype="fastqsanger" />
-                        <element name="reverse" value="phix_r.fq.gz" ftype="fastqsanger" />
+                        <element name="forward" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                        <element name="reverse" value="phix_r.fq.gz" ftype="fastqsanger"/>
                     </collection>
                 </param>
             </conditional>
-            <param name="long" value="only_long.fasta" ftype="fasta" />
+            <param name="long" value="only_long.fasta" ftype="fasta"/>
             <repeat name="reuse">
                 <param name="reuse_file" value="phix__spades_graph.gfa1"/>
                 <param name="reuse_step" value="002_depth_filter"/>
@@ -405,23 +389,23 @@ $lr_align.no_simple_bridges
             <param name="keep" value="0"/>
             <output name="assembly_graph" ftype="gfa1">
                 <assert_contents>
-                    <has_text text="S" />
+                    <has_text text="S"/>
                 </assert_contents>
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">1" />
+                    <has_text text="&gt;1"/>
                 </assert_contents>
             </output>
         </test>
         <!-- Test keep value = 1 -->
         <test expect_num_outputs="3">
             <conditional name="paired_unpaired">
-                <param name="fastq_input_selector" value="paired" />
-                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger" />
-                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger" />
+                <param name="fastq_input_selector" value="paired"/>
+                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger"/>
             </conditional>
-            <param name="mode" value="normal" />
+            <param name="mode" value="normal"/>
             <param name="keep" value="1"/>
             <output name="assembly_graph" ftype="gfa1">
                 <assert_contents>
@@ -430,7 +414,7 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
             <output_collection name="spades_collection" type="list" count="14">
@@ -444,12 +428,12 @@ $lr_align.no_simple_bridges
         <!-- Test keep value = 2 -->
         <test expect_num_outputs="4">
             <conditional name="paired_unpaired">
-                <param name="fastq_input_selector" value="paired" />
-                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger" />
-                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger" />
+                <param name="fastq_input_selector" value="paired"/>
+                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger"/>
             </conditional>
-            <param name="long" value="onp.fa" ftype="fasta" />
-            <param name="mode" value="normal" />
+            <param name="long" value="onp.fa" ftype="fasta"/>
+            <param name="mode" value="normal"/>
             <param name="keep" value="2"/>
             <output name="assembly_graph" ftype="gfa1">
                 <assert_contents>
@@ -458,7 +442,7 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
             <output_collection name="spades_collection" type="list" count="14">
@@ -506,12 +490,12 @@ $lr_align.no_simple_bridges
         <!-- Test no simple bridges option -->
         <test expect_num_outputs="2">
             <conditional name="paired_unpaired">
-                <param name="fastq_input_selector" value="paired" />
-                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger" />
-                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger" />
+                <param name="fastq_input_selector" value="paired"/>
+                <param name="fastq_input1" value="phix_f.fq.gz" ftype="fastqsanger"/>
+                <param name="fastq_input2" value="phix_r.fq.gz" ftype="fastqsanger"/>
             </conditional>
-            <param name="long" value="onp.fa" ftype="fasta" />
-            <param name="mode" value="normal" />
+            <param name="long" value="onp.fa" ftype="fasta"/>
+            <param name="mode" value="normal"/>
             <param name="keep" value="0"/>
             <section name="lr_align">
                 <param name="no_simple_bridges" value="true"/>
@@ -523,11 +507,11 @@ $lr_align.no_simple_bridges
             </output>
             <output name="assembly" ftype="fasta">
                 <assert_contents>
-                    <has_text text="length=5386" />
+                    <has_text text="length=5386"/>
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--no_simple_bridges" />
+                <has_text text="--no_simple_bridges"/>
             </assert_command>
         </test>
     </tests>

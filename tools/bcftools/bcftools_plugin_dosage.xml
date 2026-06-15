@@ -5,9 +5,9 @@
         <token name="@PLUGIN_ID@">dosage</token>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="aggressive"><![CDATA[
 @PREPARE_INPUT_FILE@
 #set $section = $sec_restrict
@@ -36,12 +36,12 @@ bcftools plugin @EXECUTABLE@
 ]]>
     </command>
     <inputs>
-        <expand macro="macro_input" />
+        <expand macro="macro_input"/>
         <section name="sec_restrict" expanded="false" title="Restrict to">
-            <expand macro="macro_region_restrict" />
-            <expand macro="macro_target_restrict" />
-            <expand macro="macro_include" />
-            <expand macro="macro_exclude" />
+            <expand macro="macro_region_restrict"/>
+            <expand macro="macro_target_restrict"/>
+            <expand macro="macro_include"/>
+            <expand macro="macro_exclude"/>
         </section>
         <section name="sec_plugin" expanded="true" title="Plugin Options">
             <param name="tags" type="text" value="" optional="true" label="VCF tag to determine the dosage from [PL,GL,GT]">
@@ -54,7 +54,7 @@ bcftools plugin @EXECUTABLE@
     </outputs>
     <tests>
         <test>
-            <param name="input_file" ftype="vcf" value="plugin1.vcf" />
+            <param name="input_file" ftype="vcf" value="plugin1.vcf"/>
             <output name="output_file">
                 <assert_contents>
                     <has_text_matching expression="#\[1]CHROM\t\[2]POS\t\[3]REF\t\[4]ALT\t\[5]A\t\[6]B"/>
@@ -73,5 +73,5 @@ bcftools plugin @EXECUTABLE@
 @EXPRESSIONS_HELP@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

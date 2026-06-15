@@ -46,14 +46,14 @@
         ]]>
     </command>
     <inputs>
-        <conditional name="input"> 
+        <conditional name="input">
             <param name="is_select" type="select" label="Check type of fastq read library">
                 <option value="single">Single reads</option>
                 <option value="pair" selected="true">Paired reads</option>
             </param>
             <when value="single">
                 <param name="samples" type="data_collection" collection_type="list" format="fastqsanger,fastqsanger.gz" label="Input single sample(s) read(s)"/>
-                </when>
+            </when>
             <when value="pair">
                 <param name="samples" type="data_collection" collection_type="list:paired" format="fastqsanger,fastqsanger.gz" label="Input paired sample(s) read(s) collection"/>
             </when>
@@ -147,7 +147,7 @@
             </conditional>
             <param name="metadata" value="metadata_single.csv" ftype="csv"/>
             <output_collection name="merged_samples_single" type="list" count="1">
-                    <element name="Test" value="Test.fastq.gz" ftype="fastq.gz" compare="sim_size"/>
+                <element name="Test" value="Test.fastq.gz" ftype="fastq.gz" compare="sim_size"/>
             </output_collection>
         </test>
         <test expect_num_outputs="1">
@@ -226,5 +226,5 @@
             month = oct,
             url = {https://github.com/SantaMcCloud/fastq-groupmerge}
         }</citation>
-    </citations> 
+    </citations>
 </tool>

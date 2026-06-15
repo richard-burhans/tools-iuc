@@ -10,12 +10,12 @@
     <command detect_errors="exit_code"><![CDATA[
 #if $input.selector == "single"
 #set ext=$input.single_input.datatype.file_ext
-    ln -s $input.single_input './input_read1.$ext' &&
+    ln -s '$input.single_input' './input_read1.$ext' &&
 #else if $input.selector == "paired"
 #set ext_1=$input.paired_input1.datatype.file_ext
 #set ext_2=$input.paired_input2.datatype.file_ext
-    ln -s $input.paired_input1 './input_read1.$ext_1' &&
-    ln -s $input.paired_input2 './input_read2.$ext_2' &&
+    ln -s '$input.paired_input1' './input_read1.$ext_1' &&
+    ln -s '$input.paired_input2' './input_read2.$ext_2' &&
 #end if
 #for $i, $s in enumerate($prev_output)
     #if $s
@@ -125,16 +125,15 @@ srst2
             </param>
             <when value="single">
                 <param name="single_input" type="data" format="@FAST_A_Q_FORMATS@" label="Single end read file(s) for analysing (may be gzipped)"/>
-                <expand macro="read_type_options" />  
+                <expand macro="read_type_options"/>
             </when>
             <when value="paired">
                 <param name="paired_input1" type="data" format="@FAST_A_Q_FORMATS@" label="Paired end read files for analysing (may be gzipped)"/>
-                <param name="paired_input2" type="data" format="@FAST_A_Q_FORMATS@" label="Paired end read files for analysing (may be gzipped)"/>                
-                <param argument="--merge_paired" type="boolean" truevalue="--merge_paired" falsevalue="" checked="false" label="Do you want to merge the data to get a single result" help="Important only if all the input read sets belong to a single sample"/> 
-                <expand macro="read_type_options" />
+                <param name="paired_input2" type="data" format="@FAST_A_Q_FORMATS@" label="Paired end read files for analysing (may be gzipped)"/>
+                <param argument="--merge_paired" type="boolean" truevalue="--merge_paired" falsevalue="" checked="false" label="Do you want to merge the data to get a single result" help="Important only if all the input read sets belong to a single sample"/>
+                <expand macro="read_type_options"/>
             </when>
-            <when value="only_compiling_previous_results">
-            </when>    
+            <when value="only_compiling_previous_results"/>
         </conditional>
         <conditional name="use_mlst_db">
             <param name="selector" type="select" label="Do you want to provide an MLST database of all allele sequences for the MLST scheme?">
@@ -144,26 +143,25 @@ srst2
             <when value="yes">
                 <param argument="--mlst_db" type="data" format="fasta" label="Fasta file of MLST alleles"/>
                 <param argument="--mlst_definitions" type="data" format="tabular" label="ST definitions for MLST scheme" help="This is the file that tells you the ST number that is assigned to known combinations of alleles. Column 1 is the ST, and subsequent columns are the loci that make up the scheme."/>
-                <param argument="--mlst_delimiter" type="text" value="-" label="Character(s) separating gene name from allele number in MLST database" help="E.g.'-', as in arcc-1">           
+                <param argument="--mlst_delimiter" type="text" value="-" label="Character(s) separating gene name from allele number in MLST database" help="E.g.'-', as in arcc-1">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="\" />
-                            <add value="-" />
-                            <add value="/" />
-                            <add value="+" />
-                            <add value="=" />
-                            <add value=" " />
-                            <add value="_" />    
+                            <add value="\"/>
+                            <add value="-"/>
+                            <add value="/"/>
+                            <add value="+"/>
+                            <add value="="/>
+                            <add value=" "/>
+                            <add value="_"/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[A-Za-z0-9 =_/+-]+</validator>
                 </param>
                 <param argument="--mlst_max_mismatch" type="integer" value="10" label="Maximum number of mismatches per read for MLST allele calling"/>
                 <param argument="--min_depth" type="integer" value="5" label="Minimum mean depth to flag as dubious allele call"/>
-                <param argument="--min_edge_depth" type="integer" value="2" label="Minimum edge depth to flag as dubious allele call"/>            
+                <param argument="--min_edge_depth" type="integer" value="2" label="Minimum edge depth to flag as dubious allele call"/>
             </when>
-            <when value="no">
-            </when>
+            <when value="no"/>
         </conditional>
         <conditional name="use_gene_db">
             <param name="selector" type="select" label="Do you want to use a Gene database(s)?">
@@ -175,10 +173,9 @@ srst2
                 <param argument="--no_gene_details" type="boolean" truevalue="" falsevalue="--no_gene_details" checked="false" label="Do you want reporting of gene typing?"/>
                 <param argument="--gene_max_mismatch" type="integer" value="10" label="Maximum number of mismatches per read for gene detection and allele calling"/>
                 <param argument="--min_coverage" type="integer" value="90" label="Minimum %coverage cutoff for gene reporting"/>
-                <param argument="--max_divergence" type="integer" value="10" label="Maximum %divergence cutoff for gene reporting"/>            
+                <param argument="--max_divergence" type="integer" value="10" label="Maximum %divergence cutoff for gene reporting"/>
             </when>
-            <when value="no">
-            </when>
+            <when value="no"/>
         </conditional>
         <param name="output_files_selector" type="select" label="Select all outputs you need" multiple="true">
             <option value="log">Save the log</option>
@@ -189,184 +186,183 @@ srst2
         </param>
         <param argument="--prob_err" type="float" min="0" max="1" value="0.01" label="Probability of sequencing error"/>
         <param argument="--truncation_score_tolerance" optional="true" type="float" label="% increase in score allowed to choose non-truncated allele"/>
-        <param argument="--stop_after" type="integer" optional="true" label="Stop mapping after this number of reads have been mapped" help="Leave empty to map all"/>       
+        <param argument="--stop_after" type="integer" optional="true" label="Stop mapping after this number of reads have been mapped" help="Leave empty to map all"/>
         <param argument="--max_unaligned_overlap" type="integer" value="10" label="Read discarded from alignment" help="if either of its ends has unaligned overlap with the reference that is longer than this value"/>
         <param argument="--mapq" type="integer" value="1" label="Samtools -q parameter (Minimum mapping quality)"/>
         <param argument="--baseq" type="integer" value="20" label="Samtools -Q parameter (Minimum base quality)"/>
         <param argument="--prev_output" type="data" format="tabular" multiple="true" optional="true" label="SRST2 results files to compile" help="Any new results from this run will also be incorporated"/>
     </inputs>
-    <outputs> 
+    <outputs>
         <data name="mlst_results" format="tabular" from_work_dir="output__mlst__mlst_db__results.txt" label="${tool.name} on ${on_string}: MLST Results">
             <filter>use_mlst_db['selector'] == "yes"</filter>
-        </data>  
-        <collection name="gene_typing" type="list" label="${tool.name} on ${on_string}: Gene typing results files" >
+        </data>
+        <collection name="gene_typing" type="list" label="${tool.name} on ${on_string}: Gene typing results files">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="geneTypingOutput" format="tabular"/>
             <filter>use_gene_db['selector'] == "yes" and use_gene_db['no_gene_details'] is True</filter>
-        </collection>         
-        <collection name="gene_typing_full" type="list" label="${tool.name} on ${on_string}: Full Gene typing results files" >
+        </collection>
+        <collection name="gene_typing_full" type="list" label="${tool.name} on ${on_string}: Full Gene typing results files">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="geneTypingOutputFull" format="tabular"/>
             <filter>use_gene_db['selector'] == "yes" and use_gene_db['no_gene_details'] is True</filter>
-        </collection>         
-        <data name="Compiled_gene_and_mlst_output" format="tabular" from_work_dir="output__compiledResults.txt" label="${tool.name} on ${on_string}: Compiled MLST and Gene databases Results">
-        </data>
+        </collection>
+        <data name="Compiled_gene_and_mlst_output" format="tabular" from_work_dir="output__compiledResults.txt" label="${tool.name} on ${on_string}: Compiled MLST and Gene databases Results"/>
         <data name="all_consensus" format="fasta" from_work_dir="output.all_consensus_alleles.fasta" label="${tool.name} on ${on_string}: All consensus Results">
             <filter>"report_all_consensus" in output_files_selector</filter>
-        </data>              
-        <collection name="new_consensus" type="list" label="${tool.name} on ${on_string}: New consensus Results" >
+        </data>
+        <collection name="new_consensus" type="list" label="${tool.name} on ${on_string}: New consensus Results">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="allelesOutput" format="pileup"/>
             <filter>"report_new_consensus" in output_files_selector</filter>
         </collection>
-        <collection name="scores_ofEachAllele" type="list" label="${tool.name} on ${on_string}: Scores for each allele in the database(s)" >
+        <collection name="scores_ofEachAllele" type="list" label="${tool.name} on ${on_string}: Scores for each allele in the database(s)">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="scoresOutput" format="tabular"/>
             <filter>"save_scores" in output_files_selector</filter>
         </collection>
-        <collection name="bowtie2_alignment_output" type="list" label="${tool.name} on ${on_string}: Bowtie2 alignment of reads to each input database" >
+        <collection name="bowtie2_alignment_output" type="list" label="${tool.name} on ${on_string}: Bowtie2 alignment of reads to each input database">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="bowtie2Alignments" format="bam"/>
-            <filter>input['selector'] == "single" or input['selector'] == "paired"</filter>        
+            <filter>input['selector'] == "single" or input['selector'] == "paired"</filter>
         </collection>
-        <collection name="samtools_pileup_alignment" type="list" label="${tool.name} on ${on_string}: Samtools pileup of the alignment to each input database" >
+        <collection name="samtools_pileup_alignment" type="list" label="${tool.name} on ${on_string}: Samtools pileup of the alignment to each input database">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="samtoolsPileup" format="pileup"/>
-            <filter>input['selector'] == "single" or input['selector'] == "paired"</filter>        
-        </collection>               
+            <filter>input['selector'] == "single" or input['selector'] == "paired"</filter>
+        </collection>
         <data name="log_output" format="tabular" from_work_dir="output.log" label="${tool.name} on ${on_string}: Log file">
             <filter>"log" in output_files_selector</filter>
-        </data>             
+        </data>
     </outputs>
     <tests>
-    <test expect_num_outputs="10">
-        <param name="prob_err" value="0.01"/>
-        <param name="max_unaligned_overlap" value="10"/>
-        <param name="mapq" value="1"/>
-        <param name="baseq" value="20"/>
-        <param name="output_files_selector" value="log,save_scores,report_new_consensus,report_all_consensus"/>
-        <conditional name="input">
-            <param name="selector" value="paired"/>
-            <param name="paired_input1" value="ERR024070_1_reduced_forward_reads.fastqsanger.gz"/>
-            <param name="paired_input2" value="ERR024070_2_reduced_reverse_reads.fastqsanger.gz"/>
-            <param name="merge_paired" value="false"/>
-            <param name="read_type" value="q"/>
-        </conditional>
-        <conditional name="use_mlst_db">
-            <param name="selector" value="yes"/>
-            <param name="mlst_db" value="Escherichia_coli1R.fasta"/>
-            <param name="mlst_definitions" value="profiles_csv"/>
-            <param name="mlst_delimiter" value="_"/>
-            <param name="mlst_max_mismatch" value="10"/>
-            <param name="min_depth" value="5"/>
-            <param name="min_edge_depth" value="2"/>
-        </conditional>
-        <conditional name="use_gene_db">
-            <param name="selector" value="yes"/>
-            <param name="gene_db" value="ARGannotR.fasta"/>
-            <param name="no_gene_details" value="true"/>
-            <param name="gene_max_mismatch" value="10"/>
-            <param name="min_coverage" value="90"/>
-            <param name="max_divergence" value="10"/>
-        </conditional>
-        <output name="mlst_results">
-            <assert_contents>
-                <has_text text="fumC"/>
-                <has_n_lines n="2"/>
-            </assert_contents>
-        </output>
-        <output_collection name="gene_typing" type="list">
-            <element name="output__genes__0-gene_db__results.txt">
+        <test expect_num_outputs="10">
+            <param name="prob_err" value="0.01"/>
+            <param name="max_unaligned_overlap" value="10"/>
+            <param name="mapq" value="1"/>
+            <param name="baseq" value="20"/>
+            <param name="output_files_selector" value="log,save_scores,report_new_consensus,report_all_consensus"/>
+            <conditional name="input">
+                <param name="selector" value="paired"/>
+                <param name="paired_input1" value="ERR024070_1_reduced_forward_reads.fastqsanger.gz"/>
+                <param name="paired_input2" value="ERR024070_2_reduced_reverse_reads.fastqsanger.gz"/>
+                <param name="merge_paired" value="false"/>
+                <param name="read_type" value="q"/>
+            </conditional>
+            <conditional name="use_mlst_db">
+                <param name="selector" value="yes"/>
+                <param name="mlst_db" value="Escherichia_coli1R.fasta"/>
+                <param name="mlst_definitions" value="profiles_csv"/>
+                <param name="mlst_delimiter" value="_"/>
+                <param name="mlst_max_mismatch" value="10"/>
+                <param name="min_depth" value="5"/>
+                <param name="min_edge_depth" value="2"/>
+            </conditional>
+            <conditional name="use_gene_db">
+                <param name="selector" value="yes"/>
+                <param name="gene_db" value="ARGannotR.fasta"/>
+                <param name="no_gene_details" value="true"/>
+                <param name="gene_max_mismatch" value="10"/>
+                <param name="min_coverage" value="90"/>
+                <param name="max_divergence" value="10"/>
+            </conditional>
+            <output name="mlst_results">
                 <assert_contents>
-                    <has_text text="AmpC1_Ecoli_Bla"/>
+                    <has_text text="fumC"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
-            </element>
-        </output_collection>
-        <output_collection name="gene_typing_full" type="list">
-            <element name="output__fullgenes__0-gene_db__results.txt">
+            </output>
+            <output_collection name="gene_typing" type="list">
+                <element name="output__genes__0-gene_db__results.txt">
+                    <assert_contents>
+                        <has_text text="AmpC1_Ecoli_Bla"/>
+                        <has_n_lines n="2"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+            <output_collection name="gene_typing_full" type="list">
+                <element name="output__fullgenes__0-gene_db__results.txt">
+                    <assert_contents>
+                        <has_text text="AmpC1_Ecoli_Bla"/>
+                        <has_n_lines n="2"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+            <output name="Compiled_gene_and_mlst_output">
                 <assert_contents>
-                    <has_text text="AmpC1_Ecoli_Bla"/>
+                    <has_text text="fumC"/>
                     <has_n_lines n="2"/>
                 </assert_contents>
-            </element>
-        </output_collection>
-        <output name="Compiled_gene_and_mlst_output">
-            <assert_contents>
-                <has_text text="fumC"/>
-                <has_n_lines n="2"/>
-            </assert_contents>
-        </output>
-        <output name="all_consensus">
-            <assert_contents>
-                <has_text text="49__AmpC1_Ecoli_Bla__AmpC1__1670"/>
-                <has_n_lines n="2"/>
-            </assert_contents>
-        </output>
-        <output_collection name="new_consensus" type="list" count="1">
-            <element name="49__AmpC1_Ecoli_Bla__AmpC1__1670.output__input.0-gene_db.pileup">
+            </output>
+            <output name="all_consensus">
                 <assert_contents>
                     <has_text text="49__AmpC1_Ecoli_Bla__AmpC1__1670"/>
-                    <has_n_lines n="1196"/>
+                    <has_n_lines n="2"/>
                 </assert_contents>
-            </element>
-        </output_collection>
-        <output_collection name="samtools_pileup_alignment" type="list" count="1">
-            <element name="output__input.0-gene_db.pileup">
+            </output>
+            <output_collection name="new_consensus" type="list" count="1">
+                <element name="49__AmpC1_Ecoli_Bla__AmpC1__1670.output__input.0-gene_db.pileup">
+                    <assert_contents>
+                        <has_text text="49__AmpC1_Ecoli_Bla__AmpC1__1670"/>
+                        <has_n_lines n="1196"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+            <output_collection name="samtools_pileup_alignment" type="list" count="1">
+                <element name="output__input.0-gene_db.pileup">
+                    <assert_contents>
+                        <has_text text="49__AmpC1_Ecoli_Bla__AmpC1__1670"/>
+                        <has_n_lines n="1196"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+            <output_collection name="bowtie2_alignment_output" type="list" count="1">
+                <element name="output__input.0-gene_db.sorted.bam">
+                    <assert_contents>
+                        <has_size value="18500" delta="1000"/>
+                    </assert_contents>
+                </element>
+            </output_collection>
+            <output name="log_output">
                 <assert_contents>
-                    <has_text text="49__AmpC1_Ecoli_Bla__AmpC1__1670"/>
-                    <has_n_lines n="1196"/>
+                    <has_text text="Building"/>
+                    <has_n_lines n="52"/>
                 </assert_contents>
-            </element>
-        </output_collection>
-        <output_collection name="bowtie2_alignment_output" type="list" count="1">
-            <element name="output__input.0-gene_db.sorted.bam">
+            </output>
+        </test>
+        <test expect_num_outputs="7">
+            <param name="prob_err" value="0.01"/>
+            <param name="max_unaligned_overlap" value="10"/>
+            <param name="mapq" value="1"/>
+            <param name="baseq" value="20"/>
+            <param name="output_files_selector" value="log,save_scores,report_new_consensus,report_all_consensus"/>
+            <conditional name="input">
+                <param name="selector" value="paired"/>
+                <param name="paired_input1" value="ERR024070_1_reduced_forward_reads.fastqsanger.gz"/>
+                <param name="paired_input2" value="ERR024070_2_reduced_reverse_reads.fastqsanger.gz"/>
+                <param name="merge_paired" value="false"/>
+                <param name="read_type" value="q"/>
+            </conditional>
+            <conditional name="use_mlst_db">
+                <param name="selector" value="no"/>
+            </conditional>
+            <conditional name="use_gene_db">
+                <param name="selector" value="no"/>
+            </conditional>
+            <output name="Compiled_gene_and_mlst_output">
                 <assert_contents>
-                    <has_size value="18500" delta="1000"/>
+                    <has_n_lines n="0"/>
                 </assert_contents>
-            </element>
-        </output_collection>
-        <output name="log_output">
-            <assert_contents>
-                <has_text text="Building"/>
-                <has_n_lines n="52"/>
-            </assert_contents>
-        </output>
-    </test>
-    <test expect_num_outputs="7">
-        <param name="prob_err" value="0.01"/>
-        <param name="max_unaligned_overlap" value="10"/>
-        <param name="mapq" value="1"/>
-        <param name="baseq" value="20"/>
-        <param name="output_files_selector" value="log,save_scores,report_new_consensus,report_all_consensus"/>
-        <conditional name="input">
-            <param name="selector" value="paired"/>
-            <param name="paired_input1" value="ERR024070_1_reduced_forward_reads.fastqsanger.gz"/>
-            <param name="paired_input2" value="ERR024070_2_reduced_reverse_reads.fastqsanger.gz"/>
-            <param name="merge_paired" value="false"/>
-            <param name="read_type" value="q"/>
-        </conditional>
-        <conditional name="use_mlst_db">
-            <param name="selector" value="no"/>
-        </conditional>
-        <conditional name="use_gene_db">
-            <param name="selector" value="no"/>
-        </conditional>
-        <output name="Compiled_gene_and_mlst_output">
-            <assert_contents>
-                <has_n_lines n="0"/>
-            </assert_contents>
-        </output>
-        <output name="all_consensus">
-            <assert_contents>
-                <has_size value="0" delta="0"/>
-            </assert_contents>
-        </output>
-        <output_collection name="new_consensus" type="list" count="0"/>
-        <output_collection name="samtools_pileup_alignment" type="list" count="0"/>
-        <output_collection name="bowtie2_alignment_output" type="list" count="0"/>
-        <output_collection name="scores_ofEachAllele" type="list" count="0"/>
-        <output name="log_output">
-            <assert_contents>
-                <has_text text="Total paired readsets found:1"/>
-                <has_n_lines n="4"/>
-            </assert_contents>
-        </output>
-    </test>
+            </output>
+            <output name="all_consensus">
+                <assert_contents>
+                    <has_size value="0" delta="0"/>
+                </assert_contents>
+            </output>
+            <output_collection name="new_consensus" type="list" count="0"/>
+            <output_collection name="samtools_pileup_alignment" type="list" count="0"/>
+            <output_collection name="bowtie2_alignment_output" type="list" count="0"/>
+            <output_collection name="scores_ofEachAllele" type="list" count="0"/>
+            <output name="log_output">
+                <assert_contents>
+                    <has_text text="Total paired readsets found:1"/>
+                    <has_n_lines n="4"/>
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help><![CDATA[
 SRST2
@@ -384,8 +380,8 @@ Learn more about all inputs and their formates: https://github.com/katholt/srst2
 Output
 ======
 Learn more about all outputs: https://github.com/katholt/srst2#output-files
-    ]]></help> 
+    ]]></help>
     <citations>
         <citation type="doi">10.1186/s13073-014-0090-6</citation>
     </citations>
- </tool>
+</tool>

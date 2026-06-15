@@ -46,15 +46,14 @@
         #end if
     ]]></command>
     <inputs>
-        <param name="samples" type="data" format="tabular" multiple="true" label="Abundance estimates" help="output(s) from 'Align reads and estimate abundance' tool" />
-        <param argument="--gene_trans_map" type="data" format="tabular" optional="true"  label="Gene to transcript correspondence ('gene(tab)transcript' lines)" help="Only needed for gene level estimates" />
+        <param name="samples" type="data" format="tabular" multiple="true" label="Abundance estimates" help="output(s) from 'Align reads and estimate abundance' tool"/>
+        <param argument="--gene_trans_map" type="data" format="tabular" optional="true" label="Gene to transcript correspondence ('gene(tab)transcript' lines)" help="Only needed for gene level estimates"/>
         <param type="select" argument="--est_method" label="Abundance estimation method">
             <option value="RSEM">RSEM</option>
             <option value="eXpress">eXpress</option>
             <option value="salmon">Salmon</option>
             <option value="kallisto">Kallisto</option>
         </param>
-
         <section name="additional_params" title="Additional Options" expanded="False">
             <param type="select" argument="--cross_sample_norm" label="Cross sample normalization">
                 <option value="TMM">TMM</option>
@@ -66,21 +65,18 @@
     <outputs>
         <data format="tabular" name="trans_counts" label="${tool.name} on ${on_string}: estimated RNA-Seq fragment isoform counts (raw counts)"/>
         <data format="tabular" name="TPM_no_norm" label="${tool.name} on ${on_string}: Matrix of isoform TPM expression values (not cross-sample normalized)"/>
-
         <data format="tabular" name="trans_counts_gene" label="${tool.name} on ${on_string}: estimated RNA-Seq fragment gene counts (raw counts)">
             <filter>gene_trans_map</filter>
         </data>
         <data format="tabular" name="TPM_no_norm_gene" label="${tool.name} on ${on_string}: Matrix of gene TPM expression values (not cross-sample normalized)">
             <filter>gene_trans_map</filter>
         </data>
-
         <data format="tabular" name="norm_TMM" label="${tool.name} on ${on_string}: Matrix of TMM-normalized expression values">
             <filter>additional_params['cross_sample_norm'] == "TMM"</filter>
         </data>
         <data format="tabular" name="norm_UQ" label="${tool.name} on ${on_string}: Matrix of UpperQuartile-normalized expression values">
             <filter>additional_params['cross_sample_norm'] == "UpperQuartile"</filter>
         </data>
-
         <data format="tabular" name="norm_TMM_gene" label="${tool.name} on ${on_string}: Matrix of TMM-normalized expression values (gene)">
             <filter>additional_params['cross_sample_norm'] == "TMM" and gene_trans_map</filter>
         </data>
@@ -95,20 +91,20 @@
             <param name="cross_sample_norm" value="TMM"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="norm_TMM">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -118,20 +114,20 @@
             <param name="cross_sample_norm" value="TMM"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="norm_TMM">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -141,20 +137,20 @@
             <param name="cross_sample_norm" value="TMM"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="norm_TMM">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -164,19 +160,19 @@
             <param name="cross_sample_norm" value="UpperQuartile"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="norm_UQ">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
                 </assert_contents>
             </output>
         </test>
@@ -186,14 +182,14 @@
             <param name="cross_sample_norm" value="none"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -203,14 +199,14 @@
             <param name="cross_sample_norm" value="none"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -220,20 +216,20 @@
             <param name="cross_sample_norm" value="TMM"/>
             <output name="trans_counts">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="TPM_no_norm">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
             <output name="norm_TMM">
                 <assert_contents>
-                    <has_line_matching expression="TRINITY_DN3_c0_g1&#009;.*" />
-                    <has_n_columns n="3" />
+                    <has_line_matching expression="TRINITY_DN3_c0_g1&#9;.*"/>
+                    <has_n_columns n="3"/>
                 </assert_contents>
             </output>
         </test>
@@ -259,6 +255,5 @@ This tool will produce a single matrix file. More details on this page:
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 ]]>
     </help>
-
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

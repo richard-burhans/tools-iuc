@@ -144,8 +144,7 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 <param argument="decay" type="integer" optional="true" value="1" label="Set decay rate of kernel tails" help="If not set, alpha decaying kernel is not used"/>
                 <param argument="knn_max" type="integer" min="1" optional="true" value="" label="Maximum number of nearest neighbors with nonzero connection" help="If not set, will be set to 3 * knn"/>
                 <param argument="t" type="integer" min="-1" value="3" label="Power to which the diffusion operator is powered. This sets the level of diffusion" help="If ‘-1’, this parameter is selected according to the Procrustes disparity of the diffused data."/>
-                <param argument="n_pca" type="integer" value="100" optional="true" label="Number of principal components to use for calculating neighborhoods"
-                    help="For extremely large datasets, using n_pca less than 20 allows neighborhoods to be calculated in roughly log(n_samples) time. If not set, no PCA is performed."/>
+                <param argument="n_pca" type="integer" value="100" optional="true" label="Number of principal components to use for calculating neighborhoods" help="For extremely large datasets, using n_pca less than 20 allows neighborhoods to be calculated in roughly log(n_samples) time. If not set, no PCA is performed."/>
                 <param name="solver" type="select" label="Which solver to use" help="Selecting all genes may require a large amount of memory">
                     <option value="exact" selected="true">"exact", the implementation described in van Dijk et al. (2018) </option>
                     <option value="approximate">"approximate", is faster that performs imputation in the PCA space and then projects back to the gene space</option>
@@ -162,7 +161,6 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
         <expand macro="anndata_outputs"/>
     </outputs>
     <tests>
-
         <!-- test 1 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -186,7 +184,6 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 2 -->
         <test expect_num_outputs="2">
             <param name="adata" value="random-randint.h5ad"/>
@@ -211,7 +208,6 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 3 -->
         <test expect_num_outputs="2">
             <param name="adata" value="paul15_subsample.h5ad"/>
@@ -238,13 +234,12 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 4 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.recipe_zheng17.random-randint.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.recipe_seurat"/>
-           </conditional>
+            </conditional>
             <section name="advanced_common">
                 <param name="show_log" value="true"/>
             </section>
@@ -262,7 +257,6 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 5 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -290,7 +284,6 @@ print("stats after magic:", "min=", f"{adata.X.min():.5f}", "max=", f"{adata.X.m
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 6 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>

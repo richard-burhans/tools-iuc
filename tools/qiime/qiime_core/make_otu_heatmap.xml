@@ -179,7 +179,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="pdf_output_fp" file="make_otu_heatmap/basic_heatmap.pdf" compare="sim_size" />
+            <output name="pdf_output_fp" file="make_otu_heatmap/basic_heatmap.pdf" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="otu_table_fp" value="make_otu_heatmap/otu_table.biom"/>
@@ -194,7 +194,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="png_output_fp" file="make_otu_heatmap/basic_heatmap.png" compare="sim_size" />
+            <output name="png_output_fp" file="make_otu_heatmap/basic_heatmap.png" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="otu_table_fp" value="make_otu_heatmap/otu_table.biom"/>
@@ -209,7 +209,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="svg_output_fp" file="make_otu_heatmap/basic_heatmap.svg" compare="sim_size" delta="40000" />
+            <output name="svg_output_fp" file="make_otu_heatmap/basic_heatmap.svg" compare="sim_size" delta="40000"/>
         </test>
         <test expect_num_outputs="1">
             <param name="otu_table_fp" value="make_otu_heatmap/otu_table.biom"/>
@@ -225,7 +225,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="pdf_output_fp" value="make_otu_heatmap/sample_sorted_heatmap.pdf" compare="sim_size" />
+            <output name="pdf_output_fp" value="make_otu_heatmap/sample_sorted_heatmap.pdf" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="otu_table_fp" value="make_otu_heatmap/otu_table.biom"/>
@@ -242,7 +242,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="pdf_output_fp" value="make_otu_heatmap/sample_otu_sorted_heatmap.pdf" compare="sim_size" />
+            <output name="pdf_output_fp" value="make_otu_heatmap/sample_otu_sorted_heatmap.pdf" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="otu_table_fp" value="make_otu_heatmap/otu_table.biom"/>
@@ -259,7 +259,7 @@ make_otu_heatmap.py
             <param name="height" value="5"/>
             <param name="dpi" value="200"/>
             <param name="obs_md_category" value="taxonomy"/>
-            <output name="pdf_output_fp" value="make_otu_heatmap/treatment_sample_sorted_heatmap.pdf" compare="sim_size" />
+            <output name="pdf_output_fp" value="make_otu_heatmap/treatment_sample_sorted_heatmap.pdf" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[

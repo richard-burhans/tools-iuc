@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -36,8 +36,8 @@
             <param name="input_paf" value="testPaf.paf"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simCow.chr6&#009;602619&#009;2&#009;3857&#009;+&#009;simDog.chr6&#009;593897&#009;3&#009;3510&#009;2364&#009;4205&#009;255&#009;AS:i:103043"/>
-                    <has_text text="simDog.chr6&#009;593897&#009;3&#009;3510&#009;+&#009;simCow.chr6&#009;602619&#009;2&#009;3857&#009;2364&#009;4205&#009;255&#009;AS:i:103043" negate="true"/>
+                    <has_text text="simCow.chr6&#9;602619&#9;2&#9;3857&#9;+&#9;simDog.chr6&#9;593897&#9;3&#9;3510&#9;2364&#9;4205&#9;255&#9;AS:i:103043"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;3&#9;3510&#9;+&#9;simCow.chr6&#9;602619&#9;2&#9;3857&#9;2364&#9;4205&#9;255&#9;AS:i:103043" negate="true"/>
                 </assert_contents>
             </output>
         </test>
@@ -46,8 +46,8 @@
             <param name="input_paf" value="testPaf.paf.gz"/>
             <output name="out_file" ftype="paf">
                 <assert_contents>
-                    <has_text text="simCow.chr6&#009;602619&#009;2&#009;3857&#009;+&#009;simDog.chr6&#009;593897&#009;3&#009;3510&#009;2364&#009;4205&#009;255&#009;AS:i:103043"/>
-                    <has_text text="simDog.chr6&#009;593897&#009;3&#009;3510&#009;+&#009;simCow.chr6&#009;602619&#009;2&#009;3857&#009;2364&#009;4205&#009;255&#009;AS:i:103043" negate="true"/>
+                    <has_text text="simCow.chr6&#9;602619&#9;2&#9;3857&#9;+&#9;simDog.chr6&#9;593897&#9;3&#9;3510&#9;2364&#9;4205&#9;255&#9;AS:i:103043"/>
+                    <has_text text="simDog.chr6&#9;593897&#9;3&#9;3510&#9;+&#9;simCow.chr6&#9;602619&#9;2&#9;3857&#9;2364&#9;4205&#9;255&#9;AS:i:103043" negate="true"/>
                 </assert_contents>
             </output>
         </test>

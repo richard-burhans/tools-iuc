@@ -10,26 +10,24 @@
 heinz -m \${GALAXY_SLOTS:-2} -n '$score' -e '$edge' > '$subnetwork'
     ]]></command>
     <inputs>
-        <param name="score" type="data" format="txt" label="File containing Heinz scores"
-            help="The file should contain two columns: the node identifier (e.g. gene) and the corresponding Heinz score" />
-        <param name="edge" type="data" format="txt" label="Edge file"
-            help="In this file, two nodes define one edge, one edge per line" />
+        <param name="score" type="data" format="txt" label="File containing Heinz scores" help="The file should contain two columns: the node identifier (e.g. gene) and the corresponding Heinz score"/>
+        <param name="edge" type="data" format="txt" label="Edge file" help="In this file, two nodes define one edge, one edge per line"/>
     </inputs>
     <outputs>
-        <data name="subnetwork" format="txt" label="${tool.name} on ${on_string}: Optimal subgraph" />
+        <data name="subnetwork" format="txt" label="${tool.name} on ${on_string}: Optimal subgraph"/>
     </outputs>
     <tests>
         <test>
-            <param name="score" value="NodesPCST.txt" />
-            <param name="edge" value="EdgesPCST.txt" />
+            <param name="score" value="NodesPCST.txt"/>
+            <param name="edge" value="EdgesPCST.txt"/>
             <output name="subnetwork">
                 <assert_contents>
-                    <has_text text='label="a\n5\n0\n0"' />
-                    <has_text text='label="b\n-4\n0\n1",shape=box' />
-                    <has_text text="Total weight: 36" />
-                    <has_text text="0 -- 1" />
-                    <has_text text="1 -- 3" />
-                    <has_text text="5 -- 7" />
+                    <has_text text="label=&quot;a\n5\n0\n0&quot;"/>
+                    <has_text text="label=&quot;b\n-4\n0\n1&quot;,shape=box"/>
+                    <has_text text="Total weight: 36"/>
+                    <has_text text="0 -- 1"/>
+                    <has_text text="1 -- 3"/>
+                    <has_text text="5 -- 7"/>
                 </assert_contents>
             </output>
         </test>

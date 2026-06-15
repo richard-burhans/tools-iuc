@@ -40,7 +40,7 @@
             <output name="outFile" file="picard_NormalizeFasta_test1.fa" ftype="fasta"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 **Purpose**
 
@@ -57,6 +57,6 @@ Takes any dataset that conforms to the fasta format and normalizes it so that al
 
 @more_info@
 
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

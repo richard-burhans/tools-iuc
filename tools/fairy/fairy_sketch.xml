@@ -97,10 +97,10 @@
                 <param name="is_select" value="paired_collection"/>
                 <param name="paired_collection">
                     <collection type="paired">
-                        <element name="forward" value="test_paired_1.fq.gz" ftype="fastq.gz" />
-                        <element name="reverse" value="test_paired_2.fq.gz" ftype="fastq.gz" />
+                        <element name="forward" value="test_paired_1.fq.gz" ftype="fastq.gz"/>
+                        <element name="reverse" value="test_paired_2.fq.gz" ftype="fastq.gz"/>
                     </collection>
-                </param>    
+                </param>
             </conditional>
             <output name="output" file="forward.paired.bcsp"/>
         </test>

@@ -45,7 +45,7 @@ pick_closed_reference_otus.py
             <when value="cached">
                 <param argument="--reference_fp" label="Reference sequences" type="select">
                     <options from_data_table="qiime_rep_set"/>
-                </param>            
+                </param>
             </when>
             <when value="history">
                 <param argument="--reference_fp" type="data" format="fasta" label="Reference databases"/>
@@ -97,7 +97,7 @@ pick_closed_reference_otus.py
                 </conditional>
             </conditional>
             <param name="parallel" value=""/>
-            <output name="otu_table" file="pick_closed_reference_otus/basic_otu_table.biom" compare="sim_size" />
+            <output name="otu_table" file="pick_closed_reference_otus/basic_otu_table.biom" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="input_fp" value="pick_closed_reference_otus/seqs.fna"/>
@@ -114,7 +114,7 @@ pick_closed_reference_otus.py
             </conditional>
             <param name="parameter_fp" value="pick_closed_reference_otus/sortmerna_params.txt"/>
             <param name="parallel" value=""/>
-            <output name="otu_table" file="pick_closed_reference_otus/sortmerna_otu_table.biom" compare="sim_size" />
+            <output name="otu_table" file="pick_closed_reference_otus/sortmerna_otu_table.biom" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="input_fp" value="pick_closed_reference_otus/seqs.fna"/>
@@ -126,7 +126,7 @@ pick_closed_reference_otus.py
                 <param name="selector" value="assign_taxonomy"/>
             </conditional>
             <param name="parallel" value=""/>
-            <output name="otu_table" file="pick_closed_reference_otus/assign_taxonomy_otu_table.biom" compare="sim_size" />
+            <output name="otu_table" file="pick_closed_reference_otus/assign_taxonomy_otu_table.biom" compare="sim_size"/>
         </test>
         <test expect_num_outputs="1">
             <param name="input_fp" value="pick_closed_reference_otus/seqs.fna"/>
@@ -138,7 +138,7 @@ pick_closed_reference_otus.py
                 <param name="selector" value="suppress_taxonomy_assignment"/>
             </conditional>
             <param name="parallel" value=""/>
-            <output name="otu_table" file="pick_closed_reference_otus/suppress_taxonomy_assignment_otu_table.biom" compare="sim_size" />
+            <output name="otu_table" file="pick_closed_reference_otus/suppress_taxonomy_assignment_otu_table.biom" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[

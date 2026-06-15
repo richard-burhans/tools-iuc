@@ -8,8 +8,8 @@
         <requirement type="package" version="@TOOL_VERSION@">dnaweaver_synbiocad</requirement>
     </requirements>
     <stdio>
-        <regex match="WARNING:" level="warning" />
-        <regex match="ERROR:" level="fatal" />
+        <regex match="WARNING:" level="warning"/>
+        <regex match="ERROR:" level="fatal"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
         python -m dnaweaver_synbiocad
@@ -20,26 +20,26 @@
         && mv 'output.xlsx' '$output'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="xml" label="Constructs" />
+        <param name="input" type="data" format="xml" label="Constructs"/>
         <param name="method" type="select" label="Assembly method">
             <option value="golden_gate" selected="true">Golden Gate</option>
-            <option value="gibson" >Gibson</option>
-            <option value="any_method" >Any Method</option>
+            <option value="gibson">Gibson</option>
+            <option value="any_method">Any Method</option>
         </param>
         <section name="adv" title="Advanced Options" expanded="false">
-            <param name="max_constructs" value="-1" type="integer" label="Maximal number of constructs" />
+            <param name="max_constructs" value="-1" type="integer" label="Maximal number of constructs"/>
         </section>
     </inputs>
     <outputs>
-        <data name="output" format="xlsx" label="DNA Weaver - Assembly Plan" />
+        <data name="output" format="xlsx" label="DNA Weaver - Assembly Plan"/>
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical outputs are produced with default parameters  -->
-            <param name="input" value="constructs_lycopene.xml" />
-            <output name="output" >
+            <!-- test 1: check if identical outputs are produced with default parameters  -->
+            <param name="input" value="constructs_lycopene.xml"/>
+            <output name="output">
                 <assert_contents>
-                    <has_size value="77431" delta="100" />
+                    <has_size value="77431" delta="100"/>
                 </assert_contents>
             </output>
         </test>
@@ -128,7 +128,7 @@ Acknowledgments
 
     ]]></help>
     <creator>
-        <person givenName="Valentin" familyName="Zulkower" />
-        <person givenName="Melchior" familyName="du Lac" />
+        <person givenName="Valentin" familyName="Zulkower"/>
+        <person givenName="Melchior" familyName="du Lac"/>
     </creator>
 </tool>

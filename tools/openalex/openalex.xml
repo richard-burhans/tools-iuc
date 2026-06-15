@@ -199,49 +199,49 @@ $input_source.identifiers
         <data name="summary_out" format="tabular" label="${tool.name} on ${on_string}: Work summary" from_work_dir="summary.tsv">
             <filter>entity['input_entity'] == 'work' and 'summary' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <data name="citing_papers_out" format="tabular" label="${tool.name} on ${on_string}: Citing papers" from_work_dir="citing_papers.tsv">
             <filter>entity['input_entity'] == 'work' and 'citing_papers' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <data name="references_out" format="tabular" label="${tool.name} on ${on_string}: Referenced works" from_work_dir="referenced_works.tsv">
             <filter>entity['input_entity'] == 'work' and 'references' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <data name="related_out" format="tabular" label="${tool.name} on ${on_string}: Related works" from_work_dir="related_works.tsv">
             <filter>entity['input_entity'] == 'work' and 'related' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <data name="authors_out" format="tabular" label="${tool.name} on ${on_string}: Authors" from_work_dir="authors.tsv">
             <filter>entity['input_entity'] == 'work' and 'authors' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,Name,ORCID,Author_OpenAlex_ID,Affiliation,Country" />
+                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,Name,ORCID,Author_OpenAlex_ID,Affiliation,Country"/>
             </actions>
         </data>
         <data name="concepts_out" format="tabular" label="${tool.name} on ${on_string}: Concepts" from_work_dir="concepts.tsv">
             <filter>entity['input_entity'] == 'work' and 'concepts' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,Concept,Score,Wikidata_ID" />
+                <action name="column_names" type="metadata" default="Input,Resolved_OpenAlex_ID,Resolved_Title,Concept,Score,Wikidata_ID"/>
             </actions>
         </data>
         <data name="author_works_out" format="tabular" label="${tool.name} on ${on_string}: Author works" from_work_dir="author_works.tsv">
             <filter>entity['input_entity'] == 'author' and 'author_works' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <data name="institution_works_out" format="tabular" label="${tool.name} on ${on_string}: Institution works" from_work_dir="institution_works.tsv">
             <filter>entity['input_entity'] == 'institution' and 'institution_works' in entity['mode']</filter>
             <actions>
-                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA" />
+                <action name="column_names" type="metadata" default="Input,Resolved_Entity_ID,Resolved_Entity_Name,Work_OpenAlex_ID,Title,DOI,Year,Type,Cited_By_Count,Is_OA"/>
             </actions>
         </data>
         <collection name="pdf_outputs" label="${tool.name} on ${on_string}: Downloaded PDFs" type="list" format="pdf">

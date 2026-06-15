@@ -94,7 +94,7 @@
                 <param name="input_1" type="data" format="@FASTQ_TYPES@" label="Input FASTQ/A file" help="Select a single FASTA or FASTQ file (gzipped or uncompressed)"/>
             </when>
             <when value="paired_collection">
-                <param name="input_1" format="@FASTQ_TYPES@" type="data_collection" collection_type="paired" label="Paired Collection" help="Should be of datatype &quot;fastq.gz&quot; or &quot;fasta&quot;" />
+                <param name="input_1" format="@FASTQ_TYPES@" type="data_collection" collection_type="paired" label="Paired Collection" help="Should be of datatype &quot;fastq.gz&quot; or &quot;fasta&quot;"/>
             </when>
         </conditional>
         <conditional name="split_type">
@@ -104,13 +104,13 @@
                 <option value="by_length">Length of sequences</option>
             </param>
             <when value="by_part">
-                <param name="by_part" type="integer" value="" min="1" label="Number of parts" help="Split sequences into N parts using round-robin distribution." />
+                <param name="by_part" type="integer" value="" min="1" label="Number of parts" help="Split sequences into N parts using round-robin distribution."/>
             </when>
             <when value="by_size">
-                <param name="by_size" type="integer" value="" min="1" label="Number of sequences per part" help="Split sequences into parts with N sequences each." />
+                <param name="by_size" type="integer" value="" min="1" label="Number of sequences per part" help="Split sequences into parts with N sequences each."/>
             </when>
             <when value="by_length">
-                <param name="by_length" type="text" value="" label="Chunk size" help="Split sequences into chunks of >=N bases. Supports K/M/G suffix (e.g., 10K, 1M)">
+                <param name="by_length" type="text" value="" label="Chunk size" help="Split sequences into chunks of &gt;=N bases. Supports K/M/G suffix (e.g., 10K, 1M)">
                     <validator type="regex" message="Invalid characters in field">^[0-9KMG]+$</validator>
                 </param>
             </when>
@@ -123,7 +123,7 @@
         </collection>
         <collection name="outputs_paired_files" type="list:paired" label="${tool.name} on ${on_string}: Paired-End Splitted files">
             <filter>input_file_type['type'] == 'paired_collection' </filter>
-                <discover_datasets pattern="(?P&lt;identifier_0&gt;.+)_(?P&lt;identifier_1&gt;forward|reverse)\.(?P&lt;ext&gt;.+)" directory="out"/>
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;.+)_(?P&lt;identifier_1&gt;forward|reverse)\.(?P&lt;ext&gt;.+)" directory="out"/>
         </collection>
     </outputs>
     <tests>
@@ -150,7 +150,6 @@
                 </element>
             </output_collection>
         </test>
-        
         <!-- Test 02: for Seqkit Split with Paired FASTQ Collection; splitting by parts -->
         <test expect_num_outputs="1">
             <conditional name="input_file_type">
@@ -177,7 +176,7 @@
                         <assert_contents>
                             <has_n_lines n="3710"/>
                         </assert_contents>
-                    </element>    
+                    </element>
                 </element>
                 <element name="seqkit_split2_002">
                     <element name="forward" ftype="fastqsanger.gz">
@@ -188,12 +187,11 @@
                     <element name="reverse" ftype="fastqsanger.gz">
                         <assert_contents>
                             <has_n_lines n="3782"/>
-                        </assert_contents>  
+                        </assert_contents>
                     </element>
                 </element>
             </output_collection>
         </test>
-
         <!-- Test 03: for Seqkit Split with Single End FASTA file; splitting by parts -->
         <test expect_num_outputs="1">
             <conditional name="input_file_type">
@@ -217,7 +215,6 @@
                 </element>
             </output_collection>
         </test>
-
         <!-- Test 04: for Seqkit Split with Single End FASTA file; splitting by size -->
         <test expect_num_outputs="1">
             <conditional name="input_file_type">
@@ -241,7 +238,6 @@
                 </element>
             </output_collection>
         </test>
-
         <!-- Test 05: for Seqkit Split with Single End FASTA file; splitting by length -->
         <test expect_num_outputs="1">
             <conditional name="input_file_type">
@@ -288,9 +284,9 @@ For more details, see the Seqkit Split2 documentation_
 .. _documentation: https://bioinf.shenwei.me/seqkit/usage/#split2
 
     ]]></help>
-        <expand macro="citations"/>
-        <creator>
-            <person givenName="Saim" familyName="Momin" url="https://github.com/SaimMomin12" identifier="https://orcid.org/0009-0003-9935-828X"/>
-            <organization name="Galaxy Europe" url="https://galaxyproject.org/eu/"/>
+    <expand macro="citations"/>
+    <creator>
+        <person givenName="Saim" familyName="Momin" url="https://github.com/SaimMomin12" identifier="https://orcid.org/0009-0003-9935-828X"/>
+        <organization name="Galaxy Europe" url="https://galaxyproject.org/eu/"/>
     </creator>
 </tool>

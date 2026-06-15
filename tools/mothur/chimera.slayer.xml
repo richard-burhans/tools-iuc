@@ -73,8 +73,7 @@ echo 'chimera.slayer(
             </param>
             <when value="ref">
                 <param argument="reference" type="select" label="reference - Select an alignment database">
-                    <options from_data_table="mothur_aligndb">
-                    </options>
+                    <options from_data_table="mothur_aligndb"/>
                 </param>
             </when>
             <when value="hist">
@@ -83,8 +82,7 @@ echo 'chimera.slayer(
             <when value="self">
                 <param argument="count" type="data" format="mothur.count_table" optional="true" label="count - Count file"/>
                 <param argument="name" type="data" format="mothur.names" optional="true" label="names - Sequences Names"/>
-                <param argument="group" type="data" format="mothur.groups" optional="true" label="group - Sequences Name reference"
-                    help="use the more abundant sequences from the same sample to check the query sequence"/>
+                <param argument="group" type="data" format="mothur.groups" optional="true" label="group - Sequences Name reference" help="use the more abundant sequences from the same sample to check the query sequence"/>
             </when>
         </conditional>
         <conditional name="options">
@@ -111,12 +109,10 @@ echo 'chimera.slayer(
                 <param argument="minsnp" type="integer" value="10" label="minsnp - Percent of SNPs to sample on each side of breakpoint for computing bootstrap support (default 10)"/>
                 <param argument="divergence" type="float" value="1.007" label="divergence - Divergence cutoff for chimera determination (default 1.007)"/>
                 <param argument="trim" type="boolean" truevalue="true" falsevalue="false" checked="false" label="trim - include chimeric sequences trimmed to their longest piece"/>
-                <param argument="split" type="boolean" truevalue="true" falsevalue="false" checked="false" label="split - detect tri- and quadmeras"
-                    help="if a sequence comes back as non-chimeric, mothur will test the two sides to see if they are chimeric."/>
+                <param argument="split" type="boolean" truevalue="true" falsevalue="false" checked="false" label="split - detect tri- and quadmeras" help="if a sequence comes back as non-chimeric, mothur will test the two sides to see if they are chimeric."/>
             </when>
         </conditional>
-        <param name="dereplicate" type="boolean" falsevalue="false" truevalue="true" checked="false" label="dereplicate - remove chimeric sequences from all groups"
-            help="If parameter is false, then if one group finds the seqeunce to be chimeric, then all groups find it to be chimeric"/>
+        <param name="dereplicate" type="boolean" falsevalue="false" truevalue="true" checked="false" label="dereplicate - remove chimeric sequences from all groups" help="If parameter is false, then if one group finds the seqeunce to be chimeric, then all groups find it to be chimeric"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -125,7 +121,8 @@ echo 'chimera.slayer(
         <data name="out_accnos" from_work_dir="fasta.slayer.accnos" format="mothur.accnos" label="${tool.name} on ${on_string}: slayer.accnos"/>
     </outputs>
     <tests>
-        <test><!-- test with external reference -->
+        <test>
+            <!-- test with external reference -->
             <param name="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
             <param name="source" value="hist"/>
             <param name="reference" value="HMP_MOCK.v35.align"/>
@@ -133,7 +130,8 @@ echo 'chimera.slayer(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with self as reference -->
+        <test>
+            <!-- test with self as reference -->
             <param name="fasta" value="HMP_MOCK.v35.align"/>
             <param name="source" value="self"/>
             <param name="setby" value="user"/>

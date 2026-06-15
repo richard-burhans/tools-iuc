@@ -10,7 +10,6 @@
     <requirements>
         <requirement type="package" version="1.66">biopython</requirement>
     </requirements>
-
     <version_command>python '${__tool_directory__}/kraken_taxonomy_report.py' --version</version_command>
     <command><![CDATA[
 #for $input_classification in $classification:
@@ -45,12 +44,12 @@ ${sanitize_names_param}
 #end for
     ]]></command>
     <inputs>
-        <param format="tabular" label="Kraken output" multiple="True" name="classification" type="data" />
-        <param checked="False" falsevalue="" argument="--show-zeros" label="Display taxa even if they lack a read in any sample" name="show_zeros_param" truevalue="--show-zeros" type="boolean" />
-        <param checked="True" falsevalue="" argument="--header-line" label="Display a header line indicating sample IDs" name="header_line_param" truevalue="--header-line" type="boolean" />
+        <param format="tabular" label="Kraken output" multiple="True" name="classification" type="data"/>
+        <param checked="False" falsevalue="" argument="--show-zeros" label="Display taxa even if they lack a read in any sample" name="show_zeros_param" truevalue="--show-zeros" type="boolean"/>
+        <param checked="True" falsevalue="" argument="--header-line" label="Display a header line indicating sample IDs" name="header_line_param" truevalue="--header-line" type="boolean"/>
         <param label="Select a Kraken database" name="kraken_database" type="select" help="Select the same database used to classify reads">
             <options from_data_table="kraken_databases">
-                <validator message="No Kraken databases are available" type="no_options" />
+                <validator message="No Kraken databases are available" type="no_options"/>
             </options>
         </param>
         <param label="How to name OTUs" name="otu_name" type="select" multiple="False">
@@ -58,10 +57,10 @@ ${sanitize_names_param}
             <option value="--name-long">Taxonified Name</option>
             <option value="--name-id">Node ID</option>
         </param>
-        <param checked="True" falsevalue="" argument="--sanitize-names" label="Sanitize Names" name="sanitize_names_param" truevalue="--sanitize-names" type="boolean" help="Replace special chars (\t| |\||\.;) with underscore (_)" />
-        <param checked="False" falsevalue="" argument="--show-rank" label="Output Rank Name in (second to) last column" name="rank" truevalue="--show-rank" type="boolean" />
-        <param checked="False" falsevalue="" argument="--taxonomy" label="Output taxonomy in last column" name="taxo" truevalue="--taxonomy" type="boolean" />
-        <param checked="True" falsevalue="" argument="--intermediate" label="Display intermediate ranks" name="intermediate_rank" truevalue="--intermediate" type="boolean" />
+        <param checked="True" falsevalue="" argument="--sanitize-names" label="Sanitize Names" name="sanitize_names_param" truevalue="--sanitize-names" type="boolean" help="Replace special chars (\t| |\||\.;) with underscore (_)"/>
+        <param checked="False" falsevalue="" argument="--show-rank" label="Output Rank Name in (second to) last column" name="rank" truevalue="--show-rank" type="boolean"/>
+        <param checked="False" falsevalue="" argument="--taxonomy" label="Output taxonomy in last column" name="taxo" truevalue="--taxonomy" type="boolean"/>
+        <param checked="True" falsevalue="" argument="--intermediate" label="Display intermediate ranks" name="intermediate_rank" truevalue="--intermediate" type="boolean"/>
         <conditional name="cluster">
             <param argument="--cluster" help="Combines rows under the selected taxon and reports only selected rank." label="Cluster by taxonomic rank" name="cluster_param" type="select">
                 <option value="Superkingdom">Superkingdom</option>
@@ -95,7 +94,7 @@ ${sanitize_names_param}
                 <option value="" selected="True">No Clustering</option>
             </param>
             <when value="">
-                <param checked="False" falsevalue="" argument="--summation" label="Summation of lower ranks into higher ranks" name="summ" truevalue="--summation" type="boolean" />
+                <param checked="False" falsevalue="" argument="--summation" label="Summation of lower ranks into higher ranks" name="summ" truevalue="--summation" type="boolean"/>
             </when>
             <when value="Superkingdom"/>
             <when value="Kingdom"/>
@@ -151,7 +150,7 @@ ${sanitize_names_param}
             </conditional>
             <param name="tree" value="True"/>
             <output name="output_report" file="output_abundance_1.tabular" ftype="tabular"/>
-            <output name="output_tree" file="output_tree_1.newick" />
+            <output name="output_tree" file="output_tree_1.newick"/>
         </test>
         <test expect_num_outputs="2">
             <param name="classification" value="input_kraken_1.tabular" ftype="tabular"/>
@@ -169,7 +168,7 @@ ${sanitize_names_param}
             </conditional>
             <param name="tree" value="True"/>
             <output name="output_report" file="output_abundance_2.tabular" ftype="tabular"/>
-            <output name="output_tree" file="output_tree_1.newick" />
+            <output name="output_tree" file="output_tree_1.newick"/>
         </test>
         <test expect_num_outputs="2">
             <param name="classification" value="input_kraken_1.tabular" ftype="tabular"/>
@@ -186,7 +185,7 @@ ${sanitize_names_param}
             </conditional>
             <param name="tree" value="True"/>
             <output name="output_report" file="output_abundance_3.tabular" ftype="tabular"/>
-            <output name="output_tree" file="output_tree_3.newick" />
+            <output name="output_tree" file="output_tree_3.newick"/>
         </test>
         <test expect_num_outputs="2">
             <param name="classification" value="input_kraken_1.tabular,input_kraken_2.tabular" ftype="tabular"/>
@@ -203,7 +202,7 @@ ${sanitize_names_param}
             </conditional>
             <param name="tree" value="True"/>
             <output name="output_report" file="output_abundance_4.tabular" ftype="tabular"/>
-            <output name="output_tree" file="output_tree_3.newick" />
+            <output name="output_tree" file="output_tree_3.newick"/>
         </test>
     </tests>
     <help><![CDATA[

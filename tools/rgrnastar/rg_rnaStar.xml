@@ -8,9 +8,8 @@
         <xref type="bio.tools">star</xref>
     </xrefs>
     <expand macro="requirements"/>
-    <expand macro="stdio" />
-
-<!--
+    <expand macro="stdio"/>
+    <!--
     important quote (https://groups.google.com/forum/#!topic/rna-star/q4zGzlPgwXY):
     Hi Gary,
 
@@ -206,7 +205,6 @@
         ##outWig:
         @OUTWIGOUTPUTS@
     ]]></command>
-
     <inputs>
         <!-- FASTQ input(s) and options specifically for paired-end data. -->
         <conditional name="singlePaired">
@@ -226,7 +224,6 @@
                 <param format="fastq,fasta,fastq.gz,fastqsanger.gz" name="input" type="data_collection" collection_type="paired" label="RNA-Seq FASTQ/FASTA paired reads"/>
             </when>
         </conditional>
-
         <!-- Genome source. -->
         <conditional name="refGenomeSource">
             <param name="geneSource" type="select" label="Custom or built-in reference genome" help="Built-ins were indexed using default options">
@@ -235,43 +232,39 @@
             </param>
             <when value="indexed">
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" type="select"
-                           label="Reference genome with or without an annotation"
-                           help="Select the '... with builtin gene-model' option to select from the list of available indexes that were built with splice junction information. Select the '... without builtin gene-model' option to select from the list of available indexes without annotated splice junctions, and, optionally, provide your own splice-junction annonations.">
-                        <option value="without-gtf-with-gtf" selected='true'>use genome reference without builtin gene-model but provide a gtf</option>
+                    <param name="GTFselect" type="select" label="Reference genome with or without an annotation" help="Select the '... with builtin gene-model' option to select from the list of available indexes that were built with splice junction information. Select the '... without builtin gene-model' option to select from the list of available indexes without annotated splice junctions, and, optionally, provide your own splice-junction annonations.">
+                        <option value="without-gtf-with-gtf" selected="true">use genome reference without builtin gene-model but provide a gtf</option>
                         <option value="without-gtf">use genome reference without builtin gene-model and do not provide a gtf</option>
                         <option value="with-gtf">use genome reference with builtin gene-model</option>
                     </param>
                     <when value="with-gtf">
-                        <expand macro="index_selection" with_gene_model="1" />
-                        <expand macro="quantMode" />
+                        <expand macro="index_selection" with_gene_model="1"/>
+                        <expand macro="quantMode"/>
                     </when>
                     <when value="without-gtf-with-gtf">
-                        <expand macro="index_selection" with_gene_model="0" />
+                        <expand macro="index_selection" with_gene_model="0"/>
                         <expand macro="SJDBOPTIONS"/>
-                        <expand macro="quantMode" />
+                        <expand macro="quantMode"/>
                     </when>
                     <when value="without-gtf">
-                        <expand macro="index_selection" with_gene_model="0" />
-                        <expand macro="quantModeNoGTF" />
+                        <expand macro="index_selection" with_gene_model="0"/>
+                        <expand macro="quantModeNoGTF"/>
                     </when>
                 </conditional>
             </when>
             <when value="history">
-                <expand macro="ref_selection" />
+                <expand macro="ref_selection"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" type="select"
-                           label="Build index with or without known splice junctions annotation"
-                           help="To build an index with known splice junctions annotated, you will have to provide a GTF or GFF3 dataset that describes the gene models (the location of genes, transcripts and exons) known for the reference genome.">
+                    <param name="GTFselect" type="select" label="Build index with or without known splice junctions annotation" help="To build an index with known splice junctions annotated, you will have to provide a GTF or GFF3 dataset that describes the gene models (the location of genes, transcripts and exons) known for the reference genome.">
                         <option value="without-gtf">build index without gene-model</option>
                         <option value="with-gtf">build index with gene-model</option>
                     </param>
                     <when value="with-gtf">
                         <expand macro="SJDBOPTIONS"/>
-                        <expand macro="quantMode" />
+                        <expand macro="quantMode"/>
                     </when>
                     <when value="without-gtf">
-                        <expand macro="quantModeNoGTF" />
+                        <expand macro="quantModeNoGTF"/>
                     </when>
                 </conditional>
                 <conditional name="diploidconditional">
@@ -283,52 +276,44 @@
                         <param argument="--genomeTransformVCF" type="data" format="vcf" label="VCF file with diploid SNVs and InDels" help="The homozygous and heterozygous alleles from this VCF will be inserted into the reference genome to create a transformed genome with two haplotypes"/>
                         <param argument="--genomeTransformOutput" type="boolean" checked="false" truevalue="--genomeTransformOutput SAM SJ Quant" falsevalue="--genomeTransformOutput None" label="Transform alignments, spliced junctions and quantifications back to                         the reference coordinates" help="Use this if downstream processing relies on reference coordinates"/>
                     </when>
-                    <when value="No">
-                    </when>
+                    <when value="No"/>
                 </conditional>
             </when>
         </conditional>
-
         <conditional name="twopass">
-            <param argument="--twopassMode" type="select"
-            label="Use 2-pass mapping for more sensitive novel splice junction discovery"
-            help="For a study with multiple samples, multisample 2-pass mapping is the most sensitive approach. It involves two separate runs of STAR for each sample, where, in the second run of each sample, the splice junctions found in any sample in the first runs are treated as additional known junctions. If you plan to use the mapping results as input for STAR-Fusion it is recommended that you use at least single-sample 2-pass mapping of all reads.">
+            <param argument="--twopassMode" type="select" label="Use 2-pass mapping for more sensitive novel splice junction discovery" help="For a study with multiple samples, multisample 2-pass mapping is the most sensitive approach. It involves two separate runs of STAR for each sample, where, in the second run of each sample, the splice junctions found in any sample in the first runs are treated as additional known junctions. If you plan to use the mapping results as input for STAR-Fusion it is recommended that you use at least single-sample 2-pass mapping of all reads.">
                 <option value="None">No</option>
                 <option value="Basic">Yes, perform single-sample 2-pass mapping of all reads</option>
                 <option value="Basic --twopass1readsN">Yes, but base novel splice junction detection in the first pass on a subset of all reads (faster, but less sensitive than single-sample 2-pass mode)</option>
                 <option value="None --sjdbFileChrStartEnd">Yes, I want to use multi-sample 2-pass mapping and I have obtained splice junctions datasets of all samples through previous 1-pass runs of STAR.</option>
             </param>
             <when value="None">
-                <param name="twopass_read_subset" type="hidden" value="" />
-                <param name="sj_precalculated" type="hidden" value="" />
+                <param name="twopass_read_subset" type="hidden" value=""/>
+                <param name="sj_precalculated" type="hidden" value=""/>
             </when>
             <when value="Basic">
-                <param name="twopass_read_subset" type="hidden" value="" />
-                <param name="sj_precalculated" type="hidden" value="" />
+                <param name="twopass_read_subset" type="hidden" value=""/>
+                <param name="sj_precalculated" type="hidden" value=""/>
             </when>
             <when value="Basic --twopass1readsN">
-                <param name="sj_precalculated" type="hidden" value="" />
+                <param name="sj_precalculated" type="hidden" value=""/>
                 <param argument="--twopass1readsN" name="twopass_read_subset" type="integer" min="1" value="50000" label="Number of reads to map in the first pass"/>
             </when>
             <when value="None --sjdbFileChrStartEnd">
-                <param name="twopass_read_subset" type="hidden" value="" />
-                <param name="sj_precalculated" type="data" multiple="true" format="interval"
-                label="Pregenerated splice junctions datasets of your samples" />
+                <param name="twopass_read_subset" type="hidden" value=""/>
+                <param name="sj_precalculated" type="data" multiple="true" format="interval" label="Pregenerated splice junctions datasets of your samples"/>
             </when>
         </conditional>
         <expand macro="chim_params"/>
         <section name="oformat" title="BAM output format specification" expanded="true">
-            <param argument="--outSAMattributes" type="select" display="checkboxes" multiple="true" optional="true"
-            label="Read alignment tags to include in the BAM output"
-            help="Note on using the XS tag: If the XS tag is used, STAR will filter out alignments with undefined strand (i.e., those containing only non-canonical unannotated junctions). Using this tag is recommended if you plan to use the STAR results with STAR-Fusion. In addition, it is required for compatibility
-with Cufflinks if your sequences come from an unstranded library preparation.">
+            <param argument="--outSAMattributes" type="select" display="checkboxes" multiple="true" optional="true" label="Read alignment tags to include in the BAM output" help="Note on using the XS tag: If the XS tag is used, STAR will filter out alignments with undefined strand (i.e., those containing only non-canonical unannotated junctions). Using this tag is recommended if you plan to use the STAR results with STAR-Fusion. In addition, it is required for compatibility with Cufflinks if your sequences come from an unstranded library preparation.">
                 <expand macro="common_SAM_attributes"/>
                 <option value="MC">MC (CIGAR string for mate/next segment)</option>
                 <option value="XS">XS (strand flag, see parameter help below) </option>
-                <option value="ch" selected="true">ch (used to indicate chimeric alignments)</option> <!--This is not the default in STAR-->
+                <option value="ch" selected="true">ch (used to indicate chimeric alignments)</option>
+                <!--This is not the default in STAR-->
             </param>
-            <param argument="--outSAMattrIHstart" name="HI_offset" type="select" display="radio"
-            label="HI tag values should be">
+            <param argument="--outSAMattrIHstart" name="HI_offset" type="select" display="radio" label="HI tag values should be">
                 <option value="1" selected="true">one-based</option>
                 <option value="0">zero-based</option>
             </param>
@@ -344,13 +329,12 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
             truevalue="AllBestScore" falsevalue="OneBestScore" checked="false"
             label="Would you like all alignments with the best score labeled
             primary?"/> -->
-            <param name="outSAMprimaryFlag" type="hidden" value="OneBestScore" />
+            <param name="outSAMprimaryFlag" type="hidden" value="OneBestScore"/>
             <expand macro="outSAMmapqUnique"/>
             <expand macro="wasp"/>
         </section>
         <section name="filter" title="Output filter criteria" expanded="true">
-            <param name="basic_filters" type="select" display="checkboxes" multiple="true" optional="true"
-            label="Exclude the following records from the BAM output">
+            <param name="basic_filters" type="select" display="checkboxes" multiple="true" optional="true" label="Exclude the following records from the BAM output">
                 <option value="exclude_unmapped">Unmapped reads</option>
                 <option value="--outFilterIntronStrands RemoveInconsistentStrands">Alignments that have junctions with inconsistent strands</option>
                 <option value="--outFilterIntronMotifs RemoveNoncanonicalUnannotated">Alignments across unannotated non-canonical junctions</option>
@@ -373,7 +357,7 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                     <param argument="--outFilterScoreMinOverLread" type="float" value="0.66" min="0" max="1" label="Minimum alignment score, normalized to read length" help="Alignments must have (normalized) scores higher than this value to be output"/>
                     <param argument="--outFilterMatchNmin" type="integer" value="0" min="0" label="Minimum number of matched bases" help="Alignments must have the number of matched bases higher than this value to be output"/>
                     <param argument="--outFilterMatchNminOverLread" type="float" value="0.66" min="0" max="1" label="Minimum number of matched bases, normalized to read length" help="Alignments must have the (normalized) number of matched bases higher than this value to be output"/>
-                    <param argument="--outSAMmultNmax" type="integer" value="-1" min="-1" label="Maximum number of multimapping alignments to output for a read" help="A value of -1 (the default) results in all alignments (up to --outFilterMultimapNmax) being output" />
+                    <param argument="--outSAMmultNmax" type="integer" value="-1" min="-1" label="Maximum number of multimapping alignments to output for a read" help="A value of -1 (the default) results in all alignments (up to --outFilterMultimapNmax) being output"/>
                     <param argument="--outSAMtlen" type="select" label="Calculation method for TLEN">
                         <option value="1" selected="true">leftmost base of the (+)strand mate to rightmost base of the (-)mate. (+)sign for the (+)strand mate</option>
                         <option value="2">leftmost base of any mate to rightmost base of any mate. (+)sign for the mate with the leftmost base. This is different from 1 for overlapping mates with protruding ends</option>
@@ -382,7 +366,6 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 <when value="no"/>
             </conditional>
         </section>
-
         <!-- Algorithmic settings. -->
         <section name="algo" title="Algorithmic settings" expanded="true">
             <conditional name="params">
@@ -396,112 +379,105 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 <!-- Set STAR-fusion parameters in command section -->
                 <when value="star_fusion"/>
                 <when value="arriba"/>
-
                 <when value="full">
                     <expand macro="full_algo_params"/>
                 </when>
             </conditional>
         </section>
         <section name="perf" title="Performance tweaks / Troubleshooting" expanded="false">
-            <param argument="--outBAMsortingBinsN" type="integer" value="50" min="1" label="Number of genome bins for coordinate-sorting" help="Higher values result in lower RAM requirements during the sorting step. The default value is 50. Tweak this if you are facing memory-related errors." />
-            <param argument="--winAnchorMultimapNmax" type="integer" value="50" min="50" label="Maximum number of loci anchors are allowed to map to" help="Higher value can increase the runtime singificantly. This value should be set greater or equal to --outFilterMultimapNmax" />
+            <param argument="--outBAMsortingBinsN" type="integer" value="50" min="1" label="Number of genome bins for coordinate-sorting" help="Higher values result in lower RAM requirements during the sorting step. The default value is 50. Tweak this if you are facing memory-related errors."/>
+            <param argument="--winAnchorMultimapNmax" type="integer" value="50" min="50" label="Maximum number of loci anchors are allowed to map to" help="Higher value can increase the runtime singificantly. This value should be set greater or equal to --outFilterMultimapNmax"/>
         </section>
         <expand macro="outWig"/>
     </inputs>
-
     <outputs>
         <data format="txt" name="output_log" label="${tool.name} on ${on_string}: log" from_work_dir="Log.final.out">
-            <expand macro="dbKeyActions" />
+            <expand macro="dbKeyActions"/>
         </data>
-
         <data format="interval" name="chimeric_junctions" label="${tool.name} on ${on_string}: chimeric junctions" from_work_dir="Chimeric.out.junction">
             <filter>('Junctions' in chimOutType)</filter>
-            <expand macro="dbKeyActions" />
+            <expand macro="dbKeyActions"/>
         </data>
-
         <data format="interval" name="splice_junctions" label="${tool.name} on ${on_string}: splice junctions.bed" from_work_dir="SJ.out.tab">
-            <expand macro="dbKeyActions" />
+            <expand macro="dbKeyActions"/>
         </data>
-
         <data name="mapped_reads" format="bam" label="${tool.name} on ${on_string}: mapped.bam">
-            <expand macro="dbKeyActions" />
+            <expand macro="dbKeyActions"/>
         </data>
-
-        <data name="transcriptome_mapped_reads" format="unsorted.bam" label="${tool.name} on ${on_string}: transcriptome-mapped.bam" >
+        <data name="transcriptome_mapped_reads" format="unsorted.bam" label="${tool.name} on ${on_string}: transcriptome-mapped.bam">
             <filter>'TranscriptomeSAM' in refGenomeSource['GTFconditional']['quantmode_output']['quantMode']</filter>
-            <expand macro="dbKeyActions" />
+            <expand macro="dbKeyActions"/>
         </data>
-
         <data name="reads_per_gene" format="tabular" label="${tool.name} on ${on_string}: reads per gene" from_work_dir="ReadsPerGene.out.tab">
             <filter>'GeneCounts' in refGenomeSource['GTFconditional']['quantmode_output']['quantMode']</filter>
-            <expand macro="outCountActions" />
+            <expand macro="outCountActions"/>
         </data>
         <expand macro="outWigOutputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="paired" />
-                <param name="input1" value="pbmc_1k_v2_L001.R1.10k.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="input2" value="pbmc_1k_v2_L001.R2.10k.fastq.gz" ftype="fastqsanger.gz" />
+                <param name="sPaired" value="paired"/>
+                <param name="input1" value="pbmc_1k_v2_L001.R1.10k.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="input2" value="pbmc_1k_v2_L001.R2.10k.fastq.gz" ftype="fastqsanger.gz"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="filtered3.Homo_sapiens.GRCh38.dna.chromosome.21.fa.gz" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="filtered3.Homo_sapiens.GRCh38.dna.chromosome.21.fa.gz"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
                 <conditional name="wasp_conditional">
                     <param name="waspOutputMode" value="wasp_mode"/>
-                    <param name="varVCFfile" value="filtered3.vcf" ftype="vcf" />
+                    <param name="varVCFfile" value="filtered3.vcf" ftype="vcf"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_wasp.bed"/>
         </test>
         <!-- test with cached genome index -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="indexed" />
+                <param name="geneSource" value="indexed"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
-                    <param name="genomeDir" value="001" />
+                    <param name="GTFselect" value="with-gtf"/>
+                    <param name="genomeDir" value="001"/>
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test gtf file and GeneCounts mode -->
         <test expect_num_outputs="4">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
+                    <param name="GTFselect" value="with-gtf"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="test1.gtf" ftype="gtf"/>
                     <conditional name="quantmode_output">
@@ -510,19 +486,18 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634"/>
             <output name="reads_per_gene" file="tophat_test_reads_per_gene.txt">
-                <metadata name="column_names" value="GeneID,Counts_unstrand,Counts_firstStrand,Counts_secondStrand" />
+                <metadata name="column_names" value="GeneID,Counts_unstrand,Counts_firstStrand,Counts_secondStrand"/>
             </output>
         </test>
         <!-- Test if an alternative feature can be provided as a splicing unit.
@@ -530,15 +505,15 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
         "Fatal INPUT FILE error, no exon lines in the GTF file" is expected -->
         <test expect_num_outputs="4">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
+                    <param name="GTFselect" value="with-gtf"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="no_exon.gtf" ftype="gtf"/>
                     <param name="sjdbGTFfeatureExon" value="fakexon"/>
@@ -548,33 +523,32 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_fakexon.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_fakexon.bam" compare="sim_size" delta="634"/>
             <output name="reads_per_gene" file="tophat_test_reads_per_gene.txt">
-                <metadata name="column_names" value="GeneID,Counts_unstrand,Counts_firstStrand,Counts_secondStrand" />
+                <metadata name="column_names" value="GeneID,Counts_unstrand,Counts_firstStrand,Counts_secondStrand"/>
             </output>
         </test>
         <!-- test gtf file and TranscriptomeSAM mode -->
         <test expect_num_outputs="4">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
+                    <param name="GTFselect" value="with-gtf"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="test1.gtf" ftype="gtf"/>
                     <conditional name="quantmode_output">
@@ -583,30 +557,29 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634" />
-            <output name="transcriptome_mapped_reads" file="rnastar_test_transcriptome_mapped_reads.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634"/>
+            <output name="transcriptome_mapped_reads" file="rnastar_test_transcriptome_mapped_reads.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test cached no index but gtf file and GeneCounts TranscriptomeSAM mode -->
         <test expect_num_outputs="5">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="indexed" />
+                <param name="geneSource" value="indexed"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="without-gtf-with-gtf" />
-                    <param name="genomeDir" value="000" />
+                    <param name="GTFselect" value="without-gtf-with-gtf"/>
+                    <param name="genomeDir" value="000"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="test1.gtf" ftype="gtf"/>
                     <conditional name="quantmode_output">
@@ -615,324 +588,316 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634" />
-            <output name="reads_per_gene" file="tophat_test_reads_per_gene.txt" />
-            <output name="transcriptome_mapped_reads" file="rnastar_test_transcriptome_mapped_reads.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads.bam" compare="sim_size" delta="634"/>
+            <output name="reads_per_gene" file="tophat_test_reads_per_gene.txt"/>
+            <output name="transcriptome_mapped_reads" file="rnastar_test_transcriptome_mapped_reads.bam" compare="sim_size" delta="634"/>
         </test>
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
-                    <param name="outFilterScoreMinOverLread" value="0.9" />
+                    <param name="output_select2" value="yes"/>
+                    <param name="outFilterScoreMinOverLread" value="0.9"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                     <section name="seed">
-                        <param name="seed_select" value="yes" />
-                        <param name="seedSearchStartLmax" value="25" />
+                        <param name="seed_select" value="yes"/>
+                        <param name="seedSearchStartLmax" value="25"/>
                     </section>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test2.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test2.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test2_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test2_mapped_reads.bam" compare="sim_size" delta="200" />
+            <output name="mapped_reads" file="rnastar_test2_mapped_reads.bam" compare="sim_size" delta="200"/>
         </test>
         <test expect_num_outputs="4">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="test3.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="test3.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="test3.ref.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="test3.ref.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
-            <param name="chimOutType" value="Junctions" />
+            <param name="chimOutType" value="Junctions"/>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="star_fusion" />
+                    <param name="settingsType" value="star_fusion"/>
                 </conditional>
             </section>
-
             <output name="chimeric_junctions" file="test3.chimjunc.tabular" compare="diff" lines_diff="2"/>
         </test>
-        <test expect_num_outputs="4"><!-- tests fastqsanger.gz -->
+        <test expect_num_outputs="4">
+            <!-- tests fastqsanger.gz -->
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="test3.fastqsanger.gz" ftype="fastqsanger.gz" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="test3.fastqsanger.gz" ftype="fastqsanger.gz"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="test3.ref.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="test3.ref.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
-            <param name="chimOutType" value="Junctions" />
+            <param name="chimOutType" value="Junctions"/>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch,XS"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="star_fusion" />
+                    <param name="settingsType" value="star_fusion"/>
                 </conditional>
             </section>
-
             <output name="chimeric_junctions" file="test3.chimjunc.tabular" compare="diff" lines_diff="2"/>
         </test>
         <!-- test 10 -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
+                    <param name="output_select2" value="yes"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_test10.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_test10.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- twopass mode tests -->
         <!-- test Basic twopass -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <conditional name="twopass">
-                <param name="twopassMode" value="Basic" />
+                <param name="twopassMode" value="Basic"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
+                    <param name="output_select2" value="yes"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_twopass.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test Basic twopass without a gtf file option -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="indexed" />
+                <param name="geneSource" value="indexed"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="without-gtf" />
-                    <param name="genomeDir" value="000" />
+                    <param name="GTFselect" value="without-gtf"/>
+                    <param name="genomeDir" value="000"/>
                 </conditional>
             </conditional>
             <conditional name="twopass">
-                <param name="twopassMode" value="Basic" />
+                <param name="twopassMode" value="Basic"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
+                    <param name="output_select2" value="yes"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_twopass.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test Basic twopass with a built-in gtf index option -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="indexed" />
+                <param name="geneSource" value="indexed"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
-                    <param name="genomeDir" value="001" />
+                    <param name="GTFselect" value="with-gtf"/>
+                    <param name="genomeDir" value="001"/>
                 </conditional>
             </conditional>
             <conditional name="twopass">
-                <param name="twopassMode" value="Basic" />
+                <param name="twopassMode" value="Basic"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
+                    <param name="output_select2" value="yes"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_twopass.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test "multisample" twopass -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <conditional name="twopass">
-                <param name="twopassMode" value="None --sjdbFileChrStartEnd" />
-                <param name="sj_precalculated" value="rnastar_test_splicejunctions_twopass.bed" />
+                <param name="twopassMode" value="None --sjdbFileChrStartEnd"/>
+                <param name="sj_precalculated" value="rnastar_test_splicejunctions_twopass.bed"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="filter">
-                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonicalUnannotated,--outFilterIntronMotifs RemoveNoncanonical" />
+                <param name="basic_filters" value="exclude_unmapped,--outFilterIntronMotifs RemoveNoncanonicalUnannotated,--outFilterIntronMotifs RemoveNoncanonical"/>
                 <conditional name="output_params2">
-                    <param name="output_select2" value="yes" />
+                    <param name="output_select2" value="yes"/>
                 </conditional>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
+                    <param name="settingsType" value="full"/>
                 </conditional>
             </section>
-
-            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_twopass.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_twopass.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_twopass.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test "genomeSAindexNbases" parameter -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="14" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="14"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-            <output name="output_log" file="rnastar_test_genomeSAindexNbases.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_genomeSAindexNbases.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_genomeSAindexNbases.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_genomeSAindexNbases.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_genomeSAindexNbases.bam" compare="sim_size" delta="634"/>
         </test>
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="10" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="10"/>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
-            <output name="output_log" file="rnastar_test_genomeSAindexNbases_02.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_genomeSAindexNbases_02.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_genomeSAindexNbases_02.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_genomeSAindexNbases_02.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_genomeSAindexNbases_02.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test paired-end input and outWig -->
         <test expect_num_outputs="6">
             <conditional name="singlePaired">
-                <param name="sPaired" value="paired" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
-                <param name="input2" value="tophat_in3.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="paired"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
+                <param name="input2" value="tophat_in3.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
+                    <param name="GTFselect" value="with-gtf"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="test1.gtf" ftype="gtf"/>
                     <conditional name="quantmode_output">
@@ -941,30 +906,30 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
             <conditional name="outWig">
-                <param name="outWigType" value="wiggle" />
+                <param name="outWigType" value="wiggle"/>
                 <param name="outWigTypeSecondWord" value="read2"/>
-                <param name="outWigStrand" value="false" />
+                <param name="outWigStrand" value="false"/>
             </conditional>
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_PE.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_PE.bam" compare="sim_size" delta="634" />
-            <output name="reads_per_gene" file="tophat_test_reads_per_gene_PE.txt" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_PE.bam" compare="sim_size" delta="634"/>
+            <output name="reads_per_gene" file="tophat_test_reads_per_gene_PE.txt"/>
             <output name="signal_unique_str1" file="tophat_Signal.Unique.both.read2.out.wig" ftype="wig"/>
-            <output name="signal_uniquemultiple_str1" file="tophat_Signal.Unique.both.read2.out.wig" ftype="wig" />
+            <output name="signal_uniquemultiple_str1" file="tophat_Signal.Unique.both.read2.out.wig" ftype="wig"/>
         </test>
         <!-- test paired-end input as collection and outWig stranded -->
         <test expect_num_outputs="8">
             <conditional name="singlePaired">
-                <param name="sPaired" value="paired_collection" />
-                <param name="input" >
+                <param name="sPaired" value="paired_collection"/>
+                <param name="input">
                     <collection type="paired">
                         <element name="forward" value="tophat_revlib_R1.fastqsanger" ftype="fastq"/>
                         <element name="reverse" value="tophat_revlib_R2.fastqsanger" ftype="fastq"/>
@@ -972,11 +937,11 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </param>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa"/>
+                <param name="genomeSAindexNbases" value="5"/>
                 <conditional name="GTFconditional">
-                    <param name="GTFselect" value="with-gtf" />
+                    <param name="GTFselect" value="with-gtf"/>
                     <param name="sjdbOverhang" value="75"/>
                     <param name="sjdbGTFfile" value="test1.gtf" ftype="gtf"/>
                     <conditional name="quantmode_output">
@@ -985,18 +950,17 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                 </conditional>
             </conditional>
             <section name="oformat">
-                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch" />
+                <param name="outSAMattributes" value="NH,HI,AS,nM,NM,MD,jM,jI,MC,ch"/>
             </section>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="default" />
+                    <param name="settingsType" value="default"/>
                 </conditional>
             </section>
             <conditional name="outWig">
-                <param name="outWigType" value="bedGraph" />
+                <param name="outWigType" value="bedGraph"/>
             </conditional>
-
-            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test.log" compare="re_match_multiline"/>
             <output name="splice_junctions">
                 <assert_contents>
                     <has_n_lines n="2"/>
@@ -1004,66 +968,66 @@ with Cufflinks if your sequences come from an unstranded library preparation.">
                     <has_line_matching expression="test_chromosome\s+401\s+500\s+1\s+1\s+0\s+25\s+0\s+36"/>
                 </assert_contents>
             </output>
-            <output name="mapped_reads" >
+            <output name="mapped_reads">
                 <assert_contents>
                     <has_size value="4711" delta="800"/>
                 </assert_contents>
             </output>
-            <output name="reads_per_gene" file="tophat_test_reads_per_gene_PE_rev.txt" />
+            <output name="reads_per_gene" file="tophat_test_reads_per_gene_PE_rev.txt"/>
             <output name="signal_unique_str1" file="tophat_rev_Signal.Unique.str1.out.bg" ftype="bedgraph"/>
             <output name="signal_uniquemultiple_str1" file="tophat_rev_Signal.Unique.str1.out.bg" ftype="bedgraph"/>
-            <output name="signal_unique_str2" file="tophat_rev_Signal.Unique.str2.out.bg" ftype="bedgraph" />
-            <output name="signal_uniquemultiple_str2" file="tophat_rev_Signal.Unique.str2.out.bg" ftype="bedgraph" />
+            <output name="signal_unique_str2" file="tophat_rev_Signal.Unique.str2.out.bg" ftype="bedgraph"/>
+            <output name="signal_uniquemultiple_str2" file="tophat_rev_Signal.Unique.str2.out.bg" ftype="bedgraph"/>
         </test>
         <!-- test diploid mode -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="single" />
-                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger" />
+                <param name="sPaired" value="single"/>
+                <param name="input1" value="tophat_in2.fastqsanger" ftype="fastqsanger"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="tophat_test.fa.gz" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="tophat_test.fa.gz"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <conditional name="diploidconditional">
-                <param name="diploid" value="Yes" />
+                <param name="diploid" value="Yes"/>
                 <!-- generated from rnastar_test_mapped_reads.bam with
                 bcftools mpileup and bcftools call -->
-                <param name="genomeTransformVCF" value="rnastar_test_mapped_reads.vcf" ftype="vcf" />
-                <param name="genomeTransformOutput" value="true" />
+                <param name="genomeTransformVCF" value="rnastar_test_mapped_reads.vcf" ftype="vcf"/>
+                <param name="genomeTransformOutput" value="true"/>
             </conditional>
-            <output name="output_log" file="rnastar_test_diploid.log" compare="re_match_multiline" />
+            <output name="output_log" file="rnastar_test_diploid.log" compare="re_match_multiline"/>
             <output name="splice_junctions" file="rnastar_test_splicejunctions_diploid.bed"/>
-            <output name="mapped_reads" file="rnastar_test_mapped_reads_diploid.bam" compare="sim_size" delta="634" />
+            <output name="mapped_reads" file="rnastar_test_mapped_reads_diploid.bam" compare="sim_size" delta="634"/>
         </test>
         <!-- test limits during the index generation -->
         <test expect_num_outputs="3">
             <conditional name="singlePaired">
-                <param name="sPaired" value="paired" />
-                <param name="input1" value="pbmc_1k_v2_L001.R1.10k.fastq.gz" ftype="fastqsanger.gz" />
-                <param name="input2" value="pbmc_1k_v2_L001.R2.10k.fastq.gz" ftype="fastqsanger.gz" />
+                <param name="sPaired" value="paired"/>
+                <param name="input1" value="pbmc_1k_v2_L001.R1.10k.fastq.gz" ftype="fastqsanger.gz"/>
+                <param name="input2" value="pbmc_1k_v2_L001.R2.10k.fastq.gz" ftype="fastqsanger.gz"/>
             </conditional>
             <conditional name="refGenomeSource">
-                <param name="geneSource" value="history" />
-                <param name="genomeFastaFiles" value="filtered3.Homo_sapiens.GRCh38.dna.chromosome.21.fa.gz" />
-                <param name="genomeSAindexNbases" value="5" />
+                <param name="geneSource" value="history"/>
+                <param name="genomeFastaFiles" value="filtered3.Homo_sapiens.GRCh38.dna.chromosome.21.fa.gz"/>
+                <param name="genomeSAindexNbases" value="5"/>
             </conditional>
             <section name="algo">
                 <conditional name="params">
-                    <param name="settingsType" value="full" />
-                        <section name="junction_limits">
-                            <param name="limitOutSJoneRead" value="100" />
-                            <param name="limitOutSJcollapsed" value="5000" />
-                            <param name="limitSjdbInsertNsj" value="5000" />
-                        </section>
+                    <param name="settingsType" value="full"/>
+                    <section name="junction_limits">
+                        <param name="limitOutSJoneRead" value="100"/>
+                        <param name="limitOutSJcollapsed" value="5000"/>
+                        <param name="limitSjdbInsertNsj" value="5000"/>
+                    </section>
                 </conditional>
             </section>
             <assert_stdout>
-                <has_line_matching expression=".*genomeGenerate.*--limitOutSJoneRead\s+100\s+--limitOutSJcollapsed\s+5000\s+--limitSjdbInsertNsj\s+5000" />
+                <has_line_matching expression=".*genomeGenerate.*--limitOutSJoneRead\s+100\s+--limitOutSJcollapsed\s+5000\s+--limitSjdbInsertNsj\s+5000"/>
             </assert_stdout>
         </test>
-      </tests>
+    </tests>
     <help><![CDATA[
 **What it does**
 

@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools map
 -a '${inputA}'
@@ -23,90 +23,88 @@ $header
 > '${output}'
     ]]></command>
     <inputs>
-        <param name="inputA" argument="-a" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="File A (BAM/@STD_BEDTOOLS_INPUT_LABEL@)" />
-        <param name="inputB" argument="-b" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="File B (BAM/@STD_BEDTOOLS_INPUT_LABEL@)" />
-        <expand macro="overlap" />
+        <param name="inputA" argument="-a" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="File A (BAM/@STD_BEDTOOLS_INPUT_LABEL@)"/>
+        <param name="inputB" argument="-b" type="data" format="bam,@STD_BEDTOOLS_INPUTS@" label="File B (BAM/@STD_BEDTOOLS_INPUT_LABEL@)"/>
+        <expand macro="overlap"/>
         <expand macro="overlap" name="overlapB" argument="-F" fracof="B"/>
-        <param name="reciprocal" argument="-r" type="boolean" truevalue="-r" falsevalue="" checked="false"
-            label="Require reciprocal overlap"
-            help="If set, the overlap between the BAM alignment and the BED interval must affect the above fraction of both the alignment and the BED interval" />
-        <expand macro="strand2" />
+        <param name="reciprocal" argument="-r" type="boolean" truevalue="-r" falsevalue="" checked="false" label="Require reciprocal overlap" help="If set, the overlap between the BAM alignment and the BED interval must affect the above fraction of both the alignment and the BED interval"/>
+        <expand macro="strand2"/>
         <expand macro="c_and_o_argument">
-            <param name="col" argument="-c" type="data_column" data_ref="inputB" label="Specify the column(s) from the B file to map onto intervals in A" help="Multiple columns can be specified in a comma-delimited list" />
+            <param name="col" argument="-c" type="data_column" data_ref="inputB" label="Specify the column(s) from the B file to map onto intervals in A" help="Multiple columns can be specified in a comma-delimited list"/>
         </expand>
-        <expand macro="split" />
-        <expand macro="print_header" />
+        <expand macro="split"/>
+        <expand macro="print_header"/>
         <expand macro="input_conditional_genome_file" optional="true"/>
     </inputs>
     <outputs>
-        <data name="output" format_source="inputA" metadata_source="inputA" label="Mapping of ${inputB.name} into ${inputA.name}" />
+        <data name="output" format_source="inputA" metadata_source="inputA" label="Mapping of ${inputB.name} into ${inputA.name}"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputA" value="mapBed1.bed" ftype="bed" />
-            <param name="inputB" value="mapBed2.bed" ftype="bed" />
+            <param name="inputA" value="mapBed1.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed2.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="mean" />
+                <param name="col" value="5"/>
+                <param name="operation" value="mean"/>
             </repeat>
-            <output name="output" file="mapBed_result1.bed" ftype="bed" />
+            <output name="output" file="mapBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="mapBed1.bed" ftype="bed" />
-            <param name="inputB" value="mapBed2.bed" ftype="bed" />
+            <param name="inputA" value="mapBed1.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed2.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="collapse" />
+                <param name="col" value="5"/>
+                <param name="operation" value="collapse"/>
             </repeat>
-            <output name="output" file="mapBed_result2.bed" ftype="bed" />
+            <output name="output" file="mapBed_result2.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="mapBed1.bed" ftype="bed" />
-            <param name="inputB" value="mapBed2.bed" ftype="bed" />
+            <param name="inputA" value="mapBed1.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed2.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="collapse" />
+                <param name="col" value="5"/>
+                <param name="operation" value="collapse"/>
             </repeat>
-            <param name="strand" value="-S" />
-            <output name="output" file="mapBed_result3.bed" ftype="bed" />
+            <param name="strand" value="-S"/>
+            <output name="output" file="mapBed_result3.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="mapBed1.bed" ftype="bed" />
-            <param name="inputB" value="mapBed2.bed" ftype="bed" />
+            <param name="inputA" value="mapBed1.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed2.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="collapse" />
+                <param name="col" value="5"/>
+                <param name="operation" value="collapse"/>
             </repeat>
-            <param name="strand" value="-s" />
-            <output name="output" file="mapBed_result4.bed" ftype="bed" />
+            <param name="strand" value="-s"/>
+            <output name="output" file="mapBed_result4.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="mapBed3.bed" ftype="bed" />
-            <param name="inputB" value="mapBed4.bed" ftype="bed" />
+            <param name="inputA" value="mapBed3.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed4.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="collapse" />
+                <param name="col" value="5"/>
+                <param name="operation" value="collapse"/>
             </repeat>
-            <param name="strand" value="-s" />
+            <param name="strand" value="-s"/>
             <conditional name="genome_file_opts">
-                <param name="genome_file_opts_selector" value="hist" />
-                <param name="genome" value="mm9.len" ftype="bed" />
+                <param name="genome_file_opts_selector" value="hist"/>
+                <param name="genome" value="mm9.len" ftype="bed"/>
             </conditional>
-            <output name="output" file="mapBed_result5.bed" ftype="bed" />
+            <output name="output" file="mapBed_result5.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="mapBed3.bed" ftype="bed" />
-            <param name="inputB" value="mapBed4.bed" ftype="bed" />
+            <param name="inputA" value="mapBed3.bed" ftype="bed"/>
+            <param name="inputB" value="mapBed4.bed" ftype="bed"/>
             <repeat name="c_and_o_argument_repeat">
-                <param name="col" value="5" />
-                <param name="operation" value="collapse" />
+                <param name="col" value="5"/>
+                <param name="operation" value="collapse"/>
             </repeat>
-            <param name="strand" value="-s" />
+            <param name="strand" value="-s"/>
             <conditional name="genome_file_opts">
-                <param name="genome_file_opts_selector" value="loc" />
+                <param name="genome_file_opts_selector" value="loc"/>
                 <param name="genome" value="mm9"/>
             </conditional>
-            <output name="output" file="mapBed_result5.bed" ftype="bed" />
+            <output name="output" file="mapBed_result5.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -126,5 +124,5 @@ The map tool is substantially faster in versions 2.19.0 and later. The plot belo
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

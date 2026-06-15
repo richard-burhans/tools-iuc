@@ -1,5 +1,5 @@
 <tool id="phyloseq_from_dada2" name="Create phyloseq object" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-  <description>from dada2 sequence and taxonomy tables</description>
+    <description>from dada2 sequence and taxonomy tables</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -58,12 +58,11 @@ Rscript '${__tool_directory__}/phyloseq_from_dada2.R'
             </assert_stdout>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts a sequence table produced by the dada2 removeBimeraDenovo tool and a taxonomy table produced by the
 dada2 assignTaxonomyAndAddSpecies tool and uses them to create a phyloseq object which is output in a phyloseq dataset.  
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

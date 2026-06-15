@@ -67,10 +67,8 @@ echo 'chimera.ccode(
             <when value=""/>
             <when value="default"/>
         </conditional>
-        <param name="window" type="integer" value="0" label="window - Length of sequence you want in each window analyzed"
-            help="Recommended window size is between 5 and 20% of your trimmed sequence length. Default is 10% of the sequence length. Default is used if &lt; 1"/>
-        <param name="numwanted" type="integer" value="20" label="numwanted - Number of sequences compared with each query"
-            help="uses default if set to 0"/>
+        <param name="window" type="integer" value="0" label="window - Length of sequence you want in each window analyzed" help="Recommended window size is between 5 and 20% of your trimmed sequence length. Default is 10% of the sequence length. Default is used if &lt; 1"/>
+        <param name="numwanted" type="integer" value="20" label="numwanted - Number of sequences compared with each query" help="uses default if set to 0"/>
         <expand macro="param-savelog"/>
     </inputs>
     <outputs>
@@ -94,7 +92,8 @@ echo 'chimera.ccode(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test> <!-- test with default ecoli mask -->
+        <test>
+            <!-- test with default ecoli mask -->
             <param name="fasta" value="Mock_S280_L001_R1_001_small.trim.contigs.good.align_head"/>
             <param name="source" value="hist"/>
             <param name="reference" value="HMP_MOCK.v35.align"/>
@@ -129,6 +128,6 @@ The program can analyze sequences for any required word length. Generally, value
 
     ]]></help>
     <expand macro="citations">
-           <citation type="doi">10.1093/bioinformatics/bti008</citation>
+        <citation type="doi">10.1093/bioinformatics/bti008</citation>
     </expand>
 </tool>

@@ -246,8 +246,7 @@
                         <option value="Metadata">Cell Metadata</option>
                         <option value="Matrix">Matrix</option>
                     </param>
-                    <when value="General">
-                    </when>
+                    <when value="General"/>
                     <when value="Features">
                         <param name="assay" type="text" value="RNA" label="Assay to display features for">
                             <expand macro="valid_name"/>
@@ -256,8 +255,7 @@
                     <when value="Cells">
                         <expand macro="select_layer"/>
                     </when>
-                    <when value="Idents">
-                    </when>
+                    <when value="Idents"/>
                     <when value="Metadata">
                         <param name="view_metadata" type="text" optional="true" value="" label="Metadata to view" help="leave blank to view all metadata"/>
                     </when>
@@ -311,8 +309,7 @@
                                 <option value="false" selected="true">No</option>
                                 <option value="true">Yes</option>
                             </param>
-                            <when value="false">
-                            </when>
+                            <when value="false"/>
                             <when value="true">
                                 <param name="old_ident" type="text" value="old.ident" label="Name to store old idents under"/>
                             </when>
@@ -328,8 +325,7 @@
                                 <option value="false" selected="true">No</option>
                                 <option value="true">Yes</option>
                             </param>
-                            <when value="false">
-                            </when>
+                            <when value="false"/>
                             <when value="true">
                                 <param argument="assay" type="text" value="RNA" label="Name of assay to join">
                                     <expand macro="valid_name"/>
@@ -347,10 +343,8 @@
                         <param name="groups" type="text" value="" label="Group to keep" help="enter a single category from the grouping"/>
                     </when>
                     <when value="Subset_Logical">
-                        <param name="column" type="text" value="" label="Metadata column"
-                            help="Column in Seurat object metadata to filter on (e.g. nCount_Spatial, percent.mt)"/>
-                        <param name="operator" type="select"
-                            label="Operator" help="Logical operator for filtering">
+                        <param name="column" type="text" value="" label="Metadata column" help="Column in Seurat object metadata to filter on (e.g. nCount_Spatial, percent.mt)"/>
+                        <param name="operator" type="select" label="Operator" help="Logical operator for filtering">
                             <option value="gt" selected="true">&gt; (greater than)</option>
                             <option value="lt">&lt; (less than)</option>
                             <option value="gte">&gt;= (greater than or equal)</option>

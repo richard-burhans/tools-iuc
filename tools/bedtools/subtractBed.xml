@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools subtract
 $strand
@@ -18,8 +18,8 @@ $removeIfOverlap
     <inputs>
         <param name="inputA" argument="-a" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
         <param name="inputB" argument="-b" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
-        <expand macro="strand2" />
-        <expand macro="overlap" />
+        <expand macro="strand2"/>
+        <expand macro="overlap"/>
         <param name="removeIfOverlap" type="select" label="Calculation based on strandedness?">
             <option value="" selected="true">Don't Remove entire feature on overlap</option>
             <option value="-A">Remove entire feature if any overlap. That is, by default, only subtract the portion of A that overlaps B. Here, if any overlap is found (or -f amount), the entire feature is removed (-A)</option>
@@ -31,21 +31,21 @@ $removeIfOverlap
     </outputs>
     <tests>
         <test>
-            <param name="inputA" value="subtractBed1.bed" ftype="bed" />
-            <param name="inputB" value="subtractBed2.bed" ftype="bed" />
-            <output name="output" file="subtractBed_result1.bed" ftype="bed" />
+            <param name="inputA" value="subtractBed1.bed" ftype="bed"/>
+            <param name="inputB" value="subtractBed2.bed" ftype="bed"/>
+            <output name="output" file="subtractBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="subtractBed1.bed" ftype="bed" />
-            <param name="inputB" value="subtractBed2.bed" ftype="bed" />
-            <param name="overlap" value="0.80" />
-            <output name="output" file="subtractBed_result2.bed" ftype="bed" />
+            <param name="inputA" value="subtractBed1.bed" ftype="bed"/>
+            <param name="inputB" value="subtractBed2.bed" ftype="bed"/>
+            <param name="overlap" value="0.80"/>
+            <output name="output" file="subtractBed_result2.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="inputA" value="subtractBed1.bed" ftype="bed" />
-            <param name="inputB" value="subtractBed2.bed" ftype="bed" />
-            <param name="removeIfOverlap" value="-A" />
-            <output name="output" file="subtractBed_result3.bed" ftype="bed" />
+            <param name="inputA" value="subtractBed1.bed" ftype="bed"/>
+            <param name="inputB" value="subtractBed2.bed" ftype="bed"/>
+            <param name="removeIfOverlap" value="-A"/>
+            <output name="output" file="subtractBed_result3.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -57,5 +57,5 @@ bedtools subtract searches for features in B that overlap A. If an overlapping f
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

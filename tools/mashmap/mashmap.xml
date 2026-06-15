@@ -52,36 +52,25 @@ mashmap
 
 ]]> </command>
     <inputs>
-        <param name="query" type="data" format="fasta,fasta.gz,fastq,fastq.gz" multiple="true"
-            label="Query sequences to mash against the references supplied below"/>
-        <param name="reflist" type="data" format="fasta,fasta.gz,fastq,fastq.gz" multiple="true"
-            label="Reference or references to mash the query sequences on"
-            help="Choose one or more reference sequences to mash the query sequences against."/>
-        <param argument="--perc_identity" type="float" value="85.0" label="Identity threshold"
-            help="By default, it is set to 85, implying mappings with 85 or more identity should be reported. For example, it can be set to 80to account for more noisy long-read datasets or 95 for mapping human genome assembly to human reference."/>
-        <param argument="--seqLength" type="integer" value="5000" min="1" label="Minimum segment length"
-            help="Default is 5,000 bp. Sequences below this length are ignored. Mashmap provides guarantees on reporting local alignments of length twice this value."/>
-        <param argument="--sketchSize" type="integer" value="0" label="Sketch size - leave 0 for automatic setting based"
-            help="This parameter sets the seed density of the winnowing scheme, gauranteeing that the minhash will be calculated from a sample of sketchSize k-mers for each segment. It is set automatically based on --pi but can be manually set as well."/>
-        <param argument="dense" type="boolean" truevalue="--dense" falsevalue="" label="Dense sketching"
-            help="This flag will increase the seed density substantially, resulting in a density of roughly 0.02 * (1 + (1 - pi) / .05) where pi is the perc_identity threshold. This leads to longer runtimes and higher RAM usage, but significantly more accurate estimates of ANI."/>
-        <param argument="--kmerThreshold" type="float" min="0.0" max="0.0" optional="true" label="Ignore the top % most-frequent kmer window" />
-        <param argument="--kmerComplexity" type="float" min="0.0" max="1.0" optional="true" label="Threshold for kmer complexity" />
+        <param name="query" type="data" format="fasta,fasta.gz,fastq,fastq.gz" multiple="true" label="Query sequences to mash against the references supplied below"/>
+        <param name="reflist" type="data" format="fasta,fasta.gz,fastq,fastq.gz" multiple="true" label="Reference or references to mash the query sequences on" help="Choose one or more reference sequences to mash the query sequences against."/>
+        <param argument="--perc_identity" type="float" value="85.0" label="Identity threshold" help="By default, it is set to 85, implying mappings with 85 or more identity should be reported. For example, it can be set to 80to account for more noisy long-read datasets or 95 for mapping human genome assembly to human reference."/>
+        <param argument="--seqLength" type="integer" value="5000" min="1" label="Minimum segment length" help="Default is 5,000 bp. Sequences below this length are ignored. Mashmap provides guarantees on reporting local alignments of length twice this value."/>
+        <param argument="--sketchSize" type="integer" value="0" label="Sketch size - leave 0 for automatic setting based" help="This parameter sets the seed density of the winnowing scheme, gauranteeing that the minhash will be calculated from a sample of sketchSize k-mers for each segment. It is set automatically based on --pi but can be manually set as well."/>
+        <param argument="dense" type="boolean" truevalue="--dense" falsevalue="" label="Dense sketching" help="This flag will increase the seed density substantially, resulting in a density of roughly 0.02 * (1 + (1 - pi) / .05) where pi is the perc_identity threshold. This leads to longer runtimes and higher RAM usage, but significantly more accurate estimates of ANI."/>
+        <param argument="--kmerThreshold" type="float" min="0.0" max="0.0" optional="true" label="Ignore the top % most-frequent kmer window"/>
+        <param argument="--kmerComplexity" type="float" min="0.0" max="1.0" optional="true" label="Threshold for kmer complexity"/>
         <param argument="filter_mode" type="select" label="Filter mode" help="Mashmap implements a plane-sweep based algorithm to perform the alignment filtering. Similar to delta-filter in nucmer, different filtering options are provided that are suitable for long read or assembly mapping. Option -f map is suitable for reporting the best mappings for long reads, whereas -f one-to-one is suitable for reporting orthologous mappings among all computed assembly to genome mappings.">
             <option value="map" selected="true">map - best mapping for long reads</option>
             <option value="one-to-one">one-to-one - best for mapping orthologous reads</option>
             <option value="none">None</option>
         </param>
-        <param argument="--reportPercentage" type="boolean" truevalue="--reportPercentage" falsevalue="" checked="false"
-            label="Report predicted ANI values in [0, 100]"
-            help="instead of [0,1]" />
-        <param argument="--noMerge" type="boolean" truevalue="--noMerge" falsevalue="" checked="false"
-            label="Don't merge consecutive segment-level mappings" />
-        <param argument="--noHgFilter" type="boolean" truevalue="--noHgFilter" falsevalue="" checked="false" label="Use MashMap2 first pass filtering"
-            help="Don't use the hypergeometric filtering and instead use the MashMap2 first pass filtering." />
+        <param argument="--reportPercentage" type="boolean" truevalue="--reportPercentage" falsevalue="" checked="false" label="Report predicted ANI values in [0, 100]" help="instead of [0,1]"/>
+        <param argument="--noMerge" type="boolean" truevalue="--noMerge" falsevalue="" checked="false" label="Don't merge consecutive segment-level mappings"/>
+        <param argument="--noHgFilter" type="boolean" truevalue="--noHgFilter" falsevalue="" checked="false" label="Use MashMap2 first pass filtering" help="Don't use the hypergeometric filtering and instead use the MashMap2 first pass filtering."/>
     </inputs>
     <outputs>
-        <data name="mashout" format="paf" from_work_dir="mashmap.out" />
+        <data name="mashout" format="paf" from_work_dir="mashmap.out"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
@@ -140,4 +129,3 @@ mashmap
         <citation type="doi">10.1093/bioinformatics/bts573</citation>
     </citations>
 </tool>
-

@@ -26,16 +26,16 @@
       ]]>
     </command>
     <inputs>
-        <param argument="--input" type="data" format="tabular" label="Input file" />
+        <param argument="--input" type="data" format="tabular" label="Input file"/>
         <param argument="--number" type="integer" value="50" min="1" max="500" label="Number of most frequent words that should be extracted per row."/>
-        <param argument="--remove_num" type="boolean" truevalue="--remove_num" falsevalue="" checked="false" label="Remove any numbers in text." />
-        <param argument="--lower_case" type="boolean" truevalue="" falsevalue="--lower_case" checked="true" label="Translate all characters are to lower case." />
-        <param argument="--remove_stopwords" type="boolean" truevalue="" falsevalue="--remove_stopwords" checked="true" label="Remove english stopwords" help="e.g. 'the' or 'not'" />
-        <param argument="--stemDoc" type="boolean" truevalue="--stemDoc" falsevalue="" checked="false" label="Apply Porter's stemming algorithm: collapsing words to a common root to aid comparison of vocabulary." />
-        <param argument="--plurals" type="boolean" truevalue="" falsevalue="--plurals" checked="true" label="Transform words in plural to their singular form." />
+        <param argument="--remove_num" type="boolean" truevalue="--remove_num" falsevalue="" checked="false" label="Remove any numbers in text."/>
+        <param argument="--lower_case" type="boolean" truevalue="" falsevalue="--lower_case" checked="true" label="Translate all characters are to lower case."/>
+        <param argument="--remove_stopwords" type="boolean" truevalue="" falsevalue="--remove_stopwords" checked="true" label="Remove english stopwords" help="e.g. 'the' or 'not'"/>
+        <param argument="--stemDoc" type="boolean" truevalue="--stemDoc" falsevalue="" checked="false" label="Apply Porter's stemming algorithm: collapsing words to a common root to aid comparison of vocabulary."/>
+        <param argument="--plurals" type="boolean" truevalue="" falsevalue="--plurals" checked="true" label="Transform words in plural to their singular form."/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test>

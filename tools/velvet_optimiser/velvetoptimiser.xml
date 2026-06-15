@@ -76,16 +76,15 @@
 
     ]]></command>
     <inputs>
-        <param name="start_kmer" argument="-s" type="integer" value="31"  min="11" max="191" label="Start k-mer size" help="Odd integer, Lower limit of k-mer size range to search for optimum value">
+        <param name="start_kmer" argument="-s" type="integer" value="31" min="11" max="191" label="Start k-mer size" help="Odd integer, Lower limit of k-mer size range to search for optimum value">
             <validator type="expression" message="Value needs to be odd">int(value) % 2 == 1</validator>
         </param>
-        <param name="end_kmer" argument="-e" type="integer" value="191"  min="11" max="191" label="End k-mer size" help="Odd integer, Upper limit of k-mer size range to search for optimum value">
+        <param name="end_kmer" argument="-e" type="integer" value="191" min="11" max="191" label="End k-mer size" help="Odd integer, Upper limit of k-mer size range to search for optimum value">
             <validator type="expression" message="Value needs to be odd">int(value) % 2 == 1</validator>
         </param>
-        <param name="kmer_step" argument="-x" type="integer" value="2"  min="2" max="189" label="K-mer search step size" help="Even integer, the k-mer value step size when searching the range">
+        <param name="kmer_step" argument="-x" type="integer" value="2" min="2" max="189" label="K-mer search step size" help="Even integer, the k-mer value step size when searching the range">
             <validator type="expression" message="Value needs to be even">int(value) % 2 == 0</validator>
         </param>
-
         <repeat name="files" title="Input files" min="1">
             <param name="filetype" label="Input file type" type="select" help="Input file type">
                 <option value="fastq">Fastq</option>
@@ -114,9 +113,8 @@
                 </when>
             </conditional>
         </repeat>
-
         <section name="advanced" title="Advanced Options" expanded="false">
-            <param name="verbose" argument="-v" type="boolean" checked="false" truevalue="-v" falsevalue="" label="Verbose" help="Include verbose velvet output in log file" />
+            <param name="verbose" argument="-v" type="boolean" checked="false" truevalue="-v" falsevalue="" label="Verbose" help="Include verbose velvet output in log file"/>
             <param name="optFuncKmer" argument="-k" type="text" value="n50" label="K-mer optimisation function" help="See help below for possibilities!"/>
             <param name="optFuncCov" argument="-c" type="text" value="Lbp" label="Coverage cutoff optimisation function" help="See help below for possibilities!"/>
             <param name="velvetg_opts" argument="-o" type="text" value="" label="Other velvetg options" help="Add any other required velvetg options from the advanced set"/>
@@ -124,24 +122,21 @@
             <param name="maxCutoff" argument="-z" type="float" value="0.8" label="Maximum coverage cutoff" help="The maximum coverage cutoff to consider expressed as a fraction of the calculated expected coverage."/>
         </section>
     </inputs>
-
     <outputs>
         <data format="fasta" name="contigs" label="${tool.name} on ${on_string}: Contigs" from_work_dir="out/contigs.fa"/>
         <data format="tabular" name="stats" label="${tool.name} on ${on_string}: Contig Stats" from_work_dir="out/stats.txt"/>
         <data format="tabular" name="logfile" label="${tool.name} on ${on_string}: Log file" hidden="true" from_work_dir="*_Logfile.txt"/>
     </outputs>
-
     <tests>
         <test>
-            <param name="start_kmer" value="21" />
-            <param name="end_kmer" value="31" />
-            <param name="files_0|filetype" value="fasta" />
-            <param name="files_0|paired_type|paired_type_selector" value="single" />
-            <param name="files_0|paired_type|input1" value="test_reads.fa" ftype="fasta" />
+            <param name="start_kmer" value="21"/>
+            <param name="end_kmer" value="31"/>
+            <param name="files_0|filetype" value="fasta"/>
+            <param name="files_0|paired_type|paired_type_selector" value="single"/>
+            <param name="files_0|paired_type|input1" value="test_reads.fa" ftype="fasta"/>
             <output name="contigs" ftype="fasta" file="test-contigs.fa" compare="sim_size"/>
         </test>
     </tests>
-
     <help><![CDATA[
 **Velvet Optimiser Overview**
 

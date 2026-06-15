@@ -1,5 +1,5 @@
 <tool id="aldex2" name="ALDEx2" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-  <description>differential abundance analysis</description>
+    <description>differential abundance analysis</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -451,7 +451,7 @@ Rscript '${__tool_directory__}/aldex2.R'
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Performs a differential abundance analysis for the comparison of two or more conditions (e.g., single-organism
@@ -485,6 +485,6 @@ multi-sample (glm, Kruskal-Wallace) tests.  The tool also estimates effect size 
 
       * **Calculate paired tests** - specify whether to calculate effect size for paired samples (applies only if abundances and effect sizes are calculated and the selected test is Welch’s t and Wilcox tests).
       * **Plot a histogram of p-values for the first Dirichlet Monte Carlo instance** - specify whether to plot a histogram of p-values for the first Dirichlet Monte Carlo instance.
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

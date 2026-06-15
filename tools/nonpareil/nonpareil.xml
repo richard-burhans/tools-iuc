@@ -83,12 +83,12 @@ nonpareil
     <outputs>
         <data format="tabular" name="summary" label="${tool.name} on ${on_string}: Redundancy summary">
             <actions>
-                <action name="column_names" type="metadata" default="sequencing_effort,average_redundancy,std,quartile_1,median,quartile_3" />
+                <action name="column_names" type="metadata" default="sequencing_effort,average_redundancy,std,quartile_1,median,quartile_3"/>
             </actions>
         </data>
         <data format="tabular" name="all_data_output" label="${tool.name} on ${on_string}: Redundancy values for all the results">
             <actions>
-                <action name="column_names" type="metadata" default="sequencing_effort,replicate_id estimated_redundancy" />
+                <action name="column_names" type="metadata" default="sequencing_effort,replicate_id estimated_redundancy"/>
             </actions>
         </data>
         <data format="txt" name="log" label="${tool.name} on ${on_string}: Log">
@@ -107,7 +107,7 @@ nonpareil
             <param name="subsample_per_point" value="1024"/>
             <param name="min_overlapping" value="50"/>
             <param name="max_query_reads" value="1000"/>
-            <param name="use_portion_in_output" value="" />
+            <param name="use_portion_in_output" value=""/>
             <section name="sampling">
                 <param name="min_sampling_portion" value="0"/>
                 <param name="max_sampling_portion" value="1"/>
@@ -124,9 +124,9 @@ nonpareil
             <output name="all_data_output" value="test1-all_data_output" compare="sim_size" delta="0"/>
             <output name="log">
                 <assert_contents>
-                    <has_text text="Counting sequences" />
-                    <has_text text="Evaluating consistency" />
-                    <has_text text="Everything seems correct" />
+                    <has_text text="Counting sequences"/>
+                    <has_text text="Evaluating consistency"/>
+                    <has_text text="Everything seems correct"/>
                 </assert_contents>
             </output>
             <output name="summary" value="test1-summary" compare="sim_size" delta="0"/>
@@ -147,7 +147,7 @@ nonpareil
             <param name="subsample_per_point" value="1024"/>
             <param name="min_overlapping" value="50"/>
             <param name="max_query_reads" value="10"/>
-            <param name="use_portion_in_output" value="" />
+            <param name="use_portion_in_output" value=""/>
             <section name="sampling">
                 <param name="min_sampling_portion" value="0"/>
                 <param name="max_sampling_portion" value="1"/>

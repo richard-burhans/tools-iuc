@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         halIndels
@@ -27,7 +27,7 @@
             <output name="out_file" ftype="bed">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line="chr1&#009;10&#009;10&#009;D&#009;5"/>
+                    <has_line line="chr1&#9;10&#9;10&#9;D&#9;5"/>
                     <has_line line="# num sites possible: 25"/>
                 </assert_contents>
             </output>
@@ -39,7 +39,7 @@
             <output name="out_file" ftype="bed">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line="chr1&#009;10&#009;10&#009;D&#009;5"/>
+                    <has_line line="chr1&#9;10&#9;10&#9;D&#9;5"/>
                     <has_line line="# num sites possible: 25"/>
                 </assert_contents>
             </output>
@@ -51,7 +51,7 @@
             <output name="out_file" ftype="bed">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line="chr1&#009;10&#009;10&#009;D&#009;5"/>
+                    <has_line line="chr1&#9;10&#9;10&#9;D&#9;5"/>
                     <has_line line="# num sites possible: 20"/>
                 </assert_contents>
             </output>

@@ -374,9 +374,9 @@ cp ./report_data/*plot*.txt ./plots/ | true ## don't fail if no plot files are g
                     <option value="custom_content">Custom Content</option>
                 </param>
                 <when value="adapterremoval">
-					<expand macro="adapterremoval_form"/>
-				</when>
-				<when value="bamtools">
+                    <expand macro="adapterremoval_form"/>
+                </when>
+                <when value="bamtools">
                     <expand macro="bamtools_form"/>
                 </when>
                 <when value="bcftools">
@@ -642,7 +642,6 @@ cp ./report_data/*plot*.txt ./plots/ | true ## don't fail if no plot files are g
         <expand macro="nanostat_test"/>
         <expand macro="sequali_test"/>
         <!--expand macro="vcftools_test"/> Does not work, did it ever worked? -->
- 
     </tests>
     <help><![CDATA[
 **What it does**

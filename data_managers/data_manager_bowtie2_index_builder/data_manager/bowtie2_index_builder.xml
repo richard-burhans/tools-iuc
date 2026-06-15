@@ -50,9 +50,9 @@
         <param name="all_fasta_source" type="select" label="Source FASTA Sequence">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" />
-        <param name="tophat2" type="boolean" checked="True" label="Also make available for TopHat" help="Adds values to tophat2_indexes tool data table" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence"/>
+        <param name="tophat2" type="boolean" checked="True" label="Also make available for TopHat" help="Adds values to tophat2_indexes tool data table"/>
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json"/>
@@ -70,10 +70,9 @@
             <output name="out_file" file="bowtie2_data_manager.2.json"/>
         </test>
     </tests>
-
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 **Notice:** If you leave name, description, or id blank, it will be generated automatically.
-    </help>
+    ]]></help>
 </tool>

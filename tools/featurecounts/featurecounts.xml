@@ -133,8 +133,7 @@
         && sed -e 's|${alignment}|${alignment.element_identifier}|g' 'output.summary' > '${output_summary}'
     ]]></command>
     <inputs>
-        <param name="alignment" type="data" multiple="false" format="unsorted.bam,bam,sam" label="Alignment file" help="The input alignment file(s) where the gene expression has to be counted. The file can have a SAM or BAM format; but ALL files must be in the same format. Unless you are using a Gene annotation file from the History, these files must have the database/genome attribute already specified e.g. hg38, not the default: ?">
-        </param>
+        <param name="alignment" type="data" multiple="false" format="unsorted.bam,bam,sam" label="Alignment file" help="The input alignment file(s) where the gene expression has to be counted. The file can have a SAM or BAM format; but ALL files must be in the same format. Unless you are using a Gene annotation file from the History, these files must have the database/genome attribute already specified e.g. hg38, not the default: ?"/>
         <param name="strand_specificity" type="select" label="Specify strand information" argument="-s" help="Indicate if the data is stranded and if strand-specific read counting should be performed. Strand setting must be the same as the strand settings used to produce the mapped BAM input(s)">
             <option value="0" selected="true">Unstranded</option>
             <option value="1">Stranded (Forward)</option>
@@ -166,8 +165,7 @@
                 <expand macro="conditional_gff_opions"/>
             </when>
             <when value="history">
-                <param name="reference_gene_sets" format="gff,gtf,gff3" type="data" label="Gene annotation file" help="The program assumes that the provided annotation file is in GFF/GTF format. Make sure that the gene annotation file corresponds to the same reference genome as used for the alignment.">
-                </param>
+                <param name="reference_gene_sets" format="gff,gtf,gff3" type="data" label="Gene annotation file" help="The program assumes that the provided annotation file is in GFF/GTF format. Make sure that the gene annotation file corresponds to the same reference genome as used for the alignment."/>
                 <expand macro="conditional_gff_opions"/>
             </when>
         </conditional>

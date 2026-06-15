@@ -1,5 +1,4 @@
-<tool id="cooc_tabmut" name="Cojac: tabmut" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@"
-      profile="@PROFILE@">
+<tool id="cooc_tabmut" name="Cojac: tabmut" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>
         exports co-occurrence results from mutbamscan as a table
     </description>

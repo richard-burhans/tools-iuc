@@ -57,29 +57,25 @@
             <when value="cached">
                 <param name="cached_bed" type="select" label="Primer scheme name" help="Select primer scheme bed file from a list">
                     <options from_data_table="primer_scheme_bedfiles">
-                        <filter type="sort_by" column="1" />
-                    <validator type="no_options" message="No primer schemes are available" />
+                        <filter type="sort_by" column="1"/>
+                        <validator type="no_options" message="No primer schemes are available"/>
                     </options>
                 </param>
             </when>
         </conditional>
         <conditional name="amplicons">
-            <param name="filter_by" type="select"
-            label="Filter reads based on amplicon info"
-            help="When you select Yes, reads that are not fully contained in any amplicon will be dropped before primer trimming. This option is currently marked as [Experimental] in ivar, but nevertheless recommended here. Info on amplicons can be computed from suitable primer BED files (see tool help below) or provided by the user. ">
+            <param name="filter_by" type="select" label="Filter reads based on amplicon info" help="When you select Yes, reads that are not fully contained in any amplicon will be dropped before primer trimming. This option is currently marked as [Experimental] in ivar, but nevertheless recommended here. Info on amplicons can be computed from suitable primer BED files (see tool help below) or provided by the user. ">
                 <option value="">No, allow reads to extend beyond amplicon boundaries</option>
                 <option value="yes_compute">Yes, drop reads that extend beyond amplicon boundaries</option>
                 <option value="yes">Yes, drop reads that extend beyond amplicon boundaries and use my amplicon info file</option>
             </param>
-            <when value="yes_compute" />
+            <when value="yes_compute"/>
             <when value="yes">
-                <param name="amplicon_info" argument="-f" type="data" format="tabular" />
+                <param name="amplicon_info" argument="-f" type="data" format="tabular"/>
             </when>
-            <when value="" />
+            <when value=""/>
         </conditional>
-        <param name="primer_pos_wiggle" argument="-x" type="integer" min="0" value="0"
-        label="Wiggling room for read ends relative to primer binding sites"
-        help="Reads that occur at the specified offset positions relative to primer positions (as annotated in the primer information dataset) will also be trimmed (default: 0)" />
+        <param name="primer_pos_wiggle" argument="-x" type="integer" min="0" value="0" label="Wiggling room for read ends relative to primer binding sites" help="Reads that occur at the specified offset positions relative to primer positions (as annotated in the primer information dataset) will also be trimmed (default: 0)"/>
         <param name="inc_primers" argument="-e" type="boolean" truevalue="-e" falsevalue="" checked="false" label="Include reads not ending in any primer binding sites?"/>
         <param name="min_qual" argument="-q" type="integer" min="0" max="255" value="20" label="Minimum quality threshold for sliding window to pass"/>
         <param name="window_width" argument="-s" type="integer" min="0" max="255" value="4" label="Width of sliding window"/>
@@ -89,8 +85,8 @@
                 <option value="auto" selected="true">Yes, and determine required length threshold automatically from input (-m -1)</option>
                 <option value="custom">Yes, and provide a custom threshold</option>
             </param>
-            <when value="off" />
-            <when value="auto" />
+            <when value="off"/>
+            <when value="auto"/>
             <when value="custom">
                 <param name="min_len" argument="-m" type="integer" min="1" value="30" label="Minimum trimmed length threshold" help="Reads with a trimmed length shorter than this value will be discarded."/>
             </when>
@@ -102,47 +98,47 @@
     <tests>
         <!-- #1: SARS-Cov data-->
         <test>
-            <param name="input_bam" value="covid19/PC00101P_sub.sorted.bam" />
-            <param name="input_bed" value="covid19/ARTIC-V1.bed" />
-            <param name="inc_primers" value="true" />
+            <param name="input_bam" value="covid19/PC00101P_sub.sorted.bam"/>
+            <param name="input_bed" value="covid19/ARTIC-V1.bed"/>
+            <param name="inc_primers" value="true"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="custom" />
-                <param name="min_len" value="30" />
+                <param name="filter" value="custom"/>
+                <param name="min_len" value="30"/>
             </conditional>
             <output name="output_bam" file="covid19/PC00101P_sub.sorted.bam" compare="sim_size" delta="300000"/>
         </test>
         <test>
             <!-- Test with primer bed file that needs to be sanitized -->
-            <param name="input_bam" value="covid19/PC00101P_sub.sorted.bam" />
-            <param name="input_bed" ftype="bed" value="covid19/ARTIC-V1-bad.bed" />
-            <param name="inc_primers" value="true" />
+            <param name="input_bam" value="covid19/PC00101P_sub.sorted.bam"/>
+            <param name="input_bed" ftype="bed" value="covid19/ARTIC-V1-bad.bed"/>
+            <param name="inc_primers" value="true"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="custom" />
-                <param name="min_len" value="30" />
+                <param name="filter" value="custom"/>
+                <param name="min_len" value="30"/>
             </conditional>
             <output name="output_bam" file="covid19/PC00101P_sub.sorted.bam" compare="sim_size" delta="300000"/>
         </test>
         <!-- #1: Zika data-->
         <test>
             <conditional name="primer">
-                <param name="source" value="history" />
-                <param name="input_bed" value="zika/db/zika_primers.bed" />
+                <param name="source" value="history"/>
+                <param name="input_bed" value="zika/db/zika_primers.bed"/>
             </conditional>
-            <param name="input_bam" value="zika/Z52_a.sorted.bam" />
+            <param name="input_bam" value="zika/Z52_a.sorted.bam"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="custom" />
-                <param name="min_len" value="30" />
+                <param name="filter" value="custom"/>
+                <param name="min_len" value="30"/>
             </conditional>
             <output name="output_bam" file="zika/Z52_a.trimmed.sorted.bam" compare="sim_size" delta="100000"/>
         </test>
         <test>
             <conditional name="primer">
-                <param name="source" value="history" />
-                <param name="input_bed" value="zika/db/zika_primers.bed" />
+                <param name="source" value="history"/>
+                <param name="input_bed" value="zika/db/zika_primers.bed"/>
             </conditional>
-            <param name="input_bam" value="zika/Z52_b.sorted.bam" />
+            <param name="input_bam" value="zika/Z52_b.sorted.bam"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="auto" />
+                <param name="filter" value="auto"/>
             </conditional>
             <output name="output_bam" ftype="bam">
                 <assert_contents>
@@ -157,31 +153,31 @@
         </test>
         <test>
             <conditional name="primer">
-                <param name="source" value="cached" />
-                <param name="cached_bed" value="SARS-CoV-2-ARTICv1" />
+                <param name="source" value="cached"/>
+                <param name="cached_bed" value="SARS-CoV-2-ARTICv1"/>
             </conditional>
-            <param name="input_bam" value="sars-cov-2/sars_cov2_untrimmed.bam" ftype="bam" />
+            <param name="input_bam" value="sars-cov-2/sars_cov2_untrimmed.bam" ftype="bam"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="custom" />
-                <param name="min_len" value="30" />
+                <param name="filter" value="custom"/>
+                <param name="min_len" value="30"/>
             </conditional>
             <output name="output_bam" file="sars-cov-2/sars_cov2_trimmed.bam" compare="sim_size" delta="100000"/>
         </test>
         <test>
             <conditional name="primer">
-                <param name="source" value="cached" />
-                <param name="cached_bed" value="SARS-CoV-2-ARTICv1" />
+                <param name="source" value="cached"/>
+                <param name="cached_bed" value="SARS-CoV-2-ARTICv1"/>
             </conditional>
             <conditional name="amplicons">
-                <param name="filter_by" value="yes_compute" />
+                <param name="filter_by" value="yes_compute"/>
             </conditional>
-            <param name="input_bam" value="sars-cov-2/sars_cov2_untrimmed.bam" ftype="bam" />
+            <param name="input_bam" value="sars-cov-2/sars_cov2_untrimmed.bam" ftype="bam"/>
             <conditional name="trimmed_length">
-                <param name="filter" value="custom" />
-                <param name="min_len" value="30" />
+                <param name="filter" value="custom"/>
+                <param name="min_len" value="30"/>
             </conditional>
             <assert_command>
-                <has_text text="scheme-convert --to amplicon-info -r outer" />
+                <has_text text="scheme-convert --to amplicon-info -r outer"/>
             </assert_command>
             <output name="output_bam" file="sars-cov-2/sars_cov2_trimmed.bam" compare="sim_size" delta="100000"/>
         </test>
@@ -237,5 +233,5 @@ trimmed surviving reads are written to the BAM output.
 
 Documentation can be found at `<https://andersen-lab.github.io/ivar/html/manualpage.html>`_.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

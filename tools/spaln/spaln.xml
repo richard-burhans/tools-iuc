@@ -44,69 +44,68 @@
         '$genome' '$query' >'$output1' 
     ]]></command>
     <inputs>
-        <param type="data" name="genome" format="fasta" label="Genome sequence to search (FASTA format)" />
-        <param type="data" name="query" format="fasta" label="Query sequence(s) (protein or cDNA)" />
-	<param argument="-O" type="select" name="format" label="Output format">
-	    <option value="0">GFF3 format genes</option>
-	    <option value="2">GFF3 format matches</option>
-	    <option value="3">BED format</option>
-	    <option value="4">Tabular format exon information</option>
-    </param>
-    <param argument="-T" name="species_params" type="text" optional="true" label="Species to use for parameter setting" help="Choose a species table (e.g. cynosemi) from which to read parameters to optimise spaln" />
-    <conditional name="adv">
-        <param type="select" name="use" label="Advanced settings">
-            <option selected="true" value="no">No</option>
-            <option value="yes">Yes</option>
+        <param type="data" name="genome" format="fasta" label="Genome sequence to search (FASTA format)"/>
+        <param type="data" name="query" format="fasta" label="Query sequence(s) (protein or cDNA)"/>
+        <param argument="-O" type="select" name="format" label="Output format">
+            <option value="0">GFF3 format genes</option>
+            <option value="2">GFF3 format matches</option>
+            <option value="3">BED format</option>
+            <option value="4">Tabular format exon information</option>
         </param>
-        <when value="no">
-        </when>
-        <when value="yes">
-            <param argument="-S" name="query_orientation" type="select" label="DNA query orientation" help="Determines how to treat orientation of query sequence when searching">
-                <option value="0">Infer orientation from sequence header (no poly-A/poly-T trimming)</option>
-                <option value="1">Forward orientation only. Poly-A tail might be trimmed off</option>
-                <option value="2">Reverse orientation only. Leading poly-T might be trimmed off</option>
-                <option selected="true" value="3">Examine both orientations. Poly-A / Poly-T might be trimmed off</option>
+        <param argument="-T" name="species_params" type="text" optional="true" label="Species to use for parameter setting" help="Choose a species table (e.g. cynosemi) from which to read parameters to optimise spaln"/>
+        <conditional name="adv">
+            <param type="select" name="use" label="Advanced settings">
+                <option selected="true" value="no">No</option>
+                <option value="yes">Yes</option>
             </param>
-            <param argument="-V" name="hirschberg_threshold" type="integer" value="16777216" label="Minimum space to induce Hirschberg's algorithm" help="Default is 16M (16x1024x1024 bytes)" />
-            <param argument="-pa" name="polya_trim" type="integer" value="12" label="Limit 3' poly-As to this number of bases" help="poly-A/poly-T trimming is only done if -S (orientation) option is 0 or 3" />
-            <param argument="-pw" name="all_results" type="boolean" checked="false" truevalue="-pw" falsevalue="" label="Report results even if the score is below the threshold" />
-            <param argument="-yu" name="gap_extension_penalty" type="integer" value="3" label="Gap-extension penalty" />
-            <param argument="-yv" name="gap_open_penalty" type="integer" value="8" label="Gap-open penalty" />
-            <param argument="-yw" name="dp_matrix_scan_width" type="integer" value="100" label="Band width for DP matrix scan" />
-            <param argument="-ya" name="splice_stringency" type="select" label="Stringency of splice site selection" help="Which dinucleotide pairs to accept at the ends of an intron">
-                <option value="0" selected="true">accept only the canonical pairs (GT..AG,GC..AG,AT..AC)</option>
-                <option value="1">accept also AT..AN</option>
-                <option value="2">allow up to one mismatch from GT..AG</option>
-                <option value="3">accept any pairs</option>
-            </param>
-            <param argument="-yj" name="gap_penalty_incline" type="float" value="0.6" label="Incline of long gap penalty" />
-            <param argument="-yk" name="gap_penalty_flex" type="integer" value="7" label="Flex point where the incline of gap penalty changes" />
-            <param argument="-yl3" name="double_affine_gap" type="boolean" checked="false" truevalue="-yl3" falsevalue="" label="Use double affine gap penalty" help="Use the double affine gap rathr than single affine gap penalty calculation" />
-            <param argument="-ym" name="match_score" type="integer" value="2" label="Nucleotide match score" />
-            <param argument="-yn" name="mismatch_score" type="integer" value="-6" label="Nucleotide mismatch score" />
-            <param argument="-yo" name="stop_codon_penalty" type="integer" value="100" label="Penalty for a premature termination codon" />
-            <param argument="-yx" name="frameshift_penalty" type="integer" value="100" label="Penalty for a frame shift error" />
-            <param argument="-yy" name="splice_site_weight" type="integer" value="8" label="Weight for splice site signal" />
-            <param argument="-yz" name="coding_potential_weight" type="integer" value="2" label="Weight for coding potential" />
-            <param argument="-yB" name="branch_point_weight" type="integer" value="0" label="Weight for branch point signal" />
-            <param argument="-yL" name="min_intron_len" type="integer" value="30" label="Minimum expected length of intron" />
-            <param argument="-yZ" name="intron_potential_weight" type="integer" value="0" label="Weight for intron potential" />
-            <param argument="-XG" name="max_gene_length" type="text" label="Reset maximum expected gene size, suffix k or M is effective" />
-            <param argument="-yX" name="format_remote_queries" type="boolean" checked="false" truevalue="-yX" falsevalue="" label="Format for remote queries" help="More sensitive but less economic than the default" />
-            <param argument="-XS" name="salvage_mode" type="boolean" checked="false" truevalue="-XS" falsevalue="" label="Activate salvage mode" help="Examine all positively scored blocks. Considerably slow." />
-        </when>
-    </conditional>
+            <when value="no"/>
+            <when value="yes">
+                <param argument="-S" name="query_orientation" type="select" label="DNA query orientation" help="Determines how to treat orientation of query sequence when searching">
+                    <option value="0">Infer orientation from sequence header (no poly-A/poly-T trimming)</option>
+                    <option value="1">Forward orientation only. Poly-A tail might be trimmed off</option>
+                    <option value="2">Reverse orientation only. Leading poly-T might be trimmed off</option>
+                    <option selected="true" value="3">Examine both orientations. Poly-A / Poly-T might be trimmed off</option>
+                </param>
+                <param argument="-V" name="hirschberg_threshold" type="integer" value="16777216" label="Minimum space to induce Hirschberg's algorithm" help="Default is 16M (16x1024x1024 bytes)"/>
+                <param argument="-pa" name="polya_trim" type="integer" value="12" label="Limit 3' poly-As to this number of bases" help="poly-A/poly-T trimming is only done if -S (orientation) option is 0 or 3"/>
+                <param argument="-pw" name="all_results" type="boolean" checked="false" truevalue="-pw" falsevalue="" label="Report results even if the score is below the threshold"/>
+                <param argument="-yu" name="gap_extension_penalty" type="integer" value="3" label="Gap-extension penalty"/>
+                <param argument="-yv" name="gap_open_penalty" type="integer" value="8" label="Gap-open penalty"/>
+                <param argument="-yw" name="dp_matrix_scan_width" type="integer" value="100" label="Band width for DP matrix scan"/>
+                <param argument="-ya" name="splice_stringency" type="select" label="Stringency of splice site selection" help="Which dinucleotide pairs to accept at the ends of an intron">
+                    <option value="0" selected="true">accept only the canonical pairs (GT..AG,GC..AG,AT..AC)</option>
+                    <option value="1">accept also AT..AN</option>
+                    <option value="2">allow up to one mismatch from GT..AG</option>
+                    <option value="3">accept any pairs</option>
+                </param>
+                <param argument="-yj" name="gap_penalty_incline" type="float" value="0.6" label="Incline of long gap penalty"/>
+                <param argument="-yk" name="gap_penalty_flex" type="integer" value="7" label="Flex point where the incline of gap penalty changes"/>
+                <param argument="-yl3" name="double_affine_gap" type="boolean" checked="false" truevalue="-yl3" falsevalue="" label="Use double affine gap penalty" help="Use the double affine gap rathr than single affine gap penalty calculation"/>
+                <param argument="-ym" name="match_score" type="integer" value="2" label="Nucleotide match score"/>
+                <param argument="-yn" name="mismatch_score" type="integer" value="-6" label="Nucleotide mismatch score"/>
+                <param argument="-yo" name="stop_codon_penalty" type="integer" value="100" label="Penalty for a premature termination codon"/>
+                <param argument="-yx" name="frameshift_penalty" type="integer" value="100" label="Penalty for a frame shift error"/>
+                <param argument="-yy" name="splice_site_weight" type="integer" value="8" label="Weight for splice site signal"/>
+                <param argument="-yz" name="coding_potential_weight" type="integer" value="2" label="Weight for coding potential"/>
+                <param argument="-yB" name="branch_point_weight" type="integer" value="0" label="Weight for branch point signal"/>
+                <param argument="-yL" name="min_intron_len" type="integer" value="30" label="Minimum expected length of intron"/>
+                <param argument="-yZ" name="intron_potential_weight" type="integer" value="0" label="Weight for intron potential"/>
+                <param argument="-XG" name="max_gene_length" type="text" label="Reset maximum expected gene size, suffix k or M is effective"/>
+                <param argument="-yX" name="format_remote_queries" type="boolean" checked="false" truevalue="-yX" falsevalue="" label="Format for remote queries" help="More sensitive but less economic than the default"/>
+                <param argument="-XS" name="salvage_mode" type="boolean" checked="false" truevalue="-XS" falsevalue="" label="Activate salvage mode" help="Examine all positively scored blocks. Considerably slow."/>
+            </when>
+        </conditional>
     </inputs>
     <outputs>
         <data name="output1" format="tabular">
-	    <change_format>
-            <!-- these values correspond with the format options of the spaln command, not all of which are current supported -->
-            <when input="format" value="0" format="gff3" />
-            <when input="format" value="2" format="gff3" />
-            <when input="format" value="3" format="bed12" />
-            <when input="format" value="4" format="tabular" />
-	    </change_format>
-	    <!-- <actions> .. <conditional> .. <when> .. <action> current does not work in Galaxy,
+            <change_format>
+                <!-- these values correspond with the format options of the spaln command, not all of which are current supported -->
+                <when input="format" value="0" format="gff3"/>
+                <when input="format" value="2" format="gff3"/>
+                <when input="format" value="3" format="bed12"/>
+                <when input="format" value="4" format="tabular"/>
+            </change_format>
+            <!-- <actions> .. <conditional> .. <when> .. <action> current does not work in Galaxy,
 		 something that https://github.com/galaxyproject/galaxy/pull/7197 is addressing, so this is
                  commented out till that is merged 
 	    <actions>
@@ -117,54 +116,54 @@
 		</conditional>
 	    </actions>
             -->
-	</data>
+        </data>
     </outputs>
     <tests>
         <test>
-            <param name="genome" ftype="fasta" value="genome.fasta" />
-            <param name="query" ftype="fasta" value="query.fasta" />
+            <param name="genome" ftype="fasta" value="genome.fasta"/>
+            <param name="query" ftype="fasta" value="query.fasta"/>
             <param name="format" value="0"/>
             <conditional name="adv">
-                <param name="use" value="no" />
+                <param name="use" value="no"/>
             </conditional>
-	        <output name="output1" ftype="gff3" value="output1_gff_genes.gff3" />
+            <output name="output1" ftype="gff3" value="output1_gff_genes.gff3"/>
         </test>
         <test>
-            <param name="genome" ftype="fasta" value="genome.fasta" />
-            <param name="query" ftype="fasta" value="query.fasta" />
+            <param name="genome" ftype="fasta" value="genome.fasta"/>
+            <param name="query" ftype="fasta" value="query.fasta"/>
             <param name="format" value="2"/>
             <conditional name="adv">
-                <param name="use" value="no" />
+                <param name="use" value="no"/>
             </conditional>
-	        <output name="output1" ftype="gff3" value="output1_gff_matches.gff3" />
+            <output name="output1" ftype="gff3" value="output1_gff_matches.gff3"/>
         </test>
         <test>
-            <param name="genome" ftype="fasta" value="genome.fasta" />
-            <param name="query" ftype="fasta" value="query.fasta" />
+            <param name="genome" ftype="fasta" value="genome.fasta"/>
+            <param name="query" ftype="fasta" value="query.fasta"/>
             <param name="format" value="3"/>
             <conditional name="adv">
-                <param name="use" value="no" />
+                <param name="use" value="no"/>
             </conditional>
-	        <output name="output1" ftype="bed12" value="output1.bed12" />
+            <output name="output1" ftype="bed12" value="output1.bed12"/>
         </test>
         <test>
-            <param name="genome" ftype="fasta" value="genome.fasta" />
-            <param name="query" ftype="fasta" value="query.fasta" />
+            <param name="genome" ftype="fasta" value="genome.fasta"/>
+            <param name="query" ftype="fasta" value="query.fasta"/>
             <param name="format" value="4"/>
             <conditional name="adv">
-                <param name="use" value="no" />
+                <param name="use" value="no"/>
             </conditional>
-	        <output name="output1" ftype="tabular" value="output1.tabular" />
+            <output name="output1" ftype="tabular" value="output1.tabular"/>
         </test>
         <test>
-            <param name="genome" ftype="fasta" value="genome.fasta" />
-            <param name="query" ftype="fasta" value="query.fasta" />
+            <param name="genome" ftype="fasta" value="genome.fasta"/>
+            <param name="query" ftype="fasta" value="query.fasta"/>
             <param name="format" value="4"/>
-            <param name="species_params" value="cynosemi" />
+            <param name="species_params" value="cynosemi"/>
             <conditional name="adv">
-                <param name="use" value="no" />
+                <param name="use" value="no"/>
             </conditional>
-	        <output name="output1" ftype="tabular" value="output2.tabular" />
+            <output name="output1" ftype="tabular" value="output2.tabular"/>
         </test>
     </tests>
     <help><![CDATA[

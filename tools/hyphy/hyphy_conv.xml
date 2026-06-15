@@ -19,13 +19,13 @@
         <param name="deletions" type="boolean" truevalue="Keep Deletions" falsevalue="Skip Deletions" label="Keep deletions" help="If this is checked, deletions will be left in the output file"/>
     </inputs>
     <outputs>
-        <data name="proteins" format="nex" from_work_dir="aa.nex" />
+        <data name="proteins" format="nex" from_work_dir="aa.nex"/>
     </outputs>
     <tests>
         <test>
             <param name="input_file" ftype="fasta" value="conv-in1.fa"/>
-            <param name="deletions" value="true" />
-            <output name="proteins" file="conv-out1.nex" />
+            <param name="deletions" value="true"/>
+            <output name="proteins" file="conv-out1.nex"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -36,6 +36,5 @@ This tool takes a codon-aligned fasta file and outputs the amino acid sequence
 it represents, with the option to keep or skip deletions in the input file.
 ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>
-

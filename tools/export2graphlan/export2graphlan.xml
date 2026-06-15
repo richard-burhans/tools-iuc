@@ -117,7 +117,7 @@ export2graphlan.py -h | grep "ver."
         <param argument="--background_levels" type="text" optional="True" label="List which levels should be highlight with a shaded background" help="The levels must be in comma-separated form"/>
         <param argument="--background_clades" type="text" optional="True" label="List of the clades that should be highlight with a shaded background" help="The clades must be in comma-separated form"/>
         <param argument="--background_colors" type="text" optional="True" label="List of color to use for the shaded background" help="Colors can be either in RGB or HSV (using a semi-colon to separate values, surrounded with ()). The different colors must be in comma-separated form"/>
-        <param argument="--title" type="text" optional="True" label="Title of the GraPhlAn plot" />
+        <param argument="--title" type="text" optional="True" label="Title of the GraPhlAn plot"/>
         <param argument="--title_font_size" type="integer" optional="True" label="Title font size"/>
         <param argument="--def_clade_size" type="integer" optional="True" label="Default size for clades that are not found as biomarkers"/>
         <param argument="--min_clade_size" type="integer" optional="True" label="Minimum value of clades that are biomarkers"/>
@@ -139,13 +139,13 @@ export2graphlan.py -h | grep "ver."
         <param argument="--ftop" type="integer" optional="True" label="Number of top features to select" help="The order is based on percentile specified by --fperc"/>
     </inputs>
     <outputs>
-        <data format="txt" name="tree" label="${tool.name} on ${on_string}: Tree" />
-        <data format="txt" name="annotation" label="${tool.name} on ${on_string}: Annotation" />
+        <data format="txt" name="tree" label="${tool.name} on ${on_string}: Tree"/>
+        <data format="txt" name="annotation" label="${tool.name} on ${on_string}: Annotation"/>
     </outputs>
     <tests>
         <test>
             <param name="lefse_input" value="input_profile.tabular"/>
-            <param name="input_lefse_output_test" value="no" />
+            <param name="input_lefse_output_test" value="no"/>
             <param name="annotations" value=""/>
             <param name="external_annotations" value=""/>
             <param name="background_levels" value=""/>
@@ -162,7 +162,7 @@ export2graphlan.py -h | grep "ver."
             <param name="annotation_legend_font_size" value="10"/>
             <param name="abundance_threshold" value="20.0"/>
             <param name="fname_row" value="0"/>
-            <param name="sname_row" value="0" />
+            <param name="sname_row" value="0"/>
             <output name="annotation" file="annotation_output.txt"/>
             <output name="tree" file="tree_output.txt"/>
         </test>

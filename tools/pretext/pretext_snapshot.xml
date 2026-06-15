@@ -1,5 +1,5 @@
-<tool id="pretext_snapshot" name="Pretext Snapshot"  version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-        <description>image generator for Pretext contact maps</description>
+<tool id="pretext_snapshot" name="Pretext Snapshot" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+    <description>image generator for Pretext contact maps</description>
     <macros>
         <token name="@TOOL_VERSION@">0.0.7</token>
         <token name="@VERSION_SUFFIX@">0</token>
@@ -11,7 +11,7 @@
     </requirements>
     <version_command>PretextSnapshot --version</version_command>
     <command detect_errors="exit_code"><![CDATA[
-        PretextSnapshot -m $input
+        PretextSnapshot -m '$input'
         -f $formats.outformat
         #if $formats.outformat == 'jpeg':
             --jpegQuality $formats.jpegQuality
@@ -48,21 +48,21 @@
             </when>
         </conditional>
         <param name="resolution" argument="-r" type="integer" label="Output image resolution" min="1" value="1000" help="Image resolution, a positive integer, default 1080. For non-square images this will be the resolution of the longest dimension."/>
-        <param name="colormap" argument='-c' type="integer" label="Color Map" value="5" min="0" max="30" help="Color map based on list available in the help section"/>
+        <param name="colormap" argument="-c" type="integer" label="Color Map" value="5" min="0" max="30" help="Color map based on list available in the help section"/>
         <param argument="--sequences" type="text" label="Sequence specification string" value="=full, =all" help="Each entry, except for '=all', corresponds to one output image. More information available in the help section.">
             <sanitizer invalid_char="">
                 <valid initial="string.ascii_letters,string.digits">
                     <add value="="/>
                     <add value="_"/>
-                    <add value="&#32;"/>
-                    <add value="&#44;"/>
-                    <add value="&#91;"/>
-                    <add value="&#93;"/>
-                    <add value="&#123;"/>
-                    <add value="&#125;"/>
-                    <add value="&#35;"/>
-                    <add value="&#60;"/>
-                    <add value="&#62;"/>
+                    <add value=" "/>
+                    <add value=","/>
+                    <add value="["/>
+                    <add value="]"/>
+                    <add value="{"/>
+                    <add value="}"/>
+                    <add value="#"/>
+                    <add value="&lt;"/>
+                    <add value="&gt;"/>
                 </valid>
             </sanitizer>
         </param>
@@ -82,7 +82,7 @@
     </inputs>
     <outputs>
         <collection name="pretext_snap_out" type="list" label="${tool.name} on ${on_string}">
-            <discover_datasets directory="output" pattern="__name_and_ext__" />  
+            <discover_datasets directory="output" pattern="__name_and_ext__"/>
         </collection>
     </outputs>
     <tests>

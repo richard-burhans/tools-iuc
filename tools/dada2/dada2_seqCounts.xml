@@ -1,5 +1,5 @@
 <tool id="dada2_seqCounts" name="dada2: sequence counts" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -93,35 +93,35 @@ write.table(df, "$counts", quote=F, sep="\t", row.names = F, col.names = T)
                 <param name="input" value="F3D0_S188_L001_R1_001.tab" ftype="tabular"/>
                 <param name="name" value="filter"/>
             </repeat>
-            <output name="counts" value="seqCounts_filter.tab" ftype="tabular" />
+            <output name="counts" value="seqCounts_filter.tab" ftype="tabular"/>
         </test>
         <test>
             <repeat name="inrep">
                 <param name="input" value="dada_F3D0_S188_L001_R1.Rdata,dada_F3D141_S207_L001_R1.Rdata" ftype="dada2_dada"/>
                 <param name="name" value="dadaF"/>
             </repeat>
-            <output name="counts" value="seqCounts_dadaF.tab" ftype="tabular" />
+            <output name="counts" value="seqCounts_dadaF.tab" ftype="tabular"/>
         </test>
         <test>
             <repeat name="inrep">
                 <param name="input" value="mergePairs_F3D0_S188_L001.Rdata,mergePairs_F3D141_S207_L001.Rdata" ftype="dada2_mergepairs"/>
                 <param name="name" value="merge"/>
             </repeat>
-            <output name="counts" value="seqCounts_merge.tab" ftype="tabular" />
+            <output name="counts" value="seqCounts_merge.tab" ftype="tabular"/>
         </test>
         <test>
             <repeat name="inrep">
                 <param name="input" value="makeSequenceTable.tab" ftype="dada2_sequencetable"/>
                 <param name="name" value="seqtab"/>
             </repeat>
-            <output name="counts" value="seqCounts_seqtab.tab" ftype="tabular" />
+            <output name="counts" value="seqCounts_seqtab.tab" ftype="tabular"/>
         </test>
         <test>
             <repeat name="inrep">
                 <param name="input" value="removeBimeraDenovo.tab" ftype="dada2_sequencetable"/>
                 <param name="name" value="nochim"/>
             </repeat>
-            <output name="counts" value="seqCounts_nochim.tab" ftype="tabular" />
+            <output name="counts" value="seqCounts_nochim.tab" ftype="tabular"/>
         </test>
     </tests>
     <help><![CDATA[

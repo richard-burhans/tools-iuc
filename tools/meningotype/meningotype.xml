@@ -62,10 +62,10 @@
                 <option value="single">Single dataset</option>
             </param>
             <when value="collection">
-                <param name="fastas" type="data_collection" format="fasta" collection_type="list" label="N. meningtidis genomes in FASTA format" />
+                <param name="fastas" type="data_collection" format="fasta" collection_type="list" label="N. meningtidis genomes in FASTA format"/>
             </when>
             <when value="single">
-                <param type="data" format="fasta" name="fasta" label="Input FASTA" help="N. meningitidis genome in FASTA format" />
+                <param type="data" format="fasta" name="fasta" label="Input FASTA" help="N. meningitidis genome in FASTA format"/>
             </when>
         </conditional>
         <param type="select" name="db_source" label="Database source">
@@ -79,115 +79,120 @@
             <option value="bast" selected="true">Bexsero antigen sequence typing (BAST)</option>
             <option value="porb" selected="true">porB (NEIS2020) sequence typing</option>
         </param>
-        <param type="boolean" name="include_header" checked="false" label="Include header in output" />
-        <param type="boolean" name="write_allele_sequences" checked="false" label="Output sequences of porA, fetA, portB and BAST alleles" />
+        <param type="boolean" name="include_header" checked="false" label="Include header in output"/>
+        <param type="boolean" name="write_allele_sequences" checked="false" label="Output sequences of porA, fetA, portB and BAST alleles"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output_tsv" label="Meningotype on ${on_string}">
             <actions>
-                <action name="column_names" type="metadata" default="Sample_ID,Serogroup,ctrA,MLST,porA,fetA,porB,fHbp,NHBA,NadA,BAST" />
+                <action name="column_names" type="metadata" default="Sample_ID,Serogroup,ctrA,MLST,porA,fetA,porB,fHbp,NHBA,NadA,BAST"/>
             </actions>
         </data>
-        <collection  format="fasta" type="list" name="output_allele_sequences" label="Meningotype allele sequences on ${on_string}">
-            <discover_datasets pattern="__name_and_ext__" directory="allele_sequences" />
+        <collection format="fasta" type="list" name="output_allele_sequences" label="Meningotype allele sequences on ${on_string}">
+            <discover_datasets pattern="__name_and_ext__" directory="allele_sequences"/>
             <filter>write_allele_sequences</filter>
         </collection>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"> <!-- test1: basic functionality -->
+        <test expect_num_outputs="1">
+            <!-- test1: basic functionality -->
             <conditional name="input">
-               <param name="source" value="single" /> 
-               <param name="fasta" value="input.fasta.gz" ftype="fasta.gz"/>
+                <param name="source" value="single"/>
+                <param name="fasta" value="input.fasta.gz" ftype="fasta.gz"/>
             </conditional>
-            <param name="db_source" value="builtin" />
-            <param name="typing" value="mlst,finetype,bast,porb" />
+            <param name="db_source" value="builtin"/>
+            <param name="typing" value="mlst,finetype,bast,porb"/>
             <output name="output_tsv">
                 <assert_contents>
-                    <has_n_columns n="11" />
-                    <has_text text="9367" />
-                    <has_text text="21-15,16" />
-                    <has_text text="F1-7" />
-                    <has_text text="NEIS2020_506" />
-                    <has_text text="27" />
-                    <has_text text="798" />
-                    <has_text text="0" />
+                    <has_n_columns n="11"/>
+                    <has_text text="9367"/>
+                    <has_text text="21-15,16"/>
+                    <has_text text="F1-7"/>
+                    <has_text text="NEIS2020_506"/>
+                    <has_text text="27"/>
+                    <has_text text="798"/>
+                    <has_text text="0"/>
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"> <!-- test2: test with header included -->
+        <test expect_num_outputs="1">
+            <!-- test2: test with header included -->
             <conditional name="input">
-                <param name="source" value="single" /> 
+                <param name="source" value="single"/>
                 <param name="fasta" value="input.fasta.gz" ftype="fasta.gz"/>
             </conditional>
-            <param name="db_source" value="builtin" />
-            <param name="typing" value="mlst,finetype,bast,porb" />
-            <param name="include_header" value="true" /> 
+            <param name="db_source" value="builtin"/>
+            <param name="typing" value="mlst,finetype,bast,porb"/>
+            <param name="include_header" value="true"/>
             <output name="output_tsv">
                 <assert_contents>
-                    <has_n_columns n="11" />
-                    <has_text text="SAMPLE_ID" /> <!-- the header -->
-                    <has_text text="9367" />
-                    <has_text text="21-15,16" />
-                    <has_text text="F1-7" />
-                    <has_text text="NEIS2020_506" />
-                    <has_text text="27" />
-                    <has_text text="798" />
-                    <has_text text="0" />
+                    <has_n_columns n="11"/>
+                    <has_text text="SAMPLE_ID"/>
+                    <!-- the header -->
+                    <has_text text="9367"/>
+                    <has_text text="21-15,16"/>
+                    <has_text text="F1-7"/>
+                    <has_text text="NEIS2020_506"/>
+                    <has_text text="27"/>
+                    <has_text text="798"/>
+                    <has_text text="0"/>
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="2"> <!-- test 3: test allele sequence output -->
+        <test expect_num_outputs="2">
+            <!-- test 3: test allele sequence output -->
             <conditional name="input">
-                <param name="source" value="single" /> 
+                <param name="source" value="single"/>
                 <param name="fasta" value="input.fasta.gz" ftype="fasta.gz"/>
             </conditional>
-            <param name="db_source" value="builtin" />
-            <param name="typing" value="mlst,finetype,bast,porb" />
-            <param name="write_allele_sequences" value="true" />
+            <param name="db_source" value="builtin"/>
+            <param name="typing" value="mlst,finetype,bast,porb"/>
+            <param name="write_allele_sequences" value="true"/>
             <output name="output_tsv">
                 <assert_contents>
-                    <has_n_columns n="11" />
-                    <has_text text="9367" />
-                    <has_text text="21-15,16" />
-                    <has_text text="F1-7" />
-                    <has_text text="NEIS2020_506" />
-                    <has_text text="27" />
-                    <has_text text="798" />
-                    <has_text text="0" />
+                    <has_n_columns n="11"/>
+                    <has_text text="9367"/>
+                    <has_text text="21-15,16"/>
+                    <has_text text="F1-7"/>
+                    <has_text text="NEIS2020_506"/>
+                    <has_text text="27"/>
+                    <has_text text="798"/>
+                    <has_text text="0"/>
                 </assert_contents>
             </output>
             <output_collection name="output_allele_sequences">
-                <element name="NHBA_seqs" file="NHBA_seqs.fasta" ftype="fasta" />
-                <element name="NadA_seqs" file="NadA_seqs.fasta" ftype="fasta" />
-                <element name="fHbp_seqs" file="fHbp_seqs.fasta" ftype="fasta" />
-                <element name="fetA_seqs" file="fetA_seqs.fasta" ftype="fasta" />
-                <element name="porA_seqs" file="porA_seqs.fasta" ftype="fasta" />
-                <element name="porB_seqs" file="porB_seqs.fasta" ftype="fasta" />
+                <element name="NHBA_seqs" file="NHBA_seqs.fasta" ftype="fasta"/>
+                <element name="NadA_seqs" file="NadA_seqs.fasta" ftype="fasta"/>
+                <element name="fHbp_seqs" file="fHbp_seqs.fasta" ftype="fasta"/>
+                <element name="fetA_seqs" file="fetA_seqs.fasta" ftype="fasta"/>
+                <element name="porA_seqs" file="porA_seqs.fasta" ftype="fasta"/>
+                <element name="porB_seqs" file="porB_seqs.fasta" ftype="fasta"/>
             </output_collection>
         </test>
-        <test expect_num_outputs="1"> <!-- test4: test input collection -->
+        <test expect_num_outputs="1">
+            <!-- test4: test input collection -->
             <conditional name="input">
-               <param name="source" value="collection" />
-               <param name="fastas">
+                <param name="source" value="collection"/>
+                <param name="fastas">
                     <collection type="list">
-                        <element name="input1" value="input.fasta.gz" ftype="fasta.gz" />
-                        <element name="input2" value="input2.fasta.gz" ftype="fasta.gz" />
+                        <element name="input1" value="input.fasta.gz" ftype="fasta.gz"/>
+                        <element name="input2" value="input2.fasta.gz" ftype="fasta.gz"/>
                     </collection>
-               </param>
+                </param>
             </conditional>
-            <param name="db_source" value="builtin" />
-            <param name="typing" value="mlst,finetype,bast,porb" />
+            <param name="db_source" value="builtin"/>
+            <param name="typing" value="mlst,finetype,bast,porb"/>
             <output name="output_tsv">
                 <assert_contents>
-                    <has_n_columns n="11" />
-                    <has_n_lines n="2" />
-                    <has_text text="9367" />
-                    <has_text text="21-15,16" />
-                    <has_text text="F1-7" />
-                    <has_text text="NEIS2020_506" />
-                    <has_text text="27" />
-                    <has_text text="798" />
-                    <has_text text="0" />
+                    <has_n_columns n="11"/>
+                    <has_n_lines n="2"/>
+                    <has_text text="9367"/>
+                    <has_text text="21-15,16"/>
+                    <has_text text="F1-7"/>
+                    <has_text text="NEIS2020_506"/>
+                    <has_text text="27"/>
+                    <has_text text="798"/>
+                    <has_text text="0"/>
                 </assert_contents>
             </output>
         </test>

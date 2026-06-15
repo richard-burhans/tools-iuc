@@ -1,12 +1,12 @@
 <tool id="art_illumina" name="ART Illumina" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-  <description>simulates sequencing data</description>
-  <macros>
-      <import>macros.xml</import>
-  </macros>
-  <expand macro="bio_tools"/>
-  <expand macro="requirements"/>
-  <expand macro="stdio" />
-  <command><![CDATA[
+    <description>simulates sequencing data</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <command><![CDATA[
 art_illumina
 
 #if str($sam) == "-s":
@@ -27,7 +27,7 @@ art_illumina
     --sdev $generate.fragment_sd
 #end if
 
---in $input_seq_file
+--in '$input_seq_file'
 --len $read_length
 --fcov $fold_coverage
 
@@ -44,45 +44,39 @@ $amplicon
 
 --out output;
 ]]></command>
-  <inputs>
-    <param label="DNA/RNA reference sequence" format="fasta" name="input_seq_file" type="data"/>
-    <param label="the fold of read coverage over the reference sequences" name="fold_coverage" type="integer" value="20"/>
-    <param label="length of reads to be simulated" name="read_length" type="integer" value="100"/>
-    <param label="amplicon sequencing simulation" name="amplicon" type="boolean" truevalue="--amplicon" falsevalue="" />
-
-    <conditional name="generate">
-        <param name="choice" type="select" label="Type of data to generate">
-            <option value="single_end">Single-End</option>
-            <option value="paired_end">Paired-End</option>
-            <option value="mate_pair">Mate-Pair</option>
-        </param>
-        <when value="single_end">
-        </when>
-        <when value="paired_end">
-            <expand macro="frag_len_sd" />
-        </when>
-        <when value="mate_pair">
-            <expand macro="frag_len_sd" />
-        </when>
-    </conditional>
-
-    <expand macro="aln" />
-    <expand macro="sam" />
-
-    <param label="the first-read insertion rate" help="(--insRate)" name="insRate" type="float" value="0.00009" />
-    <param label="the second-read insertion rate" help="(--insRate2)" name="insRate2" type="float" value="0.00015" />
-    <param label="the first-read deletion rate" help="(--delRate)" name="delRate" type="float" value="0.00011" />
-    <param label="the second-read deletion rate" help="(--delRate2)" name="delRate2" type="float" value="0.00023" />
-
-    <expand macro="rndSeed" />
-    <!-- todo: id, errfree, masN, qShift(2), sepProf -->
-  </inputs>
-  <outputs>
+    <inputs>
+        <param label="DNA/RNA reference sequence" format="fasta" name="input_seq_file" type="data"/>
+        <param label="the fold of read coverage over the reference sequences" name="fold_coverage" type="integer" value="20"/>
+        <param label="length of reads to be simulated" name="read_length" type="integer" value="100"/>
+        <param label="amplicon sequencing simulation" name="amplicon" type="boolean" truevalue="--amplicon" falsevalue=""/>
+        <conditional name="generate">
+            <param name="choice" type="select" label="Type of data to generate">
+                <option value="single_end">Single-End</option>
+                <option value="paired_end">Paired-End</option>
+                <option value="mate_pair">Mate-Pair</option>
+            </param>
+            <when value="single_end"/>
+            <when value="paired_end">
+                <expand macro="frag_len_sd"/>
+            </when>
+            <when value="mate_pair">
+                <expand macro="frag_len_sd"/>
+            </when>
+        </conditional>
+        <expand macro="aln"/>
+        <expand macro="sam"/>
+        <param label="the first-read insertion rate" help="(--insRate)" name="insRate" type="float" value="0.00009"/>
+        <param label="the second-read insertion rate" help="(--insRate2)" name="insRate2" type="float" value="0.00015"/>
+        <param label="the first-read deletion rate" help="(--delRate)" name="delRate" type="float" value="0.00011"/>
+        <param label="the second-read deletion rate" help="(--delRate2)" name="delRate2" type="float" value="0.00023"/>
+        <expand macro="rndSeed"/>
+        <!-- todo: id, errfree, masN, qShift(2), sepProf -->
+    </inputs>
+    <outputs>
         <!-- Single End -->
         <data format="fastq" name="output_fq1_single" from_work_dir="output.fq" label="Simulated of Illumina sequencing of $input_seq_file.name">
             <filter>generate['choice'] == "single_end"</filter>
         </data>
-
         <!-- Paired End -->
         <data format="fastq" name="output_fq1_paired" from_work_dir="output1.fq" label="Simulated of Illumina sequencing of $input_seq_file.name (Forward)">
             <filter>generate['choice'] != "single_end"</filter>
@@ -93,12 +87,10 @@ $amplicon
         <data format="sam" name="output_sam" from_work_dir="output.sam" label="Mapping of Simulated Illumina data to $input_seq_file.name">
             <filter>sam</filter>
         </data>
-
         <!-- Single End -->
         <data format="txt" name="output_aln1_single" from_work_dir="output.aln" label="Alignment of Simulated Illumina data to $input_seq_file.name">
             <filter>aln and generate['choice'] == "single_end"</filter>
         </data>
-
         <!-- paired end -->
         <data format="txt" name="output_aln1_paired" from_work_dir="output1.aln" label="Alignment of Simulated Illumina data to $input_seq_file.name (Read 1)">
             <filter>aln and generate['choice'] != "single_end"</filter>
@@ -106,44 +98,42 @@ $amplicon
         <data format="txt" name="output_aln2_paired" from_work_dir="output2.aln" label="Alignment of Simulated Illumina data to $input_seq_file.name (Read 2)">
             <filter>aln and generate['choice'] != "single_end"</filter>
         </data>
-  </outputs>
-  <tests>
-      <test expect_num_outputs="3">
-          <param name="rndSeed" value="42" />
-          <param name="input_seq_file" value="input.fa" />
-          <param name="fold_coverage" value="20" />
-          <param name="read_length" value="200" />
-          <conditional name="generate">
-              <param name="choice" value="single_end" />
-          </conditional>
-          <param name="aln" value="True" />
-          <param name="sam" value="True" />
-
-          <output name="output_fq1_single" file="art.illumina.01.fq" compare="sim_size" delta="5000" />
-          <output name="output_aln1_single" file="art.illumina.01.aln" compare="sim_size" delta="5000"/>
-          <output name="output_sam" file="art.illumina.01.sam" compare="sim_size" delta="5000"/>
-      </test>
-      <test expect_num_outputs="5">
-          <param name="rndSeed" value="42" />
-          <param name="input_seq_file" value="input.fa" />
-          <param name="fold_coverage" value="20" />
-          <param name="read_length" value="200" />
-          <conditional name="generate">
-              <param name="choice" value="paired_end" />
-              <param name="fragment_size" value="300" />
-              <param name="fragment_sd" value="10" />
-          </conditional>
-          <param name="aln" value="True" />
-          <param name="sam" value="True" />
-
-          <output name="output_fq1_paired" file="art.illumina.021.fq" compare="sim_size" delta="5000" />
-          <output name="output_fq2_paired" file="art.illumina.022.fq" compare="sim_size" delta="5000" />
-          <output name="output_aln1_paired" file="art.illumina.021.aln" compare="sim_size" delta="5000"/>
-          <output name="output_aln2_paired" file="art.illumina.022.aln" compare="sim_size" delta="5000"/>
-          <output name="output_sam" file="art.illumina.02.sam" compare="sim_size" delta="5000"/>
-      </test>
-  </tests>
-  <help><![CDATA[
+    </outputs>
+    <tests>
+        <test expect_num_outputs="3">
+            <param name="rndSeed" value="42"/>
+            <param name="input_seq_file" value="input.fa"/>
+            <param name="fold_coverage" value="20"/>
+            <param name="read_length" value="200"/>
+            <conditional name="generate">
+                <param name="choice" value="single_end"/>
+            </conditional>
+            <param name="aln" value="True"/>
+            <param name="sam" value="True"/>
+            <output name="output_fq1_single" file="art.illumina.01.fq" compare="sim_size" delta="5000"/>
+            <output name="output_aln1_single" file="art.illumina.01.aln" compare="sim_size" delta="5000"/>
+            <output name="output_sam" file="art.illumina.01.sam" compare="sim_size" delta="5000"/>
+        </test>
+        <test expect_num_outputs="5">
+            <param name="rndSeed" value="42"/>
+            <param name="input_seq_file" value="input.fa"/>
+            <param name="fold_coverage" value="20"/>
+            <param name="read_length" value="200"/>
+            <conditional name="generate">
+                <param name="choice" value="paired_end"/>
+                <param name="fragment_size" value="300"/>
+                <param name="fragment_sd" value="10"/>
+            </conditional>
+            <param name="aln" value="True"/>
+            <param name="sam" value="True"/>
+            <output name="output_fq1_paired" file="art.illumina.021.fq" compare="sim_size" delta="5000"/>
+            <output name="output_fq2_paired" file="art.illumina.022.fq" compare="sim_size" delta="5000"/>
+            <output name="output_aln1_paired" file="art.illumina.021.aln" compare="sim_size" delta="5000"/>
+            <output name="output_aln2_paired" file="art.illumina.022.aln" compare="sim_size" delta="5000"/>
+            <output name="output_sam" file="art.illumina.02.sam" compare="sim_size" delta="5000"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 Art Illumina Simulator
 ======================
 
@@ -159,6 +149,5 @@ amplicon sequencing simulation of Illumina sequencing platform. Its outputs
 include FASTQ read, ALN and/or SAM alignment files.
 
       ]]></help>
-  <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>
-

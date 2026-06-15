@@ -1,5 +1,5 @@
 <tool id="kaiju_kaiju2table" name="kaiju2table" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -45,9 +45,9 @@
             <option value="species">species</option>
         </param>
         <section name="optional" title="Optional arguments" expanded="false">
-            <param argument="-m" type="float" min="0" max="100" optional="true" value="" label="Minimum reporting percentage" help="Can not be combined with -c" />
-            <param argument="-c" type="integer" min="1" optional="true" value="" label="Minimum required number of reads" help="Can not be combined with -m" />
-            <param argument="-e" type="boolean" truevalue="-e" falsevalue="" checked="false" label="Expand viruses" help="which are always hown as full taxon path and read counts are not summarized in higher taxonomic levels" />
+            <param argument="-m" type="float" min="0" max="100" optional="true" value="" label="Minimum reporting percentage" help="Can not be combined with -c"/>
+            <param argument="-c" type="integer" min="1" optional="true" value="" label="Minimum required number of reads" help="Can not be combined with -m"/>
+            <param argument="-e" type="boolean" truevalue="-e" falsevalue="" checked="false" label="Expand viruses" help="which are always hown as full taxon path and read counts are not summarized in higher taxonomic levels"/>
             <param argument="-u" type="boolean" truevalue="-u" falsevalue="" checked="false" label="Do not count unclassified reads" help="Disables counting unclassified reads towards the total number of reads when calculating percentages."/>
             <expand macro="l"/>
         </section>

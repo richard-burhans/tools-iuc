@@ -67,7 +67,7 @@ echo 'venn(
                     <option value="chao">Chao</option>
                     <option value="ace">Ace</option>
                 </param>
-                <param name="abund" type="integer" value="10" min="5" label="abund - Abundance when using the ace calculator ( >= 5 )"/>
+                <param name="abund" type="integer" value="10" min="5" label="abund - Abundance when using the ace calculator ( &gt;= 5 )"/>
                 <param name="label" type="select" multiple="true" label="label - OTU Labels">
                     <expand macro="labeloptions"/>
                 </param>
@@ -96,21 +96,23 @@ echo 'venn(
         <expand macro="logfile-output"/>
     </outputs>
     <tests>
-        <test><!-- test with shared file -->
+        <test>
+            <!-- test with shared file -->
             <param name="source" value="shared"/>
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="calc" value="sharedsobs,sharedchao"/>
             <param name="groups" value="forest,pasture"/>
             <output_collection name="sharedotus_out" count="35">
-                <element name="0.05.sharedsobs.forest-pasture" md5="7513c9df64477a08b69f0d4665011e80" ftype="tabular" />
+                <element name="0.05.sharedsobs.forest-pasture" md5="7513c9df64477a08b69f0d4665011e80" ftype="tabular"/>
             </output_collection>
             <output_collection name="svgs_out" count="72">
-                <element name="0.05.sharedsobs.forest-pasture" md5="e2dc0d5485520f5b22aa185ba91b123e" ftype="svg" />
+                <element name="0.05.sharedsobs.forest-pasture" md5="e2dc0d5485520f5b22aa185ba91b123e" ftype="svg"/>
             </output_collection>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with list file -->
+        <test>
+            <!-- test with list file -->
             <param name="source" value="similarity"/>
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="calc" value="sobs,chao,ace"/>

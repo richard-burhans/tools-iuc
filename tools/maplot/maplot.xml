@@ -19,15 +19,8 @@
         <requirement type="package" version="0.2.1">python-kaleido</requirement>
     </requirements>
     <creator>
-        <person
-            givenName="Helge"
-            familyName="Hecht"
-            url="https://github.com/hechth"
-            identifier="0000-0001-6744-996X" />
-        <organization
-            url="https://www.recetox.muni.cz/"
-            email="GalaxyToolsDevelopmentandDeployment@space.muni.cz"
-            name="RECETOX MUNI" />
+        <person givenName="Helge" familyName="Hecht" url="https://github.com/hechth" identifier="0000-0001-6744-996X"/>
+        <organization url="https://www.recetox.muni.cz/" email="GalaxyToolsDevelopmentandDeployment@space.muni.cz" name="RECETOX MUNI"/>
     </creator>
     <command detect_errors="exit_code"><![CDATA[
     python3 '$__tool_directory__/maplot.py'
@@ -47,18 +40,16 @@
         --output_format '$output_format'
         --output_file '$output_file'
     ]]></command>
-
     <inputs>
-        <param argument="--file_path" type="data" label="Input File" format="csv,tsv,tabular,parquet" help="The input file containing the data to be visualized." />
-        <param argument="--frac" type="float" value="0.8" label="LOESS Smoothing Fraction" help="The fraction of data points used for LOESS smoothing. This controls the degree of smoothing applied to the data." />
-        <param argument="--it" type="integer" value="5" label="Number of Iterations" help="The number of iterations for LOESS smoothing. Increasing this value may improve accuracy but will also increase computation time." />
-        <param argument="--num_bins" type="integer" value="100" label="Number of Bins" help="The number of bins to use for the histogram. This determines the granularity of the histogram visualization." />
-        <param argument="--window_width" type="integer" value="5" label="Window Width" help="The width of the moving average window. This affects how the data is smoothed over a range of values." />
-        <param argument="--size" type="integer" value="500" label="Plot Size" help="The size of the plot in pixels. Larger values produce higher-resolution plots." />
-        <param argument="--scale" type="integer" value="3" label="Scale Factor" help="The scale factor for the plot. This controls the resolution of the output plot." />
-        <param argument="--y_scale_factor" type="float" value="1.1" label="Y-Axis Scale Factor" help="A factor to scale the Y-axis. This can be used to adjust the vertical range of the plot." />
-        <param argument="--max_num_cols" type="integer" value="100" label="Maximum Number of Columns" help="The maximum number of columns to display in the plot. This limits the number of subplots in the visualization." />
-
+        <param argument="--file_path" type="data" label="Input File" format="csv,tsv,tabular,parquet" help="The input file containing the data to be visualized."/>
+        <param argument="--frac" type="float" value="0.8" label="LOESS Smoothing Fraction" help="The fraction of data points used for LOESS smoothing. This controls the degree of smoothing applied to the data."/>
+        <param argument="--it" type="integer" value="5" label="Number of Iterations" help="The number of iterations for LOESS smoothing. Increasing this value may improve accuracy but will also increase computation time."/>
+        <param argument="--num_bins" type="integer" value="100" label="Number of Bins" help="The number of bins to use for the histogram. This determines the granularity of the histogram visualization."/>
+        <param argument="--window_width" type="integer" value="5" label="Window Width" help="The width of the moving average window. This affects how the data is smoothed over a range of values."/>
+        <param argument="--size" type="integer" value="500" label="Plot Size" help="The size of the plot in pixels. Larger values produce higher-resolution plots."/>
+        <param argument="--scale" type="integer" value="3" label="Scale Factor" help="The scale factor for the plot. This controls the resolution of the output plot."/>
+        <param argument="--y_scale_factor" type="float" value="1.1" label="Y-Axis Scale Factor" help="A factor to scale the Y-axis. This can be used to adjust the vertical range of the plot."/>
+        <param argument="--max_num_cols" type="integer" value="100" label="Maximum Number of Columns" help="The maximum number of columns to display in the plot. This limits the number of subplots in the visualization."/>
         <conditional name="backend_conditional">
             <param name="backend" type="select" label="Backend for Plotting" help="Choose the backend for generating the plot. Plotly supports interactive plots, while Matplotlib generates static plots.">
                 <option value="plotly" selected="true">Plotly</option>
@@ -82,29 +73,28 @@
     <outputs>
         <data name="output_file" format="pdf" label="MA plot with ${backend_conditional.backend} on ${on_string}">
             <change_format>
-                <when input="output_format" value="png" format="png" />
-                <when input="output_format" value="html" format="html" />
+                <when input="output_format" value="png" format="png"/>
+                <when input="output_format" value="html" format="html"/>
             </change_format>
         </data>
     </outputs>
     <tests>
         <test>
-            <param name="file_path" value="ma_plot_testdata_4.csv" />
+            <param name="file_path" value="ma_plot_testdata_4.csv"/>
             <conditional name="backend_conditional">
-                <param name="backend" value="plotly" />
-                <param name="output_format" value="pdf" />
+                <param name="backend" value="plotly"/>
+                <param name="output_format" value="pdf"/>
             </conditional>
-            <output name="output_file" file="output_plotly.pdf" />
+            <output name="output_file" file="output_plotly.pdf"/>
         </test>
-    
         <!-- Test case for Matplotlib backend with default parameters -->
         <test>
-            <param name="file_path" value="ma_plot_testdata_4.csv" />
+            <param name="file_path" value="ma_plot_testdata_4.csv"/>
             <conditional name="backend_conditional">
-                <param name="backend" value="matplotlib" />
-                <param name="output_format" value="pdf" />
+                <param name="backend" value="matplotlib"/>
+                <param name="output_format" value="pdf"/>
             </conditional>
-            <output name="output_file" file="output_matplotlib.pdf" />
+            <output name="output_file" file="output_matplotlib.pdf"/>
         </test>
     </tests>
     <help><![CDATA[

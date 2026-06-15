@@ -26,14 +26,14 @@
         <expand macro="branches"/>
         <expand macro="substitution" argument="--model"/>
         <section name="advanced_options" title="Advanced Options" expanded="false">
-            <expand macro="conditional_posteriorEstimationMethod" />
-            <param argument="--grid" name="grid_points" type="integer" value="20" min="5" max="50" label="Grid points" help="The number of grid points." />
-            <param argument="--concentration_parameter" name="concentration" type="float" value="0.5" min="0.001" max="1" label="Concentration parameter of the Dirichlet prior" help="The concentration parameter of the Dirichlet prior." />
+            <expand macro="conditional_posteriorEstimationMethod"/>
+            <param argument="--grid" name="grid_points" type="integer" value="20" min="5" max="50" label="Grid points" help="The number of grid points."/>
+            <param argument="--concentration_parameter" name="concentration" type="float" value="0.5" min="0.001" max="1" label="Concentration parameter of the Dirichlet prior" help="The concentration parameter of the Dirichlet prior."/>
         </section>
     </inputs>
     <outputs>
-        <data name="fade_output" format="hyphy_results.json" />
-        <data name="fade_md_report" format="markdown" from_work_dir="fade_stdout.md" label="FADE Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="fade_output" format="hyphy_results.json"/>
+        <data name="fade_md_report" format="markdown" from_work_dir="fade_stdout.md" label="FADE Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
@@ -167,6 +167,5 @@ Tool options
 
     ]]>
 </help>
-    <expand macro="citations">
-    </expand>
+    <expand macro="citations"/>
 </tool>

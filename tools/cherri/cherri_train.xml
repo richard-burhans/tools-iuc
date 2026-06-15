@@ -67,20 +67,22 @@
         <repeat name="rep_experiment" title="Experiment" min="1" default="1">
             <param name="exp_name" type="text" value="myExperiment" label="Name of the experiment" help="Only letters, numbers and underscores will be retained in this field. If more than one experiment is provided, then the tool generates a mixed model by combining datasets.">
                 <sanitizer>
-                    <valid initial="string.letters,string.digits"><add value="_" /></valid>
+                    <valid initial="string.letters,string.digits">
+                        <add value="_"/>
+                    </valid>
                 </sanitizer>
             </param>
             <expand macro="reference_source_conditional"/>
             <repeat name="rep_samples" title="Interaction summary file" min="1" default="1">
-                <param name="file" type="data" format="tabular" multiple="false" label="Interaction summary file of a replicate" />
+                <param name="file" type="data" format="tabular" multiple="false" label="Interaction summary file of a replicate"/>
             </repeat>
-            <param name="occupied_regions" optional="True" type="data" format="bed" label="Path to the genomic RBP crosslink or binding site locations (in BED format)" />
+            <param name="occupied_regions" optional="True" type="data" format="bed" label="Path to the genomic RBP crosslink or binding site locations (in BED format)"/>
         </repeat>
-        <param name="context" type="integer" value="150" label="How much context should be added at up- and downstream of each sequence" />
-        <param name="intarna_param_file" optional="True" type="data" format="txt" label="IntaRNA parameters file" />
-        <param name="use_structure" type="boolean" truevalue="on" falsevalue="off" checked="true" label="Set 'off' if you want to disable structure, default 'on'" />
-        <param name="run_time" type="integer" value="43200" label="Time used for the optimization in seconds, default: 43200 (12h)" />
-        <param name="filter_hybrid" type="boolean" truevalue="on" falsevalue="off" checked="false" label="Filter the data for hybrids already detected by ChiRA" />
+        <param name="context" type="integer" value="150" label="How much context should be added at up- and downstream of each sequence"/>
+        <param name="intarna_param_file" optional="True" type="data" format="txt" label="IntaRNA parameters file"/>
+        <param name="use_structure" type="boolean" truevalue="on" falsevalue="off" checked="true" label="Set 'off' if you want to disable structure, default 'on'"/>
+        <param name="run_time" type="integer" value="43200" label="Time used for the optimization in seconds, default: 43200 (12h)"/>
+        <param name="filter_hybrid" type="boolean" truevalue="on" falsevalue="off" checked="false" label="Filter the data for hybrids already detected by ChiRA"/>
     </inputs>
     <outputs>
         <data name="out_model" format="tgz" from_work_dir="model.tgz" label="Trained model and features file on ${on_string}"/>
@@ -94,18 +96,18 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_1.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
             </repeat>
-            <param name="run_time" value="60" />
+            <param name="run_time" value="60"/>
             <output name="out_model">
                 <assert_contents>
                     <has_size min="100000"/>
@@ -120,19 +122,19 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_1.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
             </repeat>
-            <param name="run_time" value="60" />
-            <param name="use_structure" value="off" />
+            <param name="run_time" value="60"/>
+            <param name="use_structure" value="off"/>
             <output name="out_model">
                 <assert_contents>
                     <has_size min="100000"/>
@@ -147,15 +149,15 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_1.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
             </repeat>
             <repeat name="rep_experiment">
@@ -164,19 +166,19 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_2.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
             </repeat>
-            <param name="run_time" value="60" />
-            <param name="context" value="100" />
+            <param name="run_time" value="60"/>
+            <param name="context" value="100"/>
             <output name="out_model">
                 <assert_contents>
                     <has_size min="100000"/>
@@ -191,15 +193,15 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_1.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_1_pos.tabular" />
+                    <param name="file" value="train_1_pos.tabular"/>
                 </repeat>
             </repeat>
             <repeat name="rep_experiment">
@@ -208,19 +210,19 @@
                     <param name="ref_source_selector" value="history"/>
                     <param name="genome_fasta" value="train_2.fa"/>
                 </conditional>
-                <param name="chrom_len_file" value="train_2_len.tabular" />
+                <param name="chrom_len_file" value="train_2_len.tabular"/>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
                 <repeat name="rep_samples">
-                    <param name="file" value="train_2_pos.tabular" />
+                    <param name="file" value="train_2_pos.tabular"/>
                 </repeat>
             </repeat>
-            <param name="run_time" value="60" />
-            <param name="use_structure" value="off" />
+            <param name="run_time" value="60"/>
+            <param name="use_structure" value="off"/>
             <output name="out_model">
                 <assert_contents>
                     <has_size min="100000"/>
@@ -231,5 +233,5 @@
     <help><![CDATA[
         CheRRI in train mode to build a predictive model. Takes interactions summary files from ChiRA tool as input. Generates a model file and a features file that can be used in CheRRI eval mode.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

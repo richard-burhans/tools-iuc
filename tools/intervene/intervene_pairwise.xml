@@ -1,11 +1,11 @@
 <tool id="intervene_pairwise" name="Pairwise intersection" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>and heatmap for genomic intervals</description>
-    <xrefs>
-        <xref type="bio.tools">intervene</xref>
-    </xrefs>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <xrefs>
+        <xref type="bio.tools">intervene</xref>
+    </xrefs>
     <requirements>
         <requirement type="package" version="@TOOL_VERSION@">intervene</requirement>
     </requirements>
@@ -53,8 +53,7 @@ mv results/Intervene_pairwise_*.${figtype} results/Intervene_pairwise.plot
             <when value="fisher">
                 <param argument="--genome" type="text" value="" label="Reference genome ID" help="Needs to be a string assembly name such as mm10 or hg38">
                     <sanitizer invalid_char="">
-                        <valid initial="string.letters,string.digits">
-                        </valid>
+                        <valid initial="string.letters,string.digits"/>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z]+</validator>
                 </param>
@@ -106,7 +105,7 @@ mv results/Intervene_pairwise_*.${figtype} results/Intervene_pairwise.plot
             <param name="input" value="a.bed,b.bed,c.bed"/>
             <param name="out_matrix" value="true"/>
             <output name="plot" value="bed_pairwise.pdf" compare="sim_size"/>
-            <output name="matrix" value="matrix.txt" />
+            <output name="matrix" value="matrix.txt"/>
         </test>
         <!-- Test fisher option -->
         <test expect_num_outputs="1">

@@ -1,5 +1,5 @@
 <tool id="kaiju_addtaxonnames" name="kaiju-addTaxonNames" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -23,7 +23,7 @@
         <section name="optional" title="Optional arguments" expanded="false">
             <expand macro="u"/>
             <expand macro="r" optional="true"/>
-            <param argument="-p" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Print full taxon path" help="Can not be combined with -r" />
+            <param argument="-p" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Print full taxon path" help="Can not be combined with -r"/>
         </section>
     </inputs>
     <outputs>

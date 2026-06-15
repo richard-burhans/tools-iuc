@@ -15,16 +15,16 @@
     ]]></command>
     <inputs>
         <param name="inputfile" type="data" format="fasta" label="Genome Sequence" help="Dataset missing? See TIP below"/>
-        <param name='cutoff' type='float' label='cutoff' value='1.5'/>
+        <param name="cutoff" type="float" label="cutoff" value="1.5"/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputfile" value='streptomyces_Tu6071_genomic.fasta'/>
-            <param name='cutoff' value='1.5'/>
-            <output name="output" file='longORFSTestOutput.dat'/>
+            <param name="inputfile" value="streptomyces_Tu6071_genomic.fasta"/>
+            <param name="cutoff" value="1.5"/>
+            <output name="output" file="longORFSTestOutput.dat"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -116,5 +116,5 @@
 
 	....
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

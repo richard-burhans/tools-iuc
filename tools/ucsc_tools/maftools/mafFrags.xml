@@ -66,7 +66,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 02: Testing with bed12 options -->
         <test expect_num_outputs="1">
             <param name="genome" value="hg19"/>
@@ -84,7 +83,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 03: Testing with onlyThick options -->
         <test expect_num_outputs="1">
             <param name="genome" value="hg19"/>
@@ -102,7 +100,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 04: Testing with meFirst options -->
         <test expect_num_outputs="1">
             <param name="genome" value="hg19"/>
@@ -120,7 +117,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 05: Testing with txStarts options -->
         <test expect_num_outputs="1">
             <param name="genome" value="hg19"/>
@@ -138,7 +134,6 @@ forceTwoBit=on
                 </assert_contents>
             </output>
         </test>
-
         <!-- Test 06: Testing with refCoords options -->
         <test expect_num_outputs="1">
             <param name="genome" value="hg19"/>
@@ -157,13 +152,12 @@ forceTwoBit=on
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 mafFrags is a command-line tool from the UCSC Genome Browser suite that extracts multiple alignment format (MAF) blocks from a specified alignment track (e.g., multiz46way) based on genomic regions defined in a BED file. It is useful for retrieving alignments for specific genes, exons, or regions across multiple species.
 
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{mafFrags,
                 author = {Kent UCSC},
                 title = {mafFrags: A tool for extracting MAFs from regions specified in a BED file},

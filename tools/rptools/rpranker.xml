@@ -8,8 +8,8 @@
         <requirement type="package" version="@TOOL_VERSION@">rptools</requirement>
     </requirements>
     <stdio>
-        <regex match="WARNING" level="warning" />
-        <regex match="ERROR" level="fatal" />
+        <regex match="WARNING" level="warning"/>
+        <regex match="ERROR" level="fatal"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
         python -m rptools.rprank
@@ -19,16 +19,16 @@
         > '$sorted_pathways'
     ]]></command>
     <inputs>
-        <param name="pathway_collection" type="data" format="sbml" multiple="true" min="2" label="Pathways" />
+        <param name="pathway_collection" type="data" format="sbml" multiple="true" min="2" label="Pathways"/>
     </inputs>
     <outputs>
-        <data name="sorted_pathways" format="csv" label="Ranked Pathways" />
+        <data name="sorted_pathways" format="csv" label="Ranked Pathways"/>
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical outputs are produced with default parameters  -->
+            <!-- test 1: check if identical outputs are produced with default parameters  -->
             <param name="pathway_collection" value="rp_003_0261.xml,rp_003_0131.xml,rp_003_0001.xml,rp_002_0021.xml,rp_002_0011.xml,rp_002_0001.xml,rp_001_0011.xml,rp_001_0006.xml,rp_001_0001.xml"/>
-            <output name="sorted_pathways" file="lycopene_ranked_pathways.csv" ftype="csv" compare="diff" sort="true" />
+            <output name="sorted_pathways" file="lycopene_ranked_pathways.csv" ftype="csv" compare="diff" sort="true"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -66,6 +66,6 @@ Acknowledgments
 
     ]]></help>
     <creator>
-        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847" />
+        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847"/>
     </creator>
 </tool>

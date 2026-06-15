@@ -102,7 +102,7 @@ mmseqs easy-linsearch
                 <option value="0" selected="true">Include region</option>
                 <option value="1">Exclude region</option>
             </param>
-            <param argument="--mask-n-repeat" type="integer" min="0" value="0" label="Repeat letters that occur > threshold in a row" help="Mask stretches of N characters longer than this threshold. Set 0 to disable."/>
+            <param argument="--mask-n-repeat" type="integer" min="0" value="0" label="Repeat letters that occur &gt; threshold in a row" help="Mask stretches of N characters longer than this threshold. Set 0 to disable."/>
         </section>
         <section name="align" title="Align">
             <expand macro="align_common_parameters"/>

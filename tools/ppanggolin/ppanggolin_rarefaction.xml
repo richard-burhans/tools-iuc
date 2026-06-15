@@ -5,7 +5,6 @@
     </macros>
     <expand macro="xrefs"/>
     <expand macro="requirements"/>
-
     <command detect_errors="exit_code"><![CDATA[
         mkdir -p ./tmp_ppanggolin/rarefaction &&
         mkdir -p ./tmp_ppanggolin/tmpdir_rarefaction &&
@@ -35,66 +34,49 @@
         && cat ./tmp_ppanggolin/rarefaction/rarefaction_curve.html > '${rarefaction_curve_html}'
         
     ]]></command>
-    
     <inputs>
-    
         <expand macro="inputs_pangenome"/>
-
-        <param argument="--depth" type="integer" value="30" min="1" max="100" label="The number of sampling for each genome" help="Default=30 ; min=1 ; max=100. Warning: if this value is greater than 30, the computation will be VERY intensive and it will take a long time.">
-        </param>
-        
-        <param argument="--min" type="integer" value="1" min="1" max="499" label="The minimal number of genomes in a sample" help="Default=1 ; min=1 ; max=499. The min value must be lower than the max value.">
-        </param>
-        
-        <param argument="--max" type="integer" value="100" min="1" max="500" label="The maximal number of genomes in a sample" help="Default=1 ; min=1 ; max=500. The min value must be lower than the max value. Warning: if if this value is greater than 100, the computation will be VERY intensive and it will take a long time.">
-        </param>
-        
+        <param argument="--depth" type="integer" value="30" min="1" max="100" label="The number of sampling for each genome" help="Default=30 ; min=1 ; max=100. Warning: if this value is greater than 30, the computation will be VERY intensive and it will take a long time."/>
+        <param argument="--min" type="integer" value="1" min="1" max="499" label="The minimal number of genomes in a sample" help="Default=1 ; min=1 ; max=499. The min value must be lower than the max value."/>
+        <param argument="--max" type="integer" value="100" min="1" max="500" label="The maximal number of genomes in a sample" help="Default=1 ; min=1 ; max=500. The min value must be lower than the max value. Warning: if if this value is greater than 100, the computation will be VERY intensive and it will take a long time."/>
         <expand macro="inputs_nb_of_partitions"/>
-        
-        <param name="advanced_pangenome_optional_files" type="select" label="Add the following output files in the Galaxy history" multiple="true" optional="true" display="checkboxes" >
+        <param name="advanced_pangenome_optional_files" type="select" label="Add the following output files in the Galaxy history" multiple="true" optional="true" display="checkboxes">
             <option value="output_rarefaction_csv" selected="true">Rarefaction data in tabular format (csv)</option>
             <option value="output_rarefaction_parameters_csv" selected="true">Rarefaction parameters in tabular format (csv)</option>
         </param>
-
     </inputs>
-        
     <outputs>
-
-        <data name="rarefaction_csv" format="csv" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction data (csv)" >
-          <filter>advanced_pangenome_optional_files and "output_rarefaction_csv" in advanced_pangenome_optional_files</filter>
+        <data name="rarefaction_csv" format="csv" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction data (csv)">
+            <filter>advanced_pangenome_optional_files and "output_rarefaction_csv" in advanced_pangenome_optional_files</filter>
         </data>
-        <data name="rarefaction_parameters_csv" format="csv" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction parameters (csv)" >
-          <filter>advanced_pangenome_optional_files and "output_rarefaction_parameters_csv" in advanced_pangenome_optional_files</filter>
+        <data name="rarefaction_parameters_csv" format="csv" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction parameters (csv)">
+            <filter>advanced_pangenome_optional_files and "output_rarefaction_parameters_csv" in advanced_pangenome_optional_files</filter>
         </data>
-        
-        <data name="rarefaction_curve_html" format="html" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction curve" />
-
+        <data name="rarefaction_curve_html" format="html" label="PPanGGOLiN rarefaction on ${on_string}: Rarefaction curve"/>
     </outputs>
-   
     <tests>
         <test expect_num_outputs="3">
             <param name="pangenome_h5" value="h5/test_data.h5" ftype="h5"/>
             <param name="depth" value="30"/>
             <param name="min" value="1"/>
             <param name="max" value="100"/>
-            <output name="rarefaction_csv" >
+            <output name="rarefaction_csv">
                 <assert_contents>
                     <has_size value="4045" delta="100"/>
                 </assert_contents>
             </output>
-            <output name="rarefaction_parameters_csv" >
+            <output name="rarefaction_parameters_csv">
                 <assert_contents>
                     <has_size value="324" delta="50"/>
                 </assert_contents>
             </output>
-            <output name="rarefaction_curve_html" >
+            <output name="rarefaction_curve_html">
                 <assert_contents>
                     <has_size value="4575692" delta="100"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
     
         PPanGGOLiN_ (Gautreau et al. 2020) is a software suite used to create and manipulate prokaryotic pangenomes from a set of either assembled 
@@ -110,8 +92,5 @@
         .. _documentation: https://ppanggolin.readthedocs.io/en/latest/user/PangenomeAnalyses/pangenomeAnalyses.html#rarefaction-curve
         
     ]]></help>
-
     <expand macro="citation"/>
-    
 </tool>
-

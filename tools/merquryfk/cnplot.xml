@@ -5,9 +5,9 @@
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
-        ln -s $reads input.ktab &&
-        ln -s $assembly input.fastq &&
-        ln -s $fastk_ktab_files ktab_files.tar.gz &&
+        ln -s '$reads' input.ktab &&
+        ln -s '$assembly' input.fastq &&
+        ln -s '$fastk_ktab_files' ktab_files.tar.gz &&
         tar -xf ktab_files.tar.gz -C '.' &&
         mv ktabfiles/.*.ktab* .input.ktab.1  &&
         CNplot

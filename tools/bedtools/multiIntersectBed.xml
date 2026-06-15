@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools multiinter
 $header
@@ -38,56 +38,53 @@ $empty.empty_selector
                 <option value="custom">Enter custom name per file</option>
             </param>
             <when value="tag">
-                <param name="inputs" type="data" format="@STD_BEDTOOLS_INPUTS@" multiple="true" label="@STD_BEDTOOLS_INPUT_LABEL@ files" />
+                <param name="inputs" type="data" format="@STD_BEDTOOLS_INPUTS@" multiple="true" label="@STD_BEDTOOLS_INPUT_LABEL@ files"/>
             </when>
             <when value="custom">
-                <repeat name="beds" title="Add BED files" min="2" >
-                    <param name="input" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file" />
-                    <param name="custom_name" type="text" area="false" label="Custom sample name" />
+                <repeat name="beds" title="Add BED files" min="2">
+                    <param name="input" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
+                    <param name="custom_name" type="text" area="false" label="Custom sample name"/>
                 </repeat>
             </when>
         </conditional>
-        <param argument="-cluster" type="boolean" truevalue="-cluster" falsevalue="" checked="false"
-            label="Invoke Ryan Layers's clustering algorithm" />
+        <param argument="-cluster" type="boolean" truevalue="-cluster" falsevalue="" checked="false" label="Invoke Ryan Layers's clustering algorithm"/>
         <conditional name="empty">
             <param name="empty_selector" argument="-empty" type="select" label="Report empty regions" help="Include regions that have zero coverage in all BedGraph datasets">
                 <option value="-empty">Yes</option>
                 <option value="">No</option>
             </param>
             <when value="-empty">
-                <expand macro="input_conditional_genome_file" />
+                <expand macro="input_conditional_genome_file"/>
             </when>
-            <when value="" />
+            <when value=""/>
         </conditional>
-        <param argument="-filler" type="text" value="N/A"
-            label="Text to use for no-coverage value"
-            help="Can be 0.0, N/A, - or any other value" />
-        <expand macro="print_header" />
+        <param argument="-filler" type="text" value="N/A" label="Text to use for no-coverage value" help="Can be 0.0, N/A, - or any other value"/>
+        <expand macro="print_header"/>
     </inputs>
     <outputs>
-        <data name="output" format="bed" />
+        <data name="output" format="bed"/>
     </outputs>
     <tests>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed" />
-            <param name="empty|empty_selector" value="" />
-            <output name="output" file="multiIntersectBed_result1.bed" ftype="bed" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed"/>
+            <param name="empty|empty_selector" value=""/>
+            <output name="output" file="multiIntersectBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed" />
-            <param name="header" value="true" />
-            <param name="empty|empty_selector" value="" />
-            <output name="output" file="multiIntersectBed_result2.bed" lines_diff="2" ftype="bed" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed"/>
+            <param name="header" value="true"/>
+            <param name="empty|empty_selector" value=""/>
+            <output name="output" file="multiIntersectBed_result2.bed" lines_diff="2" ftype="bed"/>
         </test>
         <test>
-            <param name="tag|tag_select" value="tag" />
-            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed" />
-            <param name="empty|empty_selector" value="-empty" />
-            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist" />
-            <param name="empty|genome_file_opts|genome" value="multiIntersectBed1.len" ftype="tabular" />
-            <output name="output" file="multiIntersectBed_result3.bed" ftype="bed" />
+            <param name="tag|tag_select" value="tag"/>
+            <param name="tag|inputs" value="multiIntersectBed1.bed,multiIntersectBed2.bed,multiIntersectBed3.bed" ftype="bed"/>
+            <param name="empty|empty_selector" value="-empty"/>
+            <param name="empty|genome_file_opts|genome_file_opts_selector" value="hist"/>
+            <param name="empty|genome_file_opts|genome" value="multiIntersectBed1.len" ftype="tabular"/>
+            <output name="output" file="multiIntersectBed_result3.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -177,5 +174,5 @@ The output file will contain five fixed columns, plus additional columns for eac
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

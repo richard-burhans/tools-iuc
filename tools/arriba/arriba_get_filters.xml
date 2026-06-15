@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <expand macro="version_command" />
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
     BASE_DIR=\$(dirname \$(dirname `which arriba`)) &&
     REF_SCRIPT=`find \$BASE_DIR -name 'download_references.sh'` &&
@@ -24,7 +24,7 @@
     ]]></command>
     <inputs>
         <param name="arriba_reference_name" type="text" label="Select reference">
-            <help>GRCh38 GRCh37 hg38 hg19 GRCm38 mm10</help>
+            <help><![CDATA[GRCh38 GRCh37 hg38 hg19 GRCm38 mm10]]></help>
             <option value="GRCh38">GRCh38</option>
             <option value="GRCh37">GRCh37</option>
             <option value="hg38">hg38</option>
@@ -69,5 +69,5 @@ The **Arriba Get Filters** tool adds the following Arriba distribution input_fil
 .. _input_files: https://github.com/suhrig/arriba/wiki/04-Input-files
 
 ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

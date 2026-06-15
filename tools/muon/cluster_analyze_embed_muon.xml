@@ -118,19 +118,16 @@ mu.tl.umap(
             </when>
             <when value="tl.mofa">
                 <param argument="groups_label" type="text" optional="true" label="a column name in adata.obs for grouping the samples">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
                 <expand macro="param_use_raw" label="Use raw slot of AnnData as input values" checked="false"/>
-                <param argument="use_layer" type="text" optional="true" label="Use a specific layer of AnnData as input values"
-                    help="supersedes use_raw option">
-                    <expand macro="sanitize_query" />
+                <param argument="use_layer" type="text" optional="true" label="Use a specific layer of AnnData as input values" help="supersedes use_raw option">
+                    <expand macro="sanitize_query"/>
                 </param>
-                <param argument="use_var" type="text" optional="true" label=".var column with a boolean value to select genes"
-                    help="e.g. “highly_variable”">
-                    <expand macro="sanitize_query" />
+                <param argument="use_var" type="text" optional="true" label=".var column with a boolean value to select genes" help="e.g. “highly_variable”">
+                    <expand macro="sanitize_query"/>
                 </param>
-                <param argument="use_obs" type="select" optional="true" label="strategy to deal with samples (cells) not being the same across modalities"
-                    help="Throws error if there are cells that are not same across modalities">
+                <param argument="use_obs" type="select" optional="true" label="strategy to deal with samples (cells) not being the same across modalities" help="Throws error if there are cells that are not same across modalities">
                     <option value="union">union</option>
                     <option value="intersection">intersection</option>
                 </param>
@@ -163,26 +160,20 @@ mu.tl.umap(
                     <when value="no"/>
                 </conditional>
                 <param argument="smooth_covariate" type="text" optional="true" label="Use a covariate (column in .obs) to learn smooth factors (MEFISTO)">
-                    <expand macro="sanitize_query" />
+                    <expand macro="sanitize_query"/>
                 </param>
                 <param argument="smooth_warping" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Learn the alignment of covariates (e.g. time points) from different groups?"/>
                 <param argument="seed" type="integer" value="1" label="Random seed"/>
             </when>
             <when value="tl.umap">
-                <param argument="min_dist" type="float" min="0" value="0.5" label="The effective minimum distance between embedded points"
-                    help="Smaller values will result in a more clustered/clumped embedding where nearby points on the manifold are drawn closer together, while larger values will result on a more even dispersal of points."/>
-                <param argument="spread" type="float" value="1.0" label="The effective scale of embedded points"
-                    help="Determines how clustered/clumped the embedded points are"/>
+                <param argument="min_dist" type="float" min="0" value="0.5" label="The effective minimum distance between embedded points" help="Smaller values will result in a more clustered/clumped embedding where nearby points on the manifold are drawn closer together, while larger values will result on a more even dispersal of points."/>
+                <param argument="spread" type="float" value="1.0" label="The effective scale of embedded points" help="Determines how clustered/clumped the embedded points are"/>
                 <param argument="n_components" type="integer" value="2" label="The number of dimensions of the embedding"/>
-                <param argument="maxiter" type="integer" optional="true" label="The number of iterations (epochs) of the optimization"
-                    help="Called `n_epochs` in the original UMAP"/>
+                <param argument="maxiter" type="integer" optional="true" label="The number of iterations (epochs) of the optimization" help="Called `n_epochs` in the original UMAP"/>
                 <param argument="alpha" type="float" value="1.0" label="The initial learning rate for the embedding optimization"/>
-                <param argument="gamma" type="float" value="1.0" label="Weighting applied to negative samples in low dimensional embedding optimization"
-                    help="Values higher than one will result in greater weight being given to negative samples"/>
-                <param argument="negative_sample_rate" type="integer" value="5" label="Negative sample rate"
-                    help="The number of negative edge/1-simplex samples to use per positive edge/1-simplex sample in optimizing the low dimensional embedding"/>
-                <param argument="init_pos" type="select" label="How to initialize the low dimensional embedding"
-                    help="Called `init` in the original UMAP">
+                <param argument="gamma" type="float" value="1.0" label="Weighting applied to negative samples in low dimensional embedding optimization" help="Values higher than one will result in greater weight being given to negative samples"/>
+                <param argument="negative_sample_rate" type="integer" value="5" label="Negative sample rate" help="The number of negative edge/1-simplex samples to use per positive edge/1-simplex sample in optimizing the low dimensional embedding"/>
+                <param argument="init_pos" type="select" label="How to initialize the low dimensional embedding" help="Called `init` in the original UMAP">
                     <option value="spectral">Use a spectral embedding of the graph</option>
                     <option value="random">Assign initial embedding positions at random</option>
                 </param>
@@ -190,7 +181,7 @@ mu.tl.umap(
                 <expand macro="param_neighbors_key"/>
             </when>
         </conditional>
-        <expand macro="inputs_common_advanced" />
+        <expand macro="inputs_common_advanced"/>
     </inputs>
     <outputs>
         <expand macro="muon_outputs"/>
@@ -227,7 +218,7 @@ mu.tl.umap(
             <param name="neighbors_key" value="neighbors"/>
             <param name="directed" value="True"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -287,7 +278,7 @@ mu.tl.umap(
             <param name="neighbors_key" value="neighbors"/>
             <param name="directed" value="True"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -336,7 +327,7 @@ mu.tl.umap(
             </conditional>
             <param name="seed" value="1"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -383,7 +374,7 @@ mu.tl.umap(
             <param name="init_pos" value="spectral"/>
             <param name="random_state" value="42"/>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>

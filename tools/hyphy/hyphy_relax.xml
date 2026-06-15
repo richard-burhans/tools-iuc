@@ -65,7 +65,7 @@
             </when>
             <when value="multiple">
                 <repeat name="input_data_and_tree" title="Alignment and Tree" min="1">
-                    <param name="input_file" type="data" format="fasta,fasta.gz,nex" label="Input FASTA or NEXUS file" help="An in-frame codon alignment in one of the formats supported by HyPhy" />
+                    <param name="input_file" type="data" format="fasta,fasta.gz,nex" label="Input FASTA or NEXUS file" help="An in-frame codon alignment in one of the formats supported by HyPhy"/>
                     <param name="input_nhx" type="data" format="nhx,newick" optional="true" label="Input newick file; this will override any trees included in the file" help="A phylogenetic tree (optionally annotated with {})"/>
                 </repeat>
             </when>
@@ -75,25 +75,23 @@
             <option value="All">All</option>
             <option value="Minimal">Minimal</option>
         </param>
-        <param argument="--test" type="text" value="Unlabeled branches" optional="false" label="Branches to use as the test set" help="Label for the branch set to be tested (e.g., TEST). Must be present in the tree in {}">
-        </param>
-        <param argument="--reference" type="text" optional="true" label="Branches to use as the reference set" help="Optional label for the reference branch set. If not provided, all non-test branches are used as reference.">
-        </param>
+        <param argument="--test" type="text" value="Unlabeled branches" optional="false" label="Branches to use as the test set" help="Label for the branch set to be tested (e.g., TEST). Must be present in the tree in {}"/>
+        <param argument="--reference" type="text" optional="true" label="Branches to use as the reference set" help="Optional label for the reference branch set. If not provided, all non-test branches are used as reference."/>
         <section name="advanced_options" title="Advanced Options" expanded="false">
             <conditional name="mode_cond">
                 <param name="mode" type="select" label="Run mode" help="Select the analysis mode. 'Classic mode' for test vs reference, 'Group mode' for comparing multiple groups.">
                     <option value="Classic mode" selected="true">Classic mode</option>
                     <option value="Group mode">Group test mode</option>
                 </param>
-                <when value="Classic mode" />
+                <when value="Classic mode"/>
                 <when value="Group mode">
                     <param argument="--reference-group" type="text" optional="true" label="Branches to use as the reference group" help="In Group mode, specify which branch set is the reference for comparison."/>
                 </when>
             </conditional>
             <param argument="--grid-size" type="integer" value="250" label="Points in the initial distributional guess for likelihood fitting" max="5000"/>
             <param argument="--starting-points" type="integer" value="1" label="Initial random guesses to seed rate values optimization" help="The number of initial random guesses to seed rate values optimization" max="1000"/>
-            <param argument="--syn-rates" type="integer" min="1" max="10" value="3" label="Synonymous rate classes" />
-            <param argument="--rates" type="integer" min="2" max="10" value="3" label="Non-synonymous rate classes" />
+            <param argument="--syn-rates" type="integer" min="1" max="10" value="3" label="Synonymous rate classes"/>
+            <param argument="--rates" type="integer" min="2" max="10" value="3" label="Non-synonymous rate classes"/>
             <param argument="--srv" type="select" label="Include synonymous rate variation">
                 <option value="No" selected="true">No</option>
                 <option value="Yes">Yes</option>
@@ -110,14 +108,14 @@
     </inputs>
     <outputs>
         <data name="relax_output" format="hyphy_results.json"/>
-        <data name="relax_md_report" format="markdown" from_work_dir="relax_stdout.md" label="RELAX Report (Markdown) for ${tool.name} on ${on_string}" />
+        <data name="relax_md_report" format="markdown" from_work_dir="relax_stdout.md" label="RELAX Report (Markdown) for ${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
             <param name="input_type_cond|input_type" value="single"/>
             <param name="input_type_cond|input_file" ftype="nex" value="relax-in1.fa"/>
             <param name="input_type_cond|input_nhx" ftype="nhx" value="relax-in1.nhx"/>
-            <param name="test" value="TEST" />
+            <param name="test" value="TEST"/>
             <section name="advanced_options">
                 <conditional name="mode_cond">
                     <param name="mode" value="Classic mode"/>
@@ -125,7 +123,7 @@
             </section>
             <output name="relax_output">
                 <assert_contents>
-                     <has_text text='RELAX partitioned descriptive'/>
+                    <has_text text="RELAX partitioned descriptive"/>
                 </assert_contents>
             </output>
             <output name="relax_md_report">
@@ -138,7 +136,7 @@
             <param name="input_type_cond|input_type" value="single"/>
             <param name="input_type_cond|input_file" ftype="nex" value="relax-in2.nex"/>
             <param name="input_type_cond|input_nhx" ftype="nhx" value="relax-in2.nhx"/>
-            <param name="test" value="TEST" />
+            <param name="test" value="TEST"/>
             <section name="advanced_options">
                 <conditional name="mode_cond">
                     <param name="mode" value="Classic mode"/>
@@ -147,12 +145,12 @@
             </section>
             <output name="relax_output">
                 <assert_contents>
-                    <not_has_text text='"Synonymous site-to-site rates"'/>
+                    <not_has_text text="&quot;Synonymous site-to-site rates&quot;"/>
                 </assert_contents>
             </output>
             <output name="relax_md_report">
                 <assert_contents>
-                    <has_text text=">srv => No"/>
+                    <has_text text="&gt;srv =&gt; No"/>
                 </assert_contents>
             </output>
         </test>
@@ -166,7 +164,7 @@
                 <param name="input_file" ftype="nex" value="relax-in2.nex"/>
                 <param name="input_nhx" ftype="nhx" value="relax-in2.nhx"/>
             </repeat>
-            <param name="test" value="TEST" />
+            <param name="test" value="TEST"/>
             <section name="advanced_options">
                 <conditional name="mode_cond">
                     <param name="mode" value="Classic mode"/>
@@ -174,7 +172,7 @@
             </section>
             <output name="relax_output">
                 <assert_contents>
-                    <has_text text='"partition count":2'/>
+                    <has_text text="&quot;partition count&quot;:2"/>
                 </assert_contents>
             </output>
             <output name="relax_md_report">
@@ -187,7 +185,7 @@
             <param name="input_type_cond|input_type" value="single"/>
             <param name="input_type_cond|input_file" ftype="fasta" value="relax-in1.fa"/>
             <param name="input_type_cond|input_nhx" ftype="nhx" value="relax-in1.nhx"/>
-            <param name="test" value="TEST" />
+            <param name="test" value="TEST"/>
             <section name="advanced_options">
                 <conditional name="mode_cond">
                     <param name="mode" value="Classic mode"/>
@@ -196,12 +194,12 @@
             </section>
             <output name="relax_output">
                 <assert_contents>
-                    <has_text text='"HMM rate switching parameter"'/>
+                    <has_text text="&quot;HMM rate switching parameter&quot;"/>
                 </assert_contents>
             </output>
             <output name="relax_md_report">
                 <assert_contents>
-                    <has_text text=">srv => HMM"/>
+                    <has_text text="&gt;srv =&gt; HMM"/>
                     <has_text text="HMM switching rate"/>
                 </assert_contents>
             </output>
@@ -219,14 +217,14 @@
             </section>
             <output name="relax_output">
                 <assert_contents>
-                    <has_text text='"relaxation or intensification parameter":{'/>
-                    <has_text text='"TEST2":'/>
+                    <has_text text="&quot;relaxation or intensification parameter&quot;:{"/>
+                    <has_text text="&quot;TEST2&quot;:"/>
                 </assert_contents>
             </output>
             <output name="relax_md_report">
                 <assert_contents>
-                    <has_text text=">mode => Group mode"/>
-                    <has_text text=">reference-group => TEST"/>
+                    <has_text text="&gt;mode =&gt; Group mode"/>
+                    <has_text text="&gt;reference-group =&gt; TEST"/>
                 </assert_contents>
             </output>
         </test>

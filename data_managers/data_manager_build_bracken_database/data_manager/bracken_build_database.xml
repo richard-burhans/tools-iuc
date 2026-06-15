@@ -75,7 +75,7 @@
     <inputs>
         <param name="kraken_db" type="select">
             <options from_data_table="kraken2_databases">
-                <validator type="no_options" message="No Kraken2 databases are available" />
+                <validator type="no_options" message="No Kraken2 databases are available"/>
             </options>
         </param>
         <conditional name="check_prebuilt">
@@ -84,8 +84,8 @@
                 <option value="yes">Yes</option>
             </param>
             <when value="no">
-                <param name="kmer_len" type="integer" min="8" max="256" value="35" label="K-mer length" help="The K-mer length of the bracken DB should be identical to the K-mer length used to build the kraken2 DB." />
-                <param name="read_len" type="integer" min="8" max="1000" value="100" label="Read length" help="The read length of the bracken DB should be the same as the length of the reads to be analysis (one read in case of paired reads)." />
+                <param name="kmer_len" type="integer" min="8" max="256" value="35" label="K-mer length" help="The K-mer length of the bracken DB should be identical to the K-mer length used to build the kraken2 DB."/>
+                <param name="read_len" type="integer" min="8" max="1000" value="100" label="Read length" help="The read length of the bracken DB should be the same as the length of the reads to be analysis (one read in case of paired reads)."/>
             </when>
             <when value="yes">
                 <param name="read_len" type="select" label="Read length" help="The read length of the bracken DB should be the same as the length of the reads to be analysis (one read in case of paired reads). The prebuilt DBs where built using the same K-mer length as the kraken2 DB.">
@@ -98,43 +98,43 @@
                     <option value="300">300</option>
                 </param>
             </when>
-	    </conditional>
-    	<param name="database_name" type="text" label="Database Name" help="If left empty a name will be constructed from the name of the Kraken2 database suffixed by info on read and k-mer length. Otherwise please add a clear reference to the corresponding kraken2 DB the read length and kmer length to the name." />
+        </conditional>
+        <param name="database_name" type="text" label="Database Name" help="If left empty a name will be constructed from the name of the Kraken2 database suffixed by info on read and k-mer length. Otherwise please add a clear reference to the corresponding kraken2 DB the read length and kmer length to the name."/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
-            <param name="kraken_db" value="test_entry" />
-            <param name="database_name" value="" />
+            <param name="kraken_db" value="test_entry"/>
+            <param name="database_name" value=""/>
             <conditional name="check_prebuilt">
-                <param name="prebuilt" value="yes" />
-                <param name="read_len" value="100" />
+                <param name="prebuilt" value="yes"/>
+                <param name="read_len" value="100"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="Prebuilt bracken DB with read length = 100" />
-                    <has_text text="database100mers.kmer_distrib" />
+                    <has_text text="Prebuilt bracken DB with read length = 100"/>
+                    <has_text text="database100mers.kmer_distrib"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="kraken_db" value="test_entry" />
-            <param name="database_name" value="custom database name" />
+            <param name="kraken_db" value="test_entry"/>
+            <param name="database_name" value="custom database name"/>
             <conditional name="check_prebuilt">
-                <param name="prebuilt" value="no" />
-                <param name="read_len" value="150" />
+                <param name="prebuilt" value="no"/>
+                <param name="read_len" value="150"/>
             </conditional>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text="custom database name" />
-                    <has_text text="database150mers.kmer_distrib" />
+                    <has_text text="custom database name"/>
+                    <has_text text="database150mers.kmer_distrib"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 A bracken DB can only be built as an addition to an existing kracken2 DB (see `Bracken docs`_).
 
 .. _Bracken docs: https://github.com/jenniferlu717/Bracken?tab=readme-ov-file#step-1-generate-the-bracken-database-file-databasexmerskmer_distrib-1
@@ -154,7 +154,7 @@ Building new DBs
 ======================================
 
 Use the same K-mer length as the kraken2 DB and choose read lengths that are close to the read length of the analysis you want to perform (one read in case of paired reads).
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.7717/peerj-cs.104</citation>
     </citations>

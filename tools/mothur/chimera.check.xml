@@ -48,10 +48,8 @@ echo 'chimera.check(
                 <param argument="reference" type="data" format="fasta" label="reference - Reference to align with"/>
             </when>
         </conditional>
-        <param argument="ksize" type="integer" value="7" label="ksize - kmer length to determine differences between sequence fragments"
-            help="uses default if &lt; 1"/>
-        <param argument="increment" type="integer" value="10" label="increment - Increment for window slide on each iteration"
-            help="Default is 10, but you may set it up to sequence length minus twice the window."/>
+        <param argument="ksize" type="integer" value="7" label="ksize - kmer length to determine differences between sequence fragments" help="uses default if &lt; 1"/>
+        <param argument="increment" type="integer" value="10" label="increment - Increment for window slide on each iteration" help="Default is 10, but you may set it up to sequence length minus twice the window."/>
         <conditional name="svg_cond">
             <param argument="svg" type="select" label="svg - Generate a SVG plot for each query sequence">
                 <option value="no" selected="true">No</option>

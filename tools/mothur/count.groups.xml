@@ -55,7 +55,7 @@ cat mothur.*.logfile
             <when value="none"/>
             <when value="groups">
                 <param name="groups" type="select" label="groups - Pick groups to include" multiple="true">
-                    <help>All groups displayed if none are selected.</help>
+                    <help><![CDATA[All groups displayed if none are selected.]]></help>
                     <options>
                         <filter type="data_meta" ref="group" key="groups"/>
                     </options>

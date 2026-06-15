@@ -33,7 +33,7 @@
     ]]></command>
     <inputs>
         <param label="FastQ data" name="input" type="data" format="fastq,fastq.gz" multiple="true"/>
-        <param label="Bin scores" name="bin" type="boolean" truevalue="--bin" falsevalue="" />
+        <param label="Bin scores" name="bin" type="boolean" truevalue="--bin" falsevalue=""/>
         <param label="Score types to show" name="tpe" type="select" multiple="true">
             <option value="--min" selected="true">Minimum</option>
             <option value="--mean" selected="true">Mean</option>
@@ -46,11 +46,11 @@
     </outputs>
     <tests>
         <test>
-            <param name="input" value="test.fq,test2.fq" />
-            <output name="output" file="out.html" />
+            <param name="input" value="test.fq,test2.fq"/>
+            <output name="output" file="out.html"/>
         </test>
         <test>
-            <param name="input" value="test.fq.gz,test2.fq.gz" />
+            <param name="input" value="test.fq.gz,test2.fq.gz"/>
             <output name="output" file="out2.html"/>
         </test>
     </tests>

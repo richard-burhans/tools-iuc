@@ -10,7 +10,7 @@
 CrossMap region
     '${chain_source.input_chain}'
     '${input}'
-    $output
+    '$output'
     --chromid $chromid
     --ratio $ratio
     ]]></command>

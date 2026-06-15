@@ -273,10 +273,10 @@ ${pasted_data}
                 </param>
                 <when value="adjust">
                     <param name="baq" type="select" label="per-Base Alignment Quality">
-                        <help>
+                        <help><![CDATA[
 --no-BAQ; BAQ is the Phred-scaled probability of a read base being misaligned. Applying this option greatly helps to reduce false SNPs caused by misalignments.
 --redo-BAQ; ignore existing BQ tags
-                        </help>
+                        ]]></help>
                         <option value="">Default</option>
                         <option value="--no-BAQ">disable BAQ (per-Base Alignment Quality) (no-BAQ)</option>
                         <option value="--redo-BAQ">recalculate BAQ on the fly, ignore existing BQs (redo-BAQ)</option>
@@ -338,9 +338,9 @@ ${pasted_data}
                 <option value="INFO/DPR">INFO/DPR (Number of high-quality bases for each observed allele)</option>
             </expand>
             <param name="gvcf" type="text" value="" label="gVCF blocks of homozygous REF calls">
-                <help>
+                <help><![CDATA[
 output gVCF blocks of homozygous REF calls, with depth (DP) ranges specified by the list of integers. For example, passing 5,15 will group sites into two types of gVCF blocks, the first with minimum per-sample DP from the interval [5,15) and the latter with minimum depth 15 or more. In this example, sites with minimum per-sample depth less than 5 will be printed as separate records, outside of gVCF blocks. 
-                </help>
+                ]]></help>
                 <validator type="regex" message="integers separated by commas">^(\d+(,\d+)*)?$</validator>
             </param>
         </section>

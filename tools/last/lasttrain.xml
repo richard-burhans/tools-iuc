@@ -46,11 +46,10 @@
         >'$outfile'
 
     ]]></command>
-
     <inputs>
-        <expand macro="input_db" />
-        <param name="query_fasta" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz" label="Queries input files" />
-        <conditional name="init_options">            
+        <expand macro="input_db"/>
+        <param name="query_fasta" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz" label="Queries input files"/>
+        <conditional name="init_options">
             <param argument="-Q" type="select" multiple="false" label="Query input format">
                 <option value="0" selected="true">FASTA</option>
                 <option value="1">Fastq-sanger</option>
@@ -66,7 +65,6 @@
                 <expand macro="cost_macro" a="21" b="9"/>
             </when>
         </conditional>
-
         <section name="last_train_opt" title="Last-train options" expanded="false">
             <!-- Training options missing  -->
             <section name="align_opt" title="Alignment options" expanded="true">
@@ -80,7 +78,7 @@
                 <param argument="-S" type="select" multiple="false" label="Score matrix applies to forward strand of:">
                     <option value="0">Reference</option>
                     <option value="1" selected="true">Query</option>
-                </param>                
+                </param>
                 <!--<param name="gapless_align" argument="-C" type="integer" value="" label="Omit gapless alignments in COUNT others with > score-per-length"/>-->
                 <param argument="-T" type="select" multiple="false" label="Type of alignment:">
                     <option value="0" selected="true">Local</option>
@@ -97,11 +95,9 @@
             </section>
         </section>
     </inputs>
-
     <outputs>
-        <data name="outfile" format="txt" label="LAST train from ${on_string}" />
+        <data name="outfile" format="txt" label="LAST train from ${on_string}"/>
     </outputs>
-
     <tests>
         <test>
             <conditional name="db_opts">
@@ -125,7 +121,8 @@
             <output name="outfile" file="last_train.txt" ftype="txt" lines_diff="22"/>
         </test>
     </tests>
-
-    <help>@LAST_HELP@</help>
-    <citations><expand macro="citations"/></citations>
+    <help><![CDATA[@LAST_HELP@]]></help>
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

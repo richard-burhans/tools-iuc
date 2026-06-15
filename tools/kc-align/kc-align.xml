@@ -39,17 +39,17 @@
 
     ]]></command>
     <inputs>
-        <param name="ref" type="data" format="fasta" label="Reference Sequence" help="Single FASTA reference sequence to be aligned" />
-        <param name="seqs" type="data" format="fasta" label="Reads" help="Multi-FASTA of seqeunces to be aligned with the reference" />
-        <conditional name="position" >
-            <param name="mode" type="select" label="Mode" >
+        <param name="ref" type="data" format="fasta" label="Reference Sequence" help="Single FASTA reference sequence to be aligned"/>
+        <param name="seqs" type="data" format="fasta" label="Reads" help="Multi-FASTA of seqeunces to be aligned with the reference"/>
+        <conditional name="position">
+            <param name="mode" type="select" label="Mode">
                 <option value="genome">Genome</option>
                 <option value="gene">Gene</option>
                 <option value="mixed">Mixed</option>
             </param>
-            <when value="genome" >
-                <param name="start" type="text" value="0" label="Start Position(s)" help="The 1-indexed start position of the gene of interest in the reference sequence (For multi-segmented sequences, input each start site separated by a comma ex: 12562,12591)" />
-                <param name="end" type="text" value="0" label="End Position(s)" help="The 1-indexed end position of the gene of interest in the reference sequence (For multi-segmented sequences, input each end site separated by a comma ex: 12592,13905)" />
+            <when value="genome">
+                <param name="start" type="text" value="0" label="Start Position(s)" help="The 1-indexed start position of the gene of interest in the reference sequence (For multi-segmented sequences, input each start site separated by a comma ex: 12562,12591)"/>
+                <param name="end" type="text" value="0" label="End Position(s)" help="The 1-indexed end position of the gene of interest in the reference sequence (For multi-segmented sequences, input each end site separated by a comma ex: 12592,13905)"/>
                 <param name="dist" type="select" label="Homology distance limit" help="Sequences that are more than an empirically determined distance from the reference are discarded before the final alignment">
                     <option value="none">None</option>
                     <option value="very-close">Very Close</option>
@@ -57,10 +57,9 @@
                     <option value="less-close">Less Close</option>
                 </param>
             </when>
-            <when value="gene" >
-            </when>
-            <when value="mixed" >
-            	<param name="dist" type="select" label="Homology distance limit" help="Sequences that are more than an empirically determined distance from the reference are discarded before the final alignment">
+            <when value="gene"/>
+            <when value="mixed">
+                <param name="dist" type="select" label="Homology distance limit" help="Sequences that are more than an empirically determined distance from the reference are discarded before the final alignment">
                     <option value="none">None</option>
                     <option value="very-close">Very Close</option>
                     <option value="semi-close">Semi Close</option>
@@ -68,23 +67,23 @@
                 </param>
             </when>
         </conditional>
-        <param name="compress" type="boolean" truevalue="--compress" falsevalue="" label="Compress" help="Compress identical sequences" />
+        <param name="compress" type="boolean" truevalue="--compress" falsevalue="" label="Compress" help="Compress identical sequences"/>
     </inputs>
     <outputs>
-        <data name="fasta" format="fasta" from_work_dir="codon_align.fasta" label="${tool.name}: fasta output" />
-        <data name="clustal" format="txt" from_work_dir="codon_align.clustal" label="${tool.name}: clustal output" />
+        <data name="fasta" format="fasta" from_work_dir="codon_align.fasta" label="${tool.name}: fasta output"/>
+        <data name="clustal" format="txt" from_work_dir="codon_align.clustal" label="${tool.name}: clustal output"/>
     </outputs>
-<tests>
-    <test>
-        <param name="ref" ftype="fasta" value="wuhan_ref.fasta" />
-        <param name="seqs" ftype="fasta" value="3.fasta" />
-        <param name="mode" value="genome" />
-        <param name="start" value="21563" />
-        <param name="end" value="25384" />
-        <output name="fasta" ftype="fasta" compare="contains" value="kc-align.fasta" />
-        <output name="clustal" ftype="txt" compare="contains" value="kc-align.clustal" />
-    </test>
-</tests>
+    <tests>
+        <test>
+            <param name="ref" ftype="fasta" value="wuhan_ref.fasta"/>
+            <param name="seqs" ftype="fasta" value="3.fasta"/>
+            <param name="mode" value="genome"/>
+            <param name="start" value="21563"/>
+            <param name="end" value="25384"/>
+            <output name="fasta" ftype="fasta" compare="contains" value="kc-align.fasta"/>
+            <output name="clustal" ftype="txt" compare="contains" value="kc-align.clustal"/>
+        </test>
+    </tests>
     <help><![CDATA[
 
 ============

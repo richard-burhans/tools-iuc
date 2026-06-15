@@ -247,20 +247,18 @@ plot_out <- plot_out +
             </when>
             <when value="define_groups">
                 <repeat name="group_names" min="2" title="Group" help="Select the samples for this group">
-                    <param name="groupName" type="text" optional="false" label="Group name"
-                        help="Use short names, avoid special characters and numbers at the beginning of the name (The names might be changed by the program to make them conform to processing in R)">
+                    <param name="groupName" type="text" optional="false" label="Group name" help="Use short names, avoid special characters and numbers at the beginning of the name (The names might be changed by the program to make them conform to processing in R)">
                         <sanitizer invalid_char="">
                             <valid initial="string.letters,string.digits">
-                                <add value=":" />
-                                <add value="-" />
-                                <add value=" " />
-                                <add value="_" />
+                                <add value=":"/>
+                                <add value="-"/>
+                                <add value=" "/>
+                                <add value="_"/>
                             </valid>
                         </sanitizer>
                         <validator type="regex" message="Value may include alphanumeric characters, colons, dashes, underscores and spaces.">[0-9a-zA-Z:-_ ]+</validator>
                     </param>
-                    <param name="groupCols" type="data_column" data_ref="input1" multiple="true" min="1" label="Columns for group"
-                        help="WARNING: please use columns indices after removing the row name column if selected in second section!">
+                    <param name="groupCols" type="data_column" data_ref="input1" multiple="true" min="1" label="Columns for group" help="WARNING: please use columns indices after removing the row name column if selected in second section!">
                         <validator type="regex" message="Select at least one column for each group!">[0-9a-zA-Z:-_ ]+</validator>
                         <!--<filter type="remove_value" meta_ref="groupCols" />-->
                     </param>
@@ -271,7 +269,7 @@ plot_out <- plot_out +
                         </param>
                         <when value="selected_colors">
                             <param name="plot_color" type="color" value="" label="Pick color">
-                                 <sanitizer sanitize="false"/>
+                                <sanitizer sanitize="false"/>
                             </param>
                         </when>
                         <when value="default">
@@ -288,25 +286,25 @@ plot_out <- plot_out +
                 </param>
             </when>
         </conditional>
-        <param name="plotoptions" type="select" label="Select plot layout" display="radio" >
-            <option value="shape" >show shapes</option>
+        <param name="plotoptions" type="select" label="Select plot layout" display="radio">
+            <option value="shape">show shapes</option>
             <option value="label" selected="true">show labels (group elements)</option>
-            <option value="shape,label" >show shapes and labels</option>
+            <option value="shape,label">show shapes and labels</option>
         </param>
         <!-- Advanced Options  -->
         <section name="adv" title="Advanced Options" expanded="false">
             <expand macro="transform"/>
-            <expand macro="xy_scaling" />
+            <expand macro="xy_scaling"/>
             <expand macro="theme"/>
             <expand macro="legend"/>
         </section>
         <!-- Output Options  -->
         <section name="out" title="Output Options" expanded="true">
-            <expand macro="dimensions" />
+            <expand macro="dimensions"/>
         </section>
     </inputs>
     <outputs>
-        <expand macro="additional_output" />
+        <expand macro="additional_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">

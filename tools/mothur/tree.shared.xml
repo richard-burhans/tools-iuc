@@ -115,18 +115,20 @@ echo 'tree.shared(
         </data>
         <collection name="trefiles" type="list" label="${tool.name} on ${on_string}: tre">
             <filter>input['source'] == 'shared'</filter>
-        	<discover_datasets pattern=".*?\.(?P&lt;designation&gt;.*)\.tre" format="mothur.tre"/>
+            <discover_datasets pattern=".*?\.(?P&lt;designation&gt;.*)\.tre" format="mothur.tre"/>
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with phylip and defaults -->
+        <test>
+            <!-- test with phylip and defaults -->
             <param name="source" value="phylip"/>
             <param name="dist" value="env.dist"/>
             <output name="tre" md5="c74a88ed448aad2d07059eda0b4161e9" ftype="mothur.tre"/>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared and subsampling -->
+        <test>
+            <!-- test with shared and subsampling -->
             <param name="source" value="shared"/>
             <param name="dist" value="amazon.an.shared"/>
             <param name="use" value="yes"/>
@@ -137,7 +139,8 @@ echo 'tree.shared(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared and label and group select and all calculators -->
+        <test>
+            <!-- test with shared and label and group select and all calculators -->
             <param name="source" value="shared"/>
             <param name="dist" value="amazon.an.shared"/>
             <param name="label" value="0.05,0.22,0.32"/>
@@ -149,7 +152,8 @@ echo 'tree.shared(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with column and name file -->
+        <test>
+            <!-- test with column and name file -->
             <param name="source" value="column"/>
             <param name="dist" value="amazon.pair.dist"/>
             <param name="name" value="amazon1.names"/>

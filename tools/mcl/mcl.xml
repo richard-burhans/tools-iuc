@@ -67,71 +67,71 @@ mcl '$input'
                 <param argument="-use-tab" type="data" format="tabular" label="tabular label input" optional="true" help="use tab file to convert the output to labels"/>
             </when>
             <when value="--sif">
-                <param argument="--expect-values" type="boolean" checked="false" truevalue="--expect-values" falsevalue="" label="expect label:weight format" optional="true" help="accept extended SIF (label:weight fields)" />
+                <param argument="--expect-values" type="boolean" checked="false" truevalue="--expect-values" falsevalue="" label="expect label:weight format" optional="true" help="accept extended SIF (label:weight fields)"/>
             </when>
-            <when value="--abc" />
+            <when value="--abc"/>
         </conditional>
-        <param type="data" format="txt,tabular,sif" name="input" label="Input" optional="false" />
-        <param name="inflation" argument="-I" type="float" value="2.0" label="Inflation" min="1" max="6" help="This value is the main handle for affecting cluster granularity. It is usually chosen somewhere in the range [1.2-5.0]. -I 5.0 will tend to result in fine-grained clusterings, and -I 1.2 will tend to result in very coarse grained clusterings. Your mileage will vary depending on the characteristics of your data. That is why it is a good idea to test the quality and coherency of your clusterings using clm dist and clm info. This will most likely reveal that certain values of -I are simply not right for your data." />
-        <param name="transform" type="text" area="true" label="Transform input matrix values" help="See https://micans.org/mcl/man/mcxio.html#trans for the transformation syntax" >
+        <param type="data" format="txt,tabular,sif" name="input" label="Input" optional="false"/>
+        <param name="inflation" argument="-I" type="float" value="2.0" label="Inflation" min="1" max="6" help="This value is the main handle for affecting cluster granularity. It is usually chosen somewhere in the range [1.2-5.0]. -I 5.0 will tend to result in fine-grained clusterings, and -I 1.2 will tend to result in very coarse grained clusterings. Your mileage will vary depending on the characteristics of your data. That is why it is a good idea to test the quality and coherency of your clusterings using clm dist and clm info. This will most likely reveal that certain values of -I are simply not right for your data."/>
+        <param name="transform" type="text" area="true" label="Transform input matrix values" help="See https://micans.org/mcl/man/mcxio.html#trans for the transformation syntax">
             <sanitizer>
                 <valid initial="default">
-                  <add value="#" />
+                    <add value="#"/>
                 </valid>
-              </sanitizer>
+            </sanitizer>
         </param>
-        <param argument="--discard-loops" type="boolean" checked="true" truevalue="--discard-loops=y" falsevalue="--discard-loops=n" label="Discard loops in input" help="Remove any loops that are present in the input. Bear in mind that loops will still be modified in all cases where the loop weight is not maximal among the list of edge weights for a given node." />
-        <param name="reweight" argument="-c" optional="true" type="float" value="1" label="Reweight loops" help="As the final step of loop computation (i.e. after initialization and shadowing) all loop weights are multiplied by the provided value." />
-        <param type="boolean" checked="false" truevalue="--sum-loops" falsevalue="" argument="--sum-loops" label="Set loops to sum of other arcs weights" />
+        <param argument="--discard-loops" type="boolean" checked="true" truevalue="--discard-loops=y" falsevalue="--discard-loops=n" label="Discard loops in input" help="Remove any loops that are present in the input. Bear in mind that loops will still be modified in all cases where the loop weight is not maximal among the list of edge weights for a given node."/>
+        <param name="reweight" argument="-c" optional="true" type="float" value="1" label="Reweight loops" help="As the final step of loop computation (i.e. after initialization and shadowing) all loop weights are multiplied by the provided value."/>
+        <param type="boolean" checked="false" truevalue="--sum-loops" falsevalue="" argument="--sum-loops" label="Set loops to sum of other arcs weights"/>
         <param name="verbosity" type="select" multiple="true" optional="true" label="Verbosity">
             <option value="pruning">pruning</option>
             <option value="explain">explain</option>
             <option value="cls">cls</option>
         </param>
         <section title="Pruning options" name="pruning_options">
-            <param name="cutoff" type="integer" value="4000" label="cutoff" argument="-P" optional="true" help="inverse cutoff pruning value. Entries smaller than cutoff are removed"></param>
-            <param name="selection_number" type="integer" value="500" label="selection number" argument="-S" optional="true" help="pruning selection value. maximum number of entries (if applicable)"></param>
-            <param name="recover_number" type="integer" value="600" label="recover number" argument="-R" optional="true" help="Pruning recover number. Revover the largest discarded entries during pruning, if number of entries less then -R"></param>
-            <param name="recover_percentage" type="integer" value="90" label="recover percentage" argument="-pct" min="0" max="100" optional="true" help="Pruning recover percentage. Revover the largest discarded entries during pruning, if sum of remaining entries is less than -pct/100"></param>
+            <param name="cutoff" type="integer" value="4000" label="cutoff" argument="-P" optional="true" help="inverse cutoff pruning value. Entries smaller than cutoff are removed"/>
+            <param name="selection_number" type="integer" value="500" label="selection number" argument="-S" optional="true" help="pruning selection value. maximum number of entries (if applicable)"/>
+            <param name="recover_number" type="integer" value="600" label="recover number" argument="-R" optional="true" help="Pruning recover number. Revover the largest discarded entries during pruning, if number of entries less then -R"/>
+            <param name="recover_percentage" type="integer" value="90" label="recover percentage" argument="-pct" min="0" max="100" optional="true" help="Pruning recover percentage. Revover the largest discarded entries during pruning, if sum of remaining entries is less than -pct/100"/>
         </section>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="input" value="mcl-simple.tabular" ftype="tabular" />
+            <param name="input" value="mcl-simple.tabular" ftype="tabular"/>
             <conditional name="input_type_select">
-                <param name="input_type" value="--abc" />
+                <param name="input_type" value="--abc"/>
             </conditional>
-            <param name="transform" value="gq(0.7),add(-0.7)" />
+            <param name="transform" value="gq(0.7),add(-0.7)"/>
             <param name="inflation" value="3"/>
-            <output name="output" file="mcl-simple.out" ftype="tabular" />
+            <output name="output" file="mcl-simple.out" ftype="tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="mcl-simple.mci" ftype="txt" />
+            <param name="input" value="mcl-simple.mci" ftype="txt"/>
             <conditional name="input_type_select">
-                <param name="input_type" value="" />
-                <param name="use_tab" value="mcl-simple.mci.tab" ftype="tabular" />
+                <param name="input_type" value=""/>
+                <param name="use_tab" value="mcl-simple.mci.tab" ftype="tabular"/>
             </conditional>
-            <param name="transform" value="gq(0.7),add(-0.7)" />
+            <param name="transform" value="gq(0.7),add(-0.7)"/>
             <param name="inflation" value="3"/>
-            <output name="output" file="mcl-simple.out" ftype="tabular" />
+            <output name="output" file="mcl-simple.out" ftype="tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="mcl-simple.sif" ftype="sif" />
+            <param name="input" value="mcl-simple.sif" ftype="sif"/>
             <conditional name="input_type_select">
-                <param name="input_type" value="--sif" />
-                <param name="expect_values" value="true" ftype="tabular" />
+                <param name="input_type" value="--sif"/>
+                <param name="expect_values" value="true" ftype="tabular"/>
             </conditional>
-            <param name="transform" value="gq(0.7),add(-0.7)" />
+            <param name="transform" value="gq(0.7),add(-0.7)"/>
             <param name="inflation" value="3"/>
-            <output name="output" file="mcl-simple.out" ftype="tabular" />
+            <output name="output" file="mcl-simple.out" ftype="tabular"/>
         </test>
         <test expect_num_outputs="1">
-            <param name="input" value="mcl-simple.tabular" ftype="tabular" />
+            <param name="input" value="mcl-simple.tabular" ftype="tabular"/>
             <conditional name="input_type_select">
-                <param name="input_type" value="--abc" />
+                <param name="input_type" value="--abc"/>
             </conditional>
             <param name="cutoff" value="1"/>
             <param name="recover_number" value="1"/>
@@ -139,14 +139,14 @@ mcl '$input'
             <param name="discard_loops" value="false"/>
             <param name="reweight" value="0.5"/>
             <param name="sum_loops" value="true"/>
-            <output name="output" file="mcl-simple-pruning.out" ftype="tabular" />
+            <output name="output" file="mcl-simple-pruning.out" ftype="tabular"/>
         </test>
         <test>
-            <param name="input" value="mcl-simple.mci" ftype="txt" />
+            <param name="input" value="mcl-simple.mci" ftype="txt"/>
             <conditional name="input_type_select">
-                <param name="input_type" value="" />
+                <param name="input_type" value=""/>
             </conditional>
-            <output name="output" file="mcl-simple.mci-no-tab.out" ftype="tabular" lines_diff="2"/> 
+            <output name="output" file="mcl-simple.mci-no-tab.out" ftype="tabular" lines_diff="2"/>
         </test>
     </tests>
     <help>

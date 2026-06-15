@@ -31,12 +31,12 @@ upgma_cluster.py
             <output_collection name="output_trees" type="list" count="4">
                 <element name="upgma_dataset_0">
                     <assert_contents>
-                        <has_text text="PC.636" />
+                        <has_text text="PC.636"/>
                     </assert_contents>
                 </element>
                 <element name="upgma_dataset_3">
                     <assert_contents>
-                        <has_text text="PC.355" />
+                        <has_text text="PC.355"/>
                     </assert_contents>
                 </element>
             </output_collection>

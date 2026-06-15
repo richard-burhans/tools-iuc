@@ -37,12 +37,9 @@
 
     ]]></command>
     <inputs>
-        <param name="maf_file" type="data" format="maf" label="MAF file to convert" />
-
+        <param name="maf_file" type="data" format="maf" label="MAF file to convert"/>
         <section name="maf_convert" title="MAF-convert arguments" expanded="true">
-
             <param name="noheader" argument="-n" type="boolean" truevalue="-n" falsevalue="" checked="false" label="No header." help="Omit any header lines from the output"/>
-
             <conditional name="output_type">
                 <param name="output_format" type="select" multiple="false" label="Output format">
                     <option value="axt">axt</option>
@@ -64,7 +61,7 @@
                     <param argument="-l" type="integer" value="60" label="Line length"/>
                 </when>
                 <when value="psl">
-                    <param name="protein" argument="-p" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Protein alignments." />
+                    <param name="protein" argument="-p" type="boolean" truevalue="-p" falsevalue="" checked="false" label="Protein alignments."/>
                     <param argument="-j" type="integer" value="1" label="Join neighboring alignments" help="Join neighboring alignments if they are co-linear and separated by at most N letters."/>
                 </when>
                 <when value="sam">
@@ -75,22 +72,20 @@
             </conditional>
         </section>
     </inputs>
-
     <outputs>
         <data format="maf" name="outfile" label="${on_string} to ${maf_convert.output_type.output_format}">
             <change_format>
-                <when input="maf_convert.output_type.output_format" value="axt" format="axt" />
-                <when input="maf_convert.output_type.output_format" value="blast" format="blastxml" />
-                <when input="maf_convert.output_type.output_format" value="blasttab" format="blastxml" />
-                <when input="maf_convert.output_type.output_format" value="chain" format="txt" />
-                <when input="maf_convert.output_type.output_format" value="html" format="html" />
-                <when input="maf_convert.output_type.output_format" value="psl" format="tabular" />
-                <when input="maf_convert.output_type.output_format" value="sam" format="sam" />
-                <when input="maf_convert.output_type.output_format" value="tab" format="tabular" />
+                <when input="maf_convert.output_type.output_format" value="axt" format="axt"/>
+                <when input="maf_convert.output_type.output_format" value="blast" format="blastxml"/>
+                <when input="maf_convert.output_type.output_format" value="blasttab" format="blastxml"/>
+                <when input="maf_convert.output_type.output_format" value="chain" format="txt"/>
+                <when input="maf_convert.output_type.output_format" value="html" format="html"/>
+                <when input="maf_convert.output_type.output_format" value="psl" format="tabular"/>
+                <when input="maf_convert.output_type.output_format" value="sam" format="sam"/>
+                <when input="maf_convert.output_type.output_format" value="tab" format="tabular"/>
             </change_format>
         </data>
     </outputs>
-
     <tests>
         <test>
             <param name="maf_file" value="last_align_train_gen.maf" ftype="maf"/>
@@ -129,9 +124,10 @@
             <output name="outfile" file="outfile_convert.tab"/>
         </test>
     </tests>
-
     <help><![CDATA[
         This script reads alignments in maf format, and writes them in another format. It can write them in these formats: axt, blast, blasttab, chain, html, psl, sam, tab.
     ]]></help>
-    <citations><expand macro="citations"/></citations>
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

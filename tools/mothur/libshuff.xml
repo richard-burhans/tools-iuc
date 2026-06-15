@@ -50,7 +50,7 @@ echo 'libshuff(
             </param>
             <when value="integral"/>
             <when value="discrete">
-                <param name="step" type="float" value="0.10" min="0.0" max="1.0" label="step - Step size - ignored if not > 0" help="default value 0.10, smaller steps approach integral"/>
+                <param name="step" type="float" value="0.10" min="0.0" max="1.0" label="step - Step size - ignored if not &gt; 0" help="default value 0.10, smaller steps approach integral"/>
                 <param name="cutoff" type="float" value="" optional="true" min="0.0" max="1.0" label="cutoff - Cutoff threshold - ignored if left empty"/>
             </when>
         </conditional>

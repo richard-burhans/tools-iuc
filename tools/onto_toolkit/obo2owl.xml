@@ -1,37 +1,36 @@
 <tool id="onto_tk_obo2owl" name="Convert OBO to OWL" version="@VERSION@.0">
-    <description></description>
+    <description/>
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     obo2owl.pl
         -f '$input'
         -u '$url'
         -w '$oboinowlurl' > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
         <param name="url" type="text" value="http://" label="URL">
-            <expand macro="sanitize_urls" />
+            <expand macro="sanitize_urls"/>
         </param>
         <param name="oboinowlurl" type="text" value="http://" label="OBOinOWL URL">
-            <expand macro="sanitize_urls" />
+            <expand macro="sanitize_urls"/>
         </param>
     </inputs>
     <outputs>
-        <data format="owl" name="output" />
+        <data format="owl" name="output"/>
     </outputs>
     <tests>
         <test>
             <param name="input" value="pre_cco_core.obo"/>
-            <output name="output" file="pre_cco_core.owl" lines_diff="2" />
+            <output name="output" file="pre_cco_core.owl" lines_diff="2"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This tool transforms an OBO formatted ontology (such as the Gene Ontology) to OWL.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

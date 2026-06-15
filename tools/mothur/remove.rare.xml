@@ -105,14 +105,16 @@ echo 'remove.rare(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with list -->
+        <test>
+            <!-- test with list -->
             <param name="source" value="list"/>
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <output name="pick_otu" md5="4779791c9b0ef95a54083ee1a6ad6c8d" ftype="mothur.list"/>
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with list and group file -->
+        <test>
+            <!-- test with list and group file -->
             <param name="source" value="list"/>
             <param name="otu" value="amazon.an.list" ftype="mothur.list"/>
             <param name="group" value="amazon.groups" ftype="mothur.groups"/>
@@ -122,7 +124,8 @@ echo 'remove.rare(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared file -->
+        <test>
+            <!-- test with shared file -->
             <param name="source" value="shared"/>
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <output_collection name="pick_shared" count="36">
@@ -131,7 +134,8 @@ echo 'remove.rare(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with shared file and label/group select -->
+        <test>
+            <!-- test with shared file and label/group select -->
             <param name="source" value="shared"/>
             <param name="otu" value="amazon.an.shared" ftype="mothur.shared"/>
             <param name="bygroup" value="true"/>
@@ -143,7 +147,8 @@ echo 'remove.rare(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with rabund/sabund file -->
+        <test>
+            <!-- test with rabund/sabund file -->
             <param name="source" value="default"/>
             <param name="otu" value="amazon.an.sabund" ftype="mothur.sabund"/>
             <output name="pick_otu" md5="ca842ed3ef543d3dd76fd9089cd87c46" ftype="mothur.sabund"/>

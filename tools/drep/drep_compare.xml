@@ -3,8 +3,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="biotools" />
-    <expand macro="requirements" />   
+    <expand macro="biotools"/>
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
     @PREPARE_GENOMES@
     dRep
@@ -22,7 +22,7 @@
         <expand macro="select_outputs"/>
     </inputs>
     <outputs>
-        <expand macro="common_outputs" />
+        <expand macro="common_outputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="4">
@@ -31,7 +31,7 @@
             <expand macro="test_default_warning_options"/>
             <expand macro="test_default_select_outputs"/>
             <expand macro="test_log_output">
-                <has_text text="dRep compare finished" />
+                <has_text text="dRep compare finished"/>
             </expand>
         </test>
         <test expect_num_outputs="4">
@@ -40,7 +40,7 @@
             <expand macro="test_default_warning_options"/>
             <expand macro="test_default_select_outputs"/>
             <expand macro="test_log_output">
-                <has_text text="dRep compare finished" />
+                <has_text text="dRep compare finished"/>
             </expand>
         </test>
     </tests>
@@ -73,5 +73,5 @@ dRep first compares all genomes using Mash, and then only runs the secondary alg
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

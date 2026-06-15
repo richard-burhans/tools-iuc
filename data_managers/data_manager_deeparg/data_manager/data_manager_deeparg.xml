@@ -1,5 +1,5 @@
 <tool id="data_manager_deeparg" name="Download data for DeepARG" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" tool_type="manage_data" profile="22.05">
-    <description></description>
+    <description/>
     <macros>
         <token name="@TOOL_VERSION@">1.0.4</token>
         <token name="@VERSION_SUFFIX@">1</token>
@@ -13,7 +13,7 @@
         mv 'deeparg_$version' '$out_file.extra_files_path' &&
         cp '$dmjson' '$out_file'
     ]]></command>
-     <configfiles>
+    <configfiles>
         <configfile name="dmjson"><![CDATA[
 #from datetime import date
 {
@@ -43,11 +43,11 @@
             <param name="version" value="1.0.4"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"deeparg":'/>
-                    <has_text text='"db_version": "1.0.4"'/>
-                    <has_text_matching expression='"value": "deeparg_1.0.4-[0-9]{8}"'/>
-                    <has_text_matching expression='"name": "Files needed for running deepARG v-1.0.4-[0-9]{8}"'/>
-                    <has_text text='"path": "deeparg_1.0.4"'/>
+                    <has_text text="&quot;deeparg&quot;:"/>
+                    <has_text text="&quot;db_version&quot;: &quot;1.0.4&quot;"/>
+                    <has_text_matching expression="&quot;value&quot;: &quot;deeparg_1.0.4-[0-9]{8}&quot;"/>
+                    <has_text_matching expression="&quot;name&quot;: &quot;Files needed for running deepARG v-1.0.4-[0-9]{8}&quot;"/>
+                    <has_text text="&quot;path&quot;: &quot;deeparg_1.0.4&quot;"/>
                 </assert_contents>
             </output>
         </test>

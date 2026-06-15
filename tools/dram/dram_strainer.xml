@@ -57,9 +57,9 @@ DRAM.py strainer
             <param name="identifiers" value="K15023"/>
             <param name="custom_distillate" value="distill_custom.tabular" ftype="tabular"/>
             <output name="output_fasta" ftype="fasta" value="strainer_output1.fasta"/>
-       </test>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
  
 @WHATITDOESHEADER@
@@ -77,6 +77,6 @@ DRAM annotate tool and strains them, further analyzing genes of interest by maki
  * **Database identifiers** - database identifiers to keep
 
 @WHATITDOESFOOTER@
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

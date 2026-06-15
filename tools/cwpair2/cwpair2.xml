@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <tool id="cwpair2" name="CWPair2" version="1.1.1">
     <description>find matched pairs and unmatched orphans</description>
     <macros>
         <import>cwpair2_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="aggressive"><![CDATA[
 python '$__tool_directory__/cwpair2.py'
 #for $i in $input:
@@ -24,7 +23,7 @@ python '$__tool_directory__/cwpair2.py'
 --statistics_output '$statistics_output'
     ]]></command>
     <inputs>
-        <param  name="input" type="data" format="gff" multiple="true" label="Find matched pairs on" />
+        <param name="input" type="data" format="gff" multiple="true" label="Find matched pairs on"/>
         <param name="up_distance" type="integer" value="50" min="0" label="Distance upstream from a peak to allow a pair" help="The maximum distance upstream or 5’ to the primary peak"/>
         <param name="down_distance" type="integer" value="100" min="0" label="Distance downstream from a peak to allow a pair" help="The maximum distance downstream or 3’ to the primary peak"/>
         <param name="method" type="select" label="Method of finding a match">
@@ -33,20 +32,20 @@ python '$__tool_directory__/cwpair2.py'
             <option value="largest">Largest</option>
             <option value="all">All</option>
         </param>
-        <param name="binsize" type="integer" value="1" min="0" label="Width of bins for frequency plots and mode calculation" help="Value 1 implies no bins" />
+        <param name="binsize" type="integer" value="1" min="0" label="Width of bins for frequency plots and mode calculation" help="Value 1 implies no bins"/>
         <conditional name="threshold_format_cond">
             <param name="threshold_format" type="select" label="Filter using">
                 <option value="relative_threshold" selected="True">Relative threshold</option>
                 <option value="absolute_threshold">Absolute threshold</option>
             </param>
             <when value="relative_threshold">
-                <param  name="relative_threshold" type="float" value="0.0" min="0.0" label="Percentage of the 95 percentile value to filter below" help="Value 0 results in no filtering" />
+                <param name="relative_threshold" type="float" value="0.0" min="0.0" label="Percentage of the 95 percentile value to filter below" help="Value 0 results in no filtering"/>
             </when>
             <when value="absolute_threshold">
-                <param name="absolute_threshold" type="float" value="0.0" min="0.0" label="Absolute value to filter below" />
+                <param name="absolute_threshold" type="float" value="0.0" min="0.0" label="Absolute value to filter below"/>
             </when>
         </conditional>
-        <param name="output_files" type="select" label="Select output" help="Statistics will always be generated." >
+        <param name="output_files" type="select" label="Select output" help="Statistics will always be generated.">
             <option value="all" selected="True">everything (C,D,F,O,P,MP)</option>
             <option value="matched_pair">matched pairs only (MP)</option>
             <option value="matched_pair_orphan">matched pairs and orphans only (O,MP)</option>
@@ -54,75 +53,75 @@ python '$__tool_directory__/cwpair2.py'
         </param>
     </inputs>
     <outputs>
-        <data name="statistics_output" format="tabular" label="Statistics Table: ${tool.name} on ${on_string}" />
+        <data name="statistics_output" format="tabular" label="Statistics Table: ${tool.name} on ${on_string}"/>
         <collection name="H" type="list" label="Statistics Histogram: ${tool.name} on ${on_string}">
             <filter>output_files == "all"</filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="H" ext="pdf" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="H" ext="pdf" visible="false"/>
         </collection>
         <collection name="D" type="list" label="Data D: ${tool.name} on ${on_string}">
             <filter>output_files in ["all", "matched_pair_orphan_detail"]</filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_D" ext="tabular" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_D" ext="tabular" visible="false"/>
         </collection>
         <collection name="O" type="list" label="Data O: ${tool.name} on ${on_string}">
             <filter>output_files in ["all", "matched_pair_orphan", "matched_pair_orphan_detail"]</filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_O" ext="tabular" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_O" ext="tabular" visible="false"/>
         </collection>
         <collection name="MP" type="list" label="Data MP: ${tool.name} on ${on_string}">
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_MP" ext="gff" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="data_MP" ext="gff" visible="false"/>
         </collection>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="cwpair2_input1.gff" />
-            <param name="up_distance" value="25" />
-            <param name="down_distance" value="100" />
-            <param name="method" value="all" />
-            <param name="binsize" value="1" />
-            <param name="threshold_format" value="relative_threshold" />
-            <param name="relative_threshold" value="0.0" />
-            <param name="output_files" value="matched_pair" />
-            <output name="statistics_output" file="statistics1.tabular" ftype="tabular" />
+            <param name="input" value="cwpair2_input1.gff"/>
+            <param name="up_distance" value="25"/>
+            <param name="down_distance" value="100"/>
+            <param name="method" value="all"/>
+            <param name="binsize" value="1"/>
+            <param name="threshold_format" value="relative_threshold"/>
+            <param name="relative_threshold" value="0.0"/>
+            <param name="output_files" value="matched_pair"/>
+            <output name="statistics_output" file="statistics1.tabular" ftype="tabular"/>
             <output_collection name="MP" type="list">
-                <element name="data_MP_closest_f0u25d100_on_data_1.gff" file="closest_mp_output1.gff" ftype="gff" />
-                <element name="data_MP_largest_f0u25d100_on_data_1.gff" file="largest_mp_output1.gff" ftype="gff" />
-                <element name="data_MP_mode_f0u25d100_on_data_1.gff" file="mode_mp_output1.gff" ftype="gff" />
+                <element name="data_MP_closest_f0u25d100_on_data_1.gff" file="closest_mp_output1.gff" ftype="gff"/>
+                <element name="data_MP_largest_f0u25d100_on_data_1.gff" file="largest_mp_output1.gff" ftype="gff"/>
+                <element name="data_MP_mode_f0u25d100_on_data_1.gff" file="mode_mp_output1.gff" ftype="gff"/>
             </output_collection>
         </test>
         <test>
-            <param name="input" value="cwpair2_input1.gff" />
-            <param name="up_distance" value="50" />
-            <param name="down_distance" value="100" />
-            <param name="method" value="all" />
-            <param name="binsize" value="1" />
-            <param name="threshold_format" value="relative_threshold" />
-            <param name="relative_threshold" value="0.0" />
-            <param name="output_files" value="all" />
-            <output name="statistics_output" file="statistics2.tabular" ftype="tabular" />
+            <param name="input" value="cwpair2_input1.gff"/>
+            <param name="up_distance" value="50"/>
+            <param name="down_distance" value="100"/>
+            <param name="method" value="all"/>
+            <param name="binsize" value="1"/>
+            <param name="threshold_format" value="relative_threshold"/>
+            <param name="relative_threshold" value="0.0"/>
+            <param name="output_files" value="all"/>
+            <output name="statistics_output" file="statistics2.tabular" ftype="tabular"/>
             <output_collection name="H" type="list">
-                <element name="histogram_C_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains" />
-                <element name="histogram_F_closest_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains" />
-                <element name="histogram_F_largest_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains" />
-                <element name="histogram_F_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains" />
-                <element name="histogram_P_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains" />
+                <element name="histogram_C_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains"/>
+                <element name="histogram_F_closest_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains"/>
+                <element name="histogram_F_largest_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains"/>
+                <element name="histogram_F_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains"/>
+                <element name="histogram_P_mode_f0u50d100_on_data_1.pdf" file="magic.pdf" ftype="pdf" compare="contains"/>
             </output_collection>
             <output_collection name="D" type="list">
-                <element name="data_D_closest_f0u50d100_on_data_1.tabular" file="closest_d_output2.tabular" ftype="tabular" />
-                <element name="data_D_largest_f0u50d100_on_data_1.tabular" file="largest_d_output2.tabular" ftype="tabular" />
-                <element name="data_D_mode_f0u50d100_on_data_1.tabular" file="mode_d_output2.tabular" ftype="tabular" />
+                <element name="data_D_closest_f0u50d100_on_data_1.tabular" file="closest_d_output2.tabular" ftype="tabular"/>
+                <element name="data_D_largest_f0u50d100_on_data_1.tabular" file="largest_d_output2.tabular" ftype="tabular"/>
+                <element name="data_D_mode_f0u50d100_on_data_1.tabular" file="mode_d_output2.tabular" ftype="tabular"/>
             </output_collection>
             <output_collection name="O" type="list">
-                <element name="data_O_closest_f0u50d100_on_data_1.tabular" file="closest_o_output2.tabular" ftype="tabular" />
-                <element name="data_O_largest_f0u50d100_on_data_1.tabular" file="largest_o_output2.tabular" ftype="tabular" />
-                <element name="data_O_mode_f0u50d100_on_data_1.tabular" file="mode_o_output2.tabular" ftype="tabular" />
+                <element name="data_O_closest_f0u50d100_on_data_1.tabular" file="closest_o_output2.tabular" ftype="tabular"/>
+                <element name="data_O_largest_f0u50d100_on_data_1.tabular" file="largest_o_output2.tabular" ftype="tabular"/>
+                <element name="data_O_mode_f0u50d100_on_data_1.tabular" file="mode_o_output2.tabular" ftype="tabular"/>
             </output_collection>
             <output_collection name="MP" type="list">
-                <element name="data_MP_closest_f0u50d100_on_data_1.gff" file="closest_mp_output2.gff" ftype="gff" />
-                <element name="data_MP_largest_f0u50d100_on_data_1.gff" file="largest_mp_output2.gff" ftype="gff" />
-                <element name="data_MP_mode_f0u50d100_on_data_1.gff" file="mode_mp_output2.gff" ftype="gff" />
+                <element name="data_MP_closest_f0u50d100_on_data_1.gff" file="closest_mp_output2.gff" ftype="gff"/>
+                <element name="data_MP_largest_f0u50d100_on_data_1.gff" file="largest_mp_output2.gff" ftype="gff"/>
+                <element name="data_MP_mode_f0u50d100_on_data_1.gff" file="mode_mp_output2.gff" ftype="gff"/>
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 CWPair accepts one or more gff files as input and takes the peak location to be the midpoint between the
@@ -177,6 +176,6 @@ threshold" 50 is used, then it will not consider any peak having less than 100 t
  * **closest/largest/mode P** - pdf file that provides the preview plots graph (the initial iteration of the process for finding the mode).
  * **closest/largest/mode F** - pdf file that provides the final plots graph.
  * **Statistics Table** - provides the number of peaks in pairs (dividing this by 2 provides the number of peak-pairs).
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

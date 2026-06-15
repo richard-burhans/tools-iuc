@@ -52,8 +52,8 @@ compare_categories.py
             <param name="num_permutations" value="999"/>
             <output name="test_results">
                 <assert_contents>
-                    <has_text text="adonis" />
-                    <has_text text="Permutation" />
+                    <has_text text="adonis"/>
+                    <has_text text="Permutation"/>
                 </assert_contents>
             </output>
         </test>
@@ -65,11 +65,11 @@ compare_categories.py
             <param name="num_permutations" value="99"/>
             <output name="test_results">
                 <assert_contents>
-                    <has_text text="capscale" />
-                    <has_text text="Eigenvalues" />
+                    <has_text text="capscale"/>
+                    <has_text text="Eigenvalues"/>
                 </assert_contents>
             </output>
-            <output name="dbrda_plot" value="compare_categories/dbrda_plot.pdf" />
+            <output name="dbrda_plot" value="compare_categories/dbrda_plot.pdf"/>
         </test>
     </tests>
     <help><![CDATA[

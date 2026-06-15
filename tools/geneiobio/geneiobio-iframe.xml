@@ -1,8 +1,8 @@
 <tool id="gene_iobio_display_generation_iframe" name="gene.iobio visualisation" version="4.7.1+galaxy1">
-	<description>analyses VCFs for single and trio analysis to find causative variants using gene.iobio's public server</description>
-	<command>cat '$index' | tr -d '\n' > '$outfile'</command>
-	<configfiles>
-		<configfile name="index"><![CDATA[
+    <description>analyses VCFs for single and trio analysis to find causative variants using gene.iobio's public server</description>
+    <command><![CDATA[cat '$index' | tr -d '\n' > '$outfile']]></command>
+    <configfiles>
+        <configfile name="index"><![CDATA[
 <html>
 	<body>
 		<iframe src="https://gene.iobio.io/?genes=${genes}
@@ -54,7 +54,7 @@
 " style="width: 100%; height: 900px;"></iframe>
 </body></html>
             ]]></configfile>
-	</configfiles>
+    </configfiles>
     <inputs>
         <param name="proband_vcf" type="data" format="vcf_bgzip" label="Proband VCF file"/>
         <param name="proband_bam" type="data" format="bam,cram" label="Proband BAM file" optional="true"/>
@@ -83,8 +83,7 @@
                     <param name="name" type="text" value="M" label="Mother sample name" help="The sample names are listed in the columns of the VCF."/>
                 </section>
             </when>
-			<when value="single">
-			</when>
+            <when value="single"/>
         </conditional>
         <param name="genes" type="text" value="PDHA1,ARHGAP8,RAI1,PLXNA1,SCN8A,SMARCA2" size="100x5" label="Genes of interest" help="Provide the genes as a comma seperated line. This line can be empty and genes can be selected interactively using gene.iobio."/>
         <param name="refgen_version" type="select" label="Select reference genome version">
@@ -93,49 +92,49 @@
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" format="html" />
+        <data name="outfile" format="html"/>
     </outputs>
     <tests>
-	    <!-- Test 1 - Single -->
-        <test expect_num_outputs="1"> 
+        <!-- Test 1 - Single -->
+        <test expect_num_outputs="1">
             <param name="proband_vcf" ftype="vcf" value="family.vcf.gz"/>
-			<param name="proband_bam" ftype="bam" value="proband.bam" />
-			<param name="proband_sex" ftype="text" value="female" />
-			<param name="proband_name" ftype="text" value="Case5C" />
-			<param name="genes" ftype="text" value="BRCA1" />
-			<param name="refgen_version" ftype="text" value="GRCh37" />
+            <param name="proband_bam" ftype="bam" value="proband.bam"/>
+            <param name="proband_sex" ftype="text" value="female"/>
+            <param name="proband_name" ftype="text" value="Case5C"/>
+            <param name="genes" ftype="text" value="BRCA1"/>
+            <param name="refgen_version" ftype="text" value="GRCh37"/>
             <output name="outfile">
                 <assert_contents>
-                    <has_size value= "659" delta="100" />
+                    <has_size value="659" delta="100"/>
                 </assert_contents>
             </output>
         </test>
         <!-- Test 2 - Trio -->
-        <test expect_num_outputs="1"> 
+        <test expect_num_outputs="1">
             <param name="proband_vcf" ftype="vcf" value="family.vcf.gz"/>
-			<param name="proband_bam" ftype="bam" value="proband.bam" />
-			<param name="proband_sex" ftype="text" value="female" />
-			<param name="proband_name" ftype="text" value="Case5C" />
-			<param name="genes" ftype="text" value="BRCA1" />
-			<param name="refgen_version" ftype="text" value="GRCh37" />
-			<conditional name="input_type">
-				<param name="input_type_selector" value="trio"/>
-				<section name="mother">
-					<param name="vcf" ftype="vcf" value="family.vcf.gz"/>
-					<param name="bam" ftype="bam" value="mother.bam" />
-					<param name="affected" ftype="text" value="affected" />
-					<param name="name" ftype="text" value="Case5M" />
-				</section>
-				<section name="father">
-					<param name="vcf" ftype="vcf" value="family.vcf.gz"/>
-					<param name="bam" ftype="bam" value="father.bam" />
-					<param name="affected" ftype="text" value="unaffected" />
-					<param name="name" ftype="text" value="Case5F" />
-				</section>
+            <param name="proband_bam" ftype="bam" value="proband.bam"/>
+            <param name="proband_sex" ftype="text" value="female"/>
+            <param name="proband_name" ftype="text" value="Case5C"/>
+            <param name="genes" ftype="text" value="BRCA1"/>
+            <param name="refgen_version" ftype="text" value="GRCh37"/>
+            <conditional name="input_type">
+                <param name="input_type_selector" value="trio"/>
+                <section name="mother">
+                    <param name="vcf" ftype="vcf" value="family.vcf.gz"/>
+                    <param name="bam" ftype="bam" value="mother.bam"/>
+                    <param name="affected" ftype="text" value="affected"/>
+                    <param name="name" ftype="text" value="Case5M"/>
+                </section>
+                <section name="father">
+                    <param name="vcf" ftype="vcf" value="family.vcf.gz"/>
+                    <param name="bam" ftype="bam" value="father.bam"/>
+                    <param name="affected" ftype="text" value="unaffected"/>
+                    <param name="name" ftype="text" value="Case5F"/>
+                </section>
             </conditional>
             <output name="outfile">
                 <assert_contents>
-                    <has_size value= "1555" delta="500" />
+                    <has_size value="1555" delta="500"/>
                 </assert_contents>
             </output>
         </test>
@@ -163,7 +162,7 @@
     .. _Marth lab: https://marthlab.org/
     .. _University of Utah Center for Genetic Discovery: https://ucgd.genetics.utah.edu/
     ]]></help>
-	<citations>
-		<citation type="doi">10.1038/s41598-021-99752-5</citation>
-	</citations>
+    <citations>
+        <citation type="doi">10.1038/s41598-021-99752-5</citation>
+    </citations>
 </tool>

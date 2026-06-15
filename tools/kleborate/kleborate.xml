@@ -48,57 +48,51 @@ kleborate
     #end for
     1> '$concise'
     ]]></command>
-
     <inputs>
         <param argument="--assemblies" type="data" format="fasta" multiple="true" label="FASTA file(s) of assemblies" help="you may provide multiple assemblies for screening"/>
-
         <param argument="--resistance" type="select" label="Turn on resistance genes screening?">
             <option value="">no</option>
             <option value="--resistance" selected="true">yes</option>
         </param>
-
         <param argument="--kaptive_k" type="boolean" truevalue="--kaptive_k" falsevalue="" checked="false" label="Turn on screening of K loci?" help="Screen for capsule synthesis loci (K-loci) using the 'Kaptive' tool"/>
-        <param argument="--kaptive_o" type="boolean" truevalue="--kaptive_o" falsevalue="" checked="false" label="Turn on screening of O loci?" help="Screen for lipopolysaccharide loci (O-loci) using the 'Kaptive' tool" />
-
-        <param argument="--min_identity" type="integer" min="0" max="100" value="90" label="Minimum alignment percent identity for main results" help="Must be a value between 0 and 100" />
-        <param argument="--min_coverage" type="integer" min="0" max="100" value="80" label="Minimum alignment percent coverage for main results" help="Must be a value between 0 and 100" />
-        <param argument="--min_spurious_identity" type="integer" min="0" max="100" value="80" label="Minimum alignment percent identity for spurious results" help="Must be a value between 0 and 100" />
+        <param argument="--kaptive_o" type="boolean" truevalue="--kaptive_o" falsevalue="" checked="false" label="Turn on screening of O loci?" help="Screen for lipopolysaccharide loci (O-loci) using the 'Kaptive' tool"/>
+        <param argument="--min_identity" type="integer" min="0" max="100" value="90" label="Minimum alignment percent identity for main results" help="Must be a value between 0 and 100"/>
+        <param argument="--min_coverage" type="integer" min="0" max="100" value="80" label="Minimum alignment percent coverage for main results" help="Must be a value between 0 and 100"/>
+        <param argument="--min_spurious_identity" type="integer" min="0" max="100" value="80" label="Minimum alignment percent identity for spurious results" help="Must be a value between 0 and 100"/>
         <param argument="--min_spurious_coverage" type="integer" min="0" max="100" value="40" label="Minimum alignment percent coverage for spurious results" help="Must be a value between 0 and 100"/>
     </inputs>
-
     <outputs>
-        <data name="concise" format="tabular" label="${tool.name} on ${on_string}: Concise Results" />
-        <data name="outfile" format="tabular" label="${tool.name} on ${on_string}: Full Results" />
-        <data name="kaptive_k_outfile" format="tabular" label="${tool.name} on ${on_string}: K-loci screening results" >
+        <data name="concise" format="tabular" label="${tool.name} on ${on_string}: Concise Results"/>
+        <data name="outfile" format="tabular" label="${tool.name} on ${on_string}: Full Results"/>
+        <data name="kaptive_k_outfile" format="tabular" label="${tool.name} on ${on_string}: K-loci screening results">
             <filter>kaptive_k</filter>
         </data>
-        <data name="kaptive_o_outfile" format="tabular" label="${tool.name} on ${on_string}: O-loci screening results" >
+        <data name="kaptive_o_outfile" format="tabular" label="${tool.name} on ${on_string}: O-loci screening results">
             <filter>kaptive_o</filter>
         </data>
     </outputs>
-
     <tests>
-        <test expect_num_outputs="4"><!-- test with resistance, kaptive k and kaptive o outputs -->
-            <param name="assemblies" value="KP011_S63.scfd.fasta,KP012_S64.scfd.fasta" />
+        <test expect_num_outputs="4">
+            <!-- test with resistance, kaptive k and kaptive o outputs -->
+            <param name="assemblies" value="KP011_S63.scfd.fasta,KP012_S64.scfd.fasta"/>
             <param name="resistance" value="--resistance"/>
             <param name="kaptive_k" value="--kaptive_k"/>
             <param name="kaptive_o" value="--kaptive_o"/>
-            <output name="concise" ftype="tabular" file="Kleborate_concise_results.txt" />
-            <output name="outfile" ftype="tabular" file="Kleborate_results.txt" />
-            <output name="kaptive_k_outfile" ftype="tabular" file="Kleborate_kaptive_k_results.txt" />
-            <output name="kaptive_o_outfile" ftype="tabular" file="Kleborate_kaptive_o_results.txt" />
+            <output name="concise" ftype="tabular" file="Kleborate_concise_results.txt"/>
+            <output name="outfile" ftype="tabular" file="Kleborate_results.txt"/>
+            <output name="kaptive_k_outfile" ftype="tabular" file="Kleborate_kaptive_k_results.txt"/>
+            <output name="kaptive_o_outfile" ftype="tabular" file="Kleborate_kaptive_o_results.txt"/>
         </test>
-        <test expect_num_outputs="2"><!-- test without extra options -->
-            <param name="assemblies" value="KP011_S63.scfd.fasta,KP012_S64.scfd.fasta" />
+        <test expect_num_outputs="2">
+            <!-- test without extra options -->
+            <param name="assemblies" value="KP011_S63.scfd.fasta,KP012_S64.scfd.fasta"/>
             <param name="resistance" value=""/>
             <param name="kaptive_k" value=""/>
             <param name="kaptive_o" value=""/>
-            <output name="concise" ftype="tabular" file="Kleborate_concise_results_vanilla.txt" />
-            <output name="outfile" ftype="tabular" file="Kleborate_results_vanilla.txt" />
+            <output name="concise" ftype="tabular" file="Kleborate_concise_results_vanilla.txt"/>
+            <output name="outfile" ftype="tabular" file="Kleborate_results_vanilla.txt"/>
         </test>
-
     </tests>
-
     <help><![CDATA[
 **What it does**
 
@@ -177,9 +171,10 @@ The default criteria for detection of virulence and resistance genes targeted fo
 
 To alert users to the possibility that target genes may be missed because of contig breaks or other assembly quality issues, Kleborate will also report the presence of 'spurious' BLAST hits that pass more relaxed criteria (default ≥80% identity, ≥40% coverage), in the dedicated columns spurious_virulence_hits and spurious_resistance_hits.
     ]]></help>
-
     <citations>
-        <citation type="doi">10.1038/s41467-021-24448-3</citation> <!-- Kleborate publication -->
-        <citation type="doi">10.1099/mgen.0.000102</citation><!-- Kaptive publication -->
+        <citation type="doi">10.1038/s41467-021-24448-3</citation>
+        <!-- Kleborate publication -->
+        <citation type="doi">10.1099/mgen.0.000102</citation>
+        <!-- Kaptive publication -->
     </citations>
 </tool>

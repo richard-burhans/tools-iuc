@@ -54,7 +54,7 @@
         <param argument="--excludeDups" label="Exclude reads marked as duplicates from discordant, splitter, and/or unmapped file?" type="boolean" truevalue="-a" falsevalue=""/>
         <param argument="--removeDups" label="Remove duplicates reads from all output files?" help="(Implies --excludeDups)" type="boolean" truevalue="-e" falsevalue=""/>
         <param argument="--addMateTags" label="Add MC and MQ tags?" type="boolean" truevalue="--addMateTags" falsevalue=""/>
-        <param name="compatibility_mode" argument="-M" label="Run in compatibility mode?" help="Both 0x100 and 0x800 are considered chimeric. Similar to BWA MEM -M option." type="boolean" truevalue="-M" falsevalue="" />
+        <param name="compatibility_mode" argument="-M" label="Run in compatibility mode?" help="Both 0x100 and 0x800 are considered chimeric. Similar to BWA MEM -M option." type="boolean" truevalue="-M" falsevalue=""/>
         <param argument="--maxSplitCount" label="Maximum number of split alignments for a read to be included in splitter file." type="integer" value="2"/>
         <param argument="--maxUnmappedBases" label="Maximum number of un-aligned bases between two alignments to be included in splitter file." type="integer" value="50" min="1"/>
         <param argument="--minIndelSize" label="Minimum structural variant feature size for split alignments to be included in splitter file." type="integer" value="50" min="1"/>
@@ -86,7 +86,7 @@
             <output name="splitter_bam" file="splitters.bam" compare="sim_size"/>
             <output name="unmapped_fastq">
                 <assert_contents>
-                    <has_line line="@M00860:26:000000000-A6UGV:1:1101:10000:6072" />
+                    <has_line line="@M00860:26:000000000-A6UGV:1:1101:10000:6072"/>
                 </assert_contents>
             </output>
         </test>
@@ -100,10 +100,10 @@
             <output name="splitter_bam" file="splitters.bam" compare="sim_size"/>
             <output name="unmapped_fastq">
                 <assert_contents>
-                    <has_line line="@M00860:26:000000000-A6UGV:1:1101:10000:6072" />
+                    <has_line line="@M00860:26:000000000-A6UGV:1:1101:10000:6072"/>
                 </assert_contents>
             </output>
-         </test>
+        </test>
     </tests>
     <help><![CDATA[
 

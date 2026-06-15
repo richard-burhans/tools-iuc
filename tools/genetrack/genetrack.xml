@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <tool id="genetrack" name="GeneTrack" version="@WRAPPER_VERSION@.1">
     <description>peak predictor</description>
     <macros>
         <import>genetrack_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
 python '$__tool_directory__/genetrack.py'
 --input_format $input_format_cond.input_format
@@ -24,62 +23,62 @@ python '$__tool_directory__/genetrack.py'
                 <option value="gff">Gff</option>
             </param>
             <when value="scidx">
-                <param name="input" type="data" format="scidx" multiple="True" label="Predict peaks on" />
+                <param name="input" type="data" format="scidx" multiple="True" label="Predict peaks on"/>
             </when>
             <when value="gff">
-                <param name="input" type="data" format="gff" multiple="True" label="Predict peaks on" />
+                <param name="input" type="data" format="gff" multiple="True" label="Predict peaks on"/>
             </when>
         </conditional>
-        <param name="sigma" type="integer" value="5" min="1" label="Sigma to use when smoothing reads" help="Higher values increase computation but produce more smoothing." />
-        <param name="exclusion" type="integer" value="20" min="1" label="Peak exclusion zone" help="Exclusion zone around each peak that prevents others from being called." />
-        <param name="up_width" type="integer" value="10" min="0" label="Exclusion zone of upstream called peaks" />
-        <param name="down_width" type="integer" value="10" min="0" label="Exclusion zone of downstream called peaks" />
-        <param name="filter" type="integer" value="1" min="0" label="Absolute read filter" help="Removes peaks with lower peak height." />
+        <param name="sigma" type="integer" value="5" min="1" label="Sigma to use when smoothing reads" help="Higher values increase computation but produce more smoothing."/>
+        <param name="exclusion" type="integer" value="20" min="1" label="Peak exclusion zone" help="Exclusion zone around each peak that prevents others from being called."/>
+        <param name="up_width" type="integer" value="10" min="0" label="Exclusion zone of upstream called peaks"/>
+        <param name="down_width" type="integer" value="10" min="0" label="Exclusion zone of downstream called peaks"/>
+        <param name="filter" type="integer" value="1" min="0" label="Absolute read filter" help="Removes peaks with lower peak height."/>
     </inputs>
     <outputs>
         <collection name="genetrack_output" type="list" label="Genetrack results on ${on_string}">
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="output" ext="gff" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="output" ext="gff" visible="false"/>
         </collection>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="genetrack_input2.gff" ftype="gff" />
-            <param name="input_format" value="gff" />
-            <param name="sigma" value="5" />
-            <param name="exclusion" value="20" />
-            <param name="up_width" value="10" />
-            <param name="down_width" value="10" />
-            <param name="filter" value="3" />
+            <param name="input" value="genetrack_input2.gff" ftype="gff"/>
+            <param name="input_format" value="gff"/>
+            <param name="sigma" value="5"/>
+            <param name="exclusion" value="20"/>
+            <param name="up_width" value="10"/>
+            <param name="down_width" value="10"/>
+            <param name="filter" value="3"/>
             <output_collection name="genetrack_output" type="list">
-                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output2.gff" ftype="gff" />
+                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output2.gff" ftype="gff"/>
             </output_collection>
         </test>
         <test>
-            <param name="input" value="genetrack_input3.scidx" ftype="scidx" />
-            <param name="input_format" value="scidx" />
-            <param name="sigma" value="5" />
-            <param name="exclusion" value="20" />
-            <param name="up_width" value="10" />
-            <param name="down_width" value="10" />
-            <param name="filter" value="3" />
+            <param name="input" value="genetrack_input3.scidx" ftype="scidx"/>
+            <param name="input_format" value="scidx"/>
+            <param name="sigma" value="5"/>
+            <param name="exclusion" value="20"/>
+            <param name="up_width" value="10"/>
+            <param name="down_width" value="10"/>
+            <param name="filter" value="3"/>
             <output_collection name="genetrack_output" type="list">
-                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output3.gff" ftype="gff" />
+                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output3.gff" ftype="gff"/>
             </output_collection>
         </test>
         <test>
-            <param name="input" value="genetrack_input_unsorted4.gff" ftype="gff" />
-            <param name="input_format" value="gff" />
-            <param name="sigma" value="5" />
-            <param name="exclusion" value="20" />
-            <param name="up_width" value="10" />
-            <param name="down_width" value="10" />
-            <param name="filter" value="3" />
+            <param name="input" value="genetrack_input_unsorted4.gff" ftype="gff"/>
+            <param name="input_format" value="gff"/>
+            <param name="sigma" value="5"/>
+            <param name="exclusion" value="20"/>
+            <param name="up_width" value="10"/>
+            <param name="down_width" value="10"/>
+            <param name="filter" value="3"/>
             <output_collection name="genetrack_output" type="list">
-                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output4.gff" ftype="gff" />
+                <element name="s5e20u10d10F3_on_data_1" file="genetrack_output4.gff" ftype="gff"/>
             </output_collection>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 GeneTrack separately identifies peaks on the forward "+” (W) and reverse “-” (C) strand.  The way that GeneTrack
@@ -168,6 +167,6 @@ a single coordinate (called Singletons, where stddev=0 in the output file).  How
 improved by including them, if additional analysis (e.g., motif discovery) validates them.  In addition, idealized action
 of the exonuclease in ChIP-exo might place all tags for a peak on a single coordinate.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

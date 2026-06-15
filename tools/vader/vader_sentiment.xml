@@ -14,8 +14,7 @@
     --granularity '$granularity'
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="txt" label="Text"
-            help="Plain text file to analyze"/>
+        <param name="input" type="data" format="txt" label="Text" help="Plain text file to analyze"/>
         <param name="granularity" type="select" label="Analysis level">
             <option value="sentence" selected="true">Per sentence</option>
             <option value="document">Whole document</option>

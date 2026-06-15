@@ -344,7 +344,7 @@ sc.tl.embedding_density(
                 <param argument="basis" type="text" value="umap" label="The embedding over which the density will be calculated." help="This embedded representation should be found in adata.obsm['X_[basis]']">
                     <expand macro="sanitize_query"/>
                 </param>
-                <param argument="groupby" type="text" optional="true" value="" label="Key for categorical observation/cell annotation for which densities are calculated per category." >
+                <param argument="groupby" type="text" optional="true" value="" label="Key for categorical observation/cell annotation for which densities are calculated per category.">
                     <expand macro="sanitize_query"/>
                 </param>
                 <param argument="key_added" type="text" optional="true" value="" label="Name of the .obs covariate that will be added with the density estimates.">
@@ -358,7 +358,6 @@ sc.tl.embedding_density(
         <expand macro="anndata_outputs"/>
     </outputs>
     <tests>
-
         <!-- test 1 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_gauss_braycurtis.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -388,7 +387,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 2 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_gauss_braycurtis.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -416,7 +414,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 3 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -444,7 +441,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 4 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -477,7 +473,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 5 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_gauss_braycurtis.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -499,7 +494,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 6 -->
         <test expect_num_outputs="2">
             <param name="adata" value="krumsiek11.h5ad"/>
@@ -527,7 +521,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 7 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_umap_euclidean.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -559,7 +552,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 8 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_umap_euclidean.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -583,7 +575,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 9 -->
         <test expect_num_outputs="2">
             <param name="adata" value="tl.diffmap.neighbors_gauss_braycurtis.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -611,7 +602,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 10 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.neighbors_gauss_braycurtis.recipe_weinreb17.paul15_subsample.h5ad"/>
@@ -636,7 +626,6 @@ sc.tl.embedding_density(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 11 -->
         <test expect_num_outputs="2">
             <param name="adata" value="tl.umap.neighbors_umap_euclidean.recipe_weinreb17.paul15_subsample.h5ad"/>

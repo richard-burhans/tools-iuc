@@ -12,14 +12,14 @@
             #else
             -r '$reference_cond.reference_builtin'
             #end if
-            -s $scoring_matrix_cond.scoring_matrix_source.scoring_matrix
+            -s '$scoring_matrix_cond.scoring_matrix_source.scoring_matrix'
             -t $scoring_matrix_cond.datatype
             -l $local_alignment
             -f $format
             -R $reverse_complement
             $affine_gap
             $write_reference
-            $fasta
+            '$fasta'
             > '$output'
     ]]></command>
     <inputs>

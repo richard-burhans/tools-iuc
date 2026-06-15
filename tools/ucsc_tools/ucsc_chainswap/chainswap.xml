@@ -18,15 +18,15 @@
         '$out'
     ]]></command>
     <inputs>
-        <param name="in_chain" format="chain" type="data" label="chain dataset" help="" />
+        <param name="in_chain" format="chain" type="data" label="chain dataset" help=""/>
     </inputs>
     <outputs>
-        <data name="out" format="chain" />
+        <data name="out" format="chain"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">
-            <param name="in_chain" value="in.chain" />
-            <output name="out" file="out.chain" />
+            <param name="in_chain" value="in.chain"/>
+            <output name="out" file="out.chain"/>
         </test>
     </tests>
     <help><![CDATA[

@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="edam"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
     bam diff 
     --in1 '$in1'
@@ -101,7 +101,7 @@
         </data>
     </outputs>
     <tests>
-        <!-- Test-1 --> 
+        <!-- Test-1 -->
         <test expect_num_outputs="1">
             <param name="in1" ftype="sam" value="in1.sam"/>
             <param name="in2" ftype="sam" value="in2.sam"/>
@@ -113,14 +113,13 @@
             <param name="output_as" value="diff.txt"/>
             <output name="diff_txt">
                 <assert_contents>
-                    <has_text text="NB500964:249:HHLFNBGX7:3:21407:1974:9687" />
-                    <has_text_matching expression="&lt;\t1a3\t74M74N1M" />
-                    <has_text_matching expression="&gt;\ta3\t74M66N1M" />
+                    <has_text text="NB500964:249:HHLFNBGX7:3:21407:1974:9687"/>
+                    <has_text_matching expression="&lt;\t1a3\t74M74N1M"/>
+                    <has_text_matching expression="&gt;\ta3\t74M66N1M"/>
                 </assert_contents>
             </output>
         </test>
-
-        <!-- Test-2 --> 
+        <!-- Test-2 -->
         <test expect_num_outputs="3">
             <param name="in1" ftype="sam" value="in1.sam"/>
             <param name="in2" ftype="sam" value="in2.sam"/>
@@ -138,31 +137,31 @@
             <param name="output_as" value="diff.sam"/>
             <output name="diff_sam">
                 <assert_contents>
-                    <has_text text="NB500964:249:HHLFNBGX7:4:12608:21020:10228" />
-                    <not_has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541" />
-                    <not_has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846" />
+                    <has_text text="NB500964:249:HHLFNBGX7:4:12608:21020:10228"/>
+                    <not_has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541"/>
+                    <not_has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846"/>
                 </assert_contents>
             </output>
             <output name="diff_only1_sam">
                 <assert_contents>
-                    <has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846" />
-                    <not_has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541" />
-                    <has_text text="TGTCACCCCATTGATCGCCAGGGTTGATTCGGCTGATCTGGCTGGCTAGGCGGGTGTCCCCTTCCTCCCTCACCG" />
-                    <has_text text="AS:i:0" />
-                    <has_text text="MD:Z:75" />
+                    <has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846"/>
+                    <not_has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541"/>
+                    <has_text text="TGTCACCCCATTGATCGCCAGGGTTGATTCGGCTGATCTGGCTGGCTAGGCGGGTGTCCCCTTCCTCCCTCACCG"/>
+                    <has_text text="AS:i:0"/>
+                    <has_text text="MD:Z:75"/>
                 </assert_contents>
             </output>
             <output name="diff_only2_sam">
                 <assert_contents>
-                    <has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541" />
-                    <not_has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846" />
-                    <has_text text="ATCTGTCACCCCATTGATCGCCAGGGTTGATTCGGCTGATCTGGCTGGCTAGGCGGGTGTCCCCTTCCTCCCTCA" />
-                    <has_text text="AS:i:0" />
-                    <has_text text="MD:Z:75" />
+                    <has_text text="NB500964:249:HHLFNBGX7:4:11510:10074:3541"/>
+                    <not_has_text text="NB500964:249:HHLFNBGX7:1:12312:5087:3846"/>
+                    <has_text text="ATCTGTCACCCCATTGATCGCCAGGGTTGATTCGGCTGATCTGGCTGGCTAGGCGGGTGTCCCCTTCCTCCCTCA"/>
+                    <has_text text="AS:i:0"/>
+                    <has_text text="MD:Z:75"/>
                 </assert_contents>
             </output>
         </test>
-        <!-- Test-3 --> 
+        <!-- Test-3 -->
         <test expect_num_outputs="1">
             <param name="in1" ftype="sam" value="in1.sam"/>
             <param name="in2" ftype="sam" value="in3.sam"/>
@@ -174,7 +173,7 @@
             <param name="output_as" value="diff.txt"/>
             <output name="diff_txt">
                 <assert_contents>
-                    <not_has_text text="NB500964:249:HHLFNBGX7:3:21407:1974:9687" />
+                    <not_has_text text="NB500964:249:HHLFNBGX7:3:21407:1974:9687"/>
                 </assert_contents>
             </output>
         </test>
@@ -261,5 +260,5 @@ Options are available to compare::
 https://genome.sph.umich.edu/wiki/BamUtil:_diff
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

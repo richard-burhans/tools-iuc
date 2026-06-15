@@ -69,7 +69,7 @@ taxpasta
             <option value="metaphlan">MetaPhlAn</option>
             <option value="motus">mOTUs</option>
         </param>
-        <param name="infile" type="data" format="tabular" multiple="true" label="Taxonomic report(s) to standardise" help="The reports should be from the same profiling tool" />
+        <param name="infile" type="data" format="tabular" multiple="true" label="Taxonomic report(s) to standardise" help="The reports should be from the same profiling tool"/>
         <param argument="--taxonomy" type="select" label="NCBI taxonomy" help="To have actual human-readable taxon names in the standardised output">
             <options from_data_table="ncbi_taxonomy">
                 <validator message="No NCBI database is available" type="no_options"/>
@@ -77,12 +77,9 @@ taxpasta
         </param>
         <param argument="--add-name" type="boolean" truevalue="--add-name" falsevalue="" checked="true" label="Add the taxon name to the output"/>
         <param argument="--add-rank" type="boolean" truevalue="--add-rank" falsevalue="" checked="false" label="Add the taxon rank to the output"/>
-        <param argument="--add-lineage" type="boolean" truevalue="--add-lineage" falsevalue="" checked="false" label="Add the taxon's entire lineage to the output" 
-            help="The taxon names are separated by semi-colons"/>
-        <param argument="--add-id-lineage" type="boolean" truevalue="--add-id-lineage" falsevalue="" checked="false" label="Add the taxon's entire lineage to the output" 
-            help="The taxon identifiers are separated by semi-colons"/>
-        <param argument="--add-rank-lineage" type="boolean" truevalue="--add-rank-lineage" falsevalue="" checked="false" label="Add the taxon's entire rank lineage to the output" 
-            help="These are taxon ranks separated by semi-colons"/>
+        <param argument="--add-lineage" type="boolean" truevalue="--add-lineage" falsevalue="" checked="false" label="Add the taxon's entire lineage to the output" help="The taxon names are separated by semi-colons"/>
+        <param argument="--add-id-lineage" type="boolean" truevalue="--add-id-lineage" falsevalue="" checked="false" label="Add the taxon's entire lineage to the output" help="The taxon identifiers are separated by semi-colons"/>
+        <param argument="--add-rank-lineage" type="boolean" truevalue="--add-rank-lineage" falsevalue="" checked="false" label="Add the taxon's entire rank lineage to the output" help="These are taxon ranks separated by semi-colons"/>
     </inputs>
     <outputs>
         <data name="tabular_output" format="tabular" label="${tool.name} on ${on_string}: Tabular">
@@ -102,7 +99,7 @@ taxpasta
             <param name="infile" value="ERR7569997.txt"/>
             <param name="taxonomy" value="test-db-tox"/>
             <param name="add_name" value="true"/>
-            <param name="add_rank" value="false" />
+            <param name="add_rank" value="false"/>
             <param name="add_lineage" value="false"/>
             <param name="add_id_lineage" value="false"/>
             <param name="add_rank_lineage" value="false"/>
@@ -127,7 +124,7 @@ taxpasta
             <param name="infile" value="ERR7569997.txt,ERR7569998.txt"/>
             <param name="taxonomy" value="test-db-tox"/>
             <param name="add_name" value="true"/>
-            <param name="add_rank" value="false" />
+            <param name="add_rank" value="false"/>
             <param name="add_lineage" value="false"/>
             <param name="add_id_lineage" value="false"/>
             <param name="add_rank_lineage" value="false"/>
@@ -149,7 +146,7 @@ taxpasta
             <param name="infile" value="diamond_valid_1.tsv"/>
             <param name="taxonomy" value="test-db-tox"/>
             <param name="add_name" value="true"/>
-            <param name="add_rank" value="false" />
+            <param name="add_rank" value="false"/>
             <param name="add_lineage" value="false"/>
             <param name="add_id_lineage" value="false"/>
             <param name="add_rank_lineage" value="false"/>
@@ -170,7 +167,7 @@ taxpasta
             <param name="infile" value="2612_pe-ERR5766176-db1.kraken2.report.txt"/>
             <param name="taxonomy" value="test-db-tox"/>
             <param name="add_name" value="true"/>
-            <param name="add_rank" value="true" />
+            <param name="add_rank" value="true"/>
             <param name="add_lineage" value="true"/>
             <param name="add_id_lineage" value="true"/>
             <param name="add_rank_lineage" value="true"/>
@@ -195,7 +192,7 @@ taxpasta
             <param name="infile" value="2612_pe-ERR5766176-db1.kraken2.report.txt,2611_se-ERR5766174-db1.kraken2.report.txt"/>
             <param name="taxonomy" value="test-db-tox"/>
             <param name="add_name" value="true"/>
-            <param name="add_rank" value="false" />
+            <param name="add_rank" value="false"/>
             <param name="add_lineage" value="false"/>
             <param name="add_id_lineage" value="false"/>
             <param name="add_rank_lineage" value="false"/>

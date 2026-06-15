@@ -68,9 +68,9 @@ ${section.compact_PS}
                 <when value="no">
                     <conditional name="overlaps">
                         <param name="allow_overlaps" type="select" label="Allow Overlaps">
-                            <help>
+                            <help><![CDATA[
                             First coordinate of the next file can precede last record of the current file.
-                            </help>
+                            ]]></help>
                             <option value="yes">Yes </option>
                             <option value="no">No </option>
                         </param>
@@ -172,12 +172,12 @@ ${section.compact_PS}
             <param name="output_type" value="v"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="1" />
+                        <param name="chrom" value="1"/>
                     </repeat>
                     <repeat name="region_specs">
-                        <param name="chrom" value="3" />
+                        <param name="chrom" value="3"/>
                     </repeat>
                 </conditional>
             </section>

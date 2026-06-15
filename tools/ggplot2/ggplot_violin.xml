@@ -51,10 +51,9 @@ plot_out <- ggplot(input, aes(variable, value)) +
         ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="input1" type="data" format="tabular" label="Input in tabular format"
-            help="Column headers are requirement. These will be the columns that are plotted."/>
-        <expand macro="title" />
-        <expand macro="xy_lab" />
+        <param name="input1" type="data" format="tabular" label="Input in tabular format" help="Column headers are requirement. These will be the columns that are plotted."/>
+        <expand macro="title"/>
+        <expand macro="xy_lab"/>
         <section name="adv" title="Advanced Options" expanded="false">
             <param name="drawquartiles" type="select" label="Indicate quartiles of your data">
                 <option value="none">Plot the data without indicating quartiles</option>
@@ -88,22 +87,22 @@ plot_out <- ggplot(input, aes(variable, value)) +
                 <option value="grey">Grey</option>
                 <option value="gold">Gold</option>
             </param>
-            <expand macro="transform" />
-            <expand macro="xy_scaling" />
-            <expand macro="theme" />
-            <expand macro="legend" />
+            <expand macro="transform"/>
+            <expand macro="xy_scaling"/>
+            <expand macro="theme"/>
+            <expand macro="legend"/>
         </section>
         <section name="out" title="Output Options" expanded="true">
-            <expand macro="dimensions" />
+            <expand macro="dimensions"/>
         </section>
     </inputs>
     <outputs>
-        <expand macro="additional_output" />
+        <expand macro="additional_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="2">
             <param name="input1" value="mtcars.txt" ftype="tabular"/>
-            <param name="additional_output_format" value="pdf" />
+            <param name="additional_output_format" value="pdf"/>
             <output name="output2" file="ggplot_violin_result1.pdf" ftype="pdf" compare="sim_size"/>
         </test>
     </tests>

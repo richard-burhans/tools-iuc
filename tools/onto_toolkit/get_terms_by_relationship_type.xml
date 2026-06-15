@@ -3,20 +3,20 @@
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     perl '$__tool_directory__/get_terms_by_relationship_type.pl'
         '$input'
         '$rel_id' | sort > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
-        <expand macro="rel_id" />
+        <expand macro="input_ontology"/>
+        <expand macro="rel_id"/>
     </inputs>
     <outputs>
         <data format="tabular" name="output">
             <actions>
-                <action name="column_names" type="metadata" default="term name,relationship type,term name" />
+                <action name="column_names" type="metadata" default="term name,relationship type,term name"/>
             </actions>
         </data>
     </outputs>
@@ -27,7 +27,7 @@
             <output name="output" file="terms_rel_filtered.tab" sort="true"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -44,6 +44,6 @@ If you ask for terms related by the relationship type 'participates_in' you will
   ...
   ...
   
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

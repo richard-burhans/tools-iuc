@@ -22,7 +22,7 @@ Fasta_to_Contig2Bin.sh
     > '$contigs2bin'
     ]]></command>
     <inputs>
-        <param name="inputs" type="data_collection" collection_type="list"  format="fasta" label="Bin sequences"/>
+        <param name="inputs" type="data_collection" collection_type="list" format="fasta" label="Bin sequences"/>
     </inputs>
     <outputs>
         <data name="contigs2bin" format="tabular"/>

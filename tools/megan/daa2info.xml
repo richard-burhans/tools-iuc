@@ -106,7 +106,7 @@ daa2info
             <output name="output_summary" file="daa2info_output_summary2.txt" ftype="txt" compare="contains"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Analyses a DIAMOND (i.e., a Direct Access Archive or DAA) file, a proprietary file format developed by PowerISO Computing
@@ -137,7 +137,6 @@ other items) is produced.
  * Blast mode
  * Uids
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

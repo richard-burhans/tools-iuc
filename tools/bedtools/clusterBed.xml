@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools cluster
 $strand
@@ -15,19 +15,16 @@ $strand
     ]]></command>
     <inputs>
         <param name="inputA" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
-        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Force strandedness."
-            help="That is, only cluster features that are the same strand. By default, this is disabled." />
-        <param name="distance" argument="-d" type="integer" value="0"
-            label="Maximum distance between features allowed for features to be clustered"
-            help="Default is 0. That is, overlapping and/or book-ended features are clustered." />
+        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Force strandedness." help="That is, only cluster features that are the same strand. By default, this is disabled."/>
+        <param name="distance" argument="-d" type="integer" value="0" label="Maximum distance between features allowed for features to be clustered" help="Default is 0. That is, overlapping and/or book-ended features are clustered."/>
     </inputs>
     <outputs>
         <data name="output" format_source="inputA" metadata_source="inputA"/>
     </outputs>
     <tests>
         <test>
-            <param name="inputA" value="mergedBed1.bed" ftype="bed" />
-            <output name="output" file="clusterBed_result.bed" ftype="bed" />
+            <param name="inputA" value="mergedBed1.bed" ftype="bed"/>
+            <output name="output" file="clusterBed_result.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -43,5 +40,5 @@ bedtools cluster requires that you presort your data by chromosome and then by s
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

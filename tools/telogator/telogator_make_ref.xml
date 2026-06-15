@@ -47,7 +47,7 @@
                     <remove value="&quot;"/>
                 </valid>
             </sanitizer>
-        </param> 
+        </param>
         <param name="kmer_file" argument="-k" type="data" format="tsv" optional="true" value="" label="Telomere kmers file" help="Optional telomere k-mers file. If omitted, a built-in human telomere k-mers file is used."/>
         <param name="min_tel_length" argument="-m" type="integer" value="0" min="0" label="Minimum telomere length" help="Minimum telomere length required at contig ends (in base pairs)"/>
         <param name="add_tel" type="boolean" truevalue="--add-tel" falsevalue="" checked="false" label="Include masked telomeres" help="Include masked telomeres as separate contigs in the output"/>
@@ -68,11 +68,11 @@
             <param name="contig_list" value="t2t-i002c-mat_chr11p,t2t-i002c-mat_chr11q,t2t-i002c-mat_chr12p,t2t-i002c-mat_chr12q,t2t-i002c-mat_chr13p,t2t-i002c-mat_chr13q"/>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_text text=">test-sample"/>
+                    <has_text text="&gt;test-sample"/>
                     <has_line_matching expression="^&gt;.*"/>
                     <has_line_matching expression="^[ACGTN]+$"/>
                     <has_size value="6100428" delta="100000"/>
-                    <not_has_text text=">test-sample1_tel-"/>
+                    <not_has_text text="&gt;test-sample1_tel-"/>
                 </assert_contents>
             </output>
         </test>
@@ -84,7 +84,7 @@
             <param name="contig_list" value="t2t-i002c-mat_chr11p,t2t-i002c-mat_chr11q,t2t-i002c-mat_chr12p,t2t-i002c-mat_chr12q,t2t-i002c-mat_chr13p,t2t-i002c-mat_chr13q"/>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_text text=">test-sample2"/>
+                    <has_text text="&gt;test-sample2"/>
                 </assert_contents>
             </output>
             <output_collection name="plots" type="list">
@@ -122,18 +122,18 @@
         </test>
         <!-- Test 3: use telomere parameters -->
         <test expect_num_outputs="1">
-            <param name="input_fasta" value="t2t_subset_with_telomeres.fa.gz" />
+            <param name="input_fasta" value="t2t_subset_with_telomeres.fa.gz"/>
             <param name="sample_name" value="test-sample3"/>
             <param name="min_tel_length" value="1000"/>
             <param name="add_tel" value="true"/>
             <param name="contig_list" value="t2t-i002c-mat_chr11p,t2t-i002c-mat_chr11q,t2t-i002c-mat_chr12p,t2t-i002c-mat_chr12q,t2t-i002c-mat_chr13p,t2t-i002c-mat_chr13q"/>
             <output name="output_fasta">
                 <assert_contents>
-                    <has_text text=">test-sample3"/>
+                    <has_text text="&gt;test-sample3"/>
                     <has_line_matching expression="^&gt;.*"/>
                     <has_line_matching expression="^[ACGTN]+$"/>
                     <has_size value="4066952" delta="100000"/>
-                    <has_text text=">test-sample3_tel-"/>
+                    <has_text text="&gt;test-sample3_tel-"/>
                 </assert_contents>
             </output>
         </test>

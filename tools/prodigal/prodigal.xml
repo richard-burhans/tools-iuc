@@ -4,7 +4,7 @@
         <token name="@VERSION@">2.6.3</token>
     </macros>
     <xrefs>
-       <xref type="bio.tools">prodigal</xref>
+        <xref type="bio.tools">prodigal</xref>
     </xrefs>
     <requirements>
         <requirement type="package" version="@VERSION@">prodigal</requirement>
@@ -27,42 +27,40 @@
         $masked_seq
     ]]></command>
     <inputs>
-        <param type="data" name="input_fa" format="fasta" label="Specify input file" help="-i" />
-        <param type="data" name="input_train" format="fasta" label="Specify training file" optional="true" help="Read and use the specified training file (-t)" />
-        <param type="select" name="out_format" label="Specify output format" help="-f" >
+        <param type="data" name="input_fa" format="fasta" label="Specify input file" help="-i"/>
+        <param type="data" name="input_train" format="fasta" label="Specify training file" optional="true" help="Read and use the specified training file (-t)"/>
+        <param type="select" name="out_format" label="Specify output format" help="-f">
             <option value="gbk" selected="true">GBK (default)</option>
             <option value="gff">GFF</option>
             <option value="sqn">SQN</option>
             <option value="sco">SCO</option>
-        </param> 
-       <param type="select" name="procedure" label="Specify mode" help="-p" >
+        </param>
+        <param type="select" name="procedure" label="Specify mode" help="-p">
             <option value="single" selected="true">Single : Single genome, any number of
                 sequences (default)</option>
             <option value="meta">Meta : Anonymous sequences, analyze
                 using preset training files, ideal for metagenomic data or single short sequences</option>
         </param>
-        <param type="select" name="trans_table" label="Specify a translation table to use" help="-g" >
+        <param type="select" name="trans_table" label="Specify a translation table to use" help="-g">
             <option value="11">11 : Standard Bacteria/Archaea (default)</option>
             <option value="4">4 : Mycoplasma/Spiroplasma</option>
             <option value="#"># : Other genetic codes 1-25</option>
-        </param> 
-        <param name="closed" type="boolean" label="Closed ends" truevalue="-c" falsevalue="" optional="true" help="Closed ends.  Do not allow partial genes
-        at edges of sequence (-c)" />
-        <param name="force_nonsd" type="boolean" label="Force Prodigal to scan for
-        motifs" truevalue="-n" falsevalue="" optional="true" help="Do not use the Shine-Dalgarno RBS finder and instead force Prodigal to scan for motifs (-n)" />
-        <param name="masked_seq" type="boolean" label="Treat runs of N as masked sequence" truevalue="-m" falsevalue="" optional="true" help="Treat runs of N as masked sequence; don't build genes across them (-m)" />
+        </param>
+        <param name="closed" type="boolean" label="Closed ends" truevalue="-c" falsevalue="" optional="true" help="Closed ends.  Do not allow partial genes         at edges of sequence (-c)"/>
+        <param name="force_nonsd" type="boolean" label="Force Prodigal to scan for         motifs" truevalue="-n" falsevalue="" optional="true" help="Do not use the Shine-Dalgarno RBS finder and instead force Prodigal to scan for motifs (-n)"/>
+        <param name="masked_seq" type="boolean" label="Treat runs of N as masked sequence" truevalue="-m" falsevalue="" optional="true" help="Treat runs of N as masked sequence; don't build genes across them (-m)"/>
     </inputs>
     <outputs>
         <data name="output" format="genbank" label="${tool.name} on ${on_string} : coordinates">
             <change_format>
-                <when input="out_format" value="gff" format="gff3" />
-                <when input="out_format" value="sqn" format="asn1" />
-                <when input="out_format" value="sco" format="genbank" />
+                <when input="out_format" value="gff" format="gff3"/>
+                <when input="out_format" value="sqn" format="asn1"/>
+                <when input="out_format" value="sco" format="genbank"/>
             </change_format>
         </data>
-        <data name="output_faa" format="fasta" label="${tool.name} on ${on_string} : protein translations file" />
-        <data name="output_fnn" format="fasta" label="${tool.name} on ${on_string} : nucleotide sequences file" />
-        <data name="output_start" format="tabular" label="${tool.name} on ${on_string} : complete starts file" />
+        <data name="output_faa" format="fasta" label="${tool.name} on ${on_string} : protein translations file"/>
+        <data name="output_fnn" format="fasta" label="${tool.name} on ${on_string} : nucleotide sequences file"/>
+        <data name="output_start" format="tabular" label="${tool.name} on ${on_string} : complete starts file"/>
     </outputs>
     <tests>
         <test>
@@ -79,7 +77,7 @@
         <test>
             <param name="input_fa" value="input.fna"/>
             <param name="out_format" value="gff"/>
-            <output name="output" file="output.gff" ftype="gff3" />
+            <output name="output" file="output.gff" ftype="gff3"/>
             <output name="output_faa" file="output.faa"/>
             <output name="output_fnn" file="output.fnn"/>
             <output name="output_start" file="output.start"/>

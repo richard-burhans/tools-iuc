@@ -45,55 +45,55 @@
 
     ]]></command>
     <inputs>
-        <param name="reads" format="fastqsanger,fastqsanger.gz" type="data" label="HiFi reads" help="Input reads for assembly" />
+        <param name="reads" format="fastqsanger,fastqsanger.gz" type="data" label="HiFi reads" help="Input reads for assembly"/>
         <!-- This hidden parameter is only used to save RAM for planemo test. -->
         <!-- See https://github.com/galaxyproject/tools-iuc/pull/5033#issuecomment-1382915060 -->
-        <param type="hidden" optional="true" argument="-f" />
+        <param type="hidden" optional="true" argument="-f"/>
         <section name="read_selection" title="Read selection" expanded="false">
             <conditional name="forced_read_selection">
                 <param argument="--force-rs" type="select" label="Force read selection" help="Drop reads according to configurable runtime kmer frequency thresholds">
                     <option value="no" selected="true">No</option>
-                    <option value="yes">Yes</option>                    
+                    <option value="yes">Yes</option>
                 </param>
                 <when value="yes">
-                    <param argument='--lowq-10' type="integer" value='50' label="Lower 10% runtime kmer frequency threshold" />
-                    <param argument='--lowq-5' type="integer" value='50' label="Lower 5% runtime kmer frequency threshold" />
-                    <param argument='--lowq-3' type="integer" value='10' label="Lower 3% runtime kmer frequency threshold" />
+                    <param argument="--lowq-10" type="integer" value="50" label="Lower 10% runtime kmer frequency threshold"/>
+                    <param argument="--lowq-5" type="integer" value="50" label="Lower 5% runtime kmer frequency threshold"/>
+                    <param argument="--lowq-3" type="integer" value="10" label="Lower 3% runtime kmer frequency threshold"/>
                 </when>
                 <when value="no">
-                    <param argument='-S' type="boolean" checked="false" truevalue="-S" falsevalue="" label="Enable read selection" help="If enabled, hifiasm_meta will estimate the total number of read overlaps. If the estimation seems acceptable, no read will be dropped; otherwise, reads will be dropped from the most redundant ones until the criteria are satisfied. This can only be enabled if forced read selection is disabled." />
+                    <param argument="-S" type="boolean" checked="false" truevalue="-S" falsevalue="" label="Enable read selection" help="If enabled, hifiasm_meta will estimate the total number of read overlaps. If the estimation seems acceptable, no read will be dropped; otherwise, reads will be dropped from the most redundant ones until the criteria are satisfied. This can only be enabled if forced read selection is disabled."/>
                 </when>
             </conditional>
         </section>
         <section name="overlap_correction" title="Overlap/Error correction" expanded="false">
-            <param argument='-k' type="integer" value='51' min="1" max="63" label="k-mer length" />
-            <param argument='-r' type="integer" value='3' min="1" max="10" label="rounds of correction" />
+            <param argument="-k" type="integer" value="51" min="1" max="63" label="k-mer length"/>
+            <param argument="-r" type="integer" value="3" min="1" max="10" label="rounds of correction"/>
         </section>
         <section name="assembly" title="Assembly" expanded="false">
-            <param argument='-a' type="integer" value='4' min="1" max="10" label="rounds of assembly cleaning" />
+            <param argument="-a" type="integer" value="4" min="1" max="10" label="rounds of assembly cleaning"/>
         </section>
     </inputs>
     <outputs>
         <!-- contig graph files -->
         <collection name="contig_graphs" type="list" label="hifiasm_meta on ${on_string}: contig graphs">
-            <data name="Primary contigs" label="Primary contigs" from_work_dir="asm.p_ctg.gfa" format="gfa2" />
-            <data name="Alternate contigs" label="Alternate contigs" from_work_dir="asm.a_ctg.gfa" format="gfa2" />
+            <data name="Primary contigs" label="Primary contigs" from_work_dir="asm.p_ctg.gfa" format="gfa2"/>
+            <data name="Alternate contigs" label="Alternate contigs" from_work_dir="asm.a_ctg.gfa" format="gfa2"/>
         </collection>
         <!-- unitig graph files -->
         <collection name="unitig_graphs" type="list" label="hifiasm_meta on ${on_string}: unitig graphs">
-            <data name="Raw unitigs" label="Raw unitigs" from_work_dir="asm.r_utg.gfa" format="gfa2" />
-            <data name="Processed unitigs" label="Processed unitigs" from_work_dir="asm.p_utg.gfa" format="gfa2" />
+            <data name="Raw unitigs" label="Raw unitigs" from_work_dir="asm.r_utg.gfa" format="gfa2"/>
+            <data name="Processed unitigs" label="Processed unitigs" from_work_dir="asm.p_utg.gfa" format="gfa2"/>
         </collection>
         <!-- Simplified graphs for visualisation -->
         <collection name="simple_graphs" type="list" label="hifiasm_meta on ${on_string}: graphs for visualisation">
-            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.noseq.gfa" format="gfa2" visible="false" />
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.noseq.gfa" format="gfa2" visible="false"/>
         </collection>
     </outputs>
     <tests>
         <!-- 01: basic function -->
         <test>
-            <param name="reads" value="zymoD6331std-ecoli-ten-percent.42.1.fq.gz" />
-            <param name='f' value="0" />
+            <param name="reads" value="zymoD6331std-ecoli-ten-percent.42.1.fq.gz"/>
+            <param name="f" value="0"/>
             <output_collection name="contig_graphs" type="list">
                 <element name="Primary contigs" file="asm.p_ctg.gfa"/>
                 <element name="Alternate contigs" file="asm.a_ctg.gfa"/>
@@ -101,30 +101,30 @@
         </test>
         <!-- 02: forced read selection -->
         <test>
-            <param name="reads" value="tiny.fa.gz" />
-            <param name='f' value="0" />
-            <param name='force_rs' value='yes' />
+            <param name="reads" value="tiny.fa.gz"/>
+            <param name="f" value="0"/>
+            <param name="force_rs" value="yes"/>
             <output_collection name="contig_graphs" type="list">
                 <element name="Primary contigs">
                     <assert_contents>
-                        <has_size value="93053" delta="30000" />
+                        <has_size value="93053" delta="30000"/>
                     </assert_contents>
                 </element>
             </output_collection>
         </test>
         <!-- 03: read selection -->
         <test>
-            <param name="reads" value="zymoD6331std-ecoli-ten-percent.42.1.fq.gz" />
-            <param name='f' value="0" />
-            <param name='force_rs' value='no' />
-            <param name='S' value='true' />
+            <param name="reads" value="zymoD6331std-ecoli-ten-percent.42.1.fq.gz"/>
+            <param name="f" value="0"/>
+            <param name="force_rs" value="no"/>
+            <param name="S" value="true"/>
             <output_collection name="contig_graphs" type="list">
                 <element name="Primary contigs" file="S.p_ctg.gfa"/>
                 <element name="Alternate contigs" file="S.a_ctg.gfa"/>
             </output_collection>
         </test>
     </tests>
-        <help><![CDATA[
+    <help><![CDATA[
 hifiasm_meta
 ------------
 
@@ -151,5 +151,5 @@ hifiasm_meta's home page is
 
 This tool was wrapped by the Galaxy Australia team.
         ]]></help>
-        <expand macro="citations"/>
+    <expand macro="citations"/>
 </tool>

@@ -52,9 +52,9 @@
         #else
             ln -s '$mode.genome' reference_genome.fa &&
             #if $mode.assemble_file.ext.endswith(".gz")
-                tar -zxf $mode.assemble_file &&
+                tar -zxf '$mode.assemble_file' &&
             #else
-                tar -xf $mode.assemble_file &&
+                tar -xf '$mode.assemble_file' &&
             #end if
             #if $mode.as_option.selector == 'enabled'
                 tar -zxf $mode.as_option.tophat &&

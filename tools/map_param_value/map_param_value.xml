@@ -79,8 +79,8 @@ return { output: coerceToOutput(source) };
                 <option value="fail">Fail if input parameter value not found in mappings</option>
                 <option value="default">Provide a default value to use if input parameter value not found in mappings</option>
             </param>
-            <when value="input" />
-            <when value="fail" />
+            <when value="input"/>
+            <when value="fail"/>
             <when value="default">
                 <param name="default_value" type="text" label="Use this value if the input parameter value was not found in mappings"/>
             </when>
@@ -111,44 +111,44 @@ return { output: coerceToOutput(source) };
             <!-- map string A to string B -->
             <conditional name="input_param_type">
                 <param name="type" value="text"/>
-                <param name="input_param" value="A" />
+                <param name="input_param" value="A"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
             </conditional>
-            <output name="output_param_text" value_json="&quot;B&quot;" />
+            <output name="output_param_text" value_json="&quot;B&quot;"/>
         </test>
         <test expect_num_outputs="1">
             <!-- test that mapping works in the presence of usually sanitized characters -->
             <conditional name="input_param_type">
                 <param name="type" value="text"/>
-                <param name="input_param" value="echo $abc &gt; 1" />
+                <param name="input_param" value="echo $abc &gt; 1"/>
                 <repeat name="mappings">
-                    <param name="from" value="echo $abc &gt; 1" />
-                    <param name="to" value="echo $abc &gt; 2" />
+                    <param name="from" value="echo $abc &gt; 1"/>
+                    <param name="to" value="echo $abc &gt; 2"/>
                 </repeat>
             </conditional>
-            <output name="output_param_text" value_json="&quot;echo $abc &gt; 2&quot;" />
+            <output name="output_param_text" value_json="&quot;echo $abc &gt; 2&quot;"/>
         </test>
         <test expect_num_outputs="1">
             <!-- keep unmodified input if no match in mapping values -->
             <conditional name="input_param_type">
-                <param name="input_param" value="C" />
+                <param name="input_param" value="C"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
             </conditional>
-            <output name="output_param_text" value_json="&quot;C&quot;" />
+            <output name="output_param_text" value_json="&quot;C&quot;"/>
         </test>
         <test expect_failure="true">
             <!-- fail job if no mapping found and on_unmapped is set to fail -->
             <conditional name="input_param_type">
-                <param name="input_param" value="C" />
+                <param name="input_param" value="C"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
@@ -159,67 +159,67 @@ return { output: coerceToOutput(source) };
             <!-- map unspecified option text to string default via unmapped default value -->
             <conditional name="input_param_type">
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
                 <param name="on_unmapped" value="default"/>
                 <param name="default_value" value="default"/>
             </conditional>
-            <output name="output_param_text" value_json="&quot;default&quot;" />
+            <output name="output_param_text" value_json="&quot;default&quot;"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map string C to string X via default value -->
             <conditional name="input_param_type">
-                <param name="input_param" value="C" />
+                <param name="input_param" value="C"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
                 <param name="on_unmapped" value="default"/>
                 <param name="default_value" value="X"/>
             </conditional>
-            <output name="output_param_text" value_json="&quot;X&quot;" />
+            <output name="output_param_text" value_json="&quot;X&quot;"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map string C to string D in presence of multiple mappings -->
             <conditional name="input_param_type">
-                <param name="input_param" value="C" />
+                <param name="input_param" value="C"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="B" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="B"/>
                 </repeat>
                 <repeat name="mappings">
-                    <param name="from" value="C" />
-                    <param name="to" value="D" />
+                    <param name="from" value="C"/>
+                    <param name="to" value="D"/>
                 </repeat>
             </conditional>
-            <output name="output_param_text" value_json="&quot;D&quot;" />
+            <output name="output_param_text" value_json="&quot;D&quot;"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map integer 42 to integer true value -->
             <conditional name="input_param_type">
-                <param name="type" value="integer" />
-                <param name="input_param" value="42" />
+                <param name="type" value="integer"/>
+                <param name="input_param" value="42"/>
                 <repeat name="mappings">
-                    <param name="from" value="42" />
-                    <param name="to" value="true" />
+                    <param name="from" value="42"/>
+                    <param name="to" value="true"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="true" />
+            <output name="output_param_boolean" value_json="true"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map float 1.2 to boolean false via unmapped default value -->
             <conditional name="input_param_type">
-                <param name="type" value="float" />
-                <param name="input_param" value="1.2" />
+                <param name="type" value="float"/>
+                <param name="input_param" value="1.2"/>
                 <repeat name="mappings">
-                    <param name="from" value="42" />
-                    <param name="to" value="true" />
+                    <param name="from" value="42"/>
+                    <param name="to" value="true"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
@@ -227,113 +227,113 @@ return { output: coerceToOutput(source) };
                 <param name="default_value" value="False"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="false" />
+            <output name="output_param_boolean" value_json="false"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map integer 1 to float 1.1 -->
             <conditional name="input_param_type">
-                <param name="type" value="integer" />
-                <param name="input_param" value="1" />
+                <param name="type" value="integer"/>
+                <param name="input_param" value="1"/>
                 <repeat name="mappings">
-                    <param name="from" value="1" />
-                    <param name="to" value="1.1" />
+                    <param name="from" value="1"/>
+                    <param name="to" value="1.1"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="float"/>
-            <output name="output_param_float" value_json="1.1" />
+            <output name="output_param_float" value_json="1.1"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map string A to integer 2 -->
             <conditional name="input_param_type">
-                <param name="type" value="text" />
-                <param name="input_param" value="A" />
+                <param name="type" value="text"/>
+                <param name="input_param" value="A"/>
                 <repeat name="mappings">
-                    <param name="from" value="A" />
-                    <param name="to" value="2" />
+                    <param name="from" value="A"/>
+                    <param name="to" value="2"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="integer"/>
-            <output name="output_param_integer" value_json="2" />
+            <output name="output_param_integer" value_json="2"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map string False to boolean false -->
             <conditional name="input_param_type">
-                <param name="type" value="text" />
-                <param name="input_param" value="False" />
+                <param name="type" value="text"/>
+                <param name="input_param" value="False"/>
                 <repeat name="mappings">
-                    <param name="from" value="False" />
-                    <param name="to" value="false" />
+                    <param name="from" value="False"/>
+                    <param name="to" value="false"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
                 <param name="on_unmapped" value="fail"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="false" />
+            <output name="output_param_boolean" value_json="false"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map boolean false to boolean true -->
             <conditional name="input_param_type">
-                <param name="type" value="boolean" />
-                <param name="input_param" value="false" />
+                <param name="type" value="boolean"/>
+                <param name="input_param" value="false"/>
                 <repeat name="mappings">
-                    <param name="from" value="false" />
-                    <param name="to" value="true" />
+                    <param name="from" value="false"/>
+                    <param name="to" value="true"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
                 <param name="on_unmapped" value="fail"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="true" />
+            <output name="output_param_boolean" value_json="true"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map integer 0 to boolean false via default value coercion -->
             <conditional name="input_param_type">
-                <param name="type" value="integer" />
-                <param name="input_param" value="0" />
+                <param name="type" value="integer"/>
+                <param name="input_param" value="0"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="false" />
+            <output name="output_param_boolean" value_json="false"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map null text value to boolean true -->
             <conditional name="input_param_type">
-                <param name="type" value="text" />
-                <param name="input_param" value_json="null" />
+                <param name="type" value="text"/>
+                <param name="input_param" value_json="null"/>
                 <repeat name="mappings">
-                    <param name="from" value_json="null" />
-                    <param name="to" value="true" />
+                    <param name="from" value_json="null"/>
+                    <param name="to" value="true"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="true" />
+            <output name="output_param_boolean" value_json="true"/>
         </test>
         <test expect_num_outputs="1" doc="map null integer value to boolean true">
             <!-- map null integer value to boolean true -->
             <conditional name="input_param_type">
-                <param name="type" value="integer" />
-                <param name="input_param" value_json="null" />
+                <param name="type" value="integer"/>
+                <param name="input_param" value_json="null"/>
                 <repeat name="mappings">
-                    <param name="from" value_json="null" />
-                    <param name="to" value="true" />
+                    <param name="from" value_json="null"/>
+                    <param name="to" value="true"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_boolean" value_json="true" />
+            <output name="output_param_boolean" value_json="true"/>
         </test>
         <test expect_num_outputs="1">
             <!-- map integer value to null text -->
             <conditional name="input_param_type">
-                <param name="type" value="integer" />
-                <param name="input_param" value="1" />
+                <param name="type" value="integer"/>
+                <param name="input_param" value="1"/>
                 <repeat name="mappings">
-                    <param name="from" value="1" />
-                    <param name="to" value_json="null" />
+                    <param name="from" value="1"/>
+                    <param name="to" value_json="null"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="text"/>
-            <output name="output_param_text" value_json="null" />
+            <output name="output_param_text" value_json="null"/>
         </test>
         <!-- Old Galaxy issue, optional unset text input still recorded as ""
              We could work around this with a conditional, but no usecase yet
@@ -353,9 +353,9 @@ return { output: coerceToOutput(source) };
              given/not -->
         <test expect_num_outputs="1">
             <conditional name="input_param_type">
-                <param name="type" value="data" />
+                <param name="type" value="data"/>
                 <repeat name="mappings">
-                    <param name="to" value_json="false" />
+                    <param name="to" value_json="false"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
@@ -363,14 +363,14 @@ return { output: coerceToOutput(source) };
                 <param name="default_value" value="true"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_text" value_json="false" />
+            <output name="output_param_text" value_json="false"/>
         </test>
         <test expect_num_outputs="1">
             <conditional name="input_param_type">
-                <param name="input_param" value="test.txt" ftype="txt" />
-                <param name="type" value="data" />
+                <param name="input_param" value="test.txt" ftype="txt"/>
+                <param name="type" value="data"/>
                 <repeat name="mappings">
-                    <param name="to" value_json="false" />
+                    <param name="to" value_json="false"/>
                 </repeat>
             </conditional>
             <conditional name="unmapped">
@@ -378,20 +378,20 @@ return { output: coerceToOutput(source) };
                 <param name="default_value" value="true"/>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_text" value_json="true" />
+            <output name="output_param_text" value_json="true"/>
         </test>
         <!-- another test checking of two datasets are the same -->
         <test expect_num_outputs="1">
             <conditional name="input_param_type">
-                <param name="input_param" value="test.txt" ftype="txt" />
-                <param name="type" value="data" />
+                <param name="input_param" value="test.txt" ftype="txt"/>
+                <param name="type" value="data"/>
                 <repeat name="mappings">
-                    <param name="from" value="test.txt" ftype="txt" />
-                    <param name="to" value_json="true" />
+                    <param name="from" value="test.txt" ftype="txt"/>
+                    <param name="to" value_json="true"/>
                 </repeat>
             </conditional>
             <param name="output_param_type" value="boolean"/>
-            <output name="output_param_text" value_json="true" />
+            <output name="output_param_text" value_json="true"/>
         </test>
     </tests>
     <help><![CDATA[

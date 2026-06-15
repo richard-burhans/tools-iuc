@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -38,7 +38,7 @@
     <inputs>
         <expand macro="input_taf"/>
         <section name="sorting" title="Sorting and filtering" expanded="true">
-            <param argument="--dontIgnoreFirstRow" type="boolean" truevalue="--dontIgnoreFirstRow" falsevalue="" checked="false" label="Include reference row" help="By default, the first row of an alignment block (the reference) is protected by any of the below modifications. Check this to allow the reference row to be treated the same along with the others" />
+            <param argument="--dontIgnoreFirstRow" type="boolean" truevalue="--dontIgnoreFirstRow" falsevalue="" checked="false" label="Include reference row" help="By default, the first row of an alignment block (the reference) is protected by any of the below modifications. Check this to allow the reference row to be treated the same along with the others"/>
             <conditional name="sortFile">
                 <param name="value" type="select" label="Custom sorting order">
                     <option value="false" selected="true">No, keep existing order (default)</option>
@@ -54,7 +54,7 @@
                     <option value="false" selected="true">No, keep all rows (default)</option>
                     <option value="true">Yes, remove rows matching prefixes in a file (--filterFile)</option>
                 </param>
-                <when value="false" />
+                <when value="false"/>
                 <when value="true">
                     <param name="input_filter_file" type="data" format="txt" label="Removal filter file" help="A text file where each line is a prefix of a sequence name. Any alignment row whose sequence name starts with one of these prefixes will be removed in the output"/>
                 </when>

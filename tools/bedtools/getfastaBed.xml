@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 #if str($fasta_source.fasta_source_selector) == 'history':
     #set $fasta_file = $fasta_source.fasta
@@ -25,80 +25,75 @@ $split
 -fo '$output'
     ]]></command>
     <inputs>
-        <param name="input" argument="-bed" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file" />
+        <param name="input" argument="-bed" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
         <conditional name="fasta_source">
             <param name="fasta_source_selector" type="select" label="Choose the source for the FASTA file">
                 <option value="history" selected="true">History</option>
                 <option value="preloaded">Server indexed files</option>
             </param>
             <when value="history">
-                <param name="fasta" argument="-fi" type="data" format="fasta" label="FASTA file" />
+                <param name="fasta" argument="-fi" type="data" format="fasta" label="FASTA file"/>
             </when>
             <when value="preloaded">
-               <param name="fasta_id" type="select">
-                  <options from_data_table="fasta_indexes" />
-               </param>
+                <param name="fasta_id" type="select">
+                    <options from_data_table="fasta_indexes"/>
+                </param>
             </when>
         </conditional>
-        <param argument="-name" type="boolean" truevalue="-name" falsevalue="" checked="false"
-            label="Use the 'name' column in the BED file and the coordinates for the FASTA headers in the output FASTA file" />
-        <param argument="-nameOnly" type="boolean" truevalue="-nameOnly" falsevalue="" checked="false"
-            label="Use the 'name' column in the BED file for the FASTA headers in the output FASTA file" />
-        <param argument="-tab" type="boolean" truevalue="-tab" falsevalue="" checked="false"
-            label="Report extract sequences in a tab-delimited format instead of in FASTA format" />
-        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false"
-            label="Force strandedness"
-            help="If the feature occupies the antisense strand, the sequence will be reverse complemented" />
-        <expand macro="split" />
+        <param argument="-name" type="boolean" truevalue="-name" falsevalue="" checked="false" label="Use the 'name' column in the BED file and the coordinates for the FASTA headers in the output FASTA file"/>
+        <param argument="-nameOnly" type="boolean" truevalue="-nameOnly" falsevalue="" checked="false" label="Use the 'name' column in the BED file for the FASTA headers in the output FASTA file"/>
+        <param argument="-tab" type="boolean" truevalue="-tab" falsevalue="" checked="false" label="Report extract sequences in a tab-delimited format instead of in FASTA format"/>
+        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Force strandedness" help="If the feature occupies the antisense strand, the sequence will be reverse complemented"/>
+        <expand macro="split"/>
     </inputs>
     <outputs>
         <data name="output" format="fasta">
             <change_format>
-                <when input="tab" value="-tab" format="tabular" />
+                <when input="tab" value="-tab" format="tabular"/>
             </change_format>
         </data>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="nucBed1.bed" ftype="bed" />
-            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta" />
-            <param name="tab" value="False" />
-            <param name="split" value="False" />
-            <param name="nameOnly" value="False" />
-            <output name="output" file="getfastaBed_result1.bed" ftype="fasta" />
+            <param name="input" value="nucBed1.bed" ftype="bed"/>
+            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta"/>
+            <param name="tab" value="False"/>
+            <param name="split" value="False"/>
+            <param name="nameOnly" value="False"/>
+            <output name="output" file="getfastaBed_result1.bed" ftype="fasta"/>
         </test>
         <test>
-            <param name="input" value="nucBed1.bed" ftype="bed" />
-            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta" />
-            <param name="tab" value="True" />
-            <param name="split" value="False" />
-            <param name="nameOnly" value="False" />
-            <output name="output" file="getfastaBed_result2.tabular" ftype="tabular" />
+            <param name="input" value="nucBed1.bed" ftype="bed"/>
+            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta"/>
+            <param name="tab" value="True"/>
+            <param name="split" value="False"/>
+            <param name="nameOnly" value="False"/>
+            <output name="output" file="getfastaBed_result2.tabular" ftype="tabular"/>
         </test>
         <test>
-            <param name="input" value="nucBed1.bed" ftype="bed" />
-            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta" />
-            <param name="tab" value="False" />
-            <param name="split" value="False" />
-            <param name="name" value="True" />
-            <output name="output" file="getfastaBed_result3.bed" ftype="fasta" />
+            <param name="input" value="nucBed1.bed" ftype="bed"/>
+            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta"/>
+            <param name="tab" value="False"/>
+            <param name="split" value="False"/>
+            <param name="name" value="True"/>
+            <output name="output" file="getfastaBed_result3.bed" ftype="fasta"/>
         </test>
         <test>
-            <param name="input" value="nucBed2.bed" ftype="bed" />
-            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta" />
-            <param name="tab" value="False" />
-            <param name="split" value="False" />
-            <param name="nameOnly" value="True" />
-            <output name="output" file="getfastaBed_result4.bed" ftype="fasta" />
+            <param name="input" value="nucBed2.bed" ftype="bed"/>
+            <param name="fasta_source|fasta" value="nucBed1.fasta" ftype="fasta"/>
+            <param name="tab" value="False"/>
+            <param name="split" value="False"/>
+            <param name="nameOnly" value="True"/>
+            <output name="output" file="getfastaBed_result4.bed" ftype="fasta"/>
         </test>
         <test>
-            <param name="input" value="nucBed2.bed" ftype="bed" />
+            <param name="input" value="nucBed2.bed" ftype="bed"/>
             <param name="fasta_source|fasta_source_selector" value="preloaded"/>
-            <param name="fasta_source|fasta_id" value="testid" />
-            <param name="tab" value="False" />
-            <param name="split" value="False" />
-            <param name="nameOnly" value="True" />
-            <output name="output" file="getfastaBed_result4.bed" ftype="fasta" />
+            <param name="fasta_source|fasta_id" value="testid"/>
+            <param name="tab" value="False"/>
+            <param name="split" value="False"/>
+            <param name="nameOnly" value="True"/>
+            <output name="output" file="getfastaBed_result4.bed" ftype="fasta"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -116,5 +111,5 @@ bedtools getfasta will extract the sequence defined by the coordinates in a BED 
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

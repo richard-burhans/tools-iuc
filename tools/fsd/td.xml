@@ -3,7 +3,7 @@
     <macros>
         <import>fsd_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command><![CDATA[
         python '$__tool_directory__/td.py'
         --inputFile '${file}'
@@ -34,14 +34,14 @@
     <outputs>
         <data name="output_tabular" format="tabular" label="${tool.name} on ${on_string}: Summary"/>
         <data name="output_chimeras_tabular" format="tabular" label="${tool.name} on ${on_string}: Tags of chimeras"/>
-        <data name="output_pdf" format="pdf" label="${tool.name} on ${on_string}: PDF" />
+        <data name="output_pdf" format="pdf" label="${tool.name} on ${on_string}: PDF"/>
     </outputs>
     <tests>
         <test>
             <param name="file" value="td_data.tab"/>
             <param name="sampleSize" value="0"/>
-            <output name="output_pdf" file="td_output.pdf" lines_diff="136" />
-            <output name="output_tabular" file="td_output.tab" />
+            <output name="output_pdf" file="td_output.pdf" lines_diff="136"/>
+            <output name="output_tabular" file="td_output.tab"/>
             <output name="output_chimeras_tabular" file="td_chimeras_output.tab" lines_diff="2"/>
         </test>
     </tests>
@@ -135,6 +135,5 @@ Chimeras can be identical in the first or second part of the tag and can have an
  ATGCTGATCT CGAATGCATA	55 ba, 59 ab    AGGTGCCGCC *CGAATGCATA* 27 ba, *ATGCTGATCT* GAATGTTTAC 1 ba
    ]]>
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>
-

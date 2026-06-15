@@ -84,8 +84,8 @@
                         <!-- value, tag, description -->
                         <param argument="--div" type="select" optional="true">
                             <options from_data_table="ncbi_fcs_gx_divisions">
-                                <filter type="param_value" ref="config_tag" column="1" />
-                                <filter type="sort_by" column="2" />
+                                <filter type="param_value" ref="config_tag" column="1"/>
+                                <filter type="sort_by" column="2"/>
                             </options>
                             <validator message="No GX Divisions are available" type="no_options"/>
                         </param>
@@ -109,8 +109,8 @@
                     <!-- value, tag, description -->
                     <param name="gx_extra_contam_divs" type="select" multiple="true" optional="true" label="Additional contaminants to identify" help="Multiple gx-divisions may be selected.">
                         <options from_data_table="ncbi_fcs_gx_divisions">
-                            <filter type="param_value" ref="config_tag" column="1" />
-                            <filter type="sort_by" column="2" />
+                            <filter type="param_value" ref="config_tag" column="1"/>
+                            <filter type="sort_by" column="2"/>
                         </options>
                         <validator message="No GX Divisions are available" type="no_options"/>
                     </param>
@@ -146,7 +146,7 @@
         <test expect_num_outputs="2">
             <conditional name="mode">
                 <param name="mode_selector" value="screen"/>
-                <param name="config_tag" value="test" />
+                <param name="config_tag" value="test"/>
                 <param name="fasta" value="fcsgx_test.fa.gz" ftype="fasta"/>
                 <conditional name="id">
                     <param name="id_selector" value="ncbi_tax"/>
@@ -154,8 +154,8 @@
                 </conditional>
                 <section name="screen_adv"/>
             </conditional>
-            <output name="taxonomy_report" file="output.taxonomy.rpt" compare="diff" lines_diff="2" />
-            <output name="action_report" file="output.fcs_gx_report.txt" compare="diff" lines_diff="2" />
+            <output name="taxonomy_report" file="output.taxonomy.rpt" compare="diff" lines_diff="2"/>
+            <output name="action_report" file="output.fcs_gx_report.txt" compare="diff" lines_diff="2"/>
         </test>
         <test expect_num_outputs="2">
             <conditional name="mode">
@@ -163,8 +163,8 @@
                 <param name="input" value="fcsgx_test.fa.gz" ftype="fasta"/>
                 <param name="action_report" value="output.fcs_gx_report.txt" ftype="tabular"/>
             </conditional>
-            <output name="contam_fasta" decompress="true" file="output.contam.fa.gz" ftype="fasta" />
-            <output name="clean_fasta" decompress="true" file="output.clean.fa.gz" ftype="fasta" />
+            <output name="contam_fasta" decompress="true" file="output.contam.fa.gz" ftype="fasta"/>
+            <output name="clean_fasta" decompress="true" file="output.clean.fa.gz" ftype="fasta"/>
         </test>
     </tests>
     <help><![CDATA[

@@ -1,4 +1,4 @@
-  <tool id="pmids_to_pubtator_matrix" name="PMIDs to PubTator" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
+<tool id="pmids_to_pubtator_matrix" name="PMIDs to PubTator" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
     <description>binary matrix</description>
     <macros>
         <import>macros.xml</import>
@@ -23,7 +23,7 @@
       ]]>
     </command>
     <inputs>
-        <param argument="--input" type="data" format="tabular" label="Input file with PMID IDs" />
+        <param argument="--input" type="data" format="tabular" label="Input file with PMID IDs"/>
         <param argument="--categories" type="select" label="categories" multiple="true" display="checkboxes">
             <option value="Gene">Genes</option>
             <option value="Disease">Diseases</option>
@@ -35,7 +35,7 @@
         <param argument="--number" label="Number of most frequent terms/IDs to extract." optional="true" type="integer" help="number" value="50"/>
     </inputs>
     <outputs>
-        <data format="tabular" name="output" />
+        <data format="tabular" name="output"/>
     </outputs>
     <tests>
         <test>

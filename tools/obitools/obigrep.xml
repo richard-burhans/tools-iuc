@@ -36,7 +36,7 @@
             <token name="optional_taxo_option">
                 <option value="no_database" selected="True">No taxonomic database selected</option>
             </token>
-            <when value="no_database"></when>
+            <when value="no_database"/>
         </expand>
         <expand macro="input_format_options_macro"/>
         <expand macro="out_format_macro"/>
@@ -55,15 +55,15 @@
                     <param name="lmin" value="120"/>
                 </conditional>
             </repeat>
-                <param name="v" value="true"/>
-                <output name="output" file="output_obigrep_lmin.fastqsanger" ftype="fastqsanger"/>  
+            <param name="v" value="true"/>
+            <output name="output" file="output_obigrep_lmin.fastqsanger" ftype="fastqsanger"/>
         </test>
         <test expect_num_outputs="1">
             <param name="input" value="output_obipairing_compress.fastqsolexa.gz" ftype="fastqsolexa.gz"/>
             <repeat name="repeat_obigrep">
                 <conditional name="options_grep">
                     <param name="options_grep_selector" value="predicat"/>
-                    <param name="predicat" value='annotations.mode!="join"'/>
+                    <param name="predicat" value="annotations.mode!=&quot;join&quot;"/>
                 </conditional>
             </repeat>
             <param name="v" value="false"/>
@@ -81,7 +81,7 @@
             <repeat name="repeat_obigrep">
                 <conditional name="options_grep">
                     <param name="options_grep_selector" value="attribute"/>
-                    <param name="attribute" value='merged_sample'/>
+                    <param name="attribute" value="merged_sample"/>
                     <param name="attrib_value" value="26a_F040644"/>
                 </conditional>
             </repeat>
@@ -130,6 +130,5 @@
 
     ]]>
     </help>
-    <expand macro="citation" />
-
+    <expand macro="citation"/>
 </tool>

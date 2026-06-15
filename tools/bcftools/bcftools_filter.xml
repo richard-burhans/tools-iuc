@@ -61,11 +61,11 @@ bcftools @EXECUTABLE@
             <param name="SnpGap" type="integer" label="Snpgap" optional="True" help="(-g) Filter SNPs within &lt;int&gt; base pairs of an indel"/>
             <param name="IndelGap" type="integer" label="Indelgap" optional="True" help="(-G) Filter clusters of indels separated by &lt;int&gt; or fewer base pairs allowing only one to pass"/>
             <param name="mode" type="select" label="Mode FILTER annotation" optional="true" multiple="true" display="checkboxes">
-                <help>(-m)
+                <help><![CDATA[(-m)
                  The default mode replaces existing filters of failed sites with a new FILTER string 
                  while leaving sites which pass untouched when non-empty 
                  and setting to "PASS" when the FILTER string is absent.
-                </help>
+                ]]></help>
                 <option value="+">(+) append new FILTER strings of failed sites instead of replacing them</option>
                 <option value="x">(x) resets filters of sites which pass to "PASS"</option>
             </param>
@@ -261,9 +261,9 @@ bcftools @EXECUTABLE@
             <param name="output_type" value="v"/>
             <section name="sec_restrict">
                 <conditional name="regions">
-                    <param name="regions_src" value="regions" />
+                    <param name="regions_src" value="regions"/>
                     <repeat name="region_specs">
-                        <param name="chrom" value="1" />
+                        <param name="chrom" value="1"/>
                     </repeat>
                 </conditional>
             </section>
@@ -289,11 +289,11 @@ bcftools @EXECUTABLE@
                     <param name="selector" value="enabled"/>
                     <param name="soft_filter" value="XX"/>
                     <conditional name="masks">
-                        <param name="masks_src" value="masks" />
+                        <param name="masks_src" value="masks"/>
                         <repeat name="mask_specs">
-                            <param name="chrom" value="1" />
-                            <param name="start" value="1" />
-                            <param name="stop" value="1000" />
+                            <param name="chrom" value="1"/>
+                            <param name="start" value="1"/>
+                            <param name="stop" value="1000"/>
                         </repeat>
                         <param name="masks_overlap" value="1"/>
                     </conditional>

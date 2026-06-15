@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="vsnp_dnaprints_fetcher" name="vSNP DNAprints data manager" tool_type="manage_data" profile="18.09" version="0.0.8">
     <description>Download vSNP DNAprints files</description>
     <requirements>
@@ -98,6 +97,5 @@ at https://github.com/USDA-VS/vSNP_reference_options.
    * **DNAprints file**  https://raw.githubusercontent.com/USDA-VS/vSNP_reference_options/master/Brucella_suis3/NZ_CP007719-NZ_CP007718.yml
 
     ]]></help>
-    <citations>
-    </citations>
+    <citations/>
 </tool>

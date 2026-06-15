@@ -33,7 +33,7 @@ read-extractor
 && mv ./output.txt '${output}'
 ]]></command>
     <inputs>
-        <param name="input" argument="--input" type="data" format="daa,rma6" label="Input file"/>
+        <param argument="--input" type="data" format="daa,rma6" label="Input file"/>
         <param argument="--frameShiftCorrect" type="boolean" truevalue="true" falsevalue="" checked="false" label="Extract frame-shift corrected reads?" help="Set to Yes only if blast mode of input is BlastX"/>
         <conditional name="specify_classification_cond">
             <param name="specify_classification" type="select" label="Specify classification to use?">
@@ -50,7 +50,6 @@ read-extractor
             </when>
             <when value="no"/>
         </conditional>
-
         <param argument="--ignoreExceptions" type="boolean" truevalue="true" falsevalue="" checked="false" label="Ignore exceptions and continue processing?"/>
     </inputs>
     <outputs>
@@ -88,7 +87,7 @@ read-extractor
             </assert_stderr>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Extracts reads from a DAA or RMA file by classification.  This tool accepts the following input data formats.
@@ -98,7 +97,6 @@ Extracts reads from a DAA or RMA file by classification.  This tool accepts the 
 
 This tool outputs a text file containing the reads.
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>
-

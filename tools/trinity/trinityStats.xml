@@ -1,10 +1,10 @@
 <tool id="trinity_stats" name="Trinity Stats" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="bio_tools"/>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="aggressive"><![CDATA[
     #if $input.ext.endswith(".gz")
         gunzip -c '$input' > input &&
@@ -14,15 +14,12 @@
     TrinityStats.pl input  > '$statsfile'
     ]]>
     </command>
-
     <inputs>
-        <param name='input'  type="data" format="fasta,fasta.gz" label='Trinity Assembly' help='Trinity Assembled fasta file'/>
+        <param name="input" type="data" format="fasta,fasta.gz" label="Trinity Assembly" help="Trinity Assembled fasta file"/>
     </inputs>
-
     <outputs>
-        <data name='statsfile' format='txt'/>
+        <data name="statsfile" format="txt"/>
     </outputs>
-
     <tests>
         <test>
             <param name="input" value="count/contig_exn50_statistic/Trinity.fasta"/>
@@ -45,8 +42,8 @@ It takes as input a transcriptome assembled with Trinity.
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 ]]>
     </help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
     <creator>
-        <person givenName="Paul" familyName="Zierep" email="zierep@informatik.uni-freiburg.de" />
+        <person givenName="Paul" familyName="Zierep" email="zierep@informatik.uni-freiburg.de"/>
     </creator>
 </tool>

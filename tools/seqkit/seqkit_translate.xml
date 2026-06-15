@@ -27,7 +27,7 @@
 ]]></command>
     <inputs>
         <param name="input" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz" label="Input file"/>
-        <param argument="--frame" type="select" multiple="true" label="Frame(s) to translate" >
+        <param argument="--frame" type="select" multiple="true" label="Frame(s) to translate">
             <option value="1" selected="true">1 (default)</option>
             <option value="2" selected="false">2</option>
             <option value="3" selected="false">3</option>
@@ -36,8 +36,8 @@
             <option value="-3" selected="false">-3</option>
             <option value="6" selected="false">All 6 frames</option>
         </param>
-        <param argument="--append-frame" type="boolean" truevalue="--append-frame" falsevalue="" checked="false" label="Append frame information to sequence ID ?" />
-        <param argument="--transl-table" type="select" label="Translate table / genetic code to use" >
+        <param argument="--append-frame" type="boolean" truevalue="--append-frame" falsevalue="" checked="false" label="Append frame information to sequence ID ?"/>
+        <param argument="--transl-table" type="select" label="Translate table / genetic code to use">
             <option value="1" selected="true">1: The Standard Code (default)</option>
             <option value="2" selected="false">2: The Vertebrate Mitochondrial Code</option>
             <option value="3" selected="false">3: The Yeast Mitochondrial Code</option>
@@ -63,20 +63,20 @@
             <option value="30" selected="false">30: Peritrich Nuclear</option>
             <option value="31" selected="false">31: Blastocrithidia Nuclear</option>
         </param>
-        <param argument="--clean" type="boolean" truevalue="--clean" falsevalue="" checked="false" label="Change all STOP codon positions from the '*' character to 'X' (an unknown residue) ?" />  
-        <conditional name="translate_or_remove_unknown" >
-            <param name="selector" type="select" label="Translate or remove unknown code ?" >
+        <param argument="--clean" type="boolean" truevalue="--clean" falsevalue="" checked="false" label="Change all STOP codon positions from the '*' character to 'X' (an unknown residue) ?"/>
+        <conditional name="translate_or_remove_unknown">
+            <param name="selector" type="select" label="Translate or remove unknown code ?">
                 <option value="trimming">Remove all 'X' and '*' characters</option>
                 <option value="translate">Translate unknown code to 'X'</option>
             </param>
             <when value="trimming">
-                <param argument="--trim" type="boolean" truevalue="--trim" falsevalue="" checked="false" label="Remove all 'X' and '*' characters from the right end of the translation" />
+                <param argument="--trim" type="boolean" truevalue="--trim" falsevalue="" checked="false" label="Remove all 'X' and '*' characters from the right end of the translation"/>
             </when>
             <when value="translate">
-                <param argument="--allow-unknown-codon" type="boolean" truevalue="--allow-unknown-codon" falsevalue="" checked="false" label="Translate unknown code to 'X' ?" />
+                <param argument="--allow-unknown-codon" type="boolean" truevalue="--allow-unknown-codon" falsevalue="" checked="false" label="Translate unknown code to 'X' ?"/>
             </when>
-        </conditional> 
-        <param argument="--init-codon-as-M" type="boolean" truevalue="--init-codon-as-M" falsevalue="" checked="false" label="Translate initial codon at beginning to 'M'" /> 
+        </conditional>
+        <param argument="--init-codon-as-M" type="boolean" truevalue="--init-codon-as-M" falsevalue="" checked="false" label="Translate initial codon at beginning to 'M'"/>
     </inputs>
     <outputs>
         <data name="output" format_source="input" label="${tool.name} on ${on_string}"/>
@@ -96,25 +96,25 @@
             </conditional>
             <param name="append_frame" value="true"/>
             <param name="clean" value="true"/>
-            <param name="frame" value="2,3" />
-            <param name="init_codon_as_M" value="true" />
-            <param name="transl_table" value="3" />
+            <param name="frame" value="2,3"/>
+            <param name="init_codon_as_M" value="true"/>
+            <param name="transl_table" value="3"/>
             <output decompress="true" name="output" file="translate_output1.fasta.gz" ftype="fasta.gz"/>
         </test>
         <!-- 3. fastq + trim -->
         <test expect_num_outputs="1">
             <param name="input" value="input1.fastq.gz" ftype="fastqsanger.gz"/>
             <conditional name="translate_or_remove_unknown">
-                <param name="trim" value="true" />
+                <param name="trim" value="true"/>
             </conditional>
             <output decompress="true" name="output" file="translate_output2.fastq.gz" ftype="fastqsanger.gz"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Translate DNA/RNA to protein sequence (supporting ambiguous bases)
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

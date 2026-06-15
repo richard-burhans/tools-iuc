@@ -13,7 +13,7 @@
         <param format="vcf" name="input1" type="data" label="Select VCF dataset"/>
     </inputs>
     <outputs>
-        <data format="vcf" name="out_file1" />
+        <data format="vcf" name="out_file1"/>
     </outputs>
     <tests>
         <test>
@@ -21,7 +21,7 @@
             <output name="out_file1" file="vcfsort-test1.vcf"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This tool uses native UNIX sort command to order VCF dataset in coordinate order. For technically inclined the command is::
 
  (grep ^"#" INPUT_file ; grep -v ^"#" INPUT_file | LC_ALL=C sort -k1,1 -k2,2n -V) > OUTPUT_file
@@ -29,6 +29,6 @@ This tool uses native UNIX sort command to order VCF dataset in coordinate order
 .. class:: infomark
 
 The same result can be achieved with the Galaxy's general purpose sort tool (in this case sort on the first and the second column in ascending order).
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>

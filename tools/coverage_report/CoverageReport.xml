@@ -1,13 +1,13 @@
 <tool id="CoverageReport2" name="Panel Coverage Report" version="0.0.5+galaxy0" profile="25.0">
     <description>Provide mapping statistics</description>
     <requirements>
-      <requirement type="package" version="1.76">perl-number-format</requirement>    
-      <requirement type="package" version="4.2.2">r-base</requirement>
-      <requirement type="package" version="2.17.0">bedtools</requirement>
-      <requirement type="package" version="0.1.18">samtools</requirement>
-      <requirement type="package" version="0.12.0">tectonic</requirement>
-      <requirement type="package" version="7.87.0">libcurl</requirement>
-      <requirement type="package" version="1.1.1w">openssl</requirement>
+        <requirement type="package" version="1.76">perl-number-format</requirement>
+        <requirement type="package" version="4.2.2">r-base</requirement>
+        <requirement type="package" version="2.17.0">bedtools</requirement>
+        <requirement type="package" version="0.1.18">samtools</requirement>
+        <requirement type="package" version="0.12.0">tectonic</requirement>
+        <requirement type="package" version="7.87.0">libcurl</requirement>
+        <requirement type="package" version="1.1.1w">openssl</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[      
     perl '$__tool_directory__/CoverageReport.pl'
@@ -27,28 +27,28 @@
     -n '$input1.name'
     ]]></command>
     <inputs>
-      <param name="input1" type="data" format="bam" label="BAM file" help="BAM file of mapped reads" />
-      <param name="input2" type="data" format="bed" label="Target Regions BED" help="BED file containing regions of interest. See below for format" />
-      <param name="threshold" type="integer" value="40" label="Minimal Coverage Threshold" help="Default: 40" />   
-      <param name="frac" type="float" value="0.2" label="Fraction of Average Coverage for usage in plot" help="Default: 0.2" />
-      <param name="perGene" type="boolean" truevalue="-r" falsevalue="" checked="True" label="Plot exon coverages for all genes in targets"/>
-      <param name="PositionLevel" type="select" label="Perform Per Exon Analysis" help="Only Failed: Only those exons not reaching global coverage above threshold, or 100%. All Exons: This can take a very long time for large panels! Select all failed to check all exons for local failures." >
-	<option value='' selected="true">None</option>
-	<option value='-s'>Plot Only Globally Failed</option>
-	<option value='-S'>Plot All Failed Exons</option>
-	<option value='-A'>Plot All Exons</option>
-	<option value='-L'>List All Failed Exons</option>
-      </param>
+        <param name="input1" type="data" format="bam" label="BAM file" help="BAM file of mapped reads"/>
+        <param name="input2" type="data" format="bed" label="Target Regions BED" help="BED file containing regions of interest. See below for format"/>
+        <param name="threshold" type="integer" value="40" label="Minimal Coverage Threshold" help="Default: 40"/>
+        <param name="frac" type="float" value="0.2" label="Fraction of Average Coverage for usage in plot" help="Default: 0.2"/>
+        <param name="perGene" type="boolean" truevalue="-r" falsevalue="" checked="True" label="Plot exon coverages for all genes in targets"/>
+        <param name="PositionLevel" type="select" label="Perform Per Exon Analysis" help="Only Failed: Only those exons not reaching global coverage above threshold, or 100%. All Exons: This can take a very long time for large panels! Select all failed to check all exons for local failures.">
+            <option value="" selected="true">None</option>
+            <option value="-s">Plot Only Globally Failed</option>
+            <option value="-S">Plot All Failed Exons</option>
+            <option value="-A">Plot All Exons</option>
+            <option value="-L">List All Failed Exons</option>
+        </param>
     </inputs>
     <outputs>
-      <data format="pdf" name="output1" label="${tool.name} on ${on_string}: PDF Report"/>
+        <data format="pdf" name="output1" label="${tool.name} on ${on_string}: PDF Report"/>
     </outputs>
     <tests>
-      <test>
-	<param name="input1" value="ecoli.bam" />
-	<param name="input2" value="ecoli_6.bed" />
-	<output name="output1" value="answer.pdf" compare="sim_size"/>
-      </test>
+        <test>
+            <param name="input1" value="ecoli.bam"/>
+            <param name="input2" value="ecoli_6.bed"/>
+            <output name="output1" value="answer.pdf" compare="sim_size"/>
+        </test>
     </tests>
     <help><![CDATA[
 **What it does**
@@ -95,9 +95,9 @@ The output tables are (tab seperated txt files):
   - Position in target region
   - Coverage at position
 
-    ]]></help>  
+    ]]></help>
     <citations>
-      <citation type="bibtex">@ARTICLE{a1,
+        <citation type="bibtex">@ARTICLE{a1,
       title = {This tool creates a coverage report for QC purposes.},
       author = {Philip Mabon},
       url = {https://github.com/galaxyproject/tools-iuc/}

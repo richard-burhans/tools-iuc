@@ -1,5 +1,4 @@
-<tool id="hgvsparser" name="hgvsParseR" version="@VERSION@+galaxy@GALAXY_VERSION@" profile="20.09"
-      license="GPL-3.0" >
+<tool id="hgvsparser" name="hgvsParseR" version="@VERSION@+galaxy@GALAXY_VERSION@" profile="20.09" license="GPL-3.0">
     <description>parsing and building variant descriptor strings compliant with the HGVS standard</description>
     <macros>
         <token name="@VERSION@">0.1.0</token>
@@ -9,8 +8,8 @@
         <requirement type="package" version="4.0">r-base</requirement>
     </requirements>
     <required_files>
-        <include path="parseHGVS.R" />
-        <include path="buildHGVS.R" />
+        <include path="parseHGVS.R"/>
+        <include path="buildHGVS.R"/>
     </required_files>
     <command detect_errors="exit_code"><![CDATA[
 Rscript '$configscript' > tmp_output.csv
@@ -63,12 +62,12 @@ write.csv(result, file = "tmp_output.csv", row.names = FALSE, na="")
     </configfiles>
     <inputs>
         <conditional name="action_choice">
-            <param name="do" type="select" label="Choose the action" >
+            <param name="do" type="select" label="Choose the action">
                 <option value="parse" selected="true">parse</option>
                 <option value="build">build</option>
             </param>
-            <when value="parse" >
-                <param name="input_file" type="data" format="csv" label="Input file" help="File containing column with variant descriptor strings" />
+            <when value="parse">
+                <param name="input_file" type="data" format="csv" label="Input file" help="File containing column with variant descriptor strings"/>
                 <param name="pos_col" type="select" label="Variant descriptor column" help="The name of the column in the file that contains the variant descriptor, e.g. p.Glu214aAla (HGVS notation), p.A435D (classic notation), A435D (amino acid change descriptor format used in VCF)">
                     <options>
                         <filter type="data_meta" ref="input_file" key="column_names"/>
@@ -76,7 +75,7 @@ write.csv(result, file = "tmp_output.csv", row.names = FALSE, na="")
                 </param>
             </when>
             <when value="build">
-                <param name="input_file" type="data" format="csv" label="Input file" help="File containing columns with mutation position, ancestral amino acid, and variant amino acid" />
+                <param name="input_file" type="data" format="csv" label="Input file" help="File containing columns with mutation position, ancestral amino acid, and variant amino acid"/>
                 <param name="startPos" type="select" label="Mutation position">
                     <options>
                         <filter type="data_meta" ref="input_file" key="column_names"/>
@@ -109,36 +108,36 @@ write.csv(result, file = "tmp_output.csv", row.names = FALSE, na="")
         </data>
     </outputs>
     <tests>
-    <test expect_num_outputs="1">
-        <!--test 1: parse-->
-        <param name="variant_format" value="hgvs"/>
-        <conditional name="action_choice">
-            <param name="do" value="parse"/>
-            <param name="input_file" value="inputParser.csv"/>
-            <param name="pos_col" value="hgvs_pro"/>
-        </conditional>
-        <output name="outfile_parsed" ftype="csv">
-            <assert_contents>
-                <has_text text="ancestral"/>
-            </assert_contents>
-        </output>
-    </test>    
-    <test expect_num_outputs="1">
-        <!--test 2: build-->
-        <param name="variant_format" value="hgvs"/>
-        <conditional name="action_choice">
-            <param name="do" value="build"/>
-            <param name="input_file" value="inputBuilder.csv"/>
-            <param name="startPos" value="start"/>
-            <param name="startAA" value="ancestral"/>
-            <param name="endAA" value="variant"/>
-        </conditional>
-        <output name="outfile_built" ftype="csv">
-            <assert_contents>
-                <has_text text="build"/>
-            </assert_contents>
-        </output>
-    </test>
+        <test expect_num_outputs="1">
+            <!--test 1: parse-->
+            <param name="variant_format" value="hgvs"/>
+            <conditional name="action_choice">
+                <param name="do" value="parse"/>
+                <param name="input_file" value="inputParser.csv"/>
+                <param name="pos_col" value="hgvs_pro"/>
+            </conditional>
+            <output name="outfile_parsed" ftype="csv">
+                <assert_contents>
+                    <has_text text="ancestral"/>
+                </assert_contents>
+            </output>
+        </test>
+        <test expect_num_outputs="1">
+            <!--test 2: build-->
+            <param name="variant_format" value="hgvs"/>
+            <conditional name="action_choice">
+                <param name="do" value="build"/>
+                <param name="input_file" value="inputBuilder.csv"/>
+                <param name="startPos" value="start"/>
+                <param name="startAA" value="ancestral"/>
+                <param name="endAA" value="variant"/>
+            </conditional>
+            <output name="outfile_built" ftype="csv">
+                <assert_contents>
+                    <has_text text="build"/>
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help><![CDATA[
 **What it does**

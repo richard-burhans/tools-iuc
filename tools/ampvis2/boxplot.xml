@@ -1,5 +1,5 @@
 <tool id="ampvis2_boxplot" name="ampvis2 boxplot" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -71,12 +71,12 @@
     </outputs>
     <tests>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <output name="plot" value="AalborgWWTPs-boxplot.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
             <param name="group_by" value="Plant"/>
             <param name="sort_by" value="sum"/>
             <conditional name="tax_show_cond">
@@ -89,7 +89,7 @@
             <output name="plot" value="AalborgWWTPs-boxplot-group.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <test>
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
             <param name="plot_type" value="point"/>
             <param name="point_size" value="5"/>
             <param name="tax_aggregate" value="Order"/>

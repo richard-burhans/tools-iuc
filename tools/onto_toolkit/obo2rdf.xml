@@ -1,10 +1,10 @@
 <tool id="onto_tk_obo2rdf" name="Convert OBO to RDF" version="@VERSION@.0">
-    <description></description>
+    <description/>
     <macros>
         <import>onto_macros.xml</import>
     </macros>
-    <expand macro="requirements" />
-    <command detect_errors="aggressive">
+    <expand macro="requirements"/>
+    <command detect_errors="aggressive"><![CDATA[
     obo2rdf.pl
         -f '$input'
         #if $url:
@@ -12,18 +12,18 @@
         #end if
         -n '$namespace'
         > '$output'
-    </command>
+    ]]></command>
     <inputs>
-        <expand macro="input_ontology" />
+        <expand macro="input_ontology"/>
         <param name="url" type="text" value="" optional="True" label="URL">
-            <expand macro="sanitize_urls" />
+            <expand macro="sanitize_urls"/>
         </param>
         <param name="namespace" type="text" value="" label="Namespace">
-            <expand macro="sanitize_ids" />
+            <expand macro="sanitize_ids"/>
         </param>
     </inputs>
     <outputs>
-        <data format="rdf" name="output" />
+        <data format="rdf" name="output"/>
     </outputs>
     <tests>
         <test>
@@ -31,15 +31,14 @@
             <param name="namespace" value="SBB"/>
             <output name="output" ftype="rdf">
                 <assert_contents>
-                    <has_text text="holds between distinct material continuants when one succeeds the other across a temporal divide" />
+                    <has_text text="holds between distinct material continuants when one succeeds the other across a temporal divide"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 This tool transforms an OBO formatted ontology (such as the Gene Ontology) to RDF/XML.
 
-    </help>
-    <expand macro="citations" />
+    ]]></help>
+    <expand macro="citations"/>
 </tool>
-

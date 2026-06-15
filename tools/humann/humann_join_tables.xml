@@ -28,10 +28,10 @@ humann_join_tables
             <param name="inputs" value="demo_pathabundance.tsv,demo_pathcoverage.tsv"/>
             <output name="output" ftype="tabular" value="demo_joined_pathabundance_pathcoverage.tsv">
                 <assert_contents>
-                    <has_text text="humann_Abundance" />
-                    <has_text text="humann_Coverage" />
-                    <has_text text="UNINTEGRATED|unclassified" />
-                    <has_text text="PWY-4203: volatile benzenoid biosynthesis I (ester formation)|unclassified" />
+                    <has_text text="humann_Abundance"/>
+                    <has_text text="humann_Coverage"/>
+                    <has_text text="UNINTEGRATED|unclassified"/>
+                    <has_text text="PWY-4203: volatile benzenoid biosynthesis I (ester formation)|unclassified"/>
                 </assert_contents>
             </output>
         </test>

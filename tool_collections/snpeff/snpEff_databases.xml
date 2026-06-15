@@ -4,10 +4,10 @@
         <import>snpEff_macros.xml</import>
     </macros>
     <requirements>
-        <expand macro="requirement" />
+        <expand macro="requirement"/>
     </requirements>
-    <expand macro="stdio" />
-    <expand macro="version_command" />
+    <expand macro="stdio"/>
+    <expand macro="version_command"/>
     <command><![CDATA[
         snpEff databases | grep -v '^---' | sed 's/^Genome/#Genome/' | sed 's/  *//g'
 
@@ -29,16 +29,16 @@
         <param name="include_pattern" type="text" value="" optional="true" label="List entries matching the following expression" help="Databases matching this expression will be listed. Here you can enter text or regular expression. For example, to show only mouse databases use 'Mouse'. Note that this parameter is case-sensitive.">
             <sanitizer>
                 <valid initial="string.digits,string.letters">
-                    <add value="^" />
-                    <add value="_" />
+                    <add value="^"/>
+                    <add value="_"/>
                 </valid>
             </sanitizer>
         </param>
         <param name="exclude_pattern" type="text" value="" optional="true" label="Do not output entries matching the following expression" help="Databases matching this expression WILL NOT BE listed. Here you can enter text or regular expression. For excample, to avoid all ENSEMBL bundles enter 'ENSEMBL'. Note that this parameter is case-sensitive.">
             <sanitizer>
                 <valid initial="string.digits,string.letters">
-                    <add value="^" />
-                    <add value="_" />
+                    <add value="^"/>
+                    <add value="_"/>
                 </valid>
             </sanitizer>
         </param>
@@ -48,21 +48,21 @@
         </param>
     </inputs>
     <outputs>
-        <data name="snpeff_dbs" format="tabular" label="@SNPEFF_VERSION@ available databases" />
+        <data name="snpeff_dbs" format="tabular" label="@SNPEFF_VERSION@ available databases"/>
     </outputs>
     <tests>
         <test>
             <output name="snpeff_dbs">
                 <assert_contents>
-                    <has_text text="ebola_zaire" />
+                    <has_text text="ebola_zaire"/>
                 </assert_contents>
             </output>
         </test>
-         <test>
+        <test>
             <param name="include_pattern" value="ebola"/>
             <output name="snpeff_dbs">
                 <assert_contents>
-                    <has_text text="ebola_zaire" />
+                    <has_text text="ebola_zaire"/>
                 </assert_contents>
             </output>
         </test>
@@ -96,6 +96,5 @@ There are two ways to use names of databases obtained with this tool in Galaxy's
 @EXTERNAL_DOCUMENTATION@
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>
-

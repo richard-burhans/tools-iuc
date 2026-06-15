@@ -67,21 +67,20 @@
     </configfiles>
     <inputs>
         <param label="Transcriptome sequences" name="transcriptome" optional="false" multiple="true" type="select">
-            <options from_data_table="transcriptomes" />
+            <options from_data_table="transcriptomes"/>
         </param>
         <param label="Genome" name="all_fasta_source" optional="false" type="select">
             <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" help="default: common prefix of the transcriptome names plus the non-common parts joined by ' + '" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence" help="default: common prefix of the transcriptome names plus the non-common parts joined by ' + '"/>
         <param name="sequence_id" type="text" value="" label="ID for sequence" help="default: common prefix of the transcriptome IDs plus the non-common parts joined by '_'"/>
-        <param name="kmer_size" type="integer" optional='true' value="31" max="32" label="The size of the k-mer on which the index is built"
-                    help="There is a tradeoff here between the distinctiveness of the k-mers and their robustness to errors. The shorter the k-mers, the more robust they will be to errors in the reads, but the longer the k-mers, the more distinct they will be.  We generally recommend using a k-mer size of at least 20. MUST BE AN ODD VALUE ">
+        <param name="kmer_size" type="integer" optional="true" value="31" max="32" label="The size of the k-mer on which the index is built" help="There is a tradeoff here between the distinctiveness of the k-mers and their robustness to errors. The shorter the k-mers, the more robust they will be to errors in the reads, but the longer the k-mers, the more distinct they will be.  We generally recommend using a k-mer size of at least 20. MUST BE AN ODD VALUE ">
             <validator type="expression" message="Only odd values">value % 2 == 1</validator>
         </param>
         <param name="gencode" type="boolean" label="Transcript sequences are in gencode format" truevalue="--gencode" falsevalue="" checked="false" help="Will split  the transcript name at the first '|' character. These reduced names will be used in the output  and when looking for these transcripts in a gene to transcript GTF."/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
     <tests>
         <test>
@@ -89,12 +88,12 @@
             <param name="all_fasta_source" value="phiX174"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"salmon_indexes_versioned"' />
-                    <has_text text='"dbkey": "phiX174"' />
-                    <has_text text='"name": "phiX174: 1 + 2"' />
-                    <has_text text='"value": "phiX1741_2"' />
-                    <has_text text='"version": "q7"' />
-                    <has_text text='"path":' />
+                    <has_text text="&quot;salmon_indexes_versioned&quot;"/>
+                    <has_text text="&quot;dbkey&quot;: &quot;phiX174&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;phiX174: 1 + 2&quot;"/>
+                    <has_text text="&quot;value&quot;: &quot;phiX1741_2&quot;"/>
+                    <has_text text="&quot;version&quot;: &quot;q7&quot;"/>
+                    <has_text text="&quot;path&quot;:"/>
                 </assert_contents>
             </output>
         </test>
@@ -103,12 +102,12 @@
             <param name="all_fasta_source" value="phiX174"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"salmon_indexes_versioned"' />
-                    <has_text text='"dbkey": "phiX174"' />
-                    <has_text text='"name": "phiX174: 1"' />
-                    <has_text text='"value": "phiX1741"' />
-                    <has_text text='"version": "q7"' />
-                    <has_text text='"path":' />
+                    <has_text text="&quot;salmon_indexes_versioned&quot;"/>
+                    <has_text text="&quot;dbkey&quot;: &quot;phiX174&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;phiX174: 1&quot;"/>
+                    <has_text text="&quot;value&quot;: &quot;phiX1741&quot;"/>
+                    <has_text text="&quot;version&quot;: &quot;q7&quot;"/>
+                    <has_text text="&quot;path&quot;:"/>
                 </assert_contents>
             </output>
         </test>
@@ -119,12 +118,12 @@
             <param name="sequence_id" value="value_override"/>
             <output name="out_file">
                 <assert_contents>
-                    <has_text text='"salmon_indexes_versioned"' />
-                    <has_text text='"dbkey": "phiX174"' />
-                    <has_text text='"name": "name_override"' />
-                    <has_text text='"value": "value_override"' />
-                    <has_text text='"version": "q7"' />
-                    <has_text text='"path":' />
+                    <has_text text="&quot;salmon_indexes_versioned&quot;"/>
+                    <has_text text="&quot;dbkey&quot;: &quot;phiX174&quot;"/>
+                    <has_text text="&quot;name&quot;: &quot;name_override&quot;"/>
+                    <has_text text="&quot;value&quot;: &quot;value_override&quot;"/>
+                    <has_text text="&quot;version&quot;: &quot;q7&quot;"/>
+                    <has_text text="&quot;path&quot;:"/>
                 </assert_contents>
             </output>
         </test>

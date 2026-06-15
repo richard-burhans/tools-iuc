@@ -9,7 +9,7 @@
     <command detect_errors="exit_code"><![CDATA[
         export TERM=dumb &&
         proteinortho_summary.pl 
-            $queryfile
+            '$queryfile'
             #if $queryfile2:
                 '$queryfile2'
             #end if

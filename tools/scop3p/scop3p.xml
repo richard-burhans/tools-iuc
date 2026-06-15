@@ -1,5 +1,4 @@
-<tool id="scop3p" name="Scop3P" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@"
-    license="GPL-3.0-only">
+<tool id="scop3p" name="Scop3P" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="GPL-3.0-only">
     <description>fetches post-translational modifications (phospho-sites) from Scop3P database</description>
     <macros>
         <import>macros.xml</import>
@@ -9,7 +8,7 @@
         <edam_topic>topic_0601</edam_topic>
         <edam_topic>topic_3047</edam_topic>
     </edam_topics>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <version_command>scop3p --help</version_command>
     <command detect_errors="aggressive" strict="true">
         <![CDATA[
@@ -29,62 +28,40 @@
         ]]>
     </command>
     <inputs>
-        <param name="accession" type="text" label="UniProtKB Accession number"
-            help="UniProtKB Accession numbers consist of 6 or 10 alphanumerical characters. Examples: O00571, P51532, Q14839, P54132">
-            <validator type="length" min="6" max="10"
-                message="UniProtKB accession numbers consist of 6 or 10 alphanumerical characters"
-            />
+        <param name="accession" type="text" label="UniProtKB Accession number" help="UniProtKB Accession numbers consist of 6 or 10 alphanumerical characters. Examples: O00571, P51532, Q14839, P54132">
+            <validator type="length" min="6" max="10" message="UniProtKB accession numbers consist of 6 or 10 alphanumerical characters"/>
             <validator type="regex" message="UniProtKB accession numbers consist of 6 or 10 alphanumerical characters in the format: [OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}">^([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})$</validator>
         </param>
-        <param argument="--include-peptides" type="boolean"
-            truevalue="true"
-            falsevalue="" label="Include Phospho-peptides table"
-            help="This table will show all available phospho-peptides identified by re-processing different phospho-proteome experiments for the particular protein of interest." />
-        <param argument="--include-structures" type="boolean"
-            truevalue="true"
-            falsevalue="" label="Include Structures table"
-            help="This table will list all available structures and the P-sites mapped onto the structure. By default the structures are ordered based on the number of P-sites they has and then by resolution." />
-        <param argument="--include-mutations" type="boolean"
-            truevalue="true"
-            falsevalue="" label="Include Mutations table"
-            help="This table lists amino acid variants and associated disease annotations mapped to available PDB structures." />
-        <param argument="--include-logs" type="boolean" truevalue="true"
-            falsevalue="" label="Include JSON log file"
-            help="Generate an additional JSON log file with details of the tool execution." />
+        <param argument="--include-peptides" type="boolean" truevalue="true" falsevalue="" label="Include Phospho-peptides table" help="This table will show all available phospho-peptides identified by re-processing different phospho-proteome experiments for the particular protein of interest."/>
+        <param argument="--include-structures" type="boolean" truevalue="true" falsevalue="" label="Include Structures table" help="This table will list all available structures and the P-sites mapped onto the structure. By default the structures are ordered based on the number of P-sites they has and then by resolution."/>
+        <param argument="--include-mutations" type="boolean" truevalue="true" falsevalue="" label="Include Mutations table" help="This table lists amino acid variants and associated disease annotations mapped to available PDB structures."/>
+        <param argument="--include-logs" type="boolean" truevalue="true" falsevalue="" label="Include JSON log file" help="Generate an additional JSON log file with details of the tool execution."/>
     </inputs>
     <outputs>
-        <data name="modifications" label="Scop3P post-translational modifications for ${accession}"
-            format="tabular">
+        <data name="modifications" label="Scop3P post-translational modifications for ${accession}" format="tabular">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="residue,name,evidence,position,source,reference,functionalScore,specificSinglyPhosphorylated" />
-                <action name="column_types" type="metadata"
-                    default="str,str,str,int,str,str,int,int" />
+                <action name="column_names" type="metadata" default="residue,name,evidence,position,source,reference,functionalScore,specificSinglyPhosphorylated"/>
+                <action name="column_types" type="metadata" default="str,str,str,int,str,str,int,int"/>
             </actions>
         </data>
         <data name="peptides" label="Scop3P phospho-peptides for ${accession}" format="tabular">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="peptideSequence,peptideStart,peptideEnd,peptideModificationPosition,uniprotPosition,score,modifiedResidue,evidence,source,functionalScore,reference" />
-                <action name="column_types" type="metadata"
-                    default="str,int,int,int,int,int,str,str,str,int,str" />
+                <action name="column_names" type="metadata" default="peptideSequence,peptideStart,peptideEnd,peptideModificationPosition,uniprotPosition,score,modifiedResidue,evidence,source,functionalScore,reference"/>
+                <action name="column_types" type="metadata" default="str,int,int,int,int,int,str,str,str,int,str"/>
             </actions>
             <filter>include_peptides</filter>
         </data>
         <data name="structures" label="Scop3P structures for ${accession}" format="tabular">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="pdbId,resolution,stoichiometry,interfacingMolecule,method,residue,uniprotPosition,secondaryStructure,chainId,pdbPosition,accessibleSurfaceArea,burriedSurfaceArea,css,conservedScale" />
-                <action name="column_types" type="metadata"
-                    default="str,float,str,str,str,str,str,int,str,str,int,float,float,float,float" />
+                <action name="column_names" type="metadata" default="pdbId,resolution,stoichiometry,interfacingMolecule,method,residue,uniprotPosition,secondaryStructure,chainId,pdbPosition,accessibleSurfaceArea,burriedSurfaceArea,css,conservedScale"/>
+                <action name="column_types" type="metadata" default="str,float,str,str,str,str,str,int,str,str,int,float,float,float,float"/>
             </actions>
             <filter>include_structures</filter>
         </data>
         <data name="mutations" label="Scop3P mutations for ${accession}" format="tabular">
             <actions>
-                <action name="column_names" type="metadata"
-                    default="position,pdbIds,referenceAA,altAA,type,disease" />
-                <action name="column_types" type="metadata" default="int,str,str,str,str,str" />
+                <action name="column_names" type="metadata" default="position,pdbIds,referenceAA,altAA,type,disease"/>
+                <action name="column_types" type="metadata" default="int,str,str,str,str,str"/>
             </actions>
             <filter>include_mutations</filter>
         </data>
@@ -92,73 +69,73 @@
             <filter>include_logs</filter>
         </data>
     </outputs>
-    <expand macro="creator" />
+    <expand macro="creator"/>
     <tests>
         <test expect_num_outputs="1">
-            <param name="accession" value="O00571" />
-            <param name="include_peptides" value="false" />
-            <param name="include_structures" value="false" />
-            <param name="include_mutations" value="false" />
-            <param name="include_logs" value="false" />
-            <output name="modifications" file="expected/modifications.tsv" />
+            <param name="accession" value="O00571"/>
+            <param name="include_peptides" value="false"/>
+            <param name="include_structures" value="false"/>
+            <param name="include_mutations" value="false"/>
+            <param name="include_logs" value="false"/>
+            <output name="modifications" file="expected/modifications.tsv"/>
             <assert_command>
-                <has_text text="--save modifications:tsv" />
+                <has_text text="--save modifications:tsv"/>
             </assert_command>
         </test>
         <test expect_num_outputs="2">
-            <param name="accession" value="O00571" />
-            <param name="include_peptides" value="false" />
-            <param name="include_structures" value="true" />
-            <param name="include_mutations" value="false" />
-            <param name="include_logs" value="false" />
-            <output name="modifications" file="expected/modifications.tsv" />
-            <output name="structures" file="expected/structures.tsv" />
+            <param name="accession" value="O00571"/>
+            <param name="include_peptides" value="false"/>
+            <param name="include_structures" value="true"/>
+            <param name="include_mutations" value="false"/>
+            <param name="include_logs" value="false"/>
+            <output name="modifications" file="expected/modifications.tsv"/>
+            <output name="structures" file="expected/structures.tsv"/>
             <assert_command>
-                <has_text text="--save modifications:tsv" />
-                <has_text text="--save structures:tsv" />
+                <has_text text="--save modifications:tsv"/>
+                <has_text text="--save structures:tsv"/>
             </assert_command>
         </test>
         <test expect_num_outputs="2">
-            <param name="accession" value="O00571" />
-            <param name="include_peptides" value="true" />
-            <param name="include_structures" value="false" />
-            <param name="include_mutations" value="false" />
-            <param name="include_logs" value="false" />
-            <output name="modifications" file="expected/modifications.tsv" />
-            <output name="peptides" file="expected/peptides.tsv" />
+            <param name="accession" value="O00571"/>
+            <param name="include_peptides" value="true"/>
+            <param name="include_structures" value="false"/>
+            <param name="include_mutations" value="false"/>
+            <param name="include_logs" value="false"/>
+            <output name="modifications" file="expected/modifications.tsv"/>
+            <output name="peptides" file="expected/peptides.tsv"/>
             <assert_command>
-                <has_text text="--save modifications:tsv" />
-                <has_text text="--save peptides:tsv" />
+                <has_text text="--save modifications:tsv"/>
+                <has_text text="--save peptides:tsv"/>
             </assert_command>
         </test>
         <test expect_num_outputs="2">
-            <param name="accession" value="O00571" />
-            <param name="include_peptides" value="false" />
-            <param name="include_structures" value="false" />
-            <param name="include_mutations" value="true" />
-            <param name="include_logs" value="false" />
-            <output name="modifications" file="expected/modifications.tsv" />
-            <output name="mutations" file="expected/mutations.tsv" />
+            <param name="accession" value="O00571"/>
+            <param name="include_peptides" value="false"/>
+            <param name="include_structures" value="false"/>
+            <param name="include_mutations" value="true"/>
+            <param name="include_logs" value="false"/>
+            <output name="modifications" file="expected/modifications.tsv"/>
+            <output name="mutations" file="expected/mutations.tsv"/>
             <assert_command>
-                <has_text text="--save modifications:tsv" />
-                <has_text text="--save mutations:tsv" />
+                <has_text text="--save modifications:tsv"/>
+                <has_text text="--save mutations:tsv"/>
             </assert_command>
         </test>
         <test expect_num_outputs="2">
-            <param name="accession" value="O00571" />
-            <param name="include_peptides" value="false" />
-            <param name="include_structures" value="false" />
-            <param name="include_mutations" value="false" />
-            <param name="include_logs" value="true" />
-            <output name="modifications" file="expected/modifications.tsv" />
+            <param name="accession" value="O00571"/>
+            <param name="include_peptides" value="false"/>
+            <param name="include_structures" value="false"/>
+            <param name="include_mutations" value="false"/>
+            <param name="include_logs" value="true"/>
+            <output name="modifications" file="expected/modifications.tsv"/>
             <output name="logs">
                 <assert_contents>
-                    <has_text_matching expression="\S" />
+                    <has_text_matching expression="\S"/>
                 </assert_contents>
             </output>
             <assert_command>
-                <has_text text="--save modifications:tsv" />
-                <has_text text="--log-file" />
+                <has_text text="--save modifications:tsv"/>
+                <has_text text="--log-file"/>
             </assert_command>
         </test>
     </tests>
@@ -296,5 +273,5 @@
             scop3p.compomics@vib-ugent.be or bio2byte@vub.be.
         ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

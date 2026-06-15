@@ -75,15 +75,15 @@ $advanced_options.classify
                     <has_size value="3500" delta="1"/>
                 </assert_contents>
             </output>
-       </test>
+        </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Meganizes a DIAMOND (i.e., a Direct Access Archive or DAA) file, a proprietary file format developed by PowerISO Computing
 for disk image files.  The output is a DIAMOND file consisting of the original input file, but with additional blocks of
 information appended to the end of the file.
 
-    </help>
+    ]]></help>
     <expand macro="citations"/>
 </tool>

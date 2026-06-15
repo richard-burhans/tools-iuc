@@ -88,7 +88,7 @@ $annotation.compliant
 | tee '$logfile'
         ]]></command>
     <inputs>
-      <!-- DB and file INPUT -->
+        <!-- DB and file INPUT -->
         <section name="input_option" title="Input/Output options" expanded="true">
             <param name="input_file" type="data" format="fasta,fasta.gz" label="Select genome in fasta format"/>
             <param argument="--min-contig-length" type="integer" optional="true" min="0" label="Minimum contig size" help="Minimum contig size (default = 1; 200 in compliant mode)"/>
@@ -124,7 +124,7 @@ $annotation.compliant
         <section name="annotation" title="Optional annotation">
             <param argument="--complete" type="boolean" truevalue="--complete" falsevalue="" label="Complete replicons" help="All sequences are complete replicons (chromosome/plasmid[s])"/>
             <param argument="--prodigal" type="data" format="txt" optional="true" label="Prodigal file" help="Prodigal training file for CDS prediction"/>
-            <param name="translation_table"  type="select" optional="true" label="Translation table" help="Default is the bacterial table 11">
+            <param name="translation_table" type="select" optional="true" label="Translation table" help="Default is the bacterial table 11">
                 <option value="4">4 Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code</option>
                 <option value="11" selected="true">11 Bacterial, Archaeal and Plant Plastid Code</option>
             </param>
@@ -137,7 +137,7 @@ $annotation.compliant
         </section>
         <!-- PARAMETER FOR WORKFLOW ANALYSIS -->
         <section name="workflow" title="Workflow option to skip steps">
-            <param name="skip_analysis" type="select" display="checkboxes" multiple="true"  label="Select steps to skip">
+            <param name="skip_analysis" type="select" display="checkboxes" multiple="true" label="Select steps to skip">
                 <option value="--skip-trna">Skip tRNA detection and annotation</option>
                 <option value="--skip-tmrna">Skip tmRNA detection and annotation</option>
                 <option value="--skip-rrna">Skip rRNA detection and annotation</option>
@@ -153,21 +153,21 @@ $annotation.compliant
             </param>
         </section>
         <section name="output_files" title="Selection of the output files">
-          <param name="output_selection" type="select" display="checkboxes" multiple="true"  label="Output files selection">
-              <option value="file_tsv" selected="true">Annotation file in TSV</option>
-              <option value="file_gff3" selected="true">Annotation and sequence in GFF3</option>
-              <option value="file_gbff" selected="false">Annotations and sequences in GenBank format</option>
-              <option value="file_embl" selected="false">Annotations and sequences in EMBL format</option>
-              <option value="file_fna" selected="false">Replicon/contig DNA sequences as FASTA</option>
-              <option value="file_ffn" selected="true">Feature nucleotide sequences as FASTA</option>
-              <option value="file_faa" selected="false">CDS/sORF amino acid sequences as FASTA</option>
-              <option value="hypo_tsv" selected="false">Hypothetical protein CDS in TSV</option>
-              <option value="hypo_fa" selected="false">Hypothetical protein CDS amino sequences as FASTA</option>
-              <option value="sum_txt" selected="false">Summary as TXT</option>
-              <option value="file_json" selected="false">Information on each annotated feature as JSON</option>
-              <option value="file_plot" selected="true">Plot of the annotation result as SVG</option>
-              <option value="log_txt" selected="false">Log file as TXT</option>
-          </param>
+            <param name="output_selection" type="select" display="checkboxes" multiple="true" label="Output files selection">
+                <option value="file_tsv" selected="true">Annotation file in TSV</option>
+                <option value="file_gff3" selected="true">Annotation and sequence in GFF3</option>
+                <option value="file_gbff" selected="false">Annotations and sequences in GenBank format</option>
+                <option value="file_embl" selected="false">Annotations and sequences in EMBL format</option>
+                <option value="file_fna" selected="false">Replicon/contig DNA sequences as FASTA</option>
+                <option value="file_ffn" selected="true">Feature nucleotide sequences as FASTA</option>
+                <option value="file_faa" selected="false">CDS/sORF amino acid sequences as FASTA</option>
+                <option value="hypo_tsv" selected="false">Hypothetical protein CDS in TSV</option>
+                <option value="hypo_fa" selected="false">Hypothetical protein CDS amino sequences as FASTA</option>
+                <option value="sum_txt" selected="false">Summary as TXT</option>
+                <option value="file_json" selected="false">Information on each annotated feature as JSON</option>
+                <option value="file_plot" selected="true">Plot of the annotation result as SVG</option>
+                <option value="log_txt" selected="false">Log file as TXT</option>
+            </param>
         </section>
     </inputs>
     <outputs>
@@ -196,7 +196,7 @@ $annotation.compliant
             <filter>output_files['output_selection'] and "hypo_tsv" in output_files['output_selection']</filter>
         </data>
         <data name="hypotheticals_faa" format="fasta" from_work_dir="bakta_output/bakta_output.hypotheticals.faa" label="${tool.name} on ${on_string}: Hypothetical protein CDS amino sequences">
-          <filter>output_files['output_selection'] and "hypo_fa" in output_files['output_selection']</filter>
+            <filter>output_files['output_selection'] and "hypo_fa" in output_files['output_selection']</filter>
         </data>
         <data name="summary_txt" format="txt" from_work_dir="bakta_output/bakta_output.txt" label="${tool.name} on ${on_string}: Summary (TXT)">
             <filter>output_files['output_selection'] and "sum_txt" in output_files['output_selection']</filter>
@@ -212,8 +212,9 @@ $annotation.compliant
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="13"> <!-- TEST_1 database + input -->
-            <section name="input_option" >
+        <test expect_num_outputs="13">
+            <!-- TEST_1 database + input -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="min_contig_length" value="250"/>
                 <param name="bakta_db_select" value="V5.1_light_2024-01-19"/>
@@ -251,19 +252,19 @@ $annotation.compliant
             </output>
             <output name="annotation_fna" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">contig_1"/>
+                    <has_text text="&gt;contig_1"/>
                     <has_text text="TCTTCTGCGAG"/>
                 </assert_contents>
             </output>
             <output name="annotation_ffn" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="ATGACAAAACGAAGTG"/>
                 </assert_contents>
             </output>
             <output name="annotation_faa" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="MTKRSGSNTR"/>
                 </assert_contents>
             </output>
@@ -276,7 +277,7 @@ $annotation.compliant
             </output>
             <output name="hypotheticals_faa" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00010 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00010 hypothetical protein"/>
                     <has_text text="MNKQQQTALNM"/>
                 </assert_contents>
             </output>
@@ -302,8 +303,9 @@ $annotation.compliant
                 <expand macro="assert_content_test"/>
             </output>
         </test>
-        <test expect_num_outputs="4"> <!-- TEST_2 another input, add organism info some annotations and skip 2 steps  -->
-            <section name="input_option" >
+        <test expect_num_outputs="4">
+            <!-- TEST_2 another input, add organism info some annotations and skip 2 steps  -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="min_contig_length" value="250"/>
                 <param name="bakta_db_select" value="V5.1_light_2024-01-19"/>
@@ -335,7 +337,7 @@ $annotation.compliant
             </output>
             <output name="annotation_ffn" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="ATGACAAAACGAAGTG"/>
                 </assert_contents>
             </output>
@@ -345,8 +347,9 @@ $annotation.compliant
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="4"> <!-- TEST_3 test all skip steps and test previous bakta version -->
-            <section name="input_option" >
+        <test expect_num_outputs="4">
+            <!-- TEST_3 test all skip steps and test previous bakta version -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="min_contig_length" value="350"/>
                 <param name="bakta_db_select" value="V5.0_2022-08-19"/>
@@ -364,7 +367,7 @@ $annotation.compliant
             <output name="annotation_gff3" ftype="gff3">
                 <assert_contents>
                     <has_n_lines n="34"/>
-                    <has_text text=">contig_1"/>
+                    <has_text text="&gt;contig_1"/>
                 </assert_contents>
             </output>
             <output name="annotation_ffn" ftype="fasta">
@@ -373,8 +376,9 @@ $annotation.compliant
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="4"> <!-- TEST_4 annotations   -->
-            <section name="input_option" >
+        <test expect_num_outputs="4">
+            <!-- TEST_4 annotations   -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="bakta_db_select" value="V5.1_light_2024-01-19"/>
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
@@ -402,7 +406,7 @@ $annotation.compliant
             </output>
             <output name="annotation_ffn" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="ATGACAAAACGAAGTG"/>
                 </assert_contents>
             </output>
@@ -412,8 +416,9 @@ $annotation.compliant
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="2"> <!-- TEST_5 skip all steps and keep only the logfile and summary -->
-            <section name="input_option" >
+        <test expect_num_outputs="2">
+            <!-- TEST_5 skip all steps and keep only the logfile and summary -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="bakta_db_select" value="V5.1_light_2024-01-19"/>
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
@@ -439,8 +444,9 @@ $annotation.compliant
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="13"> <!-- TEST_6 metagenome option -->
-            <section name="input_option" >
+        <test expect_num_outputs="13">
+            <!-- TEST_6 metagenome option -->
+            <section name="input_option">
                 <param name="input_file" value="NC_002127.1.fna" ftype="fasta"/>
                 <param name="bakta_db_select" value="V5.1_light_2024-01-19"/>
                 <param name="amrfinder_db_select" value="V3.12-2024-05-02.2"/>
@@ -480,19 +486,19 @@ $annotation.compliant
             </output>
             <output name="annotation_fna" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">contig_1"/>
+                    <has_text text="&gt;contig_1"/>
                     <has_text text="TCTTCTGCGAG"/>
                 </assert_contents>
             </output>
             <output name="annotation_ffn" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="ATGACAAAACGAAGTG"/>
                 </assert_contents>
             </output>
             <output name="annotation_faa" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00005 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00005 hypothetical protein"/>
                     <has_text text="MTKRSGSNTR"/>
                 </assert_contents>
             </output>
@@ -505,7 +511,7 @@ $annotation.compliant
             </output>
             <output name="hypotheticals_faa" ftype="fasta">
                 <assert_contents>
-                    <has_text text=">IHHALP_00010 hypothetical protein"/>
+                    <has_text text="&gt;IHHALP_00010 hypothetical protein"/>
                     <has_text text="MNKQQQTALNM"/>
                 </assert_contents>
             </output>

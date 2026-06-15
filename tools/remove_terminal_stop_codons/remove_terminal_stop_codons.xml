@@ -9,7 +9,7 @@
         <requirement type="package" version="1.84">biopython</requirement>
     </requirements>
     <required_files>
-        <include path="remove_terminal_stop_codons.py" />
+        <include path="remove_terminal_stop_codons.py"/>
     </required_files>
     <command detect_errors="exit_code"><![CDATA[
         python '$__tool_directory__/remove_terminal_stop_codons.py'
@@ -21,10 +21,8 @@
             $no_check_internal
     ]]></command>
     <inputs>
-        <param name="input" type="data" format="fasta" label="Input FASTA file"
-            help="FASTA file containing coding sequences (CDS) to process." />
-        <param name="genetic_code" type="select" label="Genetic code"
-            help="NCBI translation table to use for identifying stop codons. Different organisms use different genetic codes.">
+        <param name="input" type="data" format="fasta" label="Input FASTA file" help="FASTA file containing coding sequences (CDS) to process."/>
+        <param name="genetic_code" type="select" label="Genetic code" help="NCBI translation table to use for identifying stop codons. Different organisms use different genetic codes.">
             <option value="1" selected="true">1 - Standard</option>
             <option value="2">2 - Vertebrate Mitochondrial</option>
             <option value="3">3 - Yeast Mitochondrial</option>
@@ -52,37 +50,35 @@
             <option value="31">31 - Blastocrithidia Nuclear</option>
             <option value="33">33 - Cephalodiscidae Mitochondrial UAA-Tyr</option>
         </param>
-        <param argument="--no-check-internal" type="boolean" truevalue="--no-check-internal" falsevalue=""
-            checked="false" label="Skip internal stop codon check"
-            help="By default, the tool will fail if internal (in-frame) stop codons are found. Enable this to only remove terminal stops without checking for internal ones." />
+        <param argument="--no-check-internal" type="boolean" truevalue="--no-check-internal" falsevalue="" checked="false" label="Skip internal stop codon check" help="By default, the tool will fail if internal (in-frame) stop codons are found. Enable this to only remove terminal stops without checking for internal ones."/>
     </inputs>
     <outputs>
-        <data name="output" format="fasta" label="${tool.name} on ${on_string}" />
+        <data name="output" format="fasta" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <!-- Test 1: Basic removal of terminal stop codon -->
         <test expect_num_outputs="1">
-            <param name="input" value="with_terminal_stop.fasta" ftype="fasta" />
-            <param name="genetic_code" value="1" />
-            <output name="output" file="without_terminal_stop.fasta" ftype="fasta" />
+            <param name="input" value="with_terminal_stop.fasta" ftype="fasta"/>
+            <param name="genetic_code" value="1"/>
+            <output name="output" file="without_terminal_stop.fasta" ftype="fasta"/>
         </test>
         <!-- Test 2: Sequence without terminal stop (should pass through unchanged) -->
         <test expect_num_outputs="1">
-            <param name="input" value="no_terminal_stop.fasta" ftype="fasta" />
-            <param name="genetic_code" value="1" />
-            <output name="output" file="no_terminal_stop.fasta" ftype="fasta" />
+            <param name="input" value="no_terminal_stop.fasta" ftype="fasta"/>
+            <param name="genetic_code" value="1"/>
+            <output name="output" file="no_terminal_stop.fasta" ftype="fasta"/>
         </test>
         <!-- Test 3: Internal stop codon should fail -->
         <test expect_failure="true">
-            <param name="input" value="with_internal_stop.fasta" ftype="fasta" />
-            <param name="genetic_code" value="1" />
+            <param name="input" value="with_internal_stop.fasta" ftype="fasta"/>
+            <param name="genetic_code" value="1"/>
         </test>
         <!-- Test 4: Internal stop with skip check should pass -->
         <test expect_num_outputs="1">
-            <param name="input" value="with_internal_stop.fasta" ftype="fasta" />
-            <param name="genetic_code" value="1" />
-            <param name="no_check_internal" value="true" />
-            <output name="output" file="with_internal_stop_output.fasta" ftype="fasta" />
+            <param name="input" value="with_internal_stop.fasta" ftype="fasta"/>
+            <param name="genetic_code" value="1"/>
+            <param name="no_check_internal" value="true"/>
+            <output name="output" file="with_internal_stop_output.fasta" ftype="fasta"/>
         </test>
     </tests>
     <help><![CDATA[

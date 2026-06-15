@@ -122,7 +122,8 @@ echo 'unifrac.weighted(
         </data>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="tree" value="abrecovery.tre" ftype="mothur.tre"/>
             <param name="group" value="abrecovery.groups" ftype="mothur.groups"/>
             <param name="groups" value="A,B,C"/>
@@ -131,7 +132,8 @@ echo 'unifrac.weighted(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with random and no subsampling -->
+        <test>
+            <!-- test with random and no subsampling -->
             <param name="tree" value="abrecovery.tre" ftype="mothur.tre"/>
             <param name="group" value="abrecovery.groups" ftype="mothur.groups"/>
             <param name="groups" value="A,B,C"/>
@@ -148,7 +150,8 @@ echo 'unifrac.weighted(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with group file and group select -->
+        <test>
+            <!-- test with group file and group select -->
             <param name="tree" value="abrecovery.tre" ftype="mothur.tre"/>
             <param name="group" value="abrecovery.groups" ftype="mothur.groups"/>
             <param name="groups" value="A,B"/>
@@ -158,7 +161,8 @@ echo 'unifrac.weighted(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with subsample and consensus -->
+        <test>
+            <!-- test with subsample and consensus -->
             <param name="tree" value="abrecovery.tre" ftype="mothur.tre"/>
             <param name="group" value="abrecovery.groups" ftype="mothur.groups"/>
             <param name="groups" value="A,B,C"/>

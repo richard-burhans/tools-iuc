@@ -98,17 +98,15 @@
             <param argument="--ref" type="data" format="fasta" label="Reference (FASTA)"/>
             <param argument="--barcode" type="data" format="fastq,fastq.gz" label="Barcode file" optional="true"/>
             <param argument="--barcode-whitelist" type="data" format="txt" label="Barcode whitelist file" optional="true"/>
-            <param argument="--read-format" type="text" optional="true" label="Read/barcode format string" help='Example: "r1:0:-1,bc:0:-1" (10x single-end)'/>
+            <param argument="--read-format" type="text" optional="true" label="Read/barcode format string" help="Example: &quot;r1:0:-1,bc:0:-1&quot; (10x single-end)"/>
             <param argument="--barcode-translate" type="data" format="tabular" label="Barcode translate file" optional="true"/>
         </section>
-
         <!-- Indexing Options -->
         <section name="index_options" title="Indexing options" expanded="false">
             <param argument="--min-frag-length" type="integer" optional="true" value="30" label="Min fragment length for choosing kmer length and window automatically" help="chromap --min-frag-length (default 30)"/>
             <param argument="--kmer" type="integer" value="17" label="K-mer length"/>
             <param argument="--window" type="integer" value="7" label="Window size"/>
         </section>
-
         <!-- Mapping Options -->
         <section name="mapping_options" title="Mapping" expanded="false">
             <param argument="--preset" type="select" label="Preset" help="Preset parameters for mapping reads">
@@ -127,11 +125,9 @@
             <param argument="--Tn5-shift" type="boolean" label="Perform Tn5 shift" truevalue="--Tn5-shift" falsevalue="" checked="false"/>
             <param argument="--bc-error-threshold" type="integer" optional="true" value="1" label="Barcode error threshold"/>
             <param argument="--bc-probability-threshold" type="float" optional="true" value="0.9" label="Barcode probability threshold"/>
-            <param argument="--chr-order" type="data" format="tabular"  label="Custom chromosome order" optional="true"/>
+            <param argument="--chr-order" type="data" format="tabular" label="Custom chromosome order" optional="true"/>
             <param argument="--pairs-natural-chr-order" type="data" format="tabular" label="Chrom order for pairs flipping" optional="true"/>
-
         </section>
-
         <!-- Output Options -->
         <section name="output_options" title="Output" expanded="true">
             <param name="out_format" type="select" label="Output format">
@@ -143,7 +139,6 @@
             <param name="summary" type="boolean" label="Produce summary file" truevalue="--summary" falsevalue="" checked="true"/>
         </section>
     </inputs>
-
     <outputs>
         <!-- Mapping primary output; actual datatype depends on out_format -->
         <data name="mapping_out" format="bed" label="${tool.name} on ${on_string}: Mapping output">
@@ -158,9 +153,8 @@
             <filter>output_options['summary']</filter>
         </data>
     </outputs>
-
     <tests>
-    <!-- Test 1: Paired-end ChIP-seq, BED output, with summary. -->
+        <!-- Test 1: Paired-end ChIP-seq, BED output, with summary. -->
         <test expect_num_outputs="2">
             <section name="input_options">
                 <conditional name="read_type">
@@ -196,8 +190,7 @@
             <output name="mapping_out" file="test01_mapping.bed" ftype="bed"/>
             <output name="summary_out" file="test01_summary.txt" ftype="txt"/>
         </test>
-
-    <!-- Test 2: Single-end ATAC-seq, SAM output, Tn5 shift and adapter trimming enabled, no summary. -->
+        <!-- Test 2: Single-end ATAC-seq, SAM output, Tn5 shift and adapter trimming enabled, no summary. -->
         <test expect_num_outputs="1">
             <section name="input_options">
                 <conditional name="read_type">
@@ -227,8 +220,7 @@
             </section>
             <output name="mapping_out" file="test02_mapping.sam" ftype="sam"/>
         </test>
-
-    <!-- Test 3: Paired-end Hi-C, TagAlign output, split alignments on -->
+        <!-- Test 3: Paired-end Hi-C, TagAlign output, split alignments on -->
         <test expect_num_outputs="1">
             <section name="input_options">
                 <conditional name="read_type">
@@ -263,8 +255,7 @@
             </section>
             <output name="mapping_out" file="test03_mapping.tsv" ftype="tabular"/>
         </test>
-
-    <!-- Test 4: Paired-end Hi-C, 4DN pairs output, preset hic, pairs format, summary off -->
+        <!-- Test 4: Paired-end Hi-C, 4DN pairs output, preset hic, pairs format, summary off -->
         <test expect_num_outputs="1">
             <section name="input_options">
                 <conditional name="read_type">
@@ -299,8 +290,7 @@
             </section>
             <output name="mapping_out" file="test04_mapping.pairs" ftype="4dn_pairs"/>
         </test>
-
-    <!-- Test 5: Single-end scATAC with barcode file and whitelist -->
+        <!-- Test 5: Single-end scATAC with barcode file and whitelist -->
         <test expect_num_outputs="2">
             <section name="input_options">
                 <conditional name="read_type">
@@ -336,8 +326,7 @@
             <output name="mapping_out" file="test05_mapping.bed" ftype="bed"/>
             <output name="summary_out" file="test05_summary.txt" ftype="txt"/>
         </test>
-
-    <!-- Test 6: Single-end ATAC, relaxed MAPQ (threshold=0), custom kmer/window, no summary -->
+        <!-- Test 6: Single-end ATAC, relaxed MAPQ (threshold=0), custom kmer/window, no summary -->
         <test expect_num_outputs="1">
             <section name="input_options">
                 <conditional name="read_type">
@@ -368,7 +357,6 @@
             <output name="mapping_out" file="test06_mapping.bed" ftype="bed"/>
         </test>
     </tests>
-
     <help><![CDATA[
 
 **chromap** is a fast aligner and preprocessor for chromatin profiling data (ATAC-seq, ChIP-seq, Hi-C and their single-cell variants).

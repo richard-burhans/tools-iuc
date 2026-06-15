@@ -231,8 +231,7 @@ fig.save('plot.$format', dpi=150)
                     <expand macro="sanitize_query"/>
                 </param>
                 <expand macro="param_cmap"/>
-                <param argument="label_size" type="integer" value="12" min="1" label="Label text size" help="Font size for labels in tiles. Default: 12.">
-                </param>
+                <param argument="label_size" type="integer" value="12" min="1" label="Label text size" help="Font size for labels in tiles. Default: 12."/>
                 <expand macro="param_figure_size" width="5" height="5"/>
             </when>
             <when value="pl.connectivity">
@@ -248,7 +247,7 @@ fig.save('plot.$format', dpi=150)
                 <expand macro="param_figure_size" width="5.4" height="5"/>
             </when>
             <when value="pl.target_metrics">
-                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help="" />
+                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help=""/>
                 <expand macro="param_misty_key"/>
                 <param argument="stat" type="select" optional="true" label="Statistic to plot" help="Target metric to visualize. gain_R2: improvement from multi-view; intra_R2: intra-view variance explained; multi_R2: total variance explained.">
                     <option value="">-- Select statistic --</option>
@@ -257,14 +256,12 @@ fig.save('plot.$format', dpi=150)
                     <option value="multi_R2">multi_R2 - Total multi-view R²</option>
                     <option value="p_value">p_value - Statistical significance</option>
                 </param>
-                <param argument="top_n" type="integer" value="" optional="true" min="1" label="Top N targets" help="Number of top targets to display. Empty = all targets.">
-                </param>
-                <param argument="ascending" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Sort ascending" help="If enabled: sort by increasing values. If disabled: sort by decreasing values (default, shows highest ranking first).">
-                </param>
+                <param argument="top_n" type="integer" value="" optional="true" min="1" label="Top N targets" help="Number of top targets to display. Empty = all targets."/>
+                <param argument="ascending" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Sort ascending" help="If enabled: sort by increasing values. If disabled: sort by decreasing values (default, shows highest ranking first)."/>
                 <expand macro="param_figure_size" width="5" height="5"/>
             </when>
             <when value="pl.contributions">
-                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help="" />
+                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help=""/>
                 <expand macro="param_misty_key"/>
                 <param argument="view_names" type="text" value="" optional="true" label="Views to include" help="Comma-separated view names (intra, juxta, para) to plot. Empty = all views. Useful for focusing on specific spatial scales.">
                     <expand macro="sanitize_query"/>
@@ -272,15 +269,13 @@ fig.save('plot.$format', dpi=150)
                 <expand macro="param_figure_size" width="5" height="5"/>
             </when>
             <when value="pl.interactions">
-                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help="" />
+                <param name="mdata" type="data" format="h5mu" optional="true" label="MISTy (MuData .h5mu) file" help=""/>
                 <expand macro="param_misty_key"/>
                 <param argument="view" type="text" value="" optional="true" label="View name" help="Specific view (e.g., 'intra', 'juxta', 'para') to visualize interaction importances. Empty = combined importance across all views.">
                     <expand macro="sanitize_query"/>
                 </param>
-                <param argument="top_n" type="integer" value="" optional="true" min="1" label="Top N interactions" help="Number of top interactions to display. Empty = show all.">
-                </param>
-                <param argument="ascending" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Sort ascending" help="If enabled: smallest to largest. If disabled: largest to smallest (default, shows most important first).">
-                </param>
+                <param argument="top_n" type="integer" value="" optional="true" min="1" label="Top N interactions" help="Number of top interactions to display. Empty = show all."/>
+                <param argument="ascending" type="boolean" truevalue="True" falsevalue="False" checked="false" label="Sort ascending" help="If enabled: smallest to largest. If disabled: largest to smallest (default, shows most important first)."/>
                 <expand macro="param_figure_size" width="5" height="5"/>
             </when>
         </conditional>
@@ -462,7 +457,7 @@ fig.save('plot.$format', dpi=150)
             </section>
             <output name="out_svg" ftype="svg">
                 <assert_contents>
-                     <has_size size="58175" delta="10000"/>
+                    <has_size size="58175" delta="10000"/>
                 </assert_contents>
             </output>
             <output name="hidden_output">

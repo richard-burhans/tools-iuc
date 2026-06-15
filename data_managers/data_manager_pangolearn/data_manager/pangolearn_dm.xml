@@ -25,8 +25,7 @@
                 <option value="date_range">Date range</option>
                 <!-- <option value="history">From history</option> -->
             </param>
-            <when value="latest">
-            </when>
+            <when value="latest"/>
             <when value="date_range">
                 <param name="start_date" type="text" label="Start date " help="Don't download models older than this date" optional="true">
                     <validator type="regex">\d{4}-\d{2}-\d{2}$</validator>
@@ -43,26 +42,26 @@
     <tests>
         <test>
             <conditional name="release">
-                <param name="which" value="date_range" />
-                <param name="start_date" value="2021-04-01" />
-                <param name="end_date" value="2021-04-01" />
+                <param name="which" value="date_range"/>
+                <param name="start_date" value="2021-04-01"/>
+                <param name="end_date" value="2021-04-01"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
                     <has_text text="pangoLEARN data release 2021-04-01"/>
-                    <has_text text='"format_version": "1.0"'/>
+                    <has_text text="&quot;format_version&quot;: &quot;1.0&quot;"/>
                 </assert_contents>
             </output>
         </test>
         <test>
             <conditional name="release">
-                <param name="which" value="date_range" />
-                <param name="start_date" value="2021-05-27" />
-                <param name="end_date" value="2021-05-27" />
+                <param name="which" value="date_range"/>
+                <param name="start_date" value="2021-05-27"/>
+                <param name="end_date" value="2021-05-27"/>
             </conditional>
             <output name="output_file">
                 <assert_contents>
-                    <has_text text='"format_version": "3.0"'/>
+                    <has_text text="&quot;format_version&quot;: &quot;3.0&quot;"/>
                 </assert_contents>
             </output>
         </test>

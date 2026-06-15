@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         #if $file.append == 'true':
@@ -120,11 +120,11 @@
             </conditional>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>    
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_0.Genome_0_seq&#009;293&#009;293&#009;+&#009;1758"/>
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;4571&#009;117&#009;+&#009;5472"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_0.Genome_0_seq&#9;293&#9;293&#9;+&#9;1758"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;4571&#9;117&#9;+&#9;5472"/>
                     <has_n_lines n="90"/>
                 </assert_contents>
             </output>
@@ -134,7 +134,7 @@
             <conditional name="filter">
                 <param name="option" value=""/>
             </conditional>
-             <conditional name="compression">
+            <conditional name="compression">
                 <param name="type" value="gz"/>
             </conditional>
             <output name="output_file" ftype="maf.gz" file="hal2maf_output.maf.gz"/>
@@ -144,7 +144,7 @@
             <conditional name="filter">
                 <param name="option" value=""/>
             </conditional>
-             <conditional name="compression">
+            <conditional name="compression">
                 <param name="type" value="bz2"/>
             </conditional>
             <output name="output_file" ftype="maf.bz2" file="hal2maf_output.maf.bz2"/>
@@ -159,12 +159,12 @@
             <param name="onlySequenceNames" value="true"/>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>   
-                    <has_text text="a tree="/>  
-                    <has_text text="Genome_1_seq,Genome_1_seq,Genome_2,Genome_3,Genome_3)Genome_0_seq;"/>    
-                    <has_text text="Genome_0_seq&#009;293&#009;293&#009;+&#009;1758"/>
-                    <has_text text="s&#009;Genome_1_seq&#009;4864&#009;117&#009;+&#009;5472"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_text text="a tree="/>
+                    <has_text text="Genome_1_seq,Genome_1_seq,Genome_2,Genome_3,Genome_3)Genome_0_seq;"/>
+                    <has_text text="Genome_0_seq&#9;293&#9;293&#9;+&#9;1758"/>
+                    <has_text text="s&#9;Genome_1_seq&#9;4864&#9;117&#9;+&#9;5472"/>
                     <has_n_lines n="52"/>
                 </assert_contents>
             </output>
@@ -175,12 +175,12 @@
             <param name="noDupes" value="true"/>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>   
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;4102&#009;200&#009;+&#009;6139"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;3130&#009;93&#009;+&#009;5472"/>
-                    <has_text text="s&#009;Genome_0.Genome_0_seq&#009;1748&#009;10&#009;+&#009;1758&#009;CGCGTCGGCG"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;4102&#9;200&#9;+&#9;6139"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;3130&#9;93&#9;+&#9;5472"/>
+                    <has_text text="s&#9;Genome_0.Genome_0_seq&#9;1748&#9;10&#9;+&#9;1758&#9;CGCGTCGGCG"/>
                     <has_n_lines n="69"/>
                 </assert_contents>
             </output>
@@ -195,12 +195,12 @@
             <param name="onlyOrthologs" value="true"/>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>   
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;5135&#009;337&#009;+&#009;5472"/>    
-                    <has_text text="s&#009;Genome_2.Genome_2_seq&#009;2498&#009;139&#009;+&#009;4270"/>
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;4571&#009;117&#009;+&#009;6139"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;5135&#9;337&#9;+&#9;5472"/>
+                    <has_text text="s&#9;Genome_2.Genome_2_seq&#9;2498&#9;139&#9;+&#9;4270"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;4571&#9;117&#9;+&#9;6139"/>
                     <has_n_lines n="230"/>
                 </assert_contents>
             </output>
@@ -214,12 +214,12 @@
             <param name="unique" value="true"/>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>   
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;1033&#009;139&#009;+&#009;6139"/>    
-                    <has_text text="s&#009;Genome_0.Genome_0_seq&#009;1348&#009;117&#009;+&#009;1758"/>
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;5274&#009;198&#009;+&#009;5472&#009;NNNNNNNNNNNNNNNN"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;1033&#9;139&#9;+&#9;6139"/>
+                    <has_text text="s&#9;Genome_0.Genome_0_seq&#9;1348&#9;117&#9;+&#9;1758"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;5274&#9;198&#9;+&#9;5472&#9;NNNNNNNNNNNNNNNN"/>
                     <has_n_lines n="96"/>
                 </assert_contents>
             </output>
@@ -233,12 +233,12 @@
             <param name="maxRefGap" value="2000"/>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>  
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_2.Genome_2_seq&#009;2344&#009;154&#009;+&#009;4270"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;1465&#009;293&#009;+&#009;5472&#009;----------------"/>
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;3516&#009;293&#009;+&#009;5472&#009;NNNNNNNNNNNNNNNN"/>
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_2.Genome_2_seq&#9;2344&#9;154&#9;+&#9;4270"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;1465&#9;293&#9;+&#9;5472&#9;----------------"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;3516&#9;293&#9;+&#9;5472&#9;NNNNNNNNNNNNNNNN"/>
                     <has_n_lines n="101"/>
                 </assert_contents>
             </output>
@@ -253,12 +253,12 @@
             </conditional>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>  
-                    <has_line line="a"/>    
-                    <has_line line="s&#009;Genome_0.Genome_0_seq&#009;4&#009;10&#009;+&#009;1758&#009;TCGGGGGGGA"/>    
-                    <has_line line="s&#009;Genome_2.Genome_2_seq&#009;4&#009;10&#009;+&#009;4270&#009;TCGGGGGGGA"/>    
-                    <has_line line="s&#009;Genome_3.Genome_3_seq&#009;4&#009;10&#009;+&#009;6139&#009;TCGGGGGGGA"/>    
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_line line="s&#9;Genome_0.Genome_0_seq&#9;4&#9;10&#9;+&#9;1758&#9;TCGGGGGGGA"/>
+                    <has_line line="s&#9;Genome_2.Genome_2_seq&#9;4&#9;10&#9;+&#9;4270&#9;TCGGGGGGGA"/>
+                    <has_line line="s&#9;Genome_3.Genome_3_seq&#9;4&#9;10&#9;+&#9;6139&#9;TCGGGGGGGA"/>
                     <has_n_lines n="11"/>
                 </assert_contents>
             </output>
@@ -275,12 +275,12 @@
             </conditional>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>  
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;0&#009;293&#009;+&#009;5472"/>    
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;4395&#009;176&#009;+&#009;6139"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;3223&#009;176&#009;+&#009;5472"/>    
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;0&#9;293&#9;+&#9;5472"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;4395&#9;176&#9;+&#9;6139"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;3223&#9;176&#9;+&#9;5472"/>
                     <has_n_lines n="152"/>
                 </assert_contents>
             </output>
@@ -292,12 +292,12 @@
             </conditional>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>  
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_1.Genome_1_seq&#009;3516&#009;293&#009;+&#009;5472&#009;NNNNNNNNNNNN"/>    
-                    <has_text text="s&#009;Genome_2.Genome_2_seq&#009;1465&#009;293&#009;+&#009;4270&#009;------------"/>    
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;4571&#009;117&#009;+&#009;6139"/>    
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_1.Genome_1_seq&#9;3516&#9;293&#9;+&#9;5472&#9;NNNNNNNNNNNN"/>
+                    <has_text text="s&#9;Genome_2.Genome_2_seq&#9;1465&#9;293&#9;+&#9;4270&#9;------------"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;4571&#9;117&#9;+&#9;6139"/>
                     <has_n_lines n="113"/>
                 </assert_contents>
             </output>
@@ -310,12 +310,12 @@
             </conditional>
             <output name="output_file" ftype="maf">
                 <assert_contents>
-                    <has_line line="##maf version=1 scoring=N/A"/>   
-                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>  
-                    <has_line line="a"/>    
-                    <has_text text="s&#009;Genome_0.Genome_0_seq&#009;0&#009;293&#009;+&#009;1758"/>    
-                    <has_text text="s&#009;Genome_2.Genome_2_seq&#009;3516&#009;293&#009;+&#009;4270"/>    
-                    <has_text text="s&#009;Genome_3.Genome_3_seq&#009;586&#009;293&#009;+&#009;6139"/>    
+                    <has_line line="##maf version=1 scoring=N/A"/>
+                    <has_line line="# hal (Genome_1:1,Genome_2:1,Genome_3:1)Genome_0;"/>
+                    <has_line line="a"/>
+                    <has_text text="s&#9;Genome_0.Genome_0_seq&#9;0&#9;293&#9;+&#9;1758"/>
+                    <has_text text="s&#9;Genome_2.Genome_2_seq&#9;3516&#9;293&#9;+&#9;4270"/>
+                    <has_text text="s&#9;Genome_3.Genome_3_seq&#9;586&#9;293&#9;+&#9;6139"/>
                     <has_n_lines n="24"/>
                 </assert_contents>
             </output>

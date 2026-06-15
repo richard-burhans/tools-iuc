@@ -23,7 +23,7 @@ medaka_consensus
         <param argument="-d" type="data" format="fasta,fasta.gz" label="Select assembly" help="The input assembly should be preprocessed with racon."/>
         <expand macro="model"/>
         <expand macro="b"/>
-        <param argument="-g" type="boolean" truevalue="-g" falsevalue="" label="Don't fill gaps in consensus with draft sequence?" checked="false" />
+        <param argument="-g" type="boolean" truevalue="-g" falsevalue="" label="Don't fill gaps in consensus with draft sequence?" checked="false"/>
         <param name="out" type="select" multiple="true" optional="false" label="Select output file(s)" help="'Draft To Consensus', 'Variants' and 'Polished regions in draft coordinates' are generated using the parameter -v.">
             <option value="consensus" selected="true">Consensus</option>
             <option value="probs" selected="true">Consensus probabilities</option>
@@ -59,7 +59,7 @@ medaka_consensus
             <output name="out_consensus">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line=">4"/>
+                    <has_line line="&gt;4"/>
                     <has_text_matching expression=".+GTCAGAATCGCGTTCAGCGCGTTTCAGCGGTGCGTACAATT.+"/>
                 </assert_contents>
             </output>
@@ -84,7 +84,8 @@ medaka_consensus
             <output name="out_consensus">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line=">4"/> <!-- Replace test -->
+                    <has_line line="&gt;4"/>
+                    <!-- Replace test -->
                 </assert_contents>
             </output>
             <output name="out_probs">

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive"><![CDATA[
         set -o pipefail; ## Sets the pipeline’s exit code to halCoverage’s on failure.
@@ -31,8 +31,8 @@
             <param name="seed" value="100"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;sitesCovered1Times&#009;sitesCovered2Times&#009;sitesCovered3Times&#009;sitesCovered4Times&#009;sitesCovered5Times"/>
-                    <has_line line="Genome_2&#009;856475&#009;482343&#009;482343&#009;214021&#009;0"/>
+                    <has_line line="Genome&#9;sitesCovered1Times&#9;sitesCovered2Times&#9;sitesCovered3Times&#9;sitesCovered4Times&#9;sitesCovered5Times"/>
+                    <has_line line="Genome_2&#9;856475&#9;482343&#9;482343&#9;214021&#9;0"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -44,8 +44,8 @@
             <param name="seed" value="100"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;sitesCovered1Times&#009;sitesCovered2Times&#009;sitesCovered3Times&#009;sitesCovered4Times&#009;sitesCovered5Times"/>
-                    <has_line line="Genome_2&#009;839&#009;500&#009;500&#009;233&#009;0"/>
+                    <has_line line="Genome&#9;sitesCovered1Times&#9;sitesCovered2Times&#9;sitesCovered3Times&#9;sitesCovered4Times&#9;sitesCovered5Times"/>
+                    <has_line line="Genome_2&#9;839&#9;500&#9;500&#9;233&#9;0"/>
                     <has_n_lines n="4"/>
                 </assert_contents>
             </output>
@@ -57,8 +57,8 @@
             <param name="seed" value="100"/>
             <output name="out_file" ftype="tabular">
                 <assert_contents>
-                    <has_line line="Genome&#009;sitesCovered1Times&#009;sitesCovered2Times&#009;sitesCovered3Times&#009;sitesCovered4Times&#009;sitesCovered5Times"/>
-                    <has_line line="Genome_2&#009;856475&#009;482343&#009;482343&#009;214021&#009;0"/>
+                    <has_line line="Genome&#9;sitesCovered1Times&#9;sitesCovered2Times&#9;sitesCovered3Times&#9;sitesCovered4Times&#9;sitesCovered5Times"/>
+                    <has_line line="Genome_2&#9;856475&#9;482343&#9;482343&#9;214021&#9;0"/>
                     <has_line line="Coverage on Genome_1_seq"/>
                     <has_n_lines n="9"/>
                 </assert_contents>

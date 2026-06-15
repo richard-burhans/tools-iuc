@@ -11,12 +11,12 @@
     <requirements>
         <requirement type="package" version="1.0">goslimmer</requirement>
     </requirements>
-    <command detect_errors="exit_code">goslimmer 
+    <command detect_errors="exit_code"><![CDATA[goslimmer 
 --go '${go}'
 --slim '${slim}'
 --annotation '${annotation}'
 --output '${output}'
-    </command>
+    ]]></command>
     <inputs>
         <param name="go" type="data" format="obo,owl" label="Full Gene Ontology File" help="Full Gene Ontology file in OBO or OWL format (see @ONTOLOGY_URL@)"/>
         <param name="slim" type="data" format="obo,owl" label="GOSlim File" help="Slim Gene Ontology file in OBO or OWL format (see @ONTOLOGY_URL@)"/>
@@ -33,7 +33,7 @@
             <output name="output" ftype="tabular" file="slim_annotations.tab" lines_diff="0"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 .. class:: infomark
 
 GOSlimmer is a Java application that converts a set of annotations from the full GO version to a given GOSlim version.
@@ -49,7 +49,7 @@ It requires:
 .. class:: infomark
 
 GOSlimmer can also be applied to other pairs of OWL/OBO ontologies where one is a subset of the other and you want to convert annotations from the larger to the smaller one.
-    </help>
+    ]]></help>
     <citations>
         <citation type="bibtex">
 @misc{githubgoslimmer,

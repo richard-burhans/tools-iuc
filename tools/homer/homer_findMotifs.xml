@@ -163,14 +163,14 @@ mv ./homerResults $denovo_motifs.extra_files_path/
                 <option value="-cpg">Use CpG% instead of GC% for sequence content normalization</option>
                 <option value="-noweight" selected="true">No CG correction</option>
             </param>
-            <param argument="-b" type="boolean" truevalue="-b" falsevalue="" checked="false" label="Use binomial distribution to calculate p-values, instead of hypergeometric."/>            
+            <param argument="-b" type="boolean" truevalue="-b" falsevalue="" checked="false" label="Use binomial distribution to calculate p-values, instead of hypergeometric."/>
             <param argument="-noredun" type="boolean" truevalue="-noredun" falsevalue="" checked="false" label="Do not remove predetermined redundant promoters/sequences."/>
             <param argument="-maskMotif" type="data" format="txt" optional="true" label="Motifs to mask before motif finding"/>
             <param argument="-opt" type="data" format="txt" optional="true" label="Motifs to optimize or change the length of"/>
             <param argument="-rand" type="boolean" truevalue="-rand" falsevalue="" checked="false" label="Randomize the labels of target and background sequences"/>
             <param argument="-fdr" type="integer" optional="true" min="0" value="" label="Calculate empirical FDR for de novo discovery by doing this many calculations"/>
             <param argument="-min" type="integer" min="0" value="0" label="Remove sequences shorter than this (bp)"/>
-            <param argument="-max" type="integer" min="0" value="10000000000" max="10000000000" label="Remove sequences longer than this (bp)"/>        
+            <param argument="-max" type="integer" min="0" value="10000000000" max="10000000000" label="Remove sequences longer than this (bp)"/>
             <conditional name="homer12">
                 <param name="version" type="select" label="Which homer version do you want to use">
                     <option value="homer2" selected="true">homer2 (default)</option>
@@ -208,13 +208,13 @@ mv ./homerResults $denovo_motifs.extra_files_path/
         <data name="denovo_motifs" format="html" from_work_dir="homerResults.html" label="${tool.name} on ${on_string}: De novo motifs">
             <filter>search_params['nomotif'] is False</filter>
         </data>
-         <data name="peaks" format="html" from_work_dir="outputKnown.html" label="${tool.name} on ${on_string}: Peaks">
+        <data name="peaks" format="html" from_work_dir="outputKnown.html" label="${tool.name} on ${on_string}: Peaks">
             <filter>advanced['output_peaks'] is True</filter>
         </data>
     </outputs>
     <tests>
-       <!-- Search for motifs from gene list + auto-generated background -->
-       <test expect_num_outputs="3">
+        <!-- Search for motifs from gene list + auto-generated background -->
+        <test expect_num_outputs="3">
             <conditional name="input">
                 <param name="input_type" value="auto_bg"/>
                 <param name="target_set" value="demoDB/target_list.tabular"/>

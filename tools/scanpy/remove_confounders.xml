@@ -286,7 +286,7 @@ sc.external.pp.scanorama_integrate(
                 <param argument="sigma" type="integer" value="15" label="Correction smoothing parameter on Gaussian kernel"/>
                 <param argument="approx" type="boolean" truevalue="True" falsevalue="False" checked="true" label="Use approximate nearest neighbors with Python annoy" help="greatly speeds up matching runtime"/>
                 <param argument="alpha" type="float" value="0.1" label="Alignment score minimum cutoff"/>
-                <param argument="batch_size" type="integer" value="5000" label="The batch size used in the alignment vector computation" help="Useful when integrating very large (>100k samples) datasets. Set to large value that runs within available memory."/>
+                <param argument="batch_size" type="integer" value="5000" label="The batch size used in the alignment vector computation" help="Useful when integrating very large (&gt;100k samples) datasets. Set to large value that runs within available memory."/>
             </when>
         </conditional>
         <expand macro="inputs_common_advanced"/>
@@ -295,7 +295,6 @@ sc.external.pp.scanorama_integrate(
         <expand macro="anndata_outputs"/>
     </outputs>
     <tests>
-        
         <!-- test 1 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>
@@ -320,7 +319,6 @@ sc.external.pp.scanorama_integrate(
                 </assert_contents>
             </output>
         </test>
-
         <!-- This function is commented out because the conda package is not working. Please add this if there is user demand and the conda package is fixed. If not please remove in the next update. -->
         <!-- test 2 -->
         <!-- <test expect_num_outputs="2">
@@ -344,7 +342,6 @@ sc.external.pp.scanorama_integrate(
             </output>
             <output name="anndata_out" file="external.pp.mnn_correct.krumsiek11.h5ad" ftype="h5ad" compare="sim_size"/>
         </test> -->
-
         <!-- test 3 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>
@@ -368,7 +365,6 @@ sc.external.pp.scanorama_integrate(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 4 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>
@@ -399,7 +395,6 @@ sc.external.pp.scanorama_integrate(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 5 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>
@@ -435,7 +430,6 @@ sc.external.pp.scanorama_integrate(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 6 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>
@@ -465,7 +459,6 @@ sc.external.pp.scanorama_integrate(
                 </assert_contents>
             </output>
         </test>
-
         <!-- test 7 -->
         <test expect_num_outputs="2">
             <param name="adata" value="pp.pca.krumsiek11.batch.h5ad"/>

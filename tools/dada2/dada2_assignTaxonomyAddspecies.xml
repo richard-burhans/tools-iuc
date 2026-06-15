@@ -66,29 +66,27 @@ write.table(taxa, file = '$output', quote = F, sep = "\t", row.names = T, col.na
     <inputs>
         <param name="seqs" type="data" format="@DADA_UNIQUES@,dada2_sequencetable,dada2_uniques" label="sequences to be assigned" help=""/>
         <conditional name="reference_cond">
-          <param name="reference_select" type="select" label="Select a reference dataset your history or use a built-in?">
-            <option value="builtin">Use a built-in reference</option>
-            <option value="history">Use reference data from the history</option>
-          </param>
-          <when value="builtin">
-            <param name="refFasta" type="select" label="Select reference data set" help="If a reference data set of interest is not listed, contact the Galaxy administrators">
-              <options from_data_table="dada2_taxonomy">
-                <filter type="unique_value" column="0"/>
-                <filter type="sort_by" column="2"/>
-                <validator type="no_options" message="No reference data sets are available. Ask your Galaxy admins."/>
-              </options>
+            <param name="reference_select" type="select" label="Select a reference dataset your history or use a built-in?">
+                <option value="builtin">Use a built-in reference</option>
+                <option value="history">Use reference data from the history</option>
             </param>
-          </when>
-          <when value="history">
-            <param name="refFasta" type="data" format="fasta,fasta.gz" label="Reference data set" />
-            <param argument="taxLevels" type="text" label="Names of the taxonomic levels in the data set" help="comma separated list" />
-          </when>
+            <when value="builtin">
+                <param name="refFasta" type="select" label="Select reference data set" help="If a reference data set of interest is not listed, contact the Galaxy administrators">
+                    <options from_data_table="dada2_taxonomy">
+                        <filter type="unique_value" column="0"/>
+                        <filter type="sort_by" column="2"/>
+                        <validator type="no_options" message="No reference data sets are available. Ask your Galaxy admins."/>
+                    </options>
+                </param>
+            </when>
+            <when value="history">
+                <param name="refFasta" type="data" format="fasta,fasta.gz" label="Reference data set"/>
+                <param argument="taxLevels" type="text" label="Names of the taxonomic levels in the data set" help="comma separated list"/>
+            </when>
         </conditional>
-        <param argument="minBoot" type="integer" value="50" min="0" label="Minimum bootstrap confidence" help="for assigning a
-taxonomic level"/>
+        <param argument="minBoot" type="integer" value="50" min="0" label="Minimum bootstrap confidence" help="for assigning a taxonomic level"/>
         <param argument="tryRC" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Try reverse complement" help="the reverse-complement of each sequence will be used for classification if it is a better match to the reference sequences than the forward sequence"/>
         <param argument="outputBootstraps" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Output bootstrap values"/>
-
         <conditional name="addSpecies_cond">
             <param name="addSpecies_select" type="select" label="Add genus-species binomials to the taxonomic table">
                 <option value="FALSE">No</option>
@@ -97,22 +95,22 @@ taxonomic level"/>
             <when value="FALSE"/>
             <when value="TRUE">
                 <conditional name="speciesreference_cond">
-                  <param name="speciesreference_select" type="select" label="Select a reference dataset your history or use a built-in?">
-                    <option value="builtin">Use a built-in reference</option>
-                    <option value="history">Use reference data from the history</option>
-                  </param>
-                  <when value="builtin">
-                    <param name="speciesrefFasta" argument="refFasta" type="select" label="Select reference data set" help="If a reference data set of interest is not listed, contact the Galaxy administrators">
-                      <options from_data_table="dada2_species">
-                        <filter type="unique_value" column="0"/>
-                        <filter type="sort_by" column="2"/>
-                        <validator type="no_options" message="No indexes are available for the selected input dataset"/>
-                      </options>
+                    <param name="speciesreference_select" type="select" label="Select a reference dataset your history or use a built-in?">
+                        <option value="builtin">Use a built-in reference</option>
+                        <option value="history">Use reference data from the history</option>
                     </param>
-                  </when>
-                  <when value="history">
-                    <param name="speciesrefFasta" argument="refFasta" type="data" format="fasta,fasta.gz" label="Reference data set" />
-                  </when>
+                    <when value="builtin">
+                        <param name="speciesrefFasta" argument="refFasta" type="select" label="Select reference data set" help="If a reference data set of interest is not listed, contact the Galaxy administrators">
+                            <options from_data_table="dada2_species">
+                                <filter type="unique_value" column="0"/>
+                                <filter type="sort_by" column="2"/>
+                                <validator type="no_options" message="No indexes are available for the selected input dataset"/>
+                            </options>
+                        </param>
+                    </when>
+                    <when value="history">
+                        <param name="speciesrefFasta" argument="refFasta" type="data" format="fasta,fasta.gz" label="Reference data set"/>
+                    </when>
                 </conditional>
                 <conditional name="allowMultiple_cond">
                     <param argument="allowMultiple" type="select" label="reporting options">
@@ -143,41 +141,41 @@ taxonomic level"/>
             <param name="seqs" ftype="dada2_sequencetable" value="removeBimeraDenovo.tab"/>
             <param name="reference_cond|reference_select" value="history"/>
             <param name="reference_cond|refFasta" ftype="fasta" value="reference.fa.gz"/>
-            <param name="reference_cond|taxLevels" value="Level1,Level2,Level3,Level4,Level5" />
+            <param name="reference_cond|taxLevels" value="Level1,Level2,Level3,Level4,Level5"/>
             <param name="addSpecies_cond|addSpecies_select" value="TRUE"/>
             <param name="addSpecies_cond|speciesreference_cond|speciesreference_select" value="history"/>
-            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" ftype="fasta" value="reference_species.fa.gz" />
+            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" ftype="fasta" value="reference_species.fa.gz"/>
             <param name="seed" value="42"/>
             <output name="output" value="assignTaxonomyAddspecies.tab" ftype="tabular" compare="sim_size" delta="0"/>
         </test>
-         <!-- test w default params, bulit in reference -->
+        <!-- test w default params, bulit in reference -->
         <test expect_num_outputs="2">
             <param name="seqs" ftype="dada2_sequencetable" value="removeBimeraDenovo.tab"/>
             <param name="reference_cond|reference_select" value="builtin"/>
             <param name="reference_cond|refFasta" value="test_buildid"/>
-            <param name="outputBootstraps" value="TRUE" />
+            <param name="outputBootstraps" value="TRUE"/>
             <param name="addSpecies_cond|addSpecies_select" value="TRUE"/>
             <param name="addSpecies_cond|speciesreference_cond|speciesreference_select" value="builtin"/>
-            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" value="test_buildid" />
+            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" value="test_buildid"/>
             <param name="seed" value="42"/>
-            <output name="output" value="assignTaxonomyAddspecies.tab" ftype="tabular" compare="sim_size" delta="0" />
-            <output name="bootstraps" value="assignTaxonomyAddspecies_boot.tab" ftype="tabular" compare="sim_size" delta="100" />
+            <output name="output" value="assignTaxonomyAddspecies.tab" ftype="tabular" compare="sim_size" delta="0"/>
+            <output name="bootstraps" value="assignTaxonomyAddspecies_boot.tab" ftype="tabular" compare="sim_size" delta="100"/>
         </test>
         <!-- minRC, note: sim_size for bootstraps output due to the probabilistics -->
         <test expect_num_outputs="1">
             <param name="seqs" ftype="dada2_sequencetable" value="removeBimeraDenovo.tab"/>
             <param name="reference_cond|reference_select" value="history"/>
             <param name="reference_cond|refFasta" ftype="fasta.gz" value="reference.fa.gz"/>
-            <param name="reference_cond|taxLevels" value="Level1,Level2,Level3,Level4,Level5" />
-            <param name="minBoot" value="42" />
-            <param name="tryRC" value="TRUE" />
+            <param name="reference_cond|taxLevels" value="Level1,Level2,Level3,Level4,Level5"/>
+            <param name="minBoot" value="42"/>
+            <param name="tryRC" value="TRUE"/>
             <param name="addSpecies_cond|addSpecies_select" value="TRUE"/>
             <param name="addSpecies_cond|speciesreference_cond|speciesreference_select" value="history"/>
-            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" ftype="fasta.gz" value="reference_species.fa.gz" />
+            <param name="addSpecies_cond|speciesreference_cond|speciesrefFasta" ftype="fasta.gz" value="reference_species.fa.gz"/>
             <param name="addSpecies_cond|allowMultiple_cond|allowMultiple" value="TRUE"/>
-            <param name="addSpecies_cond|tryRC" value="TRUE" />
+            <param name="addSpecies_cond|tryRC" value="TRUE"/>
             <param name="seed" value="42"/>
-            <output name="output" value="assignTaxonomyAddspecies.tab" ftype="tabular" compare="sim_size" />
+            <output name="output" value="assignTaxonomyAddspecies.tab" ftype="tabular" compare="sim_size"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -239,5 +237,3 @@ The reference data base for ** species assignment ** is a fasta file (or compres
         <citation type="doi">10.1128/AEM.00062-07</citation>
     </expand>
 </tool>
-
-

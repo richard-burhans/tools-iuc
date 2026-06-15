@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 bedtools expand
 -c '${cols}'
@@ -14,21 +14,21 @@ bedtools expand
     ]]></command>
     <inputs>
         <param name="input" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
-        <expand macro="choose_columns" />
+        <expand macro="choose_columns"/>
     </inputs>
     <outputs>
-        <data name="output" format_source="input" metadata_source="input" />
+        <data name="output" format_source="input" metadata_source="input"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="expandBed1.bed" ftype="bed" />
+            <param name="input" value="expandBed1.bed" ftype="bed"/>
             <param name="cols" value="5"/>
-            <output name="output" file="expandBed_result1.bed" ftype="bed" />
+            <output name="output" file="expandBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="expandBed1.bed" ftype="bed" />
+            <param name="input" value="expandBed1.bed" ftype="bed"/>
             <param name="cols" value="4,5"/>
-            <output name="output" file="expandBed_result2.bed" ftype="bed" />
+            <output name="output" file="expandBed_result2.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -38,5 +38,5 @@ Replicate lines in a file based on columns of comma-separated values.
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -108,7 +108,7 @@
                     <not_has_text text="a score=50.0"/>
                     <not_has_text text="s human.chr4  110 10 + 1000 ACGTACGTAC"/>
                     <not_has_text text="s mouse.chr4  210 10 + 2000 ACGTACGTAC"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
         <!-- Test 4: Testing -maxRow option on MAF File -->
@@ -121,7 +121,7 @@
                     <has_line line="a score=50.000000"/>
                     <has_line line="s human.chr4 110 10 + 1000 ACGTACGTAC"/>
                     <has_line line="s mouse.chr4 210 10 + 2000 ACGTACGTAC"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
         <!-- Test 5: Testing -factor and -minFactor option on MAF File -->
@@ -134,7 +134,7 @@
             <output name="output_maf" ftype="maf">
                 <assert_contents>
                     <has_n_lines n="33"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
         <!-- Test 6: Testing -minScore option on MAF File -->
@@ -147,7 +147,7 @@
                     <not_has_text text="a score=50.0"/>
                     <not_has_text text="s human.chr4  110 10 + 1000 ACGTACGTAC"/>
                     <not_has_text text="s mouse.chr4  210 10 + 2000 ACGTACGTAC"/>
-                </assert_contents> 
+                </assert_contents>
             </output>
         </test>
         <!-- Test 7: Testing -reject option on MAF File -->

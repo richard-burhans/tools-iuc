@@ -34,10 +34,10 @@ Rscript '$__tool_directory__/join_files.R'
         <repeat name="queries" min="1" title="Select table">
             <param name="input" type="data" format="tabular" label="Select table" help="Single dataset selection only to preserve the order"/>
         </repeat>
-        <param name="field" type="data_column" data_ref="input1" label="Column used for joining" />
+        <param name="field" type="data_column" data_ref="input1" label="Column used for joining"/>
     </inputs>
     <outputs>
-        <data name="out_file1" format="tabular" />
+        <data name="out_file1" format="tabular"/>
     </outputs>
     <tests>
         <test>

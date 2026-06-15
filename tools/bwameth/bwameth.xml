@@ -101,7 +101,6 @@ bwameth.py
                 </param>
             </when>
         </conditional>
-
         <conditional name="single_or_paired">
             <param name="single_or_paired_opts" type="select" label="Is this library mate-paired?">
                 <option value="single">Single-end</option>

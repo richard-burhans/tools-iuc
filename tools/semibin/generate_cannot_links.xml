@@ -1,4 +1,4 @@
-<tool id="semibin_generate_cannot_links" name="SemiBin: Contig annotations"  version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+<tool id="semibin_generate_cannot_links" name="SemiBin: Contig annotations" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>
 
     </description>
@@ -68,7 +68,7 @@ SemiBin2
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="0" />
+                <param name="min_len" value="0"/>
             </conditional>
             <output name="cannot" ftype="txt">
                 <assert_contents>
@@ -89,7 +89,7 @@ SemiBin2
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="0" />
+                <param name="min_len" value="0"/>
             </conditional>
             <output name="cannot" ftype="txt">
                 <assert_contents>
@@ -110,11 +110,11 @@ SemiBin2
             </conditional>
             <conditional name="min_len">
                 <param name="method" value="min-len"/>
-                <param name="min_len" value="0" />
+                <param name="min_len" value="0"/>
             </conditional>
             <output name="cannot" ftype="txt">
                 <assert_contents>
-                    <has_n_lines n='300' delta="10"/>
+                    <has_n_lines n="300" delta="10"/>
                 </assert_contents>
             </output>
         </test>

@@ -27,8 +27,8 @@
             --output_mapping_fp '$output_mapping_fp'
     ]]></command>
     <inputs>
-        <param argument="--input_biom_fp" type="data" format="biom1" label="Input biom table" help="The biom table containing the samples to be collapsed" />
-        <param argument="--mapping_fp" type="data" format="tabular" label="Input mapping file" help="The sample metadata mapping file" />
+        <param argument="--input_biom_fp" type="data" format="biom1" label="Input biom table" help="The biom table containing the samples to be collapsed"/>
+        <param argument="--mapping_fp" type="data" format="tabular" label="Input mapping file" help="The sample metadata mapping file"/>
         <param argument="--collapse_mode" type="select" label="Collapse mode to use" help="The mechanism for collapsing counts within groups">
             <option value="sum" selected="true">sum</option>
             <option value="mean">mean</option>
@@ -36,9 +36,9 @@
             <option value="median">median</option>
             <option value="first">first</option>
         </param>
-        <param argument="--normalize" type="boolean" label="Do you want to normalize observation counts to relative abundances ?" truevalue="--normalize" falsevalue="" checked="False" help="When this option is used the counts within each sample sum to 1.0" />
-        <repeat name="collapse_fields_repeat" title="New field to collapse data on" help="You must specify at least one field to collapse data on" min="1" >
-            <param argument="--collapse_fields" type="text" label="Name of the field" value="" help="Enter the name of one of the column of your mapping file" />
+        <param argument="--normalize" type="boolean" label="Do you want to normalize observation counts to relative abundances ?" truevalue="--normalize" falsevalue="" checked="False" help="When this option is used the counts within each sample sum to 1.0"/>
+        <repeat name="collapse_fields_repeat" title="New field to collapse data on" help="You must specify at least one field to collapse data on" min="1">
+            <param argument="--collapse_fields" type="text" label="Name of the field" value="" help="Enter the name of one of the column of your mapping file"/>
         </repeat>
     </inputs>
     <outputs>
@@ -49,28 +49,28 @@
         <!-- Qiime collapse_samples.py generates a binary file (Collapsed biom file) that can't be directly compared to the sample biom file using diff -->
         <!-- The following tests on output biom files are then based on a comparison of file sizes with a maximum delta of 0 bytes instead of the classic diff-based comparison -->
         <test>
-            <param name="input_biom_fp" value="collapse_samples/table.biom" />
-            <param name="mapping_fp" value="collapse_samples/map.txt" />
-            <param name="collapse_mode" value="sum" />
+            <param name="input_biom_fp" value="collapse_samples/table.biom"/>
+            <param name="mapping_fp" value="collapse_samples/map.txt"/>
+            <param name="collapse_mode" value="sum"/>
             <repeat name="collapse_fields_repeat">
-                <param name="collapse_fields" value="SampleType" />
+                <param name="collapse_fields" value="SampleType"/>
             </repeat>
             <output name="output_biom_fp" file="collapse_samples/collapsed_sum_SampleType_table.biom" compare="sim_size"/>
-            <output name="output_mapping_fp" file="collapse_samples/collapsed_sum_SampleType_map.txt" ftype="tabular" />
+            <output name="output_mapping_fp" file="collapse_samples/collapsed_sum_SampleType_map.txt" ftype="tabular"/>
         </test>
         <test>
-            <param name="input_biom_fp" value="collapse_samples/table.biom" />
-            <param name="mapping_fp" value="collapse_samples/map.txt" />
-            <param name="collapse_mode" value="first" />
-            <param name="normalize" value="True" />
+            <param name="input_biom_fp" value="collapse_samples/table.biom"/>
+            <param name="mapping_fp" value="collapse_samples/map.txt"/>
+            <param name="collapse_mode" value="first"/>
+            <param name="normalize" value="True"/>
             <repeat name="collapse_fields_repeat">
-                <param name="collapse_fields" value="subject" />
+                <param name="collapse_fields" value="subject"/>
             </repeat>
             <repeat name="collapse_fields_repeat">
-                <param name="collapse_fields" value="year" />
+                <param name="collapse_fields" value="year"/>
             </repeat>
             <output name="output_biom_fp" file="collapse_samples/collapsed_first_2fields_table.biom" compare="sim_size"/>
-            <output name="output_mapping_fp" file="collapse_samples/collapsed_first_2fields_map.txt" ftype="tabular" />
+            <output name="output_mapping_fp" file="collapse_samples/collapsed_first_2fields_map.txt" ftype="tabular"/>
         </test>
     </tests>
     <help><![CDATA[

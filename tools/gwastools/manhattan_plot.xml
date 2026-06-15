@@ -35,12 +35,12 @@
         <param name="file" type="data" format="tsv,tabular" label="GWAS data file"/>
         <param name="chromosome" type="data_column" data_ref="file" label="Chromosome column number"/>
         <param name="pvals" type="data_column" data_ref="file" label="P-values column number"/>
-        <param name="ymax" type = "float" optional="true" label="Y max"/>
-        <param name="ymin" type = "float" optional="true" label="Y min"/>
+        <param name="ymax" type="float" optional="true" label="Y max"/>
+        <param name="ymin" type="float" optional="true" label="Y min"/>
         <param name="trunc" type="boolean" truevalue="--trunc" falsevalue="" label="Show truncation lines?"/>
         <param name="sig" type="float" optional="true" label="Genome-wide significance level for plotting horizontal line." help="If not specified, no line will be drawn."/>
         <conditional name="thinselect">
-            <param name="thinning" type="select" label='Specify thinning value?'>
+            <param name="thinning" type="select" label="Specify thinning value?">
                 <option value="Yes"/>
                 <option value="No"/>
             </param>

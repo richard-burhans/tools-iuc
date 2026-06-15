@@ -5,10 +5,12 @@
         <token name="@VERSION_SUFFIX@">0</token>
     </macros>
     <edam_topics>
-        <edam_topic>topic_3293</edam_topic> <!-- phylogenetics -->
+        <edam_topic>topic_3293</edam_topic>
+        <!-- phylogenetics -->
     </edam_topics>
     <edam_operations>
-        <edam_operation>operation_0567</edam_operation> <!-- phylogenetic tree visualisation -->
+        <edam_operation>operation_0567</edam_operation>
+        <!-- phylogenetic tree visualisation -->
     </edam_operations>
     <xrefs>
         <xref type="bio.tools">ete</xref>
@@ -39,14 +41,14 @@ curl http://etetoolkit.org/get_svg/
 
     ]]></command>
     <inputs>
-        <param name="input_tree" type="data" format="newick" label="Newick Tree to visualise" />
+        <param name="input_tree" type="data" format="newick" label="Newick Tree to visualise"/>
         <conditional name="align">
             <param name="align_choice" type="select" label="Add alignment information to image?" help="Will display alignments in the tree view">
                 <option value="yes">yes</option>
                 <option value="no" selected="true">no</option>
             </param>
             <when value="yes">
-                <param name="input_alignment" type="data" format="fasta" optional="true" label="Multiple Alignment FASTA file" help="If provided, will add alignment visualisation to tree image" />
+                <param name="input_alignment" type="data" format="fasta" optional="true" label="Multiple Alignment FASTA file" help="If provided, will add alignment visualisation to tree image"/>
                 <param name="alg_type" type="select" multiple="false" label="Alignment display style" help="Will be ignored if no alignment file provided.">
                     <option value="block">Aligned blocks</option>
                     <option value="condensed" selected="true">Condensed format</option>
@@ -54,8 +56,7 @@ curl http://etetoolkit.org/get_svg/
             </when>
             <when value="no"/>
         </conditional>
-
-        <param name="ncbitaxa" type="boolean" checked="true" truevalue="ncbitaxa=true;" falsevalue="" label="Resolve Taxonomic IDs?" help="Use NCBI numeric taxids as leaf names (or in the format TaxID.sequenceName) in your tree." />
+        <param name="ncbitaxa" type="boolean" checked="true" truevalue="ncbitaxa=true;" falsevalue="" label="Resolve Taxonomic IDs?" help="Use NCBI numeric taxids as leaf names (or in the format TaxID.sequenceName) in your tree."/>
         <param name="output_format" type="select" multiple="false" label="Format of the output image." help="SVG or PNG">
             <option value="svg" selected="true">SVG</option>
             <option value="png">PNG</option>
@@ -69,47 +70,52 @@ curl http://etetoolkit.org/get_svg/
         </data>
     </outputs>
     <tests>
-        <test expect_num_outputs="1"><!-- test 1: with NCBI TaxIDs -->
+        <test expect_num_outputs="1">
+            <!-- test 1: with NCBI TaxIDs -->
             <param name="input_tree" value="quicktree_alignment_VARL_NCBI.tre" ftype="newick"/>
-            <output name="output_tree_image" file="quicktree_VARL_NCBI.svg" ftype="svg" lines_diff="500" />
+            <output name="output_tree_image" file="quicktree_VARL_NCBI.svg" ftype="svg" lines_diff="500"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 2: with alignment file -->
+        <test expect_num_outputs="1">
+            <!-- test 2: with alignment file -->
             <param name="input_tree" value="example-tree-ncbi.tree" ftype="newick"/>
-            <param name="align_choice" value="yes" />
+            <param name="align_choice" value="yes"/>
             <param name="input_alignment" value="example-alignment.fa" ftype="fasta"/>
             <output name="output_tree_image" ftype="svg">
                 <assert_contents>
                     <has_text text="Generated with ETE http://ete.cgenomics.org"/>
                     <has_text text="Branchiostoma floridae"/>
-                    <has_n_lines min="150000" />
+                    <has_n_lines min="150000"/>
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"><!-- test 3: with aligment style set -->
+        <test expect_num_outputs="1">
+            <!-- test 3: with aligment style set -->
             <param name="input_tree" value="example-tree-ncbi.tree" ftype="newick"/>
-            <param name="align_choice" value="yes" />
+            <param name="align_choice" value="yes"/>
             <param name="input_alignment" value="example-alignment.fa" ftype="fasta"/>
             <param name="alg_type" value="block"/>
             <output name="output_tree_image" ftype="svg">
                 <assert_contents>
                     <has_text text="Generated with ETE http://ete.cgenomics.org"/>
                     <has_text text="Branchiostoma floridae"/>
-                    <has_n_lines min="25000" max="30000" />
+                    <has_n_lines min="25000" max="30000"/>
                 </assert_contents>
             </output>
         </test>
-        <test expect_num_outputs="1"><!-- test 4: minimal tree, no taxonomy, no alignment -->
+        <test expect_num_outputs="1">
+            <!-- test 4: minimal tree, no taxonomy, no alignment -->
             <param name="input_tree" value="quicktree_alignment_VARL.tre" ftype="newick"/>
-            <param name="align_choice" value="no" />
+            <param name="align_choice" value="no"/>
             <output name="output_tree_image" file="minimal-tree-out.svg" ftype="svg" lines_diff="0"/>
         </test>
-        <test expect_num_outputs="1"><!-- test 5: png output -->
+        <test expect_num_outputs="1">
+            <!-- test 5: png output -->
             <param name="input_tree" value="quicktree_alignment_VARL.tre" ftype="newick"/>
-            <param name="output_format" value="png" />
-            <output name="output_tree_image" ftype="png" >
+            <param name="output_format" value="png"/>
+            <output name="output_tree_image" ftype="png">
                 <assert_contents>
-                    <has_image_width min="500" />
-                    <has_image_height min="500" />
+                    <has_image_width min="500"/>
+                    <has_image_height min="500"/>
                 </assert_contents>
             </output>
         </test>

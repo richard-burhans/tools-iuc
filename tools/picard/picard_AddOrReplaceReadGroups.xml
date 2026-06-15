@@ -47,7 +47,7 @@
             <output name="outFile" file="picard_ARRG_test1.bam" ftype="bam"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -100,6 +100,6 @@ Add or Replace Read Groups in an input BAM or SAM file.
   PI=Integer              Read Group predicted insert size  Default value: null.
 
 @more_info@
-  </help>
+  ]]></help>
     <expand macro="citations"/>
 </tool>

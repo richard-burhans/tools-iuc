@@ -18,7 +18,7 @@ checkm taxon_set
         <expand macro="rank_taxon"/>
     </inputs>
     <outputs>
-        <expand macro="marker_output" />
+        <expand macro="marker_output"/>
     </outputs>
     <tests>
         <test expect_num_outputs="1">

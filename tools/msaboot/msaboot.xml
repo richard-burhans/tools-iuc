@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="msaboot" name="MSABOOT" version="@VERSION@">
     <description>Output PHYLIP file with bootstrapped multiple sequence alignment data</description>
     <macros>
@@ -17,23 +16,23 @@ msaboot -i '$input' -n $number -o '$output'
         ]]>
     </command>
     <inputs>
-        <param name="input" format="fasta" type="data" label="FASTA input file" />
-        <param name="number" type="integer" value="1" min="1" label="Specify the number of bootstrapping replicates to generate." />
-        <param name="save_logfile" type="boolean" truevalue="" falsevalue="" label="Output log file" />
+        <param name="input" format="fasta" type="data" label="FASTA input file"/>
+        <param name="number" type="integer" value="1" min="1" label="Specify the number of bootstrapping replicates to generate."/>
+        <param name="save_logfile" type="boolean" truevalue="" falsevalue="" label="Output log file"/>
     </inputs>
     <outputs>
-        <data name="output" format="phylip" label="${tool.name} on ${on_string}:out.phylip" />
+        <data name="output" format="phylip" label="${tool.name} on ${on_string}:out.phylip"/>
         <data name="log" format="txt" label="${tool.name} on ${on_string}:log_msabootpl_run.txt">
             <filter>save_logfile</filter>
         </data>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="msa.fasta" />
-            <param name="number" value="10" />
-            <param name="save_logfile" value="true" />
-            <output name="log" file="log.txt" ftype="txt" compare="contains" />
-            <output name="output" file="out.phylip" ftype="phylip" compare="contains" />
+            <param name="input" value="msa.fasta"/>
+            <param name="number" value="10"/>
+            <param name="save_logfile" value="true"/>
+            <output name="log" file="log.txt" ftype="txt" compare="contains"/>
+            <output name="output" file="out.phylip" ftype="phylip" compare="contains"/>
         </test>
     </tests>
     <help>

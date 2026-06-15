@@ -8,11 +8,11 @@
             <sanitizer>
                 <valid initial="string.printable">
                     <remove value=" "/>
-                    <remove value="&apos;" />
+                    <remove value="'"/>
                 </valid>
                 <mapping initial="none">
                     <add source=" " target=""/>
-                    <add source="&apos;" target="&apos;&quot;&apos;&quot;&apos;"/>
+                    <add source="'" target="'&quot;'&quot;'"/>
                 </mapping>
             </sanitizer>
         </xml>
@@ -48,8 +48,7 @@
         '$out'
     ]]></command>
     <inputs>
-        <param name="in_axt" format="axt" type="data" label="axt file" />
-
+        <param name="in_axt" format="axt" type="data" label="axt file"/>
         <conditional name="target_reference_index_source">
             <param name="target_reference_index_source_selector" type="select" label="Choose the source for the target reference genome index">
                 <option value="cached">Built-in</option>
@@ -57,14 +56,13 @@
             </param>
             <when value="cached">
                 <param name="tar_ref_index_file" type="select" label="Using reference genome index">
-                  <options from_data_table="fasta_indexes" />
+                    <options from_data_table="fasta_indexes"/>
                 </param>
             </when>
             <when value="history">
-                <param name="in_tar_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for target sequence. Typically a '.fai' file." />
+                <param name="in_tar_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for target sequence. Typically a '.fai' file."/>
             </when>
         </conditional>
-
         <conditional name="query_reference_index_source">
             <param name="query_reference_index_source_selector" type="select" label="Choose the source for the target reference genome index">
                 <option value="cached">Built-in</option>
@@ -72,35 +70,34 @@
             </param>
             <when value="cached">
                 <param name="que_ref_index_file" type="select" label="Using reference genome index">
-                  <options from_data_table="fasta_indexes" />
+                    <options from_data_table="fasta_indexes"/>
                 </param>
             </when>
             <when value="history">
-                <param name="in_que_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for query sequence. Typically a '.fai' file." />
+                <param name="in_que_ref_index" format="tabular" type="data" label="Dataset with chrom sizes for query sequence. Typically a '.fai' file."/>
             </when>
         </conditional>
-
         <param name="t_prefix" type="text" optional="true" label="add this to start of TARGET sequence name in maf" help="Typically organism name and a dot (hg38.) is used">
             <expand macro="sanitize_query"/>
         </param>
         <param name="q_prefix" type="text" optional="true" label="add this to start of QUERY sequence name in maf" help="Typically organism name and a dot (mm10.) is used">
             <expand macro="sanitize_query"/>
         </param>
-        <param argument="-score" type="boolean" truevalue="-score" falsevalue="" label="Recalculate score" />
-        <param argument="-scoreZero" type="boolean" truevalue="-scoreZero" falsevalue="" label="Recalculate score if zero" />
+        <param argument="-score" type="boolean" truevalue="-score" falsevalue="" label="Recalculate score"/>
+        <param argument="-scoreZero" type="boolean" truevalue="-scoreZero" falsevalue="" label="Recalculate score if zero"/>
     </inputs>
     <outputs>
-        <data name="out" format="maf" />
+        <data name="out" format="maf"/>
     </outputs>
     <tests>
         <test>
             <param name="in_axt" value="1.axt"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="history" />
+                <param name="target_reference_index_source_selector" value="history"/>
                 <param name="in_tar_ref_index" value="hg38.fasta.fai"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="history" />
+                <param name="query_reference_index_source_selector" value="history"/>
                 <param name="in_que_ref_index" value="mm39.fasta.fai"/>
             </conditional>
             <output name="out" file="1.maf"/>
@@ -108,25 +105,25 @@
         <test>
             <param name="in_axt" value="2.axt"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="history" />
+                <param name="target_reference_index_source_selector" value="history"/>
                 <param name="in_tar_ref_index" value="hg38.noprefix.fasta.fai"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="history" />
+                <param name="query_reference_index_source_selector" value="history"/>
                 <param name="in_que_ref_index" value="mm39.noprefix.fasta.fai"/>
             </conditional>
-            <param name="t_prefix" value="hg38." />
-            <param name="q_prefix" value="mm39." />
+            <param name="t_prefix" value="hg38."/>
+            <param name="q_prefix" value="mm39."/>
             <output name="out" file="1.maf"/>
         </test>
         <test>
             <param name="in_axt" value="1.axt"/>
             <conditional name="target_reference_index_source">
-                <param name="target_reference_index_source_selector" value="cached" />
+                <param name="target_reference_index_source_selector" value="cached"/>
                 <param name="tar_ref_index_file" value="hg38"/>
             </conditional>
             <conditional name="query_reference_index_source">
-                <param name="query_reference_index_source_selector" value="cached" />
+                <param name="query_reference_index_source_selector" value="cached"/>
                 <param name="que_ref_index_file" value="mm39"/>
             </conditional>
             <output name="out" file="1.maf"/>

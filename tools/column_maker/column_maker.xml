@@ -6,10 +6,10 @@
                 <param name="cond" type="text" value="c3-c2" label="Add expression">
                     <sanitizer>
                         <valid initial="default">
-                            <add value="&lt;" />
-                            <add value="&gt;" />
-                            <add value="&quot;" />
-                            <add value="&apos;" />
+                            <add value="&lt;"/>
+                            <add value="&gt;"/>
+                            <add value="&quot;"/>
+                            <add value="'"/>
                         </valid>
                     </sanitizer>
                 </param>
@@ -20,16 +20,16 @@
                         <option value="R">Replace</option>
                     </param>
                     <when value="">
-                        <param name="pos" type="hidden" value="" />
+                        <param name="pos" type="hidden" value=""/>
                     </when>
                     <when value="I">
-                        <param name="pos" type="integer" min="1" value="1" label="Insert new column before existing column number" />
+                        <param name="pos" type="integer" min="1" value="1" label="Insert new column before existing column number"/>
                     </when>
                     <when value="R">
-                        <param name="pos" type="integer" min="1" value="1" label="Use new column to replace column number" />
+                        <param name="pos" type="integer" min="1" value="1" label="Use new column to replace column number"/>
                     </when>
                 </conditional>
-                <yield />
+                <yield/>
             </repeat>
         </xml>
     </macros>
@@ -59,7 +59,7 @@ $error_handling.non_computable.action
 '$out_file1'
     ]]></command>
     <configfiles>
-      <configfile name="expressions_file"><![CDATA[
+        <configfile name="expressions_file"><![CDATA[
 #if str($ops.header_lines_select) == 'yes':
     #for $expr in $ops.expressions:
 ${expr.cond};${expr.add_column.pos}${expr.add_column.mode};${expr.new_column_name}
@@ -72,31 +72,25 @@ ${expr.cond};${expr.add_column.pos}${expr.add_column.mode};
 ]]></configfile>
     </configfiles>
     <inputs>
-        <param name="input" type="data" format="tabular" label="Input file" help="Dataset missing? See TIP below" />
+        <param name="input" type="data" format="tabular" label="Input file" help="Dataset missing? See TIP below"/>
         <conditional name="ops">
-            <param name="header_lines_select" type="select"
-            label="Input has a header line with column names?"
-            help="Select Yes to be able to specify names for new columns and have them added to the header line. If you select No, the first line will be treated as a regular line: If it is empty or starts with a # character it will be skipped, otherwise the tool will attempt to compute the specified expression on it." >
+            <param name="header_lines_select" type="select" label="Input has a header line with column names?" help="Select Yes to be able to specify names for new columns and have them added to the header line. If you select No, the first line will be treated as a regular line: If it is empty or starts with a # character it will be skipped, otherwise the tool will attempt to compute the specified expression on it.">
                 <option value="no">No</option>
                 <option value="yes">Yes</option>
             </param>
             <when value="no">
-                <expand macro="compute_repeat" />
+                <expand macro="compute_repeat"/>
             </when>
             <when value="yes">
                 <expand macro="compute_repeat">
-                    <param name="new_column_name" type="text" value="New Column" label="The new column name" />
+                    <param name="new_column_name" type="text" value="New Column" label="The new column name"/>
                 </expand>
             </when>
         </conditional>
-        <param name="avoid_scientific_notation" type="boolean" truevalue="--avoid-scientific-notation" falsevalue=""
-        label="Avoid scientific notation in any newly computed columns"
-        help="If yes, use fully expanded decimal representation when writing new columns with floating point values. To prevent scientific notation in just specific new columns, you can use numpy's format_float_positional function in the corresponding expression." />
+        <param name="avoid_scientific_notation" type="boolean" truevalue="--avoid-scientific-notation" falsevalue="" label="Avoid scientific notation in any newly computed columns" help="If yes, use fully expanded decimal representation when writing new columns with floating point values. To prevent scientific notation in just specific new columns, you can use numpy's format_float_positional function in the corresponding expression."/>
         <section name="error_handling" title="Error handling">
-            <param name="auto_col_types" type="boolean" truevalue="on" falsevalue="off" checked="true" label="Autodetect column types"
-            help="By default, try to use the column types that Galaxy has recorded for the input. This simplifies expressions, but can occasionally cause problems on its own. If disabled all column values are assumed to be strings and you will have to handle conversions to different types explicitly in the expression." />
-            <param argument="--fail-on-non-existent-columns" type="boolean" truevalue="--fail-on-non-existent-columns" falsevalue="" checked="true" label="Fail on references to non-existent columns"
-            help="If any expression references a column number that does not exist when that expression gets computed, the tool run will fail. Uncheck to have such a situation handled as a case of a non-computable expression as configured below." />
+            <param name="auto_col_types" type="boolean" truevalue="on" falsevalue="off" checked="true" label="Autodetect column types" help="By default, try to use the column types that Galaxy has recorded for the input. This simplifies expressions, but can occasionally cause problems on its own. If disabled all column values are assumed to be strings and you will have to handle conversions to different types explicitly in the expression."/>
+            <param argument="--fail-on-non-existent-columns" type="boolean" truevalue="--fail-on-non-existent-columns" falsevalue="" checked="true" label="Fail on references to non-existent columns" help="If any expression references a column number that does not exist when that expression gets computed, the tool run will fail. Uncheck to have such a situation handled as a case of a non-computable expression as configured below."/>
             <conditional name="non_computable">
                 <param name="action" type="select" label="If an expression cannot be computed for a row">
                     <option value="--fail-on-non-computable">Fail the entire tool run</option>
@@ -105,10 +99,10 @@ ${expr.cond};${expr.add_column.pos}${expr.add_column.mode};
                     <option value="--non-computable-blank">Produce an empty column value for the row</option>
                     <option value="--non-computable-default">Fill in a replacement value</option>
                 </param>
-                <when value="--fail-on-non-computable" />
-                <when value="--skip-non-computable" />
-                <when value="--keep-non-computable" />
-                <when value="--non-computable-blank" />
+                <when value="--fail-on-non-computable"/>
+                <when value="--skip-non-computable"/>
+                <when value="--keep-non-computable"/>
+                <when value="--non-computable-blank"/>
                 <when value="--non-computable-default">
                     <param name="default_value" type="text" label="Replacement value" help="Pick from suggestions or enter your own.">
                         <option value="nan">nan (not a number)</option>
@@ -127,19 +121,19 @@ ${expr.cond};${expr.add_column.pos}${expr.add_column.mode};
     <tests>
         <test>
             <param name="cond" value="float(c3-c2)"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <output name="out_file1" file="column_maker_out1.interval"/>
         </test>
         <test>
             <param name="cond" value="c4*1."/>
-            <param name="input" value="1.interval" ftype="interval" />
+            <param name="input" value="1.interval" ftype="interval"/>
             <output name="out_file1" file="column_maker_out2.interval"/>
         </test>
         <test>
             <param name="cond" value="c4*1."/>
-            <param name="input" value="1.header.tsv" ftype="tabular" />
-            <param name="header_lines_select" value="yes" />
-            <param name="new_column_name" value="value1_again" />
+            <param name="input" value="1.header.tsv" ftype="tabular"/>
+            <param name="header_lines_select" value="yes"/>
+            <param name="new_column_name" value="value1_again"/>
             <output name="out_file1" file="column_maker_out2.header.tsv"/>
         </test>
         <test>
@@ -148,153 +142,153 @@ ${expr.cond};${expr.add_column.pos}${expr.add_column.mode};
             <output name="out_file1" file="column_maker_out3.interval"/>
         </test>
         <test>
-             <!-- test that single column input works -->
-             <param name="cond" value="c1/10"/>
-             <param name="input" value="1.tab" ftype="tabular" />
-             <output name="out_file1" file="column_maker_out4.tab"/>
-         </test>
-         <test>
+            <!-- test that single column input works -->
+            <param name="cond" value="c1/10"/>
+            <param name="input" value="1.tab" ftype="tabular"/>
+            <output name="out_file1" file="column_maker_out4.tab"/>
+        </test>
+        <test>
             <param name="cond" value="float(.0000000000001)"/>
             <param name="input" value="1.bed"/>
             <output name="out_file1">
                 <assert_contents>
-                    <has_text text="CCDS10397" />
-                    <has_text text="1e-13" />
+                    <has_text text="CCDS10397"/>
+                    <has_text text="1e-13"/>
                 </assert_contents>
             </output>
         </test>
         <test>
             <param name="cond" value="float(.0000000000001)"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <param name="avoid_scientific_notation" value="true"/>
             <output name="out_file1">
                 <assert_contents>
-                    <has_text text="CCDS10397" />
-                    <has_text text=".0000000000001" />
-                    <not_has_text text="1e-13" />
+                    <has_text text="CCDS10397"/>
+                    <has_text text=".0000000000001"/>
+                    <not_has_text text="1e-13"/>
                 </assert_contents>
             </output>
         </test>
         <test>
-            <param name="input" value="1.tab" ftype="tabular" />
+            <param name="input" value="1.tab" ftype="tabular"/>
             <repeat name="expressions">
-                <param name="cond" value="c1/10" />
+                <param name="cond" value="c1/10"/>
                 <conditional name="add_column">
-                    <param name="mode" value="R" />
-                    <param name="pos" value="1" />
+                    <param name="mode" value="R"/>
+                    <param name="pos" value="1"/>
                 </conditional>
             </repeat>
             <repeat name="expressions">
-                <param name="cond" value="round(c1*10)" />
+                <param name="cond" value="round(c1*10)"/>
                 <conditional name="add_column">
-                    <param name="mode" value="I" />
-                    <param name="pos" value="1" />
+                    <param name="mode" value="I"/>
+                    <param name="pos" value="1"/>
                 </conditional>
             </repeat>
-            <output name="out_file1" file="column_maker_out4.tab" />
+            <output name="out_file1" file="column_maker_out4.tab"/>
         </test>
         <test>
             <param name="cond" value="cos(pi)+sin(tau)*c2"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <output name="out_file1" file="column_maker_out5.interval"/>
         </test>
         <!-- Test list column type in input -->
         <test>
-            <param name="input" value="bed12.bed" ftype="bed12" />
+            <param name="input" value="bed12.bed" ftype="bed12"/>
             <!-- get largest blocksize from column 11 of bed12 and use it as
             new score value -->
-            <param name="cond" value="max(map(int, c11))" />
+            <param name="cond" value="max(map(int, c11))"/>
             <conditional name="add_column">
-                <param name="mode" value="R" />
-                <param name="pos" value="5" />
+                <param name="mode" value="R"/>
+                <param name="pos" value="5"/>
             </conditional>
-            <output name="out_file1" file="bed12_modified.bed" />
+            <output name="out_file1" file="bed12_modified.bed"/>
         </test>
         <!-- Test error handling example from help section -->
         <test>
-            <param name="input" value="short_line_test.tab" ftype="tabular" />
-            <param name="cond" value="c6" />
+            <param name="input" value="short_line_test.tab" ftype="tabular"/>
+            <param name="cond" value="c6"/>
             <conditional name="add_column">
-                <param name="mode" value="R" />
-                <param name="pos" value="6" />
+                <param name="mode" value="R"/>
+                <param name="pos" value="6"/>
             </conditional>
-            <param name="fail_on_non_existent_columns" value="false" />
-            <param name="action" value="--non-computable-default" />
-            <param name="default_value" value="." />
-            <output name="out_file1" file="short_line_test_out.tab" />
+            <param name="fail_on_non_existent_columns" value="false"/>
+            <param name="action" value="--non-computable-default"/>
+            <param name="default_value" value="."/>
+            <output name="out_file1" file="short_line_test_out.tab"/>
         </test>
         <!-- Test athletes BMI calculation in presence of NA values as in
         https://training.galaxyproject.org/training-material/topics/introduction/tutorials/data-manipulation-olympics/tutorial.html#exercises-4
         -->
         <test>
-            <param name="input" value="olympics.tsv" ftype="tabular" />
-            <param name="header_lines_select" value="yes" />
-            <param name="new_column_name" value="BMI" />
-            <param name="cond" value="int(c8) / (int(c7) * int(c7)) * 10000" />
-            <param name="auto_col_types" value="false" />
-            <param name="action" value="--non-computable-default" />
-            <param name="default_value" value="NA" />
-            <output name="out_file1" file="olympics_bmi_out.tab" />
+            <param name="input" value="olympics.tsv" ftype="tabular"/>
+            <param name="header_lines_select" value="yes"/>
+            <param name="new_column_name" value="BMI"/>
+            <param name="cond" value="int(c8) / (int(c7) * int(c7)) * 10000"/>
+            <param name="auto_col_types" value="false"/>
+            <param name="action" value="--non-computable-default"/>
+            <param name="default_value" value="NA"/>
+            <output name="out_file1" file="olympics_bmi_out.tab"/>
         </test>
         <!-- Test operation used by iwc SARS-CoV-2 consensus building WF that
         turns a 3-column CHROM POS REF tabular dataset into a 3-column BED
         dataset. -->
         <test>
-            <param name="input" value="chrom_pos_ref.tab" ftype="tabular" />
+            <param name="input" value="chrom_pos_ref.tab" ftype="tabular"/>
             <repeat name="expressions">
-                <param name="cond" value="int(c2) - (len(c3) == 1)" />
+                <param name="cond" value="int(c2) - (len(c3) == 1)"/>
                 <conditional name="add_column">
-                    <param name="mode" value="R" />
-                    <param name="pos" value="2" />
+                    <param name="mode" value="R"/>
+                    <param name="pos" value="2"/>
                 </conditional>
             </repeat>
             <repeat name="expressions">
-                <param name="cond" value="int(c2) + ((len(c3) - 1) or 1)" />
+                <param name="cond" value="int(c2) + ((len(c3) - 1) or 1)"/>
                 <conditional name="add_column">
-                    <param name="mode" value="R" />
-                    <param name="pos" value="3" />
+                    <param name="mode" value="R"/>
+                    <param name="pos" value="3"/>
                 </conditional>
             </repeat>
-            <output name="out_file1" file="bed_from_chrom_pos_ref.bed" />
+            <output name="out_file1" file="bed_from_chrom_pos_ref.bed"/>
         </test>
         <!-- Test failure on expression syntax errors -->
         <test expect_failure="true">
             <param name="cond" value="c3- = c2"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <assert_stderr>
-                <has_text text="syntax error during parsing." />
+                <has_text text="syntax error during parsing."/>
             </assert_stderr>
         </test>
         <!-- Test failure on expression NameErrors -->
         <test expect_failure="true">
             <param name="cond" value="floatfloat(c3-c2)"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <assert_stderr>
-                <has_text text="name 'floatfloat' is not defined" />
+                <has_text text="name 'floatfloat' is not defined"/>
             </assert_stderr>
         </test>
         <!-- Test failure on non-existent column ref -->
         <test expect_failure="true">
             <param name="cond" value="c7 - c2"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <assert_stderr>
-                <has_text text="name 'c7' is not defined" />
+                <has_text text="name 'c7' is not defined"/>
             </assert_stderr>
         </test>
         <!-- Test failure on non-computable expression -->
         <test expect_failure="true">
             <param name="cond" value="c3 / 0"/>
-            <param name="input" value="1.bed" ftype="bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
             <assert_stderr>
-                <has_text text="division by zero" />
+                <has_text text="division by zero"/>
             </assert_stderr>
         </test>
         <!-- Test keep-non-computable prevents failure -->
         <test>
             <param name="cond" value="c3 / 0"/>
-            <param name="input" value="1.bed" ftype="bed" />
-            <param name="action" value="--keep-non-computable" />
-            <output name="out_file1" file="1.bed" />
+            <param name="input" value="1.bed" ftype="bed"/>
+            <param name="action" value="--keep-non-computable"/>
+            <output name="out_file1" file="1.bed"/>
         </test>
     </tests>
     <help><![CDATA[

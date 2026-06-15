@@ -1,17 +1,13 @@
 <tool id="amas_remove" name="AMAS remove" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
     <description>remove taxa from multiple alignments</description>
-    
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <xrefs>
         <xref type="bio.tools">amas</xref>
     </xrefs>
-
-    <expand macro="requirements" />
-    <expand macro="version_command" />
-
+    <expand macro="requirements"/>
+    <expand macro="version_command"/>
     <command detect_errors="exit_code"><![CDATA[
         #import re
         set -eu;
@@ -36,36 +32,30 @@
         --cores "\${GALAXY_SLOTS:-1}"
         $check_align
     ]]></command>
-
     <inputs>
-        <param name="input_files" type="data" format="fasta,phylip,nex" label="Sequence(s) to remove taxa" multiple="true" 
-               help="Provide pre-aligned FASTA/PHYLIP/NEXUS files (DNA or protein); mixes of unaligned reads or contigs will produce meaningless results." />
+        <param name="input_files" type="data" format="fasta,phylip,nex" label="Sequence(s) to remove taxa" multiple="true" help="Provide pre-aligned FASTA/PHYLIP/NEXUS files (DNA or protein); mixes of unaligned reads or contigs will produce meaningless results."/>
         <expand macro="output_format" label="Select output format for alignment(s) with taxa removed"/>
-        <param name="taxa_to_remove" type="text" label="Taxa to remove" 
-               help="Space-separated list of taxon names to remove (e.g., 'OTU9 OTU10 Sample_A'). Note: AMAS converts spaces to underscores and strips quotes from sequence names, so use 'Species_1' to remove a taxon named 'Species 1'.">
+        <param name="taxa_to_remove" type="text" label="Taxa to remove" help="Space-separated list of taxon names to remove (e.g., 'OTU9 OTU10 Sample_A'). Note: AMAS converts spaces to underscores and strips quotes from sequence names, so use 'Species_1' to remove a taxon named 'Species 1'.">
             <validator type="regex" message="Please provide at least one taxon name (alphanumeric, underscores, hyphens, and dots allowed)">[A-Za-z0-9_.\-]+(\s+[A-Za-z0-9_.\-]+)*</validator>
         </param>
-        <expand macro="data_type" />
-        <expand macro="check_align" />
+        <expand macro="data_type"/>
+        <expand macro="check_align"/>
     </inputs>
-
     <outputs>
-        <expand macro="collection_outputs" name="reduced_alignments" />
+        <expand macro="collection_outputs" name="reduced_alignments"/>
     </outputs>
-
     <tests>
         <test expect_num_outputs="1">
-            <param name="input_files" value="inputs/remove_input.nex" />
-            <param name="taxa_to_remove" value="OTU9 OTU10" />
-            <param name="out_format" value="nexus-int" />
-            <param name="data_type" value="dna" />
-            <param name="check_align" value="false" />
+            <param name="input_files" value="inputs/remove_input.nex"/>
+            <param name="taxa_to_remove" value="OTU9 OTU10"/>
+            <param name="out_format" value="nexus-int"/>
+            <param name="data_type" value="dna"/>
+            <param name="check_align" value="false"/>
             <output_collection name="reduced_alignments_nexus" type="list">
-                <element name="reduced_remove_input.nex-out.int-nex" file="outputs/expected_remove_filtered.int-nex" ftype="nex" />
+                <element name="reduced_remove_input.nex-out.int-nex" file="outputs/expected_remove_filtered.int-nex" ftype="nex"/>
             </output_collection>
         </test>
     </tests>
-
     <help><![CDATA[
         **What it does**
 
@@ -97,6 +87,5 @@
 
         @AMAS_SHARED_HELP@
     ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

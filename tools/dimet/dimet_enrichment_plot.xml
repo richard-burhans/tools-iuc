@@ -70,24 +70,19 @@
                 <option value="condition">Condition</option>
                 <option value="metabolite">Metabolite</option>
             </param>
-            <param name="alpha" type="float" min="0.0" max="1.0" value="1.0" label="alpha of subfig plots"
-                   help="Default value is 1."/>
-            <param name="height_subplot" type="float" min="1.0" max="15.0" value="6.4" label="height of subfig plots"
-                   help="Default value is 3."/>
-            <param name="width_subplot" type="float" min="1.0" max="15.0" value="4.0" label="width of subfig plots"
-                   help="Default value is 3."/>
-            <param name="as_grid" type="boolean" value="false" label="plot as grid"
-                   help="Default value is false."/>
-            <param name="xaxis_title" type="text" value="Time" optional="false" label="xaxis_title to add to output files" >
-            <sanitizer invalid_char="">
-                <valid initial="string.ascii_letters,string.digits">
-                    <add value="_" />
-                </valid>
-            </sanitizer>
-        </param>
+            <param name="alpha" type="float" min="0.0" max="1.0" value="1.0" label="alpha of subfig plots" help="Default value is 1."/>
+            <param name="height_subplot" type="float" min="1.0" max="15.0" value="6.4" label="height of subfig plots" help="Default value is 3."/>
+            <param name="width_subplot" type="float" min="1.0" max="15.0" value="4.0" label="width of subfig plots" help="Default value is 3."/>
+            <param name="as_grid" type="boolean" value="false" label="plot as grid" help="Default value is false."/>
+            <param name="xaxis_title" type="text" value="Time" optional="false" label="xaxis_title to add to output files">
+                <sanitizer invalid_char="">
+                    <valid initial="string.ascii_letters,string.digits">
+                        <add value="_"/>
+                    </valid>
+                </sanitizer>
+            </param>
         </section>
     </inputs>
-
     <outputs>
         <collection name="report" type="list">
             <discover_datasets pattern="__designation_and_ext__" directory="figures"/>
@@ -103,8 +98,8 @@
             <repeat name="plot_factor_list">
                 <param name="condition" value="L-Cycloserine"/>
             </repeat>
-            <param name="timepoint" value='T0,T2h'/>
-            <param name="compartments" value='cell,med'/>
+            <param name="timepoint" value="T0,T2h"/>
+            <param name="compartments" value="cell,med"/>
             <param name="metabolites_list" value="Fumaric_acid,Glycine,L-Proline"/>
             <section name="output_options">
                 <param name="alpha" value="1.0"/>
@@ -114,12 +109,11 @@
                 <param name="color_lines_by" value="condition"/>
                 <param name="figure_format" value="svg"/>
             </section>
-
             <output_collection name="report" type="list" count="6">
-                <element file="mean_enrichment-cell-Fumaric_acid.svg"  name="mean_enrichment-cell-Fumaric_acid" ftype="svg" compare="sim_size" delta="100"/>
+                <element file="mean_enrichment-cell-Fumaric_acid.svg" name="mean_enrichment-cell-Fumaric_acid" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="mean_enrichment-cell-Glycine.svg" name="mean_enrichment-cell-Glycine" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="mean_enrichment-cell-L-Proline.svg" name="mean_enrichment-cell-L-Proline" ftype="svg" compare="sim_size" delta="100"/>
-                <element file="mean_enrichment-med-Fumaric_acid.svg"  name="mean_enrichment-med-Fumaric_acid" ftype="svg" compare="sim_size" delta="100"/>
+                <element file="mean_enrichment-med-Fumaric_acid.svg" name="mean_enrichment-med-Fumaric_acid" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="mean_enrichment-med-Glycine.svg" name="mean_enrichment-med-Glycine" ftype="svg" compare="sim_size" delta="100"/>
                 <element file="mean_enrichment-med-L-Proline.svg" name="mean_enrichment-med-L-Proline" ftype="svg" compare="sim_size" delta="100"/>
             </output_collection>

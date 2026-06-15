@@ -10,7 +10,7 @@
         -i '$dist_input' 
         -o '$output'
         --verbose
-    ]]></command>  
+    ]]></command>
     <inputs>
         <param name="dist_input" type="data" format="txt" label="Input Distance Matrix" help="Input Distance Matrix"/>
     </inputs>

@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -27,8 +27,8 @@
     <inputs>
         <expand macro="input_paf"/>
         <expand macro="params_fastaList"/>
-        <param argument="--removeMismatches" type="boolean" truevalue="--removeMismatches" falsevalue="" checked="false" label="Remove mismatches" help="This will remove 'X' and '=' encodings and revert them back to 'M'"/>  
-        <expand macro="params_conditional_compression"/>  
+        <param argument="--removeMismatches" type="boolean" truevalue="--removeMismatches" falsevalue="" checked="false" label="Remove mismatches" help="This will remove 'X' and '=' encodings and revert them back to 'M'"/>
+        <expand macro="params_conditional_compression"/>
     </inputs>
     <outputs>
         <data name="out_file" format="paf" label="${tool.name} on ${on_string}">

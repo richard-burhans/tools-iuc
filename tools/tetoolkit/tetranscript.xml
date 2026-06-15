@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="tetoolkit_tetranscripts" name="TEtranscripts" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>annotates reads to genes and transposable elements</description>
     <macros>
@@ -51,7 +50,7 @@ $io.sortByPos
             <param argument="-c" type="data" format="bam" label="Control sample file"/>
         </repeat>
         <param argument="--GTF" type="data" format="gtf" label="Select file for gene annotations"/>
-        <param argument="--TE" type="data" format ="gtf" label="Select file for transposable element annotations"/>
+        <param argument="--TE" type="data" format="gtf" label="Select file for transposable element annotations"/>
         <section name="io" title="Input options" expanded="true">
             <param argument="--stranded" type="select" label="Select library type">
                 <option value="no">Library is unstranded (no)</option>
@@ -104,7 +103,6 @@ $io.sortByPos
             https://github.com/mhammell-laboratory/tetoolkit-test-data 
             https://github.com/mhammell-laboratory/TEtranscripts/issues/66
         -->
-
         <!-- #1: default -->
         <test expect_num_outputs="3">
             <repeat name="sample_rep">
@@ -127,14 +125,14 @@ $io.sortByPos
             <output name="out_gta">
                 <assert_contents>
                     <has_n_lines n="71"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                     <has_text_matching expression="TIRANT.+"/>
                 </assert_contents>
             </output>
             <output name="out_sgt">
                 <assert_contents>
                     <has_n_lines n="1"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                 </assert_contents>
             </output>
         </test>
@@ -181,7 +179,7 @@ $io.sortByPos
             <output name="out_gta">
                 <assert_contents>
                     <has_n_lines n="3"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                     <has_text_matching expression="DNAREP1.+"/>
                 </assert_contents>
             </output>
@@ -193,7 +191,7 @@ $io.sortByPos
             <output name="out_sgt">
                 <assert_contents>
                     <has_n_lines n="1"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                 </assert_contents>
             </output>
         </test>
@@ -231,7 +229,7 @@ $io.sortByPos
             <output name="out_gta">
                 <assert_contents>
                     <has_n_lines n="23"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                     <has_text_matching expression="TART.+"/>
                 </assert_contents>
             </output>
@@ -243,7 +241,7 @@ $io.sortByPos
             <output name="out_sgt">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_line line="baseMean&#009;log2FoldChange&#009;lfcSE&#009;stat&#009;pvalue&#009;padj"/>
+                    <has_line line="baseMean&#9;log2FoldChange&#9;lfcSE&#9;stat&#9;pvalue&#9;padj"/>
                     <has_text_matching expression="Gypsy12.+"/>
                 </assert_contents>
             </output>

@@ -75,7 +75,7 @@
     </outputs>
     <tests>
         <test>
-            <param name="data_input_selector" value="abundance" />
+            <param name="data_input_selector" value="abundance"/>
             <param name="abundance_file" ftype="tabular" value="rawAbundances.csv"/>
             <param name="metadata_path" ftype="tabular" value="example2_metadata.csv"/>
             <param name="correction_method" value="bonferroni"/>
@@ -89,12 +89,11 @@
                 <param name="condition" value="L-Cycloserine"/>
             </repeat>
             <output_collection name="report" type="list" count="4">
-                <element file="abundance--cell-Control-T2h-Control-T0-Tt.tsv"  name="abundance--cell-Control-T2h-Control-T0-Tt.tsv" ftype="tabular"/>
-                <element file="abundance--cell-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv"  name="abundance--cell-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
+                <element file="abundance--cell-Control-T2h-Control-T0-Tt.tsv" name="abundance--cell-Control-T2h-Control-T0-Tt.tsv" ftype="tabular"/>
+                <element file="abundance--cell-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv" name="abundance--cell-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
                 <element file="abundance--med-Control-T2h-Control-T0-Tt.tsv" name="abundance--med-Control-T2h-Control-T0-Tt.tsv" ftype="tabular"/>
                 <element file="abundance--med-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv" name="abundance--med-L-Cycloserine-T2h-L-Cycloserine-T0-Tt.tsv" ftype="tabular"/>
             </output_collection>
-
         </test>
     </tests>
     <help><![CDATA[
@@ -277,5 +276,5 @@ You can also use the minimal data examples from https://zenodo.org/record/105798
 
  ]]>
     </help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

@@ -145,9 +145,9 @@ $output_options.no_discordant
         <param argument="-query_mate" type="data" format="fasta,fasta.gz,fastqsanger,fastqsanger.gz" optional="true" label="Query mate file (optional)" help="Fasta or fastqsanger, optionally gzipped"/>
         <conditional name="db_opts">
             <param name="db_opts_selector" type="select" label="Subject database/sequences">
-              <option value="histdb" selected="true">blast database from your history</option>
-              <option value="db">Locally installed blast database</option>
-              <option value="file">fasta file from your history (see warning in the tool help section below)</option>
+                <option value="histdb" selected="true">blast database from your history</option>
+                <option value="db">Locally installed blast database</option>
+                <option value="file">fasta file from your history (see warning in the tool help section below)</option>
             </param>
             <when value="histdb">
                 <param name="histdb" type="data" format="blastdbn" label="Nucleotide blast database"/>

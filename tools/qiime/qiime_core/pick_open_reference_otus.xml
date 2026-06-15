@@ -114,10 +114,10 @@ pick_open_reference_otus.py
         <data name="otu_table_mc_w_tax" format="biom1" from_work_dir="otus/otu_table_w_tax.biom" label="${tool.name} on ${on_string}: OTU table with taxonomic assignment">
             <filter>suppress_taxonomy_assignment is False</filter>
         </data>
-        <data name="otu_table_mc_w_tax_no_pynast_failures" format="biom1" from_work_dir="otus/otu_table_w_tax_no_pynast_failures.biom"  label="${tool.name} on ${on_string}: OTU table with taxonomic assignment and without sequences failing the alignment to the OTU representative sequences">
+        <data name="otu_table_mc_w_tax_no_pynast_failures" format="biom1" from_work_dir="otus/otu_table_w_tax_no_pynast_failures.biom" label="${tool.name} on ${on_string}: OTU table with taxonomic assignment and without sequences failing the alignment to the OTU representative sequences">
             <filter>suppress_taxonomy_assignment is False and suppress_align_and_tree is False</filter>
         </data>
-        <data name="otu_table_mc_no_pynast_failures" format="biom1" from_work_dir="otus/otu_table_no_pynast_failures.biom"  label="${tool.name} on ${on_string}: OTU table without sequences failing the alignment to the OTU representative sequences">
+        <data name="otu_table_mc_no_pynast_failures" format="biom1" from_work_dir="otus/otu_table_no_pynast_failures.biom" label="${tool.name} on ${on_string}: OTU table without sequences failing the alignment to the OTU representative sequences">
             <filter>suppress_taxonomy_assignment is True and suppress_align_and_tree is False</filter>
         </data>
         <data name="rep_set_tree" format="txt" from_work_dir="otus/rep_set.tre" label="${tool.name} on ${on_string}: Representative set tree">
@@ -149,17 +149,17 @@ pick_open_reference_otus.py
             <output name="final_otu_map_mc" value="pick_open_reference_otus/1_final_otu_map_mc.txt"/>
             <output name="rep_set">
                 <assert_contents>
-                    <has_line line=">4374484 L1S8_76"></has_line>
-                    <has_text text=">New.CleanUp.ReferenceOTU6 L1S208_7"></has_text>
+                    <has_line line="&gt;4374484 L1S8_76"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU6 L1S208_7"/>
                 </assert_contents>
             </output>
             <output name="rep_set_tree" value="pick_open_reference_otus/1_rep_set_tree.tre"/>
             <output name="new_refseqs">
                 <assert_contents>
-                    <has_line line=">1109493"></has_line>
-                    <has_text text=">945028"></has_text>
-                    <has_text text=">4437874"></has_text>
-                    <has_text text=">New.CleanUp.ReferenceOTU6 L1S208_7"></has_text>
+                    <has_line line="&gt;1109493"/>
+                    <has_text text="&gt;945028"/>
+                    <has_text text="&gt;4437874"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU6 L1S208_7"/>
                 </assert_contents>
             </output>
         </test>
@@ -186,16 +186,16 @@ pick_open_reference_otus.py
             <output name="final_otu_map_mc" value="pick_open_reference_otus/2_final_otu_map_mc.txt"/>
             <output name="rep_set">
                 <assert_contents>
-                    <has_line line=">4374484 L1S8_76"></has_line>
-                    <has_text text=">New.CleanUp.ReferenceOTU6 L1S208_7"></has_text>
+                    <has_line line="&gt;4374484 L1S8_76"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU6 L1S208_7"/>
                 </assert_contents>
             </output>
             <output name="new_refseqs">
                 <assert_contents>
-                    <has_line line=">1109493"></has_line>
-                    <has_text text=">945028"></has_text>
-                    <has_text text=">4437874"></has_text>
-                    <has_text text=">New.CleanUp.ReferenceOTU6 L1S208_7"></has_text>
+                    <has_line line="&gt;1109493"/>
+                    <has_text text="&gt;945028"/>
+                    <has_text text="&gt;4437874"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU6 L1S208_7"/>
                 </assert_contents>
             </output>
         </test>
@@ -222,18 +222,18 @@ pick_open_reference_otus.py
             <output name="final_otu_map_mc" value="pick_open_reference_otus/3_final_otu_map_mc.txt"/>
             <output name="rep_set">
                 <assert_contents>
-                    <has_line line=">New.CleanUp.ReferenceOTU20 L1S8_4"></has_line>
-                    <has_text text=">New.CleanUp.ReferenceOTU21 L1S140_45"></has_text>
-                    <has_text text=">New.CleanUp.ReferenceOTU22 L1S208_15"></has_text>
+                    <has_line line="&gt;New.CleanUp.ReferenceOTU20 L1S8_4"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU21 L1S140_45"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU22 L1S208_15"/>
                 </assert_contents>
             </output>
             <output name="rep_set_tree" value="pick_open_reference_otus/3_rep_set_tree.tre"/>
             <output name="new_refseqs">
                 <assert_contents>
-                    <has_line line=">1109493"></has_line>
-                    <has_text text=">945028"></has_text>
-                    <has_text text=">4431138"></has_text>
-                    <has_text text=">New.CleanUp.ReferenceOTU22 L1S208_15"></has_text>
+                    <has_line line="&gt;1109493"/>
+                    <has_text text="&gt;945028"/>
+                    <has_text text="&gt;4431138"/>
+                    <has_text text="&gt;New.CleanUp.ReferenceOTU22 L1S208_15"/>
                 </assert_contents>
             </output>
         </test>

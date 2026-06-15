@@ -98,65 +98,45 @@
         <param argument="--proteins-fp" type="data" format="csv,tabular" label="Protein to contig mapping" help="The file should have the following headers: 'protein_id', 'contig_id' and 'keywords'."/>
         <section name="extra" title="Advanced settings" expanded="false">
             <section name="similarity" title="Protein similarity" expanded="true">
-                <param argument="--pc-evalue" type="float" value="0.0001" min="0.0001" max="1"
-                    label="E-value used by Diamond when creating the protein-protein similarity network."/>
-                <param argument="--reported-alignments" type="integer" value="25" min="1" max="100"
-                    label="Maximum number of target sequences per query to report alignments for."/>
+                <param argument="--pc-evalue" type="float" value="0.0001" min="0.0001" max="1" label="E-value used by Diamond when creating the protein-protein similarity network."/>
+                <param argument="--reported-alignments" type="integer" value="25" min="1" max="100" label="Maximum number of target sequences per query to report alignments for."/>
             </section>
             <section name="pcs" title="Protein clusters" expanded="True">
-                <param argument="--pc-inflation" type="float" value="2.0" min="1.5" max="7.0"
-                       label="Inflation parameter to define contig clusters with MCL."
-                       help="How to select the right inflation parameter for clustering? https://github.com/micans/mcl/discussions/5"/>
+                <param argument="--pc-inflation" type="float" value="2.0" min="1.5" max="7.0" label="Inflation parameter to define contig clusters with MCL." help="How to select the right inflation parameter for clustering? https://github.com/micans/mcl/discussions/5"/>
             </section>
             <section name="vcs" title="Viral clusters" expanded="true">
-                <param argument="--min-density" type="float" value="0.3" min="0.1" max="1.0"
-                       label="Minimum density of predicted complexes."
-                       help="Increase the minimum density if you get too many clusters and they seem too sparse, or decrease it if you are not getting enough clusters. "/>
-                <param argument="--min-size" type="integer" value="2" min="2" max="10"
-                       label="Minimum size for the Viral Cluster." help="Smaller clusters are discarded immediately."/>
-                <param argument="--vc-overlap" type="float" value="0.9" min="0.0" max="3.0"
-                       label="Maximum allowed overlap between two clusters."/>
-                <param argument="--vc-penalty" type="integer" value="2" min="0" max="10"
-                       label="Penalty value for the inclusion of each node in a cluster."
-                       help="It can be used to model the possibility of uncharted connections for each node, so nodes with only a single weak connection to a cluster will not be added to the cluster as the penalty value will outweigh the benefits of adding the node."/>
-                <param argument="--vc-haircut" type="float" value="0.55" min="0.0" max="1.0"
-                       label="Apply a haircut transformation to remove dangling nodes from detected clusters."/>
+                <param argument="--min-density" type="float" value="0.3" min="0.1" max="1.0" label="Minimum density of predicted complexes." help="Increase the minimum density if you get too many clusters and they seem too sparse, or decrease it if you are not getting enough clusters. "/>
+                <param argument="--min-size" type="integer" value="2" min="2" max="10" label="Minimum size for the Viral Cluster." help="Smaller clusters are discarded immediately."/>
+                <param argument="--vc-overlap" type="float" value="0.9" min="0.0" max="3.0" label="Maximum allowed overlap between two clusters."/>
+                <param argument="--vc-penalty" type="integer" value="2" min="0" max="10" label="Penalty value for the inclusion of each node in a cluster." help="It can be used to model the possibility of uncharted connections for each node, so nodes with only a single weak connection to a cluster will not be added to the cluster as the penalty value will outweigh the benefits of adding the node."/>
+                <param argument="--vc-haircut" type="float" value="0.55" min="0.0" max="1.0" label="Apply a haircut transformation to remove dangling nodes from detected clusters."/>
                 <param argument="--merge-method" type="select" label="Method used to merge highly overlapping complexes.">
-                    <option value="single"></option>
-                    <option value="multi"></option>
+                    <option value="single"/>
+                    <option value="multi"/>
                 </param>
                 <param argument="--similarity" type="select" label="Similarity function used in the merging step.">
-                    <option value="match"></option>
-                    <option value="simpson"></option>
-                    <option value="jaccard"></option>
-                    <option value="dice"></option>
+                    <option value="match"/>
+                    <option value="simpson"/>
+                    <option value="jaccard"/>
+                    <option value="dice"/>
                 </param>
                 <param argument="--seed-method" type="select" label="Seed generation method">
-                    <option value="unused_nodes"></option>
-                    <option value="nodes" selected="true"></option>
-                    <option value="edges"></option>
-                    <option value="cliques"></option>
+                    <option value="unused_nodes"/>
+                    <option value="nodes" selected="true"/>
+                    <option value="edges"/>
+                    <option value="cliques"/>
                 </param>
-                <param argument="--optimize" type="boolean" truevalue="--optimize" falsevalue=""
-                       label="Optimize hierarchical distances during second-pass of the viral clusters."/>
+                <param argument="--optimize" type="boolean" truevalue="--optimize" falsevalue="" label="Optimize hierarchical distances during second-pass of the viral clusters."/>
             </section>
             <section name="network" title="Similarity network and module" expanded="true">
-                <param argument="--sig" type="float" value="1.0" min="0" max="1.0"
-                       label="Significance threshold in the contig similarity network."/>
-                <param argument="--max-sig" type="integer" value="300" min="0" max="1000"
-                       label="Maximum significance threshold"/>
-                <param argument="--permissive" type="boolean" truevalue="--permissive" falsevalue=""
-                       label="Use permissive affiliation for associating VCs with reference sequences."/>
-                <param argument="--mod-inflation" type="float" value="5.0" min="1.5" max="7.0"
-                       label="Inflation parameter to define protein modules with MCL."/>
-                <param argument="--mod-sig" type="float" value="1.0" min="0" max="1.0"
-                       label="Significance threshold in the protein cluster similarity network."/>
-                <param argument="--mod-shared-min" type="integer" value="3" min="1" max="20"
-                       label="Minimal number of contigs a PC must appear in to be taken into account in the modules computing."/>
-                <param argument="--link-sig" type="float" value="1.0" min="0" max="1.0"
-                       label="Significance threshold to link a cluster and a module"/>
-                <param argument="--link-prop" type="float" value="0.5" min="0" max="1.0"
-                       label="Proportion of a module's PC a contig must have to be considered as displaying this module."/>
+                <param argument="--sig" type="float" value="1.0" min="0" max="1.0" label="Significance threshold in the contig similarity network."/>
+                <param argument="--max-sig" type="integer" value="300" min="0" max="1000" label="Maximum significance threshold"/>
+                <param argument="--permissive" type="boolean" truevalue="--permissive" falsevalue="" label="Use permissive affiliation for associating VCs with reference sequences."/>
+                <param argument="--mod-inflation" type="float" value="5.0" min="1.5" max="7.0" label="Inflation parameter to define protein modules with MCL."/>
+                <param argument="--mod-sig" type="float" value="1.0" min="0" max="1.0" label="Significance threshold in the protein cluster similarity network."/>
+                <param argument="--mod-shared-min" type="integer" value="3" min="1" max="20" label="Minimal number of contigs a PC must appear in to be taken into account in the modules computing."/>
+                <param argument="--link-sig" type="float" value="1.0" min="0" max="1.0" label="Significance threshold to link a cluster and a module"/>
+                <param argument="--link-prop" type="float" value="0.5" min="0" max="1.0" label="Proportion of a module's PC a contig must have to be considered as displaying this module."/>
             </section>
         </section>
         <param name="additional_outputs" type="select" multiple="true" optional="true" label="Additional (intermediary) outputs">
@@ -167,34 +147,25 @@
         </param>
     </inputs>
     <outputs>
-        <data name="genome_by_genome" format="csv" from_work_dir="Outputs/genome_by_genome_overview.csv"
-              label="${tool.name} on ${on_string}: genome_by_genome_overview.csv"/>
-        <data name="viral_cluster" format="csv" from_work_dir="Outputs/viral_cluster_overview.csv"
-              label="${tool.name} on ${on_string}: viral_cluster_overview.csv"/>
-        <data name="graph" format="tabular" from_work_dir="Outputs/c1.ntw"
-              label="${tool.name} on ${on_string}: c1.ntw"/>
-        <data name="diamond_similarity" format="tabular" from_work_dir="Outputs/*.self-diamond.tab"
-              label="${tool.name} (Diamond) on ${on_string}: protein similarity">
+        <data name="genome_by_genome" format="csv" from_work_dir="Outputs/genome_by_genome_overview.csv" label="${tool.name} on ${on_string}: genome_by_genome_overview.csv"/>
+        <data name="viral_cluster" format="csv" from_work_dir="Outputs/viral_cluster_overview.csv" label="${tool.name} on ${on_string}: viral_cluster_overview.csv"/>
+        <data name="graph" format="tabular" from_work_dir="Outputs/c1.ntw" label="${tool.name} on ${on_string}: c1.ntw"/>
+        <data name="diamond_similarity" format="tabular" from_work_dir="Outputs/*.self-diamond.tab" label="${tool.name} (Diamond) on ${on_string}: protein similarity">
             <filter>similarity['analysis'] == 'de_novo' and additional_outputs and 'similarity' in additional_outputs</filter>
         </data>
-        <data name="pc_proteins" format="csv" from_work_dir="Outputs/vConTACT_proteins.csv"
-              label="${tool.name} on ${on_string}: vConTACT_proteins.csv">
+        <data name="pc_proteins" format="csv" from_work_dir="Outputs/vConTACT_proteins.csv" label="${tool.name} on ${on_string}: vConTACT_proteins.csv">
             <filter>additional_outputs and 'keywords' in additional_outputs</filter>
         </data>
-        <data name="pc_pcs" format="csv" from_work_dir="Outputs/vConTACT_pcs.csv"
-              label="${tool.name} on ${on_string}: vConTACT_pcs.csv">
+        <data name="pc_pcs" format="csv" from_work_dir="Outputs/vConTACT_pcs.csv" label="${tool.name} on ${on_string}: vConTACT_pcs.csv">
             <filter>additional_outputs and ('keywords' in additional_outputs or 'vContact-PC' in additional_outputs or 'pc_network' in additional_outputs)</filter>
         </data>
-        <data name="pc_contigs" format="csv" from_work_dir="Outputs/vConTACT_contigs.csv"
-              label="${tool.name} on ${on_string}: vConTACT_contigs.csv">
+        <data name="pc_contigs" format="csv" from_work_dir="Outputs/vConTACT_contigs.csv" label="${tool.name} on ${on_string}: vConTACT_contigs.csv">
             <filter>additional_outputs and 'vContact-PC' in additional_outputs</filter>
         </data>
-        <data name="pc_profiles" format="csv" from_work_dir="Outputs/vConTACT_profiles.csv"
-              label="${tool.name} on ${on_string}: vConTACT_profiles.csv">
+        <data name="pc_profiles" format="csv" from_work_dir="Outputs/vConTACT_profiles.csv" label="${tool.name} on ${on_string}: vConTACT_profiles.csv">
             <filter>additional_outputs and 'vContact-PC' in additional_outputs</filter>
         </data>
-        <data name="pc_network" format="tabular" from_work_dir="Outputs/modules.ntwk"
-              label="${tool.name} on ${on_string}: modules.ntwk">
+        <data name="pc_network" format="tabular" from_work_dir="Outputs/modules.ntwk" label="${tool.name} on ${on_string}: modules.ntwk">
             <filter>additional_outputs and 'pc_network' in additional_outputs</filter>
         </data>
     </outputs>
@@ -210,47 +181,47 @@
             <param name="additional_outputs" value="similarity,keywords,vContact-PC,pc_network"/>
             <output name="genome_by_genome">
                 <assert_contents>
-                    <has_n_lines n="82" />
+                    <has_n_lines n="82"/>
                 </assert_contents>
             </output>
             <output name="viral_cluster">
                 <assert_contents>
-                    <has_n_lines n="16" />
+                    <has_n_lines n="16"/>
                 </assert_contents>
             </output>
             <output name="graph">
                 <assert_contents>
-                    <has_n_lines n="406" />
+                    <has_n_lines n="406"/>
                 </assert_contents>
             </output>
             <output name="diamond_similarity">
                 <assert_contents>
-                    <has_n_lines n="23339" />
+                    <has_n_lines n="23339"/>
                 </assert_contents>
             </output>
             <output name="pc_proteins">
                 <assert_contents>
-                    <has_n_lines n="5044" />
+                    <has_n_lines n="5044"/>
                 </assert_contents>
             </output>
             <output name="pc_pcs">
                 <assert_contents>
-                    <has_n_lines n="932" />
+                    <has_n_lines n="932"/>
                 </assert_contents>
             </output>
             <output name="pc_contigs">
                 <assert_contents>
-                    <has_n_lines n="82" />
+                    <has_n_lines n="82"/>
                 </assert_contents>
             </output>
             <output name="pc_profiles">
                 <assert_contents>
-                    <has_n_lines n="3463" />
+                    <has_n_lines n="3463"/>
                 </assert_contents>
             </output>
             <output name="pc_network">
                 <assert_contents>
-                    <has_n_lines n="8464" />
+                    <has_n_lines n="8464"/>
                 </assert_contents>
             </output>
         </test>

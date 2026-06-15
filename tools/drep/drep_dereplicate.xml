@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="biotools" />
+    <expand macro="biotools"/>
     <expand macro="requirements">
         <requirement type="package" version="1.2.3">checkm-genome</requirement>
     </expand>
@@ -36,9 +36,9 @@
     </inputs>
     <outputs>
         <collection name="dereplicated_genomes" type="list" label="dereplicated_genomes">
-             <discover_datasets pattern="__designation__" directory="outdir/dereplicated_genomes" ext='fasta'/>
+            <discover_datasets pattern="__designation__" directory="outdir/dereplicated_genomes" ext="fasta"/>
         </collection>
-        <expand macro="drep_outputs" />
+        <expand macro="drep_outputs"/>
     </outputs>
     <tests>
         <test expect_num_outputs="8">
@@ -50,7 +50,7 @@
             <expand macro="test_default_warning_options"/>
             <expand macro="test_default_select_drep_outputs"/>
             <expand macro="test_log_output">
-                <has_text text="dRep dereplicate finished" />
+                <has_text text="dRep dereplicate finished"/>
             </expand>
         </test>
         <test expect_num_outputs="8">
@@ -62,7 +62,7 @@
             <expand macro="test_default_warning_options"/>
             <expand macro="test_default_select_drep_outputs"/>
             <expand macro="test_log_output">
-                <has_text text="dRep dereplicate finished" />
+                <has_text text="dRep dereplicate finished"/>
             </expand>
         </test>
         <test expect_num_outputs="8">
@@ -74,7 +74,7 @@
             <expand macro="test_default_warning_options"/>
             <expand macro="test_default_select_drep_outputs"/>
             <expand macro="test_log_output">
-                <has_text text="dRep dereplicate finished" />
+                <has_text text="dRep dereplicate finished"/>
             </expand>
         </test>
     </tests>
@@ -113,5 +113,5 @@ The steps to this process are:
 
 
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

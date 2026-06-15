@@ -3,15 +3,12 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="edam"/>
     <expand macro="requirements"/>
-    <expand macro="creator" />
-
+    <expand macro="creator"/>
     <command detect_errors="exit_code"><![CDATA[
         python3 '${run_script}'
     ]]></command>
-
     <configfiles>
         <configfile name="run_script"><![CDATA[
 index_col = $index_col
@@ -41,7 +38,7 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
     </configfiles>
     <inputs>
         <expand macro="inputs"/>
-        <param argument="index_col" type="boolean" truevalue="0" falsevalue="None" checked="false" label="Is the first column the index?" help="Specify whether the first column of the input data should be treated as the index. If selected, the first column will not be used as data for plotting." />
+        <param argument="index_col" type="boolean" truevalue="0" falsevalue="None" checked="false" label="Is the first column the index?" help="Specify whether the first column of the input data should be treated as the index. If selected, the first column will not be used as data for plotting."/>
         <param name="has_header" type="select" display="radio" label="Does your table have a header?" help="Specify whether the input data contains a header row." refresh_on_change="true">
             <option value="0" selected="true">yes</option>
             <option value="None">no</option>
@@ -49,17 +46,17 @@ plt.savefig(f"{output_file}", format=output_format, dpi=300)
         <expand macro="transformation"/>
     </inputs>
     <outputs>
-        <data name="output_file" format="png" label="${tool.name} on ${on_string}" />
+        <data name="output_file" format="png" label="${tool.name} on ${on_string}"/>
     </outputs>
     <tests>
         <!-- Test 1: Generate a pairgrid plot with default settings -->
         <test>
-            <param name="input_data" value="mtcars.txt" />
+            <param name="input_data" value="mtcars.txt"/>
             <output name="output_file">
                 <assert_contents>
                     <has_image_channels channels="4"/>
                     <has_image_height height="8250"/>
-                    <has_image_width width="8250" />
+                    <has_image_width width="8250"/>
                     <has_image_center_of_mass center_of_mass="4143.08, 4103.67" eps="0.1"/>
                 </assert_contents>
             </output>

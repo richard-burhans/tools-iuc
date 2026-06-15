@@ -53,75 +53,71 @@
         ]]>
     </command>
     <inputs>
-        <param name="reference_sequence" type="data" format="fasta" label="Reference Sequence" help="FastA or multi-FastA" />
-        <param name="query_sequence" type="data" format="fasta" label="Query Sequence" help="FastA or multi-FastA" />
+        <param name="reference_sequence" type="data" format="fasta" label="Reference Sequence" help="FastA or multi-FastA"/>
+        <param name="query_sequence" type="data" format="fasta" label="Query Sequence" help="FastA or multi-FastA"/>
         <param name="anchoring" type="select" label="Anchoring" help="Choose a match anchoring strategy">
             <option value="">Maximal matches unique in only reference sequence (-mumreference) (Default)</option>
             <option value="-mum">Maximal matches unique in both sequences (-mum)</option>
             <option value="-maxmatch">All matches reguardless of uniqueness (-maxmatch)</option>
         </param>
-        <param name="min" type="integer" argument="-l" value="20" label="Minimum Match Length" help="Minimum length of a match. (-l)" />
+        <param name="min" type="integer" argument="-l" value="20" label="Minimum Match Length" help="Minimum length of a match. (-l)"/>
         <param name="direction" type="select" label="Direction" help="Direction of complement sequence to use">
             <option value="-b">Compute forward and reverse complement matches (-b)</option>
             <option value="-r">Compute only reverse complement matches (-r)</option>
         </param>
-        <param name="force" type="boolean" argument="-F" truevalue="-F" falsevalue="" label="Force 4 column output"
-            help="force 4 column output format regardless of the number of reference sequence inputs. (-F)" />
-        <param name="chars" type="boolean" argument="-n" truevalue="-n" falsevalue="" label="Match only the characters a, c, g, or t" help="(-n)" />
-        <param name="print_length" type="boolean" argument="-L" truevalue="-L" falsevalue="" label="Print length of query sequence in header of matches" help="(-L)" />
-        <param name="substring" type="boolean" argument="-s" truevalue="-s" falsevalue="" label= "Print first 53 characters of the matching substring" help="(-s)" />
-        <param name="position" type="boolean" argument="-c" truevalue="-c" falsevalue="" label="Position"
-            help="Report the query position of a reverse complement match relative to the forward strand of the query sequence. (-c)" />
+        <param name="force" type="boolean" argument="-F" truevalue="-F" falsevalue="" label="Force 4 column output" help="force 4 column output format regardless of the number of reference sequence inputs. (-F)"/>
+        <param name="chars" type="boolean" argument="-n" truevalue="-n" falsevalue="" label="Match only the characters a, c, g, or t" help="(-n)"/>
+        <param name="print_length" type="boolean" argument="-L" truevalue="-L" falsevalue="" label="Print length of query sequence in header of matches" help="(-L)"/>
+        <param name="substring" type="boolean" argument="-s" truevalue="-s" falsevalue="" label="Print first 53 characters of the matching substring" help="(-s)"/>
+        <param name="position" type="boolean" argument="-c" truevalue="-c" falsevalue="" label="Position" help="Report the query position of a reverse complement match relative to the forward strand of the query sequence. (-c)"/>
         <conditional name="options">
             <param name="advanced" type="select" label="Additional options">
                 <option value="defaults">Use defaults</option>
                 <option value="enable">Select additional options</option>
             </param>
-            <when value="enable" >
-                <param name="suffix" type="integer" argument="-k" value="1" label="Suffix" help="Sampled suffix positions. (-k)" />
-                <param name="suflink" type="select" label="Suflink" help="Use suffix links in the index and during search? (-suflink)" >
+            <when value="enable">
+                <param name="suffix" type="integer" argument="-k" value="1" label="Suffix" help="Sampled suffix positions. (-k)"/>
+                <param name="suflink" type="select" label="Suflink" help="Use suffix links in the index and during search? (-suflink)">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </param>
-                <param name="child" type="select" label="Child" help="Use child table in the index and during search? (-child)" >
+                <param name="child" type="select" label="Child" help="Use child table in the index and during search? (-child)">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </param>
-                <param  type="integer" argument="-skip" value="10" label="Sparsify"
-                    help="Sparsify the MEM-finding algorithm even more, performing jumps of skip*k [auto (l-10)/k]. (-skip)" />
-                <param  type="integer" argument="-kmer" value="1" label="kmer Table"
-                    help="Use kmer table containing sa-intervals (speeds up searching first k characters) in the index and during search. (-kmer)" />
+                <param type="integer" argument="-skip" value="10" label="Sparsify" help="Sparsify the MEM-finding algorithm even more, performing jumps of skip*k [auto (l-10)/k]. (-skip)"/>
+                <param type="integer" argument="-kmer" value="1" label="kmer Table" help="Use kmer table containing sa-intervals (speeds up searching first k characters) in the index and during search. (-kmer)"/>
             </when>
-            <when value="defaults" />
+            <when value="defaults"/>
         </conditional>
-        <conditional name="mumplot" >
-            <param name="plot" type="select" label="Do you want to output a 2-D dotplot of the input sequences?" >
+        <conditional name="mumplot">
+            <param name="plot" type="select" label="Do you want to output a 2-D dotplot of the input sequences?">
                 <option value="yes">YES</option>
                 <option value="no">NO</option>
             </param>
-            <when value="yes" >
-                <expand macro="mumplot_input" />
+            <when value="yes">
+                <expand macro="mumplot_input"/>
             </when>
-            <when value="no" />
+            <when value="no"/>
         </conditional>
     </inputs>
     <outputs>
-        <data name="output" format="tabular" from_work_dir="mummer.txt" label="${tool.name} on ${on_string}: alignment" />
-        <data name="png_output" format="png" from_work_dir="out.png" label="${tool.name} on ${on_string}: plot" >
+        <data name="output" format="tabular" from_work_dir="mummer.txt" label="${tool.name} on ${on_string}: alignment"/>
+        <data name="png_output" format="png" from_work_dir="out.png" label="${tool.name} on ${on_string}: plot">
             <filter>mumplot['plot'] == 'yes'</filter>
         </data>
     </outputs>
     <tests>
-        <test  expect_num_outputs="2">
-            <param name="reference_sequence" ftype="fasta" value="human_aqp3.fasta" />
-            <param name="query_sequence" ftype="fasta" value="mouse_aqp3.fasta" />
-            <param name="options|advanced" value="defaults" />
-            <param name="plot" value="yes" />
-            <output name="output" ftype="tabular" compare="diff" value="mummer.txt" />
-            <output name="png_output" ftype="png" compare="sim_size" value="plot.png" />
+        <test expect_num_outputs="2">
+            <param name="reference_sequence" ftype="fasta" value="human_aqp3.fasta"/>
+            <param name="query_sequence" ftype="fasta" value="mouse_aqp3.fasta"/>
+            <param name="options|advanced" value="defaults"/>
+            <param name="plot" value="yes"/>
+            <output name="output" ftype="tabular" compare="diff" value="mummer.txt"/>
+            <output name="png_output" ftype="png" compare="sim_size" value="plot.png"/>
         </test>
     </tests>
-   <help><![CDATA[
+    <help><![CDATA[
         This is the core program of the MUMmer package. It is the suffix-tree based match finding routine, and the main part of every MUMmer script. By default, mummer now finds maximal matches regardless of their uniqueness. Limiting the output to only unique matches can be specified by choosing alternative Anchoring strategies.
 
 **Options:**::
@@ -189,5 +185,5 @@
     --layout       Layout a .delta multiplot in an intelligible fashion, this option requires the -R -Q options
 
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

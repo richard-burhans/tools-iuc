@@ -55,7 +55,7 @@ spades.py --rnaviral
         <expand macro="pipeline_options">
             <option value="--iontorrent">Iontorrent: required when assembling IonTorrent data (--iontorrent)</option>
         </expand>
-        <expand macro="kmer" help="By default rnaSPAdes uses 2 k-mer sizes, which are automatically detected using read length (approximately one third and half of the maximal read length). We recommend not to change this parameter because smaller k-mer sizes typically result in multiple chimeric (misassembled) transcripts."/>        
+        <expand macro="kmer" help="By default rnaSPAdes uses 2 k-mer sizes, which are automatically detected using read length (approximately one third and half of the maximal read length). We recommend not to change this parameter because smaller k-mer sizes typically result in multiple chimeric (misassembled) transcripts."/>
         <expand macro="phred"/>
         <expand macro="optional_output"/>
     </inputs>
@@ -69,7 +69,7 @@ spades.py --rnaviral
         <expand macro="out_l"/>
         <expand macro="out_sc"/>
         <expand macro="out_sp"/>
-        <expand macro="out_ss"/>        
+        <expand macro="out_ss"/>
     </outputs>
     <tests>
         <!--
@@ -83,7 +83,6 @@ spades.py --rnaviral
             multiple libraries: pe#-m, pe#-s, mp#-12, mp#-1, mp#-2, mp#-<or>, mp#-s, hqmp#-12, hqmp#-1, hqmp#-2, hqmp#-s, hqmp#-<or>, nxmate#-1, nxmate-#2
             pacbio, nanopore, sanger, trusted-contigs, untrusted-contigs, tslr
         -->
-
         <!-- #1 single, interlaced, fastq.gz, default parameters -->
         <test expect_num_outputs="4">
             <conditional name="singlePaired">
@@ -93,7 +92,7 @@ spades.py --rnaviral
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="36"/>
-                    <has_text_matching expression=">EDGE\_[0-9]+\_length.+"/>
+                    <has_text_matching expression="&gt;EDGE\_[0-9]+\_length.+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -107,13 +106,13 @@ spades.py --rnaviral
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000\_cov\_.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000\_cov\_.+"/>
                 </assert_contents>
             </output>
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -138,7 +137,7 @@ spades.py --rnaviral
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="36"/>
-                    <has_text_matching expression=">EDGE.+"/>
+                    <has_text_matching expression="&gt;EDGE.+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -151,7 +150,7 @@ spades.py --rnaviral
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE.+"/>
+                    <has_text_matching expression="&gt;NODE.+"/>
                 </assert_contents>
             </output>
             <output name="out_cp">
@@ -174,8 +173,8 @@ spades.py --rnaviral
             <output name="out_cs">
                 <assert_contents>
                     <has_n_lines n="2"/>
-                    <has_text_matching expression="#name&#009;length&#009;coverage"/>
-                    <has_text_matching expression="NODE_1&#009;1000&#009;163.263933"/>
+                    <has_text_matching expression="#name&#9;length&#9;coverage"/>
+                    <has_text_matching expression="NODE_1&#9;1000&#9;163.263933"/>
                 </assert_contents>
             </output>
             <output name="out_l">
@@ -217,7 +216,7 @@ spades.py --rnaviral
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="36"/>
-                    <has_text_matching expression=">EDGE_[0-9]+_length_[0-9]+_cov_[0-9]+.[0-9]+"/>
+                    <has_text_matching expression="&gt;EDGE_[0-9]+_length_[0-9]+_cov_[0-9]+.[0-9]+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -231,13 +230,13 @@ spades.py --rnaviral
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000\_cov\_.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000\_cov\_.+"/>
                 </assert_contents>
             </output>
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -279,7 +278,7 @@ spades.py --rnaviral
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="36"/>
-                    <has_text_matching expression=">EDGE_.+"/>
+                    <has_text_matching expression="&gt;EDGE_.+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -293,13 +292,13 @@ spades.py --rnaviral
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000\_cov\_.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000\_cov\_.+"/>
                 </assert_contents>
             </output>
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>
@@ -330,7 +329,7 @@ spades.py --rnaviral
             <output name="out_ag">
                 <assert_contents>
                     <has_n_lines n="36"/>
-                    <has_text_matching expression=">EDGE_[0-9]+_length_[0-9]+_cov_[0-9]+.[0-9]+"/>
+                    <has_text_matching expression="&gt;EDGE_[0-9]+_length_[0-9]+_cov_[0-9]+.[0-9]+"/>
                 </assert_contents>
             </output>
             <output name="out_ags">
@@ -344,13 +343,13 @@ spades.py --rnaviral
             <output name="out_cn">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000\_cov\_.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000\_cov\_.+"/>
                 </assert_contents>
             </output>
             <output name="out_sc">
                 <assert_contents>
                     <has_n_lines n="18"/>
-                    <has_text_matching expression=">NODE\_1\_length\_1000.+"/>
+                    <has_text_matching expression="&gt;NODE\_1\_length\_1000.+"/>
                 </assert_contents>
             </output>
         </test>

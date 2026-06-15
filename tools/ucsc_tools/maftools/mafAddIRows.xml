@@ -9,9 +9,9 @@
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         mafAddIRows
-        $input_maf
-        $twoBitFile
-        $output_maf
+        '$input_maf'
+        '$twoBitFile'
+        '$output_maf'
         #if $nBeds
             #import re
             #for $bed in $nBeds:

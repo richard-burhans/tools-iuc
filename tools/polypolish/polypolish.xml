@@ -15,9 +15,9 @@
         ======================================*#
         #if $input.sam_data_type.sam_selector == 'single'
             #if $input.sam_data_type.single_sam.is_of_type("unsorted.bam")
-                samtools view -@ \$addthreads -h $input.sam_data_type.single_sam > input_sam &&
+                samtools view -@ \$addthreads -h '$input.sam_data_type.single_sam' > input_sam &&
             #elif $input.sam_data_type.single_sam.ext == 'sam'
-                ln -s $input.sam_data_type.single_sam input_sam &&
+                ln -s '$input.sam_data_type.single_sam' input_sam &&
             #else
                 echo "${input.sam_data_type.single_sam} not a sam/bam file"
             #end if
@@ -27,14 +27,14 @@
         ======================================*#
         #elif $input.sam_data_type.sam_selector == 'paired'
             #if $input.sam_data_type.R1_sam.is_of_type("unsorted.bam")
-                samtools view -@ \$addthreads -h $input.sam_data_type.R1_sam > sample_R1.sam &&
+                samtools view -@ \$addthreads -h '$input.sam_data_type.R1_sam' > sample_R1.sam &&
             #elif $input.sam_data_type.R1_sam.ext == 'sam'
                 ln -s '$input.sam_data_type.R1_sam' sample_R1.sam &&
             #else
                 echo "${input.sam_data_type.single_sam} not a sam/bam file"
             #end if
             #if $input.sam_data_type.R2_sam.is_of_type("unsorted.bam")
-                samtools view -@ \$addthreads -h $input.sam_data_type.R2_sam > sample_R2.sam &&
+                samtools view -@ \$addthreads -h '$input.sam_data_type.R2_sam' > sample_R2.sam &&
             #elif $input.sam_data_type.R2_sam.ext == 'sam'
                 ln -s '$input.sam_data_type.R2_sam' sample_R2.sam &&
             #else
@@ -47,9 +47,9 @@
                                             --in2 sample_R2.sam
                                             --out1 'filtered_1.sam'
                                             --out2 'filtered_2.sam' &&
-                polypolish polish input_data 'filtered_1.sam' 'filtered_2.sam' >  $polished_fasta
+                polypolish polish input_data 'filtered_1.sam' 'filtered_2.sam' >  '$polished_fasta'
             #else
-                polypolish polish input_data sample_R1.sam sample_R2.sam  >  $polished_fasta
+                polypolish polish input_data sample_R1.sam sample_R2.sam  >  '$polished_fasta'
             #end if
         #*======================================
             For multiple single-end SAM
@@ -58,9 +58,9 @@
             mkdir single_collection &&
             #for $value, $single_sam in enumerate($input.sam_data_type.single_collection):
                 #if $single_sam.is_of_type("unsorted.bam")
-                    samtools view -@ \$addthreads -h $single_sam > 'single_collection/$(single_sam.element_identifier).sam' &&
+                    samtools view -@ \$addthreads -h '$single_sam' > 'single_collection/$(single_sam.element_identifier).sam' &&
                 #elif $single_sam.ext == 'sam'
-                    ln -s $single_sam 'single_collection/$(single_sam.element_identifier).$(single_sam.ext)' &&
+                    ln -s '$single_sam' 'single_collection/$(single_sam.element_identifier).$(single_sam.ext)' &&
                 #else
                     echo "${single_sam} is not a sam/bam file"
                 #end if
@@ -104,7 +104,7 @@
             For debug file output
         ======================================*#
         #if $options.debug == 'true'
-            --debug $debug_file
+            --debug '$debug_file'
         #end if
         #*======================================
             For LOGFILE OUTPUT
@@ -112,8 +112,8 @@
         #if $options.keep_logfile == 'true'
             | tee '$logfile'
         #end if
-        ]]>
-    </command>
+        
+    ]]></command>
     <inputs>
         <section name="input" title="Input sequences" expanded="True">
             <param name="fasta_file" type="data" format="fasta" label="Select a draft genome for polishing" help="Fasta sequence to be cleaned using short-reads data"/>

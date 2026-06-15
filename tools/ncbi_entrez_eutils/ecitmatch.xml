@@ -1,15 +1,15 @@
 <tool id="ncbi_eutils_ecitmatch" name="NCBI ECitMatch" version="@WRAPPER_VERSION@" profile="@PROFILE@">
-  <description>search NCBI for citations in PubMed</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <expand macro="requirements"/>
-  <version_command>python '$__tool_directory__/ecitmatch.py' --version</version_command>
-  <command detect_errors="aggressive"><![CDATA[
+    <description>search NCBI for citations in PubMed</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements"/>
+    <version_command>python '$__tool_directory__/ecitmatch.py' --version</version_command>
+    <command detect_errors="aggressive"><![CDATA[
 python '$__tool_directory__/ecitmatch.py'
 
 #if str($input.method) == "file":
-    --file $input.citation_file
+    --file '$input.citation_file'
 #else
     #set keys = '" "'.join( [ str( $citation.key ) for $citation in $input.citations ] )
     #set journal_title = '" "'.join( [ str( $citation.key ) for $citation in $input.citations ] )
@@ -27,44 +27,41 @@ python '$__tool_directory__/ecitmatch.py'
 #end if
 
 @EMAIL_ARGUMENTS@
-> $default]]></command>
-  <inputs>
-    <conditional name="input">
-      <param name="method" type="select" label="Input method">
-        <option value="file">Load citations from a formatted table</option>
-        <option value="direct">Direct Input</option>
-      </param>
-      <when value="file">
-          <param label="Citation table" name="citation_file" type="data"
-              format="tabular" help="Columns must be in a specific order, see help documentation"/>
-      </when>
-      <when value="direct">
-        <repeat name="citations" title="Citations">
-          <param name="journal_title" type="text" label="Journal Title"
-            help="E.g. proc natl acad sci u s a" />
-          <param name="year" type="integer" label="Year" value="2000"/>
-          <param name="volume" type="integer" label="Volume" value="88"/>
-          <param name="first_page" type="integer" label="First Page" value="1"/>
-          <param name="author" type="text" label="Author's Name" />
-          <param name="key" type="text" label="Citation key"
-            help="Used to match input results to NCBI's output" />
-        </repeat>
-      </when>
-    </conditional>
-  </inputs>
-  <outputs>
-    <data format="tabular" name="default" label="ECitMatch Results"/>
-  </outputs>
-  <tests>
-    <test>
-      <conditional name="input">
-        <param name="method" value="file"/>
-        <param name="citation_file" value="ecitmatch.tsv"/>
-      </conditional>
-      <output name="default" file="ecitmatch.results.tsv" ftype="tabular"/>
-    </test>
-  </tests>
-  <help><![CDATA[
+> '$default']]></command>
+    <inputs>
+        <conditional name="input">
+            <param name="method" type="select" label="Input method">
+                <option value="file">Load citations from a formatted table</option>
+                <option value="direct">Direct Input</option>
+            </param>
+            <when value="file">
+                <param label="Citation table" name="citation_file" type="data" format="tabular" help="Columns must be in a specific order, see help documentation"/>
+            </when>
+            <when value="direct">
+                <repeat name="citations" title="Citations">
+                    <param name="journal_title" type="text" label="Journal Title" help="E.g. proc natl acad sci u s a"/>
+                    <param name="year" type="integer" label="Year" value="2000"/>
+                    <param name="volume" type="integer" label="Volume" value="88"/>
+                    <param name="first_page" type="integer" label="First Page" value="1"/>
+                    <param name="author" type="text" label="Author's Name"/>
+                    <param name="key" type="text" label="Citation key" help="Used to match input results to NCBI's output"/>
+                </repeat>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data format="tabular" name="default" label="ECitMatch Results"/>
+    </outputs>
+    <tests>
+        <test>
+            <conditional name="input">
+                <param name="method" value="file"/>
+                <param name="citation_file" value="ecitmatch.tsv"/>
+            </conditional>
+            <output name="default" file="ecitmatch.results.tsv" ftype="tabular"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 NCBI ECitMatch
 ==============
 
@@ -102,5 +99,5 @@ An example query:
 
 @DISCLAIMER@
       ]]></help>
-  <expand macro="citations"/>
+    <expand macro="citations"/>
 </tool>

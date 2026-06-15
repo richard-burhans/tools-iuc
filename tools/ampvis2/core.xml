@@ -1,5 +1,5 @@
 <tool id="ampvis2_core" name="ampvis2 core community analysis" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@" license="MIT">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -45,16 +45,16 @@
     <tests>
         <!-- defaults -->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
-            <param name="group_by" value="Period"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
+            <param name="group_by" value="Period"/>
             <output name="plot" value="AalborgWWTPs-core.pdf" ftype="pdf" compare="sim_size"/>
         </test>
         <!--multiple groups + non-default widths / heights-->
         <test expect_num_outputs="1">
-            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/> 
-            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/> 
-            <param name="group_by" value="Plant,Period"/> 
+            <param name="data" value="AalborgWWTPs.rds" ftype="ampvis2"/>
+            <param name="metadata_list" value="AalborgWWTPs-metadata.list"/>
+            <param name="group_by" value="Plant,Period"/>
             <param name="core_pct" value="90"/>
             <param name="widths" value="4"/>
             <param name="heights" value="4"/>

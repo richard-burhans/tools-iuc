@@ -5,8 +5,8 @@
     <macros>
         <import>macro.xml</import>
     </macros>
-    <expand macro='xrefs'/>
-    <expand macro="requirements" />
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
     <command detect_errors="aggressive"><![CDATA[
         mkdir output_dir &&
         mkdir temp_dir &&
@@ -44,12 +44,12 @@
         </section>
         <section name="output_files" title="Output file selection">
             <param name="output_selection" type="select" display="checkboxes" multiple="true" label="Output files selection">
-              <option value="data_json">JSON file result</option>
-              <option value="hit_fasta" selected="true">Matching sequences in the genome for plasmid</option>
-              <option value="plasmid_fasta" selected="true">Plasmid sequences discovered in the genome</option>
-              <option value="result_tsv" selected="true">Plasmid match list</option>
-              <option value="result_txt" selected="true">Plasmid match list in raw format</option>
-              <option value="logfile">Log file</option>
+                <option value="data_json">JSON file result</option>
+                <option value="hit_fasta" selected="true">Matching sequences in the genome for plasmid</option>
+                <option value="plasmid_fasta" selected="true">Plasmid sequences discovered in the genome</option>
+                <option value="result_tsv" selected="true">Plasmid match list</option>
+                <option value="result_txt" selected="true">Plasmid match list in raw format</option>
+                <option value="logfile">Log file</option>
             </param>
         </section>
     </inputs>
@@ -76,50 +76,50 @@
     <tests>
         <!--test_1 with default value and all output files for contigs -->
         <test expect_num_outputs="6">
-              <section name="input">
-                  <param name="input_file" value="contigs.fasta"/>
-                  <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
-              </section>
-              <section name="output_files">
-                  <param name="output_selection" value="data_json,hit_fasta,plasmid_fasta,result_tsv,result_txt,logfile"/>
-              </section>
-              <output name="json_file" value="test_1/data_test1.json" ftype="json" compare="sim_size"/>
-              <output name="hit_file" value="test_1/Hit_in_genome_seq_test1.fsa" ftype="fasta"/>
-              <output name="plasmid_file" value="test_1/Plasmid_seqs_test1.fsa" ftype="fasta"/>
-              <output name="result_file" value="test_1/results_tab_test1.tsv"/>
-              <output name="raw_file" value="test_1/results_test1.txt" lines_diff="2"/>
-              <output name="log_file" value="test_1/logfile_test1.log" lines_diff="7"/>
+            <section name="input">
+                <param name="input_file" value="contigs.fasta"/>
+                <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
+            </section>
+            <section name="output_files">
+                <param name="output_selection" value="data_json,hit_fasta,plasmid_fasta,result_tsv,result_txt,logfile"/>
+            </section>
+            <output name="json_file" value="test_1/data_test1.json" ftype="json" compare="sim_size"/>
+            <output name="hit_file" value="test_1/Hit_in_genome_seq_test1.fsa" ftype="fasta"/>
+            <output name="plasmid_file" value="test_1/Plasmid_seqs_test1.fsa" ftype="fasta"/>
+            <output name="result_file" value="test_1/results_tab_test1.tsv"/>
+            <output name="raw_file" value="test_1/results_test1.txt" lines_diff="2"/>
+            <output name="log_file" value="test_1/logfile_test1.log" lines_diff="7"/>
         </test>
         <!--test_2 with default value and for fastq file -->
         <test expect_num_outputs="4">
-              <section name="input">
-                  <param name="input_file" value="data.fastq.gz"/>
-                  <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
-              </section>
-              <section name="output_files">
-                  <param name="output_selection" value="data_json,result_tsv,result_txt,logfile"/>
-              </section>
-              <output name="json_file" value="test_2/data_test2.json" ftype="json" compare="sim_size"/>
-              <output name="result_file" value="test_2/results_tab_test2.tsv"/>
-              <output name="raw_file" value="test_2/results_test2.txt" lines_diff="2"/>
-              <output name="log_file" value="test_2/logfile_test2.log" lines_diff="7"/>
+            <section name="input">
+                <param name="input_file" value="data.fastq.gz"/>
+                <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
+            </section>
+            <section name="output_files">
+                <param name="output_selection" value="data_json,result_tsv,result_txt,logfile"/>
+            </section>
+            <output name="json_file" value="test_2/data_test2.json" ftype="json" compare="sim_size"/>
+            <output name="result_file" value="test_2/results_tab_test2.tsv"/>
+            <output name="raw_file" value="test_2/results_test2.txt" lines_diff="2"/>
+            <output name="log_file" value="test_2/logfile_test2.log" lines_diff="7"/>
         </test>
         <!--test_3 with default value and for fastq file -->
         <test expect_num_outputs="3">
-              <section name="input">
-                  <param name="input_file" value="contigs.fasta"/>
-                  <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
-              </section>
-              <section name="options">
-                  <param name="min_cov" value="0.2" />
-                  <param name="threshold" value="0.6"/>
-              </section>
-              <section name="output_files">
-                  <param name="output_selection" value="hit_fasta,plasmid_fasta,result_tsv"/>
-              </section>
-              <output name="hit_file" value="test_3/Hit_in_genome_seq_test3.fsa" ftype="fasta"/>
-              <output name="plasmid_file" value="test_3/Plasmid_seqs_test3.fsa" ftype="fasta"/>
-              <output name="result_file" value="test_3/results_tab_test3.tsv"/>
+            <section name="input">
+                <param name="input_file" value="contigs.fasta"/>
+                <param name="database_name" value="plasmidfinder_9002e7282dd0_2022-12-20"/>
+            </section>
+            <section name="options">
+                <param name="min_cov" value="0.2"/>
+                <param name="threshold" value="0.6"/>
+            </section>
+            <section name="output_files">
+                <param name="output_selection" value="hit_fasta,plasmid_fasta,result_tsv"/>
+            </section>
+            <output name="hit_file" value="test_3/Hit_in_genome_seq_test3.fsa" ftype="fasta"/>
+            <output name="plasmid_file" value="test_3/Plasmid_seqs_test3.fsa" ftype="fasta"/>
+            <output name="result_file" value="test_3/results_tab_test3.tsv"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -138,5 +138,5 @@
       - A log file with analysis parameters
 
     ]]></help>
-      <expand macro="citations"/>
+    <expand macro="citations"/>
 </tool>

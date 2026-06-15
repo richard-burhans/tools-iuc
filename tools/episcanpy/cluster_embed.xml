@@ -137,10 +137,10 @@ adata.write('anndata.h5ad')
                 <param name="rank_features_groupby" value="louvain" type="text" label="The key of the observations grouping to consider" help="(groupby)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value=" " />
-                            <add value="." />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value=" "/>
+                            <add value="."/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_. -]+</validator>
@@ -152,11 +152,11 @@ adata.write('anndata.h5ad')
                 <param name="rank_features_groups" value="all" type="text" label="Subset of groups, to which comparison shall be restricted" help="(groups)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -164,28 +164,28 @@ adata.write('anndata.h5ad')
                 <param name="rank_features_reference" value="rest" type="text" label="Compare each group with respect to this group" help="(reference)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
                 </param>
                 <param name="rank_features_n_features" value="100" min="1" type="integer" label="The number of features that appear in the returned tables" help="(n_features)"/>
                 <param name="rank_features_rankby_abs" type="select" label="Rank genes by the absolute value of the score, not by the score" help="(rankby_abs)">
-                    <option value="True" >True</option>
+                    <option value="True">True</option>
                     <option value="False" selected="true">False</option>
                 </param>
                 <param name="rank_features_key_added" value="rank_features_groups" type="text" label="The key in adata.uns information is saved to" help="(key_added)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -193,7 +193,7 @@ adata.write('anndata.h5ad')
                 <param name="rank_features_method" type="select" label="Method to use" help="(method)">
                     <option value="" selected="true">Auto select for ATAC</option>
                     <option value="logreg">Logistic regression</option>
-                    <option value="t-test" >t-test</option>
+                    <option value="t-test">t-test</option>
                     <option value="t-test_overestim_var">t-test_overestim_var</option>
                     <option value="wilcoxon">Wilcoxon rank sum</option>
                 </param>
@@ -214,11 +214,11 @@ adata.write('anndata.h5ad')
                 <param name="get_n_clusters_key_added" value="None" type="text" label="Variable name in obs" help="(key_added)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters,string.digits">
-                            <add value="_" />
-                            <add value="-" />
-                            <add value="." />
-                            <add value=" " />
-                            <add value="," />
+                            <add value="_"/>
+                            <add value="-"/>
+                            <add value="."/>
+                            <add value=" "/>
+                            <add value=","/>
                         </valid>
                     </sanitizer>
                     <validator type="regex">[0-9a-zA-Z_., -]+</validator>
@@ -239,7 +239,7 @@ adata.write('anndata.h5ad')
     <tests>
         <test expect_num_outputs="2">
             <!-- pp.lazy -->
-            <param name="adata" value="krumsiek11.h5ad" />
+            <param name="adata" value="krumsiek11.h5ad"/>
             <conditional name="method">
                 <param name="method" value="pp.lazy"/>
                 <param name="lazy_pp_pca" value="True"/>
@@ -255,7 +255,7 @@ adata.write('anndata.h5ad')
                 <param name="lazy_n_components" value="2"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="hidden_output">
                 <assert_contents>
@@ -263,12 +263,12 @@ adata.write('anndata.h5ad')
                     <has_text_matching expression="adata"/>
                     <has_text_matching expression="nb_pcs=5"/>
                 </assert_contents>
-            </output>   
+            </output>
             <output name="anndata_out" file="krumsiek11.pp.lazy.h5ad" ftype="h5ad" compare="sim_size"/>
         </test>
         <test expect_num_outputs="2">
             <!-- tl.rank_features -->
-            <param name="adata" value="krumsiek11.pp.lazy.tl.louvain.h5ad" />
+            <param name="adata" value="krumsiek11.pp.lazy.tl.louvain.h5ad"/>
             <conditional name="method">
                 <param name="method" value="tl.rank_features"/>
                 <param name="rank_features_groupby" value="louvain"/>
@@ -282,17 +282,17 @@ adata.write('anndata.h5ad')
                 <param name="rank_features_corr_method" value="benjamini-hochberg"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="anndata_out" file="krumsiek11.tl.rank_features.h5ad" ftype="h5ad">
                 <assert_contents>
-                    <has_h5_keys keys="obs, uns, obsm, varm, obsp" />
+                    <has_h5_keys keys="obs, uns, obsm, varm, obsp"/>
                 </assert_contents>
             </output>
         </test>
         <test expect_num_outputs="2">
             <!-- tl.get_n_clusters -->
-            <param name="adata" value="krumsiek11.pp.lazy.tl.louvain.h5ad" />
+            <param name="adata" value="krumsiek11.pp.lazy.tl.louvain.h5ad"/>
             <conditional name="method">
                 <param name="method" value="tl.get_n_clusters"/>
                 <param name="get_n_clusters_n_clusters" value="3"/>
@@ -305,31 +305,31 @@ adata.write('anndata.h5ad')
                 </conditional>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="anndata_out" file="krumsiek11.tl.get_n_clusters.h5ad" ftype="h5ad"/>
         </test>
         <test expect_num_outputs="2">
-        <!-- tl.kmeans -->
-            <param name="adata" value="krumsiek11.pp.lazy.h5ad" />
+            <!-- tl.kmeans -->
+            <param name="adata" value="krumsiek11.pp.lazy.h5ad"/>
             <conditional name="method">
                 <param name="method" value="tl.kmeans"/>
                 <param name="kmeans_num_clusters" value="14"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="anndata_out" file="krumsiek11.tl.kmeans.h5ad" ftype="h5ad"/>
         </test>
         <test expect_num_outputs="2">
-        <!-- tl.hc -->
-            <param name="adata" value="krumsiek11.pp.lazy.h5ad" />
+            <!-- tl.hc -->
+            <param name="adata" value="krumsiek11.pp.lazy.h5ad"/>
             <conditional name="method">
                 <param name="method" value="tl.hc"/>
                 <param name="hc_num_clusters" value="14"/>
             </conditional>
             <section name="advanced_common">
-                <param name="show_log" value="true" />
+                <param name="show_log" value="true"/>
             </section>
             <output name="anndata_out" file="krumsiek11.tl.hc.h5ad" ftype="h5ad"/>
         </test>

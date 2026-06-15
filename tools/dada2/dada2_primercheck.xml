@@ -1,5 +1,5 @@
 <tool id="dada2_primerCheck" name="dada2: primer check" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -88,7 +88,6 @@ write.table(df, "$out", quote=F, sep="\t", row.names = F, col.names = T)
                     </collection>
                 </param>
             </conditional>
-
             <param name="forward_primer" value="ACCTGCGGARGGATCA"/>
             <param name="reverse_primer" value="GAGATCCRTTGYTRAAAGTT"/>
             <output name="out">
@@ -114,7 +113,6 @@ write.table(df, "$out", quote=F, sep="\t", row.names = F, col.names = T)
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 Description
 ...........

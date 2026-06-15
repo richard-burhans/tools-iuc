@@ -21,11 +21,11 @@
             -i '$i'
             #if $input_type.m
                 $input_type.m &&
-                mv summary.kegg_contigs* $kegg_contig_table
+                mv summary.kegg_contigs* '$kegg_contig_table'
             #end if
         #end if
         &&
-        mv summary.kegg_pathways* $kegg_pathways_table
+        mv summary.kegg_pathways* '$kegg_pathways_table'
     ]]></command>
     <inputs>
         <conditional name="input_type">

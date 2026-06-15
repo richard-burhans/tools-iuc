@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="seqtk_dropse" name="seqtk_dropse" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="22.05">
     <description>drop unpaired from interleaved Paired End FASTA/Q</description>
     <macros>
@@ -79,5 +78,5 @@ This tool will remove the offending reads (test-4/1), leaving just the paired da
 
 @ATTRIBUTION@
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

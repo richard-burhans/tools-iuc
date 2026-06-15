@@ -8,8 +8,8 @@
         <requirement type="package" version="@TOOL_VERSION@">lcr_genie</requirement>
     </requirements>
     <stdio>
-        <regex match="WARNING:" level="warning" />
-        <regex match="ERROR:" level="fatal" />
+        <regex match="WARNING:" level="warning"/>
+        <regex match="ERROR:" level="fatal"/>
     </stdio>
     <command detect_errors="exit_code"><![CDATA[
         python -m lcr_genie
@@ -19,21 +19,21 @@
         && mv 'out.xlsx' '$LCR_output'
     ]]></command>
     <inputs>
-        <param name="LCR_input" type="data" format="xml" label="Constructs" help="SBOL file containing constructs designs and sequences" />
+        <param name="LCR_input" type="data" format="xml" label="Constructs" help="SBOL file containing constructs designs and sequences"/>
         <section name="adv" title="Advanced Options" expanded="false">
             <param name="melting_temp" value="60.0" type="float" label="Melting temperature" help="Target melting temperature for the bridging oligos"/>
         </section>
     </inputs>
     <outputs>
-        <data name="LCR_output" format="xlsx" label="LCR Genie: Assembly Plan" />
+        <data name="LCR_output" format="xlsx" label="LCR Genie: Assembly Plan"/>
     </outputs>
     <tests>
         <test>
-        <!-- test 1: check if identical outputs are produced with default parameters  -->
-            <param name="LCR_input" value="LCR_input_lycopene.xml" />
-            <output name="LCR_output" >
+            <!-- test 1: check if identical outputs are produced with default parameters  -->
+            <param name="LCR_input" value="LCR_input_lycopene.xml"/>
+            <output name="LCR_output">
                 <assert_contents>
-                    <has_size value="58196" delta="100" />
+                    <has_size value="58196" delta="100"/>
                 </assert_contents>
             </output>
         </test>
@@ -72,7 +72,7 @@ License
 
     ]]></help>
     <creator>
-        <person givenName="Neil" familyName="Swainston" identifier="https://orcid.org/0000-0001-7020-1236" />
-        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847" />
+        <person givenName="Neil" familyName="Swainston" identifier="https://orcid.org/0000-0001-7020-1236"/>
+        <person givenName="Joan" familyName="Hérisson" email="joan.herisson@univ-evry.fr" identifier="https://orcid.org/0000-0001-9741-0847"/>
     </creator>
 </tool>

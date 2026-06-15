@@ -1,5 +1,5 @@
 <tool id="vsnp_get_snps" name="vSNP: get SNPs" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
-    <description></description>
+    <description/>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -340,7 +340,7 @@ $all_isolates
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 **What it does**
 
 Accepts a zero coverage VCF file produced by the **vSNP: add zero coverage** tool (or a collection of them) along with a collection
@@ -377,7 +377,6 @@ quality score is less than or equal to the minimum quality score N value for all
  * **Minimum quality score N value for alleles** - If none of the avove 3 requirements is met and the quality score is less than or equal to the minimum quality score N value for alleles, the allele is marked "N" (150 is optimal).
  * **Use Excel file for grouping and filtering?** - select Yes to filter desired SNP positions by group.  A cached Excel spreadsheet provides the most widely used SNP positions for grouping, but a custom spreadhseet can be selected from the current history.
  * **Create a group containing all isolates?** - select Yes to output an additional group containing of all isolates.
-</help>
+]]></help>
     <expand macro="citations"/>
 </tool>
-

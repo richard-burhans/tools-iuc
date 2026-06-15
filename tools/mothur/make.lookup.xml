@@ -61,7 +61,8 @@ echo 'make.lookup(
         <data name="lookup_out" format="txt" from_work_dir="flow*.lookup" label="${tool.name} on ${on_string}: lookup"/>
     </outputs>
     <tests>
-        <test><!-- test with defaults -->
+        <test>
+            <!-- test with defaults -->
             <param name="source" value="hist"/>
             <param name="template" value="HMP_MOCK.v35.align" ftype="mothur.align"/>
             <param name="flow" value="testflow.flow" ftype="mothur.sff.flow"/>
@@ -74,13 +75,16 @@ echo 'make.lookup(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test sanitizers -->
+        <test>
+            <!-- test sanitizers -->
             <param name="source" value="hist"/>
             <param name="template" value="HMP_MOCK.v35.align" ftype="mothur.align"/>
             <param name="flow" value="testflow.flow" ftype="mothur.sff.flow"/>
             <param name="error" value="Mock_S280_L001_R1_001_small.trim.contigs.good.error.summary" ftype="tabular"/>
-            <param name="barcode" value="XAXAXCXCXGXTXGXTXC"/><!-- should be converted to default value -->
-            <param name="key" value="XTXCXAXGX"/><!-- should be converted to default value -->
+            <param name="barcode" value="XAXAXCXCXGXTXGXTXC"/>
+            <!-- should be converted to default value -->
+            <param name="key" value="XTXCXAXGX"/>
+            <!-- should be converted to default value -->
             <output name="lookup_out" ftype="txt">
                 <assert_contents>
                     <has_line_matching expression="^(-?[(\d\.|nan)]+\t?)+$"/>

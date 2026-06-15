@@ -5,7 +5,6 @@
     </macros>
     <expand macro="xrefs"/>
     <expand macro="requirements"/>
-    
     <command detect_errors="exit_code"><![CDATA[
         
         mkdir -p ./tmp_ppanggolin/msa &&
@@ -43,11 +42,8 @@
         #end if     
         
     ]]></command>
-
     <inputs>
-    
         <expand macro="inputs_pangenome"/>
-
         <conditional name="input_choose_partition">
             <param argument="--partition" name="choice_partition" type="select" label="Partition">
                 <option value="core" selected="true">Core</option>
@@ -68,27 +64,20 @@
             <when value="accessory"/>
             <when value="all"/>
         </conditional>
-
         <param argument="--source" name="choice_source" type="select" label="Source">
             <option value="protein" selected="true">Protein</option>
             <option value="dna">DNA</option>
         </param>
-        
         <param argument="--phylo" name="do_phylo" type="boolean" checked="true" label="Writes a whole genome msa file (fasta format) for additional phylogenetic analysis (recommended)" truevalue="--phylo" falsevalue=""/>
-
         <param argument="--single_copy" name="do_single_copy" type="boolean" checked="false" label="Report gene families that are considered 'single copy'" truevalue="--single_copy" falsevalue=""/>
-
         <expand macro="inputs_translation_table"/>
-        
     </inputs>
-
     <outputs>
-        <data name="archive_msa_partition_source" format="tar.gz" label="PPanGGOLiN msa on ${on_string}: archive msa ${choice_partition} ${choice_source}" />
-        <data name="partition_genome_alignment" format="fasta" label="PPanGGOLiN msa on ${on_string}: ${choice_partition} genome alignment" >
-          <filter>do_phylo is True</filter>
+        <data name="archive_msa_partition_source" format="tar.gz" label="PPanGGOLiN msa on ${on_string}: archive msa ${choice_partition} ${choice_source}"/>
+        <data name="partition_genome_alignment" format="fasta" label="PPanGGOLiN msa on ${on_string}: ${choice_partition} genome alignment">
+            <filter>do_phylo is True</filter>
         </data>
     </outputs>
-
     <tests>
         <test expect_num_outputs="2">
             <param name="choice_partition" value="core"/>
@@ -97,16 +86,13 @@
             <param name="do_single_copy" value="false"/>
             <param name="pangenome_h5" value="h5/test_data.h5" ftype="h5"/>
             <param name="translation_table" value="1"/>
-            
-            <output name="partition_genome_alignment" >
+            <output name="partition_genome_alignment">
                 <assert_contents>
-                    <has_text text=">" />
+                    <has_text text="&gt;"/>
                 </assert_contents>
             </output>
-            
         </test>
     </tests>
-        
     <help><![CDATA[
     
         PPanGGOLiN_ (Gautreau et al. 2020) is a software suite used to create and manipulate prokaryotic pangenomes from a set of either assembled 
@@ -120,8 +106,5 @@
         .. _documentation: https://ppanggolin.readthedocs.io/en/latest/user/MSA.html
         
     ]]></help>
-
     <expand macro="citation"/>
-    
 </tool>
-

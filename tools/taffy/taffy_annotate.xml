@@ -3,7 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/> 
+    <expand macro="requirements"/>
     <expand macro="stdio"/>
     <command detect_errors="aggressive">
         <![CDATA[
@@ -28,7 +28,7 @@
         @COMPRESS_TAF@
     ]]></command>
     <inputs>
-        <expand macro="input_taf"/> 
+        <expand macro="input_taf"/>
         <param name="input_wig" type="data" format="wig" label="Wiggle file"/>
         <param argument="--tagName" type="text" optional="false" label="Tag name" help="This tag name becomes the key for every annotation added from the Wiggle file"/>
         <param argument="--refPrefix" type="text" optional="true" label="Reference prefix" help="Specify a string that is prepended to every chromosome name read from the Wiggle file before looking it up in the TAF file"/>

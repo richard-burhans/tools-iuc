@@ -1,12 +1,9 @@
 <tool id="ebi_search_rest_results" name="EBI Search" version="0.1.1">
     <description>to obtain search results on resources and services hosted at the EBI</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
-    <expand macro="requirements" />
-
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         #set $queries=''
         #set $sep=''
@@ -36,91 +33,87 @@
             '$searched_domain.fields'
             > '$search_results'
     ]]></command>
-
     <inputs>
-        <expand macro="inputs" />
+        <expand macro="inputs"/>
     </inputs>
-
     <outputs>
-        <data name="search_results" format="tabular" label="${tool.name} on ${searched_domain.domain}" />
+        <data name="search_results" format="tabular" label="${tool.name} on ${searched_domain.domain}"/>
     </outputs>
-
     <tests>
         <test>
             <conditional name="searched_domain">
-                <param name="domain" value="metagenomics_runs" />
-                <param name="fields" value="id,experiment_type" />
+                <param name="domain" value="metagenomics_runs"/>
+                <param name="fields" value="id,experiment_type"/>
                 <repeat name="queries">
-                    <param name="combination_operation" value="AND" />
-                    <param name="query_field" value="biome" />
+                    <param name="combination_operation" value="AND"/>
+                    <param name="query_field" value="biome"/>
                     <conditional name="comp_operation">
-                        <param name="operation" value="equal" />
-                        <param name="query_text" value="fecal" />
+                        <param name="operation" value="equal"/>
+                        <param name="query_text" value="fecal"/>
                     </conditional>
                 </repeat>
             </conditional>
             <output name="search_results">
                 <assert_contents>
-                    <has_line_matching expression="^ERR1297578.*" />
-                    <has_line_matching expression="^ERR1297598.*" />
-                    <has_line_matching expression="^ERR1297534.*" />
+                    <has_line_matching expression="^ERR1297578.*"/>
+                    <has_line_matching expression="^ERR1297598.*"/>
+                    <has_line_matching expression="^ERR1297534.*"/>
                 </assert_contents>
             </output>
         </test>
         <test>
             <conditional name="searched_domain">
-                <param name="domain" value="metagenomics_runs" />
-                <param name="fields" value="id,experiment_type" />
+                <param name="domain" value="metagenomics_runs"/>
+                <param name="fields" value="id,experiment_type"/>
                 <repeat name="queries">
-                    <param name="combination_operation" value="AND" />
-                    <param name="query_field" value="project_name" />
+                    <param name="combination_operation" value="AND"/>
+                    <param name="query_field" value="project_name"/>
                     <conditional name="comp_operation">
-                        <param name="operation" value="not" />
-                        <param name="query_text" value="cheese" />
-                        <param name="not_query_text" value="microb" />
+                        <param name="operation" value="not"/>
+                        <param name="query_text" value="cheese"/>
+                        <param name="not_query_text" value="microb"/>
                     </conditional>
                 </repeat>
             </conditional>
             <output name="search_results">
                 <assert_contents>
-                    <has_line_matching expression="^SRR1205272.*" />
-                    <has_line_matching expression="^ERR364233, ERR364234.*" />
-                    <has_line_matching expression="^SRR2126380.*" />
+                    <has_line_matching expression="^SRR1205272.*"/>
+                    <has_line_matching expression="^ERR364233, ERR364234.*"/>
+                    <has_line_matching expression="^SRR2126380.*"/>
                 </assert_contents>
             </output>
         </test>
         <test>
             <conditional name="searched_domain">
-                <param name="domain" value="metagenomics_runs" />
-                <param name="fields" value="id,experiment_type" />
+                <param name="domain" value="metagenomics_runs"/>
+                <param name="fields" value="id,experiment_type"/>
                 <repeat name="queries">
-                    <param name="combination_operation" value="AND" />
-                    <param name="query_field" value="biome" />
+                    <param name="combination_operation" value="AND"/>
+                    <param name="query_field" value="biome"/>
                     <conditional name="comp_operation">
-                        <param name="operation" value="equal" />
-                        <param name="query_text" value="marine" />
+                        <param name="operation" value="equal"/>
+                        <param name="query_text" value="marine"/>
                     </conditional>
                 </repeat>
                 <repeat name="queries">
-                    <param name="combination_operation" value="AND" />
-                    <param name="query_field" value="depth" />
+                    <param name="combination_operation" value="AND"/>
+                    <param name="query_field" value="depth"/>
                     <conditional name="comp_operation">
-                        <param name="operation" value="range" />
-                        <param name="min" value="0" />
-                        <param name="max" value="200" />
+                        <param name="operation" value="range"/>
+                        <param name="min" value="0"/>
+                        <param name="max" value="200"/>
                     </conditional>
                 </repeat>
             </conditional>
             <output name="search_results">
                 <assert_contents>
-                    <has_line_matching expression="^ERR1328127.*" />
-                    <has_line_matching expression="^ERR1328123.*" />
-                    <has_line_matching expression="^ERR1709244.*" />
+                    <has_line_matching expression="^ERR1328127.*"/>
+                    <has_line_matching expression="^ERR1328123.*"/>
+                    <has_line_matching expression="^ERR1709244.*"/>
                 </assert_contents>
             </output>
         </test>
     </tests>
-
     <help><![CDATA[
 **What it does**
 
@@ -135,6 +128,5 @@ EBI Search, also named as 'EB-eye', is a scalable search engine that:
 
 Here, sample clients provided by EBI is used
     ]]></help>
-
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

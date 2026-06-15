@@ -156,15 +156,14 @@ seurat_obj<-RunUMAP(
                     <expand macro="valid_name"/>
                 </param>
                 <param name="reduction_key" type="text" value="PC_" label="Dimensional reduction key" help="specifies the string before the number for the dimension names (reduction.key)">
-                        <expand macro="valid_reduction_key"/>
+                    <expand macro="valid_reduction_key"/>
                 </param>
                 <conditional name="print_pcs">
                     <param name="print_pcs" type="select" label="Output list of top genes">
                         <option value="false" selected="true">No</option>
                         <option value="true">Yes</option>
                     </param>
-                    <when value="false">
-                    </when>
+                    <when value="false"/>
                     <when value="true">
                         <param argument="dims" type="integer" value="5" label="Number of PCs to print genes for"/>
                         <param argument="nfeatures" type="integer" value="5" label="Number of top genes to print for each PC"/>
@@ -197,10 +196,8 @@ seurat_obj<-RunUMAP(
                         <option value="uwot-learn">uwot-learn</option>
                         <option value="umap-learn">umap-learn</option>
                     </param>
-                    <when value="uwot">
-                    </when>
-                    <when value="uwot-learn">
-                    </when>
+                    <when value="uwot"/>
+                    <when value="uwot-learn"/>
                     <when value="umap-learn">
                         <conditional name="densmap">
                             <param argument="densmap" type="select" label="Use the density-augmented objective of densMAP">
@@ -212,8 +209,7 @@ seurat_obj<-RunUMAP(
                                 <param name="dens_frac" type="float" optional="true" min="0" max="1" value="0.3" label="Control the fraction of epochs where density-augmented objective is used in densMAP" help="(dens.frac)"/>
                                 <param name="dens_var_shift" type="float" optional="true" value="0.1" label="Constant to add to variance of local radii when calculating density correlation objective" help="(dens.var.shift)"/>
                             </when>
-                            <when value="FALSE">
-                            </when>
+                            <when value="FALSE"/>
                         </conditional>
                     </when>
                 </conditional>
@@ -263,7 +259,7 @@ seurat_obj<-RunUMAP(
                     <param name="negative_sample_rate" type="integer" value="5" label="Number of negative samples to select per positive sample during optimization" help="(negative.sample.rate)"/>
                     <param argument="a" type="text" optional="true" value="" label="Parameter 'a' of differentiable approximation of right adjoint functor" help="automatically set if left empty"/>
                     <param argument="b" type="text" optional="true" value="" label="Parameter 'b' of differentiable approximation of right adjoint functor" help="automatically set if left empty"/>
-                    <param name="uwot_sgd" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked ="false" label="Set uwot::umap(fast_sgd = TRUE)" help="(uwot.sgd)"/>
+                    <param name="uwot_sgd" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Set uwot::umap(fast_sgd = TRUE)" help="(uwot.sgd)"/>
                     <param name="seed_use" type="integer" value="42" label="Set a random seed" help="(seed.use)"/>
                     <param name="angular_rp_forest" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Use an angular random projection forest to initialise nearest neighbors" help="(angular.rp.forest)"/>
                     <param name="reduction_name" type="text" value="umap" label="Name for dimensional reduction" help="(reduction.name)">
@@ -334,7 +330,7 @@ seurat_obj<-RunUMAP(
                 </assert_contents>
             </output>
         </test>
-                <test expect_num_outputs="2">
+        <test expect_num_outputs="2">
             <!-- test3: RuntSNE with FIt-SNE -->
             <param name="seurat_rds" location="https://zenodo.org/records/13732784/files/clusters.rds"/>
             <conditional name="method">

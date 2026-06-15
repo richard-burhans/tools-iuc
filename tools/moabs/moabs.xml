@@ -115,7 +115,6 @@
             maxDistConsDmcs=$mcomp_advanced.maxDistConsDmcs
         </configfile>
     </configfiles>
-
     <inputs>
         <conditional name="reference_source">
             <param name="reference_source_selector" type="select" label="Will you select a reference genome from your history or use a cache FASTA?" help="Cached FASTA">
@@ -125,13 +124,13 @@
             <when value="cached">
                 <param name="ref_file" type="select" label="Using reference genome" help="Select genome from the list">
                     <options from_data_table="all_fasta">
-                        <filter type="sort_by" column="2" />
-                        <validator type="no_options" message="No genome FASTA are available" />
+                        <filter type="sort_by" column="2"/>
+                        <validator type="no_options" message="No genome FASTA are available"/>
                     </options>
                 </param>
             </when>
             <when value="history">
-                <param name="ref_file" type="data" format="fasta" label="Use the following dataset as the reference sequence" help="You can upload a FASTA sequence to the history and use it as reference" />
+                <param name="ref_file" type="data" format="fasta" label="Use the following dataset as the reference sequence" help="You can upload a FASTA sequence to the history and use it as reference"/>
             </when>
         </conditional>
         <repeat name="g1_fastq" title="Group1: fastq files" min="1">
@@ -190,7 +189,7 @@
             </conditional>
             <param argument="-w" type="integer" value="1000" min="0" max="1000" label="Maximum number of equal best hits to count" help="Maximum number of equal best hits to count. When multiple mapping occurs for a read, it should control the number of records to report. Default: 1000."/>
             <param argument="-D" type="text" label="Restriction enzyme digestion sites for RRBS mode" help="For RRBS data, this option activates RRBS mapping mode and set restriction enzyme digestion sites. Digestion position marked by '-', example: -D C-CGG for MspI digestion.  default: none (WGBS mode).">
-              <validator type="regex" message="Use A/T/C/G/- for restriction enzyme digestion sites">^[ATCG-]*$</validator>
+                <validator type="regex" message="Use A/T/C/G/- for restriction enzyme digestion sites">^[ATCG-]*$</validator>
             </param>
             <param argument="-S" type="integer" value="0" label="Random seed" help="Seed for random number generation used in selecting multiple hits. Other seed values generate pseudo random number based on read index number, to allow reproducible mapping results. Default=0 (get seed from system clock, mapping results not resproducible)."/>
             <param argument="-n" type="boolean" truevalue="1" falsevalue="0" checked="true" label="Mapping to four strands?" help="Yes: map SE or PE reads to all 4 strands, i.e. ++, +-, -+, --; No: only map to 2 forward strands, i.e. BSW(++) and BSC(-+). For example, for a traditional library construction, two forward strands, ++ and -+, are sufficient for alignments. However, a Pico library construction needs all four-strand mappings."/>
@@ -199,9 +198,9 @@
                 <option value="33" selected="true">Sanger</option>
                 <option value="64">Illumina</option>
             </param>
-            <param argument="-f" type="integer" value="5" min="0" label="Maximum number of Ns in a read to filter out" help="To filter out low-quality reads containing >n Ns. Default=5."/>
+            <param argument="-f" type="integer" value="5" min="0" label="Maximum number of Ns in a read to filter out" help="To filter out low-quality reads containing &gt;n Ns. Default=5."/>
             <param argument="-A" type="text" label="3' adapter sequence to trim" help="To trim 3' adapter sequence. Default: none (no trim).">
-              <validator type="regex" message="Use A/T/C/G for adapter sequences, and the length should be greater equal to 12 bases.">^[ATCG]{12,}$|^$</validator>
+                <validator type="regex" message="Use A/T/C/G for adapter sequences, and the length should be greater equal to 12 bases.">^[ATCG]{12,}$|^$</validator>
             </param>
             <param argument="-r" type="select" label="How to report repeat hits" help="0=none(unique hit/pair); 1=random one; 2=all(slow). When input reads coverage is high, it is suggested to report only unique hits (r=0). For a low-depth library, a random one from multiple mappings (r=1), or all multiple mappings (r=2) can be specified to increase read coverage, yet be cautious about bias caused by ambiguous mappings.">
                 <option value="0" selected="true">0</option>
@@ -281,11 +280,11 @@
         </data>
         <collection name="output_collection_bam" type="list" label="BAM files">
             <filter> "4" in output_selector </filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;.+\.bam$)" ext='bam'/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.+\.bam$)" ext="bam"/>
         </collection>
         <collection name="output_collection_bed" type="list" label="Methylation calling BED files">
             <filter> "5" in output_selector </filter>
-            <discover_datasets pattern="(?P&lt;designation&gt;g[12]\.G\.bed$)" ext='interval'/>
+            <discover_datasets pattern="(?P&lt;designation&gt;g[12]\.G\.bed$)" ext="interval"/>
         </collection>
     </outputs>
     <tests>
@@ -382,8 +381,8 @@
                     <param name="fastq_input_selector" value="paired_collection"/>
                     <param name="fastq_input1">
                         <collection type="paired">
-                            <element name="forward" value="6_all_1.fq.gz" />
-                            <element name="reverse" value="6_all_2.fq.gz" />
+                            <element name="forward" value="6_all_1.fq.gz"/>
+                            <element name="reverse" value="6_all_2.fq.gz"/>
                         </collection>
                     </param>
                 </conditional>
@@ -393,8 +392,8 @@
                     <param name="fastq_input_selector" value="paired_collection"/>
                     <param name="fastq_input1">
                         <collection type="paired">
-                            <element name="forward" value="8_all_1.fq.gz" />
-                            <element name="reverse" value="8_all_2.fq.gz" />
+                            <element name="forward" value="8_all_1.fq.gz"/>
+                            <element name="reverse" value="8_all_2.fq.gz"/>
                         </collection>
                     </param>
                 </conditional>

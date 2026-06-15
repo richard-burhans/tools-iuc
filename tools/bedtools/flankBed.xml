@@ -3,9 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="bio_tools" />
-    <expand macro="requirements" />
-    <expand macro="stdio" />
+    <expand macro="bio_tools"/>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
     <command><![CDATA[
 flankBed
 $pct
@@ -23,35 +23,31 @@ $strand
     ]]></command>
     <inputs>
         <param name="input" argument="-i" type="data" format="@STD_BEDTOOLS_INPUTS@" label="@STD_BEDTOOLS_INPUT_LABEL@ file"/>
-        <expand macro="input_conditional_genome_file" />
-        <param argument="-pct" type="boolean" truevalue="-pct" falsevalue="" checked="false"
-            label="Define -l and -r as a fraction of the feature’s length"
-            help="E.g. if used on a 1000bp feature, -l 0.50, will add 500 bp “upstream”" />
-        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false"
-            label="Define -l and -r based on strand"
-            help="For example, if used, -l 500 for a negative-stranded feature, it will add 500 bp to the end coordinate" />
-        <expand macro="addition" />
+        <expand macro="input_conditional_genome_file"/>
+        <param argument="-pct" type="boolean" truevalue="-pct" falsevalue="" checked="false" label="Define -l and -r as a fraction of the feature’s length" help="E.g. if used on a 1000bp feature, -l 0.50, will add 500 bp “upstream”"/>
+        <param name="strand" argument="-s" type="boolean" truevalue="-s" falsevalue="" checked="false" label="Define -l and -r based on strand" help="For example, if used, -l 500 for a negative-stranded feature, it will add 500 bp to the end coordinate"/>
+        <expand macro="addition"/>
     </inputs>
     <outputs>
-        <data name="output" format_source="input" metadata_source="input" />
+        <data name="output" format_source="input" metadata_source="input"/>
     </outputs>
     <tests>
         <test>
-            <param name="input" value="a.bed" ftype="bed" />
-            <param name="genome_file_opts|genome_file_opts_selector" value="hist" />
+            <param name="input" value="a.bed" ftype="bed"/>
+            <param name="genome_file_opts|genome_file_opts_selector" value="hist"/>
             <param name="genome_file_opts|genome" value="mm9_chr1.len" ftype="tabular"/>
             <param name="addition|addition_select" value="b"/>
             <param name="addition|b" value="5"/>
-            <output name="output" file="flankBed_result1.bed" ftype="bed" />
+            <output name="output" file="flankBed_result1.bed" ftype="bed"/>
         </test>
         <test>
-            <param name="input" value="a.bed" ftype="bed" />
-            <param name="genome_file_opts|genome_file_opts_selector" value="hist" />
+            <param name="input" value="a.bed" ftype="bed"/>
+            <param name="genome_file_opts|genome_file_opts_selector" value="hist"/>
             <param name="genome_file_opts|genome" value="mm9_chr1.len" ftype="tabular"/>
             <param name="addition|addition_select" value="lr"/>
             <param name="addition|l" value="2"/>
             <param name="addition|r" value="3"/>
-            <output name="output" file="flankBed_result2.bed" ftype="bed" />
+            <output name="output" file="flankBed_result2.bed" ftype="bed"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -69,5 +65,5 @@ If you need this data for any genome that is at UCSC (http://genome.ucsc.edu), i
 
 @REFERENCES@
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

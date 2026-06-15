@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tool id="seqtk_subseq" name="seqtk_subseq" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="22.05">
     <description>extract subsequences from FASTA/Q files</description>
     <macros>
@@ -38,8 +37,8 @@ $t
                 <param name="name_list" type="data" format="txt" label="Input ID list"/>
             </when>
         </conditional>
-        <param argument="-t" type="boolean" truevalue="-t" falsevalue="" label="TAB delimited output" />
-        <param argument="-l" type="integer" value="0" label="Sequence line length" />
+        <param argument="-t" type="boolean" truevalue="-t" falsevalue="" label="TAB delimited output"/>
+        <param argument="-l" type="integer" value="0" label="Sequence line length"/>
     </inputs>
     <outputs>
         <data name="default" format_source="in_file" label="${tool.name} on ${on_string}: Selected sequences">
@@ -52,14 +51,14 @@ $t
         <test>
             <param name="in_file" value="seqtk_subseq.fa"/>
             <param name="type" value="name"/>
-            <param name="t" value="False" />
+            <param name="t" value="False"/>
             <param name="name_list" value="seqtk_subseq_list.txt"/>
             <output name="default" file="seqtk_subseq.out" ftype="fasta"/>
         </test>
         <test>
             <param name="in_file" value="seqtk_subseq.fa.gz" ftype="fasta.gz"/>
             <param name="type" value="name"/>
-            <param name="t" value="False" />
+            <param name="t" value="False"/>
             <param name="name_list" value="seqtk_subseq_list.txt"/>
             <output name="default" file="seqtk_subseq.out.gz" ftype="fasta.gz"/>
         </test>
@@ -90,5 +89,5 @@ results in
 
 @ATTRIBUTION@
     ]]></help>
-    <expand macro="citation" />
+    <expand macro="citation"/>
 </tool>

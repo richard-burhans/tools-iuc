@@ -50,7 +50,7 @@
     <tests>
         <test>
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="history" />
+                <param name="reference_source_selector" value="history"/>
                 <param name="ref" ftype="fasta" value="ref.fa"/>
             </conditional>
             <param name="bam" value="simulated.bam"/>
@@ -59,7 +59,7 @@
         </test>
         <test>
             <conditional name="reference_source">
-                <param name="reference_source_selector" value="cached" />
+                <param name="reference_source_selector" value="cached"/>
                 <param name="ref" value="genome"/>
             </conditional>
             <param name="bam" value="simulated.bam"/>

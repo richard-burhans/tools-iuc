@@ -1,46 +1,46 @@
 <tool id="xpath" name="XPath" version="@WRAPPER_VERSION@.0">
-  <description>compute xpath expressions on XML data</description>
-  <macros>
-    <import>macros.xml</import>
-  </macros>
-  <expand macro="requirements"/>
-  <expand macro="stdio"/>
-  <command><![CDATA[perl $__tool_directory__/xpath -q -e '$expression' $input > $output]]></command>
-  <inputs>
-    <param name="input" type="data" format="xml" label="Input XML data"/>
-    <param name="expression" type="text" label="XPath Query">
-      <sanitizer>
-        <valid>
-          <add value="&quot;"/>
-          <add value="["/>
-          <add value="]"/>
-          <add value="@"/>
-        </valid>
-      </sanitizer>
-    </param>
-  </inputs>
-  <outputs>
-      <!-- TODO: sometimes there's text output (e.g. text() queries) -->
-    <data format="xml" name="output" label="XPath expression on $input.name"/>
-  </outputs>
-  <tests>
-    <test>
-      <param name="input" value="test.xml"/>
-      <param name="expression" value="//b[@attr=&quot;value&quot;]" />
-      <output name="output" file="1.xml" ftype="xml"/>
-    </test>
-    <test>
-      <param name="input" value="test.xml"/>
-      <param name="expression" value="//b[@attr]" />
-      <output name="output" file="2.xml" ftype="xml"/>
-    </test>
-    <test>
-      <param name="input" value="test.xml"/>
-      <param name="expression" value="//b/text()" />
-      <output name="output" file="3.xml" ftype="xml"/>
-    </test>
-  </tests>
-  <help><![CDATA[
+    <description>compute xpath expressions on XML data</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <command><![CDATA[perl $__tool_directory__/xpath -q -e '$expression' '$input' > '$output']]></command>
+    <inputs>
+        <param name="input" type="data" format="xml" label="Input XML data"/>
+        <param name="expression" type="text" label="XPath Query">
+            <sanitizer>
+                <valid>
+                    <add value="&quot;"/>
+                    <add value="["/>
+                    <add value="]"/>
+                    <add value="@"/>
+                </valid>
+            </sanitizer>
+        </param>
+    </inputs>
+    <outputs>
+        <!-- TODO: sometimes there's text output (e.g. text() queries) -->
+        <data format="xml" name="output" label="XPath expression on $input.name"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="test.xml"/>
+            <param name="expression" value="//b[@attr=&quot;value&quot;]"/>
+            <output name="output" file="1.xml" ftype="xml"/>
+        </test>
+        <test>
+            <param name="input" value="test.xml"/>
+            <param name="expression" value="//b[@attr]"/>
+            <output name="output" file="2.xml" ftype="xml"/>
+        </test>
+        <test>
+            <param name="input" value="test.xml"/>
+            <param name="expression" value="//b/text()"/>
+            <output name="output" file="3.xml" ftype="xml"/>
+        </test>
+    </tests>
+    <help><![CDATA[
 **What it does**
 
 Query XML files with XPath expressions.
@@ -103,6 +103,5 @@ Here are some example queries and their outputs:
 
 @ATTRIBUTION@
 ]]></help>
-  <citations>
-  </citations>
+    <citations/>
 </tool>

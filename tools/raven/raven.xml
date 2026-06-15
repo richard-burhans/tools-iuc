@@ -47,7 +47,6 @@ $graphical_fragment_assembly
         <param argument="--identity" type="float" value="0" label="Threshold for overlap between two reads in order to construct an edge between them" help="If set to zero, this functionality is disabled"/>
         <param argument="--kMaxNumOverlaps" type="integer" value="32" label="Maximum number of overlaps that will be taken during FindOverlapsAndCreatePiles stage"/>
         <param argument="--min-unitig-size" type="integer" value="9999" label="Minimal unitig size"/>
-
         <param argument="--polishing-rounds" type="integer" value="2" min="0" label="Number of times racon polishing is invoked"/>
         <param argument="--match" type="integer" value="3"/>
         <param argument="--mismatch" type="integer" value="-5"/>

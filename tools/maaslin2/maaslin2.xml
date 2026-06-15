@@ -92,9 +92,9 @@ cp *.pdf figures
     <inputs>
         <param name="input_data" type="data" format="tabular" label="Data (or features) file"/>
         <param name="input_metadata" type="data" format="tabular" label="Metadata file"/>
-        <param argument="--fixed_effects" type="data_column" data_ref="input_metadata" use_header_names="true"  multiple="true" optional="true" label="Interactions: Fixed effects" help="The fixed effects for the model, comma-delimited for multiple effects, Default value: All " />
-        <param argument="--random_effects" type="data_column" data_ref="input_metadata" use_header_names="true" multiple="true" optional="true" label="Random effects" help="The random effects for the model,  comma-delimited for multiple effects, Default: None" />
-        <param argument="--reference" type="text"  label="Reference" help="Reference for a variable with more than two levels provided as a string of 'variable,reference' comma delimited for multiple variables. " />
+        <param argument="--fixed_effects" type="data_column" data_ref="input_metadata" use_header_names="true" multiple="true" optional="true" label="Interactions: Fixed effects" help="The fixed effects for the model, comma-delimited for multiple effects, Default value: All "/>
+        <param argument="--random_effects" type="data_column" data_ref="input_metadata" use_header_names="true" multiple="true" optional="true" label="Random effects" help="The random effects for the model,  comma-delimited for multiple effects, Default: None"/>
+        <param argument="--reference" type="text" label="Reference" help="Reference for a variable with more than two levels provided as a string of 'variable,reference' comma delimited for multiple variables. "/>
         <section name="additional_options" title="Additional Options" expanded="true">
             <param argument="--min_abundance" type="float" value="0.0" optional="true" label="Minimum abundance" help="The minimum abundance for each feature"/>
             <param argument="--min_prevalence" type="float" value="0.1" optional="true" label="Minimum prevalence" help="The minimum percent of samples for which a feature is detected at minimum abundance"/>
@@ -125,27 +125,27 @@ cp *.pdf figures
                 <option value="Holm">Holm</option>
                 <option value="Hochberg">Hochberg</option>
                 <option value="Hommel">Hommel</option>
-	    </param>
+            </param>
             <param argument="--standardize" type="boolean" truevalue="--standardize TRUE" falsevalue="--standardize FALSE" checked="true" label="Apply z-score so continuous metadata are on  the same scale"/>
-        </section>          
+        </section>
         <section name="output" title="Set Plotting Output" expanded="true">
             <param argument="--plot_heatmap" type="boolean" truevalue="--plot_heatmap TRUE" falsevalue="--plot_heatmap FALSE" checked="true" label="Generate a heatmap for the significant  associations"/>
             <param argument="--heatmap_first_n" type="integer" value="50" optional="true" label="Heatmap plot first N" help="In heatmap, plot top N features with significant associations"/>
-            <param argument="--plot_scatter" type="boolean" truevalue="--plot_scatter TRUE" falsevalue="--plot_scatter FALSE" checked="true" label="Generate scatter plots for the significant associations"/> 
-            <param name="residuals_output" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Output data frame with residuals for each feature"/>    
-        </section>   
-   </inputs>
-   <outputs>
-        <data name="archive_output" format="zip" from_work_dir="out.zip" label="${tool.name} on ${on_string}: zip of the complete output" />
+            <param argument="--plot_scatter" type="boolean" truevalue="--plot_scatter TRUE" falsevalue="--plot_scatter FALSE" checked="true" label="Generate scatter plots for the significant associations"/>
+            <param name="residuals_output" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="true" label="Output data frame with residuals for each feature"/>
+        </section>
+    </inputs>
+    <outputs>
+        <data name="archive_output" format="zip" from_work_dir="out.zip" label="${tool.name} on ${on_string}: zip of the complete output"/>
         <data name="all_results" format="tabular" from_work_dir="outputFolder/all_results.tsv" label="All results ordered by increasing q-value"/>
         <data name="significant_results" format="tabular" from_work_dir="outputFolder/significant_results.tsv" label="Q-values smaller than or equal to the threshold"/>
-        <data name="residuals" format="rdata" from_work_dir="outputFolder/fits/residuals.rds" label="Data frame with residuals for each feature">       
+        <data name="residuals" format="rdata" from_work_dir="outputFolder/fits/residuals.rds" label="Data frame with residuals for each feature">
             <filter>output['residuals_output'] is True</filter>
-        </data>         
-        <data format="pdf" name="headmap" from_work_dir="outputFolder/figures/heatmap.pdf" label="Heatmap of the significant associations" >
+        </data>
+        <data format="pdf" name="headmap" from_work_dir="outputFolder/figures/heatmap.pdf" label="Heatmap of the significant associations">
             <filter>output['plot_heatmap'] is True</filter>
-        </data>        
-        <collection name="figures_pdfs" type="list" label="Plots" >
+        </data>
+        <collection name="figures_pdfs" type="list" label="Plots">
             <discover_datasets pattern="(?P&lt;designation&gt;.+)" directory="outputFolder/figures/" format="pdf"/>
             <filter>output['plot_scatter'] is True</filter>
         </collection>
@@ -154,8 +154,8 @@ cp *.pdf figures
         <test expect_num_outputs="6">
             <param name="input_data" value="HMP2_taxonomy.tsv"/>
             <param name="input_metadata" value="HMP2_metadata.tsv"/>
-            <param name="random_effects" value= "2,5"/> 
-            <param name="fixed_effects" value="4,9,10,11,6,3"/> 
+            <param name="random_effects" value="2,5"/>
+            <param name="fixed_effects" value="4,9,10,11,6,3"/>
             <param name="reference" value="diagnosis,nonIBD"/>
             <section name="additional_options">
                 <param name="min_abundance" value="0.0"/>
@@ -175,7 +175,7 @@ cp *.pdf figures
             </section>
             <output name="archive_output">
                 <assert_contents>
-                    <has_size value="15005328" delta="1000000" />
+                    <has_size value="15005328" delta="1000000"/>
                 </assert_contents>
             </output>
             <output name="all_results">
@@ -194,50 +194,50 @@ cp *.pdf figures
             </output>
             <output name="residuals">
                 <assert_contents>
-                    <has_size value="462386" />
+                    <has_size value="462386"/>
                 </assert_contents>
             </output>
             <output name="headmap">
                 <assert_contents>
-                    <has_size value="7373" delta="1000" />
+                    <has_size value="7373" delta="1000"/>
                 </assert_contents>
             </output>
             <output_collection name="figures_pdfs" type="list">
                 <element name="heatmap.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="7373" delta="1000" />
+                        <has_size value="7373" delta="1000"/>
                     </assert_contents>
                 </element>
                 <element name="age.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="407859" delta="100000" />
+                        <has_size value="407859" delta="100000"/>
                     </assert_contents>
                 </element>
                 <element name="antibiotics.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="1590476" delta="1000000" />
+                        <has_size value="1590476" delta="1000000"/>
                     </assert_contents>
                 </element>
                 <element name="diagnosis.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="1407572" delta="1000000" />
+                        <has_size value="1407572" delta="1000000"/>
                     </assert_contents>
                 </element>
                 <element name="dysbiosisCD.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="2328523" delta="1000000" />
+                        <has_size value="2328523" delta="1000000"/>
                     </assert_contents>
                 </element>
                 <element name="dysbiosisnonIBD.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="1032602" delta="1000000" />
+                        <has_size value="1032602" delta="1000000"/>
                     </assert_contents>
                 </element>
                 <element name="dysbiosisUC.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="1037005" delta="1000000" />
+                        <has_size value="1037005" delta="1000000"/>
                     </assert_contents>
-                </element>                                                                        
+                </element>
             </output_collection>
         </test>
         <test expect_num_outputs="6">
@@ -263,7 +263,7 @@ cp *.pdf figures
             </section>
             <output name="archive_output">
                 <assert_contents>
-                    <has_size value="12630049" delta="1000000" />
+                    <has_size value="12630049" delta="1000000"/>
                 </assert_contents>
             </output>
             <output name="all_results">
@@ -288,9 +288,9 @@ cp *.pdf figures
             <output_collection name="figures_pdfs" type="list">
                 <element name="diagnosis.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="6234127" delta="1000000" />
+                        <has_size value="6234127" delta="1000000"/>
                     </assert_contents>
-                </element>                                                              
+                </element>
             </output_collection>
         </test>
         <test expect_num_outputs="6">
@@ -316,7 +316,7 @@ cp *.pdf figures
             </section>
             <output name="archive_output">
                 <assert_contents>
-                    <has_size value="18278259" delta="1000000" />
+                    <has_size value="18278259" delta="1000000"/>
                 </assert_contents>
             </output>
             <output name="all_results">
@@ -340,29 +340,27 @@ cp *.pdf figures
             </output>
             <output name="headmap">
                 <assert_contents>
-                    <has_size value="7000" delta="1000" />
+                    <has_size value="7000" delta="1000"/>
                 </assert_contents>
             </output>
             <output_collection name="figures_pdfs" type="list">
                 <element name="heatmap.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="7693" delta="100" />
+                        <has_size value="7693" delta="100"/>
                     </assert_contents>
                 </element>
                 <element name="diagnosis.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="6061545" delta="1000000" />
+                        <has_size value="6061545" delta="1000000"/>
                     </assert_contents>
                 </element>
-                                                                        
             </output_collection>
-        </test> 
-        <test expect_num_outputs="6">  
-      	<param name="input_data" value="HMP2_taxonomy.tsv"/>
+        </test>
+        <test expect_num_outputs="6">
+            <param name="input_data" value="HMP2_taxonomy.tsv"/>
             <param name="input_metadata" value="HMP2_metadata.tsv"/>
             <param name="fixed_effects" value="7,9"/>
-            <param name="random_effects" value="3" />
-          
+            <param name="random_effects" value="3"/>
             <section name="additional_options">
                 <param name="min_abundance" value="0.0"/>
                 <param name="min_prevalence" value="0.1"/>
@@ -381,7 +379,7 @@ cp *.pdf figures
             </section>
             <output name="archive_output">
                 <assert_contents>
-                    <has_size value="8567935" delta="1000000" />
+                    <has_size value="8567935" delta="1000000"/>
                 </assert_contents>
             </output>
             <output name="all_results">
@@ -406,13 +404,11 @@ cp *.pdf figures
             <output_collection name="figures_pdfs" type="list">
                 <element name="heatmap.pdf" ftype="pdf">
                     <assert_contents>
-                        <has_size value="7000" delta="1000" />
+                        <has_size value="7000" delta="1000"/>
                     </assert_contents>
-                </element>                                                              
+                </element>
             </output_collection>
-        </test> 
-       
-            
+        </test>
     </tests>
     <help><![CDATA[
 @HELP_HEADER@
@@ -468,8 +464,8 @@ Correction methods to compute the q-value : https://www.rdocumentation.org/packa
         - Box plots are for categorical data.
         - Data points plotted are after normalization, filtering, and transform.
 
-    ]]></help> 
+    ]]></help>
     <citations>
         <citation type="doi">10.1101/2021.01.20.427420</citation>
     </citations>
- </tool>
+</tool>

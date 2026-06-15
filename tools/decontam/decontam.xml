@@ -100,7 +100,7 @@
                 <param name="control" type="data_column" data_ref="metadata" use_header_names="true" multiple="false" optional="false" label="Control column" help="Column specifying weather a sample is a negative control (0 for normal samples / 1 for control)."/>
             </when>
         </conditional>
-        <param name="threshold" type="float" label="Threshold to detect a contaminant" value="0.1" min="0" max="1" help="Probability of the feature to be a decontaminant in the statistical test being performed." />    
+        <param name="threshold" type="float" label="Threshold to detect a contaminant" value="0.1" min="0" max="1" help="Probability of the feature to be a decontaminant in the statistical test being performed."/>
     </inputs>
     <outputs>
         <data name="library_size_vs_control" format="png" label="${tool.name} on ${on_string}: Library Size vs Control Plot"/>
@@ -123,14 +123,14 @@
         </test>
         <test>
             <conditional name="input_type">
-                    <param name="select_input" value="feature_table"/>
-                    <param name="otu" value="otu_input.tsv"/>
-                    <param name="metadata" value="metadata_input.tsv"/>
-                    <!-- using the index of the column -->
-                    <param name="control" value="8"/> 
+                <param name="select_input" value="feature_table"/>
+                <param name="otu" value="otu_input.tsv"/>
+                <param name="metadata" value="metadata_input.tsv"/>
+                <!-- using the index of the column -->
+                <param name="control" value="8"/>
             </conditional>
             <param name="threshold" value="0.5"/>
-            <output name="decontam_phyloseq" file="phyloseq_output2.rds" ftype="phyloseq"/> 
+            <output name="decontam_phyloseq" file="phyloseq_output2.rds" ftype="phyloseq"/>
             <output name="decontam_otu" file="otu_output.tsv" ftype="tabular"/>
             <output name="prevalence" file="Prevalence_Plot.png" ftype="png"/>
             <output name="library_size_vs_control" file="Library_Size_vs_Control_Plot.png" ftype="png"/>

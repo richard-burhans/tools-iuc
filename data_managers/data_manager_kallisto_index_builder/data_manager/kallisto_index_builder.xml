@@ -14,22 +14,22 @@
     </command>
     <inputs>
         <param label="Source FASTA Sequence" name="all_fasta_source" type="select">
-            <options from_data_table="all_fasta" />
+            <options from_data_table="all_fasta"/>
         </param>
-        <param name="sequence_name" type="text" value="" label="Name of sequence" />
-        <param name="sequence_id" type="text" value="" label="ID for sequence" />
+        <param name="sequence_name" type="text" value="" label="Name of sequence"/>
+        <param name="sequence_id" type="text" value="" label="ID for sequence"/>
     </inputs>
     <outputs>
-        <data name="out_file" format="data_manager_json" />
+        <data name="out_file" format="data_manager_json"/>
     </outputs>
-    <help>
-<![CDATA[
+    <help><![CDATA[
+
 .. class:: infomark
 
 **Notice:** If you leave name, description, or id blank, it will be generated automatically.
 
 What is Kallisto?
----------------
+-----------------
 
 `kallisto <https://pachterlab.github.io/kallisto/about>`__ is a program for
 quantifying abundances of transcripts from RNA-Seq data, or more generally of
@@ -44,8 +44,8 @@ quantification, and kallisto is therefore not only fast, but also as accurate
 as existing quantification tools. In fact, because the pseudoalignment
 procedure is robust to errors in the reads, in many benchmarks kallisto
 significantly outperforms existing tools.
-]]>
-    </help>
+
+    ]]></help>
     <citations>
         <citation type="doi">10.1038/nmeth.3317</citation>
     </citations>

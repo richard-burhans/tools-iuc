@@ -67,8 +67,8 @@ forceTwoBit=on
 mafFrag is a command-line tool from the UCSC Genome Browser suite that extracts MAF sequences for a region from database.
 
     ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
                 @misc{mafFrag,
                 author = {Kent UCSC},
                 title = {mafFrag: A tool that extracts MAF sequences for a region from database},

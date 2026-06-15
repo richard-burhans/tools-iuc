@@ -44,8 +44,8 @@ humann_rename_table
             <when value="advanced">
                 <param name="names" type="select" label="Features to be renamed">
                     <options from_data_table="humann_utility_mapping">
-                        <validator message="No utility mapping is available" type="no_options" />
-                        <filter type="regexp" column="0" value=".*name" keep="true" />
+                        <validator message="No utility mapping is available" type="no_options"/>
+                        <filter type="regexp" column="0" value=".*name" keep="true"/>
                     </options>
                 </param>
             </when>
@@ -63,13 +63,13 @@ humann_rename_table
             <param name="input" value="regrouped_gene_families_to_infogo1000.tsv"/>
             <conditional name="renaming">
                 <param name="type" value="standard"/>
-                <param name="names" value="infogo1000" />
+                <param name="names" value="infogo1000"/>
             </conditional>
             <param name="simplify" value=""/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="GO:0000015: [CC] phosphopyruvate hydratase complex" />
-                    <has_text text="GO:0000287: [MF] magnesium ion binding" />
+                    <has_text text="GO:0000015: [CC] phosphopyruvate hydratase complex"/>
+                    <has_text text="GO:0000287: [MF] magnesium ion binding"/>
                 </assert_contents>
             </output>
         </test>
@@ -82,9 +82,9 @@ humann_rename_table
             <param name="simplify" value=""/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="UniRef90_A6L2T0: NO_NAME|g__Bacteroides.s__Bacteroides_vulgatus" />
-                    <has_text text="UniRef90_U5FT06: Hexosyltransferase|unclassified" />
-                    <has_text text="UniRef90_Q8GT21: Benzyl alcohol O-benzoyltransferase|unclassified" />
+                    <has_text text="UniRef90_A6L2T0: NO_NAME|g__Bacteroides.s__Bacteroides_vulgatus"/>
+                    <has_text text="UniRef90_U5FT06: Hexosyltransferase|unclassified"/>
+                    <has_text text="UniRef90_Q8GT21: Benzyl alcohol O-benzoyltransferase|unclassified"/>
                 </assert_contents>
             </output>
         </test>
@@ -92,14 +92,14 @@ humann_rename_table
             <param name="input" value="demo_genefamilies.tsv"/>
             <conditional name="renaming">
                 <param name="type" value="custom"/>
-                <param name="custom" value="test-db/utility_mapping/map_uniref90_name.txt" />
+                <param name="custom" value="test-db/utility_mapping/map_uniref90_name.txt"/>
             </conditional>
             <param name="simplify" value=""/>
             <output name="output" ftype="tabular">
                 <assert_contents>
-                    <has_text text="UniRef90_A6L2T0: NO_NAME|g__Bacteroides.s__Bacteroides_vulgatus" />
-                    <has_text text="UniRef90_U5FT06: Hexosyltransferase|unclassified" />
-                    <has_text text="UniRef90_Q8GT21: Benzyl alcohol O-benzoyltransferase|unclassified" />
+                    <has_text text="UniRef90_A6L2T0: NO_NAME|g__Bacteroides.s__Bacteroides_vulgatus"/>
+                    <has_text text="UniRef90_U5FT06: Hexosyltransferase|unclassified"/>
+                    <has_text text="UniRef90_Q8GT21: Benzyl alcohol O-benzoyltransferase|unclassified"/>
                 </assert_contents>
             </output>
         </test>

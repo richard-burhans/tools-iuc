@@ -11,17 +11,17 @@
     #import re
     #set $queryName=re.sub('/', '\\/', str($query.element_identifier))
     #set $dbName=re.sub('/', '\\/', str($db.element_identifier))
-    cp $query query.fasta &&
-    cp $db db.fasta &&
+    cp '$query' query.fasta &&
+    cp '$db' db.fasta &&
     workflow.sh query.fasta db.fasta $minlen $similarity $kmer 1 &&
     rm -rf intermediateFiles &&
     #if str($selection_mode) == "alignments":
       frags2align.sh results/query-db.frags query.fasta db.fasta results/query-db.txt &&
-      mv results/query-db.txt $alignments2 &&
+      mv results/query-db.txt '$alignments2' &&
     #end if
     sed -i 's/query.fasta/$queryName/g' results/query-db.csv &&
     sed -i 's/db.fasta/$dbName/g' results/query-db.csv &&
-    mv results/query-db.csv $csv_output1 &&
+    mv results/query-db.csv '$csv_output1' &&
     rm -rf results
     ]]></command>
     <inputs>
@@ -44,7 +44,7 @@
         </param>
     </inputs>
     <outputs>
-        <data name="csv_output1" format="csv" label="${tool.name} on ${on_string}: CSV"/> 
+        <data name="csv_output1" format="csv" label="${tool.name} on ${on_string}: CSV"/>
         <data name="alignments2" format="txt" label="${tool.name} on ${on_string}: Alignments">
             <filter> selection_mode == 'alignments'</filter>
         </data>
@@ -54,7 +54,7 @@
         <test expect_num_outputs="1">
             <param name="query" value="hyopneumoniae_16S.fasta"/>
             <param name="db" value="flocculare_16S.fasta"/>
-            <param name="kmer" value="8"/> 
+            <param name="kmer" value="8"/>
             <param name="minlen" value="20"/>
             <param name="similarity" value="50"/>
             <param name="selection_mode" value="noalignments"/>
@@ -102,7 +102,7 @@
             </output>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 *GECKO*
 
 A pairwise genome comparison software for the detection of High-scoring Segment Pairs.
@@ -150,7 +150,7 @@ The CSV file can be interpreted as follows. Each column represents:
 - SeqY: same as above but for the reference file.
 
 Note that fragments in the reverse strand (marked with the r field) have their yStart and yEnd coordinates switched, i.e. yEnd is smaller than yStart.
-    </help>
+    ]]></help>
     <citations>
         <citation type="doi">10.1186/s12859-015-0679-9</citation>
     </citations>

@@ -160,7 +160,8 @@ echo 'split.abund(
         </collection>
     </outputs>
     <tests>
-        <test><!-- test with count table -->
+        <test>
+            <!-- test with count table -->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="type" value="count"/>
             <param name="input" value="amazon.count_table" ftype="mothur.count_table"/>
@@ -175,7 +176,8 @@ echo 'split.abund(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with name file and accnos output -->
+        <test>
+            <!-- test with name file and accnos output -->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="type" value="name"/>
             <param name="input" value="amazon.names" ftype="mothur.names"/>
@@ -190,7 +192,8 @@ echo 'split.abund(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with name file and accnos output with groups-->
+        <test>
+            <!-- test with name file and accnos output with groups-->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="type" value="name"/>
             <param name="input" value="amazon.names" ftype="mothur.names"/>
@@ -226,7 +229,8 @@ echo 'split.abund(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with list -->
+        <test>
+            <!-- test with list -->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="type" value="list"/>
             <param name="input" value="amazon.an.list" ftype="mothur.list"/>
@@ -262,7 +266,8 @@ echo 'split.abund(
             <param name="savelog" value="true"/>
             <expand macro="logfile-test"/>
         </test>
-        <test><!-- test with list and label and group select-->
+        <test>
+            <!-- test with list and label and group select-->
             <param name="fasta" value="amazon.fasta" ftype="fasta"/>
             <param name="type" value="list"/>
             <param name="input" value="amazon.an.list" ftype="mothur.list"/>

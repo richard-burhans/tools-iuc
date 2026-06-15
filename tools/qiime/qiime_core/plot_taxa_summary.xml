@@ -108,9 +108,9 @@ plot_taxa_summary.py
             <param name="bar_width" value="0.75"/>
             <param name="type_of_file" value="png"/>
             <param name="chart_type" value="area,bar,pie"/>
-            <param name="include_html_legend" value="" />
+            <param name="include_html_legend" value=""/>
             <param name="resize_nth_label" value="0"/>
-            <param name="label_type" value="categorical" />
+            <param name="label_type" value="categorical"/>
             <output name="bar_charts_html_report" value="plot_taxa_summary/phylum/bar_charts.html" compare="sim_size"/>
             <output name="pie_charts_html_report" value="plot_taxa_summary/phylum/pie_charts.html" compare="sim_size"/>
             <output name="area_charts_html_report" value="plot_taxa_summary/phylum/area_charts.html" compare="sim_size"/>
@@ -126,9 +126,9 @@ plot_taxa_summary.py
             <param name="bar_width" value="0.75"/>
             <param name="type_of_file" value="png"/>
             <param name="chart_type" value="area,bar,pie"/>
-            <param name="include_html_legend" value="" />
+            <param name="include_html_legend" value=""/>
             <param name="resize_nth_label" value="0"/>
-            <param name="label_type" value="categorical" />
+            <param name="label_type" value="categorical"/>
             <output name="bar_charts_html_report" value="plot_taxa_summary/phylum_class_genus/bar_charts.html" compare="sim_size"/>
             <output name="pie_charts_html_report" value="plot_taxa_summary/phylum_class_genus/pie_charts.html" compare="sim_size"/>
             <output name="area_charts_html_report" value="plot_taxa_summary/phylum_class_genus/area_charts.html" compare="sim_size"/>
@@ -144,9 +144,9 @@ plot_taxa_summary.py
             <param name="bar_width" value="0.75"/>
             <param name="chart_type" value="pie"/>
             <param name="type_of_file" value="svg"/>
-            <param name="include_html_legend" value="--include_html_legend" />
+            <param name="include_html_legend" value="--include_html_legend"/>
             <param name="resize_nth_label" value="0"/>
-            <param name="label_type" value="categorical" />
+            <param name="label_type" value="categorical"/>
             <output name="pie_charts_html_report" value="plot_taxa_summary/class/pie_charts.html" compare="sim_size"/>
         </test>
         <test expect_num_outputs="3">
@@ -161,9 +161,9 @@ plot_taxa_summary.py
             <param name="bar_width" value="0.75"/>
             <param name="type_of_file" value="pdf"/>
             <param name="chart_type" value="area,bar,pie"/>
-            <param name="include_html_legend" value="" />
+            <param name="include_html_legend" value=""/>
             <param name="resize_nth_label" value="0"/>
-            <param name="label_type" value="categorical" />
+            <param name="label_type" value="categorical"/>
             <output name="bar_charts_html_report" value="plot_taxa_summary/class_colorby/bar_charts.html" compare="sim_size"/>
             <output name="pie_charts_html_report" value="plot_taxa_summary/class_colorby/pie_charts.html" compare="sim_size"/>
             <output name="area_charts_html_report" value="plot_taxa_summary/class_colorby/area_charts.html" compare="sim_size"/>

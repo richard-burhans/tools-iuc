@@ -56,10 +56,10 @@
         </conditional>
         <param type="data" name="reads" format="fastq,fastq.gz,fasta,fasta.gz,bam" label="reads" help="PacBio reads in BAM or [gzipped] fasta or fastq format"/>
         <param argument="--preset" type="select" label="Set alignment mode">
-                <option value="CCS">PacBio CCS or HiFi reads</option>
-                <option value="SUBREAD">PacBio CLR or raw subreads</option>
-                <option value="ISOSEQ">PacBio IsoSeq transcripts</option>
-                <option value="UNROLLED">Align entire raw ZMW</option>
+            <option value="CCS">PacBio CCS or HiFi reads</option>
+            <option value="SUBREAD">PacBio CLR or raw subreads</option>
+            <option value="ISOSEQ">PacBio IsoSeq transcripts</option>
+            <option value="UNROLLED">Align entire raw ZMW</option>
         </param>
         <section name="output_options" title="Output Options" help="Sets -l, -N, --strip,  --split-by-sample,  --unmapped, --short-sa-cigar" expanded="False">
             <param argument="-l" type="integer" min="0" label="Minimum mapped read length in basepairs" value="50" optional="true"/>
@@ -130,7 +130,7 @@
             </output>
         </test>
     </tests>
-        <help><![CDATA[
+    <help><![CDATA[
 **What it does**
 
 A minimap2 wrapper for PacBio data: native PacBio data in ⇨ native
@@ -153,8 +153,8 @@ but you can’t use the output for pbgcpp (GenomicConsensus).
 pbgcpp (previously known as GenomicConsensus).
 
         ]]></help>
-        <citations>
-            <citation type="bibtex">
+    <citations>
+        <citation type="bibtex">
 @misc{githubpbmm2,
   author = {PacBio},
   year = {2023},

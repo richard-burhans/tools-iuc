@@ -3,61 +3,60 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements" />
+    <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[
         @PREPARE_REF@
         lofreq alnqual -b ${alnqual_choice.extended_baq} ${alnqual_choice.alnquals_to_use} $recompute_all '$reads' '$reference_fasta_fn' > '$output'
     ]]></command>
     <inputs>
-        <param type="data" name="reads" format="bam" label="Reads" />
-        <expand macro="reference_interface" />
-        <expand macro="handle_alnqual" mode="Add" />
-        <param argument="-r" name="recompute_all" type="boolean" truevalue="-r" falsevalue=""
-        label="Overwrite exisitng values with newly computed ones" />
+        <param type="data" name="reads" format="bam" label="Reads"/>
+        <expand macro="reference_interface"/>
+        <expand macro="handle_alnqual" mode="Add"/>
+        <param argument="-r" name="recompute_all" type="boolean" truevalue="-r" falsevalue="" label="Overwrite exisitng values with newly computed ones"/>
     </inputs>
     <outputs>
-        <data name="output" format="bam" label="${tool.name} to ${on_string}" />
+        <data name="output" format="bam" label="${tool.name} to ${on_string}"/>
     </outputs>
     <tests>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
-            <output name="output" file="alnqual-out1.bam" ftype="bam" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
+            <output name="output" file="alnqual-out1.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="alnqual_choice">
-                <param name="alnquals_to_use" value="-B" />
+                <param name="alnquals_to_use" value="-B"/>
             </conditional>
-            <output name="output" file="alnqual-out2.bam" ftype="bam" />
+            <output name="output" file="alnqual-out2.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="alnqual_choice">
-                <param name="alnquals_to_use" value="-A" />
+                <param name="alnquals_to_use" value="-A"/>
             </conditional>
-            <output name="output" file="alnqual-out3.bam" ftype="bam" />
+            <output name="output" file="alnqual-out3.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
             <conditional name="alnqual_choice">
-                <param name="extended_baq" value="false" />
+                <param name="extended_baq" value="false"/>
             </conditional>
-            <output name="output" file="alnqual-out4.bam" ftype="bam" />
+            <output name="output" file="alnqual-out4.bam" ftype="bam"/>
         </test>
         <test>
-            <param name="reads" ftype="bam" value="lofreq-in1.bam" />
-            <param name="ref_selector" value="history" />
-            <param name="ref" ftype="fasta" value="pBR322.fa" />
-            <param name="recompute_all" value="true" />
-            <output name="output" file="alnqual-out5.bam" ftype="bam" />
+            <param name="reads" ftype="bam" value="lofreq-in1.bam"/>
+            <param name="ref_selector" value="history"/>
+            <param name="ref" ftype="fasta" value="pBR322.fa"/>
+            <param name="recompute_all" value="true"/>
+            <output name="output" file="alnqual-out5.bam" ftype="bam"/>
         </test>
     </tests>
     <help><![CDATA[
@@ -94,5 +93,5 @@ Notes:
 - `ai` and `ad` tags, if requested, will only be added to reads containing
   insertions/deletions.
     ]]></help>
-    <expand macro="citations" />
+    <expand macro="citations"/>
 </tool>

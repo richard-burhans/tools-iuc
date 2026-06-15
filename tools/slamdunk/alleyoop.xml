@@ -65,15 +65,12 @@ alleyoop tcperutrpos -o ./stats -r reference.fa -s ./snp -t \${GALAXY_SLOTS:-1} 
         <param name="reads" type="data" format="sam,bam" multiple="True" label="Slamdunk BAM files"/>
         <param name="count_tsvs" type="data" format="tabular" multiple="True" label="Slamdunk Count TSV files"/>
         <param name="variants" type="data" format="vcf" multiple="True" label="Slamdunk VCF files"/>
-        <param name="mq" argument="--min-basequality" type="integer" label="Minimum base quality"
-                value="27" min="0"
-                help="Minimum base quality for T>C conversions (default: 27)."/>
-        <param name="l" argument="--max-read-length" type="integer" label="Read length"
-            value="50" min="50" help="Maximum read length (before trimming)."/>
-        <param name="bams" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Output T>C separated BAM files?" help="If this option is set to Yes, the Alleyoop read-separator module will be run to output BAM files of separated T>C reads from non T>C reads. Default: No"/>
+        <param name="mq" argument="--min-basequality" type="integer" label="Minimum base quality" value="27" min="0" help="Minimum base quality for T&gt;C conversions (default: 27)."/>
+        <param name="l" argument="--max-read-length" type="integer" label="Read length" value="50" min="50" help="Maximum read length (before trimming)."/>
+        <param name="bams" type="boolean" truevalue="True" falsevalue="False" checked="False" label="Output T&gt;C separated BAM files?" help="If this option is set to Yes, the Alleyoop read-separator module will be run to output BAM files of separated T&gt;C reads from non T&gt;C reads. Default: No"/>
     </inputs>
     <outputs>
-         <collection name="outputSummary" type="list" label="${tool.name} on ${on_string}: Summary tables">
+        <collection name="outputSummary" type="list" label="${tool.name} on ${on_string}: Summary tables">
             <discover_datasets pattern="(?P&lt;name&gt;.+)\.txt$" format="tabular" directory="." visible="false"/>
         </collection>
         <collection name="outputStats" type="list" label="${tool.name} on ${on_string}: Stats tables">
@@ -121,7 +118,8 @@ alleyoop tcperutrpos -o ./stats -r reference.fa -s ./snp -t \${GALAXY_SLOTS:-1} 
                 <element name="reads1" ftype="bam" file="reads1_TCReads.bam" lines_diff="8"/>
             </output_collection>
             <output_collection name="outputbkgdReads" count="2">
-                <element name="reads1" ftype="bam" file="reads1_backgroundReads.bam" lines_diff="8"/><!-- allow for diff in RG and PG lines -->
+                <element name="reads1" ftype="bam" file="reads1_backgroundReads.bam" lines_diff="8"/>
+                <!-- allow for diff in RG and PG lines -->
             </output_collection>
         </test>
     </tests>

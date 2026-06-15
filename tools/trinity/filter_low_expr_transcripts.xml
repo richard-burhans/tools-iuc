@@ -35,29 +35,27 @@
         <param argument="--transcripts" name="assembly" type="data" format="fasta" label="Trinity assembly"/>
         <param argument="--matrix" type="data" format="tabular" label="Expression matrix"/>
         <param argument="--min_expr_any" type="float" optional="true" label="Minimum expression level required across any sample"/>
-
         <conditional name="isoform_filter">
             <param name="isoform_mode" type="select" label="Isoform filtering method">
                 <option value="none">No filtering at the isoform level</option>
                 <option value="highest_iso_only">Keep only the most highly expressed isoform per gene</option>
                 <option value="min_pct_dom_iso">Keep all isoforms above a minimum percent of dominant expression</option>
             </param>
-            <when value="none" />
-            <when value="highest_iso_only" />
+            <when value="none"/>
+            <when value="highest_iso_only"/>
             <when value="min_pct_dom_iso">
                 <param argument="--min_pct_dom_iso" type="integer" value="" label="Minimum percent of dominant isoform expression"/>
             </when>
         </conditional>
-
         <section name="additional_params" title="Additional Options" expanded="False">
             <conditional name="gene_map">
                 <param name="has_gene_map" type="select" label="Trinity assembly?" help="If the transcripts were not assembled by trinity, additional information is needed">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </param>
-                <when value="yes" />
+                <when value="yes"/>
                 <when value="no">
-                    <param argument="--gene_to_trans_map" name="gene_trans_map" type="data" format="tabular" label="Gene to transcript correspondence ('gene(tab)transcript' lines)" />
+                    <param argument="--gene_to_trans_map" name="gene_trans_map" type="data" format="tabular" label="Gene to transcript correspondence ('gene(tab)transcript' lines)"/>
                 </when>
             </conditional>
         </section>
@@ -71,30 +69,29 @@
             <param name="assembly" value="raw/Trinity.fasta" ftype="fasta"/>
             <param name="min_expr_any" value="25"/>
             <param name="isoform_filter|isoform_mode" value="none"/>
-            <output name="filtered" file="filtered/Trinity_filtered_exp.fasta" />
+            <output name="filtered" file="filtered/Trinity_filtered_exp.fasta"/>
         </test>
         <test>
             <param name="matrix" value="count/qcheck/matrix.counts.matrix"/>
             <param name="assembly" value="raw/Trinity.fasta" ftype="fasta"/>
             <param name="isoform_filter|isoform_mode" value="highest_iso_only"/>
-            <output name="filtered" file="filtered/Trinity_filtered_hi_iso.fasta" />
+            <output name="filtered" file="filtered/Trinity_filtered_hi_iso.fasta"/>
         </test>
         <test>
             <param name="matrix" value="filtered/counts.matrix"/>
             <param name="assembly" value="raw/Trinity.fasta" ftype="fasta"/>
             <param name="isoform_filter|isoform_mode" value="min_pct_dom_iso"/>
             <param name="isoform_filter|min_pct_dom_iso" value="20"/>
-            <output name="filtered" file="filtered/Trinity_filtered_pct_iso.fasta" />
+            <output name="filtered" file="filtered/Trinity_filtered_pct_iso.fasta"/>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
         Trinity_ assembles transcript sequences from Illumina RNA-Seq data.
         This tool filters a Trinity assembly using an expression matrix built
         with "Build expression matrix for a de novo assembly of RNA-Seq data by Trinity" tool.
         It discards transcripts/isoforms having a low expression level.
 
         .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
-    </help>
-
-    <expand macro="citation" />
+    ]]></help>
+    <expand macro="citation"/>
 </tool>

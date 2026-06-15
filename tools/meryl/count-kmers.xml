@@ -94,7 +94,7 @@
             </assert_stdout>
         </test>
     </tests>
-    <help>
+    <help><![CDATA[
 
 .. class:: infomark
 
@@ -105,6 +105,6 @@ Meryl is the k-mer counter. This tool can be used to count kmers.
 - Count: count the occurrences of canonical k-mers
 - Count-forward: count the occurreces of forward k-mers
 - Count-reverse: count the occurreces of reverse k-mers
-        </help>
+        ]]></help>
     <expand macro="citations"/>
 </tool>
